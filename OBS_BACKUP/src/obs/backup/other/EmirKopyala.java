@@ -12,7 +12,6 @@ import java.util.Date;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import OBS_C_2025.BACKUP_GLOBAL;
-import OBS_C_2025.JTextFieldRegularPopupMenu;
 import OBS_C_2025.Obs_TextFIeld;
 import obs.backup.ayarlar.dilSecenek;
 import obs.backup.main.OBS_BACKUP;
@@ -37,7 +36,6 @@ public class EmirKopyala extends JPanel {
 		add(lblNewLabel);
 		
 		textField = new Obs_TextFIeld(30,"");
-		JTextFieldRegularPopupMenu.addTo(textField);
 		textField.setBounds(185, 126, 300, 20);
 		add(textField);
 		textField.setColumns(10);

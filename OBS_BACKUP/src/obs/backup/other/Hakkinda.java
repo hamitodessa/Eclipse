@@ -131,12 +131,12 @@ public class Hakkinda extends JPanel {
 		add(lblNewLabel_1_1);
 
 		JLabel lblNewLabel_3 = new JLabel("");
-		lblNewLabel_3.setIcon(new ImageIcon(OBS_BACKUP.class.getResource("/ICONLAR/twitter.png")));
+		lblNewLabel_3.setIcon(new ImageIcon(OBS_BACKUP.class.getResource("/obs/backup/icons/twitter.png")));
 		lblNewLabel_3.setBounds(173, 230, 19, 22);
 		add(lblNewLabel_3);
 
 		JLabel lblNewLabel_3_1 = new JLabel("");
-		lblNewLabel_3_1.setIcon(new ImageIcon(OBS_BACKUP.class.getResource("/ICONLAR/skype.png")));
+		lblNewLabel_3_1.setIcon(new ImageIcon(OBS_BACKUP.class.getResource("/obs/backup/icons/skype.png")));
 		lblNewLabel_3_1.setBounds(173, 254, 19, 22);
 		add(lblNewLabel_3_1);
 

@@ -8,7 +8,7 @@ import javax.swing.border.TitledBorder;
 
 import com.formdev.flatlaf.FlatClientProperties;
 
-import OBS_C_2025.JTextFieldRegularPopupMenu;
+
 import OBS_C_2025.Obs_TextFIeld;
 import obs.backup.ayarlar.dilSecenek;
 import obs.backup.main.OBS_BACKUP;
@@ -101,25 +101,21 @@ public class Bilgilendirme extends JPanel {
 		add(panel_1);
 		
 		textGonIsim = new Obs_TextFIeld(50,"");
-		JTextFieldRegularPopupMenu.addTo(textGonIsim);
 		textGonIsim.setBounds(135, 23, 329, 20);
 		panel_1.add(textGonIsim);
 		textGonIsim.setColumns(10);
 		
 		textGonHesap = new Obs_TextFIeld(50,"");
-		JTextFieldRegularPopupMenu.addTo(textGonHesap);
 		textGonHesap.setColumns(10);
 		textGonHesap.setBounds(135, 46, 329, 20);
 		panel_1.add(textGonHesap);
 		
 		textAlici = new Obs_TextFIeld(50,"");
-		JTextFieldRegularPopupMenu.addTo(textAlici);
 		textAlici.setColumns(10);
 		textAlici.setBounds(135, 69, 329, 20);
 		panel_1.add(textAlici);
 		
 		textKonu = new Obs_TextFIeld(50,"");
-		JTextFieldRegularPopupMenu.addTo(textKonu);
 		textKonu.setColumns(10);
 		textKonu.setBounds(135, 92, 329, 20);
 		panel_1.add(textKonu);
@@ -147,26 +143,22 @@ public class Bilgilendirme extends JPanel {
 		add(panel_1_1);
 		
 		textSmtp = new Obs_TextFIeld(30,"");
-		JTextFieldRegularPopupMenu.addTo(textSmtp);
 		textSmtp.setColumns(10);
 		textSmtp.setBounds(135, 23, 216, 20);
 		panel_1_1.add(textSmtp);
 		
 		textPort = new Obs_TextFIeld(3,"");
-		JTextFieldRegularPopupMenu.addTo(textPort);
 		textPort.setColumns(10);
 		textPort.setBounds(404, 23, 60, 20);
 		panel_1_1.add(textPort);
 		
 		textKull = new Obs_TextFIeld(50,"");
-		JTextFieldRegularPopupMenu.addTo(textKull);
 		textKull.setColumns(10);
 		textKull.setBounds(135, 46, 329, 20);
 		panel_1_1.add(textKull);
 		
 		textSifre = new JPasswordField();
 		textSifre.putClientProperty(FlatClientProperties.TEXT_FIELD_SHOW_CLEAR_BUTTON, true);
-		JTextFieldRegularPopupMenu.addTo(textSifre);
 		textSifre.setColumns(10);
 		textSifre.setBounds(135, 69, 329, 20);
 		panel_1_1.add(textSifre);

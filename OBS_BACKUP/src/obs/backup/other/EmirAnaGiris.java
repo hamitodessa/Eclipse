@@ -33,7 +33,6 @@ import OBS_C_2025.BACKUP_GLOBAL;
 import OBS_C_2025.CheckListItem;
 import OBS_C_2025.CheckListRenderer;
 import OBS_C_2025.ENCRYPT_DECRYPT_STRING;
-import OBS_C_2025.JTextFieldRegularPopupMenu;
 import OBS_C_2025.Obs_TextFIeld;
 import OBS_C_2025.SIFRE_DONDUR;
 import OBS_C_2025.bilgilendirme_bilgiler;
@@ -106,7 +105,6 @@ public class EmirAnaGiris extends JPanel {
 		panel_10.add(lblNewLabel_1);
 		
 		txtEmir = new Obs_TextFIeld(30,"");
-		JTextFieldRegularPopupMenu.addTo(txtEmir);
 		txtEmir.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txtEmir.setBounds(150, 100, 250, 23);
 		panel_10.add(txtEmir);

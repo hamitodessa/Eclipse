@@ -184,13 +184,13 @@ public class LoglamaRapor extends JPanel {
 				excel_aktar();
 			}
 		});
-		btnExcell.setIcon(new ImageIcon(LoglamaRapor.class.getResource("/ICONLAR/excel-icon_16.png")));
+		btnExcell.setIcon(new ImageIcon(LoglamaRapor.class.getResource("/obs/backup/icons/excel-icon_16.png")));
 		btnExcell.setBounds(725, 11, 23, 23);
 		panel.add(btnExcell);
 		
 		JButton btnMail = new JButton("");
 		btnMail.setVisible(false);
-		btnMail.setIcon(new ImageIcon(LoglamaRapor.class.getResource("/ICONLAR/mail-16.png")));
+		btnMail.setIcon(new ImageIcon(LoglamaRapor.class.getResource("/obs/backup/icons/mail-16.png")));
 		btnMail.setBounds(750, 11, 23, 23);
 		panel.add(btnMail);
 		txtArama.getDocument().addDocumentListener(new DocumentListener() {

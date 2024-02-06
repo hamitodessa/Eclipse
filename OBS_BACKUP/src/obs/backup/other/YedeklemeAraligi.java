@@ -14,7 +14,6 @@ import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.border.TitledBorder;
 
-import OBS_C_2025.JTextFieldRegularPopupMenu;
 import OBS_C_2025.Obs_TextFIeld;
 import obs.backup.ayarlar.dilSecenek;
 import obs.backup.main.OBS_BACKUP;
@@ -58,7 +57,6 @@ public class YedeklemeAraligi extends JPanel {
 		add(lblNewLabel);
 		
 		textHerDakka = new Obs_TextFIeld(2, "");
-		JTextFieldRegularPopupMenu.addTo(textHerDakka);
 		textHerDakka.setBounds(118, 32, 60, 20);
 		add(textHerDakka);
 		textHerDakka.setColumns(10);

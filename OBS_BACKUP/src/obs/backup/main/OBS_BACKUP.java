@@ -1494,10 +1494,11 @@ public class OBS_BACKUP extends JFrame {
 			cal.set(Calendar.MILLISECOND,0);
 			sonyuk = cal.getTime();
 		}
-		else {
+		else 
+		{
 			SimpleDateFormat df = new SimpleDateFormat("EEE MMM dd HH:mm:ss z yyyy");
-			Date tarih = df.parse(emirBilgi.get(0).getSON_YUKLEME().toString());
-			sonyuk = tarih ; 
+			//Date tarih = df.parse(emirBilgi.get(0).getSON_YUKLEME().toString());
+			sonyuk = df.parse(emirBilgi.get(0).getSON_YUKLEME().toString());
 		}
 		bckp.genel_kayit_durum(emirADI, false, sonyuk, "");// Herhalukarda islem baslangici yedeklenemdi notu
 		List<String> dbliste = bckp.db_liste(emirADI);
@@ -1652,7 +1653,7 @@ public class OBS_BACKUP extends JFrame {
 							{
 								bckp.log_kayit(emirADI, new Date(),ls.get(r).getDosyaADI() + dilSecenek.dil(dILS," Surucuye Silmeye Gitti") );
 								glb.dos_sil(surucu_yer + "\\" +  ls.get(r).getDosyaADI());
-								bckp.log_kayit(emirADI, new Date(), ls.get(r).getDosyaADI() + dilSecenek.dil(dILS," Dosya Surucuden Eski Tarihli Silindi") );
+								bckp.log_kayit(emirADI, new Date(),ls.get(r).getDosyaADI() + dilSecenek.dil(dILS," Dosya Surucuden Eski Tarihli Silindi") );
 							}
 						}
 					}
@@ -1895,8 +1896,8 @@ public class OBS_BACKUP extends JFrame {
 		}
 		else {
 			SimpleDateFormat df = new SimpleDateFormat("EEE MMM dd HH:mm:ss z yyyy");
-			Date tarih = df.parse(emirBilgi.get(0).getSON_YUKLEME().toString());
-			sonyuk = tarih ; 
+			//Date tarih = df.parse(emirBilgi.get(0).getSON_YUKLEME().toString());
+			sonyuk = df.parse(emirBilgi.get(0).getSON_YUKLEME().toString());
 		}
 		bckp.genel_kayit_durum(emirADI, false, sonyuk, "");// Herhalukarda islem baslangici yedeklenemdi notu
 		List<db_List> dbliste = bckp.diger_dosya_liste(emirADI);

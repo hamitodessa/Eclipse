@@ -100,6 +100,7 @@ public class DownloadFile extends JPanel {
 	int satir = 0 ;
 	JPanel panel;
 	ScrollPaneWin11 scrollPane;
+	public JButton btnNewButton;
 	/**
 	 * Create the panel.
 	 */
@@ -112,7 +113,7 @@ public class DownloadFile extends JPanel {
 		add(panel, BorderLayout.NORTH);
 		panel.setLayout(null);
 
-		JLabel lblNewLabel = new JLabel("Emir Ismi");
+		JLabel lblNewLabel = new JLabel(dilSecenek.dil(OBS_BACKUP.dILS,"Emir Ismi"));
 		lblNewLabel.setBounds(10, 15, 64, 14);
 		panel.add(lblNewLabel);
 
@@ -131,13 +132,15 @@ public class DownloadFile extends JPanel {
 		comboBox.setBounds(84, 11, 300, 25);
 		panel.add(comboBox);
 
-		JButton btnNewButton = new JButton("Indir");
+
+		btnNewButton = new JButton("Indir");
 		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					if (OBS_BACKUP.backupTime ) return;
 					if(comboBox.getItemCount() == 0 ) return ;
+					if(tblFile.getRowCount() ==0) return;
 					setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 					inDIR();
 					setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));

@@ -171,8 +171,10 @@ public class dilSecenek {
 			case "Aktarma Islemi Tamamlandi" -> tEXT = "Transfer Completed";
 			case "Programi Yonetici olarak calistirip Oyle Kayit Yapabilirsiniz" -> tEXT = "Must run the program as an Administrator and create job";
 			case " Dosya Bulunamadi***************" -> tEXT = " File Not Found***************";
-			case "Kayitli Emir Yok" -> text = "Job Not Found" ;
-			case " Dosyasi Indirildi" -> text = " File Downloaded";
+			case "Kayitli Emir Yok" -> tEXT = "Job Not Found" ;
+			case "Indir" -> tEXT = "Download";
+			case " Dosyasi Indirildi" -> tEXT = " File Downloaded";
+			
 			}  
 		}
 		return tEXT;

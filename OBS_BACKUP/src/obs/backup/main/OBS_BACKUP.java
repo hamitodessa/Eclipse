@@ -2742,6 +2742,8 @@ public class OBS_BACKUP extends JFrame {
 		loglamaPanel.btnNewButton.setText(dilSecenek.dil(dILS,"Sil"));
 		loglamaPanel.btnExcell.setToolTipText(dilSecenek.dil(dILS,"Excell Aktarma"));
 		//****************************************************************************************
+		downloadFilePanel.btnNewButton.setText(dilSecenek.dil(dILS,"Indir"));
+		//****************************************************************************************
 		kayitliEmirlerPanelEmirler.lblNewLabel.setText(dilSecenek.dil(dILS,"Arama"));
 		//****************************************************************************************
 		emirAnaGirisPanel.btnDosyaSec.setText(dilSecenek.dil(dILS,"Dosya Sec"));

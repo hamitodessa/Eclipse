@@ -48,6 +48,7 @@ public class EmirKopyala extends JPanel {
 		btnNewButton_9.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
+					if (OBS_BACKUP.backupTime ) return;
 					if(OBS_BACKUP.emirAnaGirisPanel.txtEmir.getText().equals(""))
 					{
 						OBS_BACKUP.mesajGoster(5000,Notifications.Type.WARNING, dilSecenek.dil(OBS_BACKUP.dILS, "Kopyalanacak Emir ismi Bos") );

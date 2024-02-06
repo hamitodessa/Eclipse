@@ -258,6 +258,8 @@ public class OBS_BACKUP extends JFrame {
 	
 	static Component horizontalGlue = null ;
 	private static String diltemaString[] = new String[7];
+	
+	public static boolean backupTime = false;
 	/**
 	 * Hamit.
 	 */
@@ -344,7 +346,9 @@ public class OBS_BACKUP extends JFrame {
 		toolBar = new JToolBar();
 		toolBar.setFloatable(false);
 		toolBar.setOrientation(SwingConstants.VERTICAL);
-		panel.add(toolBar );
+		//panel.add(toolBar );
+		panel.setLayout(new BorderLayout());
+		panel.add(toolBar,BorderLayout.CENTER);
 		//***************
 		JLabel spr = new JLabel("   ");
 		spr.setSize(new Dimension(25,25));
@@ -357,11 +361,11 @@ public class OBS_BACKUP extends JFrame {
 		btnGorevler.setIcon(new ImageIcon(OBS_BACKUP.class.getResource("/obs/backup/icons/emirler.png")));
 		btnGorevler.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				gelenISIM = "" ;
+				if (backupTime ) return;
 				try 
 				{
+					gelenISIM = "" ;
 					tabbedPane.setSelectedIndex(0);
-					while (contentPane.getCursor() == Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR) )
 					contentPane.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 					emirleriSTOPYAP();
 					emirYukle("EMIR_ISMI") ;
@@ -371,8 +375,7 @@ public class OBS_BACKUP extends JFrame {
 				}
 			}
 		});
-		panel.setLayout(new BorderLayout());
-		panel.add(toolBar,BorderLayout.CENTER);
+		
 		toolBar.add(btnGorevler);
 
 		btnYeni_Gorev = new JButton();
@@ -380,7 +383,7 @@ public class OBS_BACKUP extends JFrame {
 		btnYeni_Gorev.setEnabled(false);
 		btnYeni_Gorev.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				while (contentPane.getCursor() == Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR) )
+				if (backupTime ) return;
 				gelenISIM = "" ;
 				emirSayiCount();
 				tabbedPane.setSelectedIndex(1);
@@ -396,6 +399,7 @@ public class OBS_BACKUP extends JFrame {
 		btnLoglama.setEnabled(false);
 		btnLoglama .addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if (backupTime ) return;
 				tabbedPane.setSelectedIndex(2);
 				try 
 				{
@@ -416,6 +420,7 @@ public class OBS_BACKUP extends JFrame {
 		btnKayitliEmirler.setIcon(new ImageIcon(OBS_BACKUP.class.getResource("/obs/backup/icons/jobs.png")));
 		btnKayitliEmirler .addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if (backupTime ) return;
 				emirSayiCount();
 				tabbedPane.setSelectedIndex(3);
 				try 
@@ -483,6 +488,7 @@ public class OBS_BACKUP extends JFrame {
 		btnStartAll.setEnabled(false);
 		btnStartAll.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if (backupTime ) return;
 				contentPane.setCursor( Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 				emirSayiCount();
 				Component[] components = container.getComponents();
@@ -515,6 +521,7 @@ public class OBS_BACKUP extends JFrame {
 		btnStopAll.setEnabled(false);
 		btnStopAll.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if (backupTime ) return;
 				contentPane.setCursor( Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 				emirSayiCount();
 				emirleriSTOPYAP();
@@ -531,6 +538,7 @@ public class OBS_BACKUP extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				try 
 				{
+					if (backupTime ) return;
 					emirSayiCount();
 					contentPane.setCursor( Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 					Component[] components = container.getComponents();
@@ -573,6 +581,7 @@ public class OBS_BACKUP extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				try 
 				{
+					if (backupTime ) return;
 					emirSayiCount();
 					contentPane.setCursor( Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 					Component[] components = container.getComponents();
@@ -623,6 +632,7 @@ public class OBS_BACKUP extends JFrame {
 		btnUploadAll.setToolTipText("Aktif Emirleri Yedekle");
 		btnUploadAll.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if (backupTime ) return;
 				contentPane.setCursor( Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 				emirSayiCount();
 				Component[] components = container.getComponents();
@@ -656,6 +666,7 @@ public class OBS_BACKUP extends JFrame {
 		btnFileIndir.setToolTipText("FTP Dosya Indirme");
 		btnFileIndir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if (backupTime ) return;
 				contentPane.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 				emirSayiCount();
 				tabbedPane.setSelectedIndex(6);
@@ -679,6 +690,7 @@ public class OBS_BACKUP extends JFrame {
 		btnYeniSifre.setIcon(new ImageIcon(OBS_BACKUP.class.getResource("/obs/backup/icons/password.png")));
 		btnYeniSifre .addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if (backupTime ) return;
 				emirSayiCount();
 				contentPane.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 				sifreYenilePanel.txtsif.setText("");
@@ -687,7 +699,6 @@ public class OBS_BACKUP extends JFrame {
 			}
 		});
 		toolBar.add(btnYeniSifre );
-
 		
 		Component horizontalGlue = Box.createVerticalGlue();
 		toolBar.add(horizontalGlue);
@@ -743,6 +754,7 @@ public class OBS_BACKUP extends JFrame {
 		btnAyarlar.setEnabled(false);
 		btnAyarlar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if (backupTime ) return;
 				ayarlarPanel.comboBox_1.setSelectedItem(diltemaString[0]);
 				ayarlarPanel.comboBox.setSelectedItem(diltemaString[1]);
 				ayarlarPanel.chckbxPrgSifre.setSelected(Integer.valueOf(diltemaString[4]) == 0 ? false:true);
@@ -977,6 +989,7 @@ public class OBS_BACKUP extends JFrame {
 			timerr = null;
 			while(gorevLER.size() > 0)
 			{
+				backupTime = true;
 				eISMI = gorevLER.get(0);
 				gorevLER.remove(eISMI);
 				Thread.sleep(1000);
@@ -988,6 +1001,7 @@ public class OBS_BACKUP extends JFrame {
 					dosyaSurucu(eISMI, ebilgiler);   //Dosya - Surucu
 				eISMI = "" ;
 			}
+			backupTime = false;
 			jobTimerBasla();
 		}
 		catch (Exception ex)

@@ -97,6 +97,7 @@ public  class gOREV_TAKIP extends JPanel {
 		btnDuzelt.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnDuzelt.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if (OBS_BACKUP.backupTime ) return;
 				if(tt != null)
 				{
 					timerDURDUR=true;
@@ -116,7 +117,7 @@ public  class gOREV_TAKIP extends JPanel {
 		btnSil.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnSil.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
+				if (OBS_BACKUP.backupTime ) return;
 				int g = JOptionPane.showOptionDialog(null, dilSecenek.dil(OBS_BACKUP.dILS,"Emir Dosyadan Silinecek ..?")  ,
 						"OBS BACKUP ", JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE, null, 	new String[] {"Yes", "No"}, "No");
 				if(g ==  1) {
@@ -142,6 +143,7 @@ public  class gOREV_TAKIP extends JPanel {
 		btnYedekle.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
+					if (OBS_BACKUP.backupTime ) return;
 					if(lblDurum.getText().equals( dilSecenek.dil(OBS_BACKUP.dILS,"Pasiv Durumda") )) return;
 					yedekSirasinaKoy();
 				} catch (Exception e1) {
@@ -280,6 +282,7 @@ public  class gOREV_TAKIP extends JPanel {
 		btnStart.setIcon(new ImageIcon(OBS_BACKUP.class.getResource("/obs/backup/icons/start16.png")));
 		btnStart.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if (OBS_BACKUP.backupTime ) return;
 				if(! lblDurum.getText().equals(dilSecenek.dil(OBS_BACKUP.dILS,"Pasiv Durumda") ))
 				{
 					timerDURDUR = false;
@@ -301,6 +304,7 @@ public  class gOREV_TAKIP extends JPanel {
 		btnStop.setBounds(675, 133, 45, 25);
 		btnStop.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if (OBS_BACKUP.backupTime ) return;
 				if(tt != null)
 				{
 					timerDURDUR = true;

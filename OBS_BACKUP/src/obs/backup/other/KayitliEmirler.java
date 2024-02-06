@@ -46,7 +46,8 @@ public class KayitliEmirler extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	@SuppressWarnings("serial")
+	
+	@SuppressWarnings({"serial"})
 	public KayitliEmirler() {
 		setLayout(new BorderLayout(0, 0));
 

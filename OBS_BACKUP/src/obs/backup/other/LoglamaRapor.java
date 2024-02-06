@@ -152,6 +152,7 @@ public class LoglamaRapor extends JPanel {
 		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if (OBS_BACKUP.backupTime ) return;
 				if(comboBox.getItemCount() == 0 ) return ;
 				int g = JOptionPane.showOptionDialog(null,comboBox.getSelectedItem().toString() + dilSecenek.dil(OBS_BACKUP.dILS," -  Log  Silinecek ?") ,
 						"OBS BACKUP ", JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE, null, 	new String[] {"Yes", "No"}, "No");

@@ -136,6 +136,7 @@ public class DownloadFile extends JPanel {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
+					if (OBS_BACKUP.backupTime ) return;
 					if(comboBox.getItemCount() == 0 ) return ;
 					setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 					inDIR();

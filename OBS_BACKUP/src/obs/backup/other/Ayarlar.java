@@ -104,6 +104,7 @@ public class Ayarlar extends JPanel {
 		btnKaydet.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnKaydet.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if (OBS_BACKUP.backupTime ) return;
 				try {
 					if(chckbxSifrele.isSelected())
 					{

@@ -65,6 +65,7 @@ public class SunucuAyarlari extends JPanel {
 	/**
 	 * Create the panel.
 	 */
+	@SuppressWarnings("deprecation")
 	public SunucuAyarlari() {
 
 		setLayout(null);
@@ -284,9 +285,10 @@ public class SunucuAyarlari extends JPanel {
 		btnNewButton_9 = new JButton("Kaydet");
 		btnNewButton_9.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnNewButton_9.addActionListener(new ActionListener() {
-			@SuppressWarnings("deprecation")
+			
 			public void actionPerformed(ActionEvent e) {
 				try {
+					if (OBS_BACKUP.backupTime ) return;
 					if(chckbxYerel.isSelected())
 					{
 						if(textSurucu.getText().equals(""))

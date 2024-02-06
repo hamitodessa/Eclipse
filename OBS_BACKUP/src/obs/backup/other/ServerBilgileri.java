@@ -56,6 +56,7 @@ public class ServerBilgileri extends JPanel {
 	/**
 	 * Create the panel.
 	 */
+	@SuppressWarnings("deprecation")
 	public ServerBilgileri() {
 		setLayout(new BorderLayout(0, 0));
 		
@@ -149,9 +150,9 @@ public class ServerBilgileri extends JPanel {
 		btnMSkaydet = new JButton("Kaydet");
 		btnMSkaydet.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnMSkaydet.addActionListener(new ActionListener() {
-			@SuppressWarnings("deprecation")
 			public void actionPerformed(ActionEvent e) {
 				try {
+					if (OBS_BACKUP.backupTime ) return;
 					if(OBS_BACKUP.emirAnaGirisPanel.txtEmir.getText().equals(""))
 					{
 						OBS_BACKUP.mesajGoster(5000,Notifications.Type.WARNING, dilSecenek.dil(OBS_BACKUP.dILS,"Emir Adi Bos Olamaz"));  
@@ -230,7 +231,6 @@ public class ServerBilgileri extends JPanel {
 		btnMyTest = new JButton("Baglanti Test");
 		btnMyTest.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnMyTest.addActionListener(new ActionListener() {
-			@SuppressWarnings("deprecation")
 			public void actionPerformed(ActionEvent e) {
 				if(textMYPort.getText().equals(""))
 				{
@@ -270,9 +270,9 @@ public class ServerBilgileri extends JPanel {
 		btnMyKaydet = new JButton("Kaydet");
 		btnMyKaydet.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnMyKaydet.addActionListener(new ActionListener() {
-			@SuppressWarnings("deprecation")
 			public void actionPerformed(ActionEvent e) {
 				try {
+					if (OBS_BACKUP.backupTime ) return;
 					if(OBS_BACKUP.emirAnaGirisPanel.txtEmir.getText().equals(""))
 					{
 						OBS_BACKUP.mesajGoster(5000,Notifications.Type.WARNING, dilSecenek.dil(OBS_BACKUP.dILS,"Emir Adi Bos Olamaz"));  

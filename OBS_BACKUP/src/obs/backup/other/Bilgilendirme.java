@@ -206,6 +206,7 @@ public class Bilgilendirme extends JPanel {
 			@SuppressWarnings("deprecation")
 			public void actionPerformed(ActionEvent e) {
 				try {
+					if (OBS_BACKUP.backupTime ) return;
 					if(chckbxAktifPasif.isSelected())
 					{
 						if(textGonHesap.getText().equals("") || textAlici.getText().equals(""))

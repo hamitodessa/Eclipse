@@ -139,6 +139,7 @@ public class YedeklemeAraligi extends JPanel {
 		btnNewButton_9.setBounds(624, 550, 100, 23);
 		btnNewButton_9.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if (OBS_BACKUP.backupTime ) return;
 				setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));	
 				try {
 					Date date = (Date) (timeBaslangic.getValue());

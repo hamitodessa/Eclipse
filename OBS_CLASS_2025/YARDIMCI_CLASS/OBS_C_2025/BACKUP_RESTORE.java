@@ -22,7 +22,7 @@ public class BACKUP_RESTORE {
 	
 	@SuppressWarnings("deprecation")
 	public static void BackupdbtoMYsql(String dbName ,String dbUser,String dbPass , String myDUMP) {
-
+//Runtime.getRuntime().exec("mysql -u username -ppassword database_name  FILE.sql")        Restore
 		String savePath = "C:/OBS_SISTEM/" + dbName +".sql";
 		String executeCmd = myDUMP +"/mysqldump.exe -u" + dbUser + " -p" + dbPass + " -B " + dbName + " -r " + savePath;
 		System.out.println(myDUMP +"/mysqldump.exe -u" + dbUser + " -p" + dbPass + " -B " + dbName + " -r " + savePath);

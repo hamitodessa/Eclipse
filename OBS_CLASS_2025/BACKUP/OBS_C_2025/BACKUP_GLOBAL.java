@@ -1,11 +1,15 @@
 package OBS_C_2025;
 
+import java.awt.Cursor;
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.net.SocketException;
 import java.nio.file.FileVisitResult;
@@ -1334,6 +1338,27 @@ public class BACKUP_GLOBAL {
 		runtimeProcess = runtime.exec(executeCmd,null);
 		int processComplete = runtimeProcess.waitFor();
 		//		System.out.println(processComplete); //0 completed
+	}
+	
+	public boolean mySqlRestore( String myDUMP, String dbUser, String dbPass,String dbPath) throws IOException, InterruptedException
+	{
+		boolean result = false;
+		Runtime rt = Runtime.getRuntime();
+		String[] executeCmd = new String[]{ myDUMP + "\\mysql.exe", "-u" + dbUser, "-p" + dbPass, "-e", " source " + dbPath};
+		Process p = rt.exec(executeCmd);
+		int processComplete = p.waitFor();
+		if (processComplete == 0)
+			result = true;
+		return result ;
+//		try {
+//			contentPane.setCursor( Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+//			Boolean result =	bckp.mySqlRestore("C:\\Program Files\\MySQL\\MySQL Workbench 8.0","root", "197227oOk",  "D:\\DENEME\\ok_car019.sql");
+//			contentPane.setCursor( Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+//			System.out.println(result);
+//		} catch (Exception e1) {
+//			contentPane.setCursor( Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+//			e1.printStackTrace();
+//		}
 	}
 	public void kopyala(String eski, String yeni) throws ClassNotFoundException, SQLException
 	{

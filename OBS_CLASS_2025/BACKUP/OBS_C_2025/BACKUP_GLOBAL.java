@@ -1360,6 +1360,18 @@ public class BACKUP_GLOBAL {
 //			e1.printStackTrace();
 //		}
 	}
+	public void restoreMSSql(String dbismi, String dbyer) throws ClassNotFoundException, SQLException
+	{
+		////"RESTORE DATABASE [" + dosADI + "] FROM DISK = '" + nerden + "'";
+		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+		ResultSet	rss = null;
+		String sql = "RESTORE DATABASE [" + dbismi + "] FROM DISK = N'" + dbyer + "'";
+		Statement stmt ;
+		stmt = S_CONN.createStatement();  
+		stmt.execute(sql);  
+		stmt.close();
+	}
+
 	public void kopyala(String eski, String yeni) throws ClassNotFoundException, SQLException
 	{
 		Class.forName("org.sqlite.JDBC");

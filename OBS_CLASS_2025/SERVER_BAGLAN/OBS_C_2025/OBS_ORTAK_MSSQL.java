@@ -300,7 +300,11 @@ public class OBS_ORTAK_MSSQL implements IConnection {
 		stmt.execute();
 		stmt.close();
 		conn.close();
-		
 	}
+	
 }
 
+//Agent Control
+//DECLARE @agent NVARCHAR(512);
+//SELECT @agent = COALESCE(N'SQLAgent$' + CONVERT(SYSNAME, SERVERPROPERTY('InstanceName')),  N'SQLServerAgent');
+//EXEC master.dbo.xp_servicecontrol 'QueryState', @agent;

@@ -419,7 +419,8 @@ public class GLOBAL {
 					varmi = true;
 				}
 			}
-			for (int i = 0; i < ayarlar.length   ; i++) {
+			for (int i = 0; i < ayarlar.length   ; i++) 
+			{
 				prop.setProperty(ayarlar[i][0], ayarlar[i][1]);
 			}
 			if (varmi == false) prop.setProperty(anahtar, deger);
@@ -606,9 +607,9 @@ public class GLOBAL {
 	}
 	public boolean dos_sil(String dosya) throws IOException
 	{
-        Path path = Paths.get(dosya); 
-        boolean result = Files.deleteIfExists(path); 
-        return result;
+        //Path path = Paths.get(dosya); 
+        //boolean result = Files.deleteIfExists(Paths.get(dosya)); 
+        return Files.deleteIfExists(Paths.get(dosya));
 	}
 	public static String char_degis (String degisken)
 	{
@@ -617,12 +618,10 @@ public class GLOBAL {
 	public static boolean validCheck(String value)
 	{
 		boolean result ;
-		if(value.trim().length() == 0) {
+		if(value.trim().length() == 0)
 			result = false;
-		}
-		else {
+		else
 			result = true;
-		}
 		return result ;
 	}
 	public static String pathApp()

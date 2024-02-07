@@ -189,13 +189,13 @@ import javax.swing.SwingUtilities;
 
 @SuppressWarnings({ "static-access" ,"resource","unused","deprecation"})
 public class OBS_BACKUP extends JFrame {
-
-	GLOBAL glb = new GLOBAL();
-	public static List<String> gorevLER = new ArrayList<String>();
-	Timer timerr;
-	
-	static BACKUP_GLOBAL bckp = new BACKUP_GLOBAL();
 	private static final long serialVersionUID = 1L;
+	GLOBAL glb = new GLOBAL();
+	static BACKUP_GLOBAL bckp = new BACKUP_GLOBAL();
+	public static List<String> gorevLER = new ArrayList<String>();
+
+	Timer timerr;
+
 	public JPanel contentPane;
 	public static JPanel container ;
 	public static JToolBar toolBar;
@@ -241,7 +241,7 @@ public class OBS_BACKUP extends JFrame {
 	public static JLabel lblEmir ;
 	private static JLabel pidlb ;
 
-	private Path path;
+	//private Path path;
 	
 	
 	public static JButton btntry;
@@ -953,7 +953,8 @@ public class OBS_BACKUP extends JFrame {
 		//************************************************************
 		} catch (Exception ex) 
 		{
-			try {
+			try 
+			{
 				bckp.log_kayit("System", new Date(), ex.getMessage());
 				mesajGoster(5000,Notifications.Type.ERROR, ex.getMessage());
 			} catch (Exception e1) {
@@ -1006,6 +1007,7 @@ public class OBS_BACKUP extends JFrame {
 		}
 		catch (Exception ex)
 		{
+			backupTime = false;
 			bckp.log_kayit(eISMI, new Date(), ex.getMessage());
 			jobTimerBasla();
 		}
@@ -1204,8 +1206,8 @@ public class OBS_BACKUP extends JFrame {
 					sdon.sDONDUR(sunucuayarPanel.textSifre), 
 					sunucuayarPanel.textFtpSurucu.getText(),  
 					sunucuayarPanel.textPort.getText(),
-					sunucuayarPanel.textZmnasm.getText().equals("") ? 120 : Integer.parseInt( sunucuayarPanel.textZmnasm.getText())  ,
-					sunucuayarPanel.textEskisilme.getText().equals("") ? 0 :Integer.parseInt( sunucuayarPanel.textEskisilme.getText()) , 
+					sunucuayarPanel.textZmnasm.getText().equals("") ? 120 : Integer.parseInt(sunucuayarPanel.textZmnasm.getText())  ,
+					sunucuayarPanel.textEskisilme.getText().equals("") ? 0 :Integer.parseInt(sunucuayarPanel.textEskisilme.getText()) , 
 					neresi, sunucuayarPanel.textSurucu.getText());
 			bckp.log_kayit(emirAnaGirisPanel.txtEmir.getText().toString(),new Date(),  dilSecenek.dil(dILS,"Emir FTP Bilgileri  Kaydedildi"));
 			tabbedPane_1.setSelectedIndex(1);
@@ -1225,13 +1227,11 @@ public class OBS_BACKUP extends JFrame {
 		}
 		SIFRE_DONDUR sdon = new SIFRE_DONDUR();
 		String response =sdon.sDONDUR(serverBilgileriPanel.textMSsifre);
-
 		bckp.MsSql_baglan( serverBilgileriPanel.textMSServer.getText() ,
 				serverBilgileriPanel.textMSkull.getText(),
 				response,
 				serverBilgileriPanel.textMSPort.getText());
-		ResultSet rs;
-		rs = bckp.db_ismi();
+		ResultSet rs = bckp.db_ismi();
 		emirAnaGirisPanel.chckbxServerDosya.setSelected(true);
 		emirAnaGirisPanel.model.clear();
 		emirAnaGirisPanel.lblNewLabel_5.setText(Integer.toString(0));
@@ -1284,8 +1284,8 @@ public class OBS_BACKUP extends JFrame {
 			return;
 		}
 		SIFRE_DONDUR sdon = new SIFRE_DONDUR();
-		String response =sdon.sDONDUR(serverBilgileriPanel.textMySifre);
-		bckp.MySql_baglan( serverBilgileriPanel.textMykull.getText(),response,serverBilgileriPanel.textMYPort.getText());
+		String response = sdon.sDONDUR(serverBilgileriPanel.textMySifre);
+		bckp.MySql_baglan(serverBilgileriPanel.textMykull.getText(),response,serverBilgileriPanel.textMYPort.getText());
 		ResultSet rs;
 		rs = bckp.db_ismiMySql();
 		emirAnaGirisPanel.chckbxServerDosya.setSelected(true);
@@ -1344,7 +1344,8 @@ public class OBS_BACKUP extends JFrame {
 			container.revalidate();
 			container.repaint();
 			List<emir_bilgiler> emirliste = bckp.emir_liste(siralama);
-			if (emirliste.size() == 0 ) {  
+			if (emirliste.size() == 0 ) 
+			{  
 				contentPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 			}
 			else {
@@ -1379,8 +1380,9 @@ public class OBS_BACKUP extends JFrame {
 	{
 		Component[] components = container.getComponents();
 		int say = 0 ;
-		for (Component component : components) {
-			if(component.getName() !=null)
+		for (Component component : components) 
+		{
+			if(component.getName() != null)
 				say += 1 ;			
 		}
 		lblemirSAYI.setText(Integer.toString(say));
@@ -2515,7 +2517,8 @@ public class OBS_BACKUP extends JFrame {
 	private void gorevSETCURSOR(int crsr)
 	{
 		Component[] components = container.getComponents();
-		for (Component component : components) {
+		for (Component component : components) 
+		{
 			if (component.getName()!= null)
 				component.setCursor( Cursor.getPredefinedCursor(crsr));
 			component.revalidate();
@@ -2533,7 +2536,11 @@ public class OBS_BACKUP extends JFrame {
 	private Date dosyaTAIRIHI(String ftpDOSYA) throws ParseException
 	{
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy.MM.dd HH:mm", Locale.ENGLISH);
-		String dateInString = ftpDOSYA.substring(4,8) + "." +  ftpDOSYA.substring(2,4) + "." + ftpDOSYA.substring(0,2) + " " + ftpDOSYA.substring(8,10)  + ":" + ftpDOSYA.substring(10,12)  ;
+		String dateInString = ftpDOSYA.substring(4,8) + "." +  
+							  ftpDOSYA.substring(2,4) + "." + 
+							  ftpDOSYA.substring(0,2) + " " + 
+							  ftpDOSYA.substring(8,10) + ":" + 
+							  ftpDOSYA.substring(10,12)  ;
 		Date ftar = formatter.parse(dateInString);
 		return ftar;
 	}
@@ -2613,7 +2620,8 @@ public class OBS_BACKUP extends JFrame {
 	{
 		try {
 			bckp.pid_kayit((int) ProcessHandle.current().pid());
-		} catch (Exception ex) {
+		} catch (Exception ex) 
+		{
 			try {
 				bckp.log_kayit("System", new Date(), ex.getMessage());
 			} catch (Exception e) {
@@ -2629,7 +2637,8 @@ public class OBS_BACKUP extends JFrame {
 			if(dosyaPID == 0) return ; // Dosyada Kayit Yok 
 			if(dosyaPID != (int) ProcessHandle.current().pid())
 				btnKapat.doClick();
-		} catch (Exception ex) {
+		} catch (Exception ex) 
+		{
 			try {
 				bckp.log_kayit("System", new Date(), ex.getMessage());
 			} catch (Exception e) {

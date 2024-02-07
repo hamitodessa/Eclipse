@@ -23,6 +23,7 @@ import java.awt.Font;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -584,9 +585,8 @@ public  class gOREV_TAKIP extends JPanel {
 	private void GunLERE_BAK() throws ParseException, SQLException, ClassNotFoundException
 	{
 		LocalDate localDate = LocalDate.now(); // today
-		java.time.DayOfWeek dayOfWeek = localDate.getDayOfWeek();
+		DayOfWeek dayOfWeek = localDate.getDayOfWeek();
 		//System.out.println(localDate.getDayOfWeek().name());   // Gun ISMI
-		///
 
 		int hangiGUNDEYIZ = (int) dayOfWeek.getValue();
 		Boolean varmi = false;

@@ -5,6 +5,8 @@ import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.sql.SQLException;
 import java.util.Date;
 
@@ -110,6 +112,21 @@ public class KayitliEmirler extends JPanel {
 		tblEmir = new JTable(){
 			public boolean isCellEditable(int row, int column) {     return false;          }
 		};
+		tblEmir.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if (e.getClickCount() == 2) {
+					if (OBS_BACKUP.backupTime ) return;
+					OBS_BACKUP.emirTekStop(tblEmir.getValueAt(tblEmir.getSelectedRow(), 0).toString());
+					OBS_BACKUP.gelenISIM = tblEmir.getValueAt(tblEmir.getSelectedRow(), 0).toString() ;
+					setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+					OBS_BACKUP.emirAnaGirisPanel.emirDOLDUR();
+					setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+					
+				}
+			}
+		});
+		tblEmir.setToolTipText(dilSecenek.dil(OBS_BACKUP.dILS, "Cift Tiklamada Emir Duzeltme"));
 		tblEmir.setShowHorizontalLines(true);
 		tblEmir.setShowVerticalLines(true);
 		tblEmir.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);

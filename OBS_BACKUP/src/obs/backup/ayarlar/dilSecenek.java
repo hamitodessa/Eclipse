@@ -174,7 +174,7 @@ public class dilSecenek {
 			case "Kayitli Emir Yok" -> tEXT = "Job Not Found" ;
 			case "Indir" -> tEXT = "Download";
 			case " Dosyasi Indirildi" -> tEXT = " File Downloaded";
-			
+			case "Cift Tiklamada Emir Duzeltme" -> tEXT = "Edit on Double Click";
 			}  
 		}
 		return tEXT;

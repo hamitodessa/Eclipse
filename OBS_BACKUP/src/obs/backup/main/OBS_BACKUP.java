@@ -2566,6 +2566,30 @@ public class OBS_BACKUP extends JFrame {
 			}
 		}
 	}
+	public static void emirTekStop(String eadi)
+	{
+		Component[] components = container.getComponents();
+		for (Component component : components) {
+			if (component.getName()!= null)
+			{
+				if (component.getName().equals(eadi))
+				{
+					JPanel qweJPanel = (JPanel) component ; 
+					Component[] componentt = qweJPanel.getComponents();
+					for (Component compo : componentt) {
+						if(compo.getName() != null)
+						{
+							if(compo.getName().equals("btnStop"))
+							{
+								JButton stp = (JButton) compo;
+								stp.doClick();
+							}
+						}
+					}
+				}
+			}
+		}
+	}
 	public static void systemTRY()
 	{
 		PopupMenu popup;

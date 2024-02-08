@@ -1608,12 +1608,12 @@ public class OBS_BACKUP extends JFrame {
 					if (serverBilgi.get(0).getHANGI_SQL().equals("Ms Sql"))
 					{
 						if (glb.dos_sil(glb.BACKUP_YERI + tarr + "_" + dosADI + ".bak"))
-							bckp.log_kayit(emirADI, new Date(), dosADI + dilSecenek.dil(dILS," BAK Dosyasi Silindi") );
+							bckp.log_kayit(emirADI, new Date(), dosADI + dilSecenek.dil(dILS," bak Dosyasi Silindi") );
 					}
 					else
 					{
 						if (glb.dos_sil(glb.BACKUP_YERI + tarr + "_" + dosADI + ".sql"))
-							bckp.log_kayit(emirADI, new Date(), dosADI + dilSecenek.dil(dILS," BAK Dosyasi Silindi"));
+							bckp.log_kayit(emirADI, new Date(), dosADI + dilSecenek.dil(dILS," sql Dosyasi Silindi"));
 					}
 				}
 				else 
@@ -1787,7 +1787,7 @@ public class OBS_BACKUP extends JFrame {
 					if( serverBilgi.get(0).getHANGI_SQL().equals("Ms Sql"))
 					{
 						glb.dos_sil(glb.BACKUP_YERI + tarr + "_" + dosADI + ".bak");
-						bckp.log_kayit(emirADI, new Date(), dosADI + dilSecenek.dil(dILS," BAK Dosyasi Silindi"));
+						bckp.log_kayit(emirADI, new Date(), dosADI + dilSecenek.dil(dILS," bak Dosyasi Silindi"));
 					}
 					else
 					{

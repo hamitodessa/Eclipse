@@ -875,6 +875,7 @@ public class LOGIN extends JDialog {
 				//OBS_MAIN.lblStokBilgi.setForeground(new Color(0, 0, 128));
 				OBS_MAIN.lblStokBilgi.setFont(new Font("Tahoma", Font.BOLD, 11));
 				OBS_MAIN.tabbedPane.setEnabledAt(3, true);
+				
 			}
 		}
 		else

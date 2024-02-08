@@ -67,5 +67,4 @@ public class OBS_ORTAK_SQLITE implements IConnection {
 		// TODO Auto-generated method stub
 		
 	}
-
 }

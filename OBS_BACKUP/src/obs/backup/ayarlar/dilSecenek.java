@@ -125,7 +125,7 @@ public class dilSecenek {
 			case "Zip Haline Getiriliyor" -> tEXT = "File is zipping" ;
 			case " Surucuye Yuklendi" -> tEXT = " Copied to Folder" ;
 			case " FTP Yuklendi" -> tEXT = " Uploaded to FTP" ;
-			case " BAK Dosyasi Silindi" -> tEXT = " Bak File Deleted" ;
+			case " bak Dosyasi Silindi" -> tEXT = " bak File Deleted" ;
 			case " sql Dosyasi Silindi" -> tEXT = " sql File Deleted" ;
 			case " ZIP Dosyasi Silindi" -> tEXT = " ZIP File Deleted" ;
 			case "Yedeklendi" -> tEXT = "Backuped" ;

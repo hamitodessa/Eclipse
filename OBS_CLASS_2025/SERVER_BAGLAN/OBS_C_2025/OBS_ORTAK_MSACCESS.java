@@ -66,5 +66,4 @@ public class OBS_ORTAK_MSACCESS implements IConnection {
 		// TODO Auto-generated method stub
 		
 	}
-
 }

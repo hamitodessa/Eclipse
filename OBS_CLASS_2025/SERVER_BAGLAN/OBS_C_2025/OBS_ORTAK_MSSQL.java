@@ -120,7 +120,7 @@ public class OBS_ORTAK_MSSQL implements IConnection {
 				//System.out.println("Kaayit yok");
 			} 
 		else {
-			System.out.println("Kaayit var");
+			//System.out.println("Kaayit var");
 			rs.next();
 			PreparedStatement stmtt = conn.prepareStatement(" EXEC msdb.dbo.sp_delete_job '" + rs.getString("job_id") + "'");
 			stmtt.execute();
@@ -135,12 +135,14 @@ public class OBS_ORTAK_MSSQL implements IConnection {
 		Connection conn = null;  
 		String cumle = "";
 		cumle = "jdbc:sqlserver://localhost" + sbilgi.getPort()  +";instanceName=" + sbilgi.getIns() + ";";
+		if(msAgentKontrol_L(sbilgi))
+		{
 		conn = DriverManager.getConnection(cumle,sbilgi.getKull(),sbilgi.getSifre());
 		PreparedStatement stmt = conn.prepareStatement("USE msdb  EXEC sp_start_job  N'"+ jobName + "'");
 		stmt.execute();
 		stmt.close();
 		conn.close();
-		
+		}		
 	}
 	@Override
 	public void job_baslat_S(String jobName, Server_Bilgi sbilgi) throws ClassNotFoundException, SQLException {
@@ -148,11 +150,14 @@ public class OBS_ORTAK_MSSQL implements IConnection {
 		Connection conn = null;  
 		String cumle = "";
 		cumle = "jdbc:sqlserver://" + sbilgi.getServer() + ";instanceName=" + sbilgi.getIns() + ";";
-		conn = DriverManager.getConnection(cumle,sbilgi.getKull(),sbilgi.getSifre());
-		PreparedStatement stmt = conn.prepareStatement("USE msdb  EXEC sp_start_job  N'"+ jobName + "'");
-		stmt.execute();
-		stmt.close();
-		conn.close();
+		if(msAgentKontrol_S(sbilgi))
+		{
+			conn = DriverManager.getConnection(cumle,sbilgi.getKull(),sbilgi.getSifre());
+			PreparedStatement stmt = conn.prepareStatement("USE msdb  EXEC sp_start_job  N'"+ jobName + "'");
+			stmt.execute();
+			stmt.close();
+			conn.close();
+		}
 	}
 	@Override
 	public void job_olustur_L(String jobName, String dosya,String indexISIM , Server_Bilgi sbilgi) throws ClassNotFoundException, SQLException {
@@ -301,10 +306,50 @@ public class OBS_ORTAK_MSSQL implements IConnection {
 		stmt.close();
 		conn.close();
 	}
+	public boolean msAgentKontrol_L(Server_Bilgi sbilgi) throws ClassNotFoundException, SQLException {
+		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+		Connection conn = null;  
+		String cumle = "";
+		cumle = "jdbc:sqlserver://localhost" + sbilgi.getPort()  +";instanceName=" + sbilgi.getIns() + ";";
+		conn = DriverManager.getConnection(cumle,sbilgi.getKull(),sbilgi.getSifre());
+
+		String sql = "DECLARE @agent NVARCHAR(512) " +
+					" SELECT @agent = COALESCE(N'SQLAgent$' + CONVERT(SYSNAME, SERVERPROPERTY('InstanceName')),  N'SQLServerAgent') " + 
+					" EXEC master.dbo.xp_servicecontrol 'QueryState', @agent" ;
+		PreparedStatement stmt = conn.prepareStatement(sql);
+		ResultSet rss = stmt.executeQuery();
+		while(rss.next())
+		{
+			if(rss.getString("Current Service State").equals("Stopped."))
+				result = false;
+			else
+				result = true;
+		}
+		return result;	
+	}
+	public boolean msAgentKontrol_S(Server_Bilgi sbilgi) throws ClassNotFoundException, SQLException {
+		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+		Connection conn = null;  
+		String cumle = "";
+		cumle =  "jdbc:sqlserver://" + sbilgi.getServer() + ";instanceName=" + sbilgi.getIns() + ";";
+		conn = DriverManager.getConnection(cumle,sbilgi.getKull(),sbilgi.getSifre());
+
+		String sql = "DECLARE @agent NVARCHAR(512) " +
+					" SELECT @agent = COALESCE(N'SQLAgent$' + CONVERT(SYSNAME, SERVERPROPERTY('InstanceName')),  N'SQLServerAgent') " + 
+					" EXEC master.dbo.xp_servicecontrol 'QueryState', @agent" ;
+		PreparedStatement stmt = conn.prepareStatement(sql);
+		ResultSet rss = stmt.executeQuery();
+		while(rss.next())
+		{
+			if(rss.getString("Current Service State").equals("Stopped."))
+				result = false;
+			else
+				result = true;
+		}
+		return result;	
+	}
 	
 }
 
 //Agent Control
-//DECLARE @agent NVARCHAR(512);
-//SELECT @agent = COALESCE(N'SQLAgent$' + CONVERT(SYSNAME, SERVERPROPERTY('InstanceName')),  N'SQLServerAgent');
-//EXEC master.dbo.xp_servicecontrol 'QueryState', @agent;
+

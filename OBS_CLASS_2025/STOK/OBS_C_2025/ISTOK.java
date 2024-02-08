@@ -213,5 +213,5 @@ public interface ISTOK {
 	public ResultSet fatura_oku_printer(String fno,String cins) throws ClassNotFoundException, SQLException;
 	public int zayi_fisno_al() throws ClassNotFoundException, SQLException;
 	public ResultSet fat_detay_rapor(String fno , String turu) throws ClassNotFoundException, SQLException;
-
+	
 }

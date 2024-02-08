@@ -638,4 +638,5 @@ public class STOK_ACCESS {
 	{
 		return _IStok.fat_firma_adi();
 	}
+	
 }

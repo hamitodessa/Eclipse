@@ -164,5 +164,4 @@ public class OBS_ORTAK_MYSQL implements IConnection {
 		stmt.close();
 		conn.close();
 	}
-	//OPTIMIZE TABLE Satirlar
 }

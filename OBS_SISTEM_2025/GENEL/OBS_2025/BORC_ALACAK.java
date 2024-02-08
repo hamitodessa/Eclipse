@@ -7,11 +7,10 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
-import OBS_C_2025.JTextFieldLimit;
+import OBS_C_2025.Obs_TextFIeld;
 import raven.toast.Notifications;
 
 import javax.swing.JLabel;
-import javax.swing.JTextField;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -23,7 +22,7 @@ import java.awt.event.KeyEvent;
 public class BORC_ALACAK extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
-	private JTextField txtcari;
+	private Obs_TextFIeld txtcari;
 	private JLabel lblNewLabel_1 ;
 	public JLabel lblNewLabel;
 	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
@@ -44,7 +43,7 @@ public class BORC_ALACAK extends JDialog {
 		lblNewLabel.setBounds(10, 15, 83, 14);
 		contentPanel.add(lblNewLabel);
 
-		txtcari = new JTextField();
+		txtcari = new Obs_TextFIeld(12);
 		txtcari.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
@@ -60,7 +59,6 @@ public class BORC_ALACAK extends JDialog {
 				}
 			}
 		});
-		txtcari.setDocument(new JTextFieldLimit(12));
 		txtcari.getDocument().addDocumentListener(new DocumentListener() {
 			public void changedUpdate(DocumentEvent e) {
 				lblNewLabel_1.setText(CARI_ISIM_OKU.isim(txtcari.getText())[0]);

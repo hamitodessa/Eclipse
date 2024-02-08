@@ -13,6 +13,8 @@ import javax.swing.border.LineBorder;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
+import OBS_C_2025.Obs_TextFIeld;
+
 
 @SuppressWarnings({"serial","unused","deprecation","static-access"})
 public class COKLU_GIRIS_HSP extends DefaultCellEditor {
@@ -21,10 +23,10 @@ public class COKLU_GIRIS_HSP extends DefaultCellEditor {
 
 	private static final Border red = new LineBorder(Color.red);
 	private static final Border black = new LineBorder(Color.black);
-	private JTextField textField;
+	private Obs_TextFIeld textField;
 	private String turu= "" ;
 
-	public COKLU_GIRIS_HSP(JTextField textField,String tur) {
+	public COKLU_GIRIS_HSP(Obs_TextFIeld textField,String tur) {
 		super(textField);
 		turu = tur ;
 		this.textField = textField;

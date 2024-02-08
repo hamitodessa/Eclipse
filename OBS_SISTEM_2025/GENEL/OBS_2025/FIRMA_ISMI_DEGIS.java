@@ -15,11 +15,11 @@ import OBS_C_2025.CARI_ACCESS;
 import OBS_C_2025.GUNLUK_ACCESS;
 import OBS_C_2025.KAMBIYO_ACCESS;
 import OBS_C_2025.KERESTE_ACCESS;
+import OBS_C_2025.Obs_TextFIeld;
 import OBS_C_2025.STOK_ACCESS;
 import OBS_C_2025.lOG_BILGI;
 import raven.toast.Notifications;
 
-import javax.swing.JTextField;
 import java.awt.Font;
 import java.awt.SystemColor;
 
@@ -27,7 +27,7 @@ import java.awt.SystemColor;
 public class FIRMA_ISMI_DEGIS extends JInternalFrame {
 
 	private static String modul ;
-	private static JTextField textField;
+	private static Obs_TextFIeld textField;
 	private static JPanel panel_1;
 	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS() ;
 	static CARI_ACCESS c_Access = new CARI_ACCESS(OBS_SIS_2025_ANA_CLASS._ICar , OBS_SIS_2025_ANA_CLASS._ICari_Loger);
@@ -58,7 +58,7 @@ public class FIRMA_ISMI_DEGIS extends JInternalFrame {
 		panel.add(panel_1);
 		panel_1.setLayout(null);
 
-		textField = new JTextField();
+		textField = new Obs_TextFIeld(50);
 		textField.setForeground(new Color(0, 0, 128));
 		textField.setFont(new Font("Tahoma", Font.BOLD, 12));
 		textField.setBounds(53, 25, 423, 20);

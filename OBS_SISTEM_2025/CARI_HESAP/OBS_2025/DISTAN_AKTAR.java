@@ -13,7 +13,6 @@ import javax.swing.JTable;
 import javax.swing.JButton;
 import javax.swing.ImageIcon;
 import javax.swing.InputMap;
-import javax.swing.JTextField;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.event.DocumentEvent;
@@ -602,7 +601,7 @@ public class DISTAN_AKTAR extends JInternalFrame {
 		sut= 2;
 		col = tblexcell.getColumnModel().getColumn(sut);
 		col.setHeaderRenderer(new SOLA());
-		col.setCellEditor(new COKLU_GIRIS_HSP(new JTextField(),"B"));
+		col.setCellEditor(new COKLU_GIRIS_HSP(new Obs_TextFIeld(12),"B"));
 		col.setMinWidth(100);
 		//***************
 		DefaultTableCellRenderer r = new DefaultTableCellRenderer() {
@@ -637,7 +636,7 @@ public class DISTAN_AKTAR extends JInternalFrame {
 		sut= 5;
 		col = tblexcell.getColumnModel().getColumn(sut);
 		col.setHeaderRenderer(new SOLA());
-		col.setCellEditor(new COKLU_GIRIS_HSP(new JTextField(),"A"));
+		col.setCellEditor(new COKLU_GIRIS_HSP(new Obs_TextFIeld(12),"A"));
 		//***************
 		DefaultTableCellRenderer rr = new DefaultTableCellRenderer() {
 			Font font =new Font("Tahoma", Font.BOLD, 11);
@@ -911,7 +910,7 @@ public class DISTAN_AKTAR extends JInternalFrame {
 		 sutun= 1;
 		 colon = table_1.getColumnModel().getColumn(sutun);
 		 colon.setHeaderRenderer(new SOLA());
-		 colon.setCellEditor(new COKLU_GIRIS_HSP(new JTextField(),"C"));
+		 colon.setCellEditor(new COKLU_GIRIS_HSP(new Obs_TextFIeld(12),"C"));
 		 colon.setMinWidth(95);
 		 table_1.setAutoResizeMode( JTable.AUTO_RESIZE_OFF );
 		 table_1.setRowHeight(22);

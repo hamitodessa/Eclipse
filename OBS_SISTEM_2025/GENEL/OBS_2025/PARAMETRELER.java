@@ -18,8 +18,6 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.awt.event.ActionEvent;
-import javax.swing.JTextField;
-
 import javax.swing.JComboBox;
 import javax.swing.JSeparator;
 import javax.swing.DefaultComboBoxModel;
@@ -31,6 +29,7 @@ import OBS_C_2025.ColorChooserButton.ColorChangedListener;
 import raven.toast.Notifications;
 import OBS_C_2025.Font_Sec;
 import OBS_C_2025.MaterialTabbed;
+import OBS_C_2025.Obs_TextFIeld;
 import OBS_C_2025.TARIH_CEVIR;
 
 import javax.swing.border.LineBorder;
@@ -53,16 +52,16 @@ public class PARAMETRELER   extends JInternalFrame   {
 	private static DefaultComboBoxModel<String> comboModel3 = new DefaultComboBoxModel<String>(Harf);
 
 	private static final long serialVersionUID = 1L;
-	private static JTextField textField;
-	private static JTextField textField_1;
-	private static JTextField textField_2;
-	private static JTextField textField_3;
-	private static JTextField textField_4;
-	private static JTextField textField_5;
-	private static JTextField textField_6;
-	private static JTextField textField_7;
-	private static JTextField textField_8;
-	private static JTextField textField_9;
+	private static Obs_TextFIeld textField;
+	private static Obs_TextFIeld textField_1;
+	private static Obs_TextFIeld textField_2;
+	private static Obs_TextFIeld textField_3;
+	private static Obs_TextFIeld textField_4;
+	private static Obs_TextFIeld textField_5;
+	private static Obs_TextFIeld textField_6;
+	private static Obs_TextFIeld textField_7;
+	private static Obs_TextFIeld textField_8;
+	private static Obs_TextFIeld textField_9;
 	private static JCheckBox chckbxNewCheckBox;
 	private static JLabel lblNewLabel_3;
 	private static JCheckBox chckbxNewCheckBox_2_2;
@@ -110,7 +109,7 @@ public class PARAMETRELER   extends JInternalFrame   {
 	private static JLabel lblNewLabel_3_2_1_1_3 ;
 	private static JCheckBox chckbxNewCheckBox_1_4 ;
 	private static JLabel lblNewLabel_3_10_1_1_1 ;
-	private static JTextField textField_10;
+	private static Obs_TextFIeld textField_10;
 	//***********************GRAFIK
 	private static JCheckBox chckbxNewCheckBox_2;
 	//***********************PROGRAM ***************
@@ -197,7 +196,7 @@ public class PARAMETRELER   extends JInternalFrame   {
 		lblNewLabel_4_1_2_1_5_1.setBounds(10, 14, 126, 14);
 		panel_4.add(lblNewLabel_4_1_2_1_5_1);
 
-		textField_9 = new JTextField();
+		textField_9 = new Obs_TextFIeld();
 		textField_9.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
@@ -524,7 +523,7 @@ public class PARAMETRELER   extends JInternalFrame   {
 		lblNewLabel_5_7.setBounds(10, 300, 110, 14);
 		panel.add(lblNewLabel_5_7);
 
-		textField = new JTextField();
+		textField = new Obs_TextFIeld();
 		textField.addKeyListener(new KeyAdapter() {
 
 			@Override
@@ -926,7 +925,7 @@ public class PARAMETRELER   extends JInternalFrame   {
 		lblNewLabel_4_1_2_2.setBounds(10, 171, 126, 14);
 		panel_1.add(lblNewLabel_4_1_2_2);
 
-		textField_1 = new JTextField();
+		textField_1 = new Obs_TextFIeld();
 		textField_1.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
@@ -1109,7 +1108,7 @@ public class PARAMETRELER   extends JInternalFrame   {
 		lblNewLabel_4_1_2_1_1.setBounds(10, 370, 126, 14);
 		panel_1.add(lblNewLabel_4_1_2_1_1);
 
-		textField_2 = new JTextField();
+		textField_2 = new Obs_TextFIeld();
 		textField_2.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
@@ -1220,7 +1219,7 @@ public class PARAMETRELER   extends JInternalFrame   {
 		lblNewLabel_4_1_2_2_3_1.setBounds(10, 40, 126, 14);
 		panel_2.add(lblNewLabel_4_1_2_2_3_1);
 
-		textField_3 = new JTextField();
+		textField_3 = new Obs_TextFIeld();
 		textField_3.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
@@ -1264,7 +1263,7 @@ public class PARAMETRELER   extends JInternalFrame   {
 		lblNewLabel_4_1_2_2_3_1_1.setVisible(false);
 		panel_2.add(lblNewLabel_4_1_2_2_3_1_1);
 
-		textField_4 = new JTextField();
+		textField_4 = new Obs_TextFIeld();
 		textField_4.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
@@ -1309,7 +1308,7 @@ public class PARAMETRELER   extends JInternalFrame   {
 		lblNewLabel_4_1_2_1_2.setBounds(10, 14, 126, 14);
 		panel_3.add(lblNewLabel_4_1_2_1_2);
 
-		textField_5 = new JTextField();
+		textField_5 = new Obs_TextFIeld();
 		textField_5.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
@@ -1341,7 +1340,7 @@ public class PARAMETRELER   extends JInternalFrame   {
 		lblNewLabel_4_1_2_1_3.setBounds(10, 42, 126, 14);
 		panel_3.add(lblNewLabel_4_1_2_1_3);
 
-		textField_6 = new JTextField();
+		textField_6 = new Obs_TextFIeld();
 		textField_6.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
@@ -1373,7 +1372,7 @@ public class PARAMETRELER   extends JInternalFrame   {
 		lblNewLabel_4_1_2_1_4.setBounds(10, 70, 126, 14);
 		panel_3.add(lblNewLabel_4_1_2_1_4);
 
-		textField_7 = new JTextField();
+		textField_7 = new Obs_TextFIeld();
 		textField_7.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
@@ -1405,7 +1404,7 @@ public class PARAMETRELER   extends JInternalFrame   {
 		lblNewLabel_4_1_2_1_5.setBounds(10, 98, 126, 14);
 		panel_3.add(lblNewLabel_4_1_2_1_5);
 
-		textField_8 = new JTextField();
+		textField_8 = new Obs_TextFIeld();
 		textField_8.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
@@ -1526,7 +1525,7 @@ public class PARAMETRELER   extends JInternalFrame   {
 		lblNewLabel_4_1_2_1_6.setBounds(10, 88, 126, 14);
 		panel_5.add(lblNewLabel_4_1_2_1_6);
 
-		textField_10 = new JTextField();
+		textField_10 = new Obs_TextFIeld();
 		textField_10.setText("15");
 		textField_10.setFont(new Font("Tahoma", Font.BOLD, 11));
 		textField_10.setColumns(10);

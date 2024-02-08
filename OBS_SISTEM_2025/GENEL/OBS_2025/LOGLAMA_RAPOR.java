@@ -50,6 +50,7 @@ import OBS_C_2025.FILE_UZANTI;
 import OBS_C_2025.FORMATLAMA;
 import OBS_C_2025.GLOBAL;
 import OBS_C_2025.GRID_TEMIZLE;
+import OBS_C_2025.Obs_TextFIeld;
 import OBS_C_2025.SOLA;
 import OBS_C_2025.ScrollPaneWin11;
 import OBS_C_2025.TARIH_CEVIR;
@@ -67,7 +68,6 @@ import LOGER_KAYIT.DOSYA_MYSQL;
 import LOGER_KAYIT.SQLITE_LOG;
 import LOGER_KAYIT.TXT_LOG;
 
-import javax.swing.JTextField;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
@@ -85,10 +85,10 @@ public class LOGLAMA_RAPOR extends JInternalFrame {
 	static DOSYA_MSSQL mSSQL = new DOSYA_MSSQL ();
 	static  SQLITE_LOG sQLITE = new SQLITE_LOG();
 	static TXT_LOG tEXT = new TXT_LOG();
-	private static JTextField textField;
-	private static JTextField textField_1;
-	private static JTextField textField_2;
-	private static 	JDateChooser dateChooser ;
+	private static Obs_TextFIeld textField;
+	private static Obs_TextFIeld textField_1;
+	private static Obs_TextFIeld textField_2;
+	private static JDateChooser dateChooser ;
 	private static JDateChooser dateChooser_1 ;
 	private static JLabel lblSatir = new JLabel("0");
 	static JComboBox<String> cmbLog = new JComboBox<String>();
@@ -176,12 +176,12 @@ public class LOGLAMA_RAPOR extends JInternalFrame {
 		dateChooser_1.setDate(TARIH_CEVIR.tarih("31.12.2100"));
 		leftPanel.add(dateChooser_1);
 
-		textField = new JTextField();
+		textField = new Obs_TextFIeld();
 		textField.setBounds(541, 12, 237, 20);
 		leftPanel.add(textField);
 		textField.setColumns(10);
 
-		textField_1 = new JTextField();
+		textField_1 = new Obs_TextFIeld();
 		textField_1.setBounds(820, 12, 58, 20);
 		leftPanel.add(textField_1);
 		textField_1.setColumns(10);
@@ -190,7 +190,7 @@ public class LOGLAMA_RAPOR extends JInternalFrame {
 		lblNewLabel.setBounds(785, 15, 37, 14);
 		leftPanel.add(lblNewLabel);
 
-		textField_2 = new JTextField();
+		textField_2 = new Obs_TextFIeld();
 		textField_2.setText("");
 		textField_2.setBounds(940, 12, 63, 20);
 		leftPanel.add(textField_2);

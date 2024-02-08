@@ -242,9 +242,6 @@ public class OBS_BACKUP extends JFrame {
 	public static JLabel lblEmir ;
 	private static JLabel pidlb ;
 
-	//private Path path;
-	
-	
 	public static JButton btntry;
 	public static JButton btnfont_tema;
 	static JButton btnBuyult;
@@ -279,7 +276,8 @@ public class OBS_BACKUP extends JFrame {
 	public OBS_BACKUP() {
 		setUndecorated(true);
 		FlatLaf.registerCustomDefaultsSource("obs.backup.theme");
-		try {
+		try 
+		{
 			glb.backup_surucu_kontrol();
 			pidlb = new JLabel("");
 			pidKONTROL(); // PID yaz
@@ -347,7 +345,6 @@ public class OBS_BACKUP extends JFrame {
 		toolBar = new JToolBar();
 		toolBar.setFloatable(false);
 		toolBar.setOrientation(SwingConstants.VERTICAL);
-		//panel.add(toolBar );
 		panel.setLayout(new BorderLayout());
 		panel.add(toolBar,BorderLayout.CENTER);
 		//***************
@@ -376,7 +373,6 @@ public class OBS_BACKUP extends JFrame {
 				}
 			}
 		});
-		
 		toolBar.add(btnGorevler);
 
 		btnYeni_Gorev = new JButton();
@@ -429,7 +425,8 @@ public class OBS_BACKUP extends JFrame {
 					contentPane.setCursor( Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 					kayitliEmirlerPanelEmirler.doldur();
 					contentPane.setCursor( Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-				} catch (Exception e1) {
+				} catch (Exception e1) 
+				{
 					e1.printStackTrace();
 				}
 			}
@@ -449,7 +446,8 @@ public class OBS_BACKUP extends JFrame {
 				contentPane.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 				emirSayiCount();
 				Component[] components = container.getComponents();
-				for (Component component : components) {
+				for (Component component : components) 
+				{
 					if(component.getName() != null)
 						component.setPreferredSize(new Dimension(00,70));
 				}

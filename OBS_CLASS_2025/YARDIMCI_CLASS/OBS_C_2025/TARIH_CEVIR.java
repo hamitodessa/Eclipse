@@ -10,6 +10,16 @@ import com.toedter.calendar.JDateChooser;
 
 public class TARIH_CEVIR {
 
+	public boolean isValidDate(String dateStr) {
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd HH:mm");
+		dateFormat.setLenient(false);
+		try {
+			dateFormat.parse(dateStr.trim());
+		} catch (ParseException pe) {
+			return false;
+		}
+		return true;
+	}
 	public static  Date tarih(String tar) {
 
 		if(tar.equals("")) return new Date();

@@ -127,6 +127,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.time.Instant;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -2527,7 +2528,7 @@ public class OBS_BACKUP extends JFrame {
 	private boolean fileESITMI(String ftpDOSYA , String dosYA)
 	{
 		boolean result = false;
-		if(ftpDOSYA.length() < 13) return result;
+		if(ftpDOSYA.length() <= 13) return result;
 		String dosADIOGREN = ftpDOSYA.substring(13,ftpDOSYA.lastIndexOf("."));
 		if(dosADIOGREN.equals(dosYA))
 			result = true ;
@@ -2535,13 +2536,16 @@ public class OBS_BACKUP extends JFrame {
 	}
 	private Date dosyaTAIRIHI(String ftpDOSYA) throws ParseException
 	{
+		Date ftar = null;
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy.MM.dd HH:mm", Locale.ENGLISH);
 		String dateInString = ftpDOSYA.substring(4,8) + "." +  
 							  ftpDOSYA.substring(2,4) + "." + 
 							  ftpDOSYA.substring(0,2) + " " + 
 							  ftpDOSYA.substring(8,10) + ":" + 
-							  ftpDOSYA.substring(10,12)  ;
-		Date ftar = formatter.parse(dateInString);
+							  ftpDOSYA.substring(10,12) ;
+		TARIH_CEVIR trhCevir = new TARIH_CEVIR();
+		if(trhCevir.isValidDate(dateInString))
+			ftar = formatter.parse(dateInString);
 		return ftar;
 	}
 	public static void emirleriSTOPYAP()

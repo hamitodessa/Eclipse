@@ -175,6 +175,8 @@ public class dilSecenek {
 			case "Indir" -> tEXT = "Download";
 			case " Dosyasi Indirildi" -> tEXT = " File Downloaded";
 			case "Cift Tiklamada Emir Duzeltme" -> tEXT = "Edit on Double Click";
+			case "Veritabani Restore Edildi" -> tEXT = "Database Restored to Server" ;
+			case "Veritabani Server de Mevcut Silinecek ?" -> tEXT = "The Database Exists on the Server, Will It Be Deleted?";
 			}  
 		}
 		return tEXT;

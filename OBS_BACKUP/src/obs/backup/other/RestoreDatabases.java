@@ -1,5 +1,6 @@
 package obs.backup.other;
 
+import java.awt.AWTKeyStroke;
 import java.awt.BorderLayout;
 import java.awt.Cursor;
 import java.awt.Dimension;
@@ -8,13 +9,16 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.awt.event.KeyEvent;
 import java.io.UnsupportedEncodingException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.crypto.BadPaddingException;
 import javax.crypto.IllegalBlockSizeException;
@@ -23,6 +27,8 @@ import javax.swing.AbstractButton;
 import javax.swing.DefaultCellEditor;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
+import javax.swing.JDialog;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
@@ -46,10 +52,11 @@ import OBS_C_2025.SOLA_DUZ_RENK;
 import OBS_C_2025.ScrollPaneWin11;
 import OBS_C_2025.TABLO_RENDERER;
 import OBS_C_2025.server_bilgiler;
+import obs.backup.ayarlar.dilSecenek;
 import obs.backup.main.OBS_BACKUP;
 import raven.toast.Notifications;
 
-@SuppressWarnings({"static-access","serial"})
+@SuppressWarnings({"static-access","serial","unchecked", "rawtypes"})
 public class RestoreDatabases  extends JPanel{
 	
 	private static final long serialVersionUID = 1L;
@@ -211,6 +218,7 @@ public class RestoreDatabases  extends JPanel{
 			}
 		}
 	}
+
 	private void resTORE(String dosADI,String sqlCins)
 	{
 		boolean result = bckp.unZip(glb.BACKUP_YERI,dosADI , OBS_BACKUP.zipSIFRE );
@@ -226,10 +234,54 @@ public class RestoreDatabases  extends JPanel{
 			{
 				if(sqlCins.equals("Ms Sql"))
 				{
+					if( bckp.dosyaKontrolMS(input.substring(13, index)))
+					{
+						String[] options = {"Tamam......       		!	", "Vazgec......       		!	"}; 
+						JOptionPane optionPane = new JOptionPane("Islem Dosyada mevcut Fis eskisi ile degisecek ..", JOptionPane.QUESTION_MESSAGE,
+								JOptionPane.YES_NO_OPTION, null,options,  options[1]);
+						JDialog	dialog = optionPane.createDialog("Veritabani Sil");
+						Set focusTraversalKeys = new HashSet(dialog.getFocusTraversalKeys(0));
+						focusTraversalKeys.add(AWTKeyStroke.getAWTKeyStroke(KeyEvent.VK_RIGHT, KeyEvent.VK_UNDEFINED));
+						focusTraversalKeys.add(AWTKeyStroke.getAWTKeyStroke(KeyEvent.VK_LEFT, KeyEvent.VK_UNDEFINED));
+						dialog.setFocusTraversalKeys(0, focusTraversalKeys);
+						dialog.setVisible(true);
+						dialog.dispose();
+						if(optionPane.getValue() == null)
+						{
+							return;
+						}
+						else {
+							if(optionPane.getValue().toString().equals("Vazgec......       		!	")) return;
+						}
+						bckp.dosyaSilMS(input.substring(13, index));
+					}
 					bckp.restoreMSSql(input.substring(13, index), glb.BACKUP_YERI + "\\" + input.substring(0, index) + ".bak" );
 					glb.dos_sil(glb.BACKUP_YERI + "\\" + input.substring(0, index) + ".bak");
 				}
-				else if(sqlCins.equals("My Sql")) {
+				else if(sqlCins.equals("My Sql")) 
+				{
+					if( bckp.dosyaKontrolMY(input.substring(13, index)))
+					{
+						String[] options = {"Tamam......       		!	", "Vazgec......       		!	"}; 
+						JOptionPane optionPane = new JOptionPane("Veritabani Server de Mevcut Silinecek ?", JOptionPane.QUESTION_MESSAGE,
+								JOptionPane.YES_NO_OPTION, null,options,  options[1]);
+						JDialog	dialog = optionPane.createDialog("Veritabani Sil");
+						Set focusTraversalKeys = new HashSet(dialog.getFocusTraversalKeys(0));
+						focusTraversalKeys.add(AWTKeyStroke.getAWTKeyStroke(KeyEvent.VK_RIGHT, KeyEvent.VK_UNDEFINED));
+						focusTraversalKeys.add(AWTKeyStroke.getAWTKeyStroke(KeyEvent.VK_LEFT, KeyEvent.VK_UNDEFINED));
+						dialog.setFocusTraversalKeys(0, focusTraversalKeys);
+						dialog.setVisible(true);
+						dialog.dispose();
+						if(optionPane.getValue() == null)
+						{
+							return;
+						}
+						else {
+							if(optionPane.getValue().toString().equals("Vazgec......       		!	")) return;
+						}
+						bckp.dosyaSilMY(input.substring(13, index));
+
+					}
 					String  decodedString = serverBilgi.get(0).getSIFRE();
 					String[]  byteValues = decodedString.substring(1, decodedString.length() - 1).split(",");
 					byte[] bytes = new byte[byteValues.length];
@@ -240,8 +292,11 @@ public class RestoreDatabases  extends JPanel{
 					bckp.mySqlRestore(serverBilgi.get(0).getMY_DUMP() , serverBilgi.get(0).getKULLANICI() ,sqlsifre ,   glb.BACKUP_YERI + "\\" + input.substring(0, index) + ".sql" );
 					glb.dos_sil(glb.BACKUP_YERI + "\\" + input.substring(0, index) + ".sql");
 				}
+				glb.dos_sil(glb.BACKUP_YERI + "\\" + dosADI);
+				bckp.log_kayit("System", new Date(), input.substring(0, index) + " " + dilSecenek.dil(OBS_BACKUP.dILS, "Veritabani Restore Edildi"));
+				OBS_BACKUP.mesajGoster(10000,Notifications.Type.INFO, input.substring(0, index) + " " + dilSecenek.dil(OBS_BACKUP.dILS, "Veritabani Restore Edildi")); 
 			}
-			glb.dos_sil(glb.BACKUP_YERI + "\\" + dosADI);
+			
 		} catch (Exception ex) 
 		{
 			try 
@@ -292,6 +347,7 @@ public class RestoreDatabases  extends JPanel{
 		OBS_BACKUP.lblEmir.setText("Secilen Satir"); 
 		OBS_BACKUP.lblemirSAYI.setText(FORMATLAMA.doub_0(satir_kontrol()));
 	}
+	
 	class MyItemListener implements ItemListener
 	{
 		@Override

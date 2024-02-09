@@ -147,6 +147,23 @@ public class BACKUP_GLOBAL {
 		stmt.close();
 		return result;
 	}
+	public boolean dosyaSilMS(String dosADI) throws ClassNotFoundException, SQLException 
+	{
+		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+		ResultSet	rss = null;
+		boolean result = false;
+		String sql  = "DROP DATABASE '" + dosADI + "'";
+		PreparedStatement stmt = S_CONN.prepareStatement(sql);
+		int updateCount= stmt.executeUpdate();
+
+		if(updateCount>0)
+		{
+		    result = true;
+		}
+		stmt.close();
+		return result;
+	}
+
 	public boolean dosyaKontrolMY(String dosADI) throws SQLException, ClassNotFoundException
 	{
 		Class.forName("com.mysql.cj.jdbc.Driver");
@@ -163,6 +180,22 @@ public class BACKUP_GLOBAL {
 		stmt.close();
 		return result;
 	}
+	public boolean dosyaSilMY(String dosADI) throws ClassNotFoundException, SQLException 
+	{
+		Class.forName("com.mysql.cj.jdbc.Driver");
+		ResultSet	rss = null;
+		boolean result = false;
+		String sql  = "DROP DATABASE " + dosADI + " ;";
+		PreparedStatement stmt = MY_CONN.prepareStatement(sql);
+		int updateCount= stmt.executeUpdate();
+		if(updateCount>0)
+		{
+		    result = true;
+		}
+		stmt.close();
+		return result;
+	}
+
 	public ResultSet db_ismiMySql()throws ClassNotFoundException, SQLException
 	{
 		Class.forName("com.mysql.cj.jdbc.Driver");

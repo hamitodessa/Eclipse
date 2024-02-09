@@ -56,9 +56,10 @@ import net.lingala.zip4j.exception.ZipException;
 import net.lingala.zip4j.model.ZipParameters;
 import net.lingala.zip4j.model.enums.CompressionLevel;
 import net.lingala.zip4j.model.enums.EncryptionMethod;
+import net.lingala.zip4j.model.FileHeader;
 
 
-@SuppressWarnings({"static-access","unused","rawtypes","unchecked","deprecation"})
+@SuppressWarnings({"static-access","unused","rawtypes","unchecked","deprecation","resource"})
 public class BACKUP_GLOBAL {
 	public Connection S_CONN;
 	public Connection MY_CONN; //= new MySqlConnection();
@@ -1231,6 +1232,45 @@ public class BACKUP_GLOBAL {
 		ftp.disconnect();
 		return model ;
 	}
+	public DefaultTableModel restoreFileList(String surucu) 
+	{
+		File directoryPath = new File(surucu);
+		String contents[] = directoryPath.list();
+		DefaultTableModel model = new DefaultTableModel();
+		model.addColumn("SEC");
+		model.addColumn("DOSYA_ADI");
+		model.addColumn("SQL");
+		model.addColumn("TARIH");
+		model.addColumn("ZIP Bytes");
+		model.addColumn("BOYUT Bytes");
+		ZipFile zipFile;
+		List fileHeaderList ;
+		FileHeader fileHeader ;
+		for(int i=0; i<contents.length; i++) {
+			Vector data = new Vector();
+			data.add( Boolean.FALSE );
+			data.add(contents[i].toString());
+			zipFile = new ZipFile(glb.BACKUP_YERI +   "\\" + contents[i].toString());
+			try {
+				fileHeaderList = zipFile.getFileHeaders();
+				fileHeader = (FileHeader)fileHeaderList.get(0);
+				String aDIString= fileHeader.getFileName().substring(fileHeader.getFileName().length() - 3);
+				if(aDIString.equals("bak"))
+					data.add("MS SQL");
+				else if(aDIString.equals("sql"))
+					data.add("MY SQL");
+				else
+					data.add("");
+				data.add(TARIH_CEVIR.milis_ddMMyyyy(fileHeader.getLastModifiedTimeEpoch()));
+				data.add((int) fileHeader.getCompressedSize());
+				data.add((int) fileHeader.getUncompressedSize());
+				model.addRow(data);
+			} catch (ZipException e) {
+				e.printStackTrace();
+			}
+		}
+		return model ;
+	}
 	public List<remote_filelist> sur_liste(String surucu)
 	{
 		List<remote_filelist> filelists= new ArrayList<remote_filelist>();
@@ -1267,6 +1307,27 @@ public class BACKUP_GLOBAL {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+		}
+	}
+	public void getfilesINZIP(String fileName)
+	{
+		try {
+			ZipFile zipFile = new ZipFile(glb.BACKUP_YERI +   "\\" + fileName);
+			List fileHeaderList = zipFile.getFileHeaders();
+			for (int i = 0; i < fileHeaderList.size(); i++) {
+				FileHeader fileHeader = (FileHeader)fileHeaderList.get(i);
+				// FileHeader contains all the properties of the file
+				System.out.println("****File Details for: " + fileHeader.getFileName() + "*****");
+				System.out.println("Name: " + fileHeader.getFileName());
+				System.out.println("Compressed Size: " + fileHeader.getCompressedSize());
+				System.out.println("Uncompressed Size: " + fileHeader.getUncompressedSize());
+				System.out.println("LastModifiedTime: " + TARIH_CEVIR.milis_ddMMyyyy(fileHeader.getLastModifiedTimeEpoch()));
+				System.out.println("************************************************************");
+				// Various other properties are available in FileHeader. Please have a look at FileHeader
+				// class to see all the properties
+			}
+		} catch (ZipException e) {
+			e.printStackTrace();
 		}
 	}
 	public void diger_zip_yap_sifrele(String okumadosyaadii, String dosyolu, String dosadi_zip, Boolean sifrele, String sifre) 

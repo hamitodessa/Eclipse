@@ -58,6 +58,7 @@ import obs.backup.other.EmirKopyala;
 import obs.backup.other.Hakkinda;
 import obs.backup.other.KayitliEmirler;
 import obs.backup.other.LoglamaRapor;
+import obs.backup.other.RestoreDatabases;
 import obs.backup.other.ServerBilgileri;
 import obs.backup.other.SifreGiris;
 import obs.backup.other.SifreYenile;
@@ -216,6 +217,7 @@ public class OBS_BACKUP extends JFrame {
 	public static SifreGiris sifreGirisPanel;
 	public static SifreYenile sifreYenilePanel;
 	public static DownloadFile downloadFilePanel;
+	public static RestoreDatabases restoreDatabasesPanel;
 	public static Hakkinda hakkindaPanel;
 	public static Ayarlar ayarlarPanel;
 
@@ -231,6 +233,8 @@ public class OBS_BACKUP extends JFrame {
 	public static JButton btnStartAll ;
 	public static JButton btnStopAll ;
 	public static JButton btnFileIndir;
+	public static JButton btnRestore;
+	
 	public static JButton btnSifreEkrani;
 	public static JButton btnHepsiAktiv;
 	public static JButton btnHepsiPasiv;
@@ -359,11 +363,11 @@ public class OBS_BACKUP extends JFrame {
 		btnGorevler.setIcon(new ImageIcon(OBS_BACKUP.class.getResource("/obs/backup/icons/emirler.png")));
 		btnGorevler.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				tabbedPane.setSelectedIndex(0);
 				if (backupTime ) return;
 				try 
 				{
 					gelenISIM = "" ;
-					tabbedPane.setSelectedIndex(0);
 					contentPane.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 					emirleriSTOPYAP();
 					emirYukle("EMIR_ISMI") ;
@@ -682,6 +686,22 @@ public class OBS_BACKUP extends JFrame {
 		});
 		btnFileIndir.setIcon(new ImageIcon(OBS_BACKUP.class.getResource("/obs/backup/icons/download-30.png")));
 		toolBar.add(btnFileIndir);
+		
+		btnRestore = new JButton("");
+		btnRestore.setEnabled(false);
+		btnRestore.setToolTipText("Restore");
+		btnRestore.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (backupTime ) return;
+				contentPane.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+				tabbedPane.setSelectedIndex(9);
+				
+				contentPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+			}
+		});
+		btnRestore.setIcon(new ImageIcon(OBS_BACKUP.class.getResource("/obs/backup/icons/restore.png")));
+		toolBar.add(btnRestore);
+
 
 		btnYeniSifre = new JButton();
 		btnYeniSifre.setEnabled(false);
@@ -722,6 +742,7 @@ public class OBS_BACKUP extends JFrame {
 				btnStartAll.setEnabled(false);
 				btnStopAll.setEnabled(false);
 				btnFileIndir.setEnabled(false);
+				btnRestore.setEnabled(false);
 				btnHepsiAktiv.setEnabled(false);
 				btnHepsiPasiv.setEnabled(false);
 				btnHakkinda.setEnabled(false);
@@ -873,6 +894,8 @@ public class OBS_BACKUP extends JFrame {
 		tabbedPane.addTab("Hakkinda", null, hakkindaPanel, null);
 		ayarlarPanel = new Ayarlar();
 		tabbedPane.addTab("Ayarlar", null, ayarlarPanel, null);
+		restoreDatabasesPanel = new RestoreDatabases();
+		tabbedPane.addTab("Restore", null, restoreDatabasesPanel, null);
 		//*************************************************************************************************************
 		sifreDurumu();
 		//*************************************************************************************************************
@@ -2893,6 +2916,7 @@ public class OBS_BACKUP extends JFrame {
 		 btnStartAll.setEnabled(true);
 		 btnStopAll.setEnabled(true);
 		 btnFileIndir.setEnabled(true);
+		 btnRestore.setEnabled(true);
 		 btnSifreEkrani.setVisible(true);
 		 btnHepsiAktiv.setEnabled(true);
 		 btnHepsiPasiv.setEnabled(true);

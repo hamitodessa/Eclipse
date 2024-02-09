@@ -153,7 +153,7 @@ public class DownloadFile extends JPanel {
 		});
 		btnNewButton.setBounds(400, 11, 100, 23);
 		panel.add(btnNewButton);
-
+		
 		scrollPane = new ScrollPaneWin11();
 		add(scrollPane, BorderLayout.CENTER);
 
@@ -419,6 +419,7 @@ public class DownloadFile extends JPanel {
 		t.start();
 
 	}
+
 	public void eismiDOLDUR() throws ClassNotFoundException, SQLException
 	{
 		setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));

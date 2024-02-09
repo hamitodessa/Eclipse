@@ -353,7 +353,7 @@ public class OBS_BACKUP extends JFrame {
 		panel.add(toolBar,BorderLayout.CENTER);
 		//***************
 		JLabel spr = new JLabel("   ");
-		spr.setSize(new Dimension(25,25));
+		spr.setSize(new Dimension(20,20));
 		
 		toolBar.add(spr);
 		btnGorevler = new JButton();
@@ -437,10 +437,6 @@ public class OBS_BACKUP extends JFrame {
 		});
 		toolBar.add(btnKayitliEmirler );
 
-		JLabel sprt = new JLabel("   ");
-		sprt.setSize(new Dimension(25,25));
-		toolBar.add(sprt );
-
 		btnHepsiYukari = new JButton();
 		btnHepsiYukari.setEnabled(false);
 		btnHepsiYukari.setToolTipText("Gorev Paneli Yukari");
@@ -481,10 +477,6 @@ public class OBS_BACKUP extends JFrame {
 			}
 		});
 		toolBar.add(btnHepsiAsagi );
-
-		sprt = new JLabel("   ");
-		sprt.setSize(new Dimension(25,25));
-		toolBar.add(sprt );
 
 		btnStartAll= new JButton("");
 		btnStartAll.setToolTipText("Emirleri Baslat");
@@ -753,8 +745,6 @@ public class OBS_BACKUP extends JFrame {
 			}
 		});
 		toolBar.add(btnSifreEkrani );
-		toolBar.add(sprt );
-		
 		//
 		btnHakkinda= new JButton("");
 		btnHakkinda.setToolTipText("Hakkinda");
@@ -797,6 +787,10 @@ public class OBS_BACKUP extends JFrame {
 		});
 		btnkapat.setIcon(new ImageIcon(OBS_BACKUP.class.getResource("/obs/backup/icons/exit.png")));
 		toolBar.add(btnkapat);
+		JLabel sprt = new JLabel("   ");
+		sprt.setSize(new Dimension(20,20));
+		//toolBar.add(sprt );
+
 		toolBar.add(sprt );
 		//*********************************************************************************
 		tabbedPane = new JTabbedPane(JTabbedPane.TOP);

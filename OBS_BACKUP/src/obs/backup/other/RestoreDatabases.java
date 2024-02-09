@@ -8,6 +8,16 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.io.UnsupportedEncodingException;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.crypto.BadPaddingException;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.NoSuchPaddingException;
 import javax.swing.AbstractButton;
 import javax.swing.DefaultCellEditor;
 import javax.swing.JButton;
@@ -26,6 +36,7 @@ import javax.swing.table.TableModel;
 import OBS_C_2025.BACKUP_GLOBAL;
 import OBS_C_2025.CheckBoxHeader;
 import OBS_C_2025.CheckBoxRenderer;
+import OBS_C_2025.ENCRYPT_DECRYPT_STRING;
 import OBS_C_2025.FORMATLAMA;
 import OBS_C_2025.GLOBAL;
 import OBS_C_2025.GRID_TEMIZLE;
@@ -33,6 +44,7 @@ import OBS_C_2025.SAGA_DUZ_RENK;
 import OBS_C_2025.SOLA_DUZ_RENK;
 import OBS_C_2025.ScrollPaneWin11;
 import OBS_C_2025.TABLO_RENDERER;
+import OBS_C_2025.server_bilgiler;
 import obs.backup.main.OBS_BACKUP;
 
 @SuppressWarnings({"static-access","serial"})
@@ -63,6 +75,7 @@ public class RestoreDatabases  extends JPanel{
 		btnRestore.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				DefaultTableModel modell = (DefaultTableModel)tblFile.getModel();
+				setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 				for ( int i = 0; i <=  modell.getRowCount() - 1;i++)
 				{
 					if ( modell.getValueAt(i,0) != null) 
@@ -71,6 +84,7 @@ public class RestoreDatabases  extends JPanel{
 							resTORE(modell.getValueAt(i,1).toString());
 					};
 				}
+				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 			}
 		});
 		btnRestore.setFont(new Font("Tahoma", Font.BOLD, 11));
@@ -133,8 +147,8 @@ public class RestoreDatabases  extends JPanel{
 				tc.setCellRenderer(new CheckBoxRenderer());
 				tc.setHeaderRenderer(new CheckBoxHeader(new MyItemListener()));
 
-				tc.setMinWidth(50);
-				tc.setMaxWidth(50);
+				tc.setMinWidth(35);
+				tc.setMaxWidth(35);
 
 				tc = tcm.getColumn(1);
 				if(! OBS_BACKUP.dILS.equals("Turkce"))
@@ -195,9 +209,38 @@ public class RestoreDatabases  extends JPanel{
 	}
 	private void resTORE(String dosADI)
 	{
-		System.out.println(dosADI);
-		bckp.getfilesINZIP(dosADI);
-		
+		boolean result = bckp.unZip(glb.BACKUP_YERI,dosADI , OBS_BACKUP.zipSIFRE );
+		if(result)
+		{
+			try 
+			{
+				msBAGLAN("Suadiye SQL");
+				String input = dosADI;
+				int index = dosADI.lastIndexOf(".");
+				if (index >= 0)
+					bckp.restoreMSSql(input.substring(13, index), glb.BACKUP_YERI + "\\" + input.substring(0, index) + ".bak" );
+				glb.dos_sil(glb.BACKUP_YERI + "\\" + input.substring(0, index) + ".bak");
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+
+	}
+	private void msBAGLAN(String emirADI) throws ClassNotFoundException, SQLException, InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException, UnsupportedEncodingException, IllegalBlockSizeException, BadPaddingException
+	{
+		List<server_bilgiler> serverBilgi = new ArrayList<server_bilgiler>();
+		serverBilgi = bckp.server_bilgi(emirADI);
+		String  decodedString = serverBilgi.get(0).getSIFRE();
+		String[]  byteValues = decodedString.substring(1, decodedString.length() - 1).split(",");
+		byte[] bytes = new byte[byteValues.length];
+		for (int i=0, len=bytes.length; i<len; i++) {
+			bytes[i] = Byte.parseByte(byteValues[i].trim());     
+		}
+		String sqlsifre = ENCRYPT_DECRYPT_STRING.dCRYPT_manual(bytes) ;
+		if (serverBilgi.get(0).getHANGI_SQL().equals("Ms Sql"))
+			bckp.MsSql_baglan(serverBilgi.get(0).getINSTANCE() ,serverBilgi.get(0).getKULLANICI(),sqlsifre,serverBilgi.get(0).getPORT());
+		else //My sql
+			bckp.MySql_baglan( serverBilgi.get(0).getKULLANICI(),sqlsifre,serverBilgi.get(0).getPORT());   
 	}
 	private int satir_kontrol()
 	{

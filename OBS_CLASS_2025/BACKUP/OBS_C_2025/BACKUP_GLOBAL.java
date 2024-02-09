@@ -57,6 +57,7 @@ import net.lingala.zip4j.model.ZipParameters;
 import net.lingala.zip4j.model.enums.CompressionLevel;
 import net.lingala.zip4j.model.enums.EncryptionMethod;
 import net.lingala.zip4j.model.FileHeader;
+import net.lingala.zip4j.model.UnzipParameters;
 
 
 @SuppressWarnings({"static-access","unused","rawtypes","unchecked","deprecation","resource"})
@@ -1247,25 +1248,32 @@ public class BACKUP_GLOBAL {
 		List fileHeaderList ;
 		FileHeader fileHeader ;
 		for(int i=0; i<contents.length; i++) {
-			Vector data = new Vector();
-			data.add( Boolean.FALSE );
-			data.add(contents[i].toString());
-			zipFile = new ZipFile(glb.BACKUP_YERI +   "\\" + contents[i].toString());
-			try {
-				fileHeaderList = zipFile.getFileHeaders();
-				fileHeader = (FileHeader)fileHeaderList.get(0);
-				String aDIString= fileHeader.getFileName().substring(fileHeader.getFileName().length() - 3);
-				if(aDIString.equals("bak"))
-					data.add("MS SQL");
-				else if(aDIString.equals("sql"))
-					data.add("MY SQL");
-				else
-					data.add("");
-				data.add(TARIH_CEVIR.milis_ddMMyyyy(fileHeader.getLastModifiedTimeEpoch()));
-				data.add((int) fileHeader.getCompressedSize());
-				data.add((int) fileHeader.getUncompressedSize());
-				model.addRow(data);
-			} catch (ZipException e) {
+			try 
+			{
+				if(contents[i].substring(contents[i].length() - 3).equals("zip"))
+				{
+					zipFile = new ZipFile(surucu +   "\\" + contents[i].toString());
+					fileHeaderList = zipFile.getFileHeaders();
+					fileHeader = (FileHeader)fileHeaderList.get(0);
+					Vector data = new Vector();
+					data.add( Boolean.FALSE );
+					data.add(contents[i].toString());
+					String aDIString= fileHeader.getFileName().substring(fileHeader.getFileName().length() - 3);
+					if(aDIString.equals("bak"))
+						data.add("MS SQL");
+					else if(aDIString.equals("sql"))
+						data.add("MY SQL");
+					else
+						data.add("");
+					data.add(TARIH_CEVIR.milis_ddMMyyyy(fileHeader.getLastModifiedTimeEpoch()));
+					data.add((int) fileHeader.getCompressedSize());
+					data.add((int) fileHeader.getUncompressedSize());
+
+					if(aDIString.equals("bak") || aDIString.equals("sql"))
+						model.addRow(data);
+				}
+			} catch (ZipException e) 
+			{
 				e.printStackTrace();
 			}
 		}
@@ -1308,6 +1316,23 @@ public class BACKUP_GLOBAL {
 				e.printStackTrace();
 			}
 		}
+	}
+	public boolean unZip(String surucu,  String fileName,String sifRe)
+	{
+		boolean result = false;
+		
+		try {
+			ZipFile zipFile = new ZipFile(surucu +  "\\" + fileName);
+			if (zipFile.isEncrypted()) {
+				zipFile.setPassword(sifRe.toCharArray());
+			}
+			zipFile.extractAll(surucu);
+			result = true;
+		} catch (ZipException e) {
+			result = false;
+		}
+		
+		return result;
 	}
 	public void getfilesINZIP(String fileName)
 	{
@@ -1421,12 +1446,12 @@ public class BACKUP_GLOBAL {
 //			e1.printStackTrace();
 //		}
 	}
-	public void restoreMSSql(String dbismi, String dbyer) throws ClassNotFoundException, SQLException
+	public void restoreMSSql(String dbismi, String fROM) throws ClassNotFoundException, SQLException
 	{
 		////"RESTORE DATABASE [" + dosADI + "] FROM DISK = '" + nerden + "'";
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 		ResultSet	rss = null;
-		String sql = "RESTORE DATABASE [" + dbismi + "] FROM DISK = N'" + dbyer + "'";
+		String sql = "RESTORE DATABASE [" + dbismi + "] FROM DISK = N'" + fROM + "'";
 		Statement stmt ;
 		stmt = S_CONN.createStatement();  
 		stmt.execute(sql);  

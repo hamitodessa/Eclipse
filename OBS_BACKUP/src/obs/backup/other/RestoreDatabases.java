@@ -220,11 +220,11 @@ public class RestoreDatabases  extends JPanel{
 				if (index >= 0)
 					bckp.restoreMSSql(input.substring(13, index), glb.BACKUP_YERI + "\\" + input.substring(0, index) + ".bak" );
 				glb.dos_sil(glb.BACKUP_YERI + "\\" + input.substring(0, index) + ".bak");
+				glb.dos_sil(glb.BACKUP_YERI + "\\" + dosADI);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
-
 	}
 	private void msBAGLAN(String emirADI) throws ClassNotFoundException, SQLException, InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException, UnsupportedEncodingException, IllegalBlockSizeException, BadPaddingException
 	{

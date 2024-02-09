@@ -1320,7 +1320,6 @@ public class BACKUP_GLOBAL {
 	public boolean unZip(String surucu,  String fileName,String sifRe)
 	{
 		boolean result = false;
-		
 		try {
 			ZipFile zipFile = new ZipFile(surucu +  "\\" + fileName);
 			if (zipFile.isEncrypted()) {
@@ -1331,7 +1330,6 @@ public class BACKUP_GLOBAL {
 		} catch (ZipException e) {
 			result = false;
 		}
-		
 		return result;
 	}
 	public void getfilesINZIP(String fileName)

@@ -1211,9 +1211,7 @@ public class BACKUP_GLOBAL {
 		rss = stmt.executeQuery();
 		ArrayList<String> listeStrings = new ArrayList<String>();
 		while(rss.next())
-		{
 			listeStrings.add(rss.getString("EMIR_ISMI"));
-		}
 		stmt.close();
 		con.close();
 		return listeStrings;
@@ -1236,7 +1234,8 @@ public class BACKUP_GLOBAL {
 			if( file.getName().toString().equals(".") ||  file.getName().toString().equals(".."))
 			{
 			}
-			else {
+			else 
+			{
 				if (! file.isDirectory()) 
 				{
 					Vector data = new Vector();
@@ -1320,7 +1319,8 @@ public class BACKUP_GLOBAL {
 			zipParameters.setEncryptionMethod(EncryptionMethod.AES);
 			zipFile = new ZipFile(dosyolu + dosadi_zip, sifre.toCharArray());
 		}
-		else {
+		else 
+		{
 			zipFile = new ZipFile(dosyolu + dosadi_zip);
 		}
 		try {
@@ -1346,7 +1346,7 @@ public class BACKUP_GLOBAL {
 			}
 			zipFile.extractAll(surucu);
 			result = true;
-		} catch (ZipException e) {
+		} catch (Exception e) {
 			result = false;
 		}
 		return result;
@@ -1415,10 +1415,13 @@ public class BACKUP_GLOBAL {
 		try {
 			zipFile.addFolder(new File(sourceFolderPath.toString()), zipParameters);
 			zipFile.close();
-		} catch (Exception ex) {
-			try {
+		} catch (Exception ex) 
+		{
+			try 
+			{
 				log_kayit("System", new Date(), ex.getMessage());
-			} catch (Exception e) {
+			} catch (Exception e) 
+			{
 				e.printStackTrace();
 			}
 		}

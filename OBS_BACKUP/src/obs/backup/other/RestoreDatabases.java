@@ -117,142 +117,139 @@ public class RestoreDatabases  extends JPanel{
 		panelalt = new DownloadPanel();
 		panelalt.setPreferredSize(new Dimension(0, 0));
 		add(panelalt, BorderLayout.SOUTH);
-		//doldur();
 	}
-	
 	public void doldur()
 	{
+		GRID_TEMIZLE.grid_temizle(tblFile);
+		try 
+		{
 			GRID_TEMIZLE.grid_temizle(tblFile);
-			try 
-			{
-				GRID_TEMIZLE.grid_temizle(tblFile);
-				tblFile.setModel(bckp.restoreFileList(glb.BACKUP_YERI));
-				JTableHeader th = tblFile.getTableHeader();
-				TableColumnModel tcm = th.getColumnModel();
-				TableColumn tc;
-				tc = tcm.getColumn(0);
-				JCheckBox checkBox = new JCheckBox();
-				checkBox.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
-						JTableHeader th = tblFile.getTableHeader();
-						TableColumnModel tcm = th.getColumnModel();
-						TableColumn tc = tcm.getColumn(0);
-						tc.setHeaderRenderer(new CheckBoxHeader(new MyItemListener()));
-						th.repaint();
-						tblFile.repaint();
-					}
-				});
-				checkBox.setHorizontalAlignment(JCheckBox.CENTER);
-				DefaultCellEditor dce = new DefaultCellEditor( checkBox );
-				tc.setCellEditor(dce);
-				tc.setCellRenderer(new CheckBoxRenderer());
-				tc.setHeaderRenderer(new CheckBoxHeader(new MyItemListener()));
-
-				tc.setMinWidth(35);
-				tc.setMaxWidth(35);
-
-				tc = tcm.getColumn(1);
-				if(! OBS_BACKUP.dILS.equals("Turkce"))
-					tc.setHeaderValue("FILE NAME");
-				tc.setHeaderRenderer(new SOLA_DUZ_RENK());
-				
-				tc = tcm.getColumn(2);
-				if(! OBS_BACKUP.dILS.equals("Turkce"))
-					tc.setHeaderValue("SQL");
-				tc.setHeaderRenderer(new SOLA_DUZ_RENK());
-				tc.setMinWidth(100);
-				tc.setMaxWidth(100);
-				
-
-				tc = tcm.getColumn(3);
-				if(! OBS_BACKUP.dILS.equals("Turkce"))
-					tc.setHeaderValue("DATE");
-				tc.setHeaderRenderer(new SOLA_DUZ_RENK());
-				tc.setMinWidth(100);
-				tc.setMaxWidth(100);
-				
-				tc = tcm.getColumn(4);
-				if(! OBS_BACKUP.dILS.equals("Turkce"))
-					tc.setHeaderValue("ZIP SIZE Bytes");
-				tc.setHeaderRenderer(new SAGA_DUZ_RENK());
-				tc.setCellRenderer(new TABLO_RENDERER(0,false));
-				tc.setMinWidth(100);
-				tc.setMaxWidth(100);
-				
-				tc = tcm.getColumn(5);
-				if(! OBS_BACKUP.dILS.equals("Turkce"))
-					tc.setHeaderValue("SIZE Bytes");
-				tc.setHeaderRenderer(new SAGA_DUZ_RENK());
-				tc.setCellRenderer(new TABLO_RENDERER(0,false));
-				tc.setMinWidth(100);
-				tc.setMaxWidth(100);
-
-				Dimension dd = tblFile.getPreferredSize();
-				dd.height = 30;
-				th.setPreferredSize(dd); 
-
-				if(tblFile.getRowCount()>0)
-					tblFile.setRowSelectionInterval(0, 0);
-				tblFile.setRowHeight(21);
-				tblFile.getModel().addTableModelListener(	(TableModelListener) new TableModelListener() 
-				{
-					public void tableChanged(TableModelEvent e) 
-					{
-						TableModel model = (TableModel)e.getSource();
-						if (model.getRowCount() > 0) {
-							if(!hEPSI)
-								secilen_satir();
-						}
-					}
-				});
-			} catch (Exception ex) {
-				try {
-					bckp.log_kayit("System", new Date(), ex.getMessage());
-					OBS_BACKUP.mesajGoster(10000,Notifications.Type.WARNING, ex.getMessage()); 
-				} catch (Exception e) {
-					e.printStackTrace();
+			tblFile.setModel(bckp.restoreFileList(glb.BACKUP_YERI));
+			JTableHeader th = tblFile.getTableHeader();
+			TableColumnModel tcm = th.getColumnModel();
+			TableColumn tc;
+			tc = tcm.getColumn(0);
+			JCheckBox checkBox = new JCheckBox();
+			checkBox.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					JTableHeader th = tblFile.getTableHeader();
+					TableColumnModel tcm = th.getColumnModel();
+					TableColumn tc = tcm.getColumn(0);
+					tc.setHeaderRenderer(new CheckBoxHeader(new MyItemListener()));
+					th.repaint();
+					tblFile.repaint();
 				}
+			});
+			checkBox.setHorizontalAlignment(JCheckBox.CENTER);
+			DefaultCellEditor dce = new DefaultCellEditor( checkBox );
+			tc.setCellEditor(dce);
+			tc.setCellRenderer(new CheckBoxRenderer());
+			tc.setHeaderRenderer(new CheckBoxHeader(new MyItemListener()));
+
+			tc.setMinWidth(35);
+			tc.setMaxWidth(35);
+
+			tc = tcm.getColumn(1);
+			if(! OBS_BACKUP.dILS.equals("Turkce"))
+				tc.setHeaderValue("FILE NAME");
+			tc.setHeaderRenderer(new SOLA_DUZ_RENK());
+
+			tc = tcm.getColumn(2);
+			if(! OBS_BACKUP.dILS.equals("Turkce"))
+				tc.setHeaderValue("SQL");
+			tc.setHeaderRenderer(new SOLA_DUZ_RENK());
+			tc.setMinWidth(100);
+			tc.setMaxWidth(100);
+
+			tc = tcm.getColumn(3);
+			if(! OBS_BACKUP.dILS.equals("Turkce"))
+				tc.setHeaderValue("DATE");
+			tc.setHeaderRenderer(new SOLA_DUZ_RENK());
+			tc.setMinWidth(100);
+			tc.setMaxWidth(100);
+
+			tc = tcm.getColumn(4);
+			if(! OBS_BACKUP.dILS.equals("Turkce"))
+				tc.setHeaderValue("ZIP SIZE Bytes");
+			tc.setHeaderRenderer(new SAGA_DUZ_RENK());
+			tc.setCellRenderer(new TABLO_RENDERER(0,false));
+			tc.setMinWidth(100);
+			tc.setMaxWidth(100);
+
+			tc = tcm.getColumn(5);
+			if(! OBS_BACKUP.dILS.equals("Turkce"))
+				tc.setHeaderValue("SIZE Bytes");
+			tc.setHeaderRenderer(new SAGA_DUZ_RENK());
+			tc.setCellRenderer(new TABLO_RENDERER(0,false));
+			tc.setMinWidth(100);
+			tc.setMaxWidth(100);
+
+			Dimension dd = tblFile.getPreferredSize();
+			dd.height = 30;
+			th.setPreferredSize(dd); 
+
+			if(tblFile.getRowCount()>0)
+				tblFile.setRowSelectionInterval(0, 0);
+			tblFile.setRowHeight(21);
+			tblFile.getModel().addTableModelListener(	(TableModelListener) new TableModelListener() 
+			{
+				public void tableChanged(TableModelEvent e) 
+				{
+					TableModel model = (TableModel)e.getSource();
+					if (model.getRowCount() > 0) {
+						if(!hEPSI)
+							secilen_satir();
+					}
+				}
+			});
+		} catch (Exception ex) {
+			try {
+				bckp.log_kayit("System", new Date(), ex.getMessage());
+				OBS_BACKUP.mesajGoster(10000,Notifications.Type.WARNING, ex.getMessage()); 
+			} catch (Exception e) {
+				e.printStackTrace();
 			}
+		}
 	}
 	private void resTORE(String dosADI,String sqlCins)
 	{
 		boolean result = bckp.unZip(glb.BACKUP_YERI,dosADI , OBS_BACKUP.zipSIFRE );
-		if(result)
+		if(result == false) return;
+		try 
+		{
+			String eADIString = bckp.emirAdiFromDbismi(dosADI.substring(13, dosADI.lastIndexOf(".")));
+			if(eADIString.equals("")) return;
+			sqlBAGLAN(eADIString);
+			String input = dosADI;
+			int index = dosADI.lastIndexOf(".");
+			if (index >= 0)
+			{
+				if(sqlCins.equals("Ms Sql"))
+				{
+					bckp.restoreMSSql(input.substring(13, index), glb.BACKUP_YERI + "\\" + input.substring(0, index) + ".bak" );
+					glb.dos_sil(glb.BACKUP_YERI + "\\" + input.substring(0, index) + ".bak");
+				}
+				else if(sqlCins.equals("My Sql")) {
+					String  decodedString = serverBilgi.get(0).getSIFRE();
+					String[]  byteValues = decodedString.substring(1, decodedString.length() - 1).split(",");
+					byte[] bytes = new byte[byteValues.length];
+					for (int i=0, len=bytes.length; i<len; i++) {
+						bytes[i] = Byte.parseByte(byteValues[i].trim());     
+					}
+					String sqlsifre = ENCRYPT_DECRYPT_STRING.dCRYPT_manual(bytes) ;
+					bckp.mySqlRestore(serverBilgi.get(0).getMY_DUMP() , serverBilgi.get(0).getKULLANICI() ,sqlsifre ,   glb.BACKUP_YERI + "\\" + input.substring(0, index) + ".sql" );
+					glb.dos_sil(glb.BACKUP_YERI + "\\" + input.substring(0, index) + ".sql");
+				}
+			}
+			glb.dos_sil(glb.BACKUP_YERI + "\\" + dosADI);
+		} catch (Exception ex) 
 		{
 			try 
 			{
-				String eADIString = bckp.emirAdiFromDbismi(dosADI.substring(13, dosADI.lastIndexOf(".")));
-				if(eADIString.equals("")) return;
-				sqlBAGLAN(eADIString);
-				String input = dosADI;
-				int index = dosADI.lastIndexOf(".");
-				if (index >= 0)
-				{
-					if(sqlCins.equals("Ms Sql"))
-					{
-						bckp.restoreMSSql(input.substring(13, index), glb.BACKUP_YERI + "\\" + input.substring(0, index) + ".bak" );
-						glb.dos_sil(glb.BACKUP_YERI + "\\" + input.substring(0, index) + ".bak");
-					}
-					else if(sqlCins.equals("My Sql")) {
-						String  decodedString = serverBilgi.get(0).getSIFRE();
-						String[]  byteValues = decodedString.substring(1, decodedString.length() - 1).split(",");
-						byte[] bytes = new byte[byteValues.length];
-						for (int i=0, len=bytes.length; i<len; i++) {
-							bytes[i] = Byte.parseByte(byteValues[i].trim());     
-						}
-						String sqlsifre = ENCRYPT_DECRYPT_STRING.dCRYPT_manual(bytes) ;
-						bckp.mySqlRestore(serverBilgi.get(0).getMY_DUMP() , serverBilgi.get(0).getKULLANICI() ,sqlsifre ,   glb.BACKUP_YERI + "\\" + input.substring(0, index) + ".sql" );
-						glb.dos_sil(glb.BACKUP_YERI + "\\" + input.substring(0, index) + ".sql");
-					}
-				}
-				glb.dos_sil(glb.BACKUP_YERI + "\\" + dosADI);
-			} catch (Exception ex) {
-				try {
-					bckp.log_kayit("System", new Date(), ex.getMessage());
-					OBS_BACKUP.mesajGoster(10000,Notifications.Type.WARNING, ex.getMessage()); 
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
+				bckp.log_kayit("System", new Date(), ex.getMessage());
+				OBS_BACKUP.mesajGoster(10000,Notifications.Type.WARNING, ex.getMessage()); 
+			} catch (Exception e) {
+				e.printStackTrace();
 			}
 		}
 	}
@@ -309,9 +306,7 @@ public class RestoreDatabases  extends JPanel{
 					boolean checked = e.getStateChange() == ItemEvent.SELECTED;
 					hEPSI  = true ;
 					for(int x = 0, y = tblFile.getRowCount(); x < y; x++)
-					{
 						tblFile.setValueAt(new Boolean(checked),x,0);
-					}
 					hEPSI = false;
 					secilen_satir();
 					setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	

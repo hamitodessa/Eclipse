@@ -337,13 +337,18 @@ public class OBS_BACKUP extends JFrame {
 		contentPane.add(tBAR, BorderLayout.NORTH);
 
 		JSplitPane splitPane = new JSplitPane();
-		splitPane.setDividerLocation(40);
+		splitPane.setDividerLocation(45);
 		splitPane.setDividerSize(0);
 		//splitPane.setOrientation(JSplitPane.VERTICAL_SPLIT);
 		contentPane.add(splitPane, BorderLayout.CENTER);
 
+		
+		ScrollPaneWin11 jScrollPaneToolBar = new ScrollPaneWin11();
+		splitPane.setLeftComponent(jScrollPaneToolBar);
+		
 		JPanel panel = new JPanel();
-		splitPane.setLeftComponent(panel);
+		jScrollPaneToolBar.setViewportView(panel);
+		
 
 		//***************
 		toolBar = new JToolBar();

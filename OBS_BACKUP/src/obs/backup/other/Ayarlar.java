@@ -423,7 +423,6 @@ public class Ayarlar extends JPanel {
 				OBS_BACKUP.mesajGoster(7500,Notifications.Type.INFO, line); 
 			}
 		}
-		
 		is = p.getErrorStream();
 		isr = new InputStreamReader(is);
 		br = new BufferedReader(isr);
@@ -439,7 +438,6 @@ public class Ayarlar extends JPanel {
 					OBS_BACKUP.mesajGoster(10000,Notifications.Type.ERROR, line); 
 			}
 		}
-
 	}
 	private void taskDeleteLogin() throws IOException, ClassNotFoundException, SQLException
 	{

@@ -792,6 +792,25 @@ public class BACKUP_GLOBAL {
 		con.close();
 		return dbadi ;
 	}
+	public String emirAdiFromDbismi(String dbADI)throws ClassNotFoundException, SQLException
+	{
+		Class.forName("org.sqlite.JDBC");
+		if (con != null && ! con.isClosed()) con.close();
+		PreparedStatement stmt = null;
+		ResultSet	rss = null;
+		con = glb.myBackupConnection();
+		String sql = "SELECT EMIR_ISMI FROM DB_ISIM WHERE DB_ADI = '" + dbADI + "'";
+		stmt = con.prepareStatement(sql);
+		rss = stmt.executeQuery();
+		String result = "";
+		while (rss.next())
+		{              
+			result = rss.getString("EMIR_ISMI").toString();
+		}
+		stmt.close();
+		con.close();
+		return result ;
+	}
 	public List<db_List> diger_dosya_liste(String eismi)throws ClassNotFoundException, SQLException
 	{
 		Class.forName("org.sqlite.JDBC");
@@ -1252,7 +1271,7 @@ public class BACKUP_GLOBAL {
 			{
 				if(contents[i].substring(contents[i].length() - 3).equals("zip"))
 				{
-					zipFile = new ZipFile(surucu +   "\\" + contents[i].toString());
+					zipFile = new ZipFile(surucu + "\\" + contents[i].toString());
 					fileHeaderList = zipFile.getFileHeaders();
 					fileHeader = (FileHeader)fileHeaderList.get(0);
 					Vector data = new Vector();
@@ -1260,9 +1279,9 @@ public class BACKUP_GLOBAL {
 					data.add(contents[i].toString());
 					String aDIString= fileHeader.getFileName().substring(fileHeader.getFileName().length() - 3);
 					if(aDIString.equals("bak"))
-						data.add("MS SQL");
+						data.add("Ms Sql");
 					else if(aDIString.equals("sql"))
-						data.add("MY SQL");
+						data.add("My Sql");
 					else
 						data.add("");
 					data.add(TARIH_CEVIR.milis_ddMMyyyy(fileHeader.getLastModifiedTimeEpoch()));

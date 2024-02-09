@@ -695,7 +695,7 @@ public class OBS_BACKUP extends JFrame {
 				if (backupTime ) return;
 				contentPane.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 				tabbedPane.setSelectedIndex(9);
-				
+				restoreDatabasesPanel.doldur();
 				contentPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 			}
 		});

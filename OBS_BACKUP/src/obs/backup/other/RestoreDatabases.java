@@ -13,6 +13,7 @@ import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.crypto.BadPaddingException;
@@ -46,6 +47,7 @@ import OBS_C_2025.ScrollPaneWin11;
 import OBS_C_2025.TABLO_RENDERER;
 import OBS_C_2025.server_bilgiler;
 import obs.backup.main.OBS_BACKUP;
+import raven.toast.Notifications;
 
 @SuppressWarnings({"static-access","serial"})
 public class RestoreDatabases  extends JPanel{
@@ -60,7 +62,7 @@ public class RestoreDatabases  extends JPanel{
 	JPanel panel;
 	ScrollPaneWin11 scrollPane;
 	private JButton btnRestore ;
-	
+	List<server_bilgiler> serverBilgi;
 
 	public RestoreDatabases()
 	{
@@ -81,7 +83,7 @@ public class RestoreDatabases  extends JPanel{
 					if ( modell.getValueAt(i,0) != null) 
 					{
 						if (modell.getValueAt(i,0).toString().equals("true"))
-							resTORE(modell.getValueAt(i,1).toString());
+							resTORE(modell.getValueAt(i,1).toString(),modell.getValueAt(i,2).toString());
 					};
 				}
 				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
@@ -115,15 +117,14 @@ public class RestoreDatabases  extends JPanel{
 		panelalt = new DownloadPanel();
 		panelalt.setPreferredSize(new Dimension(0, 0));
 		add(panelalt, BorderLayout.SOUTH);
-		doldur();
+		//doldur();
 	}
 	
-	private void doldur()
+	public void doldur()
 	{
 			GRID_TEMIZLE.grid_temizle(tblFile);
 			try 
 			{
-			
 				GRID_TEMIZLE.grid_temizle(tblFile);
 				tblFile.setModel(bckp.restoreFileList(glb.BACKUP_YERI));
 				JTableHeader th = tblFile.getTableHeader();
@@ -190,7 +191,8 @@ public class RestoreDatabases  extends JPanel{
 				dd.height = 30;
 				th.setPreferredSize(dd); 
 
-				tblFile.setRowSelectionInterval(0, 0);
+				if(tblFile.getRowCount()>0)
+					tblFile.setRowSelectionInterval(0, 0);
 				tblFile.setRowHeight(21);
 				tblFile.getModel().addTableModelListener(	(TableModelListener) new TableModelListener() 
 				{
@@ -204,31 +206,59 @@ public class RestoreDatabases  extends JPanel{
 					}
 				});
 			} catch (Exception ex) {
-				System.out.println(ex.getMessage());
+				try {
+					bckp.log_kayit("System", new Date(), ex.getMessage());
+					OBS_BACKUP.mesajGoster(10000,Notifications.Type.WARNING, ex.getMessage()); 
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 			}
 	}
-	private void resTORE(String dosADI)
+	private void resTORE(String dosADI,String sqlCins)
 	{
 		boolean result = bckp.unZip(glb.BACKUP_YERI,dosADI , OBS_BACKUP.zipSIFRE );
 		if(result)
 		{
 			try 
 			{
-				msBAGLAN("Suadiye SQL");
+				String eADIString = bckp.emirAdiFromDbismi(dosADI.substring(13, dosADI.lastIndexOf(".")));
+				if(eADIString.equals("")) return;
+				sqlBAGLAN(eADIString);
 				String input = dosADI;
 				int index = dosADI.lastIndexOf(".");
 				if (index >= 0)
-					bckp.restoreMSSql(input.substring(13, index), glb.BACKUP_YERI + "\\" + input.substring(0, index) + ".bak" );
-				glb.dos_sil(glb.BACKUP_YERI + "\\" + input.substring(0, index) + ".bak");
+				{
+					if(sqlCins.equals("Ms Sql"))
+					{
+						bckp.restoreMSSql(input.substring(13, index), glb.BACKUP_YERI + "\\" + input.substring(0, index) + ".bak" );
+						glb.dos_sil(glb.BACKUP_YERI + "\\" + input.substring(0, index) + ".bak");
+					}
+					else if(sqlCins.equals("My Sql")) {
+						String  decodedString = serverBilgi.get(0).getSIFRE();
+						String[]  byteValues = decodedString.substring(1, decodedString.length() - 1).split(",");
+						byte[] bytes = new byte[byteValues.length];
+						for (int i=0, len=bytes.length; i<len; i++) {
+							bytes[i] = Byte.parseByte(byteValues[i].trim());     
+						}
+						String sqlsifre = ENCRYPT_DECRYPT_STRING.dCRYPT_manual(bytes) ;
+						bckp.mySqlRestore(serverBilgi.get(0).getMY_DUMP() , serverBilgi.get(0).getKULLANICI() ,sqlsifre ,   glb.BACKUP_YERI + "\\" + input.substring(0, index) + ".sql" );
+						glb.dos_sil(glb.BACKUP_YERI + "\\" + input.substring(0, index) + ".sql");
+					}
+				}
 				glb.dos_sil(glb.BACKUP_YERI + "\\" + dosADI);
-			} catch (Exception e) {
-				e.printStackTrace();
+			} catch (Exception ex) {
+				try {
+					bckp.log_kayit("System", new Date(), ex.getMessage());
+					OBS_BACKUP.mesajGoster(10000,Notifications.Type.WARNING, ex.getMessage()); 
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 			}
 		}
 	}
-	private void msBAGLAN(String emirADI) throws ClassNotFoundException, SQLException, InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException, UnsupportedEncodingException, IllegalBlockSizeException, BadPaddingException
+	private void sqlBAGLAN(String emirADI) throws ClassNotFoundException, SQLException, InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException, UnsupportedEncodingException, IllegalBlockSizeException, BadPaddingException
 	{
-		List<server_bilgiler> serverBilgi = new ArrayList<server_bilgiler>();
+		serverBilgi = new ArrayList<server_bilgiler>();
 		serverBilgi = bckp.server_bilgi(emirADI);
 		String  decodedString = serverBilgi.get(0).getSIFRE();
 		String[]  byteValues = decodedString.substring(1, decodedString.length() - 1).split(",");

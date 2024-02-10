@@ -70,6 +70,7 @@ public class RestoreDatabases  extends JPanel{
 	ScrollPaneWin11 scrollPane;
 	private JButton btnRestore ;
 	List<server_bilgiler> serverBilgi;
+	String[] options = {dilSecenek.dil(OBS_BACKUP.dILS,"Tamam"), dilSecenek.dil(OBS_BACKUP.dILS,"Vazgec")}; 
 
 	public RestoreDatabases()
 	{
@@ -218,7 +219,6 @@ public class RestoreDatabases  extends JPanel{
 			}
 		}
 	}
-
 	private void resTORE(String dosADI,String sqlCins)
 	{
 		boolean result = bckp.unZip(glb.BACKUP_YERI,dosADI , OBS_BACKUP.zipSIFRE );
@@ -234,12 +234,12 @@ public class RestoreDatabases  extends JPanel{
 			{
 				if(sqlCins.equals("Ms Sql"))
 				{
+					if(bckp.S_CONN == null) return;
 					if( bckp.dosyaKontrolMS(input.substring(13, index)))
 					{
-						String[] options = {"Tamam......       		!	", "Vazgec......       		!	"}; 
-						JOptionPane optionPane = new JOptionPane("Islem Dosyada mevcut Fis eskisi ile degisecek ..", JOptionPane.QUESTION_MESSAGE,
+						JOptionPane optionPane = new JOptionPane(input.substring(13, index) + " - " + "Veritabani Server de Mevcut ,silinip bu dosya ile degistirilecek ?", JOptionPane.QUESTION_MESSAGE,
 								JOptionPane.YES_NO_OPTION, null,options,  options[1]);
-						JDialog	dialog = optionPane.createDialog("Veritabani Sil");
+						JDialog	dialog = optionPane.createDialog("Restore");
 						Set focusTraversalKeys = new HashSet(dialog.getFocusTraversalKeys(0));
 						focusTraversalKeys.add(AWTKeyStroke.getAWTKeyStroke(KeyEvent.VK_RIGHT, KeyEvent.VK_UNDEFINED));
 						focusTraversalKeys.add(AWTKeyStroke.getAWTKeyStroke(KeyEvent.VK_LEFT, KeyEvent.VK_UNDEFINED));
@@ -247,12 +247,9 @@ public class RestoreDatabases  extends JPanel{
 						dialog.setVisible(true);
 						dialog.dispose();
 						if(optionPane.getValue() == null)
-						{
 							return;
-						}
-						else {
-							if(optionPane.getValue().toString().equals("Vazgec......       		!	")) return;
-						}
+						else
+							if(optionPane.getValue().toString().equals(options[1])) return;
 						bckp.dosyaSilMS(input.substring(13, index));
 					}
 					bckp.restoreMSSql(input.substring(13, index), glb.BACKUP_YERI + "\\" + input.substring(0, index) + ".bak" );
@@ -260,12 +257,12 @@ public class RestoreDatabases  extends JPanel{
 				}
 				else if(sqlCins.equals("My Sql")) 
 				{
+					if(bckp.MY_CONN == null) return;
 					if( bckp.dosyaKontrolMY(input.substring(13, index)))
 					{
-						String[] options = {"Tamam......       		!	", "Vazgec......       		!	"}; 
-						JOptionPane optionPane = new JOptionPane("Veritabani Server de Mevcut Silinecek ?", JOptionPane.QUESTION_MESSAGE,
+						JOptionPane optionPane = new JOptionPane(input.substring(13, index) + " - " + "Veritabani Server de Mevcut ,silinip bu dosya ile degistirilecek ?", JOptionPane.QUESTION_MESSAGE,
 								JOptionPane.YES_NO_OPTION, null,options,  options[1]);
-						JDialog	dialog = optionPane.createDialog("Veritabani Sil");
+						JDialog	dialog = optionPane.createDialog("Restore");
 						Set focusTraversalKeys = new HashSet(dialog.getFocusTraversalKeys(0));
 						focusTraversalKeys.add(AWTKeyStroke.getAWTKeyStroke(KeyEvent.VK_RIGHT, KeyEvent.VK_UNDEFINED));
 						focusTraversalKeys.add(AWTKeyStroke.getAWTKeyStroke(KeyEvent.VK_LEFT, KeyEvent.VK_UNDEFINED));
@@ -273,30 +270,24 @@ public class RestoreDatabases  extends JPanel{
 						dialog.setVisible(true);
 						dialog.dispose();
 						if(optionPane.getValue() == null)
-						{
 							return;
-						}
-						else {
-							if(optionPane.getValue().toString().equals("Vazgec......       		!	")) return;
-						}
+						else
+							if(optionPane.getValue().toString().equals(options[1])) return;
 						bckp.dosyaSilMY(input.substring(13, index));
-
 					}
 					String  decodedString = serverBilgi.get(0).getSIFRE();
 					String[]  byteValues = decodedString.substring(1, decodedString.length() - 1).split(",");
 					byte[] bytes = new byte[byteValues.length];
-					for (int i=0, len=bytes.length; i<len; i++) {
+					for (int i=0, len=bytes.length; i<len; i++)
 						bytes[i] = Byte.parseByte(byteValues[i].trim());     
-					}
 					String sqlsifre = ENCRYPT_DECRYPT_STRING.dCRYPT_manual(bytes) ;
-					bckp.mySqlRestore(serverBilgi.get(0).getMY_DUMP() , serverBilgi.get(0).getKULLANICI() ,sqlsifre ,   glb.BACKUP_YERI + "\\" + input.substring(0, index) + ".sql" );
+					bckp.mySqlRestore(serverBilgi.get(0).getMY_DUMP(),serverBilgi.get(0).getKULLANICI(),sqlsifre,glb.BACKUP_YERI + "\\" + input.substring(0, index) + ".sql" );
 					glb.dos_sil(glb.BACKUP_YERI + "\\" + input.substring(0, index) + ".sql");
 				}
 				glb.dos_sil(glb.BACKUP_YERI + "\\" + dosADI);
 				bckp.log_kayit("System", new Date(), input.substring(0, index) + " " + dilSecenek.dil(OBS_BACKUP.dILS, "Veritabani Restore Edildi"));
 				OBS_BACKUP.mesajGoster(10000,Notifications.Type.INFO, input.substring(0, index) + " " + dilSecenek.dil(OBS_BACKUP.dILS, "Veritabani Restore Edildi")); 
 			}
-			
 		} catch (Exception ex) 
 		{
 			try 
@@ -347,7 +338,6 @@ public class RestoreDatabases  extends JPanel{
 		OBS_BACKUP.lblEmir.setText("Secilen Satir"); 
 		OBS_BACKUP.lblemirSAYI.setText(FORMATLAMA.doub_0(satir_kontrol()));
 	}
-	
 	class MyItemListener implements ItemListener
 	{
 		@Override

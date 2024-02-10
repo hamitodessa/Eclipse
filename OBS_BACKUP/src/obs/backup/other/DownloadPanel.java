@@ -25,7 +25,7 @@ public class DownloadPanel extends JPanel {
 	public JLabel lblSurucu;
 	public JLabel lblInen;
 	public JLabel lblKalan;
-	public static JLabel lblHiz ;
+	public JLabel lblHiz ;
 	
 	public static JProgressBar RPB1;
 	public static JProgressBar RPB2;

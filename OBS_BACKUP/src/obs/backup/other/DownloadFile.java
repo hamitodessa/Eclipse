@@ -258,7 +258,7 @@ public class DownloadFile extends JPanel {
 										outputStream2.write(bytesArray, 0, bytesRead);
 										inen += bytesRead ;
 										panelalt.lblInen.setText(FORMATLAMA.doub_0(inen )+ " Bytes");
-										panelalt.lblKalan.setText(FORMATLAMA.doub_0((toplam  - inen)  )+ " Bytes");
+										panelalt.lblKalan.setText(FORMATLAMA.doub_0((toplam  - inen)  ) + " Bytes");
 										panelalt.Progres_Bar_2((int) inen);
 										double speedInKBps = 0.00;
 										timeInSecs = (System.currentTimeMillis() - start) ; 

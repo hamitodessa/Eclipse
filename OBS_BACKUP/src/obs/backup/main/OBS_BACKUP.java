@@ -796,8 +796,6 @@ public class OBS_BACKUP extends JFrame {
 			Component horizontalGlue = Box.createHorizontalGlue();
 			toolBar.add(horizontalGlue);
 		}
-
-		
 		JButton btnkapat= new JButton("");
 		btnkapat.setToolTipText("Kapat");
 		btnkapat.addActionListener(new ActionListener() {
@@ -807,9 +805,9 @@ public class OBS_BACKUP extends JFrame {
 		});
 		btnkapat.setIcon(new ImageIcon(OBS_BACKUP.class.getResource("/obs/backup/icons/exit.png")));
 		toolBar.add(btnkapat);
-		//JLabel sprt = new JLabel("   ");
-		//sprt.setSize(new Dimension(20,20));
-		//toolBar.add(sprt );
+		JLabel sprt = new JLabel("   ");
+		sprt.setSize(new Dimension(20,20));
+		toolBar.add(sprt );
 
 	
 		//*********************************************************************************

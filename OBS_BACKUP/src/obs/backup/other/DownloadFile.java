@@ -194,7 +194,7 @@ public class DownloadFile extends JPanel {
 				panelalt.setPreferredSize(new Dimension(0, 100));
 				panelalt.revalidate();
 				DefaultTableModel modell = (DefaultTableModel)tblFile.getModel();
-				panelalt.Progres_Bar_Temizle_1();
+				Progres_Bar_Temizle_1();
 				panelalt.RPB1.setMaximum(satir_kontrol());
 				panelalt.RPB1.setStringPainted(true);
 				List<ftp_bilgiler> ftpBilgi = new ArrayList<ftp_bilgiler>();
@@ -206,11 +206,10 @@ public class DownloadFile extends JPanel {
 						if (  modell.getValueAt(ii,0).toString().equals("true")   )
 						{
 							satir +=1;
-							panelalt.Progres_Bar_1(satir);
+							Progres_Bar_1(satir);
 							String ftp, kull, sifre, surucu,  neresi, surucu_yer;
 							ftp = ftpBilgi.get(0).getHOST();
 							kull = ftpBilgi.get(0).getKULLANICI();
-
 							String decodedString = ftpBilgi.get(0).getSIFRE();
 							String[] byteValues = decodedString.substring(1, decodedString.length() - 1).split(",");
 							byte[] bytes = new byte[byteValues.length];
@@ -246,9 +245,9 @@ public class DownloadFile extends JPanel {
 									OutputStream outputStream2 = new BufferedOutputStream(new FileOutputStream(downloadFile2));
 									InputStream inputStream = ftpc.retrieveFileStream(remoteFile2);
 									double inen= 0;
-									byte[] bytesArray = new byte[2048];
+									byte[] bytesArray = new byte[4096];
 									int bytesRead = -1;
-									//panelalt.Progres_Bar_Temizle_2();
+									Progres_Bar_Temizle_2();
 									panelalt.RPB2.setStringPainted(true);
 									panelalt.RPB2.setMaximum((int)toplam);
 									Long start = System.currentTimeMillis();
@@ -259,7 +258,7 @@ public class DownloadFile extends JPanel {
 										inen += bytesRead ;
 										panelalt.lblInen.setText(FORMATLAMA.doub_0(inen )+ " Bytes");
 										panelalt.lblKalan.setText(FORMATLAMA.doub_0((toplam  - inen)  ) + " Bytes");
-										panelalt.Progres_Bar_2((int) inen);
+										Progres_Bar_2((int) inen);
 										double speedInKBps = 0.00;
 										timeInSecs = (System.currentTimeMillis() - start) ; 
 										speedInKBps = ( (inen * 1000) / (timeInSecs + 1))  ;
@@ -270,7 +269,7 @@ public class DownloadFile extends JPanel {
 									inputStream.close();
 									bckp.log_kayit("System", new Date(), files[i].getName() + dilSecenek.dil(OBS_BACKUP.dILS,  " Dosyasi Indirildi"));
 								}
-								panelalt.Progres_Bar_Temizle_2();
+								Progres_Bar_Temizle_2();
 							}	
 							ftpc.logout();
 							ftpc.disconnect();
@@ -282,7 +281,7 @@ public class DownloadFile extends JPanel {
 						}
 					}
 				}
-				panelalt.Progres_Bar_Temizle_1();
+				Progres_Bar_Temizle_1();
 				panelalt.setPreferredSize(new Dimension(0, 0));
 				panelalt.revalidate();
 				GuiUtil.setWaitCursor(tblFile,false);
@@ -315,9 +314,8 @@ public class DownloadFile extends JPanel {
 		if(comboBox.getSelectedItem().toString().equals("")) {
 			return;
 		}
-		Runnable runner = new Runnable()
-		{ 
-		public void run() {
+		//Runnable runner = new Runnable(){ 
+		//public void run() {
 		try 
 		{
 			GuiUtil.setWaitCursor(tblFile,true);
@@ -413,10 +411,11 @@ public class DownloadFile extends JPanel {
 			GuiUtil.setWaitCursor(scrollPane,false);
 			GuiUtil.setWaitCursor(OBS_BACKUP.toolBar,false);
 		}
-			}
-		};
-		Thread t = new Thread(runner, "Code Executer");
-		t.start();
+		
+//		}
+//		};
+//		Thread t = new Thread(runner, "Code Executer");
+//		t.start();
 
 	}
 
@@ -454,6 +453,26 @@ public class DownloadFile extends JPanel {
 	{
 		OBS_BACKUP.lblEmir.setText("Secilen Satir"); 
 		OBS_BACKUP.lblemirSAYI.setText(FORMATLAMA.doub_0(satir_kontrol()));
+	}
+	private void Progres_Bar_1( int deger) throws InterruptedException
+	{
+		panelalt.RPB1.setValue(deger);
+	}
+	private void Progres_Bar_2( int deger) throws InterruptedException
+	{
+		panelalt.RPB2.setValue(deger);
+	}
+	private void Progres_Bar_Temizle_1()
+	{
+		panelalt.RPB1.setMaximum(0);
+		panelalt.RPB1.setValue(0);
+		panelalt.RPB1.setStringPainted(false);
+	}
+	private void Progres_Bar_Temizle_2()
+	{
+		panelalt.RPB2.setMaximum(0);
+		panelalt.RPB2.setValue(0);
+		panelalt.RPB2.setStringPainted(false);
 	}
 	class MyItemListener implements ItemListener
 	{

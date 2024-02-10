@@ -27,8 +27,8 @@ public class DownloadPanel extends JPanel {
 	public JLabel lblKalan;
 	public JLabel lblHiz ;
 	
-	public static JProgressBar RPB1;
-	public static JProgressBar RPB2;
+	public JProgressBar RPB1;
+	public JProgressBar RPB2;
 	/**
 	 * Create the panel.
 	 */
@@ -115,7 +115,6 @@ public class DownloadPanel extends JPanel {
 		lblKalan.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblKalan.setBounds(454, 31, 168, 14);
 		panel_1.add(lblKalan);
-
 	}
 	public void temizLE()
 	{
@@ -127,29 +126,9 @@ public class DownloadPanel extends JPanel {
 		lblKalan.setText("");
 		RPB1.setStringPainted(false);
 		RPB2.setStringPainted(false);
-		RPB1.setMaximum(0);
 		RPB1.setValue(0);
-		RPB2.setMaximum(0);
-		RPB2.setValue(0);
-	}
-	public static void Progres_Bar_1( int deger) throws InterruptedException
-	{
-		RPB1.setValue(deger);
-	}
- 	public static void Progres_Bar_2( int deger) throws InterruptedException
-	{
-		RPB2.setValue(deger);
-	}
-	public static void Progres_Bar_Temizle_1()
-	{
 		RPB1.setMaximum(0);
-		RPB1.setValue(0);
-		RPB1.setStringPainted(false);
-	}
-	public static void Progres_Bar_Temizle_2()
-	{
-		RPB2.setMaximum(0);
 		RPB2.setValue(0);
-		RPB2.setStringPainted(false);
+		RPB2.setMaximum(0);
 	}
 }

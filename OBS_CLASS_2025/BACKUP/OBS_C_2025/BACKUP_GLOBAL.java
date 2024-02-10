@@ -1379,11 +1379,14 @@ public class BACKUP_GLOBAL {
 		boolean result = false;
 		try {
 			ZipFile zipFile = new ZipFile(surucu +  "\\" + fileName);
-			if (zipFile.isEncrypted()) {
-				zipFile.setPassword(sifRe.toCharArray());
+			if(zipFile.isValidZipFile())
+			{
+				if (zipFile.isEncrypted()) {
+					zipFile.setPassword(sifRe.toCharArray());
+				}
+				zipFile.extractAll(surucu);
+				result = true;
 			}
-			zipFile.extractAll(surucu);
-			result = true;
 		} catch (Exception e) {
 			result = false;
 		}
@@ -1447,9 +1450,8 @@ public class BACKUP_GLOBAL {
 			zipParameters.setEncryptionMethod(EncryptionMethod.AES);
 			zipFile = new ZipFile(zipPath.toString(), sifre.toCharArray());
 		}
-		else {
+		else
 			zipFile = new ZipFile(zipPath.toString());
-		}
 		try {
 			zipFile.addFolder(new File(sourceFolderPath.toString()), zipParameters);
 			zipFile.close();
@@ -1506,7 +1508,6 @@ public class BACKUP_GLOBAL {
 	}
 	public void restoreMSSql(String dbismi, String fROM) throws ClassNotFoundException, SQLException
 	{
-		////"RESTORE DATABASE [" + dosADI + "] FROM DISK = '" + nerden + "'";
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 		ResultSet	rss = null;
 		String sql = "RESTORE DATABASE [" + dbismi + "] FROM DISK = N'" + fROM + "'";

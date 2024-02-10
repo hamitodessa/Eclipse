@@ -1306,24 +1306,27 @@ public class BACKUP_GLOBAL {
 				if(contents[i].substring(contents[i].length() - 3).equals("zip"))
 				{
 					zipFile = new ZipFile(surucu + "\\" + contents[i].toString());
-					fileHeaderList = zipFile.getFileHeaders();
-					fileHeader = (FileHeader)fileHeaderList.get(0);
-					Vector data = new Vector();
-					data.add( Boolean.FALSE );
-					data.add(contents[i].toString());
-					String aDIString= fileHeader.getFileName().substring(fileHeader.getFileName().length() - 3);
-					if(aDIString.equals("bak"))
-						data.add("Ms Sql");
-					else if(aDIString.equals("sql"))
-						data.add("My Sql");
-					else
-						data.add("");
-					data.add(TARIH_CEVIR.milis_ddMMyyyy(fileHeader.getLastModifiedTimeEpoch()));
-					data.add((int) fileHeader.getCompressedSize());
-					data.add((int) fileHeader.getUncompressedSize());
+					if(zipFile.isValidZipFile())
+					{
+						fileHeaderList = zipFile.getFileHeaders();
+						fileHeader = (FileHeader)fileHeaderList.get(0);
+						Vector data = new Vector();
+						data.add( Boolean.FALSE );
+						data.add(contents[i].toString());
+						String aDIString= fileHeader.getFileName().substring(fileHeader.getFileName().length() - 3);
+						if(aDIString.equals("bak"))
+							data.add("Ms Sql");
+						else if(aDIString.equals("sql"))
+							data.add("My Sql");
+						else
+							data.add("");
+						data.add(TARIH_CEVIR.milis_ddMMyyyy(fileHeader.getLastModifiedTimeEpoch()));
+						data.add((int) fileHeader.getCompressedSize());
+						data.add((int) fileHeader.getUncompressedSize());
 
-					if(aDIString.equals("bak") || aDIString.equals("sql"))
-						model.addRow(data);
+						if(aDIString.equals("bak") || aDIString.equals("sql"))
+							model.addRow(data);
+					}
 				}
 			} catch (ZipException e) 
 			{

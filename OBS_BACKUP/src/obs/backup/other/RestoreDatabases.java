@@ -75,7 +75,6 @@ public class RestoreDatabases  extends JPanel{
 	public RestoreDatabases()
 	{
 		setLayout(new BorderLayout(0, 0));
-
 		panel = new JPanel();
 		panel.setPreferredSize(new Dimension(0, 50));
 		add(panel, BorderLayout.NORTH);
@@ -338,6 +337,7 @@ public class RestoreDatabases  extends JPanel{
 		OBS_BACKUP.lblEmir.setText("Secilen Satir"); 
 		OBS_BACKUP.lblemirSAYI.setText(FORMATLAMA.doub_0(satir_kontrol()));
 	}
+	@SuppressWarnings("removal")
 	class MyItemListener implements ItemListener
 	{
 		@Override
@@ -345,7 +345,6 @@ public class RestoreDatabases  extends JPanel{
 		{
 			Runnable runner = new Runnable()
 			{ 
-				@SuppressWarnings("removal")
 				public void run() {
 					Object source = e.getSource();
 					if (source instanceof AbstractButton == false) return;
@@ -355,7 +354,6 @@ public class RestoreDatabases  extends JPanel{
 						tblFile.setValueAt(new Boolean(checked),x,0);
 					hEPSI = false;
 					secilen_satir();
-					setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	
 				}
 			};
 			Thread t = new Thread(runner, "Code Executer");

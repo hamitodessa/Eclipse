@@ -132,7 +132,6 @@ public class DownloadFile extends JPanel {
 		comboBox.setBounds(84, 11, 300, 25);
 		panel.add(comboBox);
 
-
 		btnNewButton = new JButton("Indir");
 		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnNewButton.addActionListener(new ActionListener() {
@@ -418,19 +417,16 @@ public class DownloadFile extends JPanel {
 //		t.start();
 
 	}
-
 	public void eismiDOLDUR() throws ClassNotFoundException, SQLException
 	{
 		setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 		List<emir_bilgiler> emirliste = bckp.emir_liste_download();
-		if (emirliste.size() == 0 ) {  
+		if (emirliste.size() == 0 )
 			setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-		}
 		else {
 			comboBox.addItem("");
-			for (int i =0; i<= emirliste.size()-1; i++) {
+			for (int i =0; i<= emirliste.size()-1; i++)
 				comboBox.addItem(emirliste.get(i).getEMIR_ISMI());
-			}
 		}
 		ilkBASLA = false;
 		setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
@@ -474,6 +470,7 @@ public class DownloadFile extends JPanel {
 		panelalt.RPB2.setValue(0);
 		panelalt.RPB2.setStringPainted(false);
 	}
+	@SuppressWarnings("removal")
 	class MyItemListener implements ItemListener
 	{
 		@Override
@@ -481,16 +478,14 @@ public class DownloadFile extends JPanel {
 		{
 			Runnable runner = new Runnable()
 			{ 
-				@SuppressWarnings("removal")
 				public void run() {
 					Object source = e.getSource();
 					if (source instanceof AbstractButton == false) return;
 					boolean checked = e.getStateChange() == ItemEvent.SELECTED;
 					hEPSI  = true ;
+					setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 					for(int x = 0, y = tblFile.getRowCount(); x < y; x++)
-					{
 						tblFile.setValueAt(new Boolean(checked),x,0);
-					}
 					hEPSI = false;
 					secilen_satir();
 					setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	

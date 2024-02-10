@@ -289,13 +289,13 @@ public class BACKUP_GLOBAL {
 		}
 		return pidno;
 	}
-	public void ayar_kayit(String dil, String tema,int sifrele,String sifre,int prg_sifrele,int win_start,int verkontrol)throws ClassNotFoundException, SQLException, InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException, UnsupportedEncodingException, IllegalBlockSizeException, BadPaddingException
+	public void ayar_kayit(String dil, String tema,int sifrele,String sifre,int prg_sifrele,int win_start,int verkontrol,int menu)throws ClassNotFoundException, SQLException, InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException, UnsupportedEncodingException, IllegalBlockSizeException, BadPaddingException
 	{
 		Class.forName("org.sqlite.JDBC");
 		if (con != null && ! con.isClosed()) con.close();
 		PreparedStatement stmt = null;
 		con = glb.myBackupConnection();
-		String sql = "INSERT INTO AYARLAR (DIL,TEMA,SIFRELE,SIFRE,PRG_SIFRELE,WIN_START,VER_KONTROL) VALUES (?,?,?,?,?,?,?)";
+		String sql = "INSERT INTO AYARLAR (DIL,TEMA,SIFRELE,SIFRE,PRG_SIFRELE,WIN_START,VER_KONTROL,MENU) VALUES (?,?,?,?,?,?,?,?)";
 		stmt = con.prepareStatement(sql);
 		stmt.setString(1, dil);
 		stmt.setString(2, tema);
@@ -308,6 +308,7 @@ public class BACKUP_GLOBAL {
 		stmt.setInt(5, prg_sifrele);
 		stmt.setInt(6, win_start);
 		stmt.setInt(7, verkontrol);
+		stmt.setInt(8, menu);
 		stmt.executeUpdate();
 		stmt.close();
 		con.close();
@@ -351,7 +352,7 @@ public class BACKUP_GLOBAL {
 		String sql = "SELECT * FROM AYARLAR ";
 		stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
-		String[] ayarlar = new String[7];
+		String[] ayarlar = new String[8];
 		while (rss.next())
 		{
 			ayarlar[0] = rss.getString("DIL");
@@ -361,6 +362,7 @@ public class BACKUP_GLOBAL {
 			ayarlar[4] = rss.getString("PRG_SIFRELE");
 			ayarlar[5] = rss.getString("WIN_START");
 			ayarlar[6] = rss.getString("VER_KONTROL");
+			ayarlar[7] = rss.getString("MENU");
 		}
 		stmt.close();
 		con.close();

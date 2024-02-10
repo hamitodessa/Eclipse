@@ -259,7 +259,7 @@ public class OBS_BACKUP extends JFrame {
 	public static boolean sifRELE = false;
 	
 	static Component horizontalGlue = null ;
-	private static String diltemaString[] = new String[7];
+	private static String diltemaString[] = new String[8];
 	
 	public static boolean backupTime = false;
 	/**
@@ -339,21 +339,19 @@ public class OBS_BACKUP extends JFrame {
 		JSplitPane splitPane = new JSplitPane();
 		splitPane.setDividerLocation(45);
 		splitPane.setDividerSize(0);
-		//splitPane.setOrientation(JSplitPane.VERTICAL_SPLIT);
+		if(diltemaString[7].equals("1"))
+			splitPane.setOrientation(JSplitPane.VERTICAL_SPLIT);
 		contentPane.add(splitPane, BorderLayout.CENTER);
 
-		
 		ScrollPaneWin11 jScrollPaneToolBar = new ScrollPaneWin11();
 		splitPane.setLeftComponent(jScrollPaneToolBar);
-		
 		JPanel panel = new JPanel();
 		jScrollPaneToolBar.setViewportView(panel);
-		
-
 		//***************
 		toolBar = new JToolBar();
 		toolBar.setFloatable(false);
-		toolBar.setOrientation(SwingConstants.VERTICAL);
+		if(diltemaString[7].equals("0"))
+			toolBar.setOrientation(SwingConstants.VERTICAL);
 		panel.setLayout(new BorderLayout());
 		panel.add(toolBar,BorderLayout.CENTER);
 		//***************
@@ -715,10 +713,15 @@ public class OBS_BACKUP extends JFrame {
 			}
 		});
 		toolBar.add(btnYeniSifre );
-		
-		Component horizontalGlue = Box.createVerticalGlue();
-		toolBar.add(horizontalGlue);
-
+		if(diltemaString[7].equals("0"))
+		{
+			Component verticalGlue = Box.createVerticalGlue();
+			toolBar.add(verticalGlue);
+		}
+		else {
+			Component horizontalGlue = Box.createHorizontalGlue();
+			toolBar.add(horizontalGlue);
+		}
 		btnSifreEkrani= new JButton("");
 		btnSifreEkrani.setToolTipText("Sifre Ekrani");
 		btnSifreEkrani.setVisible(false);
@@ -775,6 +778,7 @@ public class OBS_BACKUP extends JFrame {
 				ayarlarPanel.chckbxPrgSifre.setSelected(Integer.valueOf(diltemaString[4]) == 0 ? false:true);
 				ayarlarPanel.chckbxWinStart.setSelected(Integer.valueOf(diltemaString[5]) == 0 ? false:true);
 				ayarlarPanel.chckbxVersion.setSelected(Integer.valueOf(diltemaString[6]) == 0 ? false:true);
+				ayarlarPanel.chckbxMenu.setSelected(Integer.valueOf(diltemaString[7]) == 0 ? false:true);
 				ayarlarPanel.passwordText.setVisible(ayarlarPanel.chckbxSifrele.isSelected());
 				emirSayiCount();
 				tabbedPane.setSelectedIndex(8);
@@ -782,6 +786,17 @@ public class OBS_BACKUP extends JFrame {
 		});
 		btnAyarlar.setIcon(new ImageIcon(OBS_BACKUP.class.getResource("/obs/backup/icons/settings-24.png")));
 		toolBar.add(btnAyarlar);
+		
+		if(diltemaString[7].equals("0"))
+		{
+			Component verticalGlue = Box.createVerticalGlue();
+			toolBar.add(verticalGlue);
+		}
+		else {
+			Component horizontalGlue = Box.createHorizontalGlue();
+			toolBar.add(horizontalGlue);
+		}
+
 		
 		JButton btnkapat= new JButton("");
 		btnkapat.setToolTipText("Kapat");
@@ -792,11 +807,11 @@ public class OBS_BACKUP extends JFrame {
 		});
 		btnkapat.setIcon(new ImageIcon(OBS_BACKUP.class.getResource("/obs/backup/icons/exit.png")));
 		toolBar.add(btnkapat);
-		JLabel sprt = new JLabel("   ");
-		sprt.setSize(new Dimension(20,20));
+		//JLabel sprt = new JLabel("   ");
+		//sprt.setSize(new Dimension(20,20));
 		//toolBar.add(sprt );
 
-		toolBar.add(sprt );
+	
 		//*********************************************************************************
 		tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 
@@ -828,13 +843,9 @@ public class OBS_BACKUP extends JFrame {
 				if(tabbedPane_1.getSelectedIndex()==4)
 				{
 					if(OBS_BACKUP.emirAnaGirisPanel.lblNewLabel_6.getText().equals("Ms Sql"))
-					{
 						OBS_BACKUP.serverBilgileriPanel.tabbedPane.setSelectedIndex(0);
-					}
 					else if(OBS_BACKUP.emirAnaGirisPanel.lblNewLabel_6.getText().equals("My Sql"))
-					{
 						OBS_BACKUP.serverBilgileriPanel.tabbedPane.setSelectedIndex(1);
-					}
 				}
 				else if(tabbedPane_1.getSelectedIndex() == 5)
 				{

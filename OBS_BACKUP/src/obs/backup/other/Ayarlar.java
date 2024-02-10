@@ -61,6 +61,7 @@ public class Ayarlar extends JPanel {
 	public JCheckBox chckbxPrgSifre;
 	public JCheckBox chckbxWinStart;
 	public JCheckBox chckbxVersion;
+	public JCheckBox chckbxMenu;
 	static BACKUP_GLOBAL bckp = new BACKUP_GLOBAL();
 	final boolean showTabsHeader = false;
 	public JPasswordField passwordText;
@@ -121,7 +122,8 @@ public class Ayarlar extends JPanel {
 					bckp.ayar_sil();
 					SIFRE_DONDUR sDondur = new SIFRE_DONDUR();
 					bckp.ayar_kayit(comboBox_1.getSelectedItem().toString(), comboBox.getSelectedItem().toString(),chckbxSifrele.isSelected() ? 1:0,
-							sDondur.sDONDUR(passwordText) , chckbxPrgSifre.isSelected() ? 1:0, chckbxWinStart.isSelected() ? 1:0,chckbxVersion.isSelected() ? 1:0);
+							sDondur.sDONDUR(passwordText) , chckbxPrgSifre.isSelected() ? 1:0, chckbxWinStart.isSelected() ? 1:0,
+									chckbxVersion.isSelected() ? 1:0,chckbxMenu.isSelected() ? 1:0);
 					OBS_BACKUP.emirleriSTOPYAP();
 					OBS_BACKUP.btnfont_tema.doClick();
 					setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
@@ -218,6 +220,14 @@ public class Ayarlar extends JPanel {
 		chckbxVersion = new JCheckBox("");
 		chckbxVersion.setBounds(160, 290, 40, 23);
 		add(chckbxVersion);
+		
+		JLabel lblNewLabel_4_1 = new JLabel("Menu");
+		lblNewLabel_4_1.setBounds(42, 317, 120, 14);
+		add(lblNewLabel_4_1);
+		
+		chckbxMenu = new JCheckBox("Top / Left");
+		chckbxMenu.setBounds(160, 313, 97, 23);
+		add(chckbxMenu);
 	}
 	private String xmlDegis(String dosya, String xmlDosya) throws IOException
 	{

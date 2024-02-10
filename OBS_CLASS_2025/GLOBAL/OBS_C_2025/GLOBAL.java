@@ -353,11 +353,11 @@ public class GLOBAL {
 			backup_tablo_yap(sorgu);
 			sorgu = "CREATE TABLE YONETICI (SIFRE BLOB ) ";
 			backup_tablo_yap(sorgu);
-			sorgu = "CREATE TABLE AYARLAR (  DIL nvarchar(10) ,TEMA nvarchar(50),SIFRELE INTEGER, SIFRE BLOB,PRG_SIFRELE INTEGER,WIN_START INTEGER,VER_KONTROL) ";
+			sorgu = "CREATE TABLE AYARLAR (  DIL nvarchar(10) ,TEMA nvarchar(50),SIFRELE INTEGER, SIFRE BLOB,PRG_SIFRELE INTEGER,WIN_START INTEGER,VER_KONTROL INTEGER,MENU INTEGER) ";
 			backup_tablo_yap(sorgu);
 	
 			con = myBackupConnection();
-			sorgu = "INSERT INTO AYARLAR(DIL,TEMA,SIFRELE,SIFRE,PRG_SIFRELE,WIN_START,VER_KONTROL)  VALUES('Turkce','FlatCarbonIJ','0','','0','0','0')" ;
+			sorgu = "INSERT INTO AYARLAR(DIL,TEMA,SIFRELE,SIFRE,PRG_SIFRELE,WIN_START,VER_KONTROL,MENU)  VALUES('Turkce','FlatCarbonIJ','0','','0','0','0','0')" ;
 			Statement pstmt = con.prepareStatement(sorgu) ;
 			pstmt = con.createStatement();  
 			pstmt.execute(sorgu);  

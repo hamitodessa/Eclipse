@@ -307,7 +307,10 @@ public class OBS_BACKUP extends JFrame {
 				setLocation(xx-x,yy-y);
 			}
 		});
-		setBounds(0, 0, 900, 700);
+		if(diltemaString[7].equals("1"))
+			setBounds(0, 0, 900, 740);
+		else
+			setBounds(0, 0, 900, 700);
 		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
 		this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -2679,7 +2682,7 @@ public class OBS_BACKUP extends JFrame {
 		} catch (Exception ex) 
 		{
 			try {
-				bckp.log_kayit("System", new Date(), ex.getMessage());
+				bckp.log_kayit("System", new Date(),"PID=" + ex.getMessage());
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -2690,13 +2693,12 @@ public class OBS_BACKUP extends JFrame {
 		try {
 			int dosyaPID = bckp.pid_oku() ; 
 			pidlb.setText("PID : " + String.valueOf(dosyaPID));
-			if(dosyaPID == 0) return ; // Dosyada Kayit Yok 
-			if(dosyaPID != (int) ProcessHandle.current().pid())
+			if(dosyaPID != (int) ProcessHandle.current().pid() || dosyaPID == 0)
 				btnKapat.doClick();
 		} catch (Exception ex) 
 		{
 			try {
-				bckp.log_kayit("System", new Date(), ex.getMessage());
+				bckp.log_kayit("System", new Date(),"Second Run="+ ex.getMessage());
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

@@ -313,108 +313,107 @@ public class DownloadFile extends JPanel {
 		if(comboBox.getSelectedItem().toString().equals("")) {
 			return;
 		}
-		//Runnable runner = new Runnable(){ 
-		//public void run() {
-		try 
-		{
-			GuiUtil.setWaitCursor(tblFile,true);
-			GuiUtil.setWaitCursor(panel,true);
-			GuiUtil.setWaitCursor(scrollPane,true);
-			GuiUtil.setWaitCursor(OBS_BACKUP.toolBar,true);
-			List<ftp_bilgiler> ftpBilgi = new ArrayList<ftp_bilgiler>();
-			ftpBilgi = bckp.ftp_bilgi(comboBox.getSelectedItem().toString());
-			String ftp, kull, sifre, surucu,  neresi, surucu_yer;
-			ftp = ftpBilgi.get(0).getHOST();
-			kull = ftpBilgi.get(0).getKULLANICI();
-			String decodedString = ftpBilgi.get(0).getSIFRE();
-			String[] byteValues = decodedString.substring(1, decodedString.length() - 1).split(",");
-			byte[] bytes = new byte[byteValues.length];
-			for (int i=0, len=bytes.length; i<len; i++) {
-				bytes[i] = Byte.parseByte(byteValues[i].trim());     
-			}
-			sifre = ENCRYPT_DECRYPT_STRING.dCRYPT_manual(bytes) ;
-			surucu = ftpBilgi.get(0).getSURUCU();
-			int port = Integer.valueOf( ftpBilgi.get(0).getPORT());
-			surucu_yer =ftpBilgi.get(0).getSURUCU_YER();
+		Runnable runner = new Runnable(){ 
+			public void run() {
+				try 
+				{
+					GuiUtil.setWaitCursor(tblFile,true);
+					GuiUtil.setWaitCursor(panel,true);
+					GuiUtil.setWaitCursor(scrollPane,true);
+					GuiUtil.setWaitCursor(OBS_BACKUP.toolBar,true);
+					List<ftp_bilgiler> ftpBilgi = new ArrayList<ftp_bilgiler>();
+					ftpBilgi = bckp.ftp_bilgi(comboBox.getSelectedItem().toString());
+					String ftp, kull, sifre, surucu,  neresi, surucu_yer;
+					ftp = ftpBilgi.get(0).getHOST();
+					kull = ftpBilgi.get(0).getKULLANICI();
+					String decodedString = ftpBilgi.get(0).getSIFRE();
+					String[] byteValues = decodedString.substring(1, decodedString.length() - 1).split(",");
+					byte[] bytes = new byte[byteValues.length];
+					for (int i=0, len=bytes.length; i<len; i++) {
+						bytes[i] = Byte.parseByte(byteValues[i].trim());     
+					}
+					sifre = ENCRYPT_DECRYPT_STRING.dCRYPT_manual(bytes) ;
+					surucu = ftpBilgi.get(0).getSURUCU();
+					int port = Integer.valueOf( ftpBilgi.get(0).getPORT());
+					surucu_yer =ftpBilgi.get(0).getSURUCU_YER();
 
-			GRID_TEMIZLE.grid_temizle(tblFile);
-			tblFile.setModel(bckp.file_liste( ftp , surucu, kull, sifre,port));
-			JTableHeader th = tblFile.getTableHeader();
-			TableColumnModel tcm = th.getColumnModel();
-			TableColumn tc;
-			tc = tcm.getColumn(0);
-			JCheckBox checkBox = new JCheckBox();
-			checkBox.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
+					GRID_TEMIZLE.grid_temizle(tblFile);
+					tblFile.setModel(bckp.file_liste( ftp , surucu, kull, sifre,port));
 					JTableHeader th = tblFile.getTableHeader();
 					TableColumnModel tcm = th.getColumnModel();
-					TableColumn tc = tcm.getColumn(0);
+					TableColumn tc;
+					tc = tcm.getColumn(0);
+					JCheckBox checkBox = new JCheckBox();
+					checkBox.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							JTableHeader th = tblFile.getTableHeader();
+							TableColumnModel tcm = th.getColumnModel();
+							TableColumn tc = tcm.getColumn(0);
+							tc.setHeaderRenderer(new CheckBoxHeader(new MyItemListener()));
+							th.repaint();
+							tblFile.repaint();
+						}
+					});
+					checkBox.setHorizontalAlignment(JCheckBox.CENTER);
+					DefaultCellEditor dce = new DefaultCellEditor( checkBox );
+					tc.setCellEditor(dce);
+					tc.setCellRenderer(new CheckBoxRenderer());
 					tc.setHeaderRenderer(new CheckBoxHeader(new MyItemListener()));
-					th.repaint();
-					tblFile.repaint();
+
+					tc.setMinWidth(50);
+					tc.setMaxWidth(50);
+
+					tc = tcm.getColumn(1);
+					if(! OBS_BACKUP.dILS.equals("Turkce"))
+						tc.setHeaderValue("FILE NAME");
+					tc.setHeaderRenderer(new SOLA_DUZ_RENK());
+
+					tc = tcm.getColumn(2);
+					if(! OBS_BACKUP.dILS.equals("Turkce"))
+						tc.setHeaderValue("SIZE Bytes");
+					tc.setHeaderRenderer(new SAGA_DUZ_RENK());
+					tc.setCellRenderer(new TABLO_RENDERER(0,false));
+					tc.setMinWidth(100);
+					tc.setMaxWidth(100);
+
+					tc = tcm.getColumn(3);
+					if(! OBS_BACKUP.dILS.equals("Turkce"))
+						tc.setHeaderValue("DATE");
+					tc.setHeaderRenderer(new SOLA_DUZ_RENK());
+					tc.setMinWidth(115);
+					tc.setMaxWidth(115);
+
+					Dimension dd = tblFile.getPreferredSize();
+					dd.height = 30;
+					th.setPreferredSize(dd); 
+
+					tblFile.setRowSelectionInterval(0, 0);
+					tblFile.setRowHeight(21);
+					tblFile.getModel().addTableModelListener(	(TableModelListener) new TableModelListener() 
+					{
+						public void tableChanged(TableModelEvent e) 
+						{
+							TableModel model = (TableModel)e.getSource();
+							if (model.getRowCount() > 0) {
+								if(!hEPSI)
+									secilen_satir();
+							}
+						}
+					});
+					GuiUtil.setWaitCursor(tblFile,false);
+					GuiUtil.setWaitCursor(panel,false);
+					GuiUtil.setWaitCursor(scrollPane,false);
+					GuiUtil.setWaitCursor(OBS_BACKUP.toolBar,false);
+				} catch (Exception e1) {
+					GuiUtil.setWaitCursor(tblFile,false);
+					GuiUtil.setWaitCursor(panel,false);
+					GuiUtil.setWaitCursor(scrollPane,false);
+					GuiUtil.setWaitCursor(OBS_BACKUP.toolBar,false);
 				}
-			});
-			checkBox.setHorizontalAlignment(JCheckBox.CENTER);
-			DefaultCellEditor dce = new DefaultCellEditor( checkBox );
-			tc.setCellEditor(dce);
-			tc.setCellRenderer(new CheckBoxRenderer());
-			tc.setHeaderRenderer(new CheckBoxHeader(new MyItemListener()));
-
-			tc.setMinWidth(50);
-			tc.setMaxWidth(50);
-
-			tc = tcm.getColumn(1);
-			if(! OBS_BACKUP.dILS.equals("Turkce"))
-				tc.setHeaderValue("FILE NAME");
-			tc.setHeaderRenderer(new SOLA_DUZ_RENK());
-
-			tc = tcm.getColumn(2);
-			if(! OBS_BACKUP.dILS.equals("Turkce"))
-				tc.setHeaderValue("SIZE Bytes");
-			tc.setHeaderRenderer(new SAGA_DUZ_RENK());
-			tc.setCellRenderer(new TABLO_RENDERER(0,false));
-			tc.setMinWidth(100);
-			tc.setMaxWidth(100);
-
-			tc = tcm.getColumn(3);
-			if(! OBS_BACKUP.dILS.equals("Turkce"))
-				tc.setHeaderValue("DATE");
-			tc.setHeaderRenderer(new SOLA_DUZ_RENK());
-			tc.setMinWidth(115);
-			tc.setMaxWidth(115);
-
-			Dimension dd = tblFile.getPreferredSize();
-			dd.height = 30;
-			th.setPreferredSize(dd); 
-
-			tblFile.setRowSelectionInterval(0, 0);
-			tblFile.setRowHeight(21);
-			tblFile.getModel().addTableModelListener(	(TableModelListener) new TableModelListener() 
-			{
-				public void tableChanged(TableModelEvent e) 
-				{
-					TableModel model = (TableModel)e.getSource();
-					if (model.getRowCount() > 0) {
-						if(!hEPSI)
-							secilen_satir();
-					}
-				}
-			});
-			GuiUtil.setWaitCursor(tblFile,false);
-			GuiUtil.setWaitCursor(panel,false);
-			GuiUtil.setWaitCursor(scrollPane,false);
-			GuiUtil.setWaitCursor(OBS_BACKUP.toolBar,false);
-		} catch (Exception e1) {
-			GuiUtil.setWaitCursor(tblFile,false);
-			GuiUtil.setWaitCursor(panel,false);
-			GuiUtil.setWaitCursor(scrollPane,false);
-			GuiUtil.setWaitCursor(OBS_BACKUP.toolBar,false);
-		}
-		
-//		}
-//		};
-//		Thread t = new Thread(runner, "Code Executer");
-//		t.start();
+			}
+		};
+		Thread t = new Thread(runner, "Code Executer");
+		t.start();
 
 	}
 	public void eismiDOLDUR() throws ClassNotFoundException, SQLException

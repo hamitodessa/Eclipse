@@ -635,6 +635,7 @@ public class OBS_BACKUP extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				if (backupTime ) return;
 				contentPane.setCursor( Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+				tabbedPane.setSelectedIndex(0);
 				emirSayiCount();
 				Component[] components = container.getComponents();
 				for (Component component : components) 
@@ -1012,12 +1013,12 @@ public class OBS_BACKUP extends JFrame {
 		};  
 		timerr.scheduleAtFixedRate(tt, 100, 5000);
 	}
-	private void yedekLE() throws ClassNotFoundException, SQLException 
+	private void yedekLE() throws ClassNotFoundException, SQLException
 	{
 		String eISMI = "" ;
 		try
 		{
-			//if(gorevLER.size() == 0) return;
+			if(gorevLER.size() == 0) return;
 			timerr.cancel();
 			timerr.purge();
 			timerr = null;
@@ -1042,9 +1043,6 @@ public class OBS_BACKUP extends JFrame {
 		{
 			backupTime = false;
 			bckp.log_kayit(eISMI, new Date(), ex.getMessage());
-		}
-		finally
-		{
 			jobTimerBasla();
 		}
 	}
@@ -1907,14 +1905,10 @@ public class OBS_BACKUP extends JFrame {
 			}
 		} 
 	}
-	private void bilgilendirmeOku(String emir, String mesaj ,List<bilgilendirme_bilgiler> bilgiBilgi) 
+	private void bilgilendirmeOku(String emir, String mesaj ,List<bilgilendirme_bilgiler> bilgiBilgi) throws InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException, UnsupportedEncodingException, IllegalBlockSizeException, BadPaddingException, ClassNotFoundException, SQLException
 	{
-		try 
-		{
-			if (bilgiBilgi.size() > 0)
-				mailAt( bilgiBilgi , mesaj,emir);
-		} catch (Exception e) {
-		}
+		if (bilgiBilgi.size() > 0)
+			mailAt( bilgiBilgi , mesaj,emir);
 	}
 	private void dosyaSurucu(String emirADI,List<emir_bilgiler> emirBilgi) throws ClassNotFoundException, SQLException, ParseException, InterruptedException, InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException, NumberFormatException, SocketException, IOException
 	{
@@ -2497,7 +2491,7 @@ public class OBS_BACKUP extends JFrame {
 			}
 		}
 	}
-	private void fileCOPY(String from, String tO) throws IOException, InterruptedException 
+	private void fileCOPY(String from, String tO) throws IOException, InterruptedException
 	{
 		File sourceFile = new File(from);
 		long  toplam = (int) sourceFile.length();

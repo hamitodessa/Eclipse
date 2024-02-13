@@ -195,6 +195,7 @@ public class OBS_BACKUP extends JFrame {
 	GLOBAL glb = new GLOBAL();
 	static BACKUP_GLOBAL bckp = new BACKUP_GLOBAL();
 	public static List<String> gorevLER = new ArrayList<String>();
+	int x ,y ;
 
 	Timer timerr;
 
@@ -203,7 +204,6 @@ public class OBS_BACKUP extends JFrame {
 	public static JToolBar toolBar;
 	public static JTabbedPane tabbedPane ;
 	public static MaterialTabbed tabbedPane_1;
-	int x ,y ;
 	public static YedeklemeAraligi yedekaraligiPanel;
 	public static SunucuAyarlari sunucuayarPanel;
 	public static Bilgilendirme bilgilendirmePanel;
@@ -263,7 +263,7 @@ public class OBS_BACKUP extends JFrame {
 	
 	public static boolean backupTime = false;
 	/**
-	 * Hamit.
+	 * OBS Backup Hamit.
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -984,7 +984,7 @@ public class OBS_BACKUP extends JFrame {
 				tabbedPane.setSelectedIndex(4);
 			else
 				buttonlariGOSTER();
-		//************************************************************
+		//****************************************************************
 		} catch (Exception ex) 
 		{
 			try 
@@ -1041,8 +1041,10 @@ public class OBS_BACKUP extends JFrame {
 		}
 		catch (Exception ex)
 		{
-			backupTime = false;
 			bckp.log_kayit(eISMI, new Date(), ex.getMessage());
+		}		finally 
+		{
+			backupTime = false;
 			jobTimerBasla();
 		}
 	}
@@ -1901,7 +1903,6 @@ public class OBS_BACKUP extends JFrame {
 			} catch (Exception e) {
 				gorevSETCURSOR(Cursor.DEFAULT_CURSOR);
 				contentPane.setCursor( Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-				e.printStackTrace();
 			}
 		} 
 	}
@@ -2028,10 +2029,8 @@ public class OBS_BACKUP extends JFrame {
 					bckp.log_kayit(emirADI, new Date(), dosADI + dilSecenek.dil(dILS, " Surucuye Yuklendi")  );
 					bckp.log_kayit(emirADI,new Date(), uzantisiz + dilSecenek.dil(dILS, " ZIP Dosyasi Silindi")  );
 				}
-				else 
-				{
+				else
 					bckp.log_kayit(emirADI, new Date(), dosADI + dilSecenek.dil(dILS, " Dosya Bulunamadi***************")  );
-				}
 			}
 			Date nowwDate = new Date();
 			durumYAZ(emirADI,nowwDate);
@@ -2104,7 +2103,6 @@ public class OBS_BACKUP extends JFrame {
 			} catch (Exception e) {
 				gorevSETCURSOR(Cursor.DEFAULT_CURSOR);
 				contentPane.setCursor( Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-				e.printStackTrace();
 			}
 		} 
 	}
@@ -2203,9 +2201,8 @@ public class OBS_BACKUP extends JFrame {
 					glb.dos_sil(glb.BACKUP_YERI + dzip);
 					bckp.log_kayit(emirADI,new Date(), uzantisiz + dilSecenek.dil(dILS,  " ZIP Dosyasi Silindi") );
 				}
-				else {
+				else
 					bckp.log_kayit(emirADI, new Date(), dosADI + dilSecenek.dil(dILS, " Dosya Bulunamadi***************")  );
-				}
 			}
 			Date nowwDate = new Date();
 			durumYAZ(emirADI,nowwDate);		
@@ -2275,7 +2272,6 @@ public class OBS_BACKUP extends JFrame {
 			} catch (Exception e) {
 				gorevSETCURSOR(Cursor.DEFAULT_CURSOR);
 				contentPane.setCursor( Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-				e.printStackTrace();
 			}
 		} 
 	}
@@ -2330,7 +2326,6 @@ public class OBS_BACKUP extends JFrame {
 			{
 				bckp.log_kayit("System", new Date(), "2301=" + ex.getMessage());
 			} catch (Exception e) {
-				e.printStackTrace();
 			}
 		}
 	}
@@ -2682,7 +2677,8 @@ public class OBS_BACKUP extends JFrame {
 			bckp.pid_kayit((int) ProcessHandle.current().pid());
 		} catch (Exception ex) 
 		{
-			try {
+			try 
+			{
 				bckp.log_kayit("System", new Date(),"PID=" + ex.getMessage());
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -3034,19 +3030,13 @@ public class OBS_BACKUP extends JFrame {
 			while((line = bufferedReader.readLine()) != null) {
 				counter++;
 				if(counter == 1)
-				{
 					yenitar = line.toString();
-				}
 				else  if(counter == 2)
-				{
 					yeniver = line.toString();
-				}
 			}   
 			bufferedReader.close();
 			if (eskiver.equals(yeniver))
-			{
 				glb.dos_sil(GLOBAL.SURUCU + "\\OBS_BACKUP_VERSIONS.txt");
-			}
 			else
 			{
 				glb.dos_sil(GLOBAL.SURUCU + "\\OBS_BACKUP_VERSIONS.txt");

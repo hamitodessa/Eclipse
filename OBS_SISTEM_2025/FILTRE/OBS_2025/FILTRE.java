@@ -460,14 +460,16 @@ public class FILTRE extends JDialog {
 		tabbedPane = new JTabbedPane();
 		//*****************************************************************************************************************
 		// Goruntu icin asagidaki blogu kaldir 
-		  final boolean showTabsHeader = false; tabbedPane.setUI(new
-		  javax.swing.plaf.metal.MetalTabbedPaneUI() {
-		  @Override protected int calculateTabAreaHeight(int tabPlacement, int
-		  horizRunCount, int maxTabHeight) { if (showTabsHeader) {return
-		  super.calculateTabAreaHeight(tabPlacement, horizRunCount, maxTabHeight); }
-		  else {return 0;} } protected void paintTabArea(Graphics g,int
-		  tabPlacement,int selectedIndex){} });
-		 		 		 
+
+		final boolean showTabsHeader = false;
+		tabbedPane.setUI(new javax.swing.plaf.metal.MetalTabbedPaneUI()
+		{
+		    @Override
+		    protected int calculateTabAreaHeight(int tabPlacement, int horizRunCount, int maxTabHeight) {
+		        if (showTabsHeader) {return super.calculateTabAreaHeight(tabPlacement, horizRunCount, maxTabHeight);
+		        } else {return 0;}	        }
+		  protected void paintTabArea(Graphics g,int tabPlacement,int selectedIndex){}
+		}); 
 
 		
 		//final boolean showTabsHeader = false;
@@ -2180,6 +2182,18 @@ public class FILTRE extends JDialog {
 		textField_8 = new Obs_TextFIeld();
 		textField_8.setFont(new Font("Tahoma", Font.BOLD, 11));
 		textField_8.setBounds(79, 83, 125, 20);
+		textField_8.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if (e.getClickCount() == 2) 
+				{
+					ADRES_LISTE asp ;
+					asp = new ADRES_LISTE();
+					asp.setVisible(true);
+					textField_8.setText( oac.hsp_hsp_kodu);
+				}
+			}
+		});
 		panel_6.add(textField_8);
 		textField_8.setColumns(10);
 
@@ -2265,6 +2279,18 @@ public class FILTRE extends JDialog {
 		panel_6.add(txtZzzzzzzzzzzz);
 
 		txtZzzzzzzzzzzz_1 = new Obs_TextFIeld();
+		txtZzzzzzzzzzzz_1.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if (e.getClickCount() == 2) 
+				{
+					ADRES_LISTE asp ;
+					asp = new ADRES_LISTE();
+					asp.setVisible(true);
+					txtZzzzzzzzzzzz_1.setText( oac.hsp_hsp_kodu);
+				}
+			}
+		});
 		txtZzzzzzzzzzzz_1.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txtZzzzzzzzzzzz_1.setText("ZZZZZZZZZZZZ");
 		txtZzzzzzzzzzzz_1.setColumns(10);

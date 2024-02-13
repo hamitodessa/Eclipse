@@ -1042,12 +1042,9 @@ public class OBS_BACKUP extends JFrame {
 		catch (Exception ex)
 		{
 			bckp.log_kayit(eISMI, new Date(), ex.getMessage());
-		}		finally 
-		{
 			backupTime = false;
 			jobTimerBasla();
-		}
-	}
+		}	}
 	public static void genelKayit() 
 	{
 		Boolean drm = false;

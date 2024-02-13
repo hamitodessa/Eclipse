@@ -14,7 +14,7 @@ import OBS_C_2025.BAGLAN;
 import OBS_C_2025.FILE_UZANTI;
 import OBS_2025.FILTRE;
 import OBS_C_2025.FORMATLAMA;
-
+import OBS_C_2025.GLOBAL;
 import OBS_C_2025.GRID_TEMIZLE;
 import OBS_2025.GuiUtil;
 import OBS_2025.OBS_MAIN;
@@ -61,18 +61,23 @@ import javax.swing.JSplitPane;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.FileOutputStream;
 
 import javax.swing.SwingConstants;
+import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.border.LineBorder;
+import javax.swing.event.AncestorEvent;
+import javax.swing.event.AncestorListener;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
-@SuppressWarnings({"serial" , "static-access"})
+@SuppressWarnings({"serial" , "static-access","deprecation"})
 public class FATURA_RAPOR extends JInternalFrame {
 	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
 	static STOK_ACCESS f_Access = new STOK_ACCESS(OBS_SIS_2025_ANA_CLASS._IStok , OBS_SIS_2025_ANA_CLASS._IFatura_Loger);
@@ -131,6 +136,47 @@ public class FATURA_RAPOR extends JInternalFrame {
 			        }
 			    }
 			});
+		table.addAncestorListener(new AncestorListener() {
+			public void ancestorAdded(AncestorEvent event) {
+				SwingUtilities.invokeLater(new Runnable() {
+					@Override
+					public void run() {
+						table.requestFocusInWindow();
+					}
+				});
+			}
+			public void ancestorMoved(AncestorEvent event) {
+			}
+			public void ancestorRemoved(AncestorEvent event) {
+			}
+		});
+
+		table.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				try {
+					String[] parts;
+					String deger ;
+					deger = GLOBAL.setting_oku("PRG_FILTRE").toString();
+					parts = deger.split(",");
+					if ( ! parts[2].equals(" ")) 
+					{
+						char c=parts[2].charAt(0);
+						if ((e.getKeyCode() == c) && ((e.getModifiers() & (parts[0].equals("E") ?  KeyEvent.CTRL_MASK : KeyEvent.ALT_MASK) ) != 0))
+						{
+							getContentPane().setCursor(oac.WAIT_CURSOR);
+							OBS_MAIN.btnFiltre.doClick();
+							getContentPane().setCursor(oac.DEFAULT_CURSOR);
+						}
+					}
+				}
+				catch (Exception ex)
+				{
+
+				}
+			}
+		});
+
 		table.setAutoResizeMode( JTable.AUTO_RESIZE_OFF );
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		scrollPane.setViewportView(table);

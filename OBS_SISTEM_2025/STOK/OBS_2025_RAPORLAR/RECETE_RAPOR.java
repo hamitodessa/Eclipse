@@ -4,6 +4,8 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.sql.ResultSet;
 
 import javax.swing.JInternalFrame;
@@ -13,7 +15,10 @@ import javax.swing.JSplitPane;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
+import javax.swing.SwingUtilities;
 import javax.swing.border.LineBorder;
+import javax.swing.event.AncestorEvent;
+import javax.swing.event.AncestorListener;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
@@ -36,7 +41,7 @@ import OBS_C_2025.TABLO_RENDERER;
 import net.proteanit.sql.DbUtils;
 import raven.toast.Notifications;
 
-@SuppressWarnings({"serial" , "static-access"})
+@SuppressWarnings({"serial" , "static-access","deprecation"})
 public class RECETE_RAPOR extends JInternalFrame {
 
 	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
@@ -93,6 +98,47 @@ public class RECETE_RAPOR extends JInternalFrame {
 		        }
 		    }
 		});
+		table.addAncestorListener(new AncestorListener() {
+			public void ancestorAdded(AncestorEvent event) {
+				SwingUtilities.invokeLater(new Runnable() {
+					@Override
+					public void run() {
+						table.requestFocusInWindow();
+					}
+				});
+			}
+			public void ancestorMoved(AncestorEvent event) {
+			}
+			public void ancestorRemoved(AncestorEvent event) {
+			}
+		});
+
+		table.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				try {
+					String[] parts;
+					String deger ;
+					deger = GLOBAL.setting_oku("PRG_FILTRE").toString();
+					parts = deger.split(",");
+					if ( ! parts[2].equals(" ")) 
+					{
+						char c=parts[2].charAt(0);
+						if ((e.getKeyCode() == c) && ((e.getModifiers() & (parts[0].equals("E") ?  KeyEvent.CTRL_MASK : KeyEvent.ALT_MASK) ) != 0))
+						{
+							getContentPane().setCursor(oac.WAIT_CURSOR);
+							OBS_MAIN.btnFiltre.doClick();
+							getContentPane().setCursor(oac.DEFAULT_CURSOR);
+						}
+					}
+				}
+				catch (Exception ex)
+				{
+
+				}
+			}
+		});
+
 		table.setAutoResizeMode( JTable.AUTO_RESIZE_OFF );
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		table.setShowHorizontalLines(true);

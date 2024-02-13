@@ -556,9 +556,7 @@ public class OBS_BACKUP extends JFrame {
 									{
 										JLabel lblDURUM = (JLabel) compo;
 										if(lblDURUM.getText().equals("Pasiv Durumda"))
-										{
 											bckp.durum_kayit_durum(component.getName().toString(), true,"Durum Aktivlestirildi...");
-										}
 									}
 								}
 							}
@@ -600,9 +598,7 @@ public class OBS_BACKUP extends JFrame {
 									{
 										JLabel lblDURUM = (JLabel) compo;
 										if(! lblDURUM.getText().equals("Pasiv Durumda"))
-										{
 											bckp.durum_kayit_durum(component.getName().toString(), false,"Durum Pasivlestirildi...");
-										}
 									}
 								}
 							}
@@ -812,8 +808,6 @@ public class OBS_BACKUP extends JFrame {
 		JLabel sprt = new JLabel("   ");
 		sprt.setSize(new Dimension(20,20));
 		toolBar.add(sprt );
-
-	
 		//*********************************************************************************
 		tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 
@@ -1377,11 +1371,10 @@ public class OBS_BACKUP extends JFrame {
 			container.revalidate();
 			container.repaint();
 			List<emir_bilgiler> emirliste = bckp.emir_liste(siralama);
-			if (emirliste.size() == 0 ) 
-			{  
+			if (emirliste.size() == 0)
 				contentPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-			}
-			else {
+			else 
+			{
 				int toplam = emirliste.size();
 				for (int i = 0; i<=  emirliste.size() -1 ; i++)
 				{
@@ -1432,9 +1425,7 @@ public class OBS_BACKUP extends JFrame {
 					container.remove(component);
 			}
 			else if(component.getName()== null)
-			{
 				container.remove(component);
-			}
 		}
 		container.revalidate();
 		container.repaint();
@@ -1582,7 +1573,8 @@ public class OBS_BACKUP extends JFrame {
 	}
 	private void sqlYerelsurucu( String emirADI,List<ftp_bilgiler> ftpBilgi) 
 	{
-		try {
+		try 
+		{
 			contentPane.setCursor( Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 			gorevSETCURSOR(Cursor.WAIT_CURSOR);
 			List<server_bilgiler> serverBilgi = new ArrayList<server_bilgiler>();
@@ -1715,7 +1707,8 @@ public class OBS_BACKUP extends JFrame {
 				emirTeksilHata(emirADI);
 				gorevSETCURSOR(Cursor.DEFAULT_CURSOR);
 				contentPane.setCursor( Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-			} catch (Exception e) 
+			} 
+			catch (Exception e) 
 			{
 				gorevSETCURSOR(Cursor.DEFAULT_CURSOR);
 				contentPane.setCursor( Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
@@ -2951,13 +2944,9 @@ public class OBS_BACKUP extends JFrame {
 			while((line = bufferedReader.readLine()) != null) {
 				counter++;
 				if(counter == 1)
-				{
 					eskitar = line.toString();
-				}
 				else  if(counter == 2)
-				{
 					eskiver = line.toString();
-				}
 			}   
 			bufferedReader.close();
 			//

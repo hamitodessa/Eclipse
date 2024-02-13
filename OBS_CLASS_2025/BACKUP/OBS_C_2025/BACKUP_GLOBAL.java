@@ -1102,12 +1102,10 @@ public class BACKUP_GLOBAL {
 			ftp.disconnect();
 		}
 		boolean result = false;
-		if (returnCode == 530) {
+		if (returnCode == 530)
 			result = false;
-		}
-		else if (returnCode == 250) {
+		else if (returnCode == 250)
 			result= true;
-		}
 		return result;
 	}
 	public Boolean DoesFtpExist(String ftpp ,int port ,String kull, String sifre) throws SocketException, IOException  
@@ -1121,12 +1119,10 @@ public class BACKUP_GLOBAL {
 			ftp.logout();
 			ftp.disconnect();
 		}
-		if (returnCode == 530) {
+		if (returnCode == 530)
 			result = false;
-		}
-		else if (returnCode == 230) {
+		else if (returnCode == 230)
 			result= true;
-		}
 		return result;
 	}
 	public void ftp_sil(String ftpp, String ftpsurucu, String dosadi, String kull, String sifre, int port) throws IOException
@@ -1357,10 +1353,8 @@ public class BACKUP_GLOBAL {
 			zipParameters.setEncryptionMethod(EncryptionMethod.AES);
 			zipFile = new ZipFile(dosyolu + dosadi_zip, sifre.toCharArray());
 		}
-		else 
-		{
+		else
 			zipFile = new ZipFile(dosyolu + dosadi_zip);
-		}
 		try {
 			zipFile.addFile(new File(dosyolu + dosadi), zipParameters);
 			zipFile.close();
@@ -1381,9 +1375,8 @@ public class BACKUP_GLOBAL {
 			ZipFile zipFile = new ZipFile(surucu +  "\\" + fileName);
 			if(zipFile.isValidZipFile())
 			{
-				if (zipFile.isEncrypted()) {
+				if (zipFile.isEncrypted())
 					zipFile.setPassword(sifRe.toCharArray());
-				}
 				zipFile.extractAll(surucu);
 				result = true;
 			}

@@ -257,7 +257,7 @@ public class RestoreDatabases  extends JPanel{
 				else if(sqlCins.equals("My Sql")) 
 				{
 					if(bckp.MY_CONN == null) return;
-					if( bckp.dosyaKontrolMY(input.substring(13, index)))
+					if(bckp.dosyaKontrolMY(input.substring(13, index)))
 					{
 						JOptionPane optionPane = new JOptionPane(input.substring(13, index) + " - " + "Veritabani Server de Mevcut ,silinip bu dosya ile degistirilecek ?", JOptionPane.QUESTION_MESSAGE,
 								JOptionPane.YES_NO_OPTION, null,options,  options[1]);

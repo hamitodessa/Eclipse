@@ -1664,7 +1664,7 @@ public class OBS_BACKUP extends JFrame {
 					uplpnl. Progres_Bar_1( i + 1);
 					for (int r = 0; r <= ls.size() - 1; r++)
 					{
-						uplpnl.  Progres_Bar_2( r + 1);
+						uplpnl.Progres_Bar_2( r + 1);
 						String ftpDOSYA = ls.get(r).getDosyaADI();
 						if (fileESITMI(ftpDOSYA,dosADI))
 						{
@@ -1842,7 +1842,7 @@ public class OBS_BACKUP extends JFrame {
 				for (int i = 0; i <= dbliste.size() - 1; i++)
 				{
 					dosADI = dbliste.get(i);
-					uplpnl. Progres_Bar_1( i + 1);
+					uplpnl.Progres_Bar_1( i + 1);
 					uplpnl.lblDosyaAdi.setText(dosADI);
 					for (int r = 0; r <= ls.size() - 1; r++)
 					{
@@ -2041,10 +2041,10 @@ public class OBS_BACKUP extends JFrame {
 				{
 					dosADI = dbliste.get(i).getAdi();
 					uplpnl.lblDosyaAdi.setText(dosADI);
-					uplpnl.Progres_Bar_1( i + 1);
+					uplpnl.Progres_Bar_1(i + 1);
 					for (int r = 0; r <= ls.size() - 1; r++)
 					{
-						uplpnl.Progres_Bar_2( r + 1);
+						uplpnl.Progres_Bar_2(r + 1);
 						String ftpDOSYA = ls.get(r).getDosyaADI();
 						int index = dosADI.lastIndexOf(".");
 						if (index >= 0)
@@ -2212,7 +2212,7 @@ public class OBS_BACKUP extends JFrame {
 				uplpnl.RPB2.setStringPainted(true);
 				for (int i = 0; i <= dbliste.size() - 1; i++)
 				{
-					uplpnl.Progres_Bar_1( i + 1);
+					uplpnl.Progres_Bar_1(i + 1);
 					for (int r = 0; r <= ls.size() - 1; r++)
 					{
 						uplpnl.Progres_Bar_2( r + 1);
@@ -2511,7 +2511,7 @@ public class OBS_BACKUP extends JFrame {
 	{
 		Component[] components = container.getComponents();
 		for (Component component : components) {
-			if (component.getName()!= null)
+			if (component.getName() != null)
 			{
 				if (component.getName().toString().equals(emirADI)) {
 					JPanel qweJPanel = (JPanel) component ; 

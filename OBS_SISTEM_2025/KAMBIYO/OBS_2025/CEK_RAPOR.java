@@ -46,7 +46,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.beans.PropertyVetoException;
 
-@SuppressWarnings({"serial","static-access"})
+@SuppressWarnings({"serial","static-access","deprecation"})
 public class CEK_RAPOR extends JInternalFrame {
 	private static JTable table;
 	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
@@ -83,7 +83,6 @@ public class CEK_RAPOR extends JInternalFrame {
 		if(! oac.gridcolor.toString().equals("java.awt.Color[r=255,g=255,b=255]"))
 			table.setGridColor(oac.gridcolor);
 		table.addKeyListener(new KeyAdapter() {
-			@SuppressWarnings("deprecation")
 			@Override
 			public void keyPressed(KeyEvent e) {
 				try {
@@ -277,7 +276,7 @@ public class CEK_RAPOR extends JInternalFrame {
 			dd.height = 30;
 			th.setPreferredSize(dd); 
 			th.repaint();
-			table.setRowSelectionInterval(0, 0);
+			//table.setRowSelectionInterval(0, 0);
 			table.setRowHeight(21);
 			int toplam=0;
 			for (int i = 0 ; i <= table.getRowCount() -1 ; i ++)

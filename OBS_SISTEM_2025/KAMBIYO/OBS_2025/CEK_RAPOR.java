@@ -187,7 +187,7 @@ public class CEK_RAPOR extends JInternalFrame {
 					FILTRE.txtd1.getText(), FILTRE.txtd2.getText(),
 					TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_6_2), TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_6_2_1),
 					FILTRE.cmbg.getItemAt(FILTRE.cmbg.getSelectedIndex()).toString().equals("Bos") ? "" :FILTRE.cmbg.getItemAt(FILTRE.cmbg.getSelectedIndex()).toString() + "%",
-							FILTRE.cmbc.getItemAt(FILTRE.cmbc.getSelectedIndex()).toString().equals("Bos") ? "" :FILTRE.cmbc.getItemAt(FILTRE.cmbc.getSelectedIndex()).toString() + "%");
+					FILTRE.cmbc.getItemAt(FILTRE.cmbc.getSelectedIndex()).toString().equals("Bos") ? "" :FILTRE.cmbc.getItemAt(FILTRE.cmbc.getSelectedIndex()).toString() + "%");
 			if (!rs.isBeforeFirst() ) {  
 				lbladet.setText(FORMATLAMA.doub_0(0));
 				return;

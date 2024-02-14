@@ -284,7 +284,6 @@ public class OBS_BACKUP extends JFrame {
 		{
 			glb.backup_surucu_kontrol();
 			pidlb = new JLabel("");
-			btnKapat = new JButton("");
 			pidKONTROL(); // PID yaz
 			secondRUN(); // Baska Calisan Kopya varsa kendini kapa
 			diltemaString = bckp.ayar_oku();
@@ -797,15 +796,16 @@ public class OBS_BACKUP extends JFrame {
 			Component horizontalGlue = Box.createHorizontalGlue();
 			toolBar.add(horizontalGlue);
 		}
-		JButton btnkapat= new JButton("");
-		btnkapat.setToolTipText("Kapat");
-		btnkapat.addActionListener(new ActionListener() {
+		JButton btnkapatt= new JButton("");
+		btnkapatt.setToolTipText("Kapat");
+		btnkapatt.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.exit(0);
 			}
 		});
-		btnkapat.setIcon(new ImageIcon(OBS_BACKUP.class.getResource("/obs/backup/icons/exit.png")));
-		toolBar.add(btnkapat);
+		btnkapatt.setIcon(new ImageIcon(OBS_BACKUP.class.getResource("/obs/backup/icons/exit.png")));
+		toolBar.add(btnkapatt);
+		
 		JLabel sprt = new JLabel("   ");
 		sprt.setSize(new Dimension(20,20));
 		toolBar.add(sprt );
@@ -923,7 +923,7 @@ public class OBS_BACKUP extends JFrame {
 				systemTRY();
 			}
 		});
-		
+		btnKapat = new JButton("");
 		btnKapat.setVisible(false);
 		btnKapat.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -2682,7 +2682,16 @@ public class OBS_BACKUP extends JFrame {
 			int dosyaPID = bckp.pid_oku() ; 
 			pidlb.setText("PID : " + String.valueOf(dosyaPID));
 			if(dosyaPID != (int) ProcessHandle.current().pid() || dosyaPID == 0)
-				btnKapat.doClick();
+			{
+				emirleriSTOPYAP();
+				if(timerr != null)
+				{
+					timerr.cancel();
+		            timerr.purge();
+		            timerr = null;
+				}
+				System.exit(0);
+			}
 		} catch (Exception ex) 
 		{
 			try {

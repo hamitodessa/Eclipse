@@ -777,11 +777,12 @@ public class OBS_BACKUP extends JFrame {
 				ayarlarPanel.comboBox.setSelectedItem(diltemaString[1]);
 				ayarlarPanel.chckbxPrgSifre.setSelected(Integer.valueOf(diltemaString[4]) == 0 ? false:true);
 				try {
-					if( Integer.valueOf(diltemaString[5]) == 0 ? false:true)
+					if(Integer.valueOf(diltemaString[5]) == 0 ? false:true)
 					{
 						if(ayarlarPanel.jobKontrol("OBS_BACKUP"))
 							ayarlarPanel.chckbxWinStart.setSelected(true);
-						else {
+						else 
+						{
 							bckp.ayarSchedulerUpdate(0);
 							ayarlarPanel.chckbxWinStart.setSelected(false);	
 						}

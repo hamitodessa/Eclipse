@@ -766,7 +766,6 @@ public class OBS_BACKUP extends JFrame {
 		btnHakkinda.setIcon(new ImageIcon(OBS_BACKUP.class.getResource("/obs/backup/icons/about-24.png")));
 		toolBar.add(btnHakkinda);
 		//
-		//
 		btnAyarlar= new JButton("");
 		btnAyarlar.setToolTipText("Ayarlar");
 		btnAyarlar.setEnabled(false);
@@ -1745,10 +1744,8 @@ public class OBS_BACKUP extends JFrame {
 			String decodedString = ftpBilgi.get(0).getSIFRE();
 			String[] byteValues = decodedString.substring(1, decodedString.length() - 1).split(",");
 			byte[] bytes = new byte[byteValues.length];
-			for (int i=0, len=bytes.length; i<len; i++) 
-			{
+			for (int i=0, len=bytes.length; i<len; i++)
 				bytes[i] = Byte.parseByte(byteValues[i].trim());     
-			}
 			sifre = ENCRYPT_DECRYPT_STRING.dCRYPT_manual(bytes) ;
 			surucu = ftpBilgi.get(0).getSURUCU();
 			int port = Integer.valueOf( ftpBilgi.get(0).getPORT());
@@ -1788,9 +1785,8 @@ public class OBS_BACKUP extends JFrame {
 			decodedString = serverBilgi.get(0).getSIFRE();
 			byteValues = decodedString.substring(1, decodedString.length() - 1).split(",");
 			bytes = new byte[byteValues.length];
-			for (int i=0, len=bytes.length; i<len; i++) {
+			for (int i=0, len=bytes.length; i<len; i++)
 				bytes[i] = Byte.parseByte(byteValues[i].trim());     
-			}
 			String sqlsifre = ENCRYPT_DECRYPT_STRING.dCRYPT_manual(bytes) ;
 			if (serverBilgi.get(0).getHANGI_SQL().equals("Ms Sql"))
 				bckp.MsSql_baglan(serverBilgi.get(0).getINSTANCE() ,serverBilgi.get(0).getKULLANICI(),sqlsifre,serverBilgi.get(0).getPORT());
@@ -1942,7 +1938,6 @@ public class OBS_BACKUP extends JFrame {
 		}
 		bckp.genel_kayit_durum(emirADI, false, sonyuk, "");// Herhalukarda islem baslangici yedeklenemdi notu
 		List<db_List> dbliste = bckp.diger_dosya_liste(emirADI);
-
 		if (dbliste.size() == 0)
 		{
 			bckp.log_kayit(emirADI, new Date(),dilSecenek.dil(dILS, "Yuklenecek Dosya Secilmemis")  );
@@ -2124,10 +2119,8 @@ public class OBS_BACKUP extends JFrame {
 			String decodedString = ftpBilgi.get(0).getSIFRE();
 			String[] byteValues = decodedString.substring(1, decodedString.length() - 1).split(",");
 			byte[] bytes = new byte[byteValues.length];
-			for (int i=0, len=bytes.length; i<len; i++) 
-			{
+			for (int i=0, len=bytes.length; i<len; i++)
 				bytes[i] = Byte.parseByte(byteValues[i].trim());     
-			}
 			sifre = ENCRYPT_DECRYPT_STRING.dCRYPT_manual(bytes) ;
 			surucu = ftpBilgi.get(0).getSURUCU();
 			int port = Integer.valueOf( ftpBilgi.get(0).getPORT());
@@ -2346,9 +2339,7 @@ public class OBS_BACKUP extends JFrame {
 					container.remove(component);
 			}
 			else if (component.getName() == null)
-			{
 				container.remove(component);
-			}
 		}
 		container.revalidate();
 		container.repaint();
@@ -2369,9 +2360,8 @@ public class OBS_BACKUP extends JFrame {
 			String decodedString = bilgiBilgi.get(0).getSIFRE();
 			String[] byteValues = decodedString.substring(1, decodedString.length() - 1).split(",");
 			byte[] bytes = new byte[byteValues.length];
-			for (int i=0, len=bytes.length; i<len; i++) {
+			for (int i=0, len=bytes.length; i<len; i++)
 				bytes[i] = Byte.parseByte(byteValues[i].trim());     
-			}
 			sifre = ENCRYPT_DECRYPT_STRING.dCRYPT_manual(bytes) ;
 			if (bilgiBilgi.get(0).isSSL())
 				ssl = true;
@@ -2402,12 +2392,10 @@ public class OBS_BACKUP extends JFrame {
 			MimeMessage message = new MimeMessage(session);
 			message.setFrom(new InternetAddress(gonhesap ,gonisim ));
 			InternetAddress[] toAddress = new InternetAddress[to.length];
-			for (int i = 0; i < to.length; i++) {
+			for (int i = 0; i < to.length; i++)
 				toAddress[i] = new InternetAddress(to[i]);
-			}
-			for (int i = 0; i < toAddress.length; i++) {
+			for (int i = 0; i < toAddress.length; i++)
 				message.setRecipient(RecipientType.TO,  toAddress[i]);
-			}
 			messagePart = new MimeBodyPart();
 			DatagramSocket socket = new DatagramSocket();
 			socket.connect(new InetSocketAddress("google.com", 80));
@@ -2724,10 +2712,8 @@ public class OBS_BACKUP extends JFrame {
 			String decodedString = diltemaString[3];
 			String[] byteValues = decodedString.substring(1, decodedString.length() - 1).split(",");
 			byte[] bytes = new byte[byteValues.length];
-			for (int i=0, len=bytes.length; i<len; i++) 
-			{
+			for (int i=0, len=bytes.length; i<len; i++)
 				bytes[i] = Byte.parseByte(byteValues[i].trim());     
-			}
 			try 
 			{
 				ayarlarPanel.chckbxSifrele.setSelected(true);

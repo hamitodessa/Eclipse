@@ -776,7 +776,21 @@ public class OBS_BACKUP extends JFrame {
 				ayarlarPanel.comboBox_1.setSelectedItem(diltemaString[0]);
 				ayarlarPanel.comboBox.setSelectedItem(diltemaString[1]);
 				ayarlarPanel.chckbxPrgSifre.setSelected(Integer.valueOf(diltemaString[4]) == 0 ? false:true);
-				ayarlarPanel.chckbxWinStart.setSelected(Integer.valueOf(diltemaString[5]) == 0 ? false:true);
+				try {
+					if( Integer.valueOf(diltemaString[5]) == 0 ? false:true)
+					{
+						if(ayarlarPanel.jobKontrol("OBS_BACKUP"))
+							ayarlarPanel.chckbxWinStart.setSelected(true);
+						else {
+							bckp.ayarSchedulerUpdate(0);
+							ayarlarPanel.chckbxWinStart.setSelected(false);	
+						}
+					}
+					else
+						ayarlarPanel.chckbxWinStart.setSelected(false);	
+				} catch (Exception e1) {
+					e1.printStackTrace();
+				}
 				ayarlarPanel.chckbxVersion.setSelected(Integer.valueOf(diltemaString[6]) == 0 ? false:true);
 				ayarlarPanel.chckbxMenu.setSelected(Integer.valueOf(diltemaString[7]) == 0 ? false:true);
 				ayarlarPanel.passwordText.setVisible(ayarlarPanel.chckbxSifrele.isSelected());

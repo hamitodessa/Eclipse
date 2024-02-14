@@ -251,7 +251,7 @@ public class Ayarlar extends JPanel {
 		reader.close();//
 		return appPath;
 	}
-	private boolean jobKontrol(String jobName) throws IOException, ClassNotFoundException, SQLException
+	public boolean jobKontrol(String jobName) throws IOException, ClassNotFoundException, SQLException
 	{
 		boolean result = false;
 		Runtime rt = Runtime.getRuntime();

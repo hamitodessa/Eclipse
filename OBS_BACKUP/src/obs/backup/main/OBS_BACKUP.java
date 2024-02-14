@@ -284,6 +284,7 @@ public class OBS_BACKUP extends JFrame {
 		{
 			glb.backup_surucu_kontrol();
 			pidlb = new JLabel("");
+			btnKapat = new JButton("");
 			pidKONTROL(); // PID yaz
 			secondRUN(); // Baska Calisan Kopya varsa kendini kapa
 			diltemaString = bckp.ayar_oku();
@@ -922,7 +923,7 @@ public class OBS_BACKUP extends JFrame {
 				systemTRY();
 			}
 		});
-		btnKapat = new JButton("");
+		
 		btnKapat.setVisible(false);
 		btnKapat.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

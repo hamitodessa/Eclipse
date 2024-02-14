@@ -1603,7 +1603,11 @@ public class DEKONT extends JInternalFrame {
 		btnHYenileB.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				getContentPane().setCursor(oac.WAIT_CURSOR);
-				String kODString = cmbbhes.getSelectedItem().toString();
+				String kODString = "" ;
+				if(cmbbhes.getSelectedItem() != null)
+				{
+					kODString = cmbbhes.getSelectedItem().toString();
+				}
 				AUTO_HESAP_KODU.auto_doldur(cmbbhes);
 				cmbbhes.setSelectedItem(kODString);
 				getContentPane().setCursor(oac.DEFAULT_CURSOR);
@@ -1620,7 +1624,11 @@ public class DEKONT extends JInternalFrame {
 		btnHYenileA.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				getContentPane().setCursor(oac.WAIT_CURSOR);
-				String kODString = cmbahes.getSelectedItem().toString();
+				String kODString = "" ;
+				if(cmbahes.getSelectedItem() != null)
+				{
+					kODString = cmbahes.getSelectedItem().toString();
+				}
 				AUTO_HESAP_KODU.auto_doldur(cmbahes);
 				cmbahes.setSelectedItem(kODString);
 				getContentPane().setCursor(oac.DEFAULT_CURSOR);

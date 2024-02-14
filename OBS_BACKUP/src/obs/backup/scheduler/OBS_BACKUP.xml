@@ -2,7 +2,7 @@
 <Task version="1.2" xmlns="http://schemas.microsoft.com/windows/2004/02/mit/task">
   <RegistrationInfo>
     <Date>TARIH</Date>
-    <Author>OBS_BACKUP</Author>
+    <Author>AUT_HOR</Author>
     <URI>\OBS_BACKUP</URI>
   </RegistrationInfo>
   <Triggers>

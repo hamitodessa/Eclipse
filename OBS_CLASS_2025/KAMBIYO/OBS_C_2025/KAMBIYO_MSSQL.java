@@ -20,7 +20,6 @@ public class KAMBIYO_MSSQL implements IKAMBIYO{
 	public void baglan() throws SQLException
 	{
 		String cumle = "jdbc:sqlserver://" + BAGLAN.kamDizin.cONN_STR + ";";
-		//DriverManager.setLoginTimeout(0);
 		con = DriverManager.getConnection(cumle,BAGLAN.kamDizin.kULLANICI,BAGLAN.kamDizin.sIFRESI);
 	}
 	@Override
@@ -342,14 +341,10 @@ public class KAMBIYO_MSSQL implements IKAMBIYO{
 		rss.next();
 
 		String result;
-		if (rss.getRow() != 0) 
-		{
+		if (rss.getRow() != 0)
 			result = rss.getString("ACIKLAMA");
-		}
 		else
-		{
 			result = "";
-		}
 		return result;	
 
 	}

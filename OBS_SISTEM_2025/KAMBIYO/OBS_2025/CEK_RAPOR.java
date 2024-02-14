@@ -80,11 +80,8 @@ public class CEK_RAPOR extends JInternalFrame {
 		JTableHeader header = table.getTableHeader();
 		header.addMouseListener(new TableHeaderMouseListener(table));
 		
-		if(! oac.gridcolor.toString().equals("java.awt.Color[r=255,g=255,b=255]")) 
-		{
+		if(! oac.gridcolor.toString().equals("java.awt.Color[r=255,g=255,b=255]"))
 			table.setGridColor(oac.gridcolor);
-		}
-
 		table.addKeyListener(new KeyAdapter() {
 			@SuppressWarnings("deprecation")
 			@Override
@@ -286,13 +283,9 @@ public class CEK_RAPOR extends JInternalFrame {
 			for (int i = 0 ; i <= table.getRowCount() -1 ; i ++)
 			{
 				if (table.getValueAt(i , 10).toString().equals("01.01.1900"))
-				{
 					table.setValueAt("",i , 10);
-				}
 				if (table.getValueAt(i , 13).toString().equals("01.01.1900"))
-				{
 					table.setValueAt("",i , 13);
-				}
 				toplam += (double) table.getValueAt(i , 8);
 			}
 			lblToplam.setText(FORMATLAMA.doub_2(toplam));

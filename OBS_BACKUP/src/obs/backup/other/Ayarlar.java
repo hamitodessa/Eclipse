@@ -244,6 +244,7 @@ public class Ayarlar extends JPanel {
 		content = content.replaceAll("TARIH", tarIH);
 		content = content.replaceAll("DOSYA", Matcher.quoteReplacement(appPath + dosya));
 		content = content.replaceAll("KULLANICI", System.getProperty("user.name"));	
+		content = content.replaceAll("AUT_HOR", System.getProperty("user.name"));	
 		OutputStreamWriter writer =new OutputStreamWriter(new FileOutputStream(GLOBAL.SURUCU + xmlDosya + ".xml"),StandardCharsets.UTF_8);
 		writer.write(content);
 		writer.close();

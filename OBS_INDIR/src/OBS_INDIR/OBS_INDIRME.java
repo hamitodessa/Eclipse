@@ -396,7 +396,7 @@ public class OBS_INDIRME extends JFrame {
 					inputStream.close();
 					//Version dosyasi Indir
 					String remoteFile1 = ftp.printWorkingDirectory() + "/OBS_VERSION.txt";
-					File downloadFile1 = new File(GLOBAL.SURUCU + "\\OBS_VERSION.txt");
+					File downloadFile1 = new File(GLOBAL.SURUCU + File.separator + "OBS_VERSION.txt");
 					OutputStream outputStream1 = new BufferedOutputStream(new FileOutputStream(downloadFile1));
 					ftp.retrieveFile(remoteFile1, outputStream1);
 					outputStream1.close();
@@ -493,7 +493,7 @@ public class OBS_INDIRME extends JFrame {
 					
 					//Version dosyasi Indir
 					String remoteFile1 = ftp.printWorkingDirectory() + "/OBS_BACKUP_VERSION.txt";
-					File downloadFile1 = new File(GLOBAL.SURUCU + "\\OBS_BACKUP_VERSION.txt");
+					File downloadFile1 = new File(GLOBAL.SURUCU + File.separator + "OBS_BACKUP_VERSION.txt");
 					OutputStream outputStream1 = new BufferedOutputStream(new FileOutputStream(downloadFile1));
 					ftp.retrieveFile(remoteFile1, outputStream1);
 					outputStream1.close();
@@ -766,15 +766,15 @@ public class OBS_INDIRME extends JFrame {
 					inputStream.close();
 					//Version dosyasi Indir
 					String remoteFile1 = "/OBS_SISTEM_2025/OBS_VERSION.txt";
-					File tmpDir = new File( "C:\\OBS_SISTEM\\" );
+					File tmpDir = new File( "C:" + File.separator + "OBS_SISTEM" + File.separator );
 					boolean exists = tmpDir.exists();
 					if (! exists)
 					{
 						tmpDir.mkdirs();
-						File logDir = new File("C:\\OBS_SISTEM\\");
+						File logDir = new File("C:" + File.separator + "OBS_SISTEM" + File.separator);
 						logDir.mkdirs();
 					}
-					File downloadFile1 = new File( "C:/OBS_SISTEM" + "/OBS_VERSION.txt");
+					File downloadFile1 = new File( "C:" + File.separator + "OBS_SISTEM" + File.separator +"OBS_VERSION.txt");
 					//
 					if (!downloadFile1.exists()) {
 						downloadFile1.createNewFile();

@@ -1608,7 +1608,7 @@ public class OBS_BACKUP extends JFrame {
 			eskiyedek =  Integer.valueOf(ftpBilgi.get(0).getESKI_YEDEK());
 			zmnasimi = Integer.valueOf(ftpBilgi.get(0).getZMN_ASIMI());
 			surucu_yer = ftpBilgi.get(0).getSURUCU_YER();
-			uplpnl.lblSurucu.setText( ftpBilgi.get(0).getSURUCU_YER().replace("/", "\\"));
+			uplpnl.lblSurucu.setText( ftpBilgi.get(0).getSURUCU_YER().replace("/", File.separator));
 			String sqlsifre = ENCRYPT_DECRYPT_STRING.dCRYPT_manual(bytes) ;
 			if (serverBilgi.get(0).getHANGI_SQL().equals("Ms Sql"))
 				bckp.MsSql_baglan(serverBilgi.get(0).getINSTANCE() ,serverBilgi.get(0).getKULLANICI(),sqlsifre,serverBilgi.get(0).getPORT());
@@ -1643,8 +1643,8 @@ public class OBS_BACKUP extends JFrame {
 					File tmpDir = new File(ftpBilgi.get(0).getSURUCU_YER());
 					if (! tmpDir.exists())
 						tmpDir.mkdirs();
-					glb.dos_sil(surucu_yer + "\\" + dzip);
-					fileCOPY(glb.BACKUP_YERI + dzip,surucu_yer + "\\" + dzip);
+					glb.dos_sil(surucu_yer + File.separator + dzip);
+					fileCOPY(glb.BACKUP_YERI + dzip,surucu_yer + File.separator + dzip);
 					glb.dos_sil(glb.BACKUP_YERI + dzip);
 					bckp.log_kayit(emirADI, new Date(), dosADI + dilSecenek.dil(dILS," Surucuye Yuklendi")  );
 					if (serverBilgi.get(0).getHANGI_SQL().equals("Ms Sql"))
@@ -1695,7 +1695,7 @@ public class OBS_BACKUP extends JFrame {
 							if (araFARK> (eskiyedek*24)) 
 							{
 								bckp.log_kayit(emirADI, new Date(),ls.get(r).getDosyaADI() + dilSecenek.dil(dILS," Surucuye Silmeye Gitti") );
-								glb.dos_sil(surucu_yer + "\\" +  ls.get(r).getDosyaADI());
+								glb.dos_sil(surucu_yer + File.separator +  ls.get(r).getDosyaADI());
 								bckp.log_kayit(emirADI, new Date(),ls.get(r).getDosyaADI() + dilSecenek.dil(dILS," Dosya Surucuden Eski Tarihli Silindi") );
 							}
 						}
@@ -1757,7 +1757,7 @@ public class OBS_BACKUP extends JFrame {
 			zmnasimi = Integer.valueOf(ftpBilgi.get(0).getZMN_ASIMI());
 			neresi = ftpBilgi.get(0).getNERESI();
 			surucu_yer = ftpBilgi.get(0).getSURUCU_YER();
-			uplpnl.lblSurucu.setText( ftp + "\\" + surucu.replace("/", "\\"));
+			uplpnl.lblSurucu.setText( ftp +  File.separator  + surucu.replace("/",  File.separator ));
 			if (glb.internet_kontrol() == false)
 			{
 				bckp.genel_kayit_durum(emirADI, false, new Date(),dilSecenek.dil(dILS,"Yedeklenmedi Internet Baglantisi Yok")  );
@@ -1981,7 +1981,7 @@ public class OBS_BACKUP extends JFrame {
 			gorevSETCURSOR(Cursor.WAIT_CURSOR);
 			int eskiyedek;
 			eskiyedek = Integer.valueOf(ftpBilgi.get(0).getESKI_YEDEK());
-			uplpnl.lblSurucu.setText(ftpBilgi.get(0).getSURUCU_YER().replace("/", "\\"));
+			uplpnl.lblSurucu.setText(ftpBilgi.get(0).getSURUCU_YER().replace("/",  File.separator ));
 			String tarr = TARIH_CEVIR.tarihddMMyyyyHHmm(new Date());
 			bckp.log_kayit(emirADI, new Date(),dilSecenek.dil(dILS, "Yedeklemeye Baslandi")  );
 			String dosADI = "";
@@ -1995,7 +1995,7 @@ public class OBS_BACKUP extends JFrame {
 				uplpnl. Progres_Bar_1( i + 1);
 				uplpnl.lblDosyaAdi.setText(dosADI);
 				dosADI = dbliste.get(i).getAdi();
-				File file = new File(dbliste.get(i).getPath() +"\\" + dbliste.get(i).getAdi());
+				File file = new File(dbliste.get(i).getPath() + File.separator  + dbliste.get(i).getAdi());
 				if(file.exists())
 				{
 					folderMI = file.isDirectory(); // Check if it's a directory
@@ -2005,15 +2005,15 @@ public class OBS_BACKUP extends JFrame {
 					int index = dosADI.lastIndexOf(".");
 					if (index >= 0)
 						uzantisiz = input.substring(0, index); // or index + 1 to keep slash
-					dosya = dbliste.get(i).getPath() + "\\" + dosADI;
-					dpath = dbliste.get(i).getPath() + "\\";
+					dosya = dbliste.get(i).getPath() +  File.separator  + dosADI;
+					dpath = dbliste.get(i).getPath() +  File.separator ;
 					dzip = tarr + "_" + uzantisiz + ".zip";
 					if (folderMI)
 					{
 						uplpnl.RPB2.setString(dilSecenek.dil(dILS, "Zip Haline Getiriliyor")  );
 						dzip = tarr + "_" + dbliste.get(i).getAdi() + ".zip";
-						String okumadosyaadi = dbliste.get(i).getPath() +"\\"+dbliste.get(i).getAdi()+"\\";
-						Path pathokuma = Paths.get(dbliste.get(i).getPath() +"\\"+dbliste.get(i).getAdi()); 
+						String okumadosyaadi = dbliste.get(i).getPath() + File.separator +dbliste.get(i).getAdi()+ File.separator ;
+						Path pathokuma = Paths.get(dbliste.get(i).getPath() + File.separator +dbliste.get(i).getAdi()); 
 						Path pathyazma = Paths.get(glb.BACKUP_YERI, dzip); 
 						bckp. zip_folder_sifrele(pathokuma,pathyazma,sifRELE, zipSIFRE);
 						uplpnl.RPB2.setString("");
@@ -2021,7 +2021,7 @@ public class OBS_BACKUP extends JFrame {
 					else
 					{
 						uplpnl.RPB2.setString(dilSecenek.dil(dILS, "Zip Haline Getiriliyor"));
-						String okumadosyaadi = dbliste.get(i).getPath() + "\\" + dbliste.get(i).getAdi();
+						String okumadosyaadi = dbliste.get(i).getPath() +  File.separator  + dbliste.get(i).getAdi();
 						bckp.diger_zip_yap_sifrele(okumadosyaadi, glb.BACKUP_YERI, dzip, sifRELE, zipSIFRE);
 						uplpnl.RPB2.setString("");
 					}
@@ -2029,8 +2029,8 @@ public class OBS_BACKUP extends JFrame {
 					File tmpDir = new File(ftpBilgi.get(0).getSURUCU_YER());
 					if (! tmpDir.exists())
 						tmpDir.mkdirs();
-					fileCOPY(glb.BACKUP_YERI + dzip, ftpBilgi.get(0).getSURUCU_YER() + "\\" + dzip);
-					glb.dos_sil(glb.BACKUP_YERI + "\\" + dzip);
+					fileCOPY(glb.BACKUP_YERI + dzip, ftpBilgi.get(0).getSURUCU_YER() +  File.separator  + dzip);
+					glb.dos_sil(glb.BACKUP_YERI +  File.separator  + dzip);
 					bckp.log_kayit(emirADI, new Date(), dosADI + dilSecenek.dil(dILS, " Surucuye Yuklendi")  );
 					bckp.log_kayit(emirADI,new Date(), uzantisiz + dilSecenek.dil(dILS, " ZIP Dosyasi Silindi")  );
 				}
@@ -2074,7 +2074,7 @@ public class OBS_BACKUP extends JFrame {
 							if (araFARK > (eskiyedek * 24)) 
 							{
 								bckp.log_kayit(emirADI, new Date(),ls.get(r).getDosyaADI() + dilSecenek.dil(dILS, " Surucuye Silmeye Gitti") );
-								glb.dos_sil(ls.get(r).getFilePATH() + "\\" + ls.get(r).getDosyaADI());
+								glb.dos_sil(ls.get(r).getFilePATH() +  File.separator  + ls.get(r).getDosyaADI());
 								bckp.log_kayit(emirADI, new Date(), dosADI + dilSecenek.dil(dILS, " Dosya Surucuden Eski Tarihli Silindi") );
 							}
 						}
@@ -2132,7 +2132,7 @@ public class OBS_BACKUP extends JFrame {
 			zmnasimi = Integer.valueOf(ftpBilgi.get(0).getZMN_ASIMI());
 			neresi = ftpBilgi.get(0).getNERESI();
 			surucu_yer = ftpBilgi.get(0).getSURUCU_YER();
-			uplpnl.lblSurucu.setText( ftp + "\\" + surucu.replace("/", "\\"));
+			uplpnl.lblSurucu.setText( ftp +  File.separator  + surucu.replace("/",  File.separator ));
 			if (glb.internet_kontrol() == false)
 			{
 				bckp.genel_kayit_durum(emirADI, false, new Date(), dilSecenek.dil(dILS, "Yedeklenmedi Internet Baglantisi Yok") );
@@ -2171,7 +2171,7 @@ public class OBS_BACKUP extends JFrame {
 				uplpnl. Progres_Bar_1( i + 1);
 				uplpnl.lblDosyaAdi.setText(dosADI);
 				dosADI = dbliste.get(i).getAdi();
-				File file = new File(dbliste.get(i).getPath() +"\\"+dbliste.get(i).getAdi());
+				File file = new File(dbliste.get(i).getPath() + File.separator +dbliste.get(i).getAdi());
 				if(file.exists())
 				{
 					folderMI = file.isDirectory(); // Check if it's a directory
@@ -2181,21 +2181,21 @@ public class OBS_BACKUP extends JFrame {
 					int index = input.lastIndexOf(".");
 					if (index >= 0)
 						uzantisiz = input.substring(0, index); // or index + 1 to keep slash
-					dosya = dbliste.get(i).getPath() + "\\" + dosADI;
-					dpath = dbliste.get(i).getPath() + "\\";
+					dosya = dbliste.get(i).getPath() +  File.separator  + dosADI;
+					dpath = dbliste.get(i).getPath() +  File.separator ;
 					dzip = tarr + "_" + uzantisiz + ".zip";
 					uplpnl.Progres_Bar_Temizle_2();
 					if (folderMI)
 					{
 						dzip = tarr + "_" + dbliste.get(i).getAdi() + ".zip";
-						String okumadosyaadi = dbliste.get(i).getPath() + "\\" + dbliste.get(i).getAdi()+"\\";
-						Path pathokuma = Paths.get(dbliste.get(i).getPath() + "\\" + dbliste.get(i).getAdi()); 
+						String okumadosyaadi = dbliste.get(i).getPath() +  File.separator  + dbliste.get(i).getAdi()+ File.separator ;
+						Path pathokuma = Paths.get(dbliste.get(i).getPath() +  File.separator  + dbliste.get(i).getAdi()); 
 						Path pathyazma = Paths.get(glb.BACKUP_YERI, dzip); 
 						bckp. zip_folder_sifrele(pathokuma,pathyazma,sifRELE, zipSIFRE);
 					}
 					else
 					{
-						String okumadosyaadi = dbliste.get(i).getPath() + "\\" + dbliste.get(i).getAdi();
+						String okumadosyaadi = dbliste.get(i).getPath() +  File.separator  + dbliste.get(i).getAdi();
 						bckp.diger_zip_yap_sifrele(okumadosyaadi, glb.BACKUP_YERI, dzip, sifRELE, zipSIFRE);
 					}
 					bckp.log_kayit(emirADI, new Date(), dosADI + dilSecenek.dil(dILS, " Zip Haline Getirildi")  );
@@ -2952,7 +2952,7 @@ public class OBS_BACKUP extends JFrame {
 			String eskitar = "" ;
 			String eskiver = "";
 			String yeniver = "";
-			String fileName = GLOBAL.SURUCU  + "\\OBS_BACKUP_VERSION.txt";
+			String fileName = GLOBAL.SURUCU  + File.separator + "OBS_BACKUP_VERSION.txt";
 			String line = null;
 			FileReader fileReader = null;
 			int counter = 0;
@@ -3009,13 +3009,13 @@ public class OBS_BACKUP extends JFrame {
 			}
 			ftp.enterLocalPassiveMode();
 			String remoteFile1 = ftp.printWorkingDirectory() + "/OBS_BACKUP_VERSION.txt";
-			File downloadFile1 = new File( GLOBAL.SURUCU + "\\OBS_BACKUP_VERSIONS.txt");
+			File downloadFile1 = new File( GLOBAL.SURUCU + File.separator + "OBS_BACKUP_VERSIONS.txt");
 			OutputStream outputStream1 = new BufferedOutputStream(new FileOutputStream(downloadFile1));
 			boolean success = ftp.retrieveFile(remoteFile1, outputStream1);
 			outputStream1.close();
 			if (success == false)
 				{
-	            glb.dos_sil(GLOBAL.SURUCU +"\\OBS_BACKUP_VERSIONS.txt");
+	            glb.dos_sil(GLOBAL.SURUCU + File.separator + "OBS_BACKUP_VERSIONS.txt");
 				ftp.logout();
 				ftp.disconnect();
 				return ;
@@ -3023,7 +3023,7 @@ public class OBS_BACKUP extends JFrame {
 			ftp.logout();
 			ftp.disconnect();
 			fileName = "" ;
-			fileName = GLOBAL.SURUCU + "\\OBS_BACKUP_VERSIONS.txt";
+			fileName = GLOBAL.SURUCU + File.separator + "OBS_BACKUP_VERSIONS.txt";
 			fileReader = null;
 			fileReader =  new FileReader(fileName);
 			bufferedReader = null;
@@ -3039,10 +3039,10 @@ public class OBS_BACKUP extends JFrame {
 			}   
 			bufferedReader.close();
 			if (eskiver.equals(yeniver))
-				glb.dos_sil(GLOBAL.SURUCU + "\\OBS_BACKUP_VERSIONS.txt");
+				glb.dos_sil(GLOBAL.SURUCU + File.separator + "OBS_BACKUP_VERSIONS.txt");
 			else
 			{
-				glb.dos_sil(GLOBAL.SURUCU + "\\OBS_BACKUP_VERSIONS.txt");
+				glb.dos_sil(GLOBAL.SURUCU + File.separator + "OBS_BACKUP_VERSIONS.txt");
 				String html = "Yeni Versiyon Mevcut"
 						+ System.lineSeparator()
 						+ "Mevcut Version = " + eskiver + "      "

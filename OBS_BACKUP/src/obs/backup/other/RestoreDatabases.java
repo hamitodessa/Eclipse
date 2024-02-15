@@ -10,6 +10,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.KeyEvent;
+import java.io.File;
 import java.io.UnsupportedEncodingException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
@@ -251,8 +252,8 @@ public class RestoreDatabases  extends JPanel{
 							if(optionPane.getValue().toString().equals(options[1])) return;
 						bckp.dosyaSilMS(input.substring(13, index));
 					}
-					bckp.restoreMSSql(input.substring(13, index), glb.BACKUP_YERI + "\\" + input.substring(0, index) + ".bak" );
-					glb.dos_sil(glb.BACKUP_YERI + "\\" + input.substring(0, index) + ".bak");
+					bckp.restoreMSSql(input.substring(13, index), glb.BACKUP_YERI + File.separator + input.substring(0, index) + ".bak" );
+					glb.dos_sil(glb.BACKUP_YERI + File.separator + input.substring(0, index) + ".bak");
 				}
 				else if(sqlCins.equals("My Sql")) 
 				{
@@ -280,10 +281,10 @@ public class RestoreDatabases  extends JPanel{
 					for (int i=0, len=bytes.length; i<len; i++)
 						bytes[i] = Byte.parseByte(byteValues[i].trim());     
 					String sqlsifre = ENCRYPT_DECRYPT_STRING.dCRYPT_manual(bytes) ;
-					bckp.mySqlRestore(serverBilgi.get(0).getMY_DUMP(),serverBilgi.get(0).getKULLANICI(),sqlsifre,glb.BACKUP_YERI + "\\" + input.substring(0, index) + ".sql" );
-					glb.dos_sil(glb.BACKUP_YERI + "\\" + input.substring(0, index) + ".sql");
+					bckp.mySqlRestore(serverBilgi.get(0).getMY_DUMP(),serverBilgi.get(0).getKULLANICI(),sqlsifre,glb.BACKUP_YERI + File.separator + input.substring(0, index) + ".sql" );
+					glb.dos_sil(glb.BACKUP_YERI + File.separator + input.substring(0, index) + ".sql");
 				}
-				glb.dos_sil(glb.BACKUP_YERI + "\\" + dosADI);
+				glb.dos_sil(glb.BACKUP_YERI + File.separator + dosADI);
 				bckp.log_kayit("System", new Date(), input.substring(0, index) + " " + dilSecenek.dil(OBS_BACKUP.dILS, "Veritabani Restore Edildi"));
 				OBS_BACKUP.mesajGoster(10000,Notifications.Type.INFO, input.substring(0, index) + " " + dilSecenek.dil(OBS_BACKUP.dILS, "Veritabani Restore Edildi")); 
 			}

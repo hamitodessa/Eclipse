@@ -24,6 +24,7 @@ import javax.swing.JButton;
 import javax.swing.JFileChooser;
 
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.awt.event.ActionEvent;
 
 public class ServerBilgileri extends JPanel {
@@ -316,7 +317,7 @@ public class ServerBilgileri extends JPanel {
 		lblNewLabel_5.setBounds(47, 219, 89, 14);
 		panel_1.add(lblNewLabel_5);
 		
-		textMyDump = new Obs_TextFIeld(200,"C:\\Program Files\\MySQL\\MySQL Workbench 8.0\\");
+		textMyDump = new Obs_TextFIeld(200,"C:" + File.separator + "Program Files" + File.separator + "MySQL" + File.separator + "MySQL Workbench 8.0" + File.separator);
 		textMyDump.setBounds(137, 213, 587, 20);
 		panel_1.add(textMyDump);
 		textMyDump.setColumns(10);

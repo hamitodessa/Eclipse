@@ -42,6 +42,7 @@ import javax.swing.ImageIcon;
 import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.io.File;
 import java.awt.event.ActionEvent;
 
 @SuppressWarnings({"serial","deprecation"})
@@ -520,7 +521,7 @@ public  class gOREV_TAKIP extends JPanel {
 				else 
 				{
 					lblDosyaSayisi.setText(dbliste.size() + dilSecenek.dil(OBS_BACKUP.dILS," Adet Dosya - ")  + insTANCE);
-					lblSurucu.setText(ftpBilgi.get(0).getHOST() + "\\" + ftpBilgi.get(0).getSURUCU().replace("/", "\\"));
+					lblSurucu.setText(ftpBilgi.get(0).getHOST() + File.separator + ftpBilgi.get(0).getSURUCU().replace("/", File.separator));
 				}
 			}
 			else
@@ -549,7 +550,7 @@ public  class gOREV_TAKIP extends JPanel {
 				else
 				{
 					lblDosyaSayisi.setText(dosliste.size() +  dilSecenek.dil(OBS_BACKUP.dILS," Adet Dosya"));
-					lblSurucu.setText(ftpBilgi.get(0).getHOST() + "\\" + ftpBilgi.get(0).getSURUCU().replace("/", "\\"));
+					lblSurucu.setText(ftpBilgi.get(0).getHOST() + File.separator + ftpBilgi.get(0).getSURUCU().replace("/", File.separator));
 				}
 			}
 			else

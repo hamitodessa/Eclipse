@@ -6,6 +6,7 @@ import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.net.URI;
 import javax.swing.ImageIcon;
@@ -164,7 +165,7 @@ public class Hakkinda extends JPanel {
 	private void versiyon_oku()
 	{
 		try {
-			String fileName = GLOBAL.SURUCU + "\\OBS_BACKUP_VERSION.txt";
+			String fileName = GLOBAL.SURUCU + File.separator + "OBS_BACKUP_VERSION.txt";
 			if(GLOBAL.dos_kontrol(fileName) == false) return;
 			String line = null;
 			FileReader fileReader = null;

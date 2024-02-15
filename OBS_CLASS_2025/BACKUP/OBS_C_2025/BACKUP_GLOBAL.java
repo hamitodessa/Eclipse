@@ -1300,7 +1300,7 @@ public class BACKUP_GLOBAL {
 			{
 				if(contents[i].substring(contents[i].length() - 3).equals("zip"))
 				{
-					zipFile = new ZipFile(surucu + "\\" + contents[i].toString());
+					zipFile = new ZipFile(surucu + File.separator + contents[i].toString());
 					if(zipFile.isValidZipFile())
 					{
 						fileHeaderList = zipFile.getFileHeaders();
@@ -1371,7 +1371,7 @@ public class BACKUP_GLOBAL {
 	{
 		boolean result = false;
 		try {
-			ZipFile zipFile = new ZipFile(surucu +  "\\" + fileName);
+			ZipFile zipFile = new ZipFile(surucu +  File.separator + fileName);
 			if(zipFile.isValidZipFile())
 			{
 				if (zipFile.isEncrypted())
@@ -1387,7 +1387,7 @@ public class BACKUP_GLOBAL {
 	public void getfilesINZIP(String fileName)
 	{
 		try {
-			ZipFile zipFile = new ZipFile(glb.BACKUP_YERI +   "\\" + fileName);
+			ZipFile zipFile = new ZipFile(glb.BACKUP_YERI + File.separator + fileName);
 			List fileHeaderList = zipFile.getFileHeaders();
 			for (int i = 0; i < fileHeaderList.size(); i++) {
 				FileHeader fileHeader = (FileHeader)fileHeaderList.get(i);
@@ -1470,7 +1470,7 @@ public class BACKUP_GLOBAL {
 	}
 	public void mySQL_backup( String myDUMP, String dbUser, String dbPass, String dbName,String savePath) throws IOException, InterruptedException
 	{
-		String executeCmd = myDUMP +"\\mysqldump.exe -u" + dbUser + " -p" + dbPass + " -B " + dbName + " -r " + savePath;
+		String executeCmd = myDUMP + File.separator + "mysqldump.exe -u" + dbUser + " -p" + dbPass + " -B " + dbName + " -r " + savePath;
 		Process runtimeProcess;
 		Runtime runtime = Runtime.getRuntime();
 		runtimeProcess = runtime.exec(executeCmd,null);
@@ -1482,7 +1482,7 @@ public class BACKUP_GLOBAL {
 	{
 		boolean result = false;
 		Runtime rt = Runtime.getRuntime();
-		String[] executeCmd = new String[]{ myDUMP + "\\mysql.exe", "-u" + dbUser, "-p" + dbPass, "-e", " source " + dbPath};
+		String[] executeCmd = new String[]{ myDUMP + File.separator + "mysql.exe", "-u" + dbUser, "-p" + dbPass, "-e", " source " + dbPath};
 		Process p = rt.exec(executeCmd);
 		int processComplete = p.waitFor();
 		if (processComplete == 0)

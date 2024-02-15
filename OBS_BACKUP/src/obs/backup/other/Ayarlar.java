@@ -19,6 +19,7 @@ import javax.swing.ImageIcon;
 
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -280,7 +281,7 @@ public class Ayarlar extends JPanel {
 		// [/RU username [/RP password]] /SC schedule [/MO modifier] [/D day]   System.getProperty("user.name")
 		//Process p = rt.exec("schtasks.exe /Create /XML "+ GLOBAL.SURUCU + "OBS_BACKUP.xml /TN OBS_BACKUP /RU SYSTEM");
 		java.net.InetAddress localMachine = java.net.InetAddress.getLocalHost();
-		String usERString = localMachine.getHostName() +"\\"+  System.getProperty("user.name") ;
+		String usERString = localMachine.getHostName() + File.separator +  System.getProperty("user.name") ;
 		Process p = rt.exec("schtasks.exe /Create /XML "+ GLOBAL.SURUCU + "OBS_BACKUP.xml /TN OBS_BACKUP /RU " + usERString +  " /RP " + schSifresi + "");
 		// Normal
 		InputStream is = p.getInputStream();
@@ -311,7 +312,7 @@ public class Ayarlar extends JPanel {
 					OBS_BACKUP.mesajGoster(10000,Notifications.Type.ERROR, line); 
 			}
 		}
-		Files.deleteIfExists( Paths.get(GLOBAL.SURUCU + "\\OBS_BACKUP.xml"));
+		Files.deleteIfExists( Paths.get(GLOBAL.SURUCU + File.separator + "OBS_BACKUP.xml"));
 	}
 	private void createSchedulerLogin() throws IOException, InterruptedException, ClassNotFoundException, SQLException
 	{
@@ -352,7 +353,7 @@ public class Ayarlar extends JPanel {
 					OBS_BACKUP.mesajGoster(10000,Notifications.Type.ERROR, line); 
 			}
 		}
-		Files.deleteIfExists( Paths.get(GLOBAL.SURUCU + "\\OBS_BACKUP_LOGIN.xml"));
+		Files.deleteIfExists( Paths.get(GLOBAL.SURUCU + File.separator + "OBS_BACKUP_LOGIN.xml"));
 	}
 	private void taskRunStartup() throws IOException, ClassNotFoundException, SQLException 
 	{

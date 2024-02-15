@@ -935,9 +935,8 @@ public class BACKUP_GLOBAL {
 		String decodedString =  rss.getString("SIFRE");
 		String[] byteValues = decodedString.substring(1, decodedString.length() - 1).split(",");
 		byte[] bytes = new byte[byteValues.length];
-		for (int i=0, len=bytes.length; i<len; i++) {
+		for (int i=0, len=bytes.length; i<len; i++)
 			bytes[i] = Byte.parseByte(byteValues[i].trim());     
-		}
 		sonucString = ENCRYPT_DECRYPT_STRING.dCRYPT_manual(bytes);
 		stmt.close();
 		con.close();

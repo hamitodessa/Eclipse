@@ -75,7 +75,6 @@ public class ENCRYPT_DECRYPT_STRING {
 		Cipher cipher = Cipher.getInstance("AES");
 		cipher.init(Cipher.DECRYPT_MODE, aesKey);
 		String decrypted = new String(cipher.doFinal(kelime));
-		
 		return  new String(decrypted);
 	}
 	public static void encryptedFile( String fileInputPath, String fileOutPath)

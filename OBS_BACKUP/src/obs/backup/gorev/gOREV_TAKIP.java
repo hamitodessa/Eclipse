@@ -423,7 +423,7 @@ public  class gOREV_TAKIP extends JPanel {
 			timerDURDUR=true;
 			tt.cancel();
 		}
-		bckp.log_kayit(eADI, new Date(), dilSecenek.dil(OBS_BACKUP.dILS,"Yedekleme Sirasina Konuldu") );
+		bckp.log_kayit(eADI, new Date(),(int) ProcessHandle.current().pid()  + " / "+ dilSecenek.dil(OBS_BACKUP.dILS,"Yedekleme Sirasina Konuldu") );
 		lblSonDurum.setText(dilSecenek.dil(OBS_BACKUP.dILS,"Yedekleme Sirasina Konuldu"));
 		lblSonDurum.setForeground(Color.GREEN);
 	    OBS_BACKUP.gorevLER.add(eADI);

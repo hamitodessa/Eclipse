@@ -984,7 +984,7 @@ public class OBS_BACKUP extends JFrame {
 		//***********************************BASLAMA********************************************************************************
 		try 
 		{
-			bckp.log_kayit("System", new Date(),dilSecenek.dil(dILS,"Program Baslangici"));
+			bckp.log_kayit("System", new Date(),"Pid=" +(int) ProcessHandle.current().pid() + " / " + dilSecenek.dil(dILS,"Program Baslangici"));
 			dil();
 			emirYukle("EMIR_ISMI") ;
 			jobTimerBasla();
@@ -1022,7 +1022,7 @@ public class OBS_BACKUP extends JFrame {
 		};  
 		timerr.scheduleAtFixedRate(tt, 100, 5000);
 	}
-	private void yedekLE() throws ClassNotFoundException, SQLException
+	private void yedekLE() 
 	{
 		String eISMI = "" ;
 		try
@@ -1050,9 +1050,13 @@ public class OBS_BACKUP extends JFrame {
 		}
 		catch (Exception ex)
 		{
-			bckp.log_kayit(eISMI, new Date(), ex.getMessage());
-			backupTime = false;
-			jobTimerBasla();
+			try {
+				bckp.log_kayit(eISMI, new Date(), ex.getMessage());
+				backupTime = false;
+				jobTimerBasla();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}	}
 	public static void genelKayit() 
 	{
@@ -2669,11 +2673,12 @@ public class OBS_BACKUP extends JFrame {
 	{
 		try {
 			bckp.pid_kayit((int) ProcessHandle.current().pid());
+			bckp.log_kayit("System", new Date(), "Pid=" +(int) ProcessHandle.current().pid());
 		} catch (Exception ex) 
 		{
 			try 
 			{
-				bckp.log_kayit("System", new Date(),"PID=" + ex.getMessage());
+				bckp.log_kayit("System", new Date(),"Pid=" + ex.getMessage());
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -2693,6 +2698,7 @@ public class OBS_BACKUP extends JFrame {
 		            timerr.purge();
 		            timerr = null;
 				}
+				bckp.log_kayit("System", new Date(),"Pid=" + (int) ProcessHandle.current().pid() + " / "+  dilSecenek.dil(dILS,"Kapanis"));
 				System.exit(0);
 			}
 		} catch (Exception ex) 

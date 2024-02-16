@@ -988,13 +988,12 @@ public class OBS_BACKUP extends JFrame {
 			dil();
 			emirYukle("EMIR_ISMI") ;
 			jobTimerBasla();
-			// SIFRE EKRANI KONTROL***************************************
-			if(Integer.valueOf(diltemaString[4]) == 1 )
+			if(Integer.valueOf(diltemaString[4]) == 1 ) // SIFRE EKRANI KONTROL
 				tabbedPane.setSelectedIndex(4);
 			else
 				buttonlariGOSTER();
-		//****************************************************************
-		} catch (Exception ex) 
+		} 
+		catch (Exception ex) 
 		{
 			try 
 			{
@@ -2658,7 +2657,7 @@ public class OBS_BACKUP extends JFrame {
 			trayIcon.addActionListener(listener);
 			try {
 				tray.add(trayIcon);
-				trayIcon.displayMessage("OBS BACKUP", dilSecenek.dil(dILS, "Arka Plan basladi")    , MessageType.INFO);
+				trayIcon.displayMessage("OBS BACKUP", dilSecenek.dil(dILS, "Arka Plan basladi"),MessageType.INFO);
 				trayIcon.setToolTip("OBS BACKUP");
 			} catch (AWTException ex) {
 				mesajGoster(5000,Notifications.Type.WARNING, ex.getMessage());	
@@ -2673,7 +2672,7 @@ public class OBS_BACKUP extends JFrame {
 	{
 		try {
 			bckp.pid_kayit((int) ProcessHandle.current().pid());
-			bckp.log_kayit("System", new Date(), "Pid=" +(int) ProcessHandle.current().pid());
+			bckp.log_kayit("System", new Date(), "Pid=" + (int) ProcessHandle.current().pid());
 		} catch (Exception ex) 
 		{
 			try 
@@ -2704,7 +2703,7 @@ public class OBS_BACKUP extends JFrame {
 		} catch (Exception ex) 
 		{
 			try {
-				bckp.log_kayit("System", new Date(),"Second Run="+ ex.getMessage());
+				bckp.log_kayit("System", new Date(),"Second Run=" + ex.getMessage());
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -2896,7 +2895,7 @@ public class OBS_BACKUP extends JFrame {
 	}
 	private void tema(String tema)
 	{
-		if (tema ==null)
+		if (tema == null)
 		{
 			FlatCarbonIJTheme.setup();
 			return;
@@ -2958,7 +2957,8 @@ public class OBS_BACKUP extends JFrame {
 			int counter = 0;
 			fileReader =  new FileReader(fileName);
 			BufferedReader bufferedReader =    new BufferedReader(fileReader);
-			while((line = bufferedReader.readLine()) != null) {
+			while((line = bufferedReader.readLine()) != null) 
+			{
 				counter++;
 				if(counter == 1)
 					eskitar = line.toString();

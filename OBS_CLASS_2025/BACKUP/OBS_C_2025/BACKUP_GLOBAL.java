@@ -115,7 +115,7 @@ public class BACKUP_GLOBAL {
 		try
 		{
 			String cumle = "";
-			cumle = "jdbc:sqlserver://localhost" + porttString  +";instanceName=" + inss + ";";
+			cumle = "jdbc:sqlserver://localhost" + porttString  + ";instanceName=" + inss + ";";
 			con = DriverManager.getConnection(cumle,user,pwd);
 			return true ;
 		} 
@@ -128,7 +128,6 @@ public class BACKUP_GLOBAL {
 	{
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 		ResultSet	rss = null;
-		//F_CCMD.CommandText = "SELECT name FROM master.dbo.sysdatabases where name like 'OK_ % ' "
 		String sql  = "SELECT NAME FROM master.dbo.sysdatabases  Where NAME <> 'tempdb' ORDER BY NAME ASC ";
 		PreparedStatement stmt = S_CONN.prepareStatement(sql);
 		rss = stmt.executeQuery();
@@ -154,16 +153,12 @@ public class BACKUP_GLOBAL {
 		boolean result = false;
 		String sql  = "DROP DATABASE '" + dosADI + "'";
 		PreparedStatement stmt = S_CONN.prepareStatement(sql);
-		int updateCount= stmt.executeUpdate();
-
-		if(updateCount>0)
-		{
-		    result = true;
-		}
+		int updateCount = stmt.executeUpdate();
+		if(updateCount > 0)
+			result = true;
 		stmt.close();
 		return result;
 	}
-
 	public boolean dosyaKontrolMY(String dosADI) throws SQLException, ClassNotFoundException
 	{
 		Class.forName("com.mysql.cj.jdbc.Driver");
@@ -188,10 +183,8 @@ public class BACKUP_GLOBAL {
 		String sql  = "DROP DATABASE " + dosADI + " ;";
 		PreparedStatement stmt = MY_CONN.prepareStatement(sql);
 		int updateCount= stmt.executeUpdate();
-		if(updateCount>0)
-		{
-		    result = true;
-		}
+		if(updateCount > 0)
+			result = true;
 		stmt.close();
 		return result;
 	}
@@ -696,13 +689,9 @@ public class BACKUP_GLOBAL {
 		con = glb.myBackupConnection();
 		String sql = "";
 		if (siralama == "DURUM")
-		{
 			sql = "SELECT * FROM EMIRLER ORDER BY  DURUM DESC , EMIR_ISMI COLLATE NOCASE ASC  ";
-		}
 		else
-		{
 			sql = "SELECT * FROM EMIRLER ORDER BY   " + siralama + " COLLATE NOCASE ASC ";
-		}
 		stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		List<emir_bilgiler> emirBilgi = new ArrayList<emir_bilgiler>();
@@ -755,13 +744,13 @@ public class BACKUP_GLOBAL {
 				emir_bilgiler liste  = new emir_bilgiler(
 						rss.getString("EMIR_ISMI") ,
 						rss.getInt("DURUM") == 0 ? false:true,
-								rss.getString("EMIR_ACIKLAMA"),
-								rss.getString("INSTANCE"),
-								rss.getInt("SON_DURUM")== 0 ? false:true,
-										sonyuk, 
-										rss.getInt("SQL_YEDEK")== 0 ? false:true,
-												rss.getString("MESAJ"),
-												olus);
+						rss.getString("EMIR_ACIKLAMA"),
+						rss.getString("INSTANCE"),
+						rss.getInt("SON_DURUM")== 0 ? false:true,
+						sonyuk, 
+						rss.getInt("SQL_YEDEK")== 0 ? false:true,
+						rss.getString("MESAJ"),
+						olus);
 				emirBilgi.add(liste);
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -792,13 +781,13 @@ public class BACKUP_GLOBAL {
 				emir_bilgiler liste  = new emir_bilgiler(
 						rss.getString("EMIR_ISMI") ,
 						rss.getInt("DURUM") == 0 ? false:true,
-								rss.getString("EMIR_ACIKLAMA"),
-								rss.getString("INSTANCE"),
-								rss.getInt("SON_DURUM") == 0 ? false:true,
-										sonyuk, 
-										rss.getInt("SQL_YEDEK")== 0 ? false:true,
-												rss.getString("MESAJ"),
-												olus);
+						rss.getString("EMIR_ACIKLAMA"),
+						rss.getString("INSTANCE"),
+						rss.getInt("SON_DURUM") == 0 ? false:true,
+						sonyuk, 
+						rss.getInt("SQL_YEDEK")== 0 ? false:true,
+						rss.getString("MESAJ"),
+						olus);
 				emirBilgi.add(liste);
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -820,9 +809,7 @@ public class BACKUP_GLOBAL {
 		rss = stmt.executeQuery();
 		List<String>  dbadi =new ArrayList<String>();
 		while (rss.next())
-		{              
 			dbadi.add(rss.getString("DB_ADI").toString());
-		}
 		stmt.close();
 		con.close();
 		return dbadi ;
@@ -839,9 +826,7 @@ public class BACKUP_GLOBAL {
 		rss = stmt.executeQuery();
 		String result = "";
 		while (rss.next())
-		{              
 			result = rss.getString("EMIR_ISMI").toString();
-		}
 		stmt.close();
 		con.close();
 		return result ;
@@ -978,18 +963,18 @@ public class BACKUP_GLOBAL {
 		{     
 			bilgilendirme_bilgiler liste  = new bilgilendirme_bilgiler(rss.getString("EMIR_ISMI") ,
 					rss.getInt("DURUM") == 0 ? false:true,
-							rss.getInt("GONDERILDIGINDE") == 0 ? false:true,
-									rss.getInt("HATA_DURUMUNDA") == 0 ? false:true ,
-											rss.getString("GON_ISIM"),
-											rss.getString("GON_HESAP"),
-											rss.getString("ALICI"),
-											rss.getString("KONU"),
-											rss.getString("SMTP"),
-											rss.getString("SMTP_PORT"),
-											rss.getString("KULLANICI"),
-											rss.getString("SIFRE"),
-											rss.getInt("SSL") == 0 ? false:true ,
-													rss.getInt("TSL") == 0 ? false:true );
+					rss.getInt("GONDERILDIGINDE") == 0 ? false:true,
+					rss.getInt("HATA_DURUMUNDA") == 0 ? false:true ,
+					rss.getString("GON_ISIM"),
+					rss.getString("GON_HESAP"),
+					rss.getString("ALICI"),
+					rss.getString("KONU"),
+					rss.getString("SMTP"),
+					rss.getString("SMTP_PORT"),
+					rss.getString("KULLANICI"),
+					rss.getString("SIFRE"),
+					rss.getInt("SSL") == 0 ? false:true ,
+					rss.getInt("TSL") == 0 ? false:true );
 			bilgiBilgi.add(liste);
 		}
 		stmt.close();
@@ -1068,11 +1053,11 @@ public class BACKUP_GLOBAL {
 					rss.getString("HANGI_SQL"),
 					rss.getString("INSTANCE"),
 					rss.getInt("WIN") == 0 ? false:true,
-							rss.getInt("SERV") == 0 ? false:true,
-									rss.getString("KULLANICI"),
-									rss.getString("SIFRE"),
-									rss.getString("PORT"),
-									rss.getString("MY_DUMP"));
+					rss.getInt("SERV") == 0 ? false:true,
+					rss.getString("KULLANICI"),
+					rss.getString("SIFRE"),
+					rss.getString("PORT"),
+					rss.getString("MY_DUMP"));
 			bilgiBilgi.add(liste);
 		}
 		stmt.close();
@@ -1475,7 +1460,7 @@ public class BACKUP_GLOBAL {
 		Runtime runtime = Runtime.getRuntime();
 		runtimeProcess = runtime.exec(executeCmd,null);
 		int processComplete = runtimeProcess.waitFor();
-		//		System.out.println(processComplete); //0 completed
+		//System.out.println(processComplete); //0 completed
 	}
 	
 	public boolean mySqlRestore( String myDUMP, String dbUser, String dbPass,String dbPath) throws IOException, InterruptedException

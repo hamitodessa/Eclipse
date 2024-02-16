@@ -128,7 +128,7 @@ public class LoglamaRapor extends JPanel {
 		txtArama.setColumns(10);
 		
 		comboBox = new JComboBox<String>();
-		comboBox.setBounds(358, 11, 275, 22);
+		comboBox.setBounds(339, 11, 270, 22);
 		comboBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
@@ -174,7 +174,7 @@ public class LoglamaRapor extends JPanel {
 				}
 			}
 		});
-		btnNewButton.setBounds(650, 11, 65, 23);
+		btnNewButton.setBounds(615, 11, 100, 23);
 		panel.add(btnNewButton);
 		
 		btnExcell = new JButton("");

@@ -319,7 +319,7 @@ public class LoglamaRapor extends JPanel {
 			OBS_BACKUP.lblEmir.setText("Log Sayisi"); 
 		} catch (Exception ex) 
 		{
-			bckp.log_kayit("Loglama", new Date(), ex.getMessage());
+			bckp.log_kayit("System", new Date(), ex.getMessage());
 			OBS_BACKUP.mesajGoster(5000,Notifications.Type.ERROR, ex.getMessage());	
 		}
 	}

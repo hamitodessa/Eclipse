@@ -2010,20 +2010,16 @@ public class OBS_BACKUP extends JFrame {
 					dzip = tarr + "_" + uzantisiz + ".zip";
 					if (folderMI)
 					{
-						uplpnl.RPB2.setString(dilSecenek.dil(dILS, "Zip Haline Getiriliyor")  );
 						dzip = tarr + "_" + dbliste.get(i).getAdi() + ".zip";
 						String okumadosyaadi = dbliste.get(i).getPath() + File.separator +dbliste.get(i).getAdi()+ File.separator ;
 						Path pathokuma = Paths.get(dbliste.get(i).getPath() + File.separator +dbliste.get(i).getAdi()); 
 						Path pathyazma = Paths.get(glb.BACKUP_YERI, dzip); 
 						bckp. zip_folder_sifrele(pathokuma,pathyazma,sifRELE, zipSIFRE);
-						uplpnl.RPB2.setString("");
 					}
 					else
 					{
-						uplpnl.RPB2.setString(dilSecenek.dil(dILS, "Zip Haline Getiriliyor"));
 						String okumadosyaadi = dbliste.get(i).getPath() +  File.separator  + dbliste.get(i).getAdi();
 						bckp.diger_zip_yap_sifrele(okumadosyaadi, glb.BACKUP_YERI, dzip, sifRELE, zipSIFRE);
-						uplpnl.RPB2.setString("");
 					}
 					bckp.log_kayit(emirADI, new Date(), dosADI + dilSecenek.dil(dILS, " Zip Haline Getirildi")  );
 					File tmpDir = new File(ftpBilgi.get(0).getSURUCU_YER());

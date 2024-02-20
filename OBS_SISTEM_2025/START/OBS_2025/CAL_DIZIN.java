@@ -583,7 +583,7 @@ public class CAL_DIZIN extends JDialog {
 		});
 		tabbedPane.setFont(new Font("Segoe UI", Font.BOLD, 13));
 		tabbedPane.setBounds(10, 10, 755, 381);
-		tabbedPane.setForeground(new Color(25, 25, 112));
+		//tabbedPane.setForeground(new Color(25, 25, 112));
 		tabbedPane.setTabLayoutPolicy(MaterialTabbed.SCROLL_TAB_LAYOUT);
 		tabbedPane.setBorder(new LineBorder(new Color(0, 191, 255)));
 		anaPanel.add(tabbedPane);
@@ -990,7 +990,7 @@ public class CAL_DIZIN extends JDialog {
 		panel_2.setLayout(null);
 
 		JPanel panel_3 = new JPanel();
-		panel_3.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "E Mail Loglama", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 99, 177)));
+		panel_3.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "E Mail Loglama", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panel_3.setBounds(10, 11, 617, 74);
 		panel_3.setLayout(null);
 		panel_2.add(panel_3);
@@ -1157,7 +1157,7 @@ public class CAL_DIZIN extends JDialog {
 		panel_4.setLayout(null);
 		
 		panel_5 = new JPanel();
-		panel_5.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "MS SQL - Ornek", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
+		panel_5.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "MS SQL - Ornek", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panel_5.setBounds(33, 30, 320, 259);
 		panel_4.add(panel_5);
 		panel_5.setLayout(null);
@@ -1215,7 +1215,7 @@ public class CAL_DIZIN extends JDialog {
 		
 		JPanel panel_5_1 = new JPanel();
 		panel_5_1.setLayout(null);
-		panel_5_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "MY SQL - Ornek", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
+		panel_5_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "MY SQL - Ornek", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panel_5_1.setBounds(371, 30, 320, 259);
 		panel_4.add(panel_5_1);
 		
@@ -1281,7 +1281,7 @@ public class CAL_DIZIN extends JDialog {
 		txtcdid.setColumns(10);
 
 		cmbhangisql = new JComboBox<String>();
-		cmbhangisql.setForeground(new Color(0, 0, 139));
+		//cmbhangisql.setForeground(new Color(0, 0, 139));
 		cmbhangisql.setFont(new Font("Tahoma", Font.BOLD, 11));
 		cmbhangisql.addItemListener(new ItemListener() 
 		{
@@ -1370,7 +1370,7 @@ public class CAL_DIZIN extends JDialog {
 		});
 		menu.add(cbMail);
 		JButton btnNewButton_6 = new JButton();
-		btnNewButton_6.setForeground(new Color(0, 0, 128));
+		//btnNewButton_6.setForeground(new Color(0, 0, 128));
 
 		btnNewButton_6.setText("Loglama Secimi");
 		btnNewButton_6.setBounds(130, 125, 129, 23);
@@ -1383,7 +1383,7 @@ public class CAL_DIZIN extends JDialog {
 		panel.add(btnNewButton_6);
 
 		separator = new JSeparator();
-		separator.setForeground(new Color(0, 191, 255));
+		//separator.setForeground(new Color(0, 191, 255));
 		separator.setBounds(24, 32, 260, 2);
 		panel.add(separator);
 		

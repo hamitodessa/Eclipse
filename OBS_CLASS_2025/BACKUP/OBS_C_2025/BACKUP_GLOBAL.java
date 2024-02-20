@@ -63,7 +63,7 @@ import net.lingala.zip4j.model.UnzipParameters;
 @SuppressWarnings({"static-access","unused","rawtypes","unchecked","deprecation","resource"})
 public class BACKUP_GLOBAL {
 	public Connection S_CONN;
-	public Connection MY_CONN; //= new MySqlConnection();
+	public Connection MY_CONN; 
 	GLOBAL glb = new GLOBAL();
 	private Connection con ;
 	public void MySql_baglan( String user, String pwd,String port) throws ClassNotFoundException, SQLException
@@ -1002,14 +1002,14 @@ public class BACKUP_GLOBAL {
 						rss.getString("EMIR_ISMI") ,
 						rss.getString("SAAT"),
 						rss.getInt("P_TESI") == 0 ? false:true,
-								rss.getInt("SALI") == 0 ? false:true,
-										rss.getInt("CARS") == 0 ? false:true ,
-												rss.getInt("PERS") == 0 ? false:true ,
-														rss.getInt("CUMA") == 0 ? false:true ,
-																rss.getInt("C_TESI") == 0 ? false:true ,
-																		rss.getInt("PAZAR") == 0 ? false:true ,
-																				bas,
-																				bit);
+						rss.getInt("SALI") == 0 ? false:true,
+						rss.getInt("CARS") == 0 ? false:true ,
+						rss.getInt("PERS") == 0 ? false:true ,
+						rss.getInt("CUMA") == 0 ? false:true ,
+						rss.getInt("C_TESI") == 0 ? false:true ,
+						rss.getInt("PAZAR") == 0 ? false:true ,
+						bas,
+						bit);
 				bilgiBilgi.add(liste);
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -1303,7 +1303,6 @@ public class BACKUP_GLOBAL {
 						data.add(TARIH_CEVIR.milis_ddMMyyyy(fileHeader.getLastModifiedTimeEpoch()));
 						data.add((int) fileHeader.getCompressedSize());
 						data.add((int) fileHeader.getUncompressedSize());
-
 						if(aDIString.equals("bak") || aDIString.equals("sql"))
 							model.addRow(data);
 					}
@@ -1401,10 +1400,8 @@ public class BACKUP_GLOBAL {
 			zipParameters.setEncryptionMethod(EncryptionMethod.AES);
 			zipFile = new ZipFile(dosyolu + dosadi_zip, sifre.toCharArray());
 		}
-		else 
-		{
+		else
 			zipFile = new ZipFile(dosyolu + dosadi_zip);
-		}
 		try {
 			zipFile.addFile(new File(okumadosyaadii), zipParameters);
 			zipFile.close();

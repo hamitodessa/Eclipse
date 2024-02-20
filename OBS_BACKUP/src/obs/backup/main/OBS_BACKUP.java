@@ -1397,7 +1397,7 @@ public class OBS_BACKUP extends JFrame {
 				int toplam = emirliste.size();
 				for (int i = 0; i<=  emirliste.size() -1 ; i++)
 				{
-					emirTekyukle( emirliste.get(i).getEMIR_ISMI(),"ana");
+					emirTekyukle(emirliste.get(i).getEMIR_ISMI(),"ana");
 					container.add(Box.createRigidArea(new Dimension(0, 5)));
 				}
 				contentPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));

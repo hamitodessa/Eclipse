@@ -107,29 +107,29 @@ public class MODUL_PARAMETRE extends JInternalFrame {
 		lblNewLabel = new JLabel("...");
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblNewLabel.setBounds(10, 20, 55, 14);
-		lblNewLabel.setForeground(Color.BLUE);
+		//lblNewLabel.setForeground(Color.BLUE);
 		panel.add(lblNewLabel);
 
 		lblNewLabel_2 = new JLabel("...");
 		lblNewLabel_2.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblNewLabel_2.setBounds(63, 20, 170, 14);
-		lblNewLabel_2.setForeground(new Color(0, 128, 128));
+		//lblNewLabel_2.setForeground(new Color(0, 128, 128));
 		panel.add(lblNewLabel_2);
 
 		lblNewLabel_4 = new JLabel("...");
 		lblNewLabel_4.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblNewLabel_4.setBounds(250, 20, 350, 14);
-		lblNewLabel_4.setForeground(Color.RED);
+		//lblNewLabel_4.setForeground(Color.RED);
 		panel.add(lblNewLabel_4);
 		
 		lblClog = new JLabel("");
 		lblClog.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblClog.setForeground(new Color(128, 0, 0));
+		//lblClog.setForeground(new Color(128, 0, 0));
 		lblClog.setBounds(610, 20, 80, 14);
 		panel.add(lblClog);
 
 		lblNewLabel_1 = new JLabel(".....");
-		lblNewLabel_1.setForeground(Color.decode("#075985"));
+		//lblNewLabel_1.setForeground(Color.decode("#075985"));
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblNewLabel_1.setBounds(730, 20, 50, 14);
 		panel.add(lblNewLabel_1);
@@ -148,29 +148,29 @@ public class MODUL_PARAMETRE extends JInternalFrame {
 		label = new JLabel("...");
 		label.setFont(new Font("Tahoma", Font.BOLD, 11));
 		label.setBounds(10, 20, 55, 14);
-		label.setForeground(Color.BLUE);
+		//label.setForeground(Color.BLUE);
 		panel_1.add(label);
 
 		label_1 = new JLabel("...");
 		label_1.setFont(new Font("Tahoma", Font.BOLD, 11));
 		label_1.setBounds(63, 20, 170, 14);
-		label_1.setForeground(new Color(0, 128, 128));
+		//label_1.setForeground(new Color(0, 128, 128));
 		panel_1.add(label_1);
 
 		label_2 = new JLabel("...");
 		label_2.setFont(new Font("Tahoma", Font.BOLD, 11));
 		label_2.setBounds(250, 20, 350, 14);
-		label_2.setForeground(Color.RED);
+		//label_2.setForeground(Color.RED);
 		panel_1.add(label_2);
 
 		lblStoklog = new JLabel("");
 		lblStoklog.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblStoklog.setForeground(new Color(128, 0, 0));
+		//lblStoklog.setForeground(new Color(128, 0, 0));
 		lblStoklog .setBounds(610, 20, 80, 14);
 		panel_1.add(lblStoklog );
 
 		lblNewLabel_1_1 = new JLabel(".....");
-		lblNewLabel_1_1.setForeground(Color.decode("#075985"));
+		//lblNewLabel_1_1.setForeground(Color.decode("#075985"));
 		lblNewLabel_1_1.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblNewLabel_1_1.setBounds(730, 20, 50, 14);
 		panel_1.add(lblNewLabel_1_1);
@@ -188,30 +188,30 @@ public class MODUL_PARAMETRE extends JInternalFrame {
 		label_3 = new JLabel("...");
 		label_3.setFont(new Font("Tahoma", Font.BOLD, 11));
 		label_3.setBounds(10, 20, 55, 14);
-		label_3.setForeground(Color.BLUE);
+		//label_3.setForeground(Color.BLUE);
 		panel_2.add(label_3);
 
 		label_4 = new JLabel("...");
 		label_4.setFont(new Font("Tahoma", Font.BOLD, 11));
 		label_4.setBounds(63, 20, 170, 14);
-		label_4.setForeground(new Color(0, 128, 128));
+		//label_4.setForeground(new Color(0, 128, 128));
 		panel_2.add(label_4);
 
 		label_55 = new JLabel("...");
 		label_55.setFont(new Font("Tahoma", Font.BOLD, 11));
-		label_55.setForeground(Color.RED);
+		//label_55.setForeground(Color.RED);
 		label_55.setBounds(250, 20, 350, 14);
 		panel_2.add(label_55);
 		
 		lblKamlog = new JLabel("");
 		lblKamlog.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblKamlog.setForeground(new Color(128, 0, 0));
+		//lblKamlog.setForeground(new Color(128, 0, 0));
 		lblKamlog .setBounds(610, 20, 80, 14);
 		panel_2.add(lblKamlog );
 
 
 		lblNewLabel_1_2 = new JLabel(".....");
-		lblNewLabel_1_2.setForeground(Color.decode("#075985"));
+		//lblNewLabel_1_2.setForeground(Color.decode("#075985"));
 		lblNewLabel_1_2.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblNewLabel_1_2.setBounds(730, 20, 50, 14);
 		panel_2.add(lblNewLabel_1_2);
@@ -228,29 +228,29 @@ public class MODUL_PARAMETRE extends JInternalFrame {
 		label_6 = new JLabel("...");
 		label_6.setFont(new Font("Tahoma", Font.BOLD, 11));
 		label_6.setBounds(10, 20, 55, 14);
-		label_6.setForeground(Color.BLUE);
+		//label_6.setForeground(Color.BLUE);
 		panel_3.add(label_6);
 
 		label_7 = new JLabel("...");
 		label_7.setFont(new Font("Tahoma", Font.BOLD, 11));
 		label_7.setBounds(63, 20, 170, 14);
-		label_7.setForeground(new Color(0, 128, 128));
+		//label_7.setForeground(new Color(0, 128, 128));
 		panel_3.add(label_7);
 
 		label_8 = new JLabel("...");
 		label_8.setFont(new Font("Tahoma", Font.BOLD, 11));
 		label_8.setBounds(250, 20, 350, 14);
-		label_8.setForeground(Color.RED);
+		//label_8.setForeground(Color.RED);
 		panel_3.add(label_8);
 		
 		lblAdrlog = new JLabel("");
 		lblAdrlog.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblAdrlog.setForeground(new Color(128, 0, 0));
+		//lblAdrlog.setForeground(new Color(128, 0, 0));
 		lblAdrlog .setBounds(610, 20, 80, 14);
 		panel_3.add(lblAdrlog );
 
 		lblNewLabel_1_3 = new JLabel(".....");
-		lblNewLabel_1_3.setForeground(Color.decode("#075985"));
+		//lblNewLabel_1_3.setForeground(Color.decode("#075985"));
 		lblNewLabel_1_3.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblNewLabel_1_3.setBounds(730, 20, 50, 14);
 		panel_3.add(lblNewLabel_1_3);
@@ -267,22 +267,22 @@ public class MODUL_PARAMETRE extends JInternalFrame {
 		label_9 = new JLabel("...");
 		label_9.setFont(new Font("Tahoma", Font.BOLD, 11));
 		label_9.setBounds(10, 20, 55, 14);
-		label_9.setForeground(Color.BLUE);
+		//label_9.setForeground(Color.BLUE);
 		panel_4.add(label_9);
 
 		label_10 = new JLabel("...");
 		label_10.setFont(new Font("Tahoma", Font.BOLD, 11));
 		label_10.setBounds(63, 20, 170, 14);
-		label_10.setForeground(new Color(0, 128, 128));
+		//label_10.setForeground(new Color(0, 128, 128));
 		panel_4.add(label_10);
 
 		label_11 = new JLabel("...");
 		label_11.setBounds(250, 20, 350, 14);
-		label_11.setForeground(Color.RED);
+		//label_11.setForeground(Color.RED);
 		panel_4.add(label_11);
 
 		lblNewLabel_1_4 = new JLabel(".....");
-		lblNewLabel_1_4.setForeground(Color.decode("#075985"));
+		//lblNewLabel_1_4.setForeground(Color.decode("#075985"));
 		lblNewLabel_1_4.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblNewLabel_1_4.setBounds(730, 20, 50, 14);
 		panel_4.add(lblNewLabel_1_4);
@@ -291,7 +291,7 @@ public class MODUL_PARAMETRE extends JInternalFrame {
 		
 		lblKurlog = new JLabel("");
 		lblKurlog.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblKurlog.setForeground(new Color(128, 0, 0));
+		//lblKurlog.setForeground(new Color(128, 0, 0));
 		lblKurlog .setBounds(610, 20, 80, 14);
 		panel_4.add(lblKurlog );
 
@@ -305,101 +305,102 @@ public class MODUL_PARAMETRE extends JInternalFrame {
 		label_12 = new JLabel("...");
 		label_12.setFont(new Font("Tahoma", Font.BOLD, 11));
 		label_12.setBounds(10, 20, 55, 14);
-		label_12.setForeground(Color.BLUE);
+		//label_12.setForeground(Color.BLUE);
 		panel_5.add(label_12);
 
 		label_13 = new JLabel("...");
 		label_13.setFont(new Font("Tahoma", Font.BOLD, 11));
 		label_13.setBounds(63, 20, 170, 14);
-		label_13.setForeground(new Color(0, 128, 128));
+		//label_13.setForeground(new Color(0, 128, 128));
 		panel_5.add(label_13);
 
 		label_14 = new JLabel("...");
 		label_14.setFont(new Font("Tahoma", Font.BOLD, 11));
 		label_14.setBounds(250, 20, 350, 14);
-		label_14.setForeground(Color.RED);
+		//label_14.setForeground(Color.RED);
 		panel_5.add(label_14);
 		
 		lblGunlog = new JLabel("");
 		lblGunlog.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblGunlog.setForeground(new Color(128, 0, 0));
+		//lblGunlog.setForeground(new Color(128, 0, 0));
 		lblGunlog .setBounds(610, 20, 80, 14);
 		panel_5.add(lblGunlog );
 
 		lblNewLabel_1_5 = new JLabel(".....");
-		lblNewLabel_1_5.setForeground(Color.decode("#075985"));
+		//lblNewLabel_1_5.setForeground(Color.decode("#075985"));
 		lblNewLabel_1_5.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblNewLabel_1_5.setBounds(730, 20, 50, 14);
 		panel_5.add(lblNewLabel_1_5);
 		
 		JPanel panel_5_1 = new JPanel();
 		panel_5_1.setLayout(null);
-		panel_5_1.setBorder(new TitledBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(0, 191, 255), new Color(160, 160, 160)), "", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(135, 206, 250)), "Kereste", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
+		panel_5_1.setBorder(new TitledBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(0, 191, 255), new Color(160, 160, 160)), "", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(135, 206, 250)), "Kereste", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+
 		panel_5_1.setBounds(25, 310, 791, 50);
 		getContentPane().add(panel_5_1);
 		
 		label_12_1 = new JLabel("");
-		label_12_1.setForeground(Color.BLUE);
+		//label_12_1.setForeground(Color.BLUE);
 		label_12_1.setFont(new Font("Tahoma", Font.BOLD, 11));
 		label_12_1.setBounds(10, 20, 55, 14);
 		panel_5_1.add(label_12_1);
 		
 		label_13_1 = new JLabel("...");
-		label_13_1.setForeground(new Color(0, 128, 128));
+		//label_13_1.setForeground(new Color(0, 128, 128));
 		label_13_1.setFont(new Font("Tahoma", Font.BOLD, 11));
 		label_13_1.setBounds(63, 20, 170, 14);
 		panel_5_1.add(label_13_1);
 		
 		label_14_1 = new JLabel((String) null);
-		label_14_1.setForeground(Color.RED);
+		//label_14_1.setForeground(Color.RED);
 		label_14_1.setFont(new Font("Tahoma", Font.BOLD, 11));
 		label_14_1.setBounds(250, 20, 350, 14);
 		panel_5_1.add(label_14_1);
 		
 		lblKerlog = new JLabel("");
 		lblKerlog.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblKerlog.setForeground(new Color(128, 0, 0));
+		//lblKerlog.setForeground(new Color(128, 0, 0));
 		lblKerlog .setBounds(610, 20, 80, 14);
 		panel_5_1.add(lblKerlog );
 		
 		lblNewLabel_1_6 = new JLabel("");
-		lblNewLabel_1_6.setForeground(Color.decode("#075985"));
+		//lblNewLabel_1_6.setForeground(Color.decode("#075985"));
 		lblNewLabel_1_6.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblNewLabel_1_6.setBounds(730, 20, 50, 14);
 		panel_5_1.add(lblNewLabel_1_6);
 		
 		JPanel panel_5_1_1 = new JPanel();
 		panel_5_1_1.setLayout(null);
-		panel_5_1_1.setBorder(new TitledBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(0, 191, 255), new Color(160, 160, 160)), "", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(135, 206, 250)), "Sms", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
+		panel_5_1_1.setBorder(new TitledBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(0, 191, 255), new Color(160, 160, 160)), "", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(135, 206, 250)), "Sms", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panel_5_1_1.setBounds(25, 366, 791, 50);
 		getContentPane().add(panel_5_1_1);
 		
 		label_12_1_1 = new JLabel("");
-		label_12_1_1.setForeground(Color.BLUE);
+		//label_12_1_1.setForeground(Color.BLUE);
 		label_12_1_1.setFont(new Font("Tahoma", Font.BOLD, 11));
 		label_12_1_1.setBounds(10, 20, 55, 14);
 		panel_5_1_1.add(label_12_1_1);
 		
 		label_13_1_1 = new JLabel("...");
-		label_13_1_1.setForeground(new Color(0, 128, 128));
+		//label_13_1_1.setForeground(new Color(0, 128, 128));
 		label_13_1_1.setFont(new Font("Tahoma", Font.BOLD, 11));
 		label_13_1_1.setBounds(63, 20, 170, 14);
 		panel_5_1_1.add(label_13_1_1);
 		
 		label_14_1_1 = new JLabel((String) null);
-		label_14_1_1.setForeground(Color.RED);
+		//label_14_1_1.setForeground(Color.RED);
 		label_14_1_1.setFont(new Font("Tahoma", Font.BOLD, 11));
 		label_14_1_1.setBounds(250, 20, 350, 14);
 		panel_5_1_1.add(label_14_1_1);
 		
 		lblSmslog = new JLabel("");
 		lblSmslog.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblSmslog.setForeground(new Color(128, 0, 0));
+		//lblSmslog.setForeground(new Color(128, 0, 0));
 		lblSmslog.setBounds(610, 20, 80, 14);
 		panel_5_1_1.add(lblSmslog);
 		
 		lblNewLabel_1_6_1 = new JLabel("");
-		lblNewLabel_1_6_1.setForeground(Color.decode("#075985"));
+		//lblNewLabel_1_6_1.setForeground(Color.decode("#075985"));
 		lblNewLabel_1_6_1.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblNewLabel_1_6_1.setBounds(730, 20, 50, 14);
 		panel_5_1_1.add(lblNewLabel_1_6_1);

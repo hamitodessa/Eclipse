@@ -274,12 +274,8 @@ public class LOGIN extends JDialog {
 			} 
 			else if ( GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("FlatSolarizedLightIJTheme")) 
 			{
-				//FlatAnimatedLafChange.showSnapshot();
 				FlatSolarizedLightIJTheme.setup();
-				//	FlatDarkLaf.setup();
-				// FlatLaf.updateUI();
-				// FlatAnimatedLafChange.hideSnapshotWithAnimation();
-
+				FlatLaf.updateUI();
 			} 
 			else if (GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("FlatArcOrangeIJTheme"))
 			{ 
@@ -323,6 +319,11 @@ public class LOGIN extends JDialog {
 			else if (GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("FlatMaterial")) 
 			{
 				FlatMaterialLighterIJTheme.setup();
+				FlatLaf.updateUI();
+			}
+			else if (GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("FlatMonocaiIJ")) 
+			{
+				FlatMonocaiIJTheme.setup();
 				FlatLaf.updateUI();
 			}//
 			SwingUtilities.updateComponentTreeUI(this); //UIManager.setLookAndFeel(new
@@ -669,7 +670,7 @@ public class LOGIN extends JDialog {
 		btndevam.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		
 		lblModul = new JLabel();
-		lblModul.setForeground(new Color(0, 139, 139));
+		//lblModul.setForeground(new Color(0, 139, 139));
 		lblModul.setBounds(1, 136, 189, 16);
 		panel.add(lblModul);
 		

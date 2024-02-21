@@ -34,6 +34,11 @@ import javax.swing.JSplitPane;
 import javax.swing.JTable;
 import javax.swing.JLabel;
 import javax.swing.RowFilter;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
@@ -73,6 +78,23 @@ public class URUN_ARAMA extends JDialog {
 		panel.add(lblNewLabel);
 
 		textField = new Obs_TextFIeld();
+		textField.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if (KeyEvent.getKeyText(e.getKeyCode()) == "Down" )
+				{	
+					table.requestFocus();
+					table.setRowSelectionInterval(0, 0);
+				}
+			}
+		});
+		textField.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				oac.hsp_hsp_kodu = 	table.getModel().getValueAt(table.convertRowIndexToModel(0), 0).toString() ;
+				dispose();
+			}
+		});
+		
 		textField.getDocument().addDocumentListener(new DocumentListener() {
 			public void changedUpdate(DocumentEvent e) {
 				getContentPane().setCursor(oac.WAIT_CURSOR);
@@ -90,7 +112,7 @@ public class URUN_ARAMA extends JDialog {
 				getContentPane().setCursor(oac.DEFAULT_CURSOR);
 			}
 		});
-		textField.setBounds(58, 8, 292, 20);
+		textField.setBounds(58, 8, 300, 20);
 		panel.add(textField);
 		textField.setColumns(10);
 
@@ -124,6 +146,25 @@ public class URUN_ARAMA extends JDialog {
 				}
 			}
 		});
+		table.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if (KeyEvent.getKeyText(e.getKeyCode()) == "Enter" )
+				{
+					int row = table.getSelectedRow();
+					if (table.getRowSorter()!=null) {
+						row = table.getRowSorter().convertRowIndexToModel(row);
+						oac.stk_kodu = 	table.getModel().getValueAt(row, 1).toString() ;
+						dispose();
+					}
+					else
+					{
+						oac.stk_kodu = 	table.getModel().getValueAt(table.getSelectedRow(), 1).toString() ;
+						dispose();
+					}
+				}
+			}
+		});
 		table.setAutoResizeMode( JTable.AUTO_RESIZE_OFF );
 		table.setShowHorizontalLines(true);
 		table.setShowVerticalLines(true);
@@ -131,91 +172,79 @@ public class URUN_ARAMA extends JDialog {
 		oac.stk_kodu = "";
 		hisset();
 	}
-
 	public void hisset()
 	{
 		try {
 			ResultSet rs = null ;
-
 			rs =f_Access.urun_arama();
-
 			GRID_TEMIZLE.grid_temizle(table);
-			if (!rs.isBeforeFirst() ) {  
-
+			if (!rs.isBeforeFirst())
 				return;
-			} 
 			else
 			{
-
 				table.setModel(DbUtils.resultSetToTableModel(rs));
 				JTableHeader th = table.getTableHeader();
-				
 				TableColumnModel tcm = th.getColumnModel();
 				TableColumn tc;
-					tc = tcm.getColumn(0);
-					tc.setHeaderRenderer(new SOLA());
-					tc.setMinWidth(80);
-					
-					tc = tcm.getColumn(1);
-					tc.setHeaderRenderer(new SOLA());
-					tc.setMinWidth(80);
-					
-					tc = tcm.getColumn(2);
-					tc.setHeaderRenderer(new SOLA());
-					tc.setMinWidth(200);
-					
-					tc = tcm.getColumn(3);
-					tc.setHeaderRenderer(new SOLA());
-					tc.setMinWidth(70);
-					
-					tc = tcm.getColumn(4);
-					tc.setHeaderRenderer(new SOLA());
-					tc.setMinWidth(70);
-					
-					tc = tcm.getColumn(5);
-					tc.setHeaderRenderer(new SAGA());
-					tc.setCellRenderer(new TABLO_RENDERER(3,false));
-					tc.setMinWidth(70);
-					
-					for ( int i = 6 ; i <13; i ++)
-					{
-						tc = tcm.getColumn(i);
-						tc.setHeaderRenderer(new SOLA());
-						tc.setMinWidth(70);
-					}
+				tc = tcm.getColumn(0);
+				tc.setHeaderRenderer(new SOLA());
+				tc.setMinWidth(80);
 
-					Dimension dd = th.getPreferredSize();
-				    dd.height = 30;
-				    th.setPreferredSize(dd); 
-					th.repaint();
-					table.setRowSelectionInterval(0, 0);
-					table.setRowHeight(21);
-					
-					String deger;
-					String[] parts;
-					Font bigFont;
-						try {
-							deger = GLOBAL.setting_oku("STK_RAPORLAMA").toString();
-							deger = deger.substring(1, deger.length()-1);
-							parts = deger.split(",");
-							bigFont = new Font(parts[0], Integer.parseInt(parts[1].trim()), Integer.parseInt(parts[2].trim()));
-							table.setFont(bigFont);
-						} catch (IOException e) {
-							e.printStackTrace();
-						}
-					
-		}
+				tc = tcm.getColumn(1);
+				tc.setHeaderRenderer(new SOLA());
+				tc.setMinWidth(80);
+
+				tc = tcm.getColumn(2);
+				tc.setHeaderRenderer(new SOLA());
+				tc.setMinWidth(250);
+
+				tc = tcm.getColumn(3);
+				tc.setHeaderRenderer(new SOLA());
+				tc.setMinWidth(70);
+
+				tc = tcm.getColumn(4);
+				tc.setHeaderRenderer(new SOLA());
+				tc.setMinWidth(70);
+
+				tc = tcm.getColumn(5);
+				tc.setHeaderRenderer(new SAGA());
+				tc.setCellRenderer(new TABLO_RENDERER(3,false));
+				tc.setMinWidth(70);
+
+				for ( int i = 6 ; i <13; i ++)
+				{
+					tc = tcm.getColumn(i);
+					tc.setHeaderRenderer(new SOLA());
+					tc.setMinWidth(70);
+				}
+				Dimension dd = th.getPreferredSize();
+				dd.height = 30;
+				th.setPreferredSize(dd); 
+				th.repaint();
+				table.setRowSelectionInterval(0, 0);
+				table.setRowHeight(21);
+
+				String deger;
+				String[] parts;
+				Font bigFont;
+				try {
+					deger = GLOBAL.setting_oku("STK_RAPORLAMA").toString();
+					deger = deger.substring(1, deger.length()-1);
+					parts = deger.split(",");
+					bigFont = new Font(parts[0], Integer.parseInt(parts[1].trim()), Integer.parseInt(parts[2].trim()));
+					table.setFont(bigFont);
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
 		} catch (Exception ex) {
-			 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
-			//JOptionPane.showMessageDialog(null, ex.getMessage());
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
 		}
 	}
 	public void arama()  
 	{
 		if (textField.getText().equals(""))
-		{
 			table.setRowSorter(null);
-		}
 		else
 		{
 		TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(((DefaultTableModel) table.getModel())); 
@@ -227,6 +256,8 @@ public class URUN_ARAMA extends JDialog {
 	    });
 	    sorter.setRowFilter(RowFilter.regexFilter("(?i)" + textField.getText().toLowerCase(),0,1,2));
 	    table.setRowSorter(sorter);
+	    table.revalidate();
+	    table.repaint();
  		}
 	}
 }

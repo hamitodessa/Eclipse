@@ -2397,6 +2397,21 @@ public class FILTRE extends JDialog {
 		panel_6.add(lblUrunKodu);
 
 		textField_12 = new Obs_TextFIeld();
+		textField_12.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if (e.getClickCount() == 2) 
+				{
+					URUN_ARAMA arm ;
+					setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));	
+					arm = new URUN_ARAMA();
+					arm.setVisible(true);
+					setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	
+					textField_12.setText(oac.stk_kodu);	
+				}
+			}
+		});
+
 		textField_12.setFont(new Font("Tahoma", Font.BOLD, 11));
 		textField_12.setColumns(10);
 		textField_12.setBounds(79, 108, 125, 20);
@@ -2407,6 +2422,21 @@ public class FILTRE extends JDialog {
 		textField_13.setText("ZZZZZZZZZZZZ");
 		textField_13.setColumns(10);
 		textField_13.setBounds(248, 108, 125, 20);
+		textField_13.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if (e.getClickCount() == 2) 
+				{
+					URUN_ARAMA arm ;
+					setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));	
+					arm = new URUN_ARAMA();
+					arm.setVisible(true);
+					setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	
+					textField_13.setText(oac.stk_kodu);	
+				}
+			}
+		});
+
 		panel_6.add(textField_13);
 
 		JPanel panel_8 = new JPanel();

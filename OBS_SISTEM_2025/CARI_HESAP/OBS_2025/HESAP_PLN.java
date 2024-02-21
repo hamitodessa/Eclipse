@@ -265,8 +265,6 @@ public class HESAP_PLN extends JDialog {
 		
 		tc.setHeaderValue( "CINS" );
 		th.repaint();
-		
-		
 		th.repaint();
 		table.setRowSelectionInterval(0, 0);
 		table.setRowHeight(22);
@@ -290,15 +288,12 @@ public class HESAP_PLN extends JDialog {
 		catch (Exception ex) 
 		{
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage() );
-			// JOptionPane.showMessageDialog(null, ex.getMessage()); 
 		}
 	}
 	public void arama()  
 	{
 		if (textField.getText().equals(""))
-		{
 			table.setRowSorter(null);
-		}
 		else
 		{
 		TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(((DefaultTableModel) table.getModel())); 

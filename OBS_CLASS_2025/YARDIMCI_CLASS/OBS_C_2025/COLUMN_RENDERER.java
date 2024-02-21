@@ -76,6 +76,7 @@ public class COLUMN_RENDERER  extends DefaultTableCellRenderer
 			{
 				cell.setBackground(table.getBackground());
 				cell.setForeground(table.getForeground());
+				setToolTipText("");
 			}
 		}
 		else if (column ==0)

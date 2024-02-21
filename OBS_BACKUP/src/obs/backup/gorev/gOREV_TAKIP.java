@@ -395,12 +395,15 @@ public  class gOREV_TAKIP extends JPanel {
 					long DakikaFarki = dt.getTime() - aDate.getTime();
 					int seconds = (int) (DakikaFarki / 1000) % 60 ;
 					int minutes = (int) ((DakikaFarki / (1000*60)) % 60);
-					int hours   = (int) ((DakikaFarki / (1000*60*60)) % 24);
-					//int hours = (int)TimeUnit.HOURS.convert(DakikaFarki, TimeUnit.MILLISECONDS); //Saat Goter
-					int days = (int)TimeUnit.DAYS.convert(DakikaFarki,TimeUnit.MILLISECONDS); // Gun Goster
-					lblKalanZaman.setText(String.format("%d:%02d:%02d:%02d",days, hours,minutes ,seconds));//Gun Goster
-					//lblKalanZaman.setText(String.format("%02d:%02d:%02d", hours,minutes ,seconds)); // Saat Goster
+					//int hours   = (int) ((DakikaFarki / (1000*60*60)) % 24);
+					int hours = (int)TimeUnit.HOURS.convert(DakikaFarki, TimeUnit.MILLISECONDS); //Saat Goter
+					//int days = (int)TimeUnit.DAYS.convert(DakikaFarki,TimeUnit.MILLISECONDS); // Gun Goster
+					//lblKalanZaman.setText(String.format("%d:%02d:%02d:%02d",days, hours,minutes ,seconds));//Gun Goster
+					lblKalanZaman.setText(String.format("%02d:%02d:%02d", hours,minutes ,seconds)); // Saat Goster
 					String simDI = df.format(aDate);
+					if(Integer.signum((int) DakikaFarki) == -1)
+						eksiTARIH();
+						 //System.out.println("Negativ");
 					if (simDI.equals(lblGelecekYedekleme.getText())) // YEDEKLEME ZAMANI 
 					{
 						yedekSirasinaKoy();
@@ -418,6 +421,15 @@ public  class gOREV_TAKIP extends JPanel {
 			};  
 		};
 		timerr.schedule(tt,0,  1000);;  
+	}
+	private void eksiTARIH()
+	{
+		if(tt != null)
+		{
+			timerDURDUR=true;
+			tt.cancel();
+		}
+		ilkBasla();
 	}
 	private void yedekSirasinaKoy() throws ClassNotFoundException, SQLException, InterruptedException
 	{

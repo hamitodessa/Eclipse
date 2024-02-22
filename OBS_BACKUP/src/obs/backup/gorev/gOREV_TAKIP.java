@@ -428,7 +428,7 @@ public  class gOREV_TAKIP extends JPanel {
 	}
 	private void eksiTARIH() throws ClassNotFoundException, SQLException
 	{
-		//bckp.log_kayit(eADI, new Date(),"Eksi Tarih" );
+		bckp.log_kayit(eADI, new Date(),"Eksi Tarih" );
 		if(tt != null)
 		{
 			timerDURDUR = true;

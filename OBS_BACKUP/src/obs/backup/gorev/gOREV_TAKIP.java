@@ -402,9 +402,14 @@ public  class gOREV_TAKIP extends JPanel {
 					lblKalanZaman.setText(String.format("%02d:%02d:%02d", hours,minutes ,seconds)); // Saat Goster
 					String simDI = df.format(aDate);
 					if (simDI.equals(lblGelecekYedekleme.getText())) // YEDEKLEME ZAMANI 
+					{
 						yedekSirasinaKoy();
-					if(Integer.signum((int) DakikaFarki) == -1)
-						eksiTARIH();
+					}
+					else 
+					{
+						if(Integer.signum((int) DakikaFarki) == -1)
+							eksiTARIH();
+					}
 				} catch (Exception e) 
 				{
 					timerDURDUR=true;

@@ -401,17 +401,16 @@ public  class gOREV_TAKIP extends JPanel {
 					//lblKalanZaman.setText(String.format("%d:%02d:%02d:%02d",days, hours,minutes ,seconds));//Gun Goster
 					lblKalanZaman.setText(String.format("%02d:%02d:%02d", hours,minutes ,seconds)); // Saat Goster
 					String simDI = df.format(aDate);
+					if (simDI.equals(lblGelecekYedekleme.getText())) // YEDEKLEME ZAMANI 
+						yedekSirasinaKoy();
 					if(Integer.signum((int) DakikaFarki) == -1)
 						eksiTARIH();
-						 //System.out.println("Negativ");
-					if (simDI.equals(lblGelecekYedekleme.getText())) // YEDEKLEME ZAMANI 
-					{
-						yedekSirasinaKoy();
-					}
-				} catch (Exception e) {
+				} catch (Exception e) 
+				{
 					timerDURDUR=true;
 					tt.cancel();
-					try {
+					try 
+					{
 						emirBILGIYUKLE();
 						basla();
 					} catch (Exception e1) {
@@ -424,11 +423,10 @@ public  class gOREV_TAKIP extends JPanel {
 	}
 	private void eksiTARIH() throws ClassNotFoundException, SQLException
 	{
-		bckp.log_kayit(eADI, new Date(),"Eksi Tarih" );
-
+		//bckp.log_kayit(eADI, new Date(),"Eksi Tarih" );
 		if(tt != null)
 		{
-			timerDURDUR=true;
+			timerDURDUR = true;
 			tt.cancel();
 		}
 		ilkBasla();

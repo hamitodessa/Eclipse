@@ -14,7 +14,6 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.Color;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
@@ -94,7 +93,7 @@ public class BORC_ALACAK extends JDialog {
 		txtcari.setColumns(10);
 
 		lblNewLabel_1 = new JLabel(".....");
-		lblNewLabel_1.setForeground(new Color(25, 25, 112));
+		//lblNewLabel_1.setForeground(new Color(25, 25, 112));
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblNewLabel_1.setBounds(100, 36, 290, 14);
 		contentPanel.add(lblNewLabel_1);

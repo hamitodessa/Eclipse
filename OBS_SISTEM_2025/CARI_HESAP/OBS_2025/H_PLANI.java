@@ -110,12 +110,12 @@ public class H_PLANI extends JInternalFrame {
 
 		JSeparator separator = new JSeparator();
 		separator.setBounds(28, 46, 791, 2);
-		separator.setForeground(new Color(0, 191, 255));
+		//separator.setForeground(new Color(0, 191, 255));
 		panel.add(separator);
 
 		JSeparator separator_1 = new JSeparator();
 		separator_1.setBounds(28, 83, 791, 2);
-		separator_1.setForeground(new Color(0, 191, 255));
+		//separator_1.setForeground(new Color(0, 191, 255));
 		panel.add(separator_1);
 
 		JButton btnNewButton = new JButton("|<<");
@@ -169,7 +169,7 @@ public class H_PLANI extends JInternalFrame {
 
 		JSeparator separator_2 = new JSeparator();
 		separator_2.setBounds(28, 169, 791, 2);
-		separator_2.setForeground(new Color(0, 191, 255));
+		//separator_2.setForeground(new Color(0, 191, 255));
 		panel.add(separator_2);
 
 		JLabel lblNewLabel_1 = new JLabel("Kodu");
@@ -522,7 +522,7 @@ public class H_PLANI extends JInternalFrame {
 
 		JSeparator separator_3 = new JSeparator();
 		separator_3.setBounds(28, 11, 791, 2);
-		separator_3.setForeground(new Color(0, 191, 255));
+		//separator_3.setForeground(new Color(0, 191, 255));
 		panel.add(separator_3);
 
 		txtarama = new Obs_TextFIeld(40,"");

@@ -3495,7 +3495,7 @@ public class OBS_MAIN extends JFrame  {
 		toolBar_1.add(lblNewLabel_1);
 
 		lblUser = new JLabel("     ");
-		lblUser.setForeground(new Color(0, 0, 128));
+		//lblUser.setForeground(new Color(0, 0, 128));
 		lblUser.setFont(new Font("Tahoma", Font.BOLD, 11));
 		toolBar_1.add(lblUser);
 		

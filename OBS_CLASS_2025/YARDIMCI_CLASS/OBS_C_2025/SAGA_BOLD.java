@@ -1,6 +1,5 @@
 package OBS_C_2025;
 
-import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
 
@@ -20,7 +19,7 @@ private static final long serialVersionUID = 1L;
 		setText(value.toString());
 	    setHorizontalAlignment(JLabel.RIGHT);
 	    setVerticalAlignment(JLabel.BOTTOM);
-	    setForeground(new Color(139, 0, 0));
+	    //setForeground(new Color(139, 0, 0));
 	    setFont(new Font(table.getFont().getFontName(), Font.BOLD, table.getFont().getSize()));
 	    return this;
 	  }

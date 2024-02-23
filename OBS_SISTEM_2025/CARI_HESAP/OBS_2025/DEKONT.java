@@ -153,7 +153,7 @@ public class DEKONT extends JInternalFrame {
 		JPanel panel = new JPanel();
 		panelANA.add(panel);
 		panel.setBounds(10, 11, 710, 77);
-		panel.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(0, 0, 128), new Color(160, 160, 160)), "Evrak No", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), new Color(0, 0, 139)));
+		panel.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "Evrak No", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
 		
 		panel.setLayout(null);
 
@@ -496,7 +496,7 @@ public class DEKONT extends JInternalFrame {
 
 		JPanel panel_1 = new JPanel();
 		panelANA.add(panel_1);
-		panel_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(128, 0, 0), new Color(160, 160, 160)), "Borclu Hesap", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), Color.red));
+		panel_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "Borclu Hesap", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
 		panel_1.setBounds(10, 99, 710, 87);
 		//getContentPane().add(panel_1);
 		panel_1.setLayout(null);
@@ -973,7 +973,7 @@ public class DEKONT extends JInternalFrame {
 
 		JPanel panel_3 = new JPanel();
 		panelANA.add(panel_3);
-		panel_3.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(0, 0, 128), new Color(160, 160, 160)), "Aciklama", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12),null));
+		panel_3.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "Aciklama", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12),null));
 		panel_3.setBounds(10, 275, 548, 95);
 		//getContentPane().add(panel_3);
 		panel_3.setLayout(new BorderLayout(0, 0));
@@ -1058,7 +1058,7 @@ public class DEKONT extends JInternalFrame {
 
 		JPanel panel_1_1 = new JPanel();
 		panel_1_1.setLayout(null);
-		panel_1_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(0, 139, 139), new Color(160, 160, 160)), "Alacakli Hesap", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 128, 0)));
+		panel_1_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "Alacakli Hesap", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panel_1_1.setBounds(10, 187, 710, 87);
 		//getContentPane().add(panel_1_1);
 		panelANA.add(panel_1_1);
@@ -1545,7 +1545,7 @@ public class DEKONT extends JInternalFrame {
 
 		JPanel panel_3_1 = new JPanel();
 		panelANA.add(panel_3_1);
-		panel_3_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(0, 0, 128), new Color(160, 160, 160)), "Kod", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
+		panel_3_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "Kod", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
 		panel_3_1.setBounds(585, 275, 135, 48);
 		//getContentPane().add(panel_3_1);
 		panel_3_1.setLayout(new BorderLayout(0, 0));

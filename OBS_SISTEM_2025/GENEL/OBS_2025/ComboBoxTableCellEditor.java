@@ -1,6 +1,5 @@
 package OBS_2025;
 
-import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -33,7 +32,7 @@ public class ComboBoxTableCellEditor extends AbstractCellEditor implements Table
 		masterValues = masterValues1;
 		editor.setEditable(true);
 		editor.setFont(new Font("Tahoma", Font.BOLD, 12));
-		editor.setForeground(new Color(0, 0, 128));
+		//editor.setForeground(new Color(0, 0, 128));
 		
 
 		/*

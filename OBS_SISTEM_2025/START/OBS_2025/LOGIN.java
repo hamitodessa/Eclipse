@@ -329,7 +329,7 @@ public class LOGIN extends JDialog {
 			SwingUtilities.updateComponentTreeUI(this); //UIManager.setLookAndFeel(new
 
 		} catch (Exception ex) {
-			java.util.logging.Logger.getLogger(LOGIN.class.getName()).log(java.util. logging.Level.SEVERE, null, ex); 
+			//Logger.getLogger(LOGIN.class.getName()).log(java.util. logging.Level.SEVERE, null, ex); 
 		}
  		//************************************************************************
 		setIconImage(Toolkit.getDefaultToolkit().getImage(LOGIN.class.getResource("/ICONLAR/icon-obs-32.png")));

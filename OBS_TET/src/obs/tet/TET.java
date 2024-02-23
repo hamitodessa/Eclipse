@@ -11,7 +11,7 @@ class TET extends JFrame {
 	final String TITLE_OF_PROGRAM = "Tetris";
 	final int BLOCK_SIZE = 30; // size of one block
 	final int ARC_RADIUS = 6;
-	final int FIELD_WIDTH = 20; // size game field in block
+	final int FIELD_WIDTH = 10; // size game field in block
 	final int FIELD_HEIGHT = 18;
 	final int START_LOCATION = 180;
 	final int FIELD_DX = 7; // determined experimentally

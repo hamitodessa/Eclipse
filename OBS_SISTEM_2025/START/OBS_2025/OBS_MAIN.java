@@ -100,6 +100,7 @@ public class OBS_MAIN extends JFrame  {
 	//Cari
 	private JButton btnNewButton_5 ; //Hesap Plani
 	private JButton btnNewButton_4 ; // Dekont 
+	private JButton btnNewButton_71 ; // TAH FISI
 	private JButton btnNewButton_6 ;// Coklu Giris
 	public static JButton btnNewButton_7  ; // Ekstre
 	private JButton btnNewButton_8 ; //Mizan
@@ -1294,6 +1295,16 @@ public class OBS_MAIN extends JFrame  {
 		btnNewButton_4.setIcon(new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/dek-30.png")));
 		toolBar_2.add(btnNewButton_4);
 
+		btnNewButton_71 = new JButton("");
+		btnNewButton_71.setToolTipText("Tahsilat Fisi");
+		btnNewButton_71.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				form_ac("TAHSILAT","");
+			}
+		});
+		btnNewButton_71.setIcon(new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/tah-30.png")));
+		toolBar_2.add(btnNewButton_71);
+		
 		btnNewButton_6 = new JButton("");
 		btnNewButton_6.setToolTipText("Coklu Giris (Excell)");
 		btnNewButton_6.addActionListener(new ActionListener() {
@@ -3586,6 +3597,7 @@ public class OBS_MAIN extends JFrame  {
 			GuiUtil.setWaitCursor(tabbedPane,true);
 			JInternalFrame internalFrame = null;
 			if (pencere.equals("DEKONT")) internalFrame  = new DEKONT();
+			else if (pencere.equals("TAHSILAT")) internalFrame  = new TAH_FISI();
 			else if (pencere.equals("EKSTRE")) internalFrame  = new EKSTRE();
 			else if (pencere.equals("HESAP GIRISI")) internalFrame  = new H_PLANI();
 			else if (pencere.equals("TOPLU GIRIS")) internalFrame  = new DISTAN_AKTAR();

@@ -81,7 +81,7 @@ public class CARI_HESAP_MSSQL implements ICARI_HESAP {
 		cumle = "jdbc:sqlserver://localhost" + sbilgi.getPort() + ";instanceName=" + sbilgi.getIns() + ";database=" + VERITABANI + "_LOG" + ";";  // DATABASE BAGLANDI
 		con = DriverManager.getConnection(cumle,sbilgi.getKull(),sbilgi.getSifre());
 		create_table_log();
-		//  VERITABANI DOSYASI ILK ACILIS*****************************************************
+		//VERITABANI DOSYASI ILK ACILIS*****************************************************
 		ILOGER_KAYIT  vTLOG =  new DOSYA_MSSQL();
 		lOG_BILGI lBILGI = new lOG_BILGI();
 		lBILGI.setmESAJ("Dosya Olusturuldu");
@@ -283,7 +283,34 @@ public class CARI_HESAP_MSSQL implements ICARI_HESAP {
 				"  AND TARIH BETWEEN  @t1 AND  @t2 + ' 23:59:59.998'" + 
 				"  ORDER BY TARIH ,SATIRLAR.EVRAK  ; " ;
 		stmt = con.createStatement();  
-		stmt.executeUpdate(sql);		
+		stmt.executeUpdate(sql);	
+		//TAHSIL FISI
+		sql = "CREATE TABLE TAH_EVRAK_NO(EID int identity(1,1) CONSTRAINT PKeyTEID PRIMARY KEY,EVRAK integer )";
+		stmt = con.createStatement();  
+		stmt.executeUpdate(sql);
+		sql = "CREATE TABLE [dbo].[AYARLAR]( " +
+				" [LOGO] [image] NULL," +
+				" [FIR_ISMI] [nvarchar](50) NULL, " +
+				" [ADR_1] [nvarchar](50) NULL," +
+				" [ADR_2] [nvarchar](50) NULL," +
+				" [VD_VN] [nvarchar](60) NULL," +
+				" [MAIL] [nvarchar](60) NULL," +
+				" [DIGER] [nvarchar](50) NULL) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]";
+		stmt = con.createStatement();  
+		stmt.executeUpdate(sql);
+		sql = "CREATE TABLE [dbo].[DETAY](" +
+				" [EVRAK] [nvarchar](15) NULL," +
+				" [TARIH] [datetime] NULL," +
+				" [CINS] [int] NULL," +
+				" [TUTAR] [float] NULL," +
+				" [TUR] [int] NULL," +
+				" [ACIKLAMA] [nvarchar](50) NULL" +
+				" ) ON [PRIMARY]";
+		stmt = con.createStatement();  
+		stmt.executeUpdate(sql);
+		sql = "INSERT INTO  TAH_EVRAK_NO(EVRAK) VALUES ('0')";
+		stmt = con.createStatement();  
+		stmt.executeUpdate(sql);
 		// ***************EVRAK NO YAZ ************
 		sql = "INSERT INTO  EVRAK_NO(EVRAK) VALUES ('0')";
 		stmt = con.createStatement();  

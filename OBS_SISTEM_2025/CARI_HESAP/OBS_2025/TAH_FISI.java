@@ -695,7 +695,6 @@ public class TAH_FISI extends JInternalFrame {
 		ayar_temizle();
 	 	ResultSet rs = c_Access.tah_ayar_oku();
 	 	if (!rs.isBeforeFirst() ) {  
-	 		
 			return;
 		} 
 	 	rs.next();
@@ -711,7 +710,6 @@ public class TAH_FISI extends JInternalFrame {
 			g.setColor(Color.WHITE);
 			g.dispose();
 			imagePanel.setImage(bi);
-			
 		}
 		if (  rs.getBytes("KASE") != null)
 		{
@@ -725,7 +723,6 @@ public class TAH_FISI extends JInternalFrame {
 			g.setColor(Color.WHITE);
 			g.dispose();
 			imageKase.setImage(bi);
-			
 		}
 		textAdi.setText(rs.getString("FIR_ISMI"));
 		textAdres1.setText(rs.getString("ADR_1"));
@@ -756,6 +753,6 @@ public class TAH_FISI extends JInternalFrame {
 		textCKodu.setText("");
 		textAKodu.setText("");
 		formattedTutar.setText("0.00");
-		textEvrakNo.setText("");
+		textEvrakNo.setText("0");
 	}
 }

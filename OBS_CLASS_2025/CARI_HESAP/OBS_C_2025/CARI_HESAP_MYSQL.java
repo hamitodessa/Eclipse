@@ -1232,8 +1232,18 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 		return null;
 	}
 	@Override
-	public void tah__kayit(int cins, Integer tur, String evrak, String tarih, String ckodu, String akodu,
+	public void tah_kayit(int cins, Integer tur, String evrak, String tarih, String ckodu, String akodu,
 			String aciklama, double tutar) throws ClassNotFoundException, SQLException, IOException {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public ResultSet tah_oku(String no, int cins) throws ClassNotFoundException, SQLException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public void tah_sil(String no, int cins) throws ClassNotFoundException, SQLException {
 		// TODO Auto-generated method stub
 		
 	}

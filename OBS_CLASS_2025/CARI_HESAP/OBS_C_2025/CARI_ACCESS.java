@@ -294,9 +294,16 @@ public class CARI_ACCESS {
 	{
 		return _ICari.tah_ayar_oku();
 	}
-	public void tah__kayit(int cins ,Integer tur , String evrak , String tarih ,String ckodu ,String akodu ,String aciklama,double tutar ) throws ClassNotFoundException, SQLException, IOException
+	public void tah_kayit(int cins ,Integer tur , String evrak , String tarih ,String ckodu ,String akodu ,String aciklama,double tutar ) throws ClassNotFoundException, SQLException, IOException
 	{
-		_ICari.tah__kayit(cins, tur, evrak, tarih, ckodu, akodu, aciklama, tutar);
+		_ICari.tah_kayit(cins, tur, evrak, tarih, ckodu, akodu, aciklama, tutar);
 	}
-
+	public ResultSet tah_oku (String no , int cins) throws ClassNotFoundException, SQLException
+	{
+		return _ICari.tah_oku(no, cins);
+	}
+	public void tah_sil (String no , int cins) throws ClassNotFoundException, SQLException
+	{
+		_ICari.tah_sil(no, cins);
+	}
 }

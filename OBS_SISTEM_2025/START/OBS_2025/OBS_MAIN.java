@@ -2656,6 +2656,7 @@ public class OBS_MAIN extends JFrame  {
 				if (sonuc == "KULLANICI EKLEME") USER_EKLEME.sil();
 				else if (sonuc == "KULLANICI DETAY EKLEME") USER_DETAY_EKLEME.sil();
 				else if (sonuc == "DEKONT")	DEKONT.yoket();
+				else if (sonuc == "TAHSILAT")	TAH_FISI.yoket();
 				else if (sonuc == "HESAP GIRISI")	H_PLANI.sil();
 				else if (sonuc == "KUR GIRIS")	KUR_GIRIS.sil();
 				else if (sonuc == "CEK GIRIS") 	CEK_GIRIS.sil();

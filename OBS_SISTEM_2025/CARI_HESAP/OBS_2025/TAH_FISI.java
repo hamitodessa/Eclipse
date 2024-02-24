@@ -8,6 +8,7 @@ import com.formdev.flatlaf.FlatLaf;
 import OBS_C_2025.MaterialTabbed;
 import OBS_C_2025.Obs_TextFIeld;
 import OBS_C_2025.TARIH_CEVIR;
+import OBS_C_2025.dEKONT_BILGI;
 import OBS_C_2025.lOG_BILGI;
 import raven.toast.Notifications;
 
@@ -34,8 +35,6 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.text.DefaultFormatterFactory;
 import javax.swing.text.JTextComponent;
 import javax.swing.text.NumberFormatter;
-
-import org.bridj.dyncall.DyncallLibrary.DCCallVM;
 
 import java.awt.Color;
 import javax.swing.UIManager;
@@ -155,7 +154,7 @@ public class TAH_FISI extends JInternalFrame {
 		panel.add(cmbTur);
 		
 		dtc = new JDateChooser();
-		dtc.setBounds(300, 43, 128, 20);
+		dtc.setBounds(300, 43, 150, 20);
 		dtc.getDateEditor().getUiComponent().addFocusListener(new FocusAdapter()    {
 			@Override
 			public void focusGained(FocusEvent evt) {
@@ -298,7 +297,7 @@ public class TAH_FISI extends JInternalFrame {
 		
 		textCKodu = new Obs_TextFIeld(12);
 		textCKodu.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		textCKodu.setBounds(29, 152, 130, 20);
+		textCKodu.setBounds(29, 152, 150, 22);
 		textCKodu.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
@@ -377,7 +376,7 @@ public class TAH_FISI extends JInternalFrame {
 		textAKodu = new Obs_TextFIeld(12);
 		textAKodu.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		textAKodu.setColumns(10);
-		textAKodu.setBounds(300, 152, 130, 20);
+		textAKodu.setBounds(300, 152, 150, 22);
 		textAKodu.getDocument().addDocumentListener(new DocumentListener() {
 			public void changedUpdate(DocumentEvent e) {
 					try {
@@ -470,6 +469,10 @@ public class TAH_FISI extends JInternalFrame {
 		btnNewButton.setIcon(new ImageIcon(DEKONT.class.getResource("/ICONLAR/yeni.png")));
 		btnNewButton.setBounds(737, 43, 24, 24);
 		panel.add(btnNewButton);
+		
+		JLabel lblNewLabel_4 = new JLabel("Fis No");
+		lblNewLabel_4.setBounds(573, 50, 48, 14);
+		panel.add(lblNewLabel_4);
 		
 		JPanel panel_Ayarlar = new JPanel();
 		tabbedPane.addTab("Ayarlar", null, panel_Ayarlar, null);
@@ -824,8 +827,108 @@ public class TAH_FISI extends JInternalFrame {
 		catch (Exception ex)
 		{
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage()  );
-			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Dekont Silme", JOptionPane.ERROR_MESSAGE);
 		}
+	}
+	public static void cari_kaydet()
+	{
+		try 
+		{
+			if (textEvrakNo.getText() == null ) return ;
+			if (textEvrakNo.getText().equals("0") ) return ;
+			if (textEvrakNo.getText().equals("")  ) return ;
+			oac.hsp_hsp_kodu = "" ;
+			BORC_ALACAK hsp ;
+			hsp = new BORC_ALACAK();
+			hsp.setLocationRelativeTo(OBS_MAIN.desktopPane);
+
+			String bh = "",alh="";
+			if(cmbCins.getSelectedIndex()==0)
+			{
+				hsp.lblNewLabel.setText("Borclu Hesap");
+			}
+			else  if(cmbCins.getSelectedIndex()==1)
+			{
+				hsp.lblNewLabel.setText("Alacakli Hesap");
+			}
+
+			hsp.setVisible(true);
+			if(cmbCins.getSelectedIndex()==0)
+			{
+				bh = oac.hsp_hsp_kodu;
+				alh = textCKodu.getText();
+			}
+			else  if(cmbCins.getSelectedIndex()==1)
+			{
+				alh = oac.hsp_hsp_kodu;
+				bh = textCKodu.getText();
+			}
+			if (alh.equals("")) return ;
+			if (bh.equals("")) return ;
+
+			GuiUtil.setWaitCursor(tabbedPane,true);
+			ResultSet rs ;
+			rs = c_Access.hesap_adi_oku(alh);
+			if (!rs.isBeforeFirst() ) {  
+				OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING, alh + " Bu numarada hesaba rastlanmadi!!!!" );
+				return ;
+			} 
+			rs= null;
+			rs = c_Access.hesap_adi_oku(bh);
+			if (!rs.isBeforeFirst() ) {  
+				OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING,  bh +  " Bu numarada hesaba rastlanmadi!!!!" );
+				return;
+			} 
+
+			int e_number = 0;
+			e_number = c_Access.cari_fisno_al();
+
+			dEKONT_BILGI dBilgi = new dEKONT_BILGI();
+			dBilgi.setbHES(bh);
+			dBilgi.settAR(TARIH_CEVIR.tarih_geri_saatli(dtc));
+			dBilgi.seteVRAK(e_number);
+			dBilgi.setbCINS("");
+			dBilgi.setbKUR(1);
+			dBilgi.setbORC(DecimalFormat.getNumberInstance().parse(formattedTutar.getText()).doubleValue());
+			dBilgi.setaHES(alh);
+			dBilgi.setaCINS("");
+			dBilgi.setaKUR(1);
+			dBilgi.setaLACAK(DecimalFormat.getNumberInstance().parse(formattedTutar.getText()).doubleValue());
+
+			lOG_BILGI lBILGI = new lOG_BILGI();
+
+			lBILGI.seteVRAK(Integer.toString(e_number));
+
+			if(cmbTur.getSelectedIndex()==0)
+			{
+				dBilgi.setiZAHAT(textEvrakNo.getText() + " Nolu Tah.Fisi ile Nakit ");
+				lBILGI.setmESAJ(textEvrakNo.getText() + " Nolu Tah.Fisi ile Nakit ");
+			}
+			else if(cmbTur.getSelectedIndex()==1)
+			{
+				dBilgi.setiZAHAT(textEvrakNo.getText() + " Nolu Tah.Fisi ile Cek  ");
+				lBILGI.setmESAJ(textEvrakNo.getText() + " Nolu Tah.Fisi ile Cek  ");
+			}
+			else if(cmbTur.getSelectedIndex()==2)
+			{
+				dBilgi.setiZAHAT(textEvrakNo.getText() + " Nolu Tah.Fisi ile Kredi Karti ");
+				lBILGI.setmESAJ(textEvrakNo.getText() + " Nolu Tah.Fisi ile Kredi Karti ");
+			}
+
+			if(cmbCins.getSelectedIndex()==0)
+			{
+				dBilgi.setkOD("Tahs.");
+			}
+			else if(cmbCins.getSelectedIndex()==1) {
+				dBilgi.setkOD("Tedi.");
+			}
+			dBilgi.setuSER( GLOBAL.KULL_ADI);
+			c_Access.cari_dekont_kaydet(dBilgi,	lBILGI ,BAGLAN_LOG.cariLogDizin	);
+			GuiUtil.setWaitCursor(tabbedPane,false);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.INFO,  "Cari Hesaba Basari ile Kaydedilmistir....");
+		} catch (Exception ex) {
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage()  );
+		}
+
 	}
 	private void ayar_temizle()
 	{

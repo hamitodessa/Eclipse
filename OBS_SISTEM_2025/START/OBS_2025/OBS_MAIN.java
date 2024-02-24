@@ -3406,6 +3406,7 @@ public class OBS_MAIN extends JFrame  {
 				String sonuc = pencere_activmi();
 				if (sonuc == "CEK GIRIS")	CEK_GIRIS.cari_kaydet();
 				else if (sonuc == "CEK CIKIS")	CEK_CIKIS.cari_kaydet();
+				else if (sonuc == "TAHSILAT")	TAH_FISI.cari_kaydet();
 				else if (sonuc =="FATURA		- SATIS" || sonuc =="FATURA		- ALIS" )	FATURA.cari_kaydet();
 				else if (sonuc == "KERESTE GIRIS")	KERESTE_GIRIS.cari_kaydet();
 				else if (sonuc == "KERESTE CIKIS")	KERESTE_CIKIS.cari_kaydet();

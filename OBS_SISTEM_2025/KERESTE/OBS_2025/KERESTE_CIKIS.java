@@ -2200,14 +2200,12 @@ public class KERESTE_CIKIS extends JInternalFrame {
 			rs = c_Access.hesap_adi_oku(alh);
 			if (!rs.isBeforeFirst() ) {  
 				OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING,  "Girilen Alacakli Hesap Kodunda  bir  hesaba rastlanmadi!!!!" );
-				//JOptionPane.showMessageDialog(null,  "Girilen Alacakli Hesap Kodunda  bir  hesaba rastlanmadi!!!!",  "Kereste Cari Kaydetme", JOptionPane.ERROR_MESSAGE); 
 				return ;
 			} 
 			rs= null;
 			rs = c_Access.hesap_adi_oku(txtcari.getText());
 			if (!rs.isBeforeFirst() ) {  
 				OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING,  textField.getText() +  " Bu numarada hesaba rastlanmadi!!!!" );
-				//JOptionPane.showMessageDialog(null, textField.getText() +  " Bu numarada hesaba rastlanmadi!!!!",  "Kereste Cari Kaydetme", JOptionPane.ERROR_MESSAGE); 
 				return;
 			} 
 			double sdf =  DecimalFormat.getNumberInstance().parse(label_8_1.getText()).intValue()  ;
@@ -2218,7 +2216,7 @@ public class KERESTE_CIKIS extends JInternalFrame {
 			double tutar  = DecimalFormat.getNumberInstance().parse(label.getText()).doubleValue()  ;
 			lOG_BILGI lBILGI = new lOG_BILGI();
 			str_4 = textField.getText() + "'Evrak ile " + FORMATLAMA.doub_0(DecimalFormat.getNumberInstance().parse(lblPaket.getText()).intValue()) + " Paket " + FORMATLAMA.doub_0(sdf) + " Adet " + FORMATLAMA.doub_3(DecimalFormat.getNumberInstance().parse(label_8.getText()).doubleValue())  + " m3 Urun Satisi" ;
-			System.out.println(str_4.length());
+			//System.out.println(str_4.length());
 			dEKONT_BILGI dBilgi = new dEKONT_BILGI();
 			dBilgi.setbHES(bh);
 			dBilgi.settAR(TARIH_CEVIR.tarih_geri_saatli(dtc));
@@ -2237,12 +2235,10 @@ public class KERESTE_CIKIS extends JInternalFrame {
 			lBILGI.seteVRAK(String.valueOf(e_number));
 			c_Access.cari_dekont_kaydet(dBilgi,lBILGI,BAGLAN_LOG.cariLogDizin);
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.INFO,  "Evrak  Cari Hesaba Basari ile Kaydedilmistir...." );
-			//JOptionPane.showMessageDialog(null,  "Evrak  Cari Hesaba Basari ile Kaydedilmistir....",  "Kereste Cari Kaydetme", JOptionPane.INFORMATION_MESSAGE);
 		}
 		catch (Exception ex)
 		{
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage() );
-			//JOptionPane.showMessageDialog(null,  ex.getMessage(),  "Kereste Cari Kaydetme", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	private  void stk_kodu_auto(String field)

@@ -285,10 +285,10 @@ public class CARI_HESAP_MSSQL implements ICARI_HESAP {
 		stmt = con.createStatement();  
 		stmt.executeUpdate(sql);	
 		//TAHSIL FISI
-		sql = "CREATE TABLE TAH_EVRAK_NO(EID int identity(1,1) CONSTRAINT PKeyTEID PRIMARY KEY,EVRAK integer )";
+		sql = "CREATE TABLE TAH_EVRAK(CINS nvarchar(3),NO integer )";
 		stmt = con.createStatement();  
 		stmt.executeUpdate(sql);
-		sql = "CREATE TABLE [dbo].[AYARLAR]( " +
+		sql = "CREATE TABLE [dbo].[TAH_AYARLAR]( " +
 				" [LOGO] [image] NULL," +
 				" [FIR_ISMI] [nvarchar](50) NULL, " +
 				" [ADR_1] [nvarchar](50) NULL," +
@@ -299,16 +299,21 @@ public class CARI_HESAP_MSSQL implements ICARI_HESAP {
 		stmt = con.createStatement();  
 		stmt.executeUpdate(sql);
 		sql = "CREATE TABLE [dbo].[DETAY](" +
-				" [EVRAK] [nvarchar](15) NULL," +
+				" [EVRAK] [nvarchar](15) NOT NULL," +
 				" [TARIH] [datetime] NULL," +
-				" [CINS] [int] NULL," +
+				" [C_HES] [nvarchar](12) NULL," +
+				" [A_HES] [nvarchar](12) NULL," +
+				" [CINS] [int] NOT NULL," +
 				" [TUTAR] [float] NULL," +
-				" [TUR] [int] NULL," +
+				" [TUR] [int] NOT NULL," +
 				" [ACIKLAMA] [nvarchar](50) NULL" +
 				" ) ON [PRIMARY]";
 		stmt = con.createStatement();  
 		stmt.executeUpdate(sql);
-		sql = "INSERT INTO  TAH_EVRAK_NO(EVRAK) VALUES ('0')";
+		sql = "INSERT INTO  TAH_EVRAK(CINS,NO) VALUES ('GIR','0')";
+		stmt = con.createStatement();  
+		stmt.executeUpdate(sql);
+		sql = "INSERT INTO  TAH_EVRAK(CINS,NO) VALUES ('CIK','0')";
 		stmt = con.createStatement();  
 		stmt.executeUpdate(sql);
 		// ***************EVRAK NO YAZ ************
@@ -579,6 +584,7 @@ public class CARI_HESAP_MSSQL implements ICARI_HESAP {
 		sql =  "DELETE FROM HESAP_DETAY WHERE D_HESAP =N'" + hesap + "'" ;
 		stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();
+		stmt.close();
 	}
 	public String kod_ismi(String kodu) throws ClassNotFoundException, SQLException
 	{
@@ -1293,6 +1299,70 @@ public class CARI_HESAP_MSSQL implements ICARI_HESAP {
 				+ "      ,[USER] FROM HESAP    ORDER BY HESAP ");
 		rss = stmt.executeQuery();
 		return rss;	
+	}
+	@Override
+	public int cari_tah_fisno_al(String tur) throws ClassNotFoundException, SQLException {
+		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+		ResultSet	rss = null;
+		int E_NUMBER ;
+		String sql = "SELECT  NO  FROM TAH_EVRAK  WITH (HOLDLOCK, ROWLOCK)  WHERE CINS = '" + tur + "'";
+		kONTROL();
+		PreparedStatement stmt = con.prepareStatement(sql);
+		rss = stmt.executeQuery();
+		rss.next();
+		E_NUMBER = rss.getInt("NO");
+		E_NUMBER = E_NUMBER + 1 ;
+		//******** KAYIT
+		sql = "UPDATE TAH_EVRAK SET NO =" + E_NUMBER + "  WHERE CINS = '" + tur + "'";
+		stmt = con.prepareStatement(sql);
+		stmt.executeUpdate();
+		stmt.close();
+		//**************
+		return E_NUMBER;	
+	}
+	@Override
+	public void tah_ayar_kayit(String adi, String adr1, String adr2, String vdvn, String amail, String diger,
+			InputStream resim) throws ClassNotFoundException, SQLException, IOException {
+		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+		
+		String sql  = "INSERT INTO TAH_AYARLAR (FIR_ISMI,ADR_1,ADR_2,VD_VN,MAIL,DIGER,LOGO)" +
+				" VALUES (?,?,?,?,?,?,?)" ;
+		PreparedStatement stmt = null;
+		kONTROL();
+		stmt = con.prepareStatement(sql);
+		stmt.setString(1, adi);
+		stmt.setString(2, adr1);
+		stmt.setString(3, adr2);
+		stmt.setString(4, vdvn);
+		stmt.setString(5, amail);
+		stmt.setString(6, diger);
+
+		if (  resim != null)
+		{
+			ByteArrayOutputStream bos = new ByteArrayOutputStream();
+			byte[] buf = new byte[1024];
+			for (int readNum; (readNum = resim.read(buf)) != -1;) {
+				bos.write(buf, 0, readNum);
+			}
+			byte[] bytes = bos.toByteArray();
+			stmt.setBytes(7,bytes);
+		}
+		else
+		{
+			stmt.setBytes(7,null);
+		}
+		stmt.executeUpdate();
+		stmt.close();
+		
+	}
+	@Override
+	public void tah_ayar_sil() throws ClassNotFoundException, SQLException {
+		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+		String sql = "DELETE FROM TAH_AYARLAR " ;
+		kONTROL();
+		PreparedStatement stmt = con.prepareStatement(sql);
+		stmt.executeUpdate();
+		stmt.close();
 	}
 }
 

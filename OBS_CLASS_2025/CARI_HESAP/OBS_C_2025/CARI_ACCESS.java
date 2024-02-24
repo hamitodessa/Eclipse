@@ -278,4 +278,16 @@ public class CARI_ACCESS {
 	{
 		return _ICari.ekstre_proc(hesap, t1, t2);
 	}
+	public int cari_tah_fisno_al(String tur) throws ClassNotFoundException, SQLException
+	{
+		return _ICari.cari_tah_fisno_al(tur);
+	}
+	public void tah_ayar_kayit(String adi ,String adr1 ,String adr2 ,String vdvn ,String mail,String diger,InputStream  resim ) throws ClassNotFoundException, SQLException, IOException
+	{
+		_ICari.tah_ayar_kayit(adi, adr1, adr2, vdvn, mail, diger, resim);
+	}
+	public void tah_ayar_sil() throws ClassNotFoundException, SQLException
+	{
+		_ICari.tah_ayar_sil();
+	}
 }

@@ -1210,4 +1210,20 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 		rss = stmt.executeQuery();
 		return rss;	 
 	}
+	@Override
+	public int cari_tah_fisno_al(String tur) throws ClassNotFoundException, SQLException {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	@Override
+	public void tah_ayar_kayit(String adi, String adr1, String adr2, String vdvn, String mail, String diger,
+			InputStream resim) throws ClassNotFoundException, SQLException, IOException {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void tah_ayar_sil() throws ClassNotFoundException, SQLException {
+		// TODO Auto-generated method stub
+		
+	}
 }

@@ -2605,6 +2605,7 @@ public class OBS_MAIN extends JFrame  {
 				else if (sonuc == "E MAIL BILGILERI")	E_MAIL_BILGILERI.kayit();
 				else if (sonuc == "PARAMETRELER")	PARAMETRELER.kayit();
 				else if (sonuc == "DEKONT")	DEKONT.kaydet();
+				else if (sonuc == "TAHSILAT") TAH_FISI.kaydet();
 				else if (sonuc == "HESAP GIRISI")	H_PLANI.kayit();
 				else if (sonuc == "KUR GIRIS")	KUR_GIRIS.kayit();
 				else if (sonuc == "EKSIK KUR")	EKSIK_KUR.kaydet();

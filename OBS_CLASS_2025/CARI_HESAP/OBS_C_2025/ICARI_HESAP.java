@@ -71,5 +71,8 @@ public interface ICARI_HESAP {
 	public ResultSet ekstre_proc(String hesap , String t1 ,String t2) throws ClassNotFoundException, SQLException;
 	public ResultSet gunisl_proc(String t1 ,String t2) throws ClassNotFoundException, SQLException;
 	public ResultSet karton_mizan(String h1 , String h2,String t1,String t2,String c1,String c2,String k1, String k2, String o1 , String o2) throws ClassNotFoundException, SQLException;
+	public int cari_tah_fisno_al(String tur) throws ClassNotFoundException, SQLException;
+	public void tah_ayar_kayit(String adi ,String adr1 ,String adr2 ,String vdvn ,String mail,String diger,InputStream  resim ) throws ClassNotFoundException, SQLException, IOException;
+	public void tah_ayar_sil() throws ClassNotFoundException, SQLException;
 }
 

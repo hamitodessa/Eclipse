@@ -723,9 +723,7 @@ public class DEKONT extends JInternalFrame {
 			}
 		});
 		txtbtutar.setEnabled(false);
-	
 		txtbtutar.setFont(new Font("Tahoma", Font.BOLD, 22));
-
 		txtbtutar.setHorizontalAlignment(SwingConstants.RIGHT);
 		txtbtutar.setText("0.00");
 		DecimalFormat df = new DecimalFormat(); // And here..

@@ -282,12 +282,21 @@ public class CARI_ACCESS {
 	{
 		return _ICari.cari_tah_fisno_al(tur);
 	}
-	public void tah_ayar_kayit(String adi ,String adr1 ,String adr2 ,String vdvn ,String mail,String diger,InputStream  resim ) throws ClassNotFoundException, SQLException, IOException
+	public void tah_ayar_kayit(String adi ,String adr1 ,String adr2 ,String vdvn ,String mail,String diger,InputStream  resim ,InputStream kase) throws ClassNotFoundException, SQLException, IOException
 	{
-		_ICari.tah_ayar_kayit(adi, adr1, adr2, vdvn, mail, diger, resim);
+		_ICari.tah_ayar_kayit(adi, adr1, adr2, vdvn, mail, diger, resim,kase);
 	}
 	public void tah_ayar_sil() throws ClassNotFoundException, SQLException
 	{
 		_ICari.tah_ayar_sil();
 	}
+	public ResultSet tah_ayar_oku () throws ClassNotFoundException, SQLException
+	{
+		return _ICari.tah_ayar_oku();
+	}
+	public void tah__kayit(int cins ,Integer tur , String evrak , String tarih ,String ckodu ,String akodu ,String aciklama,double tutar ) throws ClassNotFoundException, SQLException, IOException
+	{
+		_ICari.tah__kayit(cins, tur, evrak, tarih, ckodu, akodu, aciklama, tutar);
+	}
+
 }

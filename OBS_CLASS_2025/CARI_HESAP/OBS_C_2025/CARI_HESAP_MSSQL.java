@@ -295,10 +295,12 @@ public class CARI_HESAP_MSSQL implements ICARI_HESAP {
 				" [ADR_2] [nvarchar](50) NULL," +
 				" [VD_VN] [nvarchar](60) NULL," +
 				" [MAIL] [nvarchar](60) NULL," +
-				" [DIGER] [nvarchar](50) NULL) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]";
+				" [DIGER] [nvarchar](50) NULL, " + 
+				" [KASE] [image] NULL" +
+				" ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]";
 		stmt = con.createStatement();  
 		stmt.executeUpdate(sql);
-		sql = "CREATE TABLE [dbo].[DETAY](" +
+		sql = "CREATE TABLE [dbo].[TAH_DETAY](" +
 				" [EVRAK] [nvarchar](15) NOT NULL," +
 				" [TARIH] [datetime] NULL," +
 				" [C_HES] [nvarchar](12) NULL," +
@@ -1322,11 +1324,11 @@ public class CARI_HESAP_MSSQL implements ICARI_HESAP {
 	}
 	@Override
 	public void tah_ayar_kayit(String adi, String adr1, String adr2, String vdvn, String amail, String diger,
-			InputStream resim) throws ClassNotFoundException, SQLException, IOException {
+			InputStream resim , InputStream kase) throws ClassNotFoundException, SQLException, IOException {
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 		
-		String sql  = "INSERT INTO TAH_AYARLAR (FIR_ISMI,ADR_1,ADR_2,VD_VN,MAIL,DIGER,LOGO)" +
-				" VALUES (?,?,?,?,?,?,?)" ;
+		String sql  = "INSERT INTO TAH_AYARLAR (FIR_ISMI,ADR_1,ADR_2,VD_VN,MAIL,DIGER,LOGO,KASE)" +
+				" VALUES (?,?,?,?,?,?,?,?)" ;
 		PreparedStatement stmt = null;
 		kONTROL();
 		stmt = con.prepareStatement(sql);
@@ -1351,6 +1353,20 @@ public class CARI_HESAP_MSSQL implements ICARI_HESAP {
 		{
 			stmt.setBytes(7,null);
 		}
+		if (  kase != null)
+		{
+			ByteArrayOutputStream bos = new ByteArrayOutputStream();
+			byte[] buf = new byte[1024];
+			for (int readNum; (readNum = kase.read(buf)) != -1;) {
+				bos.write(buf, 0, readNum);
+			}
+			byte[] bytes = bos.toByteArray();
+			stmt.setBytes(8,bytes);
+		}
+		else
+		{
+			stmt.setBytes(8,null);
+		}
 		stmt.executeUpdate();
 		stmt.close();
 		
@@ -1363,6 +1379,43 @@ public class CARI_HESAP_MSSQL implements ICARI_HESAP {
 		PreparedStatement stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();
 		stmt.close();
+	}
+	@Override
+	public ResultSet tah_ayar_oku() throws ClassNotFoundException, SQLException {
+		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+		ResultSet	rss = null;
+		kONTROL();
+		PreparedStatement stmt = con.prepareStatement("SELECT * FROM TAH_AYARLAR ");
+		rss = stmt.executeQuery();
+		return rss;	
+	}
+	@Override
+	public void tah__kayit(int cins, Integer tur, String evrak, String tarih, String ckodu, String akodu,
+			String aciklama, double tutar) throws ClassNotFoundException, SQLException, IOException {
+		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+		
+		String sql = "DELETE FROM TAH_DETAY WHERE evrak = '"+ evrak + "' AND CINS = '" + cins + "' " ;
+		kONTROL();
+		PreparedStatement stmt = con.prepareStatement(sql);
+		stmt.executeUpdate();
+		
+		sql  = "INSERT INTO TAH_DETAY (EVRAK,TARIH,C_HES,A_HES,CINS,TUTAR,TUR,ACIKLAMA)" +
+				" VALUES (?,?,?,?,?,?,?,?)" ;
+		stmt = null;
+		kONTROL();
+		stmt = con.prepareStatement(sql);
+		stmt.setString(1, evrak);
+		stmt.setString(2, tarih);
+		stmt.setString(3, ckodu);
+		stmt.setString(4, akodu);
+		stmt.setInt(5, cins);
+		stmt.setDouble(6, tutar );
+		stmt.setInt(7, tur);
+		stmt.setString(8, aciklama);
+		stmt.executeUpdate();
+		stmt.close();
+	
+		
 	}
 }
 

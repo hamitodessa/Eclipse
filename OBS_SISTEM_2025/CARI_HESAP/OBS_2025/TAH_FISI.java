@@ -8,6 +8,7 @@ import com.formdev.flatlaf.FlatLaf;
 import OBS_C_2025.MaterialTabbed;
 import OBS_C_2025.Obs_TextFIeld;
 import OBS_C_2025.TARIH_CEVIR;
+
 import raven.toast.Notifications;
 
 import java.awt.BorderLayout;
@@ -21,6 +22,8 @@ import OBS_C_2025.ImagePanel;
 import OBS_C_2025.JTextFieldRegularPopupMenu;
 
 import javax.swing.border.LineBorder;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -38,6 +41,7 @@ import javax.swing.JFileChooser;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Image;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -53,6 +57,7 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.InputStream;
+import java.sql.ResultSet;
 import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -82,16 +87,18 @@ public class TAH_FISI extends JInternalFrame {
 	private static Obs_TextFIeld textMail;
 	private static Obs_TextFIeld textDiger;
 	private static Obs_TextFIeld textEvrakNo;
-	private Obs_TextFIeld textCKodu;
-	private Obs_TextFIeld textAKodu;
+	private static Obs_TextFIeld textCKodu;
+	private static Obs_TextFIeld textAKodu;
 	
 	private JLabel lblCAdi ;
 	private JLabel lblAAdi ;
 	private static JFormattedTextField formattedTutar ;
-	private JComboBox<String> cmbCins ;
+	private static JComboBox<String> cmbCins ;
+	private static JComboBox<String> cmbTur ;
 	private static MaterialTabbed tabbedPane;
 	private static ImagePanel imagePanel;
-
+	private static ImagePanel imageKase;
+	private static JDateChooser dtc ;
 	/**
 	 * Launch the application.
 	 */
@@ -106,9 +113,23 @@ public class TAH_FISI extends JInternalFrame {
 
 		setTitle("TAHSILAT");
 		setClosable(true);
-		setBounds(100, 100, 800, 400);
+		setBounds(100, 100, 800, 500);
 		
 		tabbedPane = new MaterialTabbed();
+		tabbedPane.addChangeListener(new ChangeListener() {
+			public void stateChanged(ChangeEvent e) {
+				if(tabbedPane.getSelectedIndex()==0)
+				{
+					
+				}
+				else if(tabbedPane.getSelectedIndex() == 1)
+				{
+					ayar_doldur();
+				}
+			}
+		});
+
+
 		tabbedPane.setFont(new Font("Tahoma", Font.BOLD, 14));
 		getContentPane().add(tabbedPane, BorderLayout.CENTER);
 		
@@ -121,12 +142,12 @@ public class TAH_FISI extends JInternalFrame {
 		cmbCins.setBounds(29, 43, 149, 22);
 		panel.add(cmbCins);
 		
-		JComboBox<String> cmbTur = new JComboBox<String>();
+		cmbTur = new JComboBox<String>();
 		cmbTur.setModel(new DefaultComboBoxModel(new String[] {"Nakit", "Cek", "Kredi Karti"}));
 		cmbTur.setBounds(29, 76, 149, 22);
 		panel.add(cmbTur);
 		
-		JDateChooser dtc = new JDateChooser();
+		dtc = new JDateChooser();
 		dtc.setBounds(300, 43, 128, 20);
 		dtc.getDateEditor().getUiComponent().addFocusListener(new FocusAdapter()    {
 			@Override
@@ -522,13 +543,71 @@ public class TAH_FISI extends JInternalFrame {
 			}
 		});
 		panel_Ayarlar.add(btnNewButton_5);
+		
+		imageKase = new ImagePanel();
+		imageKase.setBorder(new LineBorder(new Color(95, 158, 160), 1,true));
+		imageKase.setBounds(460, 220, 315, 150);
+		panel_Ayarlar.add(imageKase);
+		
+		JButton btnNewButton_4_1 = new JButton("Sec");
+		btnNewButton_4_1.setMargin(new Insets(2, 1, 2, 14));
+		btnNewButton_4_1.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		btnNewButton_4_1.setBounds(460, 381, 73, 23);
+		
+		btnNewButton_4_1.setIcon(new ImageIcon(H_PLANI.class.getResource("/ICONLAR/icons8-camera-16.png")));
+		
+		btnNewButton_4_1.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				getContentPane().setCursor(oac.WAIT_CURSOR);
 
+				UIManager.put("FileChooser.cancelButtonText", "Vazgec");
+				JFileChooser chooser = new JFileChooser();
+				chooser.setCurrentDirectory(new java.io.File("."));
+				chooser.setDialogTitle("Resim Seciniz");
+				chooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+				chooser.setAcceptAllFileFilterUsed(false);
+				chooser.setApproveButtonText("Resim Sec");
+				chooser.setApproveButtonToolTipText("Kase Sec");
+				chooser.addChoosableFileFilter(new FileNameExtensionFilter("Resim Dosyalari", "jpg", "png", "gif", "bmp"));
+				chooser.setApproveButtonMnemonic('s');
+				getContentPane().setCursor(oac.DEFAULT_CURSOR);
+				if (chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) { 
+					File file = chooser.getSelectedFile();
+					ImageIcon icon = new ImageIcon(file.getPath());
+					ImageIcon imageIcon = new ImageIcon(FIT_IMAGE.image(icon.getImage(), 315, 150));
+					BufferedImage bi = new BufferedImage(imageIcon .getIconWidth(), imageIcon .getIconHeight(), BufferedImage.TYPE_INT_RGB);
+					Graphics2D g = bi.createGraphics();
+					imageIcon.paintIcon(null, g, 0, 0);
+					g.setColor(Color.WHITE);
+					g.dispose();
+					imageKase.setImage(bi);
+				}
+				else {
+				}
+			}
+		});
+		
+		panel_Ayarlar.add(btnNewButton_4_1);
+		
+		JButton btnNewButton_5_1 = new JButton("Temizle");
+		btnNewButton_5_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				imageKase.setImage(null);
+			}
+		});
+		btnNewButton_5_1.setMargin(new Insets(2, 5, 2, 14));
+		btnNewButton_5_1.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		btnNewButton_5_1.setBounds(702, 381, 73, 23);
+		panel_Ayarlar.add(btnNewButton_5_1);
+		fis_temizle();
 	}
 	public static void kaydet()
 	{
 		if(tabbedPane.getSelectedIndex() == 0) // Fis
 		{
 			fis_kayit();
+			fis_temizle();
 		}
 		else if(tabbedPane.getSelectedIndex() == 1) // ayarlar
 		{
@@ -538,6 +617,15 @@ public class TAH_FISI extends JInternalFrame {
 	private static void fis_kayit()
 	{
 		if(textEvrakNo.getText().equals("0")) return;
+		try {
+		c_Access.tah__kayit(cmbCins.getSelectedIndex(), cmbTur.getSelectedIndex(),textEvrakNo.getText(), 
+				TARIH_CEVIR.tarih_geri_saatli(dtc) ,textCKodu.getText(), textAKodu.getText(), "Aciklama", 
+				DecimalFormat.getNumberInstance().parse(formattedTutar.getText()).doubleValue());
+		
+		} catch (Exception ex) {
+			 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage() );
+		}
+		
 	}
 	private static void ayar_kayit()
 	{
@@ -557,8 +645,24 @@ public class TAH_FISI extends JInternalFrame {
 			os.flush();
 			os.close();
 		}
+		
+		InputStream fis1 = null;
+		if ( imageKase.getImage()) 
+		{
+			BufferedImage bi = new BufferedImage( imageKase.getWidth(), imageKase.getHeight(), BufferedImage.TYPE_INT_RGB);
+			Graphics g = bi.createGraphics();
+			imageKase.paintComponent(g);
+			g.drawImage(bi, 0, 0, null);
+			g.setColor(Color.WHITE);
+			g.dispose();
+			ByteArrayOutputStream os = new ByteArrayOutputStream();
+			ImageIO.write(bi, "jpg", os);
+			fis1 = new ByteArrayInputStream(os.toByteArray());
+			os.flush();
+			os.close();
+		}
 		c_Access.tah_ayar_sil();
-		c_Access.tah_ayar_kayit(textAdi.getText(), textAdres1.getText(), textAdres2.getText(),textVdVn.getText(), textMail.getText(), textDiger.getText(), fis);
+		c_Access.tah_ayar_kayit(textAdi.getText(), textAdres1.getText(), textAdres2.getText(),textVdVn.getText(), textMail.getText(), textDiger.getText(), fis,fis1);
 
 		} catch (Exception ex) {
 			 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage() );
@@ -576,7 +680,6 @@ public class TAH_FISI extends JInternalFrame {
 			else {
 				evr =  c_Access.cari_tah_fisno_al("CIK");
 			}
-			
 			textEvrakNo.setText(Integer.toString(evr));
 			//kutu_ac();
 			//sifirla();
@@ -584,7 +687,75 @@ public class TAH_FISI extends JInternalFrame {
 		catch (Exception ex)
 		{
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR, ex.getMessage() );
-			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Yeni Dekont", JOptionPane.ERROR_MESSAGE);
 		}
+	}
+	private void ayar_doldur()
+	{
+		try {
+		ayar_temizle();
+	 	ResultSet rs = c_Access.tah_ayar_oku();
+	 	if (!rs.isBeforeFirst() ) {  
+	 		
+			return;
+		} 
+	 	rs.next();
+		if (  rs.getBytes("LOGO") != null)
+		{
+			byte[] img = rs.getBytes("LOGO");
+			ImageIcon image = new ImageIcon(img);
+			Image im = image.getImage();
+			ImageIcon newImage = new ImageIcon(im);
+			BufferedImage bi = new BufferedImage(newImage .getIconWidth(), newImage .getIconHeight(), BufferedImage.TYPE_INT_RGB);
+			Graphics2D g = bi.createGraphics();
+			newImage.paintIcon(null, g, 0, 0);
+			g.setColor(Color.WHITE);
+			g.dispose();
+			imagePanel.setImage(bi);
+			
+		}
+		if (  rs.getBytes("KASE") != null)
+		{
+			byte[] img = rs.getBytes("KASE");
+			ImageIcon image = new ImageIcon(img);
+			Image im = image.getImage();
+			ImageIcon newImage = new ImageIcon(im);
+			BufferedImage bi = new BufferedImage(newImage .getIconWidth(), newImage .getIconHeight(), BufferedImage.TYPE_INT_RGB);
+			Graphics2D g = bi.createGraphics();
+			newImage.paintIcon(null, g, 0, 0);
+			g.setColor(Color.WHITE);
+			g.dispose();
+			imageKase.setImage(bi);
+			
+		}
+		textAdi.setText(rs.getString("FIR_ISMI"));
+		textAdres1.setText(rs.getString("ADR_1"));
+		textAdres2.setText(rs.getString("ADR_2"));
+		textVdVn.setText(rs.getString("VD_VN"));
+		textMail.setText(rs.getString("MAIL"));
+		textDiger.setText(rs.getString("DIGER"));
+		} catch (Exception ex) {
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR, ex.getMessage() );
+		}
+	}
+	private void ayar_temizle()
+	{
+		textAdi.setText("");
+		textAdres1.setText("");
+		textAdres2.setText("");
+		textVdVn.setText("");
+		textMail.setText("");
+		textDiger.setText("");
+		imagePanel.setImage(null);
+		imageKase.setImage(null);
+		
+	}
+	private static void fis_temizle()
+	{
+		cmbCins.setSelectedIndex(0);
+		cmbTur.setSelectedIndex(0);
+		textCKodu.setText("");
+		textAKodu.setText("");
+		formattedTutar.setText("0.00");
+		textEvrakNo.setText("");
 	}
 }

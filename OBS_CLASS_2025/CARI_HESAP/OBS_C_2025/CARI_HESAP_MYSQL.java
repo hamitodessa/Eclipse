@@ -1217,12 +1217,23 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 	}
 	@Override
 	public void tah_ayar_kayit(String adi, String adr1, String adr2, String vdvn, String mail, String diger,
-			InputStream resim) throws ClassNotFoundException, SQLException, IOException {
+			InputStream resim , InputStream kase) throws ClassNotFoundException, SQLException, IOException {
 		// TODO Auto-generated method stub
 		
 	}
 	@Override
 	public void tah_ayar_sil() throws ClassNotFoundException, SQLException {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public ResultSet tah_ayar_oku() throws ClassNotFoundException, SQLException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public void tah__kayit(int cins, Integer tur, String evrak, String tarih, String ckodu, String akodu,
+			String aciklama, double tutar) throws ClassNotFoundException, SQLException, IOException {
 		// TODO Auto-generated method stub
 		
 	}

@@ -24,4 +24,5 @@ public interface IADRES {
 	public ResultSet adr_etiket(String siralama) throws ClassNotFoundException, SQLException;
 	public ResultSet adr_etiket_arama(String arama) throws ClassNotFoundException, SQLException;
 	public ResultSet kod_kontrol(String arama)throws ClassNotFoundException, SQLException;
+	public ResultSet adr_etiket_arama_kod(String arama) throws ClassNotFoundException, SQLException;
 }

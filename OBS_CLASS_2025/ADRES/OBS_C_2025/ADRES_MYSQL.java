@@ -420,4 +420,15 @@ public class ADRES_MYSQL implements IADRES {
 		rss = stmt.executeQuery(sql);
 		return rss;
 	}
+	@Override
+	public ResultSet adr_etiket_arama_kod(String arama) throws ClassNotFoundException, SQLException {
+		Class.forName("com.mysql.cj.jdbc.Driver");
+		ResultSet	rss = null;
+		String sql = "SELECT Adi , Adres_1 ,Adres_2 , Tel_1,Semt ,Sehir  FROM Adres "
+				+ " WHERE M_Kodu Like N'%" + arama + "%'";
+		kONTROL();
+		PreparedStatement stmt = con.prepareStatement(sql);
+		rss = stmt.executeQuery();
+		return rss;
+	}
 }

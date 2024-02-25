@@ -3027,6 +3027,15 @@ public class OBS_MAIN extends JFrame  {
 							PRINT_YAPMA.hisset("ekstre","normal");
 						}
 					}
+					else if (sonuc == "TAHSILAT")
+					{
+						InputStream is = this.getClass().getClassLoader().getResourceAsStream("RPT/TAHSILAT.rpt");
+						Files.copy(is, Paths.get(GLOBAL.SURUCU + "\\TAHSILAT.rpt"),StandardCopyOption.REPLACE_EXISTING);
+						internalFrame = new PRINT_YAPMA();
+						desktopPane.add(internalFrame);
+						internalFrame.setVisible(true);
+						PRINT_YAPMA.hisset("tahsilat","");
+					}
 					else if (sonuc == "CARI MIZAN")
 					{
 						if ( MIZAN.table.getRowCount() == 0 ) 

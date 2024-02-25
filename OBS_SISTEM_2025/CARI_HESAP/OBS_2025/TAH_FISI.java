@@ -92,19 +92,19 @@ public class TAH_FISI extends JInternalFrame {
 	private static Obs_TextFIeld textVdVn;
 	private static Obs_TextFIeld textMail;
 	private static Obs_TextFIeld textDiger;
-	private static Obs_TextFIeld textEvrakNo;
-	private static Obs_TextFIeld textCKodu;
-	private static Obs_TextFIeld textAKodu;
+	public static Obs_TextFIeld textEvrakNo;
+	public static Obs_TextFIeld textCKodu;
+	public static Obs_TextFIeld textAKodu;
 	
 	private static JLabel lblCAdi ;
 	private static JLabel lblAAdi ;
-	private static JFormattedTextField formattedTutar ;
-	private static JComboBox<String> cmbCins ;
-	private static JComboBox<String> cmbTur ;
+	public static JFormattedTextField formattedTutar ;
+	public static JComboBox<String> cmbCins ;
+	public static JComboBox<String> cmbTur ;
 	private static MaterialTabbed tabbedPane;
-	private static ImagePanel imagePanel;
+	public static ImagePanel imagePanel;
 	private static ImagePanel imageKase;
-	private static JDateChooser dtc ;
+	public static JDateChooser dtc ;
 	/**
 	 * Launch the application.
 	 */

@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+
 import javax.swing.JInternalFrame;
 import com.crystaldecisions.ReportViewer.ReportViewerBean;
 import com.crystaldecisions.sdk.occa.report.application.OpenReportOptions;
@@ -139,6 +140,269 @@ public class PRINT_YAPMA extends JInternalFrame {
 					}
 				}
 			}
+			
+			////////////////////////////////////////////////////
+			else if (nerden.equals("tahsilat"))
+			{
+				//**************************************************************************
+				file = new File(GLOBAL.SURUCU + "\\TAHSILAT.rpt");
+				clientDoc.open(file.getPath(), 0);
+				clientDoc.getDatabaseController().logon(BAGLAN.cariDizin.kULLANICI, BAGLAN.cariDizin.sIFRESI);
+				//**************************************************************************
+				ResultSet rstResultSet = a_Access.adr_etiket_arama_kod(TAH_FISI.textAKodu.getText());
+				if (!rstResultSet.isBeforeFirst() ) { 
+					
+				} 
+				rstResultSet.next();
+				String Unvan= rstResultSet.getString("Adi");
+				String Adr1= rstResultSet.getString("Adres_1");
+				String Adr2 = rstResultSet.getString("Adres_2");
+				String Semt = rstResultSet.getString("Semt") + " / "+ rstResultSet.getString("Sehir");
+				////
+				com.crystaldecisions.sdk.occa.report.definition.ReportObjects reportObjects = clientDoc.getReportDefController().getReportObjectController().getReportObjectsByKind(ReportObjectKind.text);
+				for(int i=0; i< reportObjects.size();i++)
+				{
+					ITextObject textObject = (ITextObject)reportObjects.get(i);
+					String cinString = "" ;
+					if(TAH_FISI.cmbCins.getSelectedIndex() == 0)
+					{
+						cinString = "ALACAK";
+					}
+					else {
+						cinString = "BORC";
+					}
+					
+					if (textObject.getName().equals("Cins"))
+					{
+						ITextObject oTextObject =  (ITextObject) textObject.clone(true);
+						Paragraphs oParagraphs = new Paragraphs();
+						Paragraph oParagraph = new Paragraph();
+						ParagraphElements oParagraphElements = new ParagraphElements();
+						ParagraphTextElement oParagraphTextElement = new ParagraphTextElement();
+						//"Nakit", "Cek", "Kredi Karti"
+						if(TAH_FISI.cmbTur.getSelectedIndex() == 0)
+						{
+							oParagraphTextElement.setText("NAKIT " + cinString + " MAKBUZU");
+						}
+						else if(TAH_FISI.cmbTur.getSelectedIndex() == 0)
+						{
+							oParagraphTextElement.setText("CEK " + cinString + " MAKBUZU");
+						}
+						else if(TAH_FISI.cmbTur.getSelectedIndex() == 0)
+						{
+							oParagraphTextElement.setText("KREDI KARTI " + cinString + " MAKBUZU");
+						}
+						oParagraphTextElement.setKind(ParagraphElementKind.text);
+						oParagraph.setAlignment(Alignment.horizontalCenter);
+						oParagraphs.add(oParagraph);
+						oParagraph.setParagraphElements(oParagraphElements);
+						oParagraphElements.add(oParagraphTextElement);
+						oTextObject.setParagraphs(oParagraphs);
+						clientDoc.getReportDefController().getReportObjectController().modify(textObject, oTextObject);
+					}
+					else if (textObject.getName().equals("Tarih"))
+					{
+						ITextObject oTextObject =  (ITextObject) textObject.clone(true);
+						Paragraphs oParagraphs = new Paragraphs();
+						Paragraph oParagraph = new Paragraph();
+						ParagraphElements oParagraphElements = new ParagraphElements();
+						ParagraphTextElement oParagraphTextElement = new ParagraphTextElement();
+						oParagraphTextElement.setText( TARIH_CEVIR.tarih_dt_ddMMyyyy(TAH_FISI.dtc));
+						oParagraphTextElement.setKind(ParagraphElementKind.text);
+						oParagraph.setAlignment(Alignment.right);
+						oParagraphs.add(oParagraph);
+						oParagraph.setParagraphElements(oParagraphElements);
+						oParagraphElements.add(oParagraphTextElement);
+						oTextObject.setParagraphs(oParagraphs);
+						clientDoc.getReportDefController().getReportObjectController().modify(textObject, oTextObject);
+					}
+					else if (textObject.getName().equals("Fis_No"))
+					{
+						ITextObject oTextObject =  (ITextObject) textObject.clone(true);
+						Paragraphs oParagraphs = new Paragraphs();
+						Paragraph oParagraph = new Paragraph();
+						ParagraphElements oParagraphElements = new ParagraphElements();
+						ParagraphTextElement oParagraphTextElement = new ParagraphTextElement();
+						oParagraphTextElement.setText(TAH_FISI.textEvrakNo.getText());
+						oParagraphTextElement.setKind(ParagraphElementKind.text);
+						oParagraph.setAlignment(Alignment.right);
+						oParagraphs.add(oParagraph);
+						oParagraph.setParagraphElements(oParagraphElements);
+						oParagraphElements.add(oParagraphTextElement);
+						oTextObject.setParagraphs(oParagraphs);
+						clientDoc.getReportDefController().getReportObjectController().modify(textObject, oTextObject);
+					}
+					else if (textObject.getName().equals("Kodu"))
+					{
+						ITextObject oTextObject =  (ITextObject) textObject.clone(true);
+						Paragraphs oParagraphs = new Paragraphs();
+						Paragraph oParagraph = new Paragraph();
+						ParagraphElements oParagraphElements = new ParagraphElements();
+						ParagraphTextElement oParagraphTextElement = new ParagraphTextElement();
+						oParagraphTextElement.setText(TAH_FISI.textCKodu.getText());
+						oParagraphTextElement.setKind(ParagraphElementKind.text);
+						IFontColor newFontColor = oTextObject.getFontColor();
+						Font fnt = new Font("Verdana", Font.BOLD, 12);
+						newFontColor.setFont(fnt);
+						oParagraphTextElement.setFontColor(newFontColor);
+						
+						oParagraphs.add(oParagraph);
+						oParagraph.setParagraphElements(oParagraphElements);
+						oParagraphElements.add(oParagraphTextElement);
+						oTextObject.setParagraphs(oParagraphs);
+						clientDoc.getReportDefController().getReportObjectController().modify(textObject, oTextObject);
+					}
+					else if (textObject.getName().equals("Unvan"))
+					{
+						ITextObject oTextObject =  (ITextObject) textObject.clone(true);
+						Paragraphs oParagraphs = new Paragraphs();
+						Paragraph oParagraph = new Paragraph();
+						ParagraphElements oParagraphElements = new ParagraphElements();
+						ParagraphTextElement oParagraphTextElement = new ParagraphTextElement();
+						oParagraphTextElement.setText(Unvan);
+						oParagraphTextElement.setKind(ParagraphElementKind.text);
+						IFontColor newFontColor = oTextObject.getFontColor();
+						Font fnt = new Font("Verdana", Font.BOLD, 12);
+						newFontColor.setFont(fnt);
+						oParagraphTextElement.setFontColor(newFontColor);
+						oParagraphs.add(oParagraph);
+						oParagraph.setParagraphElements(oParagraphElements);
+						oParagraphElements.add(oParagraphTextElement);
+						oTextObject.setParagraphs(oParagraphs);
+						clientDoc.getReportDefController().getReportObjectController().modify(textObject, oTextObject);
+					}
+					else if (textObject.getName().equals("Adr1"))
+					{
+						ITextObject oTextObject =  (ITextObject) textObject.clone(true);
+						Paragraphs oParagraphs = new Paragraphs();
+						Paragraph oParagraph = new Paragraph();
+						ParagraphElements oParagraphElements = new ParagraphElements();
+						ParagraphTextElement oParagraphTextElement = new ParagraphTextElement();
+						oParagraphTextElement.setText(Adr1);
+						oParagraphTextElement.setKind(ParagraphElementKind.text);
+						oParagraphs.add(oParagraph);
+						oParagraph.setParagraphElements(oParagraphElements);
+						oParagraphElements.add(oParagraphTextElement);
+						oTextObject.setParagraphs(oParagraphs);
+						clientDoc.getReportDefController().getReportObjectController().modify(textObject, oTextObject);
+					}
+					else if (textObject.getName().equals("Adr2"))
+					{
+						ITextObject oTextObject =  (ITextObject) textObject.clone(true);
+						Paragraphs oParagraphs = new Paragraphs();
+						Paragraph oParagraph = new Paragraph();
+						ParagraphElements oParagraphElements = new ParagraphElements();
+						ParagraphTextElement oParagraphTextElement = new ParagraphTextElement();
+						oParagraphTextElement.setText(Adr2);
+						oParagraphTextElement.setKind(ParagraphElementKind.text);
+						oParagraphs.add(oParagraph);
+						oParagraph.setParagraphElements(oParagraphElements);
+						oParagraphElements.add(oParagraphTextElement);
+						oTextObject.setParagraphs(oParagraphs);
+						clientDoc.getReportDefController().getReportObjectController().modify(textObject, oTextObject);
+					}
+					else if (textObject.getName().equals("Adr3"))
+					{
+						ITextObject oTextObject =  (ITextObject) textObject.clone(true);
+						Paragraphs oParagraphs = new Paragraphs();
+						Paragraph oParagraph = new Paragraph();
+						ParagraphElements oParagraphElements = new ParagraphElements();
+						ParagraphTextElement oParagraphTextElement = new ParagraphTextElement();
+						oParagraphTextElement.setText(Semt);
+						oParagraphTextElement.setKind(ParagraphElementKind.text);
+						oParagraphs.add(oParagraph);
+						oParagraph.setParagraphElements(oParagraphElements);
+						oParagraphElements.add(oParagraphTextElement);
+						oTextObject.setParagraphs(oParagraphs);
+						clientDoc.getReportDefController().getReportObjectController().modify(textObject, oTextObject);
+					}
+					else if (textObject.getName().equals("YaziIle"))
+					{
+						ITextObject oTextObject =  (ITextObject) textObject.clone(true);
+						Paragraphs oParagraphs = new Paragraphs();
+						Paragraph oParagraph = new Paragraph();
+						ParagraphElements oParagraphElements = new ParagraphElements();
+						ParagraphTextElement oParagraphTextElement = new ParagraphTextElement();
+						double aqw = DecimalFormat.getNumberInstance().parse(TAH_FISI.formattedTutar.getText()).doubleValue();
+						String qwe = Double.toString(aqw);
+						String cnt  = "" ;
+						//if ( CEK_GIRIS.textField_4.getText().equals(GLOBAL.setting_oku("PRG_PARA").toString()))
+						//{
+							cnt = "KURUŞ" ;
+						//}
+						//else
+						//{
+						//	cnt = "Cent" ;
+						//}
+						sayiyiYaziyaCevir cevir = new sayiyiYaziyaCevir();
+						String yaziylat = cevir.sayiyiYaziyaCevirr(qwe, 2, "TL", cnt , "#", null, null, null);
+						oParagraphTextElement.setText(yaziylat );
+
+						oParagraphTextElement.setKind(ParagraphElementKind.text);
+						oParagraphs.add(oParagraph);
+						oParagraph.setParagraphElements(oParagraphElements);
+						oParagraphElements.add(oParagraphTextElement);
+						oTextObject.setParagraphs(oParagraphs);
+						clientDoc.getReportDefController().getReportObjectController().modify(textObject, oTextObject);
+					}
+					else if (textObject.getName().equals("Aciklama"))
+					{
+						ITextObject oTextObject =  (ITextObject) textObject.clone(true);
+						Paragraphs oParagraphs = new Paragraphs();
+						Paragraph oParagraph = new Paragraph();
+						ParagraphElements oParagraphElements = new ParagraphElements();
+						ParagraphTextElement oParagraphTextElement = new ParagraphTextElement();
+						double aqw = DecimalFormat.getNumberInstance().parse(TAH_FISI.formattedTutar.getText()).doubleValue();
+						if(TAH_FISI.cmbTur.getSelectedIndex() == 0)
+						{
+							oParagraphTextElement.setText("Nakit yapilan " + FORMATLAMA.doub_2(aqw) + " TL"+ 
+									" Tutarindaki tahsilat " + TAH_FISI.textCKodu.getText() + " no'lu ");
+						}
+						else if(TAH_FISI.cmbTur.getSelectedIndex() == 1)
+						{
+							oParagraphTextElement.setText("Verilen Cek " + FORMATLAMA.doub_2(aqw) + " TL"+ 
+									" Tutarindaki tahsilat " + TAH_FISI.textCKodu.getText() + " no'lu ");
+						}
+						else if(TAH_FISI.cmbTur.getSelectedIndex() == 2)
+						{
+							oParagraphTextElement.setText("Kredi Kartinizdan yapilan " + FORMATLAMA.doub_2(aqw) + " TL"+ 
+									" Tutarindaki tahsilat " + TAH_FISI.textCKodu.getText() + " no'lu ");
+						}
+						
+						oParagraphTextElement.setKind(ParagraphElementKind.text);
+						oParagraphs.add(oParagraph);
+						oParagraph.setParagraphElements(oParagraphElements);
+						oParagraphElements.add(oParagraphTextElement);
+						oTextObject.setParagraphs(oParagraphs);
+						clientDoc.getReportDefController().getReportObjectController().modify(textObject, oTextObject);
+					}
+					else if (textObject.getName().equals("Borc_Alacak"))
+					{
+						ITextObject oTextObject =  (ITextObject) textObject.clone(true);
+						Paragraphs oParagraphs = new Paragraphs();
+						Paragraph oParagraph = new Paragraph();
+						ParagraphElements oParagraphElements = new ParagraphElements();
+						ParagraphTextElement oParagraphTextElement = new ParagraphTextElement();
+						if(TAH_FISI.cmbCins.getSelectedIndex() == 0)
+						{
+							oParagraphTextElement.setText("ALACAK");
+						}
+						else {
+							oParagraphTextElement.setText("BORC");
+						}
+						
+						oParagraphTextElement.setKind(ParagraphElementKind.text);
+						oParagraphs.add(oParagraph);
+						oParagraph.setParagraphElements(oParagraphElements);
+						oParagraphElements.add(oParagraphTextElement);
+						oTextObject.setParagraphs(oParagraphs);
+						clientDoc.getReportDefController().getReportObjectController().modify(textObject, oTextObject);
+					}
+				}
+
+			}
+			//Borc_Alacak
+			////////////////////////////////////////////////////
 			else if (nerden.equals("ekstre"))
 			{
 				//**************************************************************************

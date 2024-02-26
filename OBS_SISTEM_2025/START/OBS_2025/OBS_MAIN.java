@@ -3029,6 +3029,12 @@ public class OBS_MAIN extends JFrame  {
 					}
 					else if (sonuc == "TAHSILAT")
 					{
+						if(TAH_FISI.textEvrakNo.getText() == null || TAH_FISI.textEvrakNo.getText().equals("0") || TAH_FISI.textEvrakNo.getText().equals(""))
+						{
+							GuiUtil.setWaitCursor(toolBar,false);
+							GuiUtil.setWaitCursor(tabbedPane,false); 
+							return ;
+						}
 						InputStream is = this.getClass().getClassLoader().getResourceAsStream("RPT/TAHSILAT.rpt");
 						Files.copy(is, Paths.get(GLOBAL.SURUCU + "\\TAHSILAT.rpt"),StandardCopyOption.REPLACE_EXISTING);
 						internalFrame = new PRINT_YAPMA();

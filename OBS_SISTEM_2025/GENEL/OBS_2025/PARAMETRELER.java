@@ -223,7 +223,7 @@ public class PARAMETRELER   extends JInternalFrame   {
 		});
 		textField_9.setFont(new Font("Tahoma", Font.BOLD, 11));
 		textField_9.setColumns(10);
-		textField_9.setBounds(151, 11, 53, 20);
+		textField_9.setBounds(151, 11, 70, 20);
 		panel_4.add(textField_9);
 
 		JLabel lblNewLabel_4_2_1 = new JLabel("Filtre");
@@ -362,7 +362,7 @@ public class PARAMETRELER   extends JInternalFrame   {
 				"FlatGradiantoNatureGreenIJTheme","FlatMaterial" ,"FlatMonocaiIJ" ,"SmartLookAndFeel","NoireLookAndFeel","AcrylLookAndFeel" ,
 				"AeroLookAndFeel","AluminiumLookAndFeel","BernsteinLookAndFeel","FastLookAndFeel","GraphiteLookAndFeel","HiFiLookAndFeel",
 				"LunaLookAndFeel","McWinLookAndFeel","MintLookAndFeel"}));
-		comboBox_2.setBounds(151, 163, 230, 22);
+		comboBox_2.setBounds(151, 163, 310, 22);
 		panel_4.add(comboBox_2);
 
 		colorChooser = new ColorChooserButton(new Color(0, 191, 255));
@@ -547,7 +547,7 @@ public class PARAMETRELER   extends JInternalFrame   {
 			}
 		});
 		textField.setFont(new Font("Tahoma", Font.BOLD, 11));
-		textField.setBounds(150, 297, 46, 20);
+		textField.setBounds(150, 297, 50, 20);
 		panel.add(textField);
 		textField.setColumns(10);
 
@@ -948,7 +948,7 @@ public class PARAMETRELER   extends JInternalFrame   {
 			}
 		});
 		textField_1.setFont(new Font("Tahoma", Font.BOLD, 11));
-		textField_1.setBounds(150, 144, 40, 20);
+		textField_1.setBounds(150, 144, 50, 20);
 		panel_1.add(textField_1);
 		textField_1.setColumns(10);
 
@@ -1132,7 +1132,7 @@ public class PARAMETRELER   extends JInternalFrame   {
 		});
 		textField_2.setFont(new Font("Tahoma", Font.BOLD, 11));
 		textField_2.setColumns(10);
-		textField_2.setBounds(150, 367, 40, 20);
+		textField_2.setBounds(150, 367, 50, 20);
 		panel_1.add(textField_2);
 
 		JSeparator separator_1 = new JSeparator();
@@ -1332,7 +1332,7 @@ public class PARAMETRELER   extends JInternalFrame   {
 		});
 		textField_5.setFont(new Font("Tahoma", Font.BOLD, 11));
 		textField_5.setColumns(10);
-		textField_5.setBounds(150, 11, 40, 20);
+		textField_5.setBounds(150, 11, 50, 20);
 		panel_3.add(textField_5);
 
 		JLabel lblNewLabel_4_1_2_1_3 = new JLabel("Cek Cikis");
@@ -1364,7 +1364,7 @@ public class PARAMETRELER   extends JInternalFrame   {
 		});
 		textField_6.setFont(new Font("Tahoma", Font.BOLD, 11));
 		textField_6.setColumns(10);
-		textField_6.setBounds(150, 39, 40, 20);
+		textField_6.setBounds(150, 39, 50, 20);
 		panel_3.add(textField_6);
 
 		JLabel lblNewLabel_4_1_2_1_4 = new JLabel("Senet Giris");
@@ -1373,6 +1373,7 @@ public class PARAMETRELER   extends JInternalFrame   {
 		panel_3.add(lblNewLabel_4_1_2_1_4);
 
 		textField_7 = new Obs_TextFIeld();
+		textField_7.setEnabled(false);
 		textField_7.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
@@ -1405,6 +1406,7 @@ public class PARAMETRELER   extends JInternalFrame   {
 		panel_3.add(lblNewLabel_4_1_2_1_5);
 
 		textField_8 = new Obs_TextFIeld();
+		textField_8.setEnabled(false);
 		textField_8.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
@@ -1778,9 +1780,9 @@ public class PARAMETRELER   extends JInternalFrame   {
 			deger = oac.glb.setting_oku("KAM_CEK_CIK").toString();
 			textField_6.setText(deger);
 			deger = oac.glb.setting_oku("KAM_SEN_GIR").toString();
-			textField_7.setText(deger);
+			textField_7.setText("0");
 			deger = oac.glb.setting_oku("KAM_SEN_CIK").toString();
-			textField_8.setText(deger);
+			textField_8.setText("0");
 
 			deger = oac.glb.setting_oku("KAM_SAT_KOP").toString();
 			parts = deger.split(",");

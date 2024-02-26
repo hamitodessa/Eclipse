@@ -140,14 +140,14 @@ public class PRINT_YAPMA extends JInternalFrame {
 					}
 				}
 			}
-			
-			////////////////////////////////////////////////////
 			else if (nerden.equals("tahsilat"))
 			{
 				//**************************************************************************
 				file = new File(GLOBAL.SURUCU + "\\TAHSILAT.rpt");
 				clientDoc.open(file.getPath(), 0);
 				clientDoc.getDatabaseController().logon(BAGLAN.cariDizin.kULLANICI, BAGLAN.cariDizin.sIFRESI);
+				rs =  c_Access.tah_ayar_oku();
+				clientDoc.getDatabaseController().setDataSource(rs);
 				//**************************************************************************
 				ResultSet rstResultSet = a_Access.adr_etiket_arama_kod(TAH_FISI.textAKodu.getText());
 				if (!rstResultSet.isBeforeFirst() ) { 
@@ -158,18 +158,17 @@ public class PRINT_YAPMA extends JInternalFrame {
 				String Adr1= rstResultSet.getString("Adres_1");
 				String Adr2 = rstResultSet.getString("Adres_2");
 				String Semt = rstResultSet.getString("Semt") + " / "+ rstResultSet.getString("Sehir");
-				////
-				com.crystaldecisions.sdk.occa.report.definition.ReportObjects reportObjects = clientDoc.getReportDefController().getReportObjectController().getReportObjectsByKind(ReportObjectKind.text);
+				ReportObjects reportObjects = clientDoc.getReportDefController().getReportObjectController().getReportObjectsByKind(ReportObjectKind.text);
 				for(int i=0; i< reportObjects.size();i++)
 				{
 					ITextObject textObject = (ITextObject)reportObjects.get(i);
 					String cinString = "" ;
 					if(TAH_FISI.cmbCins.getSelectedIndex() == 0)
 					{
-						cinString = "ALACAK";
+						cinString = "TAHSILAT";
 					}
 					else {
-						cinString = "BORC";
+						cinString = "TEDIYE";
 					}
 					
 					if (textObject.getName().equals("Cins"))
@@ -179,21 +178,18 @@ public class PRINT_YAPMA extends JInternalFrame {
 						Paragraph oParagraph = new Paragraph();
 						ParagraphElements oParagraphElements = new ParagraphElements();
 						ParagraphTextElement oParagraphTextElement = new ParagraphTextElement();
-						//"Nakit", "Cek", "Kredi Karti"
 						if(TAH_FISI.cmbTur.getSelectedIndex() == 0)
-						{
 							oParagraphTextElement.setText("NAKIT " + cinString + " MAKBUZU");
-						}
 						else if(TAH_FISI.cmbTur.getSelectedIndex() == 0)
-						{
 							oParagraphTextElement.setText("CEK " + cinString + " MAKBUZU");
-						}
 						else if(TAH_FISI.cmbTur.getSelectedIndex() == 0)
-						{
 							oParagraphTextElement.setText("KREDI KARTI " + cinString + " MAKBUZU");
-						}
 						oParagraphTextElement.setKind(ParagraphElementKind.text);
 						oParagraph.setAlignment(Alignment.horizontalCenter);
+						IFontColor newFontColor = oTextObject.getFontColor();
+						Font fnt = new Font("Verdana", Font.BOLD, 12);
+						newFontColor.setFont(fnt);
+						oParagraphTextElement.setFontColor(newFontColor);
 						oParagraphs.add(oParagraph);
 						oParagraph.setParagraphElements(oParagraphElements);
 						oParagraphElements.add(oParagraphTextElement);
@@ -210,6 +206,10 @@ public class PRINT_YAPMA extends JInternalFrame {
 						oParagraphTextElement.setText( TARIH_CEVIR.tarih_dt_ddMMyyyy(TAH_FISI.dtc));
 						oParagraphTextElement.setKind(ParagraphElementKind.text);
 						oParagraph.setAlignment(Alignment.right);
+						IFontColor newFontColor = oTextObject.getFontColor();
+						Font fnt = new Font("Verdana", Font.BOLD, 12);
+						newFontColor.setFont(fnt);
+						oParagraphTextElement.setFontColor(newFontColor);
 						oParagraphs.add(oParagraph);
 						oParagraph.setParagraphElements(oParagraphElements);
 						oParagraphElements.add(oParagraphTextElement);
@@ -226,6 +226,10 @@ public class PRINT_YAPMA extends JInternalFrame {
 						oParagraphTextElement.setText(TAH_FISI.textEvrakNo.getText());
 						oParagraphTextElement.setKind(ParagraphElementKind.text);
 						oParagraph.setAlignment(Alignment.right);
+						IFontColor newFontColor = oTextObject.getFontColor();
+						Font fnt = new Font("Verdana", Font.BOLD, 12);
+						newFontColor.setFont(fnt);
+						oParagraphTextElement.setFontColor(newFontColor);
 						oParagraphs.add(oParagraph);
 						oParagraph.setParagraphElements(oParagraphElements);
 						oParagraphElements.add(oParagraphTextElement);
@@ -326,16 +330,16 @@ public class PRINT_YAPMA extends JInternalFrame {
 						double aqw = DecimalFormat.getNumberInstance().parse(TAH_FISI.formattedTutar.getText()).doubleValue();
 						String qwe = Double.toString(aqw);
 						String cnt  = "" ;
-						//if ( CEK_GIRIS.textField_4.getText().equals(GLOBAL.setting_oku("PRG_PARA").toString()))
-						//{
+						if ( TAH_FISI.lblCCinsi.getText().equals(GLOBAL.setting_oku("PRG_PARA").toString()))
+						{
 							cnt = "KURUŞ" ;
-						//}
-						//else
-						//{
-						//	cnt = "Cent" ;
-						//}
+						}
+						else
+						{
+							cnt = "Cent" ;
+						}
 						sayiyiYaziyaCevir cevir = new sayiyiYaziyaCevir();
-						String yaziylat = cevir.sayiyiYaziyaCevirr(qwe, 2, "TL", cnt , "#", null, null, null);
+						String yaziylat = cevir.sayiyiYaziyaCevirr(qwe, 2, TAH_FISI.lblCCinsi.getText(), cnt , "#", null, null, null);
 						oParagraphTextElement.setText(yaziylat );
 
 						oParagraphTextElement.setKind(ParagraphElementKind.text);
@@ -355,17 +359,17 @@ public class PRINT_YAPMA extends JInternalFrame {
 						double aqw = DecimalFormat.getNumberInstance().parse(TAH_FISI.formattedTutar.getText()).doubleValue();
 						if(TAH_FISI.cmbTur.getSelectedIndex() == 0)
 						{
-							oParagraphTextElement.setText("Nakit yapilan " + FORMATLAMA.doub_2(aqw) + " TL"+ 
+							oParagraphTextElement.setText("Nakit yapilan " + FORMATLAMA.doub_2(aqw) + " " + TAH_FISI.lblCCinsi.getText() + 
 									" Tutarindaki tahsilat " + TAH_FISI.textCKodu.getText() + " no'lu ");
 						}
 						else if(TAH_FISI.cmbTur.getSelectedIndex() == 1)
 						{
-							oParagraphTextElement.setText("Verilen Cek " + FORMATLAMA.doub_2(aqw) + " TL"+ 
+							oParagraphTextElement.setText("Verilen Cek " + FORMATLAMA.doub_2(aqw) + " " + TAH_FISI.lblCCinsi.getText() + 
 									" Tutarindaki tahsilat " + TAH_FISI.textCKodu.getText() + " no'lu ");
 						}
 						else if(TAH_FISI.cmbTur.getSelectedIndex() == 2)
 						{
-							oParagraphTextElement.setText("Kredi Kartinizdan yapilan " + FORMATLAMA.doub_2(aqw) + " TL"+ 
+							oParagraphTextElement.setText("Kredi Kartinizdan yapilan " + FORMATLAMA.doub_2(aqw) + " " + TAH_FISI.lblCCinsi.getText() + 
 									" Tutarindaki tahsilat " + TAH_FISI.textCKodu.getText() + " no'lu ");
 						}
 						
@@ -401,8 +405,6 @@ public class PRINT_YAPMA extends JInternalFrame {
 				}
 
 			}
-			//Borc_Alacak
-			////////////////////////////////////////////////////
 			else if (nerden.equals("ekstre"))
 			{
 				//**************************************************************************

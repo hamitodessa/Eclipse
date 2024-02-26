@@ -97,6 +97,7 @@ public class TAH_FISI extends JInternalFrame {
 	public static Obs_TextFIeld textAKodu;
 	
 	private static JLabel lblCAdi ;
+	public static JLabel lblCCinsi ;
 	private static JLabel lblAAdi ;
 	public static JFormattedTextField formattedTutar ;
 	public static JComboBox<String> cmbCins ;
@@ -317,6 +318,7 @@ public class TAH_FISI extends JInternalFrame {
 							hsp.show();
 							textCKodu.setText(oac.hsp_hsp_kodu);
 							lblCAdi.setText(CARI_ISIM_OKU.isim(textCKodu.getText())[0]);
+							lblCCinsi.setText(CARI_ISIM_OKU.isim(textCKodu.getText())[1]);
 							getContentPane().setCursor(oac.DEFAULT_CURSOR);
 						}
 					}
@@ -339,6 +341,7 @@ public class TAH_FISI extends JInternalFrame {
 						textCKodu.setText( oac.hsp_hsp_kodu);
 						getContentPane().setCursor(oac.WAIT_CURSOR);
 						lblCAdi.setText(CARI_ISIM_OKU.isim(textCKodu.getText())[0]);
+						lblCCinsi.setText(CARI_ISIM_OKU.isim(textCKodu.getText())[1]);
 						getContentPane().setCursor(oac.DEFAULT_CURSOR);
 					} catch (Exception e1) {
 						e1.printStackTrace();
@@ -351,6 +354,7 @@ public class TAH_FISI extends JInternalFrame {
 		  
 			    	getContentPane().setCursor(oac.WAIT_CURSOR);
 			    	lblCAdi.setText(CARI_ISIM_OKU.isim(textCKodu.getText())[0]);
+			    	lblCCinsi.setText(CARI_ISIM_OKU.isim(textCKodu.getText())[1]);
 					getContentPane().setCursor(oac.DEFAULT_CURSOR);
 				
 		  }
@@ -358,6 +362,7 @@ public class TAH_FISI extends JInternalFrame {
 		    
 			    	getContentPane().setCursor(oac.WAIT_CURSOR);
 			    	lblCAdi.setText(CARI_ISIM_OKU.isim(textCKodu.getText())[0]);
+			    	lblCCinsi.setText(CARI_ISIM_OKU.isim(textCKodu.getText())[1]);
 					getContentPane().setCursor(oac.DEFAULT_CURSOR);
 				
 			  }
@@ -365,6 +370,7 @@ public class TAH_FISI extends JInternalFrame {
 		    
 			    	getContentPane().setCursor(oac.WAIT_CURSOR);
 			    	lblCAdi.setText(CARI_ISIM_OKU.isim(textCKodu.getText())[0]);
+			    	lblCCinsi.setText(CARI_ISIM_OKU.isim(textCKodu.getText())[1]);
 					getContentPane().setCursor(oac.DEFAULT_CURSOR);
 				
 			  }
@@ -473,6 +479,10 @@ public class TAH_FISI extends JInternalFrame {
 		JLabel lblNewLabel_4 = new JLabel("Fis No");
 		lblNewLabel_4.setBounds(573, 50, 48, 14);
 		panel.add(lblNewLabel_4);
+		
+		lblCCinsi = new JLabel("");
+		lblCCinsi.setBounds(29, 203, 48, 14);
+		panel.add(lblCCinsi);
 		
 		JPanel panel_Ayarlar = new JPanel();
 		tabbedPane.addTab("Ayarlar", null, panel_Ayarlar, null);
@@ -658,7 +668,9 @@ public class TAH_FISI extends JInternalFrame {
 	}
 	private static void fis_kayit()
 	{
-		if(textEvrakNo.getText().equals("0")) return;
+		if (textEvrakNo.getText() == null ) return ;
+		if (textEvrakNo.getText().equals("0") ) return ;
+		if (textEvrakNo.getText().equals("")  ) return ;
 		try 
 		{
 		c_Access.tah_kayit(cmbCins.getSelectedIndex(), cmbTur.getSelectedIndex(),textEvrakNo.getText(), 
@@ -668,7 +680,6 @@ public class TAH_FISI extends JInternalFrame {
 		} catch (Exception ex) {
 			 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage() );
 		}
-		
 	}
 	private static void ayar_kayit()
 	{
@@ -715,17 +726,12 @@ public class TAH_FISI extends JInternalFrame {
 	{
 		try
 		{
-			int evr=0;
+			int evr = 0;
 			if(cmbCins.getSelectedItem().equals("Tahsilat"))
-			{
 				evr =  c_Access.cari_tah_fisno_al("GIR");
-			}
-			else {
+			else
 				evr =  c_Access.cari_tah_fisno_al("CIK");
-			}
 			textEvrakNo.setText(Integer.toString(evr));
-			//kutu_ac();
-			//sifirla();
 		}
 		catch (Exception ex)
 		{
@@ -790,9 +796,7 @@ public class TAH_FISI extends JInternalFrame {
 			textEvrakNo.requestFocus();
 			return;
 		}
-		
 		ResultSet rs =null;
-
 		rs = c_Access.tah_oku(textEvrakNo.getText(),cmbCins.getSelectedIndex());
 		fis_temizle();
 		if (!rs.isBeforeFirst() ) { 
@@ -843,14 +847,9 @@ public class TAH_FISI extends JInternalFrame {
 
 			String bh = "",alh="";
 			if(cmbCins.getSelectedIndex()==0)
-			{
 				hsp.lblNewLabel.setText("Borclu Hesap");
-			}
 			else  if(cmbCins.getSelectedIndex()==1)
-			{
 				hsp.lblNewLabel.setText("Alacakli Hesap");
-			}
-
 			hsp.setVisible(true);
 			if(cmbCins.getSelectedIndex()==0)
 			{
@@ -878,10 +877,8 @@ public class TAH_FISI extends JInternalFrame {
 				OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING,  bh +  " Bu numarada hesaba rastlanmadi!!!!" );
 				return;
 			} 
-
 			int e_number = 0;
 			e_number = c_Access.cari_fisno_al();
-
 			dEKONT_BILGI dBilgi = new dEKONT_BILGI();
 			dBilgi.setbHES(bh);
 			dBilgi.settAR(TARIH_CEVIR.tarih_geri_saatli(dtc));
@@ -893,11 +890,8 @@ public class TAH_FISI extends JInternalFrame {
 			dBilgi.setaCINS("");
 			dBilgi.setaKUR(1);
 			dBilgi.setaLACAK(DecimalFormat.getNumberInstance().parse(formattedTutar.getText()).doubleValue());
-
 			lOG_BILGI lBILGI = new lOG_BILGI();
-
 			lBILGI.seteVRAK(Integer.toString(e_number));
-
 			if(cmbTur.getSelectedIndex()==0)
 			{
 				dBilgi.setiZAHAT(textEvrakNo.getText() + " Nolu Tah.Fisi ile Nakit ");
@@ -913,14 +907,10 @@ public class TAH_FISI extends JInternalFrame {
 				dBilgi.setiZAHAT(textEvrakNo.getText() + " Nolu Tah.Fisi ile Kredi Karti ");
 				lBILGI.setmESAJ(textEvrakNo.getText() + " Nolu Tah.Fisi ile Kredi Karti ");
 			}
-
 			if(cmbCins.getSelectedIndex()==0)
-			{
 				dBilgi.setkOD("Tahs.");
-			}
-			else if(cmbCins.getSelectedIndex()==1) {
+			else if(cmbCins.getSelectedIndex()==1)
 				dBilgi.setkOD("Tedi.");
-			}
 			dBilgi.setuSER( GLOBAL.KULL_ADI);
 			c_Access.cari_dekont_kaydet(dBilgi,	lBILGI ,BAGLAN_LOG.cariLogDizin	);
 			GuiUtil.setWaitCursor(tabbedPane,false);
@@ -928,7 +918,6 @@ public class TAH_FISI extends JInternalFrame {
 		} catch (Exception ex) {
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage()  );
 		}
-
 	}
 	private void ayar_temizle()
 	{
@@ -940,7 +929,6 @@ public class TAH_FISI extends JInternalFrame {
 		textDiger.setText("");
 		imagePanel.setImage(null);
 		imageKase.setImage(null);
-		
 	}
 	private static void fis_temizle()
 	{
@@ -951,6 +939,7 @@ public class TAH_FISI extends JInternalFrame {
 		formattedTutar.setText("0.00");
 		textEvrakNo.setText("0");
 		lblCAdi.setText("");
+		lblCCinsi.setText("");
 		lblAAdi.setText("");
 		dtc.setDate(new Date());
 	}

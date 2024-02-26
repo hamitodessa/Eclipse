@@ -116,7 +116,7 @@ public class ORN_HSP_PLN extends JInternalFrame {
 					lOG_BILGI lBILGI = new lOG_BILGI();
 					lBILGI.setmESAJ( token[0] + " Nolu Hesap Kayit , Unvan:" + token[1]);
 					lBILGI.seteVRAK("");
-					c_Access.hpln_kayit(token[0], token[1], token[2], token[3],GLOBAL.KULL_ADI
+					c_Access.hpln_kayit(token[0], token[1], token[3], token[2],GLOBAL.KULL_ADI
 							,lBILGI,  BAGLAN_LOG.cariLogDizin);
 					c_Access.hpln_ilk_detay_kayit(token[0]);
 					i += 1 ;

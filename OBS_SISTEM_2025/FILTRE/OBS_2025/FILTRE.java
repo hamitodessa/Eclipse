@@ -1394,35 +1394,17 @@ public class FILTRE extends JDialog {
 		textField_1 = new Obs_TextFIeld();
 		textField_1.setFont(new Font("Tahoma", Font.BOLD, 11));
 		textField_1.setBounds(123, 54, 290, 20);
-		textField_1.getDocument().addDocumentListener(new DocumentListener() {
-			public void changedUpdate(DocumentEvent e) {
-				contentPanel.setCursor(oac.WAIT_CURSOR);
-				mWAIT();
-				ARAMA.hisset();
-				mDEFAULT();
-				contentPanel.setCursor(oac.DEFAULT_CURSOR);
-			}
-			public void removeUpdate(DocumentEvent e) {
-				contentPanel.setCursor(oac.WAIT_CURSOR);
-				mWAIT();
-				ARAMA.hisset();
-				mDEFAULT();
-				contentPanel.setCursor(oac.DEFAULT_CURSOR);
-			}
-			public void insertUpdate(DocumentEvent e) {
-				contentPanel.setCursor(oac.WAIT_CURSOR);
-				mWAIT();
-				ARAMA.hisset();
-				mDEFAULT();
-				contentPanel.setCursor(oac.DEFAULT_CURSOR);
-			}
-		});
 		textField_1.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
 				if (KeyEvent.getKeyText(e.getKeyCode()) == "Enter" )
 				{	
-					okButton.doClick();
+					contentPanel.setCursor(oac.WAIT_CURSOR);
+					mWAIT();
+					ARAMA.hisset();
+					mDEFAULT();
+					contentPanel.setCursor(oac.DEFAULT_CURSOR);
+					//okButton.doClick();
 				}
 			}
 		});

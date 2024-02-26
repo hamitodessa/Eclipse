@@ -444,8 +444,7 @@ public class DEKONT extends JInternalFrame {
 					if ( rs.getInt("MAX_NO") == 0 ) { 
 						kutu_kapa();
 						getContentPane().setCursor(oac.DEFAULT_CURSOR);
-						Notifications.getInstance().show(Notifications.Type.WARNING,Notifications.Location.BOTTOM_RIGHT ,5000,"Dosyada Hic Kayit Yok");
-						//JOptionPane.showMessageDialog(null, "Dosyada Hic Kayit Yok",  "Cari Hesap", JOptionPane.ERROR_MESSAGE);  
+						OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING, "Dosyada Hic Kayit Yok" );	
 						return; // Kayit Yok
 					} 
 					int evr = rs.getInt("MAX_NO");
@@ -1716,7 +1715,6 @@ public class DEKONT extends JInternalFrame {
 		catch (Exception ex)
 		{
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage()  );
-			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Dekont Kontrol", JOptionPane.ERROR_MESSAGE);	
 		}
 	}
 	public static  void yoket() 
@@ -1741,7 +1739,6 @@ public class DEKONT extends JInternalFrame {
 		catch (Exception ex)
 		{
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage()  );
-			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Dekont Silme", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	@SuppressWarnings({ "unchecked", "rawtypes" })
@@ -1923,7 +1920,6 @@ public class DEKONT extends JInternalFrame {
 		catch (Exception ex)
 		{
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR, ex.getMessage() );
-			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Yeni Dekont", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	private double kur_oku(String cins,String tur)
@@ -1946,7 +1942,6 @@ public class DEKONT extends JInternalFrame {
 		catch (Exception ex)
 		{
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR, ex.getMessage() );
-			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Kur Okuma", JOptionPane.ERROR_MESSAGE);
 		}
 		return kur;
 	}
@@ -2010,7 +2005,6 @@ public class DEKONT extends JInternalFrame {
 		catch (Exception ex)
 		{
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR, ex.getMessage() );
-			//JOptionPane.showMessageDialog(null, ex.getMessage(),  "Bakiye Doldur", JOptionPane.ERROR_MESSAGE);   
 		}
 	}
 	private static String[] isim(String kod)  {
@@ -2035,7 +2029,6 @@ public class DEKONT extends JInternalFrame {
 		catch (Exception ex)
 		{
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR, ex.getMessage() );
-			//JOptionPane.showMessageDialog(null, ex.getMessage() + " clss",  "Hesap Ismi Okuma", JOptionPane.ERROR_MESSAGE);     
 		}
 		return sonuc;
 	}

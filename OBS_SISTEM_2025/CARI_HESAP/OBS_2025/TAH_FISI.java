@@ -77,6 +77,7 @@ import javax.swing.SwingUtilities;
 import javax.imageio.ImageIO;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JFormattedTextField;
+import javax.swing.border.TitledBorder;
 
 @SuppressWarnings({ "unchecked", "rawtypes" ,"deprecation","static-access"})
 public class TAH_FISI extends JInternalFrame {
@@ -92,9 +93,9 @@ public class TAH_FISI extends JInternalFrame {
 	private static Obs_TextFIeld textVdVn;
 	private static Obs_TextFIeld textMail;
 	private static Obs_TextFIeld textDiger;
-	public static Obs_TextFIeld textEvrakNo;
 	public static Obs_TextFIeld textCKodu;
 	public static Obs_TextFIeld textAKodu;
+	public static Obs_TextFIeld textEvrakNo;
 	
 	private static JLabel lblCAdi ;
 	public static JLabel lblCCinsi ;
@@ -144,18 +145,33 @@ public class TAH_FISI extends JInternalFrame {
 		tabbedPane.addTab("Tahsilat Fisi", null, panel, null);
 		panel.setLayout(null);
 		
+		DecimalFormat df = new DecimalFormat(); // And here..
+		NumberFormatter dnff = new NumberFormatter(df);
+		DefaultFormatterFactory f_dob = new DefaultFormatterFactory(dnff); 
+		df.setMinimumFractionDigits(2);
+		df.setMaximumFractionDigits(2);
+		
+		
+		
+		JPanel panel_2 = new JPanel();
+		panel_2.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel_2.setBounds(29, 30, 750, 75);
+		panel.add(panel_2);
+		panel_2.setLayout(null);
+		
 		cmbCins = new JComboBox<String>();
+		cmbCins.setBounds(10, 11, 149, 22);
+		panel_2.add(cmbCins);
 		cmbCins.setModel(new DefaultComboBoxModel(new String[] {"Tahsilat", "Tediye"}));
-		cmbCins.setBounds(29, 43, 149, 22);
-		panel.add(cmbCins);
 		
 		cmbTur = new JComboBox<String>();
+		cmbTur.setBounds(10, 44, 149, 22);
+		panel_2.add(cmbTur);
 		cmbTur.setModel(new DefaultComboBoxModel(new String[] {"Nakit", "Cek", "Kredi Karti"}));
-		cmbTur.setBounds(29, 76, 149, 22);
-		panel.add(cmbTur);
 		
 		dtc = new JDateChooser();
-		dtc.setBounds(300, 43, 150, 20);
+		dtc.setBounds(268, 11, 150, 20);
+		panel_2.add(dtc);
 		dtc.getDateEditor().getUiComponent().addFocusListener(new FocusAdapter()    {
 			@Override
 			public void focusGained(FocusEvent evt) {
@@ -166,7 +182,6 @@ public class TAH_FISI extends JInternalFrame {
 					}});
 			}
 		});
-
 		dtc.getComponent(1).addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -190,7 +205,7 @@ public class TAH_FISI extends JInternalFrame {
 					{
 						return;
 					}
-					
+
 					final JTextComponent textComponent=((JTextComponent)e.getSource());
 					int currentCaretPosition = textComponent.getCaretPosition();
 					SimpleDateFormat datefmt = new SimpleDateFormat("dd.MM.yyyy"); // Or format you're using
@@ -254,9 +269,34 @@ public class TAH_FISI extends JInternalFrame {
 			}
 		});
 
-		panel.add(dtc);
-		
+
 		textEvrakNo = new Obs_TextFIeld();
+		textEvrakNo.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				try {
+					String[] parts;
+					String deger ;
+					deger = oac.glb.setting_oku("PRG_KAYDET").toString();
+					parts = deger.split(",");
+					if ( ! parts[2].equals(" ")) 
+					{
+						char c=parts[2].charAt(0);
+						if ((e.getKeyCode() == c) && ((e.getModifiers() & (parts[0].equals("E") ?  KeyEvent.CTRL_MASK : KeyEvent.ALT_MASK) ) != 0))
+						{
+							kaydet();
+						}
+					}
+				} catch (Exception e2) {
+					// TODO: handle exception
+				}
+			}
+		});
+		textEvrakNo.setText("0");
+		textEvrakNo.setHorizontalAlignment(SwingConstants.RIGHT);
+		textEvrakNo.setFont(new Font("Tahoma", Font.BOLD, 14));
+		textEvrakNo.setColumns(10);
+		textEvrakNo.setBounds(598, 11, 96, 24);
 		textEvrakNo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				getContentPane().setCursor(oac.WAIT_CURSOR);
@@ -273,7 +313,7 @@ public class TAH_FISI extends JInternalFrame {
 			}
 			@Override
 			public void ancestorAdded(AncestorEvent pEvent) {
-				
+
 				SwingUtilities.invokeLater(new Runnable() {
 					@Override
 					public void run() {
@@ -289,27 +329,61 @@ public class TAH_FISI extends JInternalFrame {
 			}
 		});
 
-		textEvrakNo.setFont(new Font("Tahoma", Font.BOLD, 14));
-		textEvrakNo.setHorizontalAlignment(SwingConstants.RIGHT);
-		textEvrakNo.setText("0");
-		textEvrakNo.setBounds(631, 44, 96, 24);
-		panel.add(textEvrakNo);
-		textEvrakNo.setColumns(10);
+		panel_2.add(textEvrakNo);
+
+		JButton btnNewButton = new JButton("");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				yeni();
+			}
+		});
+		btnNewButton.setToolTipText("Yeni Fis");
+		btnNewButton.setBounds(704, 11, 24, 24);
+		btnNewButton.setIcon(new ImageIcon(DEKONT.class.getResource("/ICONLAR/yeni.png")));
+		panel_2.add(btnNewButton);
+
+		JLabel lblNewLabel_4 = new JLabel("Fis No");
+		lblNewLabel_4.setBounds(540, 15, 48, 14);
+		panel_2.add(lblNewLabel_4);
+		
+		
+		JPanel panel_1 = new JPanel();
+		panel_1.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel_1.setBounds(29, 120, 750, 120);
+		panel.add(panel_1);
+		panel_1.setLayout(null);
+		
+		JLabel lblNewLabel_1 = new JLabel("Cari Kod");
+		lblNewLabel_1.setBounds(10, 11, 48, 14);
+		panel_1.add(lblNewLabel_1);
 		
 		textCKodu = new Obs_TextFIeld(12);
+		textCKodu.setBounds(10, 33, 150, 22);
+		panel_1.add(textCKodu);
 		textCKodu.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		textCKodu.setBounds(29, 152, 150, 22);
 		textCKodu.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
 				try {
 					String[] parts;
 					String deger ;
-					deger = GLOBAL.setting_oku("CARI_HSPPLN_CAG").toString();
+					
+					deger = oac.glb.setting_oku("PRG_KAYDET").toString();
 					parts = deger.split(",");
 					if ( ! parts[2].equals(" ")) 
 					{
 						char c=parts[2].charAt(0);
+						if ((e.getKeyCode() == c) && ((e.getModifiers() & (parts[0].equals("E") ?  KeyEvent.CTRL_MASK : KeyEvent.ALT_MASK) ) != 0))
+						{
+							kaydet();
+						}
+					}
+					
+					deger = GLOBAL.setting_oku("CARI_HSPPLN_CAG").toString();
+					parts = deger.split(",");
+					if ( ! parts[2].equals(" ")) 
+					{
+						char c = parts[2].charAt(0);
 						if ((e.getKeyCode() == c) && ((e.getModifiers() & (parts[0].equals("E") ?  KeyEvent.CTRL_MASK : KeyEvent.ALT_MASK) ) != 0))
 						{
 							HESAP_PLN hsp ;
@@ -317,8 +391,9 @@ public class TAH_FISI extends JInternalFrame {
 							hsp = new HESAP_PLN();
 							hsp.show();
 							textCKodu.setText(oac.hsp_hsp_kodu);
-							lblCAdi.setText(CARI_ISIM_OKU.isim(textCKodu.getText())[0]);
-							lblCCinsi.setText(CARI_ISIM_OKU.isim(textCKodu.getText())[1]);
+							String[] bilgiStrings = CARI_ISIM_OKU.isim(textCKodu.getText());
+							lblCAdi.setText(bilgiStrings[0]);
+							lblCCinsi.setText(bilgiStrings[1]);
 							getContentPane().setCursor(oac.DEFAULT_CURSOR);
 						}
 					}
@@ -340,8 +415,9 @@ public class TAH_FISI extends JInternalFrame {
 						hsp.show(); 
 						textCKodu.setText( oac.hsp_hsp_kodu);
 						getContentPane().setCursor(oac.WAIT_CURSOR);
-						lblCAdi.setText(CARI_ISIM_OKU.isim(textCKodu.getText())[0]);
-						lblCCinsi.setText(CARI_ISIM_OKU.isim(textCKodu.getText())[1]);
+						String[] bilgiStrings = CARI_ISIM_OKU.isim(textCKodu.getText());
+						lblCAdi.setText(bilgiStrings[0]);
+						lblCCinsi.setText(bilgiStrings[1]);
 						getContentPane().setCursor(oac.DEFAULT_CURSOR);
 					} catch (Exception e1) {
 						e1.printStackTrace();
@@ -353,43 +429,76 @@ public class TAH_FISI extends JInternalFrame {
 		 public void changedUpdate(DocumentEvent e) {
 		  
 			    	getContentPane().setCursor(oac.WAIT_CURSOR);
-			    	lblCAdi.setText(CARI_ISIM_OKU.isim(textCKodu.getText())[0]);
-			    	lblCCinsi.setText(CARI_ISIM_OKU.isim(textCKodu.getText())[1]);
+			    	String[] bilgiStrings = CARI_ISIM_OKU.isim(textCKodu.getText());
+					lblCAdi.setText(bilgiStrings[0]);
+					lblCCinsi.setText(bilgiStrings[1]);
 					getContentPane().setCursor(oac.DEFAULT_CURSOR);
 				
 		  }
 		  public void removeUpdate(DocumentEvent e) {
 		    
 			    	getContentPane().setCursor(oac.WAIT_CURSOR);
-			    	lblCAdi.setText(CARI_ISIM_OKU.isim(textCKodu.getText())[0]);
-			    	lblCCinsi.setText(CARI_ISIM_OKU.isim(textCKodu.getText())[1]);
+			    	String[] bilgiStrings = CARI_ISIM_OKU.isim(textCKodu.getText());
+					lblCAdi.setText(bilgiStrings[0]);
+					lblCCinsi.setText(bilgiStrings[1]);
 					getContentPane().setCursor(oac.DEFAULT_CURSOR);
-				
 			  }
 		  public void insertUpdate(DocumentEvent e) {
 		    
 			    	getContentPane().setCursor(oac.WAIT_CURSOR);
-			    	lblCAdi.setText(CARI_ISIM_OKU.isim(textCKodu.getText())[0]);
-			    	lblCCinsi.setText(CARI_ISIM_OKU.isim(textCKodu.getText())[1]);
+			    	String[] bilgiStrings = CARI_ISIM_OKU.isim(textCKodu.getText());
+					lblCAdi.setText(bilgiStrings[0]);
+					lblCCinsi.setText(bilgiStrings[1]);
 					getContentPane().setCursor(oac.DEFAULT_CURSOR);
-				
 			  }
 			});
-
-		panel.add(textCKodu);
 		textCKodu.setColumns(10);
 		
+		lblCAdi = new JLabel("...");
+		lblCAdi.setBounds(10, 64, 261, 14);
+		panel_1.add(lblCAdi);
+		
+		lblCCinsi = new JLabel("");
+		lblCCinsi.setBounds(10, 84, 48, 14);
+		panel_1.add(lblCCinsi);
+		
+		JLabel lblNewLabel_2 = new JLabel("Adres Kod");
+		lblNewLabel_2.setBounds(281, 11, 68, 14);
+		panel_1.add(lblNewLabel_2);
+		
 		textAKodu = new Obs_TextFIeld(12);
+		textAKodu.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				try {
+					String[] parts;
+					String deger ;
+					deger = oac.glb.setting_oku("PRG_KAYDET").toString();
+					parts = deger.split(",");
+					if ( ! parts[2].equals(" ")) 
+					{
+						char c=parts[2].charAt(0);
+						if ((e.getKeyCode() == c) && ((e.getModifiers() & (parts[0].equals("E") ?  KeyEvent.CTRL_MASK : KeyEvent.ALT_MASK) ) != 0))
+						{
+							kaydet();
+						}
+					}
+				} catch (Exception e2) {
+					// TODO: handle exception
+				}
+			}
+		});
+		textAKodu.setBounds(281, 33, 150, 22);
+		panel_1.add(textAKodu);
 		textAKodu.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		textAKodu.setColumns(10);
-		textAKodu.setBounds(300, 152, 150, 22);
 		textAKodu.getDocument().addDocumentListener(new DocumentListener() {
 			public void changedUpdate(DocumentEvent e) {
-					try {
-						lblAAdi.setText(a_Access.kod_ismi(textAKodu.getText()));
-					} catch (Exception e1) {
-						e1.printStackTrace();
-					}
+				try {
+					lblAAdi.setText(a_Access.kod_ismi(textAKodu.getText()));
+				} catch (Exception e1) {
+					e1.printStackTrace();
+				}
 			}
 			public void removeUpdate(DocumentEvent e) {
 				try {
@@ -419,27 +528,40 @@ public class TAH_FISI extends JInternalFrame {
 				}
 			}
 		});
-
-		panel.add(textAKodu);
-		
-		JLabel lblNewLabel_1 = new JLabel("Cari Kod");
-		lblNewLabel_1.setBounds(29, 130, 48, 14);
-		panel.add(lblNewLabel_1);
-		
-		JLabel lblNewLabel_2 = new JLabel("Adres Kod");
-		lblNewLabel_2.setBounds(300, 130, 68, 14);
-		panel.add(lblNewLabel_2);
 		
 		lblAAdi = new JLabel("...");
-		lblAAdi.setBounds(300, 182, 308, 14);
-		panel.add(lblAAdi);
+		lblAAdi.setBounds(281, 63, 308, 14);
+		panel_1.add(lblAAdi);
 		
-		lblCAdi = new JLabel("...");
-		lblCAdi.setBounds(29, 183, 261, 14);
-		panel.add(lblCAdi);
+		JLabel lblNewLabel_3 = new JLabel("Tutar");
+		lblNewLabel_3.setBounds(692, 11, 48, 14);
+		panel_1.add(lblNewLabel_3);
+		lblNewLabel_3.setHorizontalAlignment(SwingConstants.RIGHT);
 		
 		formattedTutar = new JFormattedTextField();
-		formattedTutar.setBounds(586, 150, 173, 24);
+		formattedTutar.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				try {
+					String[] parts;
+					String deger ;
+					deger = oac.glb.setting_oku("PRG_KAYDET").toString();
+					parts = deger.split(",");
+					if ( ! parts[2].equals(" ")) 
+					{
+						char c=parts[2].charAt(0);
+						if ((e.getKeyCode() == c) && ((e.getModifiers() & (parts[0].equals("E") ?  KeyEvent.CTRL_MASK : KeyEvent.ALT_MASK) ) != 0))
+						{
+							kaydet();
+						}
+					}
+				} catch (Exception e2) {
+					// TODO: handle exception
+				}
+			}
+		});
+		formattedTutar.setBounds(567, 31, 173, 24);
+		panel_1.add(formattedTutar);
 		JTextFieldRegularPopupMenu.addTo(formattedTutar);
 		formattedTutar.putClientProperty(FlatClientProperties.TEXT_FIELD_SHOW_CLEAR_BUTTON, true);
 		formattedTutar.addFocusListener(new FocusAdapter() {
@@ -450,99 +572,70 @@ public class TAH_FISI extends JInternalFrame {
 		});
 		formattedTutar.setFont(new Font("Tahoma", Font.BOLD, 14));
 		formattedTutar.setHorizontalAlignment(SwingConstants.RIGHT);
-		
-		DecimalFormat df = new DecimalFormat(); // And here..
-		NumberFormatter dnff = new NumberFormatter(df);
-		DefaultFormatterFactory f_dob = new DefaultFormatterFactory(dnff); 
-		df.setMinimumFractionDigits(2);
-		df.setMaximumFractionDigits(2);
 		formattedTutar.setFormatterFactory(f_dob);
 		formattedTutar.setText("0.00");
-		panel.add(formattedTutar);
 		
-		JLabel lblNewLabel_3 = new JLabel("Tutar");
-		lblNewLabel_3.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblNewLabel_3.setBounds(711, 130, 48, 14);
-		panel.add(lblNewLabel_3);
 		
-		JButton btnNewButton = new JButton("");
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				yeni();
-			}
-		});
-		btnNewButton.setToolTipText("Yeni Fis");
-		btnNewButton.setIcon(new ImageIcon(DEKONT.class.getResource("/ICONLAR/yeni.png")));
-		btnNewButton.setBounds(737, 43, 24, 24);
-		panel.add(btnNewButton);
-		
-		JLabel lblNewLabel_4 = new JLabel("Fis No");
-		lblNewLabel_4.setBounds(573, 50, 48, 14);
-		panel.add(lblNewLabel_4);
-		
-		lblCCinsi = new JLabel("");
-		lblCCinsi.setBounds(29, 203, 48, 14);
-		panel.add(lblCCinsi);
-		
+
 		JPanel panel_Ayarlar = new JPanel();
 		tabbedPane.addTab("Ayarlar", null, panel_Ayarlar, null);
 		panel_Ayarlar.setLayout(null);
-		
+
 		imagePanel = new ImagePanel();
 		imagePanel.setBorder(new LineBorder(new Color(95, 158, 160), 1,true));
 		imagePanel.setBounds(101, 186, 315, 150);
 		panel_Ayarlar.add(imagePanel);
-		
+
 		textAdi = new Obs_TextFIeld(50);
 		textAdi.setBounds(101, 25, 500, 20);
 		panel_Ayarlar.add(textAdi);
 		textAdi.setColumns(10);
-		
+
 		textAdres1 = new Obs_TextFIeld(50);
 		textAdres1.setColumns(10);
 		textAdres1.setBounds(101, 50, 500, 20);
 		panel_Ayarlar.add(textAdres1);
-		
+
 		textAdres2 = new Obs_TextFIeld(50);
 		textAdres2.setColumns(10);
 		textAdres2.setBounds(101, 75, 500, 20);
 		panel_Ayarlar.add(textAdres2);
-		
+
 		textVdVn = new Obs_TextFIeld(60);
 		textVdVn.setColumns(10);
 		textVdVn.setBounds(101, 100, 500, 20);
 		panel_Ayarlar.add(textVdVn);
-		
+
 		textMail = new Obs_TextFIeld(60);
 		textMail.setColumns(10);
 		textMail.setBounds(101, 125, 500, 20);
 		panel_Ayarlar.add(textMail);
-		
+
 		textDiger = new Obs_TextFIeld(50);
 		textDiger.setColumns(10);
 		textDiger.setBounds(101, 150, 500, 20);
 		panel_Ayarlar.add(textDiger);
-		
+
 		JLabel lblNewLabel = new JLabel("FIRMA ADI");
 		lblNewLabel.setBounds(10, 28, 81, 14);
 		panel_Ayarlar.add(lblNewLabel);
-		
+
 		JLabel lblAdres = new JLabel("ADRES 1");
 		lblAdres.setBounds(10, 53, 81, 14);
 		panel_Ayarlar.add(lblAdres);
-		
+
 		JLabel lblAdres_1 = new JLabel("ADRES 2");
 		lblAdres_1.setBounds(10, 78, 81, 14);
 		panel_Ayarlar.add(lblAdres_1);
-		
+
 		JLabel lblVdVn = new JLabel("VD - VN");
 		lblVdVn.setBounds(10, 103, 81, 14);
 		panel_Ayarlar.add(lblVdVn);
-		
+
 		JLabel lblEMail = new JLabel("E MAIL");
 		lblEMail.setBounds(10, 128, 81, 14);
 		panel_Ayarlar.add(lblEMail);
-		
+
 		JLabel lblDiger = new JLabel("DIGER");
 		lblDiger.setBounds(10, 153, 81, 14);
 		panel_Ayarlar.add(lblDiger);
@@ -720,22 +813,6 @@ public class TAH_FISI extends JInternalFrame {
 
 		} catch (Exception ex) {
 			 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage() );
-		}
-	}
-	private void yeni()
-	{
-		try
-		{
-			int evr = 0;
-			if(cmbCins.getSelectedItem().equals("Tahsilat"))
-				evr =  c_Access.cari_tah_fisno_al("GIR");
-			else
-				evr =  c_Access.cari_tah_fisno_al("CIK");
-			textEvrakNo.setText(Integer.toString(evr));
-		}
-		catch (Exception ex)
-		{
-			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR, ex.getMessage() );
 		}
 	}
 	private void ayar_doldur()
@@ -919,6 +996,23 @@ public class TAH_FISI extends JInternalFrame {
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage()  );
 		}
 	}
+	private void yeni()
+	{
+		try
+		{
+			int evr = 0;
+			if(cmbCins.getSelectedItem().equals("Tahsilat"))
+				evr =  c_Access.cari_tah_fisno_al("GIR");
+			else
+				evr =  c_Access.cari_tah_fisno_al("CIK");
+			textEvrakNo.setText(Integer.toString(evr));
+		}
+		catch (Exception ex)
+		{
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR, ex.getMessage() );
+		}
+	}
+
 	private void ayar_temizle()
 	{
 		textAdi.setText("");
@@ -932,12 +1026,12 @@ public class TAH_FISI extends JInternalFrame {
 	}
 	private static void fis_temizle()
 	{
+		textEvrakNo.setText("0");
 		cmbCins.setSelectedIndex(0);
 		cmbTur.setSelectedIndex(0);
 		textCKodu.setText("");
 		textAKodu.setText("");
 		formattedTutar.setText("0.00");
-		textEvrakNo.setText("0");
 		lblCAdi.setText("");
 		lblCCinsi.setText("");
 		lblAAdi.setText("");

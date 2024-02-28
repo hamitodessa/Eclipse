@@ -1245,39 +1245,133 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 	}
 	@Override
 	public int cari_tah_fisno_al(String tur) throws ClassNotFoundException, SQLException {
-		// TODO Auto-generated method stub
-		return 0;
+		Class.forName("com.mysql.cj.jdbc.Driver");
+		ResultSet	rss = null;
+		int E_NUMBER ;
+		String sql = "SELECT  NO  FROM TAH_EVRAK WHERE CINS = '" + tur + "'";
+		kONTROL();
+		PreparedStatement stmt = con.prepareStatement(sql);
+		rss = stmt.executeQuery();
+		rss.next();
+		E_NUMBER = rss.getInt("NO");
+		E_NUMBER = E_NUMBER + 1 ;
+		//******** KAYIT
+		sql = "UPDATE TAH_EVRAK SET NO =" + E_NUMBER + "  WHERE CINS = '" + tur + "'";
+		stmt = con.prepareStatement(sql);
+		stmt.executeUpdate();
+		stmt.close();
+		//**************
+		return E_NUMBER;	
 	}
 	@Override
-	public void tah_ayar_kayit(String adi, String adr1, String adr2, String vdvn, String mail, String diger,
+	public void tah_ayar_kayit(String adi, String adr1, String adr2, String vdvn, String amail, String diger,
 			InputStream resim , InputStream kase) throws ClassNotFoundException, SQLException, IOException {
-		// TODO Auto-generated method stub
+		Class.forName("com.mysql.cj.jdbc.Driver");
+		String sql  = "INSERT INTO TAH_AYARLAR (FIR_ISMI,ADR_1,ADR_2,VD_VN,MAIL,DIGER,LOGO,KASE)" +
+				" VALUES (?,?,?,?,?,?,?,?)" ;
+		PreparedStatement stmt = null;
+		kONTROL();
+		stmt = con.prepareStatement(sql);
+		stmt.setString(1, adi);
+		stmt.setString(2, adr1);
+		stmt.setString(3, adr2);
+		stmt.setString(4, vdvn);
+		stmt.setString(5, amail);
+		stmt.setString(6, diger);
+
+		if (  resim != null)
+		{
+			ByteArrayOutputStream bos = new ByteArrayOutputStream();
+			byte[] buf = new byte[1024];
+			for (int readNum; (readNum = resim.read(buf)) != -1;) {
+				bos.write(buf, 0, readNum);
+			}
+			byte[] bytes = bos.toByteArray();
+			stmt.setBytes(7,bytes);
+		}
+		else
+		{
+			stmt.setBytes(7,null);
+		}
+		if (  kase != null)
+		{
+			ByteArrayOutputStream bos = new ByteArrayOutputStream();
+			byte[] buf = new byte[1024];
+			for (int readNum; (readNum = kase.read(buf)) != -1;) {
+				bos.write(buf, 0, readNum);
+			}
+			byte[] bytes = bos.toByteArray();
+			stmt.setBytes(8,bytes);
+		}
+		else
+		{
+			stmt.setBytes(8,null);
+		}
+		stmt.executeUpdate();
+		stmt.close();
 		
 	}
 	@Override
 	public void tah_ayar_sil() throws ClassNotFoundException, SQLException {
-		// TODO Auto-generated method stub
+		Class.forName("com.mysql.cj.jdbc.Driver");
+		String sql = "DELETE FROM TAH_AYARLAR " ;
+		kONTROL();
+		PreparedStatement stmt = con.prepareStatement(sql);
+		stmt.executeUpdate();
+		stmt.close();
 		
 	}
 	@Override
 	public ResultSet tah_ayar_oku() throws ClassNotFoundException, SQLException {
-		// TODO Auto-generated method stub
-		return null;
+		Class.forName("com.mysql.cj.jdbc.Driver");
+		ResultSet	rss = null;
+		kONTROL();
+		PreparedStatement stmt = con.prepareStatement("SELECT * FROM TAH_AYARLAR ");
+		rss = stmt.executeQuery();
+		return rss;	
 	}
 	@Override
 	public void tah_kayit(int cins, Integer tur, String evrak, String tarih, String ckodu, String akodu,
 			String aciklama, double tutar ,String dvzcins) throws ClassNotFoundException, SQLException, IOException {
-		// TODO Auto-generated method stub
+		Class.forName("com.mysql.cj.jdbc.Driver");
+		String sql = "DELETE FROM TAH_DETAY WHERE evrak = '"+ evrak + "' AND CINS = '" + cins + "' " ;
+		kONTROL();
+		PreparedStatement stmt = con.prepareStatement(sql);
+		stmt.executeUpdate();
 		
+		sql  = "INSERT INTO TAH_DETAY (EVRAK,TARIH,C_HES,A_HES,CINS,TUTAR,TUR,ACIKLAMA,DVZ_CINS)" +
+				" VALUES (?,?,?,?,?,?,?,?,?)" ;
+		stmt = null;
+		kONTROL();
+		stmt = con.prepareStatement(sql);
+		stmt.setString(1, evrak);
+		stmt.setString(2, tarih);
+		stmt.setString(3, ckodu);
+		stmt.setString(4, akodu);
+		stmt.setInt(5, cins);
+		stmt.setDouble(6, tutar );
+		stmt.setInt(7, tur);
+		stmt.setString(8, aciklama);
+		stmt.setString(9, dvzcins);
+		stmt.executeUpdate();
+		stmt.close();
 	}
 	@Override
 	public ResultSet tah_oku(String no, int cins) throws ClassNotFoundException, SQLException {
-		// TODO Auto-generated method stub
-		return null;
+		Class.forName("com.mysql.cj.jdbc.Driver");
+		ResultSet	rss = null;
+		kONTROL();
+		PreparedStatement stmt = con.prepareStatement("SELECT * FROM TAH_DETAY  WHERE EVRAK = '"+ no +"' AND CINS = '" + cins + "'");
+		rss = stmt.executeQuery();
+		return rss;	
 	}
 	@Override
 	public void tah_sil(String no, int cins) throws ClassNotFoundException, SQLException {
-		// TODO Auto-generated method stub
-		
+		Class.forName("com.mysql.cj.jdbc.Driver");
+		String sql = "DELETE FROM TAH_DETAY WHERE evrak = '"+ no + "' AND CINS = '" + cins + "' " ;
+		kONTROL();
+		PreparedStatement stmt = con.prepareStatement(sql);
+		stmt.executeUpdate();
+		stmt.close();
 	}
 }

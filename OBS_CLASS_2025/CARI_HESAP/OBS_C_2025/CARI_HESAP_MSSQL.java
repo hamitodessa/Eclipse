@@ -1339,7 +1339,6 @@ public class CARI_HESAP_MSSQL implements ICARI_HESAP {
 		stmt.setString(4, vdvn);
 		stmt.setString(5, amail);
 		stmt.setString(6, diger);
-
 		if (  resim != null)
 		{
 			ByteArrayOutputStream bos = new ByteArrayOutputStream();
@@ -1370,7 +1369,6 @@ public class CARI_HESAP_MSSQL implements ICARI_HESAP {
 		}
 		stmt.executeUpdate();
 		stmt.close();
-		
 	}
 	@Override
 	public void tah_ayar_sil() throws ClassNotFoundException, SQLException {
@@ -1394,12 +1392,10 @@ public class CARI_HESAP_MSSQL implements ICARI_HESAP {
 	public void tah_kayit(int cins, Integer tur, String evrak, String tarih, String ckodu, String akodu,
 			String aciklama, double tutar ,String dvzcins) throws ClassNotFoundException, SQLException, IOException {
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-		
 		String sql = "DELETE FROM TAH_DETAY WHERE evrak = '"+ evrak + "' AND CINS = '" + cins + "' " ;
 		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();
-		
 		sql  = "INSERT INTO TAH_DETAY (EVRAK,TARIH,C_HES,A_HES,CINS,TUTAR,TUR,ACIKLAMA,DVZ_CINS)" +
 				" VALUES (?,?,?,?,?,?,?,?,?)" ;
 		stmt = null;
@@ -1416,8 +1412,6 @@ public class CARI_HESAP_MSSQL implements ICARI_HESAP {
 		stmt.setString(9, dvzcins);
 		stmt.executeUpdate();
 		stmt.close();
-	
-		
 	}
 	@Override
 	public ResultSet tah_oku(String no, int cins) throws ClassNotFoundException, SQLException {
@@ -1437,7 +1431,6 @@ public class CARI_HESAP_MSSQL implements ICARI_HESAP {
 		PreparedStatement stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();
 		stmt.close();
-		
 	}
 }
 

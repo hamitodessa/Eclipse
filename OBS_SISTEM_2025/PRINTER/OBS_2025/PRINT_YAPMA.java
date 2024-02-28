@@ -403,6 +403,41 @@ public class PRINT_YAPMA extends JInternalFrame {
 						oTextObject.setParagraphs(oParagraphs);
 						clientDoc.getReportDefController().getReportObjectController().modify(textObject, oTextObject);
 					}
+					else if (textObject.getName().equals("CekBilgi"))
+					{
+						if(TAH_FISI.cmbTur.getSelectedIndex() == 1)
+						{
+						ITextObject oTextObject =  (ITextObject) textObject.clone(true);
+						Paragraphs oParagraphs = new Paragraphs();
+						Paragraph oParagraph = new Paragraph();
+						ParagraphElements oParagraphElements = new ParagraphElements();
+						ParagraphTextElement oParagraphTextElement = new ParagraphTextElement();
+						double aqw = DecimalFormat.getNumberInstance().parse(TAH_FISI.formattedTutar.getText()).doubleValue();
+						oParagraphTextElement.setText(TAH_FISI.textBanka.getText() +"  " + TAH_FISI.textSube.getText() + "  " + 
+													TAH_FISI.textCekNo.getText() +"  " + TAH_FISI.textHesapNo.getText() +"  " + 
+													TAH_FISI.textBorclu.getText() + "  " +  TARIH_CEVIR.tarih_dt_ddMMyyyy(TAH_FISI.dtcVade) +"  " + 
+													FORMATLAMA.doub_2(aqw) + " " +TAH_FISI.combCins.getSelectedItem().toString());
+						
+						oParagraphTextElement.setKind(ParagraphElementKind.text);
+						IFontColor newFontColor = oTextObject.getFontColor();
+						Font fnt = new Font("Verdana", Font.PLAIN, 10);
+						newFontColor.setFont(fnt);
+						oParagraphTextElement.setFontColor(newFontColor);
+						oParagraphs.add(oParagraph);
+						oParagraph.setParagraphElements(oParagraphElements);
+						oParagraphElements.add(oParagraphTextElement);
+						oTextObject.setParagraphs(oParagraphs);
+						clientDoc.getReportDefController().getReportObjectController().modify(textObject, oTextObject);
+						}
+					}
+					else if (textObject.getName().equals("CekBaslik"))
+					{
+						if(TAH_FISI.cmbTur.getSelectedIndex() != 1)
+						{
+							ITextObject oTextObject =  (ITextObject) textObject.clone(true);
+							clientDoc.getReportDefController().getReportObjectController().remove( (ITextObject) oTextObject);
+						}
+					}
 				}
 
 			}

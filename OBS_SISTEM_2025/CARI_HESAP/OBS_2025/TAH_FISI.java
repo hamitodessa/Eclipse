@@ -78,6 +78,9 @@ import javax.imageio.ImageIO;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JFormattedTextField;
 import javax.swing.border.TitledBorder;
+import java.awt.event.ItemListener;
+import java.awt.event.ItemEvent;
+import javax.swing.JTextField;
 
 @SuppressWarnings({ "unchecked", "rawtypes" ,"deprecation","static-access"})
 public class TAH_FISI extends JInternalFrame {
@@ -108,6 +111,14 @@ public class TAH_FISI extends JInternalFrame {
 	private static ImagePanel imageKase;
 	public static JDateChooser dtc ;
 	public static JComboBox combCins ;
+	
+	private JPanel panel_4;
+	public static JTextField textBanka;
+	public static JTextField textSube;
+	public static JTextField textCekNo;
+	public static JTextField textHesapNo;
+	public static JTextField textBorclu;
+	public static JDateChooser dtcVade;
 	/**
 	 * Launch the application.
 	 */
@@ -166,6 +177,18 @@ public class TAH_FISI extends JInternalFrame {
 		cmbCins.setModel(new DefaultComboBoxModel(new String[] {"Tahsilat", "Tediye"}));
 		
 		cmbTur = new JComboBox<String>();
+		cmbTur.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent e) {
+				if(cmbTur.getSelectedIndex()==1)
+				{
+					panel_4.setVisible(true);
+				}
+				else {
+					panel_4.setVisible(false);
+				}
+				
+			}
+		});
 		cmbTur.setBounds(10, 44, 149, 22);
 		panel_2.add(cmbTur);
 		cmbTur.setModel(new DefaultComboBoxModel(new String[] {"Nakit", "Cek", "Kredi Karti"}));
@@ -350,7 +373,7 @@ public class TAH_FISI extends JInternalFrame {
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panel_1.setBounds(29, 120, 750, 109);
+		panel_1.setBounds(29, 120, 750, 92);
 		panel.add(panel_1);
 		panel_1.setLayout(null);
 		
@@ -570,7 +593,7 @@ public class TAH_FISI extends JInternalFrame {
 		
 		JPanel panel_3 = new JPanel();
 		panel_3.setBorder(new TitledBorder(null, "Doviz Cinsi", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panel_3.setBounds(29, 251, 750, 64);
+		panel_3.setBounds(29, 223, 750, 54);
 		panel.add(panel_3);
 		panel_3.setLayout(null);
 		
@@ -578,6 +601,69 @@ public class TAH_FISI extends JInternalFrame {
 		combCins.setBounds(50, 25, 77, 22);
 		panel_3.add(combCins);
 		combCins.setModel(new DefaultComboBoxModel(new String[] {"TL", "USD", "EUR"}));
+		
+		panel_4 = new JPanel();
+		panel_4.setVisible(false);
+		panel_4.setBorder(new TitledBorder(null, "Cek Bilgisi", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel_4.setBounds(29, 288, 750, 82);
+		panel.add(panel_4);
+		panel_4.setLayout(null);
+		
+		textBanka = new JTextField();
+		textBanka.setBounds(44, 21, 171, 22);
+		panel_4.add(textBanka);
+		textBanka.setColumns(10);
+		
+		textSube = new JTextField();
+		textSube.setBounds(44, 51, 171, 22);
+		panel_4.add(textSube);
+		textSube.setColumns(10);
+		
+		textCekNo = new JTextField();
+		textCekNo.setBounds(280, 21, 123, 22);
+		panel_4.add(textCekNo);
+		textCekNo.setColumns(10);
+		
+		textHesapNo = new JTextField();
+		textHesapNo.setBounds(280, 51, 123, 22);
+		panel_4.add(textHesapNo);
+		textHesapNo.setColumns(10);
+		
+		textBorclu = new JTextField();
+		textBorclu.setBounds(469, 21, 271, 22);
+		panel_4.add(textBorclu);
+		textBorclu.setColumns(10);
+		
+		dtcVade = new JDateChooser();
+		dtcVade.setBounds(469, 51, 114, 22);
+		dtcVade.setDateFormatString("dd.MM.yyyy");
+		dtcVade.setFont(new Font("Tahoma", Font.BOLD, 12));
+		dtcVade.setDate(new Date());
+		panel_4.add(dtcVade);
+		
+		JLabel lblNewLabel_5 = new JLabel("Banka");
+		lblNewLabel_5.setBounds(10, 24, 46, 14);
+		panel_4.add(lblNewLabel_5);
+		
+		JLabel lblNewLabel_6 = new JLabel("Sube");
+		lblNewLabel_6.setBounds(10, 54, 34, 14);
+		panel_4.add(lblNewLabel_6);
+		
+		JLabel lblNewLabel_7 = new JLabel("Cek No");
+		lblNewLabel_7.setBounds(225, 24, 46, 14);
+		panel_4.add(lblNewLabel_7);
+		
+		JLabel lblNewLabel_8 = new JLabel("Hesap No");
+		lblNewLabel_8.setBounds(225, 54, 57, 14);
+		panel_4.add(lblNewLabel_8);
+		
+		JLabel lblNewLabel_9 = new JLabel("Borclu");
+		lblNewLabel_9.setBounds(413, 24, 46, 14);
+		panel_4.add(lblNewLabel_9);
+		
+		JLabel lblNewLabel_10 = new JLabel("Vade");
+		lblNewLabel_10.setBounds(413, 54, 46, 14);
+		panel_4.add(lblNewLabel_10);
 		
 		JPanel panel_Ayarlar = new JPanel();
 		tabbedPane.addTab("Ayarlar", null, panel_Ayarlar, null);
@@ -1039,5 +1125,13 @@ public class TAH_FISI extends JInternalFrame {
 		lblAAdi.setText("");
 		combCins.setSelectedIndex(0);
 		dtc.setDate(new Date());
+		
+		textBanka.setText("");
+		textSube.setText("");
+		textCekNo.setText("");
+		textHesapNo.setText("");
+		textBorclu.setText("");
+		dtcVade.setDate(new Date());
+		
 	}
 }

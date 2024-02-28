@@ -308,7 +308,8 @@ public class CARI_HESAP_MSSQL implements ICARI_HESAP {
 				" [CINS] [int] NOT NULL," +
 				" [TUTAR] [float] NULL," +
 				" [TUR] [int] NOT NULL," +
-				" [ACIKLAMA] [nvarchar](50) NULL" +
+				" [ACIKLAMA] [nvarchar](50) NULL," +
+				" [DVZ_CINS] [nvarchar](3) NULL" +
 				" ) ON [PRIMARY]";
 		stmt = con.createStatement();  
 		stmt.executeUpdate(sql);
@@ -1391,7 +1392,7 @@ public class CARI_HESAP_MSSQL implements ICARI_HESAP {
 	}
 	@Override
 	public void tah_kayit(int cins, Integer tur, String evrak, String tarih, String ckodu, String akodu,
-			String aciklama, double tutar) throws ClassNotFoundException, SQLException, IOException {
+			String aciklama, double tutar ,String dvzcins) throws ClassNotFoundException, SQLException, IOException {
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 		
 		String sql = "DELETE FROM TAH_DETAY WHERE evrak = '"+ evrak + "' AND CINS = '" + cins + "' " ;
@@ -1399,8 +1400,8 @@ public class CARI_HESAP_MSSQL implements ICARI_HESAP {
 		PreparedStatement stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();
 		
-		sql  = "INSERT INTO TAH_DETAY (EVRAK,TARIH,C_HES,A_HES,CINS,TUTAR,TUR,ACIKLAMA)" +
-				" VALUES (?,?,?,?,?,?,?,?)" ;
+		sql  = "INSERT INTO TAH_DETAY (EVRAK,TARIH,C_HES,A_HES,CINS,TUTAR,TUR,ACIKLAMA,DVZ_CINS)" +
+				" VALUES (?,?,?,?,?,?,?,?,?)" ;
 		stmt = null;
 		kONTROL();
 		stmt = con.prepareStatement(sql);
@@ -1412,6 +1413,7 @@ public class CARI_HESAP_MSSQL implements ICARI_HESAP {
 		stmt.setDouble(6, tutar );
 		stmt.setInt(7, tur);
 		stmt.setString(8, aciklama);
+		stmt.setString(9, dvzcins);
 		stmt.executeUpdate();
 		stmt.close();
 	

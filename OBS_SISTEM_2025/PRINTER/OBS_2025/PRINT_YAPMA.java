@@ -342,7 +342,7 @@ public class PRINT_YAPMA extends JInternalFrame {
 						double aqw = DecimalFormat.getNumberInstance().parse(TAH_FISI.formattedTutar.getText()).doubleValue();
 						String qwe = Double.toString(aqw);
 						String cnt  = "" ;
-						if ( TAH_FISI.lblCCinsi.getText().equals(GLOBAL.setting_oku("PRG_PARA").toString()))
+						if ( TAH_FISI.combCins.getSelectedItem().toString().equals("TL"))
 						{
 							cnt = "KURUŞ" ;
 						}
@@ -351,7 +351,7 @@ public class PRINT_YAPMA extends JInternalFrame {
 							cnt = "Cent" ;
 						}
 						sayiyiYaziyaCevir cevir = new sayiyiYaziyaCevir();
-						String yaziylat = cevir.sayiyiYaziyaCevirr(qwe, 2, TAH_FISI.lblCCinsi.getText(), cnt , "#", null, null, null);
+						String yaziylat = cevir.sayiyiYaziyaCevirr(qwe, 2, TAH_FISI.combCins.getSelectedItem().toString(), cnt , "#", null, null, null);
 						oParagraphTextElement.setText(yaziylat );
 
 						oParagraphTextElement.setKind(ParagraphElementKind.text);
@@ -375,17 +375,17 @@ public class PRINT_YAPMA extends JInternalFrame {
 						double aqw = DecimalFormat.getNumberInstance().parse(TAH_FISI.formattedTutar.getText()).doubleValue();
 						if(TAH_FISI.cmbTur.getSelectedIndex() == 0)
 						{
-							oParagraphTextElement.setText("Nakit yapilan " + FORMATLAMA.doub_2(aqw) + " " + TAH_FISI.lblCCinsi.getText() + 
+							oParagraphTextElement.setText("Nakit yapilan " + FORMATLAMA.doub_2(aqw) + " " + TAH_FISI.combCins.getSelectedItem().toString() + 
 									" Tutarindaki tahsilat " + TAH_FISI.textCKodu.getText() + " no'lu ");
 						}
 						else if(TAH_FISI.cmbTur.getSelectedIndex() == 1)
 						{
-							oParagraphTextElement.setText("Verilen Cek " + FORMATLAMA.doub_2(aqw) + " " + TAH_FISI.lblCCinsi.getText() + 
+							oParagraphTextElement.setText("Verilen Cek " + FORMATLAMA.doub_2(aqw) + " " + TAH_FISI.combCins.getSelectedItem().toString() + 
 									" Tutarindaki tahsilat " + TAH_FISI.textCKodu.getText() + " no'lu ");
 						}
 						else if(TAH_FISI.cmbTur.getSelectedIndex() == 2)
 						{
-							oParagraphTextElement.setText("Kredi Kartinizdan yapilan " + FORMATLAMA.doub_2(aqw) + " " + TAH_FISI.lblCCinsi.getText() + 
+							oParagraphTextElement.setText("Kredi Kartinizdan yapilan " + FORMATLAMA.doub_2(aqw) + " " + TAH_FISI.combCins.getSelectedItem().toString() + 
 									" Tutarindaki tahsilat " + TAH_FISI.textCKodu.getText() + " no'lu ");
 						}
 						

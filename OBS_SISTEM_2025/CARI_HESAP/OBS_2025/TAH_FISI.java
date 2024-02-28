@@ -98,7 +98,7 @@ public class TAH_FISI extends JInternalFrame {
 	public static Obs_TextFIeld textEvrakNo;
 	
 	private static JLabel lblCAdi ;
-	public static JLabel lblCCinsi ;
+
 	private static JLabel lblAAdi ;
 	public static JFormattedTextField formattedTutar ;
 	public static JComboBox<String> cmbCins ;
@@ -107,6 +107,7 @@ public class TAH_FISI extends JInternalFrame {
 	public static ImagePanel imagePanel;
 	private static ImagePanel imageKase;
 	public static JDateChooser dtc ;
+	public static JComboBox combCins ;
 	/**
 	 * Launch the application.
 	 */
@@ -349,7 +350,7 @@ public class TAH_FISI extends JInternalFrame {
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panel_1.setBounds(29, 120, 750, 120);
+		panel_1.setBounds(29, 120, 750, 109);
 		panel.add(panel_1);
 		panel_1.setLayout(null);
 		
@@ -393,7 +394,6 @@ public class TAH_FISI extends JInternalFrame {
 							textCKodu.setText(oac.hsp_hsp_kodu);
 							String[] bilgiStrings = CARI_ISIM_OKU.isim(textCKodu.getText());
 							lblCAdi.setText(bilgiStrings[0]);
-							lblCCinsi.setText(bilgiStrings[1]);
 							getContentPane().setCursor(oac.DEFAULT_CURSOR);
 						}
 					}
@@ -417,7 +417,6 @@ public class TAH_FISI extends JInternalFrame {
 						getContentPane().setCursor(oac.WAIT_CURSOR);
 						String[] bilgiStrings = CARI_ISIM_OKU.isim(textCKodu.getText());
 						lblCAdi.setText(bilgiStrings[0]);
-						lblCCinsi.setText(bilgiStrings[1]);
 						getContentPane().setCursor(oac.DEFAULT_CURSOR);
 					} catch (Exception e1) {
 						e1.printStackTrace();
@@ -431,7 +430,6 @@ public class TAH_FISI extends JInternalFrame {
 			    	getContentPane().setCursor(oac.WAIT_CURSOR);
 			    	String[] bilgiStrings = CARI_ISIM_OKU.isim(textCKodu.getText());
 					lblCAdi.setText(bilgiStrings[0]);
-					lblCCinsi.setText(bilgiStrings[1]);
 					getContentPane().setCursor(oac.DEFAULT_CURSOR);
 				
 		  }
@@ -440,7 +438,6 @@ public class TAH_FISI extends JInternalFrame {
 			    	getContentPane().setCursor(oac.WAIT_CURSOR);
 			    	String[] bilgiStrings = CARI_ISIM_OKU.isim(textCKodu.getText());
 					lblCAdi.setText(bilgiStrings[0]);
-					lblCCinsi.setText(bilgiStrings[1]);
 					getContentPane().setCursor(oac.DEFAULT_CURSOR);
 			  }
 		  public void insertUpdate(DocumentEvent e) {
@@ -448,7 +445,6 @@ public class TAH_FISI extends JInternalFrame {
 			    	getContentPane().setCursor(oac.WAIT_CURSOR);
 			    	String[] bilgiStrings = CARI_ISIM_OKU.isim(textCKodu.getText());
 					lblCAdi.setText(bilgiStrings[0]);
-					lblCCinsi.setText(bilgiStrings[1]);
 					getContentPane().setCursor(oac.DEFAULT_CURSOR);
 			  }
 			});
@@ -458,9 +454,6 @@ public class TAH_FISI extends JInternalFrame {
 		lblCAdi.setBounds(10, 64, 261, 14);
 		panel_1.add(lblCAdi);
 		
-		lblCCinsi = new JLabel("");
-		lblCCinsi.setBounds(10, 84, 48, 14);
-		panel_1.add(lblCCinsi);
 		
 		JLabel lblNewLabel_2 = new JLabel("Adres Kod");
 		lblNewLabel_2.setBounds(281, 11, 68, 14);
@@ -574,6 +567,17 @@ public class TAH_FISI extends JInternalFrame {
 		formattedTutar.setHorizontalAlignment(SwingConstants.RIGHT);
 		formattedTutar.setFormatterFactory(f_dob);
 		formattedTutar.setText("0.00");
+		
+		JPanel panel_3 = new JPanel();
+		panel_3.setBorder(new TitledBorder(null, "Doviz Cinsi", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel_3.setBounds(29, 251, 750, 64);
+		panel.add(panel_3);
+		panel_3.setLayout(null);
+		
+		combCins = new JComboBox();
+		combCins.setBounds(50, 25, 77, 22);
+		panel_3.add(combCins);
+		combCins.setModel(new DefaultComboBoxModel(new String[] {"TL", "USD", "EUR"}));
 		
 		JPanel panel_Ayarlar = new JPanel();
 		tabbedPane.addTab("Ayarlar", null, panel_Ayarlar, null);
@@ -766,7 +770,7 @@ public class TAH_FISI extends JInternalFrame {
 		{
 		c_Access.tah_kayit(cmbCins.getSelectedIndex(), cmbTur.getSelectedIndex(),textEvrakNo.getText(), 
 				TARIH_CEVIR.tarih_geri_saatli(dtc) ,textCKodu.getText(), textAKodu.getText(), "", 
-				DecimalFormat.getNumberInstance().parse(formattedTutar.getText()).doubleValue());
+				DecimalFormat.getNumberInstance().parse(formattedTutar.getText()).doubleValue(),combCins.getSelectedItem().toString());
 		
 		} catch (Exception ex) {
 			 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage() );
@@ -881,6 +885,7 @@ public class TAH_FISI extends JInternalFrame {
 		rs.next();
 		textEvrakNo.setText(rs.getString("EVRAK"));
 		cmbTur.setSelectedIndex(rs.getInt("TUR"));
+		combCins.setSelectedItem(rs.getString("DVZ_CINS"));
 		textCKodu.setText(rs.getString("C_HES"));
 		textAKodu.setText(rs.getString("A_HES"));
 		formattedTutar.setText(FORMATLAMA.doub_2(rs.getDouble("TUTAR")));
@@ -1031,8 +1036,8 @@ public class TAH_FISI extends JInternalFrame {
 		textAKodu.setText("");
 		formattedTutar.setText("0.00");
 		lblCAdi.setText("");
-		lblCCinsi.setText("");
 		lblAAdi.setText("");
+		combCins.setSelectedIndex(0);
 		dtc.setDate(new Date());
 	}
 }

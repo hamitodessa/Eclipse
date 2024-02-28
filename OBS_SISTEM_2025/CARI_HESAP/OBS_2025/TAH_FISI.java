@@ -575,8 +575,6 @@ public class TAH_FISI extends JInternalFrame {
 		formattedTutar.setFormatterFactory(f_dob);
 		formattedTutar.setText("0.00");
 		
-		
-
 		JPanel panel_Ayarlar = new JPanel();
 		tabbedPane.addTab("Ayarlar", null, panel_Ayarlar, null);
 		panel_Ayarlar.setLayout(null);

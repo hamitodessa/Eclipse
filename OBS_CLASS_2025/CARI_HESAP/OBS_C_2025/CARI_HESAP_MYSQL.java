@@ -231,6 +231,39 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 				+ "  `USER` VARCHAR(15) NULL);";
 		stmt = con.createStatement();  
 		stmt.executeUpdate(sql);
+				//TAHSIL FISI
+		sql = "CREATE TABLE `TAH_EVRAK`(`CINS` nvarchar(3),`NO` integer );";
+		stmt = con.createStatement();  
+		stmt.executeUpdate(sql);
+		sql = "CREATE TABLE `TAH_AYARLAR`( " +
+				" `LOGO` MEDIUMBLOB NULL," +
+				" `FIR_ISMI` nvarchar(50) NULL, " +
+				" `ADR_1` nvarchar(50) NULL," +
+				" `ADR_2` nvarchar(50) NULL," +
+				" `VD_VN` nvarchar(60) NULL," +
+				" `MAIL` nvarchar(60) NULL," +
+				" `DIGER` nvarchar(50) NULL, " + 
+				" `KASE` MEDIUMBLOB NULL);";
+		stmt = con.createStatement();  
+		stmt.executeUpdate(sql);
+		sql = "CREATE TABLE `TAH_DETAY`(" +
+				" `EVRAK` nvarchar(15) NOT NULL," +
+				" `TARIH` datetime NULL," +
+				" `C_HES` nvarchar(12) NULL," +
+				" `A_HES` nvarchar(12) NULL," +
+				" `CINS` int NOT NULL," +
+				" `TUTAR` double NULL," +
+				" `TUR` int NOT NULL," +
+				" `ACIKLAMA` nvarchar(50) NULL," +
+				" `DVZ_CINS` nvarchar(3) NULL);";
+		stmt = con.createStatement();  
+		stmt.executeUpdate(sql);
+		sql = "INSERT INTO  `TAH_EVRAK`(`CINS`,`NO`) VALUES ('GIR','0')";
+		stmt = con.createStatement();  
+		stmt.executeUpdate(sql);
+		sql = "INSERT INTO  `TAH_EVRAK`(`CINS`,`NO`) VALUES ('CIK','0')";
+		stmt = con.createStatement();  
+		stmt.executeUpdate(sql);
 		// ***************EVRAK NO YAZ ************
 		sql = "INSERT INTO  `EVRAK_NO` (`EVRAK`) VALUES ('0')";
 		stmt = con.createStatement();  

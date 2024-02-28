@@ -156,7 +156,7 @@ public class CEK_GIRIS extends JInternalFrame {
 		im.put(KeyStroke.getKeyStroke(KeyEvent.VK_TAB, 0), "Action.NextCell");
 		ActionMap am = table.getActionMap();
 		am.put("Action.NextCell", new Next_Cell_Kereste(table,"cek_gir"));
-		//table.putClientProperty("terminateEditOnFocusLost", Boolean.TRUE);
+		table.putClientProperty("terminateEditOnFocusLost", Boolean.TRUE);
 
 
 		model.addColumn("Cek No", new String []{"0"});

@@ -876,12 +876,6 @@ public class TAH_FISI extends JInternalFrame {
 			table.setGridColor(oac.gridcolor);
 		}
 		
-		InputMap im = table.getInputMap(JTable.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
-		im.put(KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, 0), "Action.NextCell");
-		im.put(KeyStroke.getKeyStroke(KeyEvent.VK_TAB, 0), "Action.NextCell");
-		ActionMap am = table.getActionMap();
-		am.put("Action.NextCell", new Next_Cell_Kereste(table,"tahsil"));
-//		table.putClientProperty("terminateEditOnFocusLost", Boolean.TRUE);
 
 		
 		model.addColumn("Banka", new String []{""});
@@ -945,7 +939,13 @@ public class TAH_FISI extends JInternalFrame {
 		th.repaint();
 		
 
-		
+		InputMap im = table.getInputMap(JTable.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
+		im.put(KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, 0), "Action.NextCell");
+		im.put(KeyStroke.getKeyStroke(KeyEvent.VK_TAB, 0), "Action.NextCell");
+		ActionMap am = table.getActionMap();
+		am.put("Action.NextCell", new Next_Cell_Kereste(table,"tahsil"));
+		table.putClientProperty("terminateEditOnFocusLost", Boolean.TRUE);
+
 		
 		scrollPane.setViewportView(table);
 		tabbedPane.setEnabledAt(2, false);

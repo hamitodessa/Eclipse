@@ -203,7 +203,10 @@ public class GLOBAL {
 		Ekstrecon = myEkstreConnection();
 		String sorgu= null;
 		sorgu = "CREATE TABLE EKSTRE (TARIH CHAR(10) ,EVRAK INTEGER,IZAHAT CHAR(100),KOD CHAR(10),KUR DOUBLE, BORC DOUBLE,ALACAK DOUBLE ,BAKIYE DOUBLE) ;"  ;
-		java.sql.Statement stmt = null;
+		Statement stmt = null;
+		stmt = Ekstrecon.createStatement();  
+		stmt.execute(sorgu);  
+		sorgu = "CREATE TABLE TAH_CEK (BANKA char(40),SUBE CHAR(40) ,SERI char(20),HESAP char(20),BORCLU CHAR(40),TARIH CHAR(10),TUTAR DOUBLE) ;"  ;
 		stmt = Ekstrecon.createStatement();  
 		stmt.execute(sorgu);  
 		stmt.close();

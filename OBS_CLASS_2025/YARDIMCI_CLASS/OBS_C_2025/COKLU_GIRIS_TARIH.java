@@ -12,6 +12,7 @@ public class COKLU_GIRIS_TARIH extends DefaultTableCellRenderer{
 	public Component getTableCellRendererComponent(JTable table, Object value,
 			boolean isSelected, boolean hasFocus, int row, int col){
 		super.getTableCellRendererComponent( table, value, isSelected, hasFocus, row, col );
+
 		if(value instanceof Date){
 			String strDate = new SimpleDateFormat("dd.MM.yyyy").format((Date)value);
 			this.setText(strDate);

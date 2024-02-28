@@ -6,7 +6,12 @@ import com.formdev.flatlaf.FlatClientProperties;
 import com.formdev.flatlaf.FlatLaf;
 
 import OBS_C_2025.MaterialTabbed;
+import OBS_C_2025.Next_Cell_Kereste;
 import OBS_C_2025.Obs_TextFIeld;
+import OBS_C_2025.SAGA;
+import OBS_C_2025.SOLA;
+import OBS_C_2025.TABLO_RENDERER;
+import OBS_C_2025.TABLO_TEXTBOX;
 import OBS_C_2025.TARIH_CEVIR;
 import OBS_C_2025.dEKONT_BILGI;
 import OBS_C_2025.lOG_BILGI;
@@ -18,10 +23,13 @@ import javax.swing.JPanel;
 import OBS_C_2025.ADRES_ACCESS;
 import OBS_C_2025.BAGLAN_LOG;
 import OBS_C_2025.CARI_ACCESS;
+import OBS_C_2025.COKLU_GIRIS_TARIH;
+import OBS_C_2025.DoubleEditor;
 import OBS_C_2025.FIT_IMAGE;
 import OBS_C_2025.FORMATLAMA;
 import OBS_C_2025.GLOBAL;
 import OBS_C_2025.ImagePanel;
+import OBS_C_2025.JDateChooserEditor;
 import OBS_C_2025.JTextFieldRegularPopupMenu;
 
 import javax.swing.border.LineBorder;
@@ -32,16 +40,23 @@ import javax.swing.event.ChangeListener;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
+import javax.swing.table.TableColumn;
 import javax.swing.text.DefaultFormatterFactory;
 import javax.swing.text.JTextComponent;
 import javax.swing.text.NumberFormatter;
 
 import java.awt.Color;
+import java.awt.Dimension;
+
 import javax.swing.UIManager;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.ImageIcon;
+import javax.swing.InputMap;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JFileChooser;
 
 import java.awt.Font;
@@ -75,14 +90,18 @@ import com.toedter.calendar.JDateChooser;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 import javax.imageio.ImageIO;
+import javax.swing.ActionMap;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JFormattedTextField;
 import javax.swing.border.TitledBorder;
 import java.awt.event.ItemListener;
 import java.awt.event.ItemEvent;
 import javax.swing.JTextField;
+import javax.swing.KeyStroke;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 
-@SuppressWarnings({ "unchecked", "rawtypes" ,"deprecation","static-access"})
+@SuppressWarnings({ "unchecked", "rawtypes" ,"deprecation","static-access","removal"})
 public class TAH_FISI extends JInternalFrame {
 
 	private static final long serialVersionUID = 1L;
@@ -119,6 +138,9 @@ public class TAH_FISI extends JInternalFrame {
 	public static JTextField textHesapNo;
 	public static JTextField textBorclu;
 	public static JDateChooser dtcVade;
+	private JPanel panel_5;
+	private JScrollPane scrollPane;
+	private static JTable table;
 	/**
 	 * Launch the application.
 	 */
@@ -126,6 +148,7 @@ public class TAH_FISI extends JInternalFrame {
 	/**
 	 * Create the frame.
 	 */
+	
 	
 	public TAH_FISI() {
 		FlatLaf.registerCustomDefaultsSource("OBS_2025");
@@ -182,9 +205,11 @@ public class TAH_FISI extends JInternalFrame {
 				if(cmbTur.getSelectedIndex()==1)
 				{
 					panel_4.setVisible(true);
+					tabbedPane.setEnabledAt(2, true);
 				}
 				else {
 					panel_4.setVisible(false);
+					tabbedPane.setEnabledAt(2, false);
 				}
 				
 			}
@@ -833,6 +858,101 @@ public class TAH_FISI extends JInternalFrame {
 		btnNewButton_5_1.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		btnNewButton_5_1.setBounds(680, 347, 73, 23);
 		panel_Ayarlar.add(btnNewButton_5_1);
+		
+		panel_5 = new JPanel();
+		tabbedPane.addTab("Cek Giris", null, panel_5, null);
+		panel_5.setLayout(new BorderLayout(0, 0));
+		
+		scrollPane = new JScrollPane();
+		panel_5.add(scrollPane, BorderLayout.CENTER);
+		
+		
+		DefaultTableModel model = new DefaultTableModel() ; 
+		
+		table = new JTable(model);
+		
+		if(! oac.gridcolor.toString().equals("java.awt.Color[r=255,g=255,b=255]")) 
+		{
+			table.setGridColor(oac.gridcolor);
+		}
+		
+		InputMap im = table.getInputMap(JTable.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
+		im.put(KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, 0), "Action.NextCell");
+		im.put(KeyStroke.getKeyStroke(KeyEvent.VK_TAB, 0), "Action.NextCell");
+		ActionMap am = table.getActionMap();
+		am.put("Action.NextCell", new Next_Cell_Kereste(table,"tahsil"));
+//		table.putClientProperty("terminateEditOnFocusLost", Boolean.TRUE);
+
+		
+		model.addColumn("Banka", new String []{""});
+		model.addColumn("Sube", new String []{""});
+		model.addColumn("Seri No", new String []{""});
+		model.addColumn("Hesap", new String []{"" });
+		model.addColumn("Borclu", new String []{""});
+		model.addColumn("Vade", new Date []{ new Date() });
+		model.addColumn("Tutar",new Double [] {new Double( 0 )});
+		
+		TableColumn col ;
+	
+		col = table.getColumnModel().getColumn(0);
+		col.setMinWidth(250);
+		col.setCellEditor(new TABLO_TEXTBOX(new JTextField() ,25,new Font("Tahoma", Font.PLAIN, 12),JTextField.LEFT));
+		col.setHeaderRenderer(new SOLA());
+
+		col = table.getColumnModel().getColumn(1);
+		col.setMinWidth(150);
+		col.setCellEditor(new TABLO_TEXTBOX(new JTextField() ,25,new Font("Tahoma", Font.PLAIN, 12),JTextField.LEFT));
+		col.setHeaderRenderer(new SOLA());
+		
+		
+		col = table.getColumnModel().getColumn(2);
+		col.setMinWidth(150);
+		col.setCellEditor(new TABLO_TEXTBOX(new JTextField() ,15,new Font("Tahoma", Font.PLAIN, 12),JTextField.LEFT));
+		col.setHeaderRenderer(new SOLA());
+		
+		col = table.getColumnModel().getColumn(3);
+		col.setMinWidth(150);
+		col.setCellEditor(new TABLO_TEXTBOX(new JTextField() ,15,new Font("Tahoma", Font.PLAIN, 12),JTextField.LEFT));
+		col.setHeaderRenderer(new SOLA());
+		
+		col = table.getColumnModel().getColumn(4);
+		col.setMinWidth(150);
+		col.setCellEditor(new TABLO_TEXTBOX(new JTextField() ,15,new Font("Tahoma", Font.PLAIN, 12),JTextField.LEFT));
+		col.setHeaderRenderer(new SOLA());
+		
+		col = table.getColumnModel().getColumn(5);
+		col.setCellEditor(new JDateChooserEditor(new JCheckBox()));
+		col.setHeaderRenderer(new SOLA());
+		col.setCellRenderer(new COKLU_GIRIS_TARIH());
+		col.setMinWidth(100);
+		
+		col = table.getColumnModel().getColumn(6);
+		col.setHeaderRenderer(new SAGA());
+		col.setCellEditor( new DoubleEditor(2) );
+		col.setCellRenderer(new TABLO_RENDERER(2,true));
+		col.setMinWidth(115);
+		
+		JTableHeader th = table.getTableHeader();
+		Dimension dd = table.getPreferredSize();
+		dd.height = 30;
+		th.setPreferredSize(dd); 
+		table.setRowSelectionInterval(0, 0);
+		table.setRowHeight(21);
+		table.setAutoResizeMode( JTable.AUTO_RESIZE_OFF );
+		table.setRowSelectionAllowed(false);
+		table.setShowHorizontalLines(true);
+		table.setShowVerticalLines(true);
+		th.repaint();
+		
+
+		
+		
+		scrollPane.setViewportView(table);
+		tabbedPane.setEnabledAt(2, false);
+		for (int i = 0; i <= 15; i ++)
+		{
+			satir_ilave();
+		}
 		fis_temizle();
 	}
 	public static void kaydet()
@@ -1133,5 +1253,22 @@ public class TAH_FISI extends JInternalFrame {
 		textBorclu.setText("");
 		dtcVade.setDate(new Date());
 		
+	}
+	public static void satir_ilave()
+	{
+		
+		DefaultTableModel mdl = (DefaultTableModel) table.getModel();
+		int satir = table.getSelectedRow();
+		if ( satir  < 0 ) 
+		{
+			mdl.addRow(new Object[]{"", "","","","",new Date(),0.00});
+			satir = 0 ;
+		}
+		else if ( satir  >= 0 ) 
+		{
+			mdl.insertRow(satir, new Object[]{"", "","","","",new Date(),0.00});
+		}
+		table.isRowSelected(satir);
+		table.repaint();
 	}
 }

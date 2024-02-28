@@ -26,6 +26,7 @@ public class JDateChooserEditor extends DefaultCellEditor
 	  String tar = "" ;
 	  try
 	  {
+		  
 	  if (value.toString().length() >  10)
 	  {
 	  tar = dateFormater(value.toString() , "dd.MM.yyyy", "EEE MMM dd kk:mm:ss zzzz yyyy" );
@@ -34,7 +35,7 @@ public class JDateChooserEditor extends DefaultCellEditor
 	  {
 		  tar = value.toString();
 	  }
-	  
+	 
 	  date = new JDateChooser(TARIH_CEVIR.tarih(tar));
 	  date.setDateFormatString("dd.MM.yyyy");
 	  }

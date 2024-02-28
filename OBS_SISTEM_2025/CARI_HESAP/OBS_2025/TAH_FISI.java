@@ -170,7 +170,7 @@ public class TAH_FISI extends JInternalFrame {
 		cmbTur.setModel(new DefaultComboBoxModel(new String[] {"Nakit", "Cek", "Kredi Karti"}));
 		
 		dtc = new JDateChooser();
-		dtc.setBounds(268, 11, 150, 20);
+		dtc.setBounds(281, 11, 150, 24);
 		panel_2.add(dtc);
 		dtc.getDateEditor().getUiComponent().addFocusListener(new FocusAdapter()    {
 			@Override
@@ -192,7 +192,7 @@ public class TAH_FISI extends JInternalFrame {
 			}
 		});
 		dtc.setDateFormatString("dd.MM.yyyy");
-		dtc.setFont(new Font("Tahoma", Font.BOLD, 16));
+		dtc.setFont(new Font("Tahoma", Font.BOLD, 14));
 		dtc.setDate(new Date());
 		dtc.getComponent(1).addKeyListener(new KeyListener() {
 			@Override

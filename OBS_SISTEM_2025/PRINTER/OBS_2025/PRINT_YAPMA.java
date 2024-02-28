@@ -284,6 +284,10 @@ public class PRINT_YAPMA extends JInternalFrame {
 						ParagraphTextElement oParagraphTextElement = new ParagraphTextElement();
 						oParagraphTextElement.setText(Adr1);
 						oParagraphTextElement.setKind(ParagraphElementKind.text);
+						IFontColor newFontColor = oTextObject.getFontColor();
+						Font fnt = new Font("Verdana", Font.PLAIN, 12);
+						newFontColor.setFont(fnt);
+						oParagraphTextElement.setFontColor(newFontColor);
 						oParagraphs.add(oParagraph);
 						oParagraph.setParagraphElements(oParagraphElements);
 						oParagraphElements.add(oParagraphTextElement);
@@ -299,6 +303,10 @@ public class PRINT_YAPMA extends JInternalFrame {
 						ParagraphTextElement oParagraphTextElement = new ParagraphTextElement();
 						oParagraphTextElement.setText(Adr2);
 						oParagraphTextElement.setKind(ParagraphElementKind.text);
+						IFontColor newFontColor = oTextObject.getFontColor();
+						Font fnt = new Font("Verdana", Font.PLAIN, 12);
+						newFontColor.setFont(fnt);
+						oParagraphTextElement.setFontColor(newFontColor);
 						oParagraphs.add(oParagraph);
 						oParagraph.setParagraphElements(oParagraphElements);
 						oParagraphElements.add(oParagraphTextElement);
@@ -314,6 +322,10 @@ public class PRINT_YAPMA extends JInternalFrame {
 						ParagraphTextElement oParagraphTextElement = new ParagraphTextElement();
 						oParagraphTextElement.setText(Semt);
 						oParagraphTextElement.setKind(ParagraphElementKind.text);
+						IFontColor newFontColor = oTextObject.getFontColor();
+						Font fnt = new Font("Verdana", Font.PLAIN, 12);
+						newFontColor.setFont(fnt);
+						oParagraphTextElement.setFontColor(newFontColor);
 						oParagraphs.add(oParagraph);
 						oParagraph.setParagraphElements(oParagraphElements);
 						oParagraphElements.add(oParagraphTextElement);
@@ -343,6 +355,10 @@ public class PRINT_YAPMA extends JInternalFrame {
 						oParagraphTextElement.setText(yaziylat );
 
 						oParagraphTextElement.setKind(ParagraphElementKind.text);
+						IFontColor newFontColor = oTextObject.getFontColor();
+						Font fnt = new Font("Verdana", Font.PLAIN, 11);
+						newFontColor.setFont(fnt);
+						oParagraphTextElement.setFontColor(newFontColor);
 						oParagraphs.add(oParagraph);
 						oParagraph.setParagraphElements(oParagraphElements);
 						oParagraphElements.add(oParagraphTextElement);
@@ -374,6 +390,11 @@ public class PRINT_YAPMA extends JInternalFrame {
 						}
 						
 						oParagraphTextElement.setKind(ParagraphElementKind.text);
+						
+						IFontColor newFontColor = oTextObject.getFontColor();
+						Font fnt = new Font("Verdana", Font.PLAIN, 10);
+						newFontColor.setFont(fnt);
+						oParagraphTextElement.setFontColor(newFontColor);
 						oParagraphs.add(oParagraph);
 						oParagraph.setParagraphElements(oParagraphElements);
 						oParagraphElements.add(oParagraphTextElement);
@@ -388,14 +409,15 @@ public class PRINT_YAPMA extends JInternalFrame {
 						ParagraphElements oParagraphElements = new ParagraphElements();
 						ParagraphTextElement oParagraphTextElement = new ParagraphTextElement();
 						if(TAH_FISI.cmbCins.getSelectedIndex() == 0)
-						{
-							oParagraphTextElement.setText("ALACAK");
-						}
-						else {
-							oParagraphTextElement.setText("BORC");
-						}
-						
+							oParagraphTextElement.setText("Cari Hesabınıza Mahsuben ALACAK olarak Kaydedilmiştir.");
+						else
+							oParagraphTextElement.setText("Cari Hesabınıza Mahsuben BORC olarak Kaydedilmiştir.");
 						oParagraphTextElement.setKind(ParagraphElementKind.text);
+						IFontColor newFontColor = oTextObject.getFontColor();
+						Font fnt = new Font("Verdana", Font.PLAIN, 10
+								);
+						newFontColor.setFont(fnt);
+						oParagraphTextElement.setFontColor(newFontColor);
 						oParagraphs.add(oParagraph);
 						oParagraph.setParagraphElements(oParagraphElements);
 						oParagraphElements.add(oParagraphTextElement);

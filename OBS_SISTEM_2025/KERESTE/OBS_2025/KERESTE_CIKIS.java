@@ -1103,6 +1103,7 @@ public class KERESTE_CIKIS extends JInternalFrame {
 				}
 			}
 		};
+		
 		table.addKeyListener(new KeyAdapter() {         
 			public void keyPressed(KeyEvent e) {
 				if (e.getKeyCode() == 10)
@@ -1471,7 +1472,6 @@ public class KERESTE_CIKIS extends JInternalFrame {
 		catch (Exception ex)
 		{
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage() );
-			//JOptionPane.showMessageDialog(null, ex.getMessage(),  "Evrak Okuma", JOptionPane.ERROR_MESSAGE);   
 		}
 	}
 	private void fiskont()

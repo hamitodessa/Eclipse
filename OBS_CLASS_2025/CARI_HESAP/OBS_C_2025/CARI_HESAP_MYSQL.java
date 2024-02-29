@@ -258,6 +258,10 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 				" `DVZ_CINS` nvarchar(3) NULL);";
 		stmt = con.createStatement();  
 		stmt.executeUpdate(sql);
+		sql = "CREATE TABLE `TAH_CEK` (`EVRAK` nvarchar(15),`CINS` int, `TUR` int, `BANKA` cvarhar(40), " + 
+				"`SUBE` nvarchar(40) ,`SERI` nvarchar(20),`HESAP` nvarchar(20),`BORCLU` nvarchar(40),`TARIH` datetime,`TUTAR` double); "  ;
+		stmt = con.createStatement();  
+		stmt.executeUpdate(sql); 
 		sql = "INSERT INTO  `TAH_EVRAK`(`CINS`,`NO`) VALUES ('GIR','0')";
 		stmt = con.createStatement();  
 		stmt.executeUpdate(sql);
@@ -1331,7 +1335,7 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 		return rss;	
 	}
 	@Override
-	public void tah_kayit(int cins, Integer tur, String evrak, String tarih, String ckodu, String akodu,
+	public void tah_kayit(int cins, int tur, String evrak, String tarih, String ckodu, String akodu,
 			String aciklama, double tutar ,String dvzcins) throws ClassNotFoundException, SQLException, IOException {
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		String sql = "DELETE FROM TAH_DETAY WHERE evrak = '"+ evrak + "' AND CINS = '" + cins + "' " ;
@@ -1373,5 +1377,11 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 		PreparedStatement stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();
 		stmt.close();
+	}
+	@Override
+	public void tah_cek_kayit(String evr, int cins,  String bnk, String sb, String sr, String hsp, String brcl,
+			String tar, double tut) throws ClassNotFoundException, SQLException, IOException {
+		// TODO Auto-generated method stub
+		
 	}
 }

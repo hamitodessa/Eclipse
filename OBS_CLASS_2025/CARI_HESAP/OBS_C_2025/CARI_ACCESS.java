@@ -306,4 +306,9 @@ public class CARI_ACCESS {
 	{
 		_ICari.tah_sil(no, cins);
 	}
+	public void tah_cek_kayit(String evr, int cins  , String bnk , String sb ,String sr ,String hsp ,String brcl,String tar ,double tut) throws ClassNotFoundException, SQLException, IOException
+	{
+		_ICari.tah_cek_kayit(evr, cins,  bnk, sb, sr, hsp, brcl, tar, tut);
+	}
+
 }

@@ -8,10 +8,10 @@ import com.formdev.flatlaf.FlatLaf;
 import OBS_C_2025.MaterialTabbed;
 import OBS_C_2025.Next_Cell_Kereste;
 import OBS_C_2025.Obs_TextFIeld;
+
 import OBS_C_2025.SAGA;
 import OBS_C_2025.SOLA;
 import OBS_C_2025.TABLO_RENDERER;
-import OBS_C_2025.TABLO_TEXTBOX;
 import OBS_C_2025.TARIH_CEVIR;
 import OBS_C_2025.dEKONT_BILGI;
 import OBS_C_2025.lOG_BILGI;
@@ -28,6 +28,7 @@ import OBS_C_2025.DoubleEditor;
 import OBS_C_2025.FIT_IMAGE;
 import OBS_C_2025.FORMATLAMA;
 import OBS_C_2025.GLOBAL;
+import OBS_C_2025.GRID_TEMIZLE;
 import OBS_C_2025.ImagePanel;
 import OBS_C_2025.JDateChooserEditor;
 import OBS_C_2025.JTextFieldRegularPopupMenu;
@@ -68,6 +69,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -91,12 +93,12 @@ import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 import javax.imageio.ImageIO;
 import javax.swing.ActionMap;
+import javax.swing.DefaultCellEditor;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JFormattedTextField;
 import javax.swing.border.TitledBorder;
 import java.awt.event.ItemListener;
 import java.awt.event.ItemEvent;
-import javax.swing.JTextField;
 import javax.swing.KeyStroke;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -120,6 +122,7 @@ public class TAH_FISI extends JInternalFrame {
 	public static Obs_TextFIeld textEvrakNo;
 	
 	private static JLabel lblCAdi ;
+	private static JLabel lblCekSayi;
 
 	private static JLabel lblAAdi ;
 	public static JFormattedTextField formattedTutar ;
@@ -132,15 +135,9 @@ public class TAH_FISI extends JInternalFrame {
 	public static JComboBox combCins ;
 	
 	private JPanel panel_4;
-	public static JTextField textBanka;
-	public static JTextField textSube;
-	public static JTextField textCekNo;
-	public static JTextField textHesapNo;
-	public static JTextField textBorclu;
-	public static JDateChooser dtcVade;
 	private JPanel panel_5;
 	private JScrollPane scrollPane;
-	private static JTable table;
+	private static JTable tableCek;
 	/**
 	 * Launch the application.
 	 */
@@ -171,8 +168,6 @@ public class TAH_FISI extends JInternalFrame {
 				}
 			}
 		});
-
-
 		tabbedPane.setFont(new Font("Tahoma", Font.BOLD, 14));
 		getContentPane().add(tabbedPane, BorderLayout.CENTER);
 		
@@ -634,61 +629,41 @@ public class TAH_FISI extends JInternalFrame {
 		panel.add(panel_4);
 		panel_4.setLayout(null);
 		
-		textBanka = new JTextField();
-		textBanka.setBounds(44, 21, 171, 22);
-		panel_4.add(textBanka);
-		textBanka.setColumns(10);
+		JButton btnNewButton_1 = new JButton("Toplam Al");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				double tutar = 0 ;
+				int evr_sayi = 0 ;
+				DefaultTableModel model = (DefaultTableModel)tableCek.getModel();
+				for (int i = 0; i <= tableCek.getRowCount() - 1 ; i ++)
+				{
+					if ( model.getValueAt(i,0).toString() != null )
+					{
+						if ( ! model.getValueAt(i,0).toString().equals(""))
+						{
+							if ( model.getValueAt(i,6).toString() != null )
+							{
+								tutar  += (double) tableCek.getValueAt(i , 6);
+								evr_sayi += 1 ;
+							}
+						}
+						
+					}
+				}
+				lblCekSayi.setText(FORMATLAMA.doub_0(evr_sayi));
+				formattedTutar.setText(FORMATLAMA.doub_2(tutar));
+			}
+		});
+		btnNewButton_1.setBounds(80, 25, 89, 23);
+		panel_4.add(btnNewButton_1);
 		
-		textSube = new JTextField();
-		textSube.setBounds(44, 51, 171, 22);
-		panel_4.add(textSube);
-		textSube.setColumns(10);
-		
-		textCekNo = new JTextField();
-		textCekNo.setBounds(280, 21, 123, 22);
-		panel_4.add(textCekNo);
-		textCekNo.setColumns(10);
-		
-		textHesapNo = new JTextField();
-		textHesapNo.setBounds(280, 51, 123, 22);
-		panel_4.add(textHesapNo);
-		textHesapNo.setColumns(10);
-		
-		textBorclu = new JTextField();
-		textBorclu.setBounds(469, 21, 271, 22);
-		panel_4.add(textBorclu);
-		textBorclu.setColumns(10);
-		
-		dtcVade = new JDateChooser();
-		dtcVade.setBounds(469, 51, 114, 22);
-		dtcVade.setDateFormatString("dd.MM.yyyy");
-		dtcVade.setFont(new Font("Tahoma", Font.BOLD, 12));
-		dtcVade.setDate(new Date());
-		panel_4.add(dtcVade);
-		
-		JLabel lblNewLabel_5 = new JLabel("Banka");
-		lblNewLabel_5.setBounds(10, 24, 46, 14);
+		JLabel lblNewLabel_5 = new JLabel("Cek Sayisi");
+		lblNewLabel_5.setBounds(10, 59, 59, 14);
 		panel_4.add(lblNewLabel_5);
 		
-		JLabel lblNewLabel_6 = new JLabel("Sube");
-		lblNewLabel_6.setBounds(10, 54, 34, 14);
-		panel_4.add(lblNewLabel_6);
-		
-		JLabel lblNewLabel_7 = new JLabel("Cek No");
-		lblNewLabel_7.setBounds(225, 24, 46, 14);
-		panel_4.add(lblNewLabel_7);
-		
-		JLabel lblNewLabel_8 = new JLabel("Hesap No");
-		lblNewLabel_8.setBounds(225, 54, 57, 14);
-		panel_4.add(lblNewLabel_8);
-		
-		JLabel lblNewLabel_9 = new JLabel("Borclu");
-		lblNewLabel_9.setBounds(413, 24, 46, 14);
-		panel_4.add(lblNewLabel_9);
-		
-		JLabel lblNewLabel_10 = new JLabel("Vade");
-		lblNewLabel_10.setBounds(413, 54, 46, 14);
-		panel_4.add(lblNewLabel_10);
+		lblCekSayi = new JLabel("0");
+		lblCekSayi.setBounds(80, 59, 46, 14);
+		panel_4.add(lblCekSayi);
 		
 		JPanel panel_Ayarlar = new JPanel();
 		tabbedPane.addTab("Ayarlar", null, panel_Ayarlar, null);
@@ -869,15 +844,12 @@ public class TAH_FISI extends JInternalFrame {
 		
 		DefaultTableModel model = new DefaultTableModel() ; 
 		
-		table = new JTable(model);
+		tableCek = new JTable(model);
 		
 		if(! oac.gridcolor.toString().equals("java.awt.Color[r=255,g=255,b=255]")) 
 		{
-			table.setGridColor(oac.gridcolor);
+			tableCek.setGridColor(oac.gridcolor);
 		}
-		
-
-		
 		model.addColumn("Banka", new String []{""});
 		model.addColumn("Sube", new String []{""});
 		model.addColumn("Seri No", new String []{""});
@@ -887,72 +859,90 @@ public class TAH_FISI extends JInternalFrame {
 		model.addColumn("Tutar",new Double [] {new Double( 0 )});
 		
 		TableColumn col ;
-	
-		col = table.getColumnModel().getColumn(0);
+		col = tableCek.getColumnModel().getColumn(0);
 		col.setMinWidth(250);
-		col.setCellEditor(new TABLO_TEXTBOX(new JTextField() ,25,new Font("Tahoma", Font.PLAIN, 12),JTextField.LEFT));
+		Obs_TextFIeld bnk = new Obs_TextFIeld(40);
+		col.setCellEditor(new DefaultCellEditor(bnk));
 		col.setHeaderRenderer(new SOLA());
 
-		col = table.getColumnModel().getColumn(1);
+		col = tableCek.getColumnModel().getColumn(1);
 		col.setMinWidth(150);
-		col.setCellEditor(new TABLO_TEXTBOX(new JTextField() ,25,new Font("Tahoma", Font.PLAIN, 12),JTextField.LEFT));
+		Obs_TextFIeld sb = new Obs_TextFIeld(40);
+		col.setCellEditor(new DefaultCellEditor(sb));
 		col.setHeaderRenderer(new SOLA());
 		
 		
-		col = table.getColumnModel().getColumn(2);
+		col = tableCek.getColumnModel().getColumn(2);
 		col.setMinWidth(150);
-		col.setCellEditor(new TABLO_TEXTBOX(new JTextField() ,15,new Font("Tahoma", Font.PLAIN, 12),JTextField.LEFT));
+		Obs_TextFIeld ser = new Obs_TextFIeld(20);
+		col.setCellEditor(new DefaultCellEditor(ser));
 		col.setHeaderRenderer(new SOLA());
 		
-		col = table.getColumnModel().getColumn(3);
+		col = tableCek.getColumnModel().getColumn(3);
 		col.setMinWidth(150);
-		col.setCellEditor(new TABLO_TEXTBOX(new JTextField() ,15,new Font("Tahoma", Font.PLAIN, 12),JTextField.LEFT));
+		Obs_TextFIeld hsp = new Obs_TextFIeld(20);
+		col.setCellEditor(new DefaultCellEditor(hsp));
 		col.setHeaderRenderer(new SOLA());
 		
-		col = table.getColumnModel().getColumn(4);
+		col = tableCek.getColumnModel().getColumn(4);
 		col.setMinWidth(150);
-		col.setCellEditor(new TABLO_TEXTBOX(new JTextField() ,15,new Font("Tahoma", Font.PLAIN, 12),JTextField.LEFT));
+		Obs_TextFIeld brc = new Obs_TextFIeld(40);
+		col.setCellEditor(new DefaultCellEditor(brc));
 		col.setHeaderRenderer(new SOLA());
 		
-		col = table.getColumnModel().getColumn(5);
+		col = tableCek.getColumnModel().getColumn(5);
 		col.setCellEditor(new JDateChooserEditor(new JCheckBox()));
 		col.setHeaderRenderer(new SOLA());
 		col.setCellRenderer(new COKLU_GIRIS_TARIH());
 		col.setMinWidth(100);
 		
-		col = table.getColumnModel().getColumn(6);
+		col = tableCek.getColumnModel().getColumn(6);
 		col.setHeaderRenderer(new SAGA());
 		col.setCellEditor( new DoubleEditor(2) );
 		col.setCellRenderer(new TABLO_RENDERER(2,true));
 		col.setMinWidth(115);
 		
-		JTableHeader th = table.getTableHeader();
-		Dimension dd = table.getPreferredSize();
+		JTableHeader th = tableCek.getTableHeader();
+		Dimension dd = tableCek.getPreferredSize();
 		dd.height = 30;
 		th.setPreferredSize(dd); 
-		table.setRowSelectionInterval(0, 0);
-		table.setRowHeight(21);
-		table.setAutoResizeMode( JTable.AUTO_RESIZE_OFF );
-		table.setRowSelectionAllowed(false);
-		table.setShowHorizontalLines(true);
-		table.setShowVerticalLines(true);
+		
+		tableCek.setRowHeight(22);
+		tableCek.setAutoResizeMode( JTable.AUTO_RESIZE_OFF );
+		tableCek.setRowSelectionAllowed(false);
+		tableCek.setShowHorizontalLines(true);
+		tableCek.setShowVerticalLines(true);
 		th.repaint();
 		
 
-		InputMap im = table.getInputMap(JTable.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
+		InputMap im = tableCek.getInputMap(JTable.WHEN_FOCUSED);
 		im.put(KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, 0), "Action.NextCell");
 		im.put(KeyStroke.getKeyStroke(KeyEvent.VK_TAB, 0), "Action.NextCell");
-		ActionMap am = table.getActionMap();
-		am.put("Action.NextCell", new Next_Cell_Kereste(table,"tahsil"));
-		table.putClientProperty("terminateEditOnFocusLost", Boolean.TRUE);
+		ActionMap am = tableCek.getActionMap();
+		am.put("Action.NextCell", new Next_Cell_Kereste(tableCek,"tahsil"));
 
-		
-		scrollPane.setViewportView(table);
+		tableCek.addFocusListener(new FocusListener()
+	      {
+	         @Override
+	         public void focusGained(FocusEvent e)
+	         {
+	           
+	         }
+	 
+	         @Override
+	         public void focusLost(FocusEvent e)
+	         {
+	        	 if(tableCek.getSelectedColumn() == -1)
+	        	 {
+	        	 if (tableCek.isEditing())
+				     tableCek.getCellEditor().stopCellEditing();
+	        	 }
+	         }
+	      });
+				
+		scrollPane.setViewportView(tableCek);
 		tabbedPane.setEnabledAt(2, false);
-		for (int i = 0; i <= 15; i ++)
-		{
-			satir_ilave();
-		}
+		
 		fis_temizle();
 	}
 	public static void kaydet()
@@ -977,6 +967,38 @@ public class TAH_FISI extends JInternalFrame {
 		c_Access.tah_kayit(cmbCins.getSelectedIndex(), cmbTur.getSelectedIndex(),textEvrakNo.getText(), 
 				TARIH_CEVIR.tarih_geri_saatli(dtc) ,textCKodu.getText(), textAKodu.getText(), "", 
 				DecimalFormat.getNumberInstance().parse(formattedTutar.getText()).doubleValue(),combCins.getSelectedItem().toString());
+		if(cmbTur.getSelectedIndex() == 1)
+		{
+			DefaultTableModel model = (DefaultTableModel)tableCek.getModel();
+			for (int i = 0; i <= tableCek.getRowCount() - 1 ; i ++)
+			{
+				if ( model.getValueAt(i,0).toString() != null )
+				{
+					if ( ! model.getValueAt(i,0).toString().equals(""))
+					{
+						if ( model.getValueAt(i,6).toString() != null )
+						{
+							String vade = "";
+							if (model.getValueAt(i , 6).toString().length() >  10)
+							{
+								vade = dateFormater(model.getValueAt(i , 6).toString() , "yyyy.MM.dd", "EEE MMM dd kk:mm:ss zzzz yyyy" ) ;
+							}
+							else
+							{
+								String qwe =dateFormater(model.getValueAt(i , 6).toString() , "yyyy.MM.dd", "dd.MM.yyyy" ) ;
+								vade  = qwe;
+							}
+							c_Access.tah_cek_kayit(textEvrakNo.getText(), cmbCins.getSelectedIndex(),
+									tableCek.getValueAt(i , 0).toString(), tableCek.getValueAt(i , 1).toString(), 
+									tableCek.getValueAt(i , 2).toString(),tableCek.getValueAt(i , 3).toString(), 
+									tableCek.getValueAt(i , 4).toString(),
+									vade,
+									(double) tableCek.getValueAt(i , 6));
+						}
+					}
+				}
+			}
+		}
 		
 		} catch (Exception ex) {
 			 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage() );
@@ -1245,20 +1267,18 @@ public class TAH_FISI extends JInternalFrame {
 		lblAAdi.setText("");
 		combCins.setSelectedIndex(0);
 		dtc.setDate(new Date());
-		
-		textBanka.setText("");
-		textSube.setText("");
-		textCekNo.setText("");
-		textHesapNo.setText("");
-		textBorclu.setText("");
-		dtcVade.setDate(new Date());
-		
+		lblCekSayi.setText("");
+		GRID_TEMIZLE.grid_temizle(tableCek);
+		for (int i = 0; i <= 15; i ++)
+		{
+			satir_ilave();
+		}
 	}
 	public static void satir_ilave()
 	{
 		
-		DefaultTableModel mdl = (DefaultTableModel) table.getModel();
-		int satir = table.getSelectedRow();
+		DefaultTableModel mdl = (DefaultTableModel) tableCek.getModel();
+		int satir = tableCek.getSelectedRow();
 		if ( satir  < 0 ) 
 		{
 			mdl.addRow(new Object[]{"", "","","","",new Date(),0.00});
@@ -1268,7 +1288,20 @@ public class TAH_FISI extends JInternalFrame {
 		{
 			mdl.insertRow(satir, new Object[]{"", "","","","",new Date(),0.00});
 		}
-		table.isRowSelected(satir);
-		table.repaint();
+		tableCek.isRowSelected(satir);
+		tableCek.repaint();
+	}
+	private static String dateFormater(String dateFromJSON, String expectedFormat, String oldFormat) {
+		SimpleDateFormat dateFormat = new SimpleDateFormat(oldFormat);
+		Date date = null;
+		String convertedDate = null;
+		try {
+			date = dateFormat.parse(dateFromJSON);
+			SimpleDateFormat simpleDateFormat = new SimpleDateFormat(expectedFormat);
+			convertedDate = simpleDateFormat.format(date);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return convertedDate;
 	}
 }

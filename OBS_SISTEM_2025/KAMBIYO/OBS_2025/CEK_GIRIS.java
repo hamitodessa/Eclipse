@@ -73,6 +73,8 @@ import javax.swing.ImageIcon;
 import javax.swing.InputMap;
 
 import java.awt.event.ActionListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.awt.event.ActionEvent;
 
 @SuppressWarnings({"serial","static-access","removal","deprecation"})
@@ -146,6 +148,7 @@ public class CEK_GIRIS extends JInternalFrame {
 			}
 
 		};
+
 		if(! oac.gridcolor.toString().equals("java.awt.Color[r=255,g=255,b=255]")) 
 		{
 			table.setGridColor(oac.gridcolor);
@@ -156,7 +159,25 @@ public class CEK_GIRIS extends JInternalFrame {
 		im.put(KeyStroke.getKeyStroke(KeyEvent.VK_TAB, 0), "Action.NextCell");
 		ActionMap am = table.getActionMap();
 		am.put("Action.NextCell", new Next_Cell_Kereste(table,"cek_gir"));
-		table.putClientProperty("terminateEditOnFocusLost", Boolean.TRUE);
+		//table.putClientProperty("terminateEditOnFocusLost", Boolean.TRUE);
+		table.addFocusListener(new FocusListener()
+	      {
+	         @Override
+	         public void focusGained(FocusEvent e)
+	         {
+	           
+	         }
+	 
+	         @Override
+	         public void focusLost(FocusEvent e)
+	         {
+	        	 if(table.getSelectedColumn() !=1)
+	        	 {
+	        	 if (table.isEditing())
+				     table.getCellEditor().stopCellEditing();
+	        	 }
+	         }
+	      });
 
 
 		model.addColumn("Cek No", new String []{"0"});

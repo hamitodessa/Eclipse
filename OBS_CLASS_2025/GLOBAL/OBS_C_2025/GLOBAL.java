@@ -206,9 +206,6 @@ public class GLOBAL {
 		Statement stmt = null;
 		stmt = Ekstrecon.createStatement();  
 		stmt.execute(sorgu);  
-		sorgu = "CREATE TABLE TAH_CEK (BANKA char(40),SUBE CHAR(40) ,SERI char(20),HESAP char(20),BORCLU CHAR(40),TARIH CHAR(10),TUTAR DOUBLE) ;"  ;
-		stmt = Ekstrecon.createStatement();  
-		stmt.execute(sorgu);  
 		stmt.close();
 		Ekstrecon.close();
 	}

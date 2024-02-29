@@ -297,7 +297,7 @@ public class CARI_HESAP_MSSQL implements ICARI_HESAP {
 				" [MAIL] [nvarchar](60) NULL," +
 				" [DIGER] [nvarchar](50) NULL, " + 
 				" [KASE] [image] NULL" +
-				" ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]";
+				" ) ";
 		stmt = con.createStatement();  
 		stmt.executeUpdate(sql);
 		sql = "CREATE TABLE [dbo].[TAH_DETAY](" +
@@ -310,9 +310,12 @@ public class CARI_HESAP_MSSQL implements ICARI_HESAP {
 				" [TUR] [int] NOT NULL," +
 				" [ACIKLAMA] [nvarchar](50) NULL," +
 				" [DVZ_CINS] [nvarchar](3) NULL" +
-				" ) ON [PRIMARY]";
+				" ) ";
 		stmt = con.createStatement();  
 		stmt.executeUpdate(sql);
+		sql = "CREATE TABLE TAH_CEK (EVRAK nvarchar(15),CINS int,  BANKA cvarhar(40),SUBE nvarchar(40) ,SERI nvarchar(20),HESAP nvarchar(20),BORCLU nvarchar(40),TARIH datetime,TUTAR float) "  ;
+		stmt = con.createStatement();  
+		stmt.executeUpdate(sql); 
 		sql = "INSERT INTO  TAH_EVRAK(CINS,NO) VALUES ('GIR','0')";
 		stmt = con.createStatement();  
 		stmt.executeUpdate(sql);
@@ -1389,7 +1392,7 @@ public class CARI_HESAP_MSSQL implements ICARI_HESAP {
 		return rss;	
 	}
 	@Override
-	public void tah_kayit(int cins, Integer tur, String evrak, String tarih, String ckodu, String akodu,
+	public void tah_kayit(int cins, int tur, String evrak, String tarih, String ckodu, String akodu,
 			String aciklama, double tutar ,String dvzcins) throws ClassNotFoundException, SQLException, IOException {
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 		String sql = "DELETE FROM TAH_DETAY WHERE evrak = '"+ evrak + "' AND CINS = '" + cins + "' " ;
@@ -1431,6 +1434,33 @@ public class CARI_HESAP_MSSQL implements ICARI_HESAP {
 		PreparedStatement stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();
 		stmt.close();
+	}
+	@Override
+	public void tah_cek_kayit(String evr, int cins, String bnk, String sb, String sr, String hsp, String brcl,
+			String tar, double tut) throws ClassNotFoundException, SQLException, IOException {
+		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+		String sql = "DELETE FROM TAH_CEK WHERE EVRAK = '"+ evr + "' AND CINS = '" + cins + "' " ;
+		kONTROL();
+		PreparedStatement stmt = con.prepareStatement(sql);
+		stmt.executeUpdate();
+		sql  = "INSERT INTO TAH_CEK (EVRAK,CINS,TARIH,BANKA,SUBE,SERI,HESAP,BORCLU,TARIH,TUTAR)" +
+				" VALUES (?,?,?,?,?,?,?,?,?,?)" ;
+		stmt = null;
+		kONTROL();
+		stmt = con.prepareStatement(sql);
+		stmt.setString(1, evr);
+		stmt.setInt(2, cins);
+		stmt.setString(3, tar);
+		stmt.setString(4, bnk);
+		stmt.setString(5, sb);
+		stmt.setString(6, sr );
+		stmt.setString(7, hsp );
+		stmt.setString(8, brcl );
+		stmt.setString(9, tar );
+		stmt.setDouble(10, tut);
+		stmt.executeUpdate();
+		stmt.close();
+		
 	}
 }
 

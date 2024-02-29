@@ -413,10 +413,10 @@ public class PRINT_YAPMA extends JInternalFrame {
 						ParagraphElements oParagraphElements = new ParagraphElements();
 						ParagraphTextElement oParagraphTextElement = new ParagraphTextElement();
 						double aqw = DecimalFormat.getNumberInstance().parse(TAH_FISI.formattedTutar.getText()).doubleValue();
-						oParagraphTextElement.setText(TAH_FISI.textBanka.getText() +"  " + TAH_FISI.textSube.getText() + "  " + 
-													TAH_FISI.textCekNo.getText() +"  " + TAH_FISI.textHesapNo.getText() +"  " + 
-													TAH_FISI.textBorclu.getText() + "  " +  TARIH_CEVIR.tarih_dt_ddMMyyyy(TAH_FISI.dtcVade) +"  " + 
-													FORMATLAMA.doub_2(aqw) + " " +TAH_FISI.combCins.getSelectedItem().toString());
+//						oParagraphTextElement.setText(TAH_FISI.textBanka.getText() +"  " + TAH_FISI.textSube.getText() + "  " + 
+//													TAH_FISI.textCekNo.getText() +"  " + TAH_FISI.textHesapNo.getText() +"  " + 
+//													TAH_FISI.textBorclu.getText() + "  " +  TARIH_CEVIR.tarih_dt_ddMMyyyy(TAH_FISI.dtcVade) +"  " + 
+//													FORMATLAMA.doub_2(aqw) + " " +TAH_FISI.combCins.getSelectedItem().toString());
 						
 						oParagraphTextElement.setKind(ParagraphElementKind.text);
 						IFontColor newFontColor = oTextObject.getFontColor();

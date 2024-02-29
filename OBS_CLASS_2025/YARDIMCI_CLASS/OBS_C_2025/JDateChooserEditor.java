@@ -84,7 +84,6 @@ public class JDateChooserEditor extends DefaultCellEditor
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
 		return convertedDate;
 	}
 }

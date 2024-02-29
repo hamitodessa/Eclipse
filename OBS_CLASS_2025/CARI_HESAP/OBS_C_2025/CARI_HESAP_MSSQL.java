@@ -1467,7 +1467,6 @@ public class CARI_HESAP_MSSQL implements ICARI_HESAP {
 		ResultSet	rss = null;
 		kONTROL();
 		PreparedStatement stmt = con.prepareStatement("SELECT * FROM TAH_CEK  CROSS JOIN   TAH_AYARLAR WHERE EVRAK = '"+ no +"' AND CINS = '" + cins + "'");
-		System.out.println("SELECT * FROM TAH_CEK  CROSS JOIN   TAH_AYARLAR WHERE EVRAK = '"+ no +"' AND CINS = '" + cins + "'");
 		rss = stmt.executeQuery();
 		return rss;	
 	}

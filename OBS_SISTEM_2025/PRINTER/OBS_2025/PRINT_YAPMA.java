@@ -417,7 +417,8 @@ public class PRINT_YAPMA extends JInternalFrame {
 //				rs.next();
 //				System.out.println(rs.getRow());
 //				rs.beforeFirst();
-				clientDoc.getDatabaseController().setDataSource(rs);
+				//clientDoc.getDatabaseController().setDataSource(rs);
+				clientDoc.getDatabaseController().addDataSource(rs);
 				//**************************************************************************
 				ResultSet rstResultSet = a_Access.adr_etiket_arama_kod(TAH_FISI.textAKodu.getText());
 				if (!rstResultSet.isBeforeFirst() ) { 

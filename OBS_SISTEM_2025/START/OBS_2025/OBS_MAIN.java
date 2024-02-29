@@ -3035,12 +3035,23 @@ public class OBS_MAIN extends JFrame  {
 							GuiUtil.setWaitCursor(tabbedPane,false); 
 							return ;
 						}
+						if(TAH_FISI.cmbTur.getSelectedIndex()==1)
+						{
+							InputStream is = this.getClass().getClassLoader().getResourceAsStream("RPT/TAHSILAT_CEK.rpt");
+							Files.copy(is, Paths.get(GLOBAL.SURUCU + "\\TAHSILAT_CEK.rpt"),StandardCopyOption.REPLACE_EXISTING);
+							internalFrame = new PRINT_YAPMA();
+							desktopPane.add(internalFrame);
+							internalFrame.setVisible(true);
+							PRINT_YAPMA.hisset("tahsilat_cek","");
+						}
+						else {
 						InputStream is = this.getClass().getClassLoader().getResourceAsStream("RPT/TAHSILAT.rpt");
 						Files.copy(is, Paths.get(GLOBAL.SURUCU + "\\TAHSILAT.rpt"),StandardCopyOption.REPLACE_EXISTING);
 						internalFrame = new PRINT_YAPMA();
 						desktopPane.add(internalFrame);
 						internalFrame.setVisible(true);
 						PRINT_YAPMA.hisset("tahsilat","");
+						}
 					}
 					else if (sonuc == "CARI MIZAN")
 					{

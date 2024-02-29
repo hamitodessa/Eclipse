@@ -979,13 +979,13 @@ public class TAH_FISI extends JInternalFrame {
 						if ( model.getValueAt(i,6).toString() != null )
 						{
 							String vade = "";
-							if (model.getValueAt(i , 6).toString().length() >  10)
+							if (model.getValueAt(i , 5).toString().length() >  10)
 							{
-								vade = dateFormater(model.getValueAt(i , 6).toString() , "yyyy.MM.dd", "EEE MMM dd kk:mm:ss zzzz yyyy" ) ;
+								vade = dateFormater(model.getValueAt(i , 5).toString() , "yyyy.MM.dd", "EEE MMM dd kk:mm:ss zzzz yyyy" ) ;
 							}
 							else
 							{
-								String qwe =dateFormater(model.getValueAt(i , 6).toString() , "yyyy.MM.dd", "dd.MM.yyyy" ) ;
+								String qwe =dateFormater(model.getValueAt(i , 5).toString() , "yyyy.MM.dd", "dd.MM.yyyy" ) ;
 								vade  = qwe;
 							}
 							c_Access.tah_cek_kayit(textEvrakNo.getText(), cmbCins.getSelectedIndex(),

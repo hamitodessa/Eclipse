@@ -1443,24 +1443,33 @@ public class CARI_HESAP_MSSQL implements ICARI_HESAP {
 		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();
-		sql  = "INSERT INTO TAH_CEK (EVRAK,CINS,TARIH,BANKA,SUBE,SERI,HESAP,BORCLU,TARIH,TUTAR)" +
-				" VALUES (?,?,?,?,?,?,?,?,?,?)" ;
+		sql  = "INSERT INTO TAH_CEK (EVRAK,CINS,BANKA,SUBE,SERI,HESAP,BORCLU,TARIH,TUTAR)" +
+				" VALUES (?,?,?,?,?,?,?,?,?)" ;
 		stmt = null;
 		kONTROL();
 		stmt = con.prepareStatement(sql);
 		stmt.setString(1, evr);
 		stmt.setInt(2, cins);
-		stmt.setString(3, tar);
-		stmt.setString(4, bnk);
-		stmt.setString(5, sb);
-		stmt.setString(6, sr );
-		stmt.setString(7, hsp );
-		stmt.setString(8, brcl );
-		stmt.setString(9, tar );
-		stmt.setDouble(10, tut);
+		stmt.setString(3, bnk);
+		stmt.setString(4, sb);
+		stmt.setString(5, sr );
+		stmt.setString(6, hsp );
+		stmt.setString(7, brcl );
+		stmt.setString(8, tar );
+		stmt.setDouble(9, tut);
 		stmt.executeUpdate();
 		stmt.close();
 		
+	}
+	@Override
+	public ResultSet tah_cek_oku(String no, int cins) throws ClassNotFoundException, SQLException {
+		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+		ResultSet	rss = null;
+		kONTROL();
+		PreparedStatement stmt = con.prepareStatement("SELECT * FROM TAH_CEK  CROSS JOIN   TAH_AYARLAR WHERE EVRAK = '"+ no +"' AND CINS = '" + cins + "'");
+		System.out.println("SELECT * FROM TAH_CEK  CROSS JOIN   TAH_AYARLAR WHERE EVRAK = '"+ no +"' AND CINS = '" + cins + "'");
+		rss = stmt.executeQuery();
+		return rss;	
 	}
 }
 

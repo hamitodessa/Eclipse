@@ -79,5 +79,6 @@ public interface ICARI_HESAP {
 	public ResultSet tah_oku (String no , int cins) throws ClassNotFoundException, SQLException;
 	public void tah_sil (String no , int cins) throws ClassNotFoundException, SQLException;
 	public void tah_cek_kayit(String evr, int cins  , String bnk , String sb ,String sr ,String hsp ,String brcl,String tar ,double tut) throws ClassNotFoundException, SQLException, IOException;
+	public ResultSet tah_cek_oku (String no, int cins) throws ClassNotFoundException, SQLException;
 }
 

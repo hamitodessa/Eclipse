@@ -1384,4 +1384,9 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 		// TODO Auto-generated method stub
 		
 	}
+	@Override
+	public ResultSet tah_cek_oku(String no, int cins) throws ClassNotFoundException, SQLException {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

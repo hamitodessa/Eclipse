@@ -310,5 +310,8 @@ public class CARI_ACCESS {
 	{
 		_ICari.tah_cek_kayit(evr, cins,  bnk, sb, sr, hsp, brcl, tar, tut);
 	}
-
+	public ResultSet tah_cek_oku (String no, int cins) throws ClassNotFoundException, SQLException
+	{
+		return _ICari.tah_cek_oku( no,cins);
+	}
 }

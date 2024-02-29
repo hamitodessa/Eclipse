@@ -146,7 +146,7 @@ public class PRINT_YAPMA extends JInternalFrame {
 				file = new File(GLOBAL.SURUCU + "\\TAHSILAT.rpt");
 				clientDoc.open(file.getPath(), 0);
 				clientDoc.getDatabaseController().logon(BAGLAN.cariDizin.kULLANICI, BAGLAN.cariDizin.sIFRESI);
-				rs =  c_Access.tah_ayar_oku();
+				rs = c_Access.tah_ayar_oku();
 				clientDoc.getDatabaseController().setDataSource(rs);
 				//**************************************************************************
 				ResultSet rstResultSet = a_Access.adr_etiket_arama_kod(TAH_FISI.textAKodu.getText());
@@ -403,21 +403,265 @@ public class PRINT_YAPMA extends JInternalFrame {
 						oTextObject.setParagraphs(oParagraphs);
 						clientDoc.getReportDefController().getReportObjectController().modify(textObject, oTextObject);
 					}
-					else if (textObject.getName().equals("CekBilgi"))
+				}
+
+			}
+			else if (nerden.equals("tahsilat_cek"))
+			{
+				//**************************************************************************
+				file = new File(GLOBAL.SURUCU + "\\TAHSILAT_CEK.rpt");
+				clientDoc.open(file.getPath(), 0);
+				clientDoc.getDatabaseController().logon(BAGLAN.cariDizin.kULLANICI, BAGLAN.cariDizin.sIFRESI);
+				rs = c_Access.tah_cek_oku(TAH_FISI.textEvrakNo.getText(),TAH_FISI.cmbCins.getSelectedIndex());
+				
+//				rs.next();
+//				System.out.println(rs.getRow());
+//				rs.beforeFirst();
+				clientDoc.getDatabaseController().setDataSource(rs);
+				//**************************************************************************
+				ResultSet rstResultSet = a_Access.adr_etiket_arama_kod(TAH_FISI.textAKodu.getText());
+				if (!rstResultSet.isBeforeFirst() ) { 
+					
+				} 
+				rstResultSet.next();
+				String Unvan= rstResultSet.getString("Adi");
+				String Adr1= rstResultSet.getString("Adres_1");
+				String Adr2 = rstResultSet.getString("Adres_2");
+				String Semt = rstResultSet.getString("Semt") + " / "+ rstResultSet.getString("Sehir");
+				ReportObjects reportObjects = clientDoc.getReportDefController().getReportObjectController().getReportObjectsByKind(ReportObjectKind.text);
+				for(int i=0; i< reportObjects.size();i++)
+				{
+					ITextObject textObject = (ITextObject)reportObjects.get(i);
+					String cinString = "" ;
+					if(TAH_FISI.cmbCins.getSelectedIndex() == 0)
 					{
-						if(TAH_FISI.cmbTur.getSelectedIndex() == 1)
-						{
+						cinString = "TAHSILAT";
+					}
+					else {
+						cinString = "TEDIYE";
+					}
+					
+					if (textObject.getName().equals("Cins"))
+					{
+						ITextObject oTextObject =  (ITextObject) textObject.clone(true);
+						Paragraphs oParagraphs = new Paragraphs();
+						Paragraph oParagraph = new Paragraph();
+						ParagraphElements oParagraphElements = new ParagraphElements();
+						ParagraphTextElement oParagraphTextElement = new ParagraphTextElement();
+						if(TAH_FISI.cmbTur.getSelectedIndex() == 0)
+							oParagraphTextElement.setText("NAKIT " + cinString + " MAKBUZU");
+						else if(TAH_FISI.cmbTur.getSelectedIndex() == 0)
+							oParagraphTextElement.setText("CEK " + cinString + " MAKBUZU");
+						else if(TAH_FISI.cmbTur.getSelectedIndex() == 0)
+							oParagraphTextElement.setText("KREDI KARTI " + cinString + " MAKBUZU");
+						oParagraphTextElement.setKind(ParagraphElementKind.text);
+						oParagraph.setAlignment(Alignment.horizontalCenter);
+						IFontColor newFontColor = oTextObject.getFontColor();
+						Font fnt = new Font("Verdana", Font.BOLD, 12);
+						newFontColor.setFont(fnt);
+						oParagraphTextElement.setFontColor(newFontColor);
+						oParagraphs.add(oParagraph);
+						oParagraph.setParagraphElements(oParagraphElements);
+						oParagraphElements.add(oParagraphTextElement);
+						oTextObject.setParagraphs(oParagraphs);
+						clientDoc.getReportDefController().getReportObjectController().modify(textObject, oTextObject);
+					}
+					else if (textObject.getName().equals("Tarih"))
+					{
+						ITextObject oTextObject =  (ITextObject) textObject.clone(true);
+						Paragraphs oParagraphs = new Paragraphs();
+						Paragraph oParagraph = new Paragraph();
+						ParagraphElements oParagraphElements = new ParagraphElements();
+						ParagraphTextElement oParagraphTextElement = new ParagraphTextElement();
+						oParagraphTextElement.setText( TARIH_CEVIR.tarih_dt_ddMMyyyy(TAH_FISI.dtc));
+						oParagraphTextElement.setKind(ParagraphElementKind.text);
+						oParagraph.setAlignment(Alignment.right);
+						IFontColor newFontColor = oTextObject.getFontColor();
+						Font fnt = new Font("Verdana", Font.BOLD, 12);
+						newFontColor.setFont(fnt);
+						oParagraphTextElement.setFontColor(newFontColor);
+						oParagraphs.add(oParagraph);
+						oParagraph.setParagraphElements(oParagraphElements);
+						oParagraphElements.add(oParagraphTextElement);
+						oTextObject.setParagraphs(oParagraphs);
+						clientDoc.getReportDefController().getReportObjectController().modify(textObject, oTextObject);
+					}
+					else if (textObject.getName().equals("Fis_No"))
+					{
+						ITextObject oTextObject =  (ITextObject) textObject.clone(true);
+						Paragraphs oParagraphs = new Paragraphs();
+						Paragraph oParagraph = new Paragraph();
+						ParagraphElements oParagraphElements = new ParagraphElements();
+						ParagraphTextElement oParagraphTextElement = new ParagraphTextElement();
+						oParagraphTextElement.setText(TAH_FISI.textEvrakNo.getText());
+						oParagraphTextElement.setKind(ParagraphElementKind.text);
+						oParagraph.setAlignment(Alignment.right);
+						IFontColor newFontColor = oTextObject.getFontColor();
+						Font fnt = new Font("Verdana", Font.BOLD, 12);
+						newFontColor.setFont(fnt);
+						oParagraphTextElement.setFontColor(newFontColor);
+						oParagraphs.add(oParagraph);
+						oParagraph.setParagraphElements(oParagraphElements);
+						oParagraphElements.add(oParagraphTextElement);
+						oTextObject.setParagraphs(oParagraphs);
+						clientDoc.getReportDefController().getReportObjectController().modify(textObject, oTextObject);
+					}
+					else if (textObject.getName().equals("Unvan"))
+					{
+						ITextObject oTextObject =  (ITextObject) textObject.clone(true);
+						Paragraphs oParagraphs = new Paragraphs();
+						Paragraph oParagraph = new Paragraph();
+						ParagraphElements oParagraphElements = new ParagraphElements();
+						ParagraphTextElement oParagraphTextElement = new ParagraphTextElement();
+						oParagraphTextElement.setText(Unvan);
+						oParagraphTextElement.setKind(ParagraphElementKind.text);
+						IFontColor newFontColor = oTextObject.getFontColor();
+						Font fnt = new Font("Verdana", Font.BOLD, 12);
+						newFontColor.setFont(fnt);
+						oParagraphTextElement.setFontColor(newFontColor);
+						oParagraphs.add(oParagraph);
+						oParagraph.setParagraphElements(oParagraphElements);
+						oParagraphElements.add(oParagraphTextElement);
+						oTextObject.setParagraphs(oParagraphs);
+						clientDoc.getReportDefController().getReportObjectController().modify(textObject, oTextObject);
+					}
+					else if (textObject.getName().equals("Adr1"))
+					{
+						ITextObject oTextObject =  (ITextObject) textObject.clone(true);
+						Paragraphs oParagraphs = new Paragraphs();
+						Paragraph oParagraph = new Paragraph();
+						ParagraphElements oParagraphElements = new ParagraphElements();
+						ParagraphTextElement oParagraphTextElement = new ParagraphTextElement();
+						oParagraphTextElement.setText(Adr1);
+						oParagraphTextElement.setKind(ParagraphElementKind.text);
+						IFontColor newFontColor = oTextObject.getFontColor();
+						Font fnt = new Font("Verdana", Font.PLAIN, 12);
+						newFontColor.setFont(fnt);
+						oParagraphTextElement.setFontColor(newFontColor);
+						oParagraphs.add(oParagraph);
+						oParagraph.setParagraphElements(oParagraphElements);
+						oParagraphElements.add(oParagraphTextElement);
+						oTextObject.setParagraphs(oParagraphs);
+						clientDoc.getReportDefController().getReportObjectController().modify(textObject, oTextObject);
+					}
+					else if (textObject.getName().equals("Adr2"))
+					{
+						ITextObject oTextObject =  (ITextObject) textObject.clone(true);
+						Paragraphs oParagraphs = new Paragraphs();
+						Paragraph oParagraph = new Paragraph();
+						ParagraphElements oParagraphElements = new ParagraphElements();
+						ParagraphTextElement oParagraphTextElement = new ParagraphTextElement();
+						oParagraphTextElement.setText(Adr2);
+						oParagraphTextElement.setKind(ParagraphElementKind.text);
+						IFontColor newFontColor = oTextObject.getFontColor();
+						Font fnt = new Font("Verdana", Font.PLAIN, 12);
+						newFontColor.setFont(fnt);
+						oParagraphTextElement.setFontColor(newFontColor);
+						oParagraphs.add(oParagraph);
+						oParagraph.setParagraphElements(oParagraphElements);
+						oParagraphElements.add(oParagraphTextElement);
+						oTextObject.setParagraphs(oParagraphs);
+						clientDoc.getReportDefController().getReportObjectController().modify(textObject, oTextObject);
+					}
+					else if (textObject.getName().equals("Adr3"))
+					{
+						ITextObject oTextObject =  (ITextObject) textObject.clone(true);
+						Paragraphs oParagraphs = new Paragraphs();
+						Paragraph oParagraph = new Paragraph();
+						ParagraphElements oParagraphElements = new ParagraphElements();
+						ParagraphTextElement oParagraphTextElement = new ParagraphTextElement();
+						oParagraphTextElement.setText(Semt);
+						oParagraphTextElement.setKind(ParagraphElementKind.text);
+						IFontColor newFontColor = oTextObject.getFontColor();
+						Font fnt = new Font("Verdana", Font.PLAIN, 12);
+						newFontColor.setFont(fnt);
+						oParagraphTextElement.setFontColor(newFontColor);
+						oParagraphs.add(oParagraph);
+						oParagraph.setParagraphElements(oParagraphElements);
+						oParagraphElements.add(oParagraphTextElement);
+						oTextObject.setParagraphs(oParagraphs);
+						clientDoc.getReportDefController().getReportObjectController().modify(textObject, oTextObject);
+					}
+					else if (textObject.getName().equals("YaziIle"))
+					{
 						ITextObject oTextObject =  (ITextObject) textObject.clone(true);
 						Paragraphs oParagraphs = new Paragraphs();
 						Paragraph oParagraph = new Paragraph();
 						ParagraphElements oParagraphElements = new ParagraphElements();
 						ParagraphTextElement oParagraphTextElement = new ParagraphTextElement();
 						double aqw = DecimalFormat.getNumberInstance().parse(TAH_FISI.formattedTutar.getText()).doubleValue();
-//						oParagraphTextElement.setText(TAH_FISI.textBanka.getText() +"  " + TAH_FISI.textSube.getText() + "  " + 
-//													TAH_FISI.textCekNo.getText() +"  " + TAH_FISI.textHesapNo.getText() +"  " + 
-//													TAH_FISI.textBorclu.getText() + "  " +  TARIH_CEVIR.tarih_dt_ddMMyyyy(TAH_FISI.dtcVade) +"  " + 
-//													FORMATLAMA.doub_2(aqw) + " " +TAH_FISI.combCins.getSelectedItem().toString());
+						String qwe = Double.toString(aqw);
+						String cnt  = "" ;
+						if ( TAH_FISI.combCins.getSelectedItem().toString().equals("TL"))
+						{
+							cnt = "KURUŞ" ;
+						}
+						else
+						{
+							cnt = "Cent" ;
+						}
+						sayiyiYaziyaCevir cevir = new sayiyiYaziyaCevir();
+						String yaziylat = cevir.sayiyiYaziyaCevirr(qwe, 2, TAH_FISI.combCins.getSelectedItem().toString(), cnt , "#", null, null, null);
+						oParagraphTextElement.setText(yaziylat );
+
+						oParagraphTextElement.setKind(ParagraphElementKind.text);
+						IFontColor newFontColor = oTextObject.getFontColor();
+						Font fnt = new Font("Verdana", Font.PLAIN, 11);
+						newFontColor.setFont(fnt);
+						oParagraphTextElement.setFontColor(newFontColor);
+						oParagraphs.add(oParagraph);
+						oParagraph.setParagraphElements(oParagraphElements);
+						oParagraphElements.add(oParagraphTextElement);
+						oTextObject.setParagraphs(oParagraphs);
+						clientDoc.getReportDefController().getReportObjectController().modify(textObject, oTextObject);
+					}
+					else if (textObject.getName().equals("Aciklama"))
+					{
+						ITextObject oTextObject =  (ITextObject) textObject.clone(true);
+						Paragraphs oParagraphs = new Paragraphs();
+						Paragraph oParagraph = new Paragraph();
+						ParagraphElements oParagraphElements = new ParagraphElements();
+						ParagraphTextElement oParagraphTextElement = new ParagraphTextElement();
+						double aqw = DecimalFormat.getNumberInstance().parse(TAH_FISI.formattedTutar.getText()).doubleValue();
+						if(TAH_FISI.cmbTur.getSelectedIndex() == 0)
+						{
+							oParagraphTextElement.setText("Nakit yapilan " + FORMATLAMA.doub_2(aqw) + " " + TAH_FISI.combCins.getSelectedItem().toString() + 
+									" Tutarindaki tahsilat  ");
+						}
+						else if(TAH_FISI.cmbTur.getSelectedIndex() == 1)
+						{
+							oParagraphTextElement.setText("Verilen Cek " + FORMATLAMA.doub_2(aqw) + " " + TAH_FISI.combCins.getSelectedItem().toString() + 
+									" Tutarindaki tahsilat  ");
+						}
+						else if(TAH_FISI.cmbTur.getSelectedIndex() == 2)
+						{
+							oParagraphTextElement.setText("Kredi Kartinizdan yapilan " + FORMATLAMA.doub_2(aqw) + " " + TAH_FISI.combCins.getSelectedItem().toString() + 
+									" Tutarindaki tahsilat  ");
+						}
 						
+						oParagraphTextElement.setKind(ParagraphElementKind.text);
+						
+						IFontColor newFontColor = oTextObject.getFontColor();
+						Font fnt = new Font("Verdana", Font.PLAIN, 10);
+						newFontColor.setFont(fnt);
+						oParagraphTextElement.setFontColor(newFontColor);
+						oParagraphs.add(oParagraph);
+						oParagraph.setParagraphElements(oParagraphElements);
+						oParagraphElements.add(oParagraphTextElement);
+						oTextObject.setParagraphs(oParagraphs);
+						clientDoc.getReportDefController().getReportObjectController().modify(textObject, oTextObject);
+					}
+					else if (textObject.getName().equals("Borc_Alacak"))
+					{
+						ITextObject oTextObject =  (ITextObject) textObject.clone(true);
+						Paragraphs oParagraphs = new Paragraphs();
+						Paragraph oParagraph = new Paragraph();
+						ParagraphElements oParagraphElements = new ParagraphElements();
+						ParagraphTextElement oParagraphTextElement = new ParagraphTextElement();
+						if(TAH_FISI.cmbCins.getSelectedIndex() == 0)
+							oParagraphTextElement.setText("Cari Hesabınıza Mahsuben ALACAK olarak Kaydedilmiştir.");
+						else
+							oParagraphTextElement.setText("Cari Hesabınıza Mahsuben BORC olarak Kaydedilmiştir.");
 						oParagraphTextElement.setKind(ParagraphElementKind.text);
 						IFontColor newFontColor = oTextObject.getFontColor();
 						Font fnt = new Font("Verdana", Font.PLAIN, 10);
@@ -428,19 +672,11 @@ public class PRINT_YAPMA extends JInternalFrame {
 						oParagraphElements.add(oParagraphTextElement);
 						oTextObject.setParagraphs(oParagraphs);
 						clientDoc.getReportDefController().getReportObjectController().modify(textObject, oTextObject);
-						}
-					}
-					else if (textObject.getName().equals("CekBaslik"))
-					{
-						if(TAH_FISI.cmbTur.getSelectedIndex() != 1)
-						{
-							ITextObject oTextObject =  (ITextObject) textObject.clone(true);
-							clientDoc.getReportDefController().getReportObjectController().remove( (ITextObject) oTextObject);
-						}
 					}
 				}
 
 			}
+
 			else if (nerden.equals("ekstre"))
 			{
 				//**************************************************************************

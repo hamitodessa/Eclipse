@@ -414,10 +414,6 @@ public class PRINT_YAPMA extends JInternalFrame {
 				clientDoc.getDatabaseController().logon(BAGLAN.cariDizin.kULLANICI, BAGLAN.cariDizin.sIFRESI);
 				rs = c_Access.tah_cek_oku(TAH_FISI.textEvrakNo.getText(),TAH_FISI.cmbCins.getSelectedIndex());
 				
-//				rs.next();
-//				System.out.println(rs.getRow());
-//				rs.beforeFirst();
-				//clientDoc.getDatabaseController().setDataSource(rs);
 				clientDoc.getDatabaseController().addDataSource(rs);
 				//**************************************************************************
 				ResultSet rstResultSet = a_Access.adr_etiket_arama_kod(TAH_FISI.textAKodu.getText());
@@ -624,21 +620,10 @@ public class PRINT_YAPMA extends JInternalFrame {
 						ParagraphElements oParagraphElements = new ParagraphElements();
 						ParagraphTextElement oParagraphTextElement = new ParagraphTextElement();
 						double aqw = DecimalFormat.getNumberInstance().parse(TAH_FISI.formattedTutar.getText()).doubleValue();
-						if(TAH_FISI.cmbTur.getSelectedIndex() == 0)
-						{
-							oParagraphTextElement.setText("Nakit yapilan " + FORMATLAMA.doub_2(aqw) + " " + TAH_FISI.combCins.getSelectedItem().toString() + 
-									" Tutarindaki tahsilat  ");
-						}
-						else if(TAH_FISI.cmbTur.getSelectedIndex() == 1)
-						{
-							oParagraphTextElement.setText("Verilen Cek " + FORMATLAMA.doub_2(aqw) + " " + TAH_FISI.combCins.getSelectedItem().toString() + 
-									" Tutarindaki tahsilat  ");
-						}
-						else if(TAH_FISI.cmbTur.getSelectedIndex() == 2)
-						{
-							oParagraphTextElement.setText("Kredi Kartinizdan yapilan " + FORMATLAMA.doub_2(aqw) + " " + TAH_FISI.combCins.getSelectedItem().toString() + 
-									" Tutarindaki tahsilat  ");
-						}
+						
+							oParagraphTextElement.setText("Aşağıda Dökümü Yapılan  " + FORMATLAMA.doub_2(aqw) + " " + TAH_FISI.combCins.getSelectedItem().toString() + 
+									" Tutarındaki Çek(ler)  ");
+						
 						
 						oParagraphTextElement.setKind(ParagraphElementKind.text);
 						

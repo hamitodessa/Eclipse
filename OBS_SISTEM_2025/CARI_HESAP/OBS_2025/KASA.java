@@ -118,7 +118,7 @@ public class KASA extends JInternalFrame {
 
 		textField = new Obs_TextFIeld(12,"");
 		InputMap txtkoduMap = textField.getInputMap();
-		txtkoduMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_H, KeyEvent.CTRL_MASK), "foo");
+		txtkoduMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_H, KeyEvent.CTRL_DOWN_MASK), "foo");
 		textField.getDocument().addDocumentListener(new DocumentListener() {
 			public void changedUpdate(DocumentEvent e) {
 				try {
@@ -167,7 +167,7 @@ public class KASA extends JInternalFrame {
 					if (!parts[2].equals(" ")) {
 						char c = parts[2].charAt(0);
 						if ((e.getKeyCode() == c) && ((e.getModifiersEx()
-								& (parts[0].equals("E") ? KeyEvent.CTRL_MASK : KeyEvent.ALT_MASK)) != 0)) {
+								& (parts[0].equals("E") ? KeyEvent.CTRL_DOWN_MASK : KeyEvent.ALT_DOWN_MASK)) != 0)) {
 							HESAP_PLN hsp;
 							getContentPane().setCursor(oac.WAIT_CURSOR);
 							hsp = new HESAP_PLN();

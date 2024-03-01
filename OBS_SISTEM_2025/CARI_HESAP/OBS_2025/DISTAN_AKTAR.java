@@ -205,7 +205,7 @@ public class DISTAN_AKTAR extends JInternalFrame {
 		txtBORCLU.setBounds(603, 18, 100, 20);
 		txtBORCLU.setColumns(12);
 		InputMap txtkoduMap = txtBORCLU.getInputMap();
-		txtkoduMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_H,KeyEvent.CTRL_MASK ), "foo");
+		txtkoduMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_H,KeyEvent.CTRL_DOWN_MASK ), "foo");
 		txtBORCLU.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
@@ -217,7 +217,7 @@ public class DISTAN_AKTAR extends JInternalFrame {
 					if ( ! parts[2].equals(" ")) 
 					{
 						char c=parts[2].charAt(0);
-						if ((e.getKeyCode() == c) && ((e.getModifiersEx() & (parts[0].equals("E") ?  KeyEvent.CTRL_MASK : KeyEvent.ALT_MASK) ) != 0))
+						if ((e.getKeyCode() == c) && ((e.getModifiersEx() & (parts[0].equals("E") ?  KeyEvent.CTRL_DOWN_MASK : KeyEvent.ALT_DOWN_MASK) ) != 0))
 						{
 							HESAP_PLN hsp ;
 							getContentPane().setCursor(OBS_SIS_2025_ANA_CLASS.WAIT_CURSOR);
@@ -343,7 +343,7 @@ public class DISTAN_AKTAR extends JInternalFrame {
 		txtALACAK.setColumns(12);
 		txtALACAK.setBounds(945, 18, 100, 20);
 		InputMap txtkoduMap1 = txtALACAK.getInputMap();
-		txtkoduMap1.put(KeyStroke.getKeyStroke(KeyEvent.VK_H,KeyEvent.CTRL_MASK ), "foo");
+		txtkoduMap1.put(KeyStroke.getKeyStroke(KeyEvent.VK_H,KeyEvent.CTRL_DOWN_MASK ), "foo");
 		txtALACAK.addMouseListener(new MouseAdapter() {
 		@Override
 		public void mouseClicked(MouseEvent e) {
@@ -391,7 +391,7 @@ public class DISTAN_AKTAR extends JInternalFrame {
 					if ( ! parts[2].equals(" ")) 
 					{
 						char c=parts[2].charAt(0);
-						if ((e.getKeyCode() == c) && ((e.getModifiersEx() & (parts[0].equals("E") ?  KeyEvent.CTRL_MASK : KeyEvent.ALT_MASK) ) != 0))
+						if ((e.getKeyCode() == c) && ((e.getModifiersEx() & (parts[0].equals("E") ?  KeyEvent.CTRL_DOWN_MASK : KeyEvent.ALT_DOWN_MASK) ) != 0))
 						{
 							HESAP_PLN hsp ;
 							getContentPane().setCursor(OBS_SIS_2025_ANA_CLASS.WAIT_CURSOR);

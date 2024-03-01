@@ -70,7 +70,7 @@ import OBS_C_2025.TARIH_CEVIR;
 import net.proteanit.sql.DbUtils;
 import raven.toast.Notifications;
 import OBS_C_2025.KER_RAPOR_BILGI;
-@SuppressWarnings({"serial","deprecation","static-access"})  
+@SuppressWarnings({"serial","static-access"})  
 public class KER_ENVANTER extends JInternalFrame {
 	
 	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
@@ -143,7 +143,7 @@ public class KER_ENVANTER extends JInternalFrame {
 					if ( ! parts[2].equals(" ")) 
 					{
 						char c=parts[2].charAt(0);
-						if ((e.getKeyCode() == c) && ((e.getModifiersEx() & (parts[0].equals("E") ?  KeyEvent.CTRL_MASK : KeyEvent.ALT_MASK) ) != 0))
+						if ((e.getKeyCode() == c) && ((e.getModifiersEx() & (parts[0].equals("E") ?  KeyEvent.CTRL_DOWN_MASK : KeyEvent.ALT_DOWN_MASK) ) != 0))
 						{
 							getContentPane().setCursor(oac.WAIT_CURSOR);
 							OBS_MAIN.btnFiltre.doClick();

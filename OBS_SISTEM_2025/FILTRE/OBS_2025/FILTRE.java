@@ -82,6 +82,7 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import javax.swing.JFormattedTextField;
+import javax.swing.JTextField;
 
 @SuppressWarnings({ "static-access", "serial" })
 public class FILTRE extends JDialog {
@@ -131,6 +132,15 @@ public class FILTRE extends JDialog {
 	public static JCheckBox chcbaslayan ;
 	public static JCheckBox chcile ;
 	private JPanel panel_3;
+	//***** TAHSILAT
+	public static JComboBox<String> comboBox_85 ;
+	public static JComboBox<String> comboBox_86 ;
+	public static JDateChooser dateChooser_35;
+	public static JDateChooser dateChooser_36;
+	public static JTextField textTaheno1;
+	public static JTextField textTaheno2;
+	public static JTextField textTahck1;
+	public static JTextField textTahck2;
 	//**** Gunluk ISLEM
 	public static JDateChooser dateChooser_5 ;
 	public static JDateChooser dateChooser_5_1 ;
@@ -444,6 +454,8 @@ public class FILTRE extends JDialog {
 	public static JComboBox<String> comboBox_83;
 	public static JCheckBox chckbxNewCheckBox_5 ;
 	
+	
+	
 
 	@SuppressWarnings("deprecation")
 	public FILTRE() {
@@ -487,7 +499,7 @@ public class FILTRE extends JDialog {
 		
 		//*******************************EKSTRE ****************************************************
 		JPanel paneleks = new JPanel();
-		paneleks.setBorder(new LineBorder(new Color(0, 191, 255)));
+		paneleks.setBorder(new LineBorder(null));
 		tabbedPane.addTab("Ekstre", null, paneleks, null);
 		paneleks.setLayout(null);
 		JLabel lblNewLabelh = new JLabel("Hesap Kodu");
@@ -629,7 +641,7 @@ public class FILTRE extends JDialog {
 		paneleks.add(dateChooser_1);
 		txtkodu = new Obs_TextFIeld(12);
 		InputMap txtkoduMap = txtkodu.getInputMap();
-		txtkoduMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_H,KeyEvent.CTRL_MASK ), "foo");
+		txtkoduMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_H,KeyEvent.CTRL_DOWN_MASK ), "foo");
 		txtkodu.getDocument().addDocumentListener(new DocumentListener() {
 			public void changedUpdate(DocumentEvent e) {
 				isimoku_ekstre();
@@ -689,7 +701,7 @@ public class FILTRE extends JDialog {
 					if ( ! parts[2].equals(" ")) 
 					{
 						char c=parts[2].charAt(0);
-						if ((e.getKeyCode() == c) && ((e.getModifiersEx() & (parts[0].equals("E") ?  KeyEvent.CTRL_MASK : KeyEvent.ALT_MASK) ) != 0))
+						if ((e.getKeyCode() == c) && ((e.getModifiersEx() & (parts[0].equals("E") ?  KeyEvent.CTRL_DOWN_MASK : KeyEvent.ALT_DOWN_MASK) ) != 0))
 						{
 							HESAP_PLN hsp ;
 							getContentPane().setCursor(oac.WAIT_CURSOR);
@@ -713,7 +725,7 @@ public class FILTRE extends JDialog {
 
 		//*******************************************MIZAN ********************************************
 		JPanel panel_1m = new JPanel();
-		panel_1m.setBorder(new LineBorder(new Color(0, 191, 255)));
+		panel_1m.setBorder(new LineBorder(null));
 		tabbedPane.addTab("Mizan", null, panel_1m, null);
 		panel_1m.setLayout(null);
 
@@ -730,7 +742,7 @@ public class FILTRE extends JDialog {
 			}
 		});
 		InputMap txtilkMap =txtilk.getInputMap();
-		txtilkMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_H,KeyEvent.CTRL_MASK ), "foo");
+		txtilkMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_H,KeyEvent.CTRL_DOWN_MASK ), "foo");
 		txtilk.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -762,7 +774,7 @@ public class FILTRE extends JDialog {
 					if ( ! parts[2].equals(" ")) 
 					{
 						char c=parts[2].charAt(0);
-						if ((e.getKeyCode() == c) && ((e.getModifiersEx() & (parts[0].equals("E") ?  KeyEvent.CTRL_MASK : KeyEvent.ALT_MASK) ) != 0))
+						if ((e.getKeyCode() == c) && ((e.getModifiersEx() & (parts[0].equals("E") ?  KeyEvent.CTRL_DOWN_MASK : KeyEvent.ALT_DOWN_MASK) ) != 0))
 						{
 							HESAP_PLN hsp ;
 							getContentPane().setCursor(oac.WAIT_CURSOR);
@@ -814,7 +826,7 @@ public class FILTRE extends JDialog {
 			}
 		});
 		InputMap txtsonMap =txtilk.getInputMap();
-		txtsonMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_H,KeyEvent.CTRL_MASK ), "foo");
+		txtsonMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_H,KeyEvent.CTRL_DOWN_MASK ), "foo");
 		txtson.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -844,7 +856,7 @@ public class FILTRE extends JDialog {
 					if ( ! parts[2].equals(" ")) 
 					{
 						char c=parts[2].charAt(0);
-						if ((e.getKeyCode() == c) && ((e.getModifiersEx() & (parts[0].equals("E") ?  KeyEvent.CTRL_MASK : KeyEvent.ALT_MASK) ) != 0))
+						if ((e.getKeyCode() == c) && ((e.getModifiersEx() & (parts[0].equals("E") ?  KeyEvent.CTRL_DOWN_MASK : KeyEvent.ALT_DOWN_MASK) ) != 0))
 						{
 							HESAP_PLN hsp ;
 							getContentPane().setCursor(oac.WAIT_CURSOR);
@@ -1075,7 +1087,7 @@ public class FILTRE extends JDialog {
 
 		/// DOVIZE CEVIRME **********************************************************************
 		JPanel panel = new JPanel();
-		panel.setBorder(new LineBorder(new Color(0, 191, 255)));
+		panel.setBorder(new LineBorder(null));
 		tabbedPane.addTab("Dvz_Cevirme", null, panel, null);
 		panel.setLayout(null);
 
@@ -1086,7 +1098,7 @@ public class FILTRE extends JDialog {
 
 		txtdvz = new Obs_TextFIeld(12);
 		InputMap txtdvzMap = txtdvz.getInputMap();
-		txtdvzMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_H,KeyEvent.CTRL_MASK ), "foo");
+		txtdvzMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_H,KeyEvent.CTRL_DOWN_MASK ), "foo");
 		txtdvz.addAncestorListener(new AncestorListener() {
 			@Override
 			public void ancestorRemoved(AncestorEvent pEvent) {
@@ -1145,7 +1157,7 @@ public class FILTRE extends JDialog {
 					if ( ! parts[2].equals(" ")) 
 					{
 						char c=parts[2].charAt(0);
-						if ((e.getKeyCode() == c) && ((e.getModifiersEx() & (parts[0].equals("E") ?  KeyEvent.CTRL_MASK : KeyEvent.ALT_MASK) ) != 0))
+						if ((e.getKeyCode() == c) && ((e.getModifiersEx() & (parts[0].equals("E") ?  KeyEvent.CTRL_DOWN_MASK : KeyEvent.ALT_DOWN_MASK) ) != 0))
 						{
 							HESAP_PLN hsp ;
 							getContentPane().setCursor(oac.WAIT_CURSOR);
@@ -1357,7 +1369,7 @@ public class FILTRE extends JDialog {
 		panel.add(chckbxNewCheckBox_4);
 		/// CARI ARAMA ****************************************************************************************************
 		JPanel panel_1 = new JPanel();
-		panel_1.setBorder(new LineBorder(new Color(0, 191, 255)));
+		panel_1.setBorder(new LineBorder(null));
 		tabbedPane.addTab("Arama", null, panel_1, null);
 		panel_1.setLayout(null);
 
@@ -1520,7 +1532,7 @@ public class FILTRE extends JDialog {
 
 		//**************** GUNLUK ISLEM *************************************************************************
 		panel_3 = new JPanel();
-		panel_3.setBorder(new LineBorder(new Color(0, 191, 255)));
+		panel_3.setBorder(new LineBorder(null));
 		tabbedPane.addTab("Gunluk_Islem", null, panel_3, null);
 		panel_3.setLayout(null);
 
@@ -1651,7 +1663,7 @@ public class FILTRE extends JDialog {
 
 		//******************************************CEK RAPOR **********************************************************
 		JPanel panel_4 = new JPanel();
-		panel_4.setBorder(new LineBorder(new Color(0, 191, 255)));
+		panel_4.setBorder(new LineBorder(null));
 		tabbedPane.addTab("Cek_Rapor", null, panel_4, null);
 		panel_4.setLayout(null);
 
@@ -2015,7 +2027,7 @@ public class FILTRE extends JDialog {
 		panel_4.add(txtch2);
 
 		JPanel panel_5 = new JPanel();
-		panel_5.setBorder(new LineBorder(new Color(0, 191, 255)));
+		panel_5.setBorder(new LineBorder(null));
 		tabbedPane.addTab("Kur_Rapor", null, panel_5, null);
 		panel_5.setLayout(null);
 
@@ -2093,7 +2105,7 @@ public class FILTRE extends JDialog {
 		panel_5.add(txtkc2);
 
 		panel_6 = new JPanel();
-		panel_6.setBorder(new LineBorder(new Color(0, 191, 255)));
+		panel_6.setBorder(new LineBorder(null));
 		tabbedPane.addTab("Fatura", null, panel_6, null);
 		panel_6.setLayout(null);
 
@@ -2423,7 +2435,7 @@ public class FILTRE extends JDialog {
 
 		JPanel panel_8 = new JPanel();
 		panel_8.setLayout(null);
-		panel_8.setBorder(new LineBorder(new Color(0, 191, 255)));
+		panel_8.setBorder(new LineBorder(null));
 		tabbedPane.addTab("Imalat_rapor", null, panel_8, null);
 
 		JLabel lblEvrakNo = new JLabel("Evrak No");
@@ -2603,7 +2615,7 @@ public class FILTRE extends JDialog {
 		panel_8.add(comboBox_13);
 
 		JPanel panel_9 = new JPanel();
-		panel_9.setBorder(new LineBorder(new Color(0, 191, 255)));
+		panel_9.setBorder(new LineBorder(null));
 		tabbedPane.addTab("Stok_Rapor", null, panel_9, null);
 		panel_9.setLayout(null);
 
@@ -2791,7 +2803,7 @@ public class FILTRE extends JDialog {
 
 		JPanel panel_11 = new JPanel();
 		panel_11.setLayout(null);
-		panel_11.setBorder(new LineBorder(new Color(0, 191, 255)));
+		panel_11.setBorder(new LineBorder(null));
 		tabbedPane.addTab("Stok_Detay", null, panel_11, null);
 
 		JLabel label_10 = new JLabel("Tarih");
@@ -2977,7 +2989,7 @@ public class FILTRE extends JDialog {
 
 		JPanel panel_12 = new JPanel();
 		panel_12.setLayout(null);
-		panel_12.setBorder(new LineBorder(new Color(0, 191, 255)));
+		panel_12.setBorder(new LineBorder(null));
 		tabbedPane.addTab("Grup_Rapor", null, panel_12, null);
 
 		JLabel label_18 = new JLabel("Tarih");
@@ -3242,7 +3254,7 @@ public class FILTRE extends JDialog {
 
 		JPanel panel_13 = new JPanel();
 		panel_13.setLayout(null);
-		panel_13.setBorder(new LineBorder(new Color(0, 191, 255)));
+		panel_13.setBorder(new LineBorder(null));
 		tabbedPane.addTab("Imalat_Grup", null, panel_13, null);
 
 		JLabel label_20 = new JLabel("Urun Kodu");
@@ -3422,7 +3434,7 @@ public class FILTRE extends JDialog {
 
 		JPanel panel_15 = new JPanel();
 		panel_15.setLayout(null);
-		panel_15.setBorder(new LineBorder(new Color(0, 191, 255)));
+		panel_15.setBorder(new LineBorder(null));
 		tabbedPane.addTab("Irsaliye_Rapor", null, panel_15, null);
 
 		JLabel lblIrsaliyeNo = new JLabel("Irsaliye No");
@@ -3637,7 +3649,7 @@ public class FILTRE extends JDialog {
 
 		JPanel panel_16 = new JPanel();
 		panel_16.setLayout(null);
-		panel_16.setBorder(new LineBorder(new Color(0, 191, 255)));
+		panel_16.setBorder(new LineBorder(null));
 		tabbedPane.addTab("Recete_Rapor", null, panel_16, null);
 
 		JLabel lblReceteNo = new JLabel("Recete No");
@@ -3743,7 +3755,7 @@ public class FILTRE extends JDialog {
 
 		JPanel panel_18 = new JPanel();
 		panel_18.setLayout(null);
-		panel_18.setBorder(new LineBorder(new Color(0, 191, 255)));
+		panel_18.setBorder(new LineBorder(null));
 		tabbedPane.addTab("Ortalama_Fiat", null, panel_18, null);
 
 		JLabel label_21 = new JLabel("Urun Kodu");
@@ -3921,7 +3933,7 @@ public class FILTRE extends JDialog {
 		JPanel panel_20 = new JPanel();
 		panel_20.setToolTipText("");
 		panel_20.setLayout(null);
-		panel_20.setBorder(new LineBorder(new Color(0, 191, 255)));
+		panel_20.setBorder(new LineBorder(null));
 		tabbedPane.addTab("Urun_Liste", null, panel_20, null);
 
 		JLabel label_43 = new JLabel("Urun Kodu");
@@ -4070,7 +4082,7 @@ public class FILTRE extends JDialog {
 
 		JPanel panel_21 = new JPanel();
 		panel_21.setLayout(null);
-		panel_21.setBorder(new LineBorder(new Color(0, 191, 255)));
+		panel_21.setBorder(new LineBorder(null));
 		tabbedPane.addTab("Envanter", null, panel_21, null);
 
 		JLabel label_39 = new JLabel("Tarih");
@@ -4267,7 +4279,7 @@ public class FILTRE extends JDialog {
 
 		JPanel panel_22 = new JPanel();
 		panel_22.setLayout(null);
-		panel_22.setBorder(new LineBorder(new Color(0, 191, 255)));
+		panel_22.setBorder(new LineBorder(null));
 		tabbedPane.addTab("Zayi", null, panel_22, null);
 
 		JLabel label_58 = new JLabel("Tarih");
@@ -4411,7 +4423,7 @@ public class FILTRE extends JDialog {
 		panel_22.add(comboBox_71);
 		//*************************************************KUR ***************************************************
 		JPanel panel_23 = new JPanel();
-		panel_23.setBorder(new LineBorder(new Color(0, 191, 255)));
+		panel_23.setBorder(new LineBorder(null));
 		tabbedPane.addTab("Kur_Grafik", null, panel_23, null);
 		panel_23.setLayout(null);
 
@@ -4481,7 +4493,7 @@ public class FILTRE extends JDialog {
 
 		//***********************************************GUNLUK ********************************************************************	
 		JPanel panel_GUNLUK = new JPanel();
-		panel_GUNLUK.setBorder(new LineBorder(new Color(0, 191, 255)));
+		panel_GUNLUK.setBorder(new LineBorder(null));
 		tabbedPane.addTab("Hazir_Gorev", null, panel_GUNLUK, null);
 		panel_GUNLUK.setLayout(null);
 
@@ -4538,14 +4550,14 @@ public class FILTRE extends JDialog {
 		panel_GUNLUK.add(comboBox_76);
 
 		JPanel buttonPane = new JPanel();
-		buttonPane.setBorder(new LineBorder(new Color(0, 191, 255)));
+		buttonPane.setBorder(new LineBorder(null));
 		buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 		getContentPane().add(buttonPane, BorderLayout.SOUTH);
 
 		//******************************** KERESTE GRUP *************************************************************************
 
 		JPanel panel_KERESTE = new JPanel();
-		panel_KERESTE.setBorder(new LineBorder(new Color(0, 191, 255)));
+		panel_KERESTE.setBorder(new LineBorder(null));
 		tabbedPane.addTab("Kereste", null, panel_KERESTE, null);
 		panel_KERESTE.setLayout(null);
 
@@ -4824,7 +4836,7 @@ public class FILTRE extends JDialog {
 		/// KERESTE DETAY ***************************************************************************
 
 		JPanel panel_KERESTE_DETAY = new JPanel();
-		panel_KERESTE_DETAY.setBorder(new LineBorder(new Color(0, 191, 255)));
+		panel_KERESTE_DETAY.setBorder(new LineBorder(null));
 		tabbedPane.addTab("Kereste_Detay", null, panel_KERESTE_DETAY, null);
 		panel_KERESTE_DETAY.setLayout(null);
 
@@ -5158,7 +5170,7 @@ public class FILTRE extends JDialog {
 		/// KERESTE ORTALAMA FIAT*******************************************************************************
 
 		JPanel panel_KERESTE_ORTFIAT = new JPanel();
-		panel_KERESTE_ORTFIAT.setBorder(new LineBorder(new Color(0, 191, 255)));
+		panel_KERESTE_ORTFIAT.setBorder(new LineBorder(null));
 		tabbedPane.addTab("Kereste_Ort_Fiat", null, panel_KERESTE_ORTFIAT, null);
 		panel_KERESTE_ORTFIAT.setLayout(null);
 
@@ -5334,6 +5346,79 @@ public class FILTRE extends JDialog {
 		});
 		chckbxNewCheckBox_5.setBounds(534, 139, 110, 23);
 		panel_KERESTE_ORTFIAT.add(chckbxNewCheckBox_5);
+		
+		//********************************************************* TAHSILAT FISI
+		JPanel panel_24 = new JPanel();
+		tabbedPane.addTab("Tahsilat", null, panel_24, null);
+		panel_24.setLayout(null);
+		
+		comboBox_85 = new JComboBox<String>();
+		comboBox_85.setModel(new DefaultComboBoxModel<String>(new String[] {"Hepsi", "Tahsilat", "Tediye"}));
+		comboBox_85.setBounds(70, 23, 103, 22);
+		panel_24.add(comboBox_85);
+		
+		comboBox_86 = new JComboBox<String>();
+		comboBox_86.setModel(new DefaultComboBoxModel<String>(new String[] {"Hepsi", "Nakit", "Cek", "Kredi Karti"}));
+		comboBox_86.setBounds(70, 56, 103, 22);
+		panel_24.add(comboBox_86);
+		
+		dateChooser_35 = new JDateChooser();
+		dateChooser_35.setFont(new Font("Tahoma", Font.BOLD, 11));
+		dateChooser_35.setDateFormatString("dd.MM.yyyy");
+		dateChooser_35.setDate(TARIH_CEVIR.tarih("01.01.1900"));
+		dateChooser_35.setBounds(70, 115, 120, 20);
+		panel_24.add(dateChooser_35);
+		
+		dateChooser_36 = new JDateChooser();
+		dateChooser_36.setFont(new Font("Tahoma", Font.BOLD, 11));
+		dateChooser_36.setDateFormatString("dd.MM.yyyy");
+		dateChooser_36.setDate(TARIH_CEVIR.tarih("31.12.2100"));
+		dateChooser_36.setBounds(234, 115, 120, 20);
+		panel_24.add(dateChooser_36);
+		
+		textTaheno1 = new JTextField();
+		textTaheno1.setBounds(70, 148, 135, 20);
+		panel_24.add(textTaheno1);
+		textTaheno1.setColumns(10);
+		
+		textTaheno2 = new JTextField();
+		textTaheno2.setFont(new Font("Tahoma", Font.BOLD, 11));
+		textTaheno2.setText("ZZZZZZZZZZZZZZZ");
+		textTaheno2.setBounds(234, 148, 135, 20);
+		panel_24.add(textTaheno2);
+		textTaheno2.setColumns(10);
+		
+		textTahck1 = new JTextField();
+		textTahck1.setBounds(70, 174, 103, 20);
+		panel_24.add(textTahck1);
+		textTahck1.setColumns(10);
+		
+		textTahck2 = new JTextField();
+		textTahck2.setFont(new Font("Tahoma", Font.BOLD, 11));
+		textTahck2.setText("ZZZZZZZZZZZZ");
+		textTahck2.setBounds(234, 174, 103, 20);
+		panel_24.add(textTahck2);
+		textTahck2.setColumns(10);
+		
+		JLabel lblNewLabel_46 = new JLabel("Cins");
+		lblNewLabel_46.setBounds(10, 27, 46, 14);
+		panel_24.add(lblNewLabel_46);
+		
+		JLabel lblNewLabel_47 = new JLabel("Tur");
+		lblNewLabel_47.setBounds(10, 60, 46, 14);
+		panel_24.add(lblNewLabel_47);
+		
+		JLabel lblNewLabel_48 = new JLabel("Tarih");
+		lblNewLabel_48.setBounds(10, 115, 46, 14);
+		panel_24.add(lblNewLabel_48);
+		
+		JLabel lblNewLabel_49 = new JLabel("Evrak No");
+		lblNewLabel_49.setBounds(10, 151, 61, 14);
+		panel_24.add(lblNewLabel_49);
+		
+		JLabel lblNewLabel_50 = new JLabel("Cari Kod");
+		lblNewLabel_50.setBounds(10, 177, 61, 14);
+		panel_24.add(lblNewLabel_50);
 
 		//**********************************************************************OK BUTTON **********************************
 		okButton = new JButton("Yenile");
@@ -5589,6 +5674,12 @@ public class FILTRE extends JDialog {
 					KER_ORT_FIAT.yenile();   // 
 					GuiUtil.setWaitCursor(KER_ORT_FIAT.splitPane,false);
 				}
+				else if (sayfa == 24) 
+				{
+					GuiUtil.setWaitCursor(TAH_DOKUM.splitPane,true);
+					TAH_DOKUM.yenile();   // 
+					GuiUtil.setWaitCursor(TAH_DOKUM.splitPane,false);
+				}
 				GuiUtil.setWaitCursor(getContentPane(),false);
 				dispose();
 			}
@@ -5779,6 +5870,7 @@ public class FILTRE extends JDialog {
 			ker_oz1_doldur(comboBox_80_5);
 
 		}
+		
 	}
 	public static void kapat ()
 	{

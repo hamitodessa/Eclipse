@@ -1254,7 +1254,7 @@ public class OBS_MAIN extends JFrame  {
 
 		///*******
 		tabbedPane.setTabLayoutPolicy(MaterialTabbed.SCROLL_TAB_LAYOUT);
-		tabbedPane.setBorder(new LineBorder(new Color(0, 191, 255), 0, true));
+		tabbedPane.setBorder(new LineBorder(null, 0, true));
 		//tabbedPane.setForeground(new Color(25, 25, 112));
 		tabbedPane.setFont(new Font("Calibri", Font.BOLD, 20));
 		splitPane.setLeftComponent(tabbedPane);
@@ -1962,7 +1962,7 @@ public class OBS_MAIN extends JFrame  {
 		toolBar_5.add(lblNewLabel_15);
 		//****************************************************************************
 		JComboBox<String> comboDegisken = new JComboBox<String>();
-		comboDegisken.setBorder(new LineBorder(new Color(0, 191, 255)));
+		comboDegisken.setBorder(new LineBorder(null));
 		comboDegisken.setFont(new Font("Tahoma", Font.BOLD, 14));
 		comboDegisken.setMaximumSize(new Dimension(210, 35));
 		comboDegisken.addItemListener(new ItemListener() 
@@ -2602,7 +2602,7 @@ public class OBS_MAIN extends JFrame  {
 		toolBar_11.add(btnNewButton_92);
 
 		toolBar = new JToolBar();
-		toolBar.setBorder(new LineBorder(new Color(0, 191, 255)));
+		toolBar.setBorder(new LineBorder(null));
 		toolBar.setFloatable(false);
 		splitPane.setRightComponent(toolBar);
 
@@ -2949,6 +2949,12 @@ public class OBS_MAIN extends JFrame  {
 				else if (sonuc == "KERESTE ORTALAMA FIAT")
 				{
 					GLOBAL.filtre_sayfa = 23 ;
+					ft = new FILTRE();
+					ft.setVisible(true);
+				}
+				else if (sonuc == "TAHSILAT DOKUM")
+				{
+					GLOBAL.filtre_sayfa = 24 ;
 					ft = new FILTRE();
 					ft.setVisible(true);
 				}
@@ -3533,7 +3539,7 @@ public class OBS_MAIN extends JFrame  {
 		//******************************************************** TOOLBAR !*******************************************
 
 		toolBar_1 = new JToolBar();
-		toolBar_1.setBorder(new LineBorder(new Color(0, 191, 255)));
+		toolBar_1.setBorder(new LineBorder(null));
 		toolBar_1.setFloatable(false);
 		progressBar = new JProgressBar();
 		progressBar.setFont(new Font("Tahoma", Font.BOLD, 11));

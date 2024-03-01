@@ -54,7 +54,6 @@ public class KUR_RAPORLAMA extends JInternalFrame {
 		}
 
 		table.addKeyListener(new KeyAdapter() {
-			@SuppressWarnings("deprecation")
 			@Override
 			public void keyPressed(KeyEvent e) {
 				try {
@@ -65,7 +64,7 @@ public class KUR_RAPORLAMA extends JInternalFrame {
 					if ( ! parts[2].equals(" ")) 
 					{
 						char c=parts[2].charAt(0);
-						if ((e.getKeyCode() == c) && ((e.getModifiersEx() & (parts[0].equals("E") ?  KeyEvent.CTRL_MASK : KeyEvent.ALT_MASK) ) != 0))
+						if ((e.getKeyCode() == c) && ((e.getModifiersEx() & (parts[0].equals("E") ?  KeyEvent.CTRL_DOWN_MASK : KeyEvent.ALT_DOWN_MASK) ) != 0))
 						{
 							OBS_MAIN.btnFiltre.doClick();
 						}

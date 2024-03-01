@@ -322,4 +322,8 @@ public class CARI_ACCESS {
 	{
 		_ICari.tah_cek_kayit_aktar(no, cins);
 	}
+	public ResultSet tah_listele ( int cins,int tur,String ilktarih,String sontarih,String ilkevr,String sonevr,String ilkck,String sonck) throws ClassNotFoundException, SQLException
+	{
+		return _ICari.tah_listele(cins, tur, ilktarih, sontarih, ilkevr, sonevr, ilkck, sonck);
+	}
 }

@@ -36,7 +36,7 @@ import javax.swing.border.LineBorder;
 import com.toedter.calendar.JDateChooser;
 
 
-@SuppressWarnings({"deprecation","static-access"})
+@SuppressWarnings({"static-access"})
 public class PARAMETRELER   extends JInternalFrame   {
 
 	static Cursor WAIT_CURSOR =  Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR);
@@ -171,7 +171,7 @@ public class PARAMETRELER   extends JInternalFrame   {
 					if ( ! parts[2].equals(" ")) 
 					{
 						char c=parts[2].charAt(0);
-						if ((e.getKeyCode() == c) && ((e.getModifiersEx() & (parts[0].equals("E") ?  KeyEvent.CTRL_MASK : KeyEvent.ALT_MASK) ) != 0))
+						if ((e.getKeyCode() == c) && ((e.getModifiersEx() & (parts[0].equals("E") ?  KeyEvent.CTRL_DOWN_MASK : KeyEvent.ALT_DOWN_MASK) ) != 0))
 						{
 							OBS_MAIN.btnKaydet.doClick();
 						}
@@ -208,7 +208,7 @@ public class PARAMETRELER   extends JInternalFrame   {
 					if ( ! parts[2].equals(" ")) 
 					{
 						char c=parts[2].charAt(0);
-						if ((e.getKeyCode() == c) && ((e.getModifiersEx() & (parts[0].equals("E") ?  KeyEvent.CTRL_MASK : KeyEvent.ALT_MASK) ) != 0)) {
+						if ((e.getKeyCode() == c) && ((e.getModifiersEx() & (parts[0].equals("E") ?  KeyEvent.CTRL_DOWN_MASK : KeyEvent.ALT_DOWN_MASK) ) != 0)) {
 							OBS_MAIN.btnKaydet.doClick();
 							//     System.out.println("woot!");
 						}
@@ -216,7 +216,7 @@ public class PARAMETRELER   extends JInternalFrame   {
 				} catch (IOException e1) {
 					e1.printStackTrace();
 				}
-				//if ((e.getKeyCode() == KeyEvent.VK_C) && ((e.getModifiersEx() & KeyEvent.ALT_MASK) != 0)) {
+				//if ((e.getKeyCode() == KeyEvent.VK_C) && ((e.getModifiersEx() & KeyEvent.ALT_DOWN_MASK) != 0)) {
 				//    System.out.println("woot!");
 				//}
 			}
@@ -536,7 +536,7 @@ public class PARAMETRELER   extends JInternalFrame   {
 					if ( ! parts[2].equals(" ")) 
 					{
 						char c=parts[2].charAt(0);
-						if ((e.getKeyCode() == c) && ((e.getModifiersEx() & (parts[0].equals("E") ?  KeyEvent.CTRL_MASK : KeyEvent.ALT_MASK) ) != 0))
+						if ((e.getKeyCode() == c) && ((e.getModifiersEx() & (parts[0].equals("E") ?  KeyEvent.CTRL_DOWN_MASK : KeyEvent.ALT_DOWN_MASK) ) != 0))
 						{
 							OBS_MAIN.btnKaydet.doClick();
 						}
@@ -937,7 +937,7 @@ public class PARAMETRELER   extends JInternalFrame   {
 					if ( ! parts[2].equals(" ")) 
 					{
 						char c=parts[2].charAt(0);
-						if ((e.getKeyCode() == c) && ((e.getModifiersEx() & (parts[0].equals("E") ?  KeyEvent.CTRL_MASK : KeyEvent.ALT_MASK) ) != 0))
+						if ((e.getKeyCode() == c) && ((e.getModifiersEx() & (parts[0].equals("E") ?  KeyEvent.CTRL_DOWN_MASK : KeyEvent.ALT_DOWN_MASK) ) != 0))
 						{
 							OBS_MAIN.btnKaydet.doClick();
 						}
@@ -1120,7 +1120,7 @@ public class PARAMETRELER   extends JInternalFrame   {
 					if ( ! parts[2].equals(" ")) 
 					{
 						char c=parts[2].charAt(0);
-						if ((e.getKeyCode() == c) && ((e.getModifiersEx() & (parts[0].equals("E") ?  KeyEvent.CTRL_MASK : KeyEvent.ALT_MASK) ) != 0))
+						if ((e.getKeyCode() == c) && ((e.getModifiersEx() & (parts[0].equals("E") ?  KeyEvent.CTRL_DOWN_MASK : KeyEvent.ALT_DOWN_MASK) ) != 0))
 						{
 							OBS_MAIN.btnKaydet.doClick();
 						}
@@ -1231,7 +1231,7 @@ public class PARAMETRELER   extends JInternalFrame   {
 					if ( ! parts[2].equals(" ")) 
 					{
 						char c=parts[2].charAt(0);
-						if ((e.getKeyCode() == c) && ((e.getModifiersEx() & (parts[0].equals("E") ?  KeyEvent.CTRL_MASK : KeyEvent.ALT_MASK) ) != 0))
+						if ((e.getKeyCode() == c) && ((e.getModifiersEx() & (parts[0].equals("E") ?  KeyEvent.CTRL_DOWN_MASK : KeyEvent.ALT_DOWN_MASK) ) != 0))
 						{
 							OBS_MAIN.btnKaydet.doClick();
 						}
@@ -1275,7 +1275,7 @@ public class PARAMETRELER   extends JInternalFrame   {
 					if ( ! parts[2].equals(" ")) 
 					{
 						char c=parts[2].charAt(0);
-						if ((e.getKeyCode() == c) && ((e.getModifiersEx() & (parts[0].equals("E") ?  KeyEvent.CTRL_MASK : KeyEvent.ALT_MASK) ) != 0))
+						if ((e.getKeyCode() == c) && ((e.getModifiersEx() & (parts[0].equals("E") ?  KeyEvent.CTRL_DOWN_MASK : KeyEvent.ALT_DOWN_MASK) ) != 0))
 						{
 							OBS_MAIN.btnKaydet.doClick();
 						}
@@ -1320,7 +1320,7 @@ public class PARAMETRELER   extends JInternalFrame   {
 					if ( ! parts[2].equals(" ")) 
 					{
 						char c=parts[2].charAt(0);
-						if ((e.getKeyCode() == c) && ((e.getModifiersEx() & (parts[0].equals("E") ?  KeyEvent.CTRL_MASK : KeyEvent.ALT_MASK) ) != 0))
+						if ((e.getKeyCode() == c) && ((e.getModifiersEx() & (parts[0].equals("E") ?  KeyEvent.CTRL_DOWN_MASK : KeyEvent.ALT_DOWN_MASK) ) != 0))
 						{
 							OBS_MAIN.btnKaydet.doClick();
 						}
@@ -1352,7 +1352,7 @@ public class PARAMETRELER   extends JInternalFrame   {
 					if ( ! parts[2].equals(" ")) 
 					{
 						char c=parts[2].charAt(0);
-						if ((e.getKeyCode() == c) && ((e.getModifiersEx() & (parts[0].equals("E") ?  KeyEvent.CTRL_MASK : KeyEvent.ALT_MASK) ) != 0))
+						if ((e.getKeyCode() == c) && ((e.getModifiersEx() & (parts[0].equals("E") ?  KeyEvent.CTRL_DOWN_MASK : KeyEvent.ALT_DOWN_MASK) ) != 0))
 						{
 							OBS_MAIN.btnKaydet.doClick();
 						}
@@ -1385,7 +1385,7 @@ public class PARAMETRELER   extends JInternalFrame   {
 					if ( ! parts[2].equals(" ")) 
 					{
 						char c=parts[2].charAt(0);
-						if ((e.getKeyCode() == c) && ((e.getModifiersEx() & (parts[0].equals("E") ?  KeyEvent.CTRL_MASK : KeyEvent.ALT_MASK) ) != 0))
+						if ((e.getKeyCode() == c) && ((e.getModifiersEx() & (parts[0].equals("E") ?  KeyEvent.CTRL_DOWN_MASK : KeyEvent.ALT_DOWN_MASK) ) != 0))
 						{
 							OBS_MAIN.btnKaydet.doClick();
 						}
@@ -1418,7 +1418,7 @@ public class PARAMETRELER   extends JInternalFrame   {
 					if ( ! parts[2].equals(" ")) 
 					{
 						char c=parts[2].charAt(0);
-						if ((e.getKeyCode() == c) && ((e.getModifiersEx() & (parts[0].equals("E") ?  KeyEvent.CTRL_MASK : KeyEvent.ALT_MASK) ) != 0))
+						if ((e.getKeyCode() == c) && ((e.getModifiersEx() & (parts[0].equals("E") ?  KeyEvent.CTRL_DOWN_MASK : KeyEvent.ALT_DOWN_MASK) ) != 0))
 						{
 							OBS_MAIN.btnKaydet.doClick();
 						}

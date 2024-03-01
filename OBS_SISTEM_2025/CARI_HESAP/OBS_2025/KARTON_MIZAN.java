@@ -40,7 +40,7 @@ import OBS_C_2025.TARIH_CEVIR;
 import net.proteanit.sql.DbUtils;
 import raven.toast.Notifications;
 
-@SuppressWarnings({"serial","static-access","deprecation"})
+@SuppressWarnings({"serial","static-access"})
 public class KARTON_MIZAN extends JInternalFrame {
 	public static JTable table;
 	private static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
@@ -146,7 +146,7 @@ public class KARTON_MIZAN extends JInternalFrame {
 					if ( ! parts[2].equals(" ")) 
 					{
 						char c=parts[2].charAt(0);
-						if ((e.getKeyCode() == c) && ((e.getModifiersEx() & (parts[0].equals("E") ?  KeyEvent.CTRL_MASK : KeyEvent.ALT_MASK) ) != 0))
+						if ((e.getKeyCode() == c) && ((e.getModifiersEx() & (parts[0].equals("E") ?  KeyEvent.CTRL_DOWN_MASK : KeyEvent.ALT_DOWN_MASK) ) != 0))
 						{
 							getContentPane().setCursor(oac.WAIT_CURSOR);
 							OBS_MAIN.btnFiltre.doClick();

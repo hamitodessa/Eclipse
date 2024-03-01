@@ -1526,6 +1526,28 @@ public class CARI_HESAP_MSSQL implements ICARI_HESAP {
 		}
 		stmtcek.close();
 	}
+	@Override
+	public ResultSet tah_listele(int cins, int tur, String ilktarih, String sontarih, String ilkevr, String sonevr,String ilkck,String sonck)
+			throws ClassNotFoundException, SQLException {
+		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+		ResultSet	rss = null;
+		String cinString = "" , turString=""  ;
+		if(cins !=0)
+			cinString = " CINS = '" + cins + "' AND";
+		if(tur != 0)
+			turString = " TUR = '" + tur + "' AND";
+		String sql = " SELECT * " +
+				" FROM TAH_DETAY " +
+				" WHERE  " + cinString  + turString  +
+				" TARIH >= '" + ilktarih + "' AND TARIH < '" + sontarih + "' " + 
+				" AND EVRAK >= '" + ilkevr + "' AND EVRAK < '" + sonevr + "' " + 
+				" AND C_HES >= '" + ilkck + "' AND C_HES < '" + sonck + "' " + 
+				" ORDER BY TARIH " ;
+		kONTROL();
+		PreparedStatement stmt = con.prepareStatement(sql);
+		rss = stmt.executeQuery();
+		return rss;	
+	}
 }
 
 

@@ -607,7 +607,7 @@ public class H_PLANI extends JInternalFrame {
 		cmbKodu.setEditable(true);
 		JTextField editorComponent = (JTextField)  cmbKodu.getEditor().getEditorComponent();
 		InputMap txtbhesMap = editorComponent.getInputMap(editorComponent.WHEN_FOCUSED);
-		txtbhesMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_H, KeyEvent.CTRL_MASK), "none");
+		txtbhesMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_H, KeyEvent.CTRL_DOWN_MASK), "none");
 		
 		cmbKodu.getEditor().getEditorComponent().setForeground(new Color(0, 0, 128));
 		editorComponent.setFont(new Font("Tahoma", Font.BOLD, 12));

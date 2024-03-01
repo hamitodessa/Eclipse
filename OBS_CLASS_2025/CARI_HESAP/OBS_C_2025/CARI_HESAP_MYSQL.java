@@ -1461,4 +1461,10 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 		stmtcek.close();
 		
 	}
+	@Override
+	public ResultSet tah_listele(int cins, int tur, String ilktarih, String sontarih, String ilkevr, String sonevr,String ilkck,String sonck)
+			throws ClassNotFoundException, SQLException {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

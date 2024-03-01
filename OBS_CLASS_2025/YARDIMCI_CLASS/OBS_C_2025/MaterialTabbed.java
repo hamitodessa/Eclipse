@@ -1,6 +1,5 @@
 package OBS_C_2025;
 
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Insets;
@@ -71,7 +70,8 @@ public class MaterialTabbed extends JTabbedPane {
         protected void paintTabBorder(Graphics grphcs, int tabPlacement, int tabIndex, int x, int y, int w, int h, boolean isSelected) {
             Graphics2D g2 = (Graphics2D) grphcs.create();
             g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-            g2.setColor(new Color(3, 155, 216));
+            //g2.setColor(new Color(3, 155, 216));
+            g2.setColor(null);
             if (currentRectangle == null || !animator.isRunning()) {
                 if (isSelected) {
                     currentRectangle = new Rectangle(x, y, w, h);
@@ -95,7 +95,8 @@ public class MaterialTabbed extends JTabbedPane {
         protected void paintContentBorder(Graphics grphcs, int tabPlacement, int selectedIndex) {
             Graphics2D g2 = (Graphics2D) grphcs.create();
             g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-            g2.setColor(new Color(200, 200, 200));
+            //g2.setColor(new Color(200, 200, 200));
+            g2.setColor(null);
             Insets insets = getTabAreaInsets(tabPlacement);
             int width = tabPane.getWidth();
             int height = tabPane.getHeight();

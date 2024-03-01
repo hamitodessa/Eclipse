@@ -7,6 +7,9 @@ import javax.swing.JSplitPane;
 import javax.swing.border.LineBorder;
 import javax.swing.event.AncestorEvent;
 import javax.swing.event.AncestorListener;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
@@ -36,6 +39,7 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 import javax.swing.SwingUtilities;
+import javax.swing.JScrollPane;
 
 @SuppressWarnings({"serial", "static-access","unused" })
 public class TAH_DOKUM extends JInternalFrame {
@@ -46,6 +50,7 @@ public class TAH_DOKUM extends JInternalFrame {
 	private static CARI_ACCESS  c_Access = new CARI_ACCESS(OBS_SIS_2025_ANA_CLASS._ICar , OBS_SIS_2025_ANA_CLASS._ICari_Loger);
 	private static JTable table;
 	public static JSplitPane splitPane;
+	private static JTable table_1;
 
 	
 	public TAH_DOKUM() {
@@ -54,7 +59,7 @@ public class TAH_DOKUM extends JInternalFrame {
 		setMaximizable(true);
 		setIconifiable(true);
 		setClosable(true);
-		setBounds(0,0, 1100, 600);
+		setBounds(0,0, 900, 600);
 
 		splitPane = new JSplitPane();
 		splitPane.setDividerSize(0);
@@ -74,13 +79,6 @@ public class TAH_DOKUM extends JInternalFrame {
 		splitPane_1.setOrientation(JSplitPane.VERTICAL_SPLIT);
 		splitPane.setRightComponent(splitPane_1);
 
-		JPanel panelalt = new JPanel();
-		panelalt.setBorder(new LineBorder(null));
-		splitPane_1.setRightComponent(panelalt);
-		panelalt.setMinimumSize(new Dimension(0, 100));
-		panelalt.setMaximumSize(new Dimension(0, 100));
-		panelalt.setLayout(null);
-
 		ScrollPaneWin11 scrollPane = new ScrollPaneWin11();
 		splitPane_1.setLeftComponent(scrollPane);
 
@@ -90,6 +88,19 @@ public class TAH_DOKUM extends JInternalFrame {
 		};
 		scrollPane.setViewportView(table);
 		
+		table.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+		    public void valueChanged(ListSelectionEvent lse) {
+			        if (!lse.getValueIsAdjusting()) {
+			        	 DefaultTableModel model = (DefaultTableModel)table.getModel();
+			        	 if (model.getRowCount() == 0) return ;
+			        	 if (table.getSelectedRow()  < 0) return;
+			        	 table.setCursor(oac.WAIT_CURSOR);
+			        	 detay_doldur(model.getValueAt(table.getSelectedRow() , 0).toString(),model.getValueAt(table.getSelectedRow() , 4).toString());
+			        	 table.setCursor(oac.DEFAULT_CURSOR);
+			        }
+			    }
+			});
+
 		table.addAncestorListener(new AncestorListener() {
 			public void ancestorAdded(AncestorEvent event) {
 				SwingUtilities.invokeLater(new Runnable() {
@@ -141,6 +152,20 @@ public class TAH_DOKUM extends JInternalFrame {
 		table.setSurrendersFocusOnKeystroke(true);
 		table.setShowHorizontalLines(true);
 		table.setShowVerticalLines(true);
+		
+		ScrollPaneWin11 scrollPane_1 = new ScrollPaneWin11();
+		scrollPane_1.setMinimumSize(new Dimension(0, 100));
+		scrollPane_1.setMaximumSize(new Dimension(0, 100));
+		
+		splitPane_1.setRightComponent(scrollPane_1);
+		
+		table_1 = new JTable();
+		table_1.setAutoResizeMode( JTable.AUTO_RESIZE_OFF );
+		table_1.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		table_1.setSurrendersFocusOnKeystroke(true);
+		table_1.setShowHorizontalLines(true);
+		table_1.setShowVerticalLines(true);
+		scrollPane_1.setViewportView(table_1);
 	}
 	public static void yenile()
 	{
@@ -176,6 +201,7 @@ public class TAH_DOKUM extends JInternalFrame {
 		tc.setHeaderRenderer(new SOLA());
 		tc.setCellRenderer(new TARIH());
 		tc.setMinWidth(70);
+		tc.setMaxWidth(70);
 		
 		tc = tcm.getColumn(2);
 		tc.setHeaderRenderer(new SOLA());
@@ -194,8 +220,9 @@ public class TAH_DOKUM extends JInternalFrame {
 		
 		tc = tcm.getColumn(5);
 		tc.setHeaderRenderer(new SAGA());
-		tc.setCellRenderer(new TABLO_RENDERER(4,false));
-		tc.setMinWidth(100);
+		tc.setCellRenderer(new TABLO_RENDERER(2,true));
+		tc.setMinWidth(120);
+		tc.setMaxWidth(120);
 		
 		tc = tcm.getColumn(6);
 		tc.setHeaderRenderer(new SOLA());
@@ -228,6 +255,75 @@ public class TAH_DOKUM extends JInternalFrame {
 		bigFont = new Font(parts[0], Integer.parseInt(parts[1].trim()), Integer.parseInt(parts[2].trim()));
 		table.setFont(bigFont);
 		table.repaint();
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+	}
+	public static void detay_doldur(String evrno,String cins)
+	{
+		try {
+			
+		
+		int cin = 0 ;
+		if(cins.equals("Tadilat"))
+			cin = 1 ;
+		
+		long startTime = System.currentTimeMillis(); 
+		
+		GRID_TEMIZLE.grid_temizle(table_1);
+		
+		ResultSet	rs = null;
+		rs = c_Access.tah_cek_doldur(evrno,cin	);
+		
+		if (!rs.isBeforeFirst() ) {  
+			return;
+		} 
+		table_1.setModel(DbUtils.resultSetToTableModel(rs));
+		JTableHeader th = table_1.getTableHeader();
+		TableColumnModel tcm = th.getColumnModel();
+		TableColumn tc;
+		
+		table_1.removeColumn(table_1.getColumnModel().getColumn(0));
+		table_1.removeColumn(table_1.getColumnModel().getColumn(0));
+		
+		tc = tcm.getColumn(0);
+		tc.setHeaderRenderer(new SOLA());
+		tc.setMinWidth(200);
+	
+		
+		tc = tcm.getColumn(1);
+		tc.setHeaderRenderer(new SOLA());
+		tc.setMinWidth(150);
+		
+		
+		tc = tcm.getColumn(2);
+		tc.setHeaderRenderer(new SOLA());
+		tc.setMinWidth(100);
+		tc.setMaxWidth(100);
+		
+		tc = tcm.getColumn(3);
+		tc.setHeaderRenderer(new SOLA());
+		tc.setMinWidth(100);
+		tc.setMaxWidth(100);
+		
+		tc = tcm.getColumn(4);
+		tc.setHeaderRenderer(new SOLA());
+		tc.setMinWidth(150);
+		tc.setMaxWidth(150);
+		
+		tc = tcm.getColumn(5);
+		tc.setHeaderRenderer(new SOLA());
+		tc.setCellRenderer(new TARIH());
+		tc.setMinWidth(70);
+		tc.setMaxWidth(70);
+		
+		tc = tcm.getColumn(6);
+		tc.setHeaderRenderer(new SAGA());
+		tc.setCellRenderer(new TABLO_RENDERER(2,true));
+		tc.setMinWidth(100);
+		tc.setMaxWidth(100);
+		
+		
 		} catch (Exception e) {
 			// TODO: handle exception
 		}

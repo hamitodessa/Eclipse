@@ -112,6 +112,7 @@ public class OBS_MAIN extends JFrame  {
 	private JButton btnNewButton_12 ; // Gunluk Dokum
 	private JButton btnNewButton_13 ;//Hesap Plani detay
 	private JButton btnNewButton_15 ;//Gunluk Takip
+	private JButton btnNewButton_79 ;//Tah Fis Dokum 
 	private JButton btnNewButton_16; //SQL
 	private JButton btnNewButton_17;//Ornek Hesap Plani
 	private JButton btnNewButton_18;//Kod Degisme
@@ -1425,6 +1426,7 @@ public class OBS_MAIN extends JFrame  {
 		});
 		btnNewButton_15.setIcon(new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/icons8-check-book-30.png")));
 		toolBar_2.add(btnNewButton_15);
+		
 
 		btnNewButton_16 = new JButton("");
 		btnNewButton_16.setToolTipText("Sql Sorgulama");
@@ -1435,6 +1437,17 @@ public class OBS_MAIN extends JFrame  {
 		});
 		btnNewButton_16.setIcon(new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/icons8-sql-30.png")));
 		toolBar_2.add(btnNewButton_16);
+		
+		btnNewButton_79 = new JButton("");
+		btnNewButton_79.setToolTipText("Tah.Fisi Dokum");
+		btnNewButton_79.setIcon(new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/tah_dokum-30.png")));
+		btnNewButton_79.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				form_ac("TAHSILAT DOKUM","");
+			}
+		});
+		toolBar_2.add(btnNewButton_79);
+		
 
 		JLabel label = new JLabel("         ");
 		toolBar_2.add(label);
@@ -3640,6 +3653,7 @@ public class OBS_MAIN extends JFrame  {
 			else if (pencere.equals("GUNLUK ISLEM")) internalFrame  = new GUNLUK_ISLEM();
 			else if (pencere.equals("ORNEK HESAP PLANI")) internalFrame  = new ORN_HSP_PLN();
 			else if (pencere.equals("KOD DEGISTIRME")) internalFrame  = new KOD_DEGISTIRME();
+			else if (pencere.equals("TAHSILAT DOKUM")) internalFrame  = new TAH_DOKUM();
 			else if (pencere.equals("YIL SONU AKTARMA")) internalFrame  = new YIL_SONU();
 			else if (pencere.equals("CARI KARTON MIZAN")) internalFrame  = new KARTON_MIZAN();
 			//KUR

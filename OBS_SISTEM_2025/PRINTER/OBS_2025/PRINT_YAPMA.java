@@ -10,6 +10,7 @@ import java.util.ArrayList;
 
 import javax.swing.JInternalFrame;
 import com.crystaldecisions.ReportViewer.ReportViewerBean;
+import com.crystaldecisions.reports.exporters.format.page.pdf.fontembedding.opentype.tables.GlyphDataTableBuilder;
 import com.crystaldecisions.sdk.occa.report.application.OpenReportOptions;
 import com.crystaldecisions.sdk.occa.report.application.ReportClientDocument;
 import com.crystaldecisions.sdk.occa.report.application.ReportSectionPropertyEnum;
@@ -409,12 +410,19 @@ public class PRINT_YAPMA extends JInternalFrame {
 			else if (nerden.equals("tahsilat_cek"))
 			{
 				//**************************************************************************
-				file = new File(GLOBAL.SURUCU + "\\TAHSILAT_CEK.rpt");
+				file = new File(GLOBAL.SURUCU + "\\TAHSILAT_CEK_2.rpt");
 				clientDoc.open(file.getPath(), 0);
 				clientDoc.getDatabaseController().logon(BAGLAN.cariDizin.kULLANICI, BAGLAN.cariDizin.sIFRESI);
-				rs = c_Access.tah_cek_oku(TAH_FISI.textEvrakNo.getText(),TAH_FISI.cmbCins.getSelectedIndex());
 				
-				clientDoc.getDatabaseController().addDataSource(rs);
+				if (GLOBAL.dos_kontrol(GLOBAL.SURUCU + GLOBAL.TAH_CEK_DOSYA) == false)
+				{
+					GLOBAL.cek_print_dosya_olustur();
+				}
+				else {
+					GLOBAL.cek_dos_kayit_sil();
+				}
+				rs = GLOBAL.tah_cek_oku(TAH_FISI.textEvrakNo.getText(),TAH_FISI.cmbCins.getSelectedIndex());
+				clientDoc.getDatabaseController().setDataSource(rs);
 				//**************************************************************************
 				ResultSet rstResultSet = a_Access.adr_etiket_arama_kod(TAH_FISI.textAKodu.getText());
 				if (!rstResultSet.isBeforeFirst() ) { 
@@ -622,7 +630,7 @@ public class PRINT_YAPMA extends JInternalFrame {
 						double aqw = DecimalFormat.getNumberInstance().parse(TAH_FISI.formattedTutar.getText()).doubleValue();
 						
 							oParagraphTextElement.setText("Aşağıda Dökümü Yapılan  " + FORMATLAMA.doub_2(aqw) + " " + TAH_FISI.combCins.getSelectedItem().toString() + 
-									" Tutarındaki Çek(ler)  ");
+									" Tutarındaki " + FORMATLAMA.doub_0(Integer.valueOf(TAH_FISI.lblCekSayi.getText())) + " Adet Çek(ler)  ");
 						
 						
 						oParagraphTextElement.setKind(ParagraphElementKind.text);

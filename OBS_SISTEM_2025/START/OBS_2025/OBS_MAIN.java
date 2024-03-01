@@ -3037,8 +3037,8 @@ public class OBS_MAIN extends JFrame  {
 						}
 						if(TAH_FISI.cmbTur.getSelectedIndex()==1)
 						{
-							InputStream is = this.getClass().getClassLoader().getResourceAsStream("RPT/TAHSILAT_CEK.rpt");
-							Files.copy(is, Paths.get(GLOBAL.SURUCU + "\\TAHSILAT_CEK.rpt"),StandardCopyOption.REPLACE_EXISTING);
+							InputStream is = this.getClass().getClassLoader().getResourceAsStream("RPT/TAHSILAT_CEK_2.rpt");
+							Files.copy(is, Paths.get(GLOBAL.SURUCU + "\\TAHSILAT_CEK_2.rpt"),StandardCopyOption.REPLACE_EXISTING);
 							internalFrame = new PRINT_YAPMA();
 							desktopPane.add(internalFrame);
 							internalFrame.setVisible(true);

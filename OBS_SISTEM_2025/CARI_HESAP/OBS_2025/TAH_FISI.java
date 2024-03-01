@@ -40,6 +40,8 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
+import javax.swing.event.TableModelEvent;
+import javax.swing.event.TableModelListener;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
@@ -122,7 +124,7 @@ public class TAH_FISI extends JInternalFrame {
 	public static Obs_TextFIeld textEvrakNo;
 	
 	private static JLabel lblCAdi ;
-	private static JLabel lblCekSayi;
+	public static JLabel lblCekSayi;
 
 	private static JLabel lblAAdi ;
 	public static JFormattedTextField formattedTutar ;
@@ -613,7 +615,7 @@ public class TAH_FISI extends JInternalFrame {
 		
 		JPanel panel_3 = new JPanel();
 		panel_3.setBorder(new TitledBorder(null, "Doviz Cinsi", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panel_3.setBounds(29, 223, 750, 54);
+		panel_3.setBounds(29, 223, 750, 66);
 		panel.add(panel_3);
 		panel_3.setLayout(null);
 		
@@ -625,44 +627,17 @@ public class TAH_FISI extends JInternalFrame {
 		panel_4 = new JPanel();
 		panel_4.setVisible(false);
 		panel_4.setBorder(new TitledBorder(null, "Cek Bilgisi", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panel_4.setBounds(29, 288, 750, 82);
+		panel_4.setBounds(29, 295, 750, 75);
 		panel.add(panel_4);
 		panel_4.setLayout(null);
 		
-		JButton btnNewButton_1 = new JButton("Toplam Al");
-		btnNewButton_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				double tutar = 0 ;
-				int evr_sayi = 0 ;
-				DefaultTableModel model = (DefaultTableModel)tableCek.getModel();
-				for (int i = 0; i <= tableCek.getRowCount() - 1 ; i ++)
-				{
-					if ( model.getValueAt(i,0).toString() != null )
-					{
-						if ( ! model.getValueAt(i,0).toString().equals(""))
-						{
-							if ( model.getValueAt(i,6).toString() != null )
-							{
-								tutar  += (double) tableCek.getValueAt(i , 6);
-								evr_sayi += 1 ;
-							}
-						}
-						
-					}
-				}
-				lblCekSayi.setText(FORMATLAMA.doub_0(evr_sayi));
-				formattedTutar.setText(FORMATLAMA.doub_2(tutar));
-			}
-		});
-		btnNewButton_1.setBounds(80, 25, 89, 23);
-		panel_4.add(btnNewButton_1);
 		
 		JLabel lblNewLabel_5 = new JLabel("Cek Sayisi");
-		lblNewLabel_5.setBounds(10, 59, 59, 14);
+		lblNewLabel_5.setBounds(50, 29, 59, 14);
 		panel_4.add(lblNewLabel_5);
 		
 		lblCekSayi = new JLabel("0");
-		lblCekSayi.setBounds(80, 59, 46, 14);
+		lblCekSayi.setBounds(122, 29, 46, 14);
 		panel_4.add(lblCekSayi);
 		
 		JPanel panel_Ayarlar = new JPanel();
@@ -835,7 +810,7 @@ public class TAH_FISI extends JInternalFrame {
 		panel_Ayarlar.add(btnNewButton_5_1);
 		
 		panel_5 = new JPanel();
-		tabbedPane.addTab("Cek Giris", null, panel_5, null);
+		tabbedPane.addTab("Cek Dokumu", null, panel_5, null);
 		panel_5.setLayout(new BorderLayout(0, 0));
 		
 		scrollPane = new JScrollPane();
@@ -939,6 +914,11 @@ public class TAH_FISI extends JInternalFrame {
 	        	 }
 	         }
 	      });
+		tableCek.getModel().addTableModelListener(new TableModelListener() {
+			public void tableChanged(TableModelEvent e) {
+				cek_toplami();
+			}
+		});
 				
 		scrollPane.setViewportView(tableCek);
 		tabbedPane.setEnabledAt(2, false);
@@ -969,6 +949,7 @@ public class TAH_FISI extends JInternalFrame {
 				DecimalFormat.getNumberInstance().parse(formattedTutar.getText()).doubleValue(),combCins.getSelectedItem().toString());
 		if(cmbTur.getSelectedIndex() == 1)
 		{
+			c_Access.tah_cek_sil(textEvrakNo.getText(), cmbCins.getSelectedIndex());
 			DefaultTableModel model = (DefaultTableModel)tableCek.getModel();
 			for (int i = 0; i <= tableCek.getRowCount() - 1 ; i ++)
 			{
@@ -1118,6 +1099,10 @@ public class TAH_FISI extends JInternalFrame {
 		textAKodu.setText(rs.getString("A_HES"));
 		formattedTutar.setText(FORMATLAMA.doub_2(rs.getDouble("TUTAR")));
 		dtc.setDate(rs.getDate("TARIH"));
+		if(cmbTur.getSelectedIndex() == 1 )
+		{
+			cek_doldur();
+		}
 		} catch (Exception ex) {
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR, ex.getMessage() );
 		}
@@ -1267,7 +1252,6 @@ public class TAH_FISI extends JInternalFrame {
 		lblAAdi.setText("");
 		combCins.setSelectedIndex(0);
 		dtc.setDate(new Date());
-		lblCekSayi.setText("");
 		GRID_TEMIZLE.grid_temizle(tableCek);
 		for (int i = 0; i <= 15; i ++)
 		{
@@ -1303,5 +1287,62 @@ public class TAH_FISI extends JInternalFrame {
 			e.printStackTrace();
 		}
 		return convertedDate;
+	}
+	private void cek_toplami()
+	{
+		double tutar = 0 ;
+		int evr_sayi = 0 ;
+		DefaultTableModel model = (DefaultTableModel)tableCek.getModel();
+		for (int i = 0; i <= tableCek.getRowCount() - 1 ; i ++)
+		{
+			if ( model.getValueAt(i,0).toString() != null )
+			{
+				if ( ! model.getValueAt(i,0).toString().equals(""))
+				{
+					if ( model.getValueAt(i,6).toString() != null )
+					{
+						tutar  += (double) tableCek.getValueAt(i , 6);
+						evr_sayi += 1 ;
+					}
+				}
+				
+			}
+		}
+		lblCekSayi.setText(FORMATLAMA.doub_0(evr_sayi));
+		formattedTutar.setText(FORMATLAMA.doub_2(tutar));
+	}
+	private void cek_doldur()
+	{
+		try {
+		ResultSet rs = c_Access.tah_cek_doldur(textEvrakNo.getText(),cmbCins.getSelectedIndex());
+		if (!rs.isBeforeFirst() ) {  
+
+			return;
+		} 
+		DefaultTableModel mdll = (DefaultTableModel) tableCek.getModel();
+		int satir =0 ;
+		while (rs.next()) 
+		{
+			//EVRAK,CINS,BANKA,SUBE,SERI,HESAP,BORCLU,TARIH,TUTAR
+			System.out.println("--");
+			SimpleDateFormat format1 = new SimpleDateFormat("dd.MM.yyyy");
+			String vade1 =  format1.format(rs.getDate("TARIH"));
+			mdll.insertRow(satir,new Object[]{rs.getString("BANKA"),
+					rs.getString("SUBE"),rs.getString("SERI"),rs.getString("HESAP"),
+					rs.getString("BORCLU"), vade1,	rs.getDouble("TUTAR")});
+			satir +=1 ;
+
+			if (satir == mdll.getRowCount())  
+			{
+				mdll.addRow(new Object[]{"", "","","","",new Date(),0.00});
+			}
+			else  {
+				mdll.removeRow(mdll.getRowCount() -1);	
+			}
+			
+		}
+		} catch (Exception e) {
+			
+		}
 	}
 }

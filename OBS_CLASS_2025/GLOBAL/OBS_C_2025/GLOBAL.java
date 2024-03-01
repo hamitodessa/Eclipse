@@ -23,6 +23,7 @@ import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -45,6 +46,10 @@ import javax.swing.JOptionPane;
 
 import org.apache.commons.lang3.StringUtils;
 import org.jfree.data.category.DefaultCategoryDataset;
+
+import com.healthmarketscience.jackcess.Database;
+import com.healthmarketscience.jackcess.DatabaseBuilder;
+
 import LOGER_KAYIT.ILOGER_KAYIT;
 import LOGER_KAYIT.SQLITE_LOG;
 
@@ -69,6 +74,7 @@ public class GLOBAL {
 
 	public static final String OBS_DOSYA = System.getProperty("user.name") + "_OBS_SISTEM_2025.DB";
 	public static final String EKSTRE_DOSYA = System.getProperty("user.name") + "_EKSTRE.DB";
+	public static final String TAH_CEK_DOSYA = System.getProperty("user.name") + "_CEK_PRINT.MDB";
 	public static final String SURUCU = "C:" + File.separator + "OBS_SISTEM" + File.separator;
 	public static final String LOG_SURUCU =  "C:" + File.separator + "OBS_SISTEM" + File.separator + "LOGLAMA" + File.separator + "";
 	public static final String DBYERI = "C:" + File.separator + "OBS_DATABASES" + File.separator + "";
@@ -79,6 +85,7 @@ public class GLOBAL {
 	public static final String BACKUP_PID = System.getProperty("user.name") + "_BACKUP_PID.txt";
 	static Connection con ;
 	static Connection Ekstrecon ;
+	static Connection CekPrintcon ;
 	static String ayarlar[][]; // = new String[5][5];
 	public static String KULL_ADI = "";
 	public static String Log_Mail ="";
@@ -151,6 +158,18 @@ public class GLOBAL {
 		}  
 		return conn;  
 	}
+	public static Connection   myCekPrintConnection ()
+	{
+		Connection conn = null;  
+		try 
+		{  
+			conn = DriverManager.getConnection("jdbc:ucanaccess://" +  SURUCU + TAH_CEK_DOSYA   ,"","" ) ;
+		} 
+		catch (SQLException e) 
+		{	
+		}  
+		return conn;  
+	}
 	public static  void obs_dosya_olustur() throws Exception 
 	{
 		try 
@@ -208,6 +227,66 @@ public class GLOBAL {
 		stmt.execute(sorgu);  
 		stmt.close();
 		Ekstrecon.close();
+	}
+	public static  void cek_print_dosya_olustur() throws Exception 
+	{
+		Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
+		
+		CekPrintcon = myCekPrintConnection();
+		
+		File file = new File(SURUCU + TAH_CEK_DOSYA );
+		try {
+			Database db;
+			db = new DatabaseBuilder(file).setFileFormat(Database.FileFormat.V2000)	
+					//.setCodecProvider(new CryptCodecProvider("oOk271972"))
+					.create();
+			db.close();
+		} catch (Exception e) {
+		}
+		String sorgu= null;
+		sorgu = "CREATE TABLE CEK (" +
+				" LOGO BLOB NULL," +
+				" FIR_ISMI nvarchar(50) NULL, " +
+				" ADR_1 nvarchar(50) NULL," +
+				" ADR_2 nvarchar(50) NULL," +
+				" VD_VN nvarchar(60) NULL," +
+				" MAIL nvarchar(60) NULL," +
+				" DIGER nvarchar(50) NULL, " + 
+				" KASE BLOB NULL ," +
+				" BANKA nvarchar(40), " + 
+				" SUBE nvarchar(40) , " + 
+				" SERI nvarchar(20)," + 
+				" HESAP nvarchar(20), " + 
+				" BORCLU nvarchar(40), " + 
+				" TARIH nvarchar(10),TUTAR float " +
+				 ") ;"  ;
+		
+		con = myCekPrintConnection() ;
+		Statement stmt = con.createStatement();  
+		stmt.execute(sorgu);  
+		stmt.close();
+		
+	}
+	public static void cek_dos_kayit_sil() throws ClassNotFoundException, SQLException 
+	{
+		Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
+		PreparedStatement stmt = null;
+		CekPrintcon = myCekPrintConnection();
+		String sql = "DELETE FROM CEK ";
+		stmt = CekPrintcon.prepareStatement(sql);
+		stmt.executeUpdate();
+		stmt.close();
+		CekPrintcon.close();
+		CekPrintcon = null ;
+	}
+	public static ResultSet tah_cek_oku(String no, int cins) throws ClassNotFoundException, SQLException {
+		Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
+		CekPrintcon = myCekPrintConnection();
+		ResultSet	rss = null;
+		String sql = "SELECT * FROM CEK ";
+		PreparedStatement stmt = CekPrintcon.prepareStatement(sql);
+		rss = stmt.executeQuery();
+		return rss;	 
 	}
 	private static void tablo_yap(String sorgu) throws ClassNotFoundException, SQLException {
 		Class.forName("org.sqlite.JDBC");

@@ -86,7 +86,7 @@ public class ComboBoxMultiSelection<E> extends JComboBox<E> {
         setEditor(comboBoxMultiCellEditor);
         setEditable(true);
         addActionListener((e) -> {
-            if (e.getModifiers() == ActionEvent.MOUSE_EVENT_MASK) {
+            if (e.getModifiersEx() == ActionEvent.MOUSE_EVENT_MASK) {
                 JComboBox combo = (JComboBox) e.getSource();
                 Object obj = combo.getSelectedItem();
                 if (selectedItems.contains(obj)) {

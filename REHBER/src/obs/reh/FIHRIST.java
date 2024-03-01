@@ -301,7 +301,7 @@ public class FIHRIST extends JFrame {
 				{	
 					txtT1.requestFocus();
 				}
-				if ((e.getKeyCode() == 83) && ((e.getModifiers() & (  KeyEvent.CTRL_MASK) ) != 0))
+				if ((e.getKeyCode() == 83) && ((e.getModifiersEx() & (  KeyEvent.CTRL_MASK) ) != 0))
 				{
 					btnKayitf.doClick();
 				}
@@ -325,7 +325,7 @@ public class FIHRIST extends JFrame {
 				{	
 					txtT2.requestFocus();
 				}
-				if ((e.getKeyCode() == 83) && ((e.getModifiers() & (  KeyEvent.CTRL_MASK) ) != 0))
+				if ((e.getKeyCode() == 83) && ((e.getModifiersEx() & (  KeyEvent.CTRL_MASK) ) != 0))
 				{
 					btnKayitf.doClick();
 				}
@@ -350,7 +350,7 @@ public class FIHRIST extends JFrame {
 				{	
 					txtT3.requestFocus();
 				}
-				if ((e.getKeyCode() == 83) && ((e.getModifiers() & (  KeyEvent.CTRL_MASK) ) != 0))
+				if ((e.getKeyCode() == 83) && ((e.getModifiersEx() & (  KeyEvent.CTRL_MASK) ) != 0))
 				{
 					btnKayitf.doClick();
 				}
@@ -373,7 +373,7 @@ public class FIHRIST extends JFrame {
 				{	
 					txtT4.requestFocus();
 				}
-				if ((e.getKeyCode() == 83) && ((e.getModifiers() & (  KeyEvent.CTRL_MASK) ) != 0))
+				if ((e.getKeyCode() == 83) && ((e.getModifiersEx() & (  KeyEvent.CTRL_MASK) ) != 0))
 				{
 					btnKayitf.doClick();
 				}
@@ -396,7 +396,7 @@ public class FIHRIST extends JFrame {
 				{	
 					txtFax.requestFocus();
 				}
-				if ((e.getKeyCode() == 83) && ((e.getModifiers() & (  KeyEvent.CTRL_MASK) ) != 0))
+				if ((e.getKeyCode() == 83) && ((e.getModifiersEx() & (  KeyEvent.CTRL_MASK) ) != 0))
 				{
 					btnKayitf.doClick();
 				}
@@ -419,7 +419,7 @@ public class FIHRIST extends JFrame {
 				{	
 					txtMail.requestFocus();
 				}
-				if ((e.getKeyCode() == 83) && ((e.getModifiers() & (  KeyEvent.CTRL_MASK) ) != 0))
+				if ((e.getKeyCode() == 83) && ((e.getModifiersEx() & (  KeyEvent.CTRL_MASK) ) != 0))
 				{
 					btnKayitf.doClick();
 				}
@@ -442,7 +442,7 @@ public class FIHRIST extends JFrame {
 				{	
 					txtNot.requestFocus();
 				}
-				if ((e.getKeyCode() == 83) && ((e.getModifiers() & (  KeyEvent.CTRL_MASK) ) != 0))
+				if ((e.getKeyCode() == 83) && ((e.getModifiersEx() & (  KeyEvent.CTRL_MASK) ) != 0))
 				{
 					btnKayitf.doClick();
 				}
@@ -477,7 +477,7 @@ public class FIHRIST extends JFrame {
 				{	
 					txtNot2.requestFocus();
 				}
-				if ((e.getKeyCode() == 83) && ((e.getModifiers() & (  KeyEvent.CTRL_MASK) ) != 0))
+				if ((e.getKeyCode() == 83) && ((e.getModifiersEx() & (  KeyEvent.CTRL_MASK) ) != 0))
 				{
 					btnKayitf.doClick();
 				}
@@ -500,7 +500,7 @@ public class FIHRIST extends JFrame {
 				{	
 					txtAdi.requestFocus();
 				}
-				if ((e.getKeyCode() == 83) && ((e.getModifiers() & (  KeyEvent.CTRL_MASK) ) != 0))
+				if ((e.getKeyCode() == 83) && ((e.getModifiersEx() & (  KeyEvent.CTRL_MASK) ) != 0))
 				{
 					btnKayitf.doClick();
 				}

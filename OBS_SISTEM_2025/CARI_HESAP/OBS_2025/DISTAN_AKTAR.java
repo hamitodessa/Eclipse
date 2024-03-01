@@ -217,7 +217,7 @@ public class DISTAN_AKTAR extends JInternalFrame {
 					if ( ! parts[2].equals(" ")) 
 					{
 						char c=parts[2].charAt(0);
-						if ((e.getKeyCode() == c) && ((e.getModifiers() & (parts[0].equals("E") ?  KeyEvent.CTRL_MASK : KeyEvent.ALT_MASK) ) != 0))
+						if ((e.getKeyCode() == c) && ((e.getModifiersEx() & (parts[0].equals("E") ?  KeyEvent.CTRL_MASK : KeyEvent.ALT_MASK) ) != 0))
 						{
 							HESAP_PLN hsp ;
 							getContentPane().setCursor(OBS_SIS_2025_ANA_CLASS.WAIT_CURSOR);
@@ -391,7 +391,7 @@ public class DISTAN_AKTAR extends JInternalFrame {
 					if ( ! parts[2].equals(" ")) 
 					{
 						char c=parts[2].charAt(0);
-						if ((e.getKeyCode() == c) && ((e.getModifiers() & (parts[0].equals("E") ?  KeyEvent.CTRL_MASK : KeyEvent.ALT_MASK) ) != 0))
+						if ((e.getKeyCode() == c) && ((e.getModifiersEx() & (parts[0].equals("E") ?  KeyEvent.CTRL_MASK : KeyEvent.ALT_MASK) ) != 0))
 						{
 							HESAP_PLN hsp ;
 							getContentPane().setCursor(OBS_SIS_2025_ANA_CLASS.WAIT_CURSOR);

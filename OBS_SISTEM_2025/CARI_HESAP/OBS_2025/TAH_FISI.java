@@ -328,7 +328,7 @@ public class TAH_FISI extends JInternalFrame {
 					if ( ! parts[2].equals(" ")) 
 					{
 						char c=parts[2].charAt(0);
-						if ((e.getKeyCode() == c) && ((e.getModifiers() & (parts[0].equals("E") ?  KeyEvent.CTRL_MASK : KeyEvent.ALT_MASK) ) != 0))
+						if ((e.getKeyCode() == c) && ((e.getModifiersEx() & (parts[0].equals("E") ?  KeyEvent.CTRL_DOWN_MASK : KeyEvent.ALT_DOWN_MASK) ) != 0))
 						{
 							kaydet();
 						}
@@ -419,7 +419,7 @@ public class TAH_FISI extends JInternalFrame {
 					if ( ! parts[2].equals(" ")) 
 					{
 						char c=parts[2].charAt(0);
-						if ((e.getKeyCode() == c) && ((e.getModifiers() & (parts[0].equals("E") ?  KeyEvent.CTRL_MASK : KeyEvent.ALT_MASK) ) != 0))
+						if ((e.getKeyCode() == c) && ((e.getModifiersEx() & (parts[0].equals("E") ?  KeyEvent.CTRL_DOWN_MASK : KeyEvent.ALT_DOWN_MASK) ) != 0))
 						{
 							kaydet();
 						}
@@ -430,7 +430,7 @@ public class TAH_FISI extends JInternalFrame {
 					if ( ! parts[2].equals(" ")) 
 					{
 						char c = parts[2].charAt(0);
-						if ((e.getKeyCode() == c) && ((e.getModifiers() & (parts[0].equals("E") ?  KeyEvent.CTRL_MASK : KeyEvent.ALT_MASK) ) != 0))
+						if ((e.getKeyCode() == c) && ((e.getModifiersEx() & (parts[0].equals("E") ?  KeyEvent.CTRL_DOWN_MASK  : KeyEvent.ALT_DOWN_MASK ) ) != 0))
 						{
 							HESAP_PLN hsp ;
 							getContentPane().setCursor(oac.WAIT_CURSOR);
@@ -516,13 +516,10 @@ public class TAH_FISI extends JInternalFrame {
 					if ( ! parts[2].equals(" ")) 
 					{
 						char c=parts[2].charAt(0);
-						if ((e.getKeyCode() == c) && ((e.getModifiers() & (parts[0].equals("E") ?  KeyEvent.CTRL_MASK : KeyEvent.ALT_MASK) ) != 0))
-						{
+						if ((e.getKeyCode() == c) && ((e.getModifiersEx() & (parts[0].equals("E") ?  KeyEvent.CTRL_DOWN_MASK  : KeyEvent.ALT_DOWN_MASK ) ) != 0))
 							kaydet();
-						}
 					}
 				} catch (Exception e2) {
-					// TODO: handle exception
 				}
 			}
 		});
@@ -588,13 +585,10 @@ public class TAH_FISI extends JInternalFrame {
 					if ( ! parts[2].equals(" ")) 
 					{
 						char c=parts[2].charAt(0);
-						if ((e.getKeyCode() == c) && ((e.getModifiers() & (parts[0].equals("E") ?  KeyEvent.CTRL_MASK : KeyEvent.ALT_MASK) ) != 0))
-						{
+						if ((e.getKeyCode() == c) && ((e.getModifiersEx() & (parts[0].equals("E") ?  KeyEvent.CTRL_DOWN_MASK : KeyEvent.ALT_DOWN_MASK) ) != 0))
 							kaydet();
-						}
 					}
 				} catch (Exception e2) {
-					// TODO: handle exception
 				}
 			}
 		});
@@ -821,10 +815,8 @@ public class TAH_FISI extends JInternalFrame {
 		
 		tableCek = new JTable(model);
 		
-		if(! oac.gridcolor.toString().equals("java.awt.Color[r=255,g=255,b=255]")) 
-		{
+		if(! oac.gridcolor.toString().equals("java.awt.Color[r=255,g=255,b=255]"))
 			tableCek.setGridColor(oac.gridcolor);
-		}
 		model.addColumn("Banka", new String []{""});
 		model.addColumn("Sube", new String []{""});
 		model.addColumn("Seri No", new String []{""});
@@ -888,14 +880,11 @@ public class TAH_FISI extends JInternalFrame {
 		tableCek.setShowHorizontalLines(true);
 		tableCek.setShowVerticalLines(true);
 		th.repaint();
-		
-
 		InputMap im = tableCek.getInputMap(JTable.WHEN_FOCUSED);
 		im.put(KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, 0), "Action.NextCell");
 		im.put(KeyStroke.getKeyStroke(KeyEvent.VK_TAB, 0), "Action.NextCell");
 		ActionMap am = tableCek.getActionMap();
 		am.put("Action.NextCell", new Next_Cell_Kereste(tableCek,"tahsil"));
-
 		tableCek.addFocusListener(new FocusListener()
 	      {
 	         @Override
@@ -919,23 +908,20 @@ public class TAH_FISI extends JInternalFrame {
 				cek_toplami();
 			}
 		});
-				
 		scrollPane.setViewportView(tableCek);
 		tabbedPane.setEnabledAt(2, false);
-		
 		fis_temizle();
 	}
 	public static void kaydet()
 	{
-		if(tabbedPane.getSelectedIndex() == 0) // Fis
+		if(tabbedPane.getSelectedIndex() == 1) // ayarlar
+			ayar_kayit();
+		else 
 		{
 			fis_kayit();
 			fis_temizle();
 		}
-		else if(tabbedPane.getSelectedIndex() == 1) // ayarlar
-		{
-			ayar_kayit();
-		}
+		tabbedPane.setSelectedIndex(0);
 	}
 	private static void fis_kayit()
 	{
@@ -947,9 +933,9 @@ public class TAH_FISI extends JInternalFrame {
 		c_Access.tah_kayit(cmbCins.getSelectedIndex(), cmbTur.getSelectedIndex(),textEvrakNo.getText(), 
 				TARIH_CEVIR.tarih_geri_saatli(dtc) ,textCKodu.getText(), textAKodu.getText(), "", 
 				DecimalFormat.getNumberInstance().parse(formattedTutar.getText()).doubleValue(),combCins.getSelectedItem().toString());
+		c_Access.tah_cek_sil(textEvrakNo.getText(), cmbCins.getSelectedIndex());
 		if(cmbTur.getSelectedIndex() == 1)
 		{
-			c_Access.tah_cek_sil(textEvrakNo.getText(), cmbCins.getSelectedIndex());
 			DefaultTableModel model = (DefaultTableModel)tableCek.getModel();
 			for (int i = 0; i <= tableCek.getRowCount() - 1 ; i ++)
 			{
@@ -961,9 +947,7 @@ public class TAH_FISI extends JInternalFrame {
 						{
 							String vade = "";
 							if (model.getValueAt(i , 5).toString().length() >  10)
-							{
 								vade = dateFormater(model.getValueAt(i , 5).toString() , "yyyy.MM.dd", "EEE MMM dd kk:mm:ss zzzz yyyy" ) ;
-							}
 							else
 							{
 								String qwe =dateFormater(model.getValueAt(i , 5).toString() , "yyyy.MM.dd", "dd.MM.yyyy" ) ;
@@ -1003,7 +987,6 @@ public class TAH_FISI extends JInternalFrame {
 			os.flush();
 			os.close();
 		}
-		
 		InputStream fis1 = null;
 		if ( imageKase.getImage()) 
 		{
@@ -1100,9 +1083,7 @@ public class TAH_FISI extends JInternalFrame {
 		formattedTutar.setText(FORMATLAMA.doub_2(rs.getDouble("TUTAR")));
 		dtc.setDate(rs.getDate("TARIH"));
 		if(cmbTur.getSelectedIndex() == 1 )
-		{
 			cek_doldur();
-		}
 		} catch (Exception ex) {
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR, ex.getMessage() );
 		}
@@ -1254,13 +1235,10 @@ public class TAH_FISI extends JInternalFrame {
 		dtc.setDate(new Date());
 		GRID_TEMIZLE.grid_temizle(tableCek);
 		for (int i = 0; i <= 15; i ++)
-		{
 			satir_ilave();
-		}
 	}
 	public static void satir_ilave()
 	{
-		
 		DefaultTableModel mdl = (DefaultTableModel) tableCek.getModel();
 		int satir = tableCek.getSelectedRow();
 		if ( satir  < 0 ) 
@@ -1268,10 +1246,8 @@ public class TAH_FISI extends JInternalFrame {
 			mdl.addRow(new Object[]{"", "","","","",new Date(),0.00});
 			satir = 0 ;
 		}
-		else if ( satir  >= 0 ) 
-		{
+		else if ( satir  >= 0 )
 			mdl.insertRow(satir, new Object[]{"", "","","","",new Date(),0.00});
-		}
 		tableCek.isRowSelected(satir);
 		tableCek.repaint();
 	}
@@ -1305,7 +1281,6 @@ public class TAH_FISI extends JInternalFrame {
 						evr_sayi += 1 ;
 					}
 				}
-				
 			}
 		}
 		lblCekSayi.setText(FORMATLAMA.doub_0(evr_sayi));
@@ -1316,30 +1291,22 @@ public class TAH_FISI extends JInternalFrame {
 		try {
 		ResultSet rs = c_Access.tah_cek_doldur(textEvrakNo.getText(),cmbCins.getSelectedIndex());
 		if (!rs.isBeforeFirst() ) {  
-
 			return;
 		} 
 		DefaultTableModel mdll = (DefaultTableModel) tableCek.getModel();
 		int satir =0 ;
 		while (rs.next()) 
 		{
-			//EVRAK,CINS,BANKA,SUBE,SERI,HESAP,BORCLU,TARIH,TUTAR
-			System.out.println("--");
 			SimpleDateFormat format1 = new SimpleDateFormat("dd.MM.yyyy");
 			String vade1 =  format1.format(rs.getDate("TARIH"));
 			mdll.insertRow(satir,new Object[]{rs.getString("BANKA"),
 					rs.getString("SUBE"),rs.getString("SERI"),rs.getString("HESAP"),
 					rs.getString("BORCLU"), vade1,	rs.getDouble("TUTAR")});
 			satir +=1 ;
-
-			if (satir == mdll.getRowCount())  
-			{
+			if (satir == mdll.getRowCount())
 				mdll.addRow(new Object[]{"", "","","","",new Date(),0.00});
-			}
-			else  {
+			else
 				mdll.removeRow(mdll.getRowCount() -1);	
-			}
-			
 		}
 		} catch (Exception e) {
 			

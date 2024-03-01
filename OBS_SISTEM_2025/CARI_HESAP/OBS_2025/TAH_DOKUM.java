@@ -187,10 +187,25 @@ public class TAH_DOKUM extends JInternalFrame {
 		tc.setMinWidth(100);
 		tc.setMaxWidth(100);
 		
+		tc = tcm.getColumn(4);
+		tc.setHeaderRenderer(new SOLA());
+		tc.setMinWidth(70);
+		tc.setMaxWidth(70);
+		
 		tc = tcm.getColumn(5);
 		tc.setHeaderRenderer(new SAGA());
 		tc.setCellRenderer(new TABLO_RENDERER(4,false));
 		tc.setMinWidth(100);
+		
+		tc = tcm.getColumn(6);
+		tc.setHeaderRenderer(new SOLA());
+		tc.setMinWidth(70);
+		tc.setMaxWidth(70);
+		
+		tc = tcm.getColumn(7);
+		tc.setHeaderRenderer(new SOLA());
+		tc.setMinWidth(70);
+		tc.setMaxWidth(70);
 		
 		
 		Dimension dd = th.getPreferredSize();

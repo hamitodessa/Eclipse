@@ -1536,7 +1536,9 @@ public class CARI_HESAP_MSSQL implements ICARI_HESAP {
 			cinString = " CINS = '" + cins + "' AND";
 		if(tur != 0)
 			turString = " TUR = '" + tur + "' AND";
-		String sql = " SELECT * " +
+		String sql = " SELECT [EVRAK],[TARIH] ,[C_HES] ,[A_HES] ,CASE CINS  WHEN '0' THEN 'Tahsilat'  WHEN '1' THEN 'Tediye' END as CINS ,[TUTAR] ," +
+				 " CASE TUR  WHEN '0' THEN 'Nakit'  WHEN '1' THEN 'Cek' WHEN '2' THEN 'Kredi Karti' END as TUR, " +
+				 " [DVZ_CINS] " +
 				" FROM TAH_DETAY " +
 				" WHERE  " + cinString  + turString  +
 				" TARIH >= '" + ilktarih + "' AND TARIH < '" + sontarih + "' " + 

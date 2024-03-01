@@ -312,7 +312,7 @@ public class CARI_HESAP_MSSQL implements ICARI_HESAP {
 				" ) ";
 		stmt = con.createStatement();  
 		stmt.executeUpdate(sql);
-		sql = "CREATE TABLE TAH_CEK (EVRAK nvarchar(15),CINS int,  BANKA cvarhar(40),SUBE nvarchar(40) ,SERI nvarchar(20),HESAP nvarchar(20),BORCLU nvarchar(40),TARIH datetime,TUTAR float) "  ;
+		sql = "CREATE TABLE TAH_CEK (EVRAK nvarchar(15),CINS int,  BANKA nvarchar(40),SUBE nvarchar(40) ,SERI nvarchar(20),HESAP nvarchar(20),BORCLU nvarchar(40),TARIH datetime,TUTAR float) "  ;
 		stmt = con.createStatement();  
 		stmt.executeUpdate(sql); 
 		sql = "INSERT INTO  TAH_EVRAK(CINS,NO) VALUES ('GIR','0')";

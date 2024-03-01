@@ -258,7 +258,7 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 				" `DVZ_CINS` nvarchar(3) NULL);";
 		stmt = con.createStatement();  
 		stmt.executeUpdate(sql);
-		sql = "CREATE TABLE `TAH_CEK` (`EVRAK` nvarchar(15),`CINS` int, `TUR` int, `BANKA` cvarhar(40), " + 
+		sql = "CREATE TABLE `TAH_CEK` (`EVRAK` nvarchar(15),`CINS` int, `BANKA` nvarchar(40), " + 
 				"`SUBE` nvarchar(40) ,`SERI` nvarchar(20),`HESAP` nvarchar(20),`BORCLU` nvarchar(40),`TARIH` datetime,`TUTAR` double); "  ;
 		stmt = con.createStatement();  
 		stmt.executeUpdate(sql); 
@@ -1365,7 +1365,7 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		ResultSet	rss = null;
 		kONTROL();
-		PreparedStatement stmt = con.prepareStatement("SELECT * FROM TAH_DETAY  WHERE EVRAK = '"+ no +"' AND CINS = '" + cins + "'");
+		PreparedStatement stmt = con.prepareStatement("SELECT * FROM TAH_DETAY  WHERE EVRAK = '" + no +"' AND CINS = '" + cins + "'");
 		rss = stmt.executeQuery();
 		return rss;	
 	}
@@ -1381,22 +1381,84 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 	@Override
 	public void tah_cek_kayit(String evr, int cins,  String bnk, String sb, String sr, String hsp, String brcl,
 			String tar, double tut) throws ClassNotFoundException, SQLException, IOException {
-		// TODO Auto-generated method stub
+		
+		Class.forName("com.mysql.cj.jdbc.Driver");
+		String sql  = "INSERT INTO TAH_CEK (EVRAK,CINS,BANKA,SUBE,SERI,HESAP,BORCLU,TARIH,TUTAR)" +
+				" VALUES (?,?,?,?,?,?,?,?,?)" ;
+		stmt = null;
+		kONTROL();
+		PreparedStatement stmt = con.prepareStatement(sql);
+		stmt.setString(1, evr);
+		stmt.setInt(2, cins);
+		stmt.setString(3, bnk);
+		stmt.setString(4, sb);
+		stmt.setString(5, sr );
+		stmt.setString(6, hsp );
+		stmt.setString(7, brcl );
+		stmt.setString(8, tar );
+		stmt.setDouble(9, tut);
+		stmt.executeUpdate();
+		stmt.close();
 		
 	}
 	@Override
 	public ResultSet tah_cek_doldur(String no, int cins) throws ClassNotFoundException, SQLException {
-		// TODO Auto-generated method stub
-		return null;
+		Class.forName("com.mysql.cj.jdbc.Driver");
+		ResultSet	rss = null;
+		kONTROL();
+		String sql = "SELECT * FROM TAH_CEK WHERE EVRAK = '"+ no +"' AND CINS = '" + cins + "'";
+		PreparedStatement stmt = con.prepareStatement(sql);
+		rss = stmt.executeQuery();
+		return rss;	
 	}
 	@Override
 	public void tah_cek_sil(String no, int cins) throws ClassNotFoundException, SQLException {
-		// TODO Auto-generated method stub
+		Class.forName("com.mysql.cj.jdbc.Driver");
+		String sql = "DELETE FROM TAH_CEK WHERE EVRAK = '"+ no + "' AND CINS = '" + cins + "' " ;
+		kONTROL();
+		PreparedStatement stmt = con.prepareStatement(sql);
+		stmt.executeUpdate();
+		stmt.close();
 		
 	}
 	@Override
 	public void tah_cek_kayit_aktar(String no, int cins) throws ClassNotFoundException, SQLException {
-		// TODO Auto-generated method stub
+		Class.forName("com.mysql.cj.jdbc.Driver");
+		kONTROL();
+		PreparedStatement stmt = con.prepareStatement("SELECT * FROM TAH_AYARLAR ");
+		ResultSet rsAyar = stmt.executeQuery();
+		
+		String sql = "SELECT * FROM TAH_CEK WHERE EVRAK = '"+ no +"' AND CINS = '" + cins + "'";
+		stmt = con.prepareStatement(sql);
+		ResultSet rsCekler = stmt.executeQuery();
+		rsAyar.next();
+		String sqll = "INSERT INTO CEK (LOGO,FIR_ISMI,ADR_1,ADR_2,VD_VN,MAIL,DIGER,KASE ," +
+				 " BANKA,SUBE,SERI,HESAP,BORCLU,TARIH,TUTAR	) ";
+		sqll += "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+		
+		GLOBAL.CekPrintcon = GLOBAL.myCekPrintConnection();
+		PreparedStatement stmtcek = GLOBAL.CekPrintcon.prepareStatement(sqll);
+		while(rsCekler.next())
+		{
+			byte[] img = rsAyar.getBytes("LOGO");
+			stmtcek.setBytes(1, img);
+			stmtcek.setString(2, rsAyar.getString("FIR_ISMI"));
+			stmtcek.setString(3, rsAyar.getString("ADR_1"));
+			stmtcek.setString(4, rsAyar.getString("ADR_2"));
+			stmtcek.setString(5, rsAyar.getString("VD_VN"));
+			stmtcek.setString(6, rsAyar.getString("MAIL"));
+			stmtcek.setString(7, rsAyar.getString("DIGER"));
+			stmtcek.setBytes(8, rsAyar.getBytes("KASE"));
+			stmtcek.setString(9, rsCekler.getString("BANKA"));
+			stmtcek.setString(10, rsCekler.getString("SUBE"));
+			stmtcek.setString(11, rsCekler.getString("SERI"));
+			stmtcek.setString(12, rsCekler.getString("HESAP"));
+			stmtcek.setString(13, rsCekler.getString("BORCLU"));
+			stmtcek.setString(14, TARIH_CEVIR.tarih_ters(rsCekler.getDate("TARIH").toString()));
+			stmtcek.setDouble(15, rsCekler.getDouble("TUTAR"));
+			stmtcek.executeUpdate();
+		}
+		stmtcek.close();
 		
 	}
 }

@@ -121,7 +121,6 @@ public class KER_BOS_KUR extends JInternalFrame {
        catch (Exception ex)
         {
     	   OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage() );
-           //JOptionPane.showMessageDialog(null,  ex.getMessage(),  "Eksik Kur Okuma", JOptionPane.ERROR_MESSAGE);
           }
 	}
 }

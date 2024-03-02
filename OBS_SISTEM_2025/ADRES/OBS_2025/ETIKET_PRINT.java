@@ -169,7 +169,6 @@ public class ETIKET_PRINT extends JInternalFrame {
 		} catch (Exception ex) 
 		{
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR, ex.getMessage());
-			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Etiket Yazdirma", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	private void satir_kontrol()
@@ -243,7 +242,6 @@ public class ETIKET_PRINT extends JInternalFrame {
 			}
 		} catch (Exception e) {
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR, e.getMessage());
-			//JOptionPane.showMessageDialog(null, e.getMessage(), "Etiket Yazdirma", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 

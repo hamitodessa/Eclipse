@@ -470,7 +470,6 @@ public class PARAMETRELER   extends JInternalFrame   {
 				lblNewLabel_3.setFont(bigFont);
 
 				//JColorChooser asd = new JColorChooser();
-				//JOptionPane.showMessageDialog(null, asd,  "Renk Secimi", JOptionPane.PLAIN_MESSAGE);        
 				//System.out.println(asd.getColor().toString());
 
 			}

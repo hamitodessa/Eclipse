@@ -90,7 +90,7 @@ import java.awt.event.MouseWheelEvent;
 import java.awt.event.MouseMotionAdapter;
 
 
-@SuppressWarnings({"serial","static-access" ,"deprecation","unused"} )
+@SuppressWarnings({"serial","static-access" ,"unused"} )
 public class DEKONT extends JInternalFrame {
 
 	private static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
@@ -878,7 +878,7 @@ public class DEKONT extends JInternalFrame {
 						HESAP_PLN hsp ;
 						getContentPane().setCursor(oac.WAIT_CURSOR);
 						hsp = new HESAP_PLN();
-						hsp.show();
+						hsp.setVisible(true);
 						if (! oac.hsp_hsp_kodu.equals(""))
 						{
 							cmbbhes.setSelectedItem( oac.hsp_hsp_kodu);
@@ -933,7 +933,7 @@ public class DEKONT extends JInternalFrame {
 									HESAP_PLN hsp ;
 									getContentPane().setCursor(oac.WAIT_CURSOR);
 									hsp = new HESAP_PLN();
-									hsp.show();
+									hsp.setVisible(true);
 									if (! oac.hsp_hsp_kodu.equals(""))
 									{
 										//cmbbhes.getEditor().setItem(oac.hsp_hsp_kodu);
@@ -1451,7 +1451,7 @@ public class DEKONT extends JInternalFrame {
 						HESAP_PLN hsp ;
 						getContentPane().setCursor(oac.WAIT_CURSOR);
 						hsp = new HESAP_PLN();
-						hsp.show();
+						hsp.setVisible(true);
 						if (! oac.hsp_hsp_kodu.equals(""))
 						{
 							cmbahes.setSelectedItem( oac.hsp_hsp_kodu);
@@ -1507,7 +1507,7 @@ public class DEKONT extends JInternalFrame {
 									HESAP_PLN hsp ;
 									getContentPane().setCursor(oac.WAIT_CURSOR);
 									hsp = new HESAP_PLN();
-									hsp.show();
+									hsp.setVisible(true);
 									if (! oac.hsp_hsp_kodu.equals(""))
 									{
 										cmbahes.setSelectedItem( oac.hsp_hsp_kodu);

@@ -325,7 +325,6 @@ public class IMALAT_GRUP_RAPOR extends JInternalFrame {
 		} 
 		catch (Exception ex) {
 			 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
-		//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Grup Urun Kodlu Raporlama", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	private static void depo_kodlu() 
@@ -396,7 +395,6 @@ public class IMALAT_GRUP_RAPOR extends JInternalFrame {
 		} 
 		catch (Exception ex) {
 			 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
-		//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Grup Depo Kodlu Raporlama", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	private static void yil_kodlu() 
@@ -473,7 +471,6 @@ public class IMALAT_GRUP_RAPOR extends JInternalFrame {
 		} 
 		catch (Exception ex) {
 			 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
-		//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Grup Yil Kodlu Raporlama", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	private static void ana_grp() 
@@ -547,7 +544,6 @@ public class IMALAT_GRUP_RAPOR extends JInternalFrame {
 		} 
 		catch (Exception ex) {
 			 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
-		//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Grup Yil Kodlu Raporlama",JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	private static void alt_grp() 
@@ -626,7 +622,6 @@ public class IMALAT_GRUP_RAPOR extends JInternalFrame {
 		} 
 		catch (Exception ex) {
 			 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
-		//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Grup Yil Kodlu Raporlama",JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	private static void alt_grp_yil() 
@@ -722,7 +717,6 @@ public class IMALAT_GRUP_RAPOR extends JInternalFrame {
 		} 
 		catch (Exception ex) {
 			 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
-		//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Grup Yil Kodlu Raporlama", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	private static void alt_grp_yil_ay() 
@@ -817,7 +811,6 @@ public class IMALAT_GRUP_RAPOR extends JInternalFrame {
 		} 
 		catch (Exception ex) {
 			 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
-		//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Grup Yil Kodlu Raporlama", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	private static void yil_ay() 
@@ -898,7 +891,6 @@ public class IMALAT_GRUP_RAPOR extends JInternalFrame {
 		} 
 		catch (Exception ex) {
 			 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
-		//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Grup Yil Ay Kodlu Raporlama", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	private static void baslik_bak()
@@ -1123,7 +1115,6 @@ public class IMALAT_GRUP_RAPOR extends JInternalFrame {
 		} 
 		catch (Exception ex) {
 			 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
-			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Imalat Grup Raporlama", JOptionPane.PLAIN_MESSAGE);
 		} 
 	}
 	private static void kusurr()
@@ -1230,7 +1221,6 @@ public class IMALAT_GRUP_RAPOR extends JInternalFrame {
 		{
 			
 			 OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING,"Aktarilacak Bilgi Yok.....");
-		//JOptionPane.showMessageDialog(null, "Aktarilacak Bilgi Yok.....","Imalat Grup Raporlama", JOptionPane.PLAIN_MESSAGE);
 		GLOBAL.g_baslik = "";
 		return;
 		}
@@ -1274,7 +1264,6 @@ public class IMALAT_GRUP_RAPOR extends JInternalFrame {
 		{
 			
 			 OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING,"Aktarilacak Bilgi Yok.....");
-		//JOptionPane.showMessageDialog(null, "Aktarilacak Bilgi Yok.....","Imalat Grup Raporlama", JOptionPane.PLAIN_MESSAGE);
 		}
 		else
 		{
@@ -1629,12 +1618,10 @@ public class IMALAT_GRUP_RAPOR extends JInternalFrame {
 		    	  }
 		    		GuiUtil.setWaitCursor(splitPane,false);
 		    		 OBS_MAIN.mesaj_goster(5000,Notifications.Type.INFO,"Aktarma Islemi Tamamlandi.....");
-			//JOptionPane.showMessageDialog(null, "Aktarma Islemi Tamamlandi.....","Imalat Grup Raporlama", JOptionPane.PLAIN_MESSAGE);
 	  }
 	  catch (Exception ex)
 	  {
 		  OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
-			//JOptionPane.showMessageDialog(null, "Excell Aktarma.....","Imalat Grup Raporlama", JOptionPane.PLAIN_MESSAGE);
 	  }
 	  }
 	@SuppressWarnings("resource")

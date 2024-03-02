@@ -77,7 +77,7 @@ import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.ActionEvent;
 
-@SuppressWarnings({"serial","static-access","removal","deprecation"})
+@SuppressWarnings({"serial","static-access","removal"})
 public class CEK_GIRIS extends JInternalFrame {
 	private static JTable table;
 	public static Obs_TextFIeld textField;
@@ -368,7 +368,7 @@ public class CEK_GIRIS extends JInternalFrame {
 					HESAP_PLN hsp ;
 					try {
 						hsp = new HESAP_PLN();
-						hsp.show();
+						hsp.setVisible(true);
 						textField_1.setText( oac.hsp_hsp_kodu);
 					} catch (Exception e1) {
 						e1.printStackTrace();

@@ -1296,10 +1296,8 @@ public class CARI_HESAP_MSSQL implements ICARI_HESAP {
 	}
 	private void kONTROL() throws SQLException
 	{
-		if(con.isClosed())  
-		{
+		if(con.isClosed())
 			baglan();
-		}
 	}
 	@Override
 	public ResultSet yilsonu_hp_pln() throws ClassNotFoundException, SQLException {
@@ -1338,7 +1336,6 @@ public class CARI_HESAP_MSSQL implements ICARI_HESAP {
 	public void tah_ayar_kayit(String adi, String adr1, String adr2, String vdvn, String amail, String diger,
 			InputStream resim , InputStream kase) throws ClassNotFoundException, SQLException, IOException {
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-		
 		String sql  = "INSERT INTO TAH_AYARLAR (FIR_ISMI,ADR_1,ADR_2,VD_VN,MAIL,DIGER,LOGO,KASE)" +
 				" VALUES (?,?,?,?,?,?,?,?)" ;
 		PreparedStatement stmt = null;
@@ -1361,9 +1358,7 @@ public class CARI_HESAP_MSSQL implements ICARI_HESAP {
 			stmt.setBytes(7,bytes);
 		}
 		else
-		{
 			stmt.setBytes(7,null);
-		}
 		if (  kase != null)
 		{
 			ByteArrayOutputStream bos = new ByteArrayOutputStream();
@@ -1375,9 +1370,7 @@ public class CARI_HESAP_MSSQL implements ICARI_HESAP {
 			stmt.setBytes(8,bytes);
 		}
 		else
-		{
 			stmt.setBytes(8,null);
-		}
 		stmt.executeUpdate();
 		stmt.close();
 	}
@@ -1436,7 +1429,6 @@ public class CARI_HESAP_MSSQL implements ICARI_HESAP {
 	@Override
 	public void tah_sil(String no, int cins) throws ClassNotFoundException, SQLException {
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-		
 		String sql = "DELETE FROM TAH_DETAY WHERE evrak = '"+ no + "' AND CINS = '" + cins + "' " ;
 		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
@@ -1463,7 +1455,6 @@ public class CARI_HESAP_MSSQL implements ICARI_HESAP {
 		stmt.setDouble(9, tut);
 		stmt.executeUpdate();
 		stmt.close();
-		
 	}
 	@Override
 	public ResultSet tah_cek_doldur(String no, int cins) throws ClassNotFoundException, SQLException {
@@ -1483,17 +1474,14 @@ public class CARI_HESAP_MSSQL implements ICARI_HESAP {
 		PreparedStatement stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();
 		stmt.close();
-		
 	}
 	@Override
 	public void tah_cek_kayit_aktar(String no, int cins) throws ClassNotFoundException, SQLException {
 		
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-		
 		kONTROL();
 		PreparedStatement stmt = con.prepareStatement("SELECT * FROM TAH_AYARLAR ");
 		ResultSet rsAyar = stmt.executeQuery();
-		
 		String sql = "SELECT * FROM TAH_CEK WHERE EVRAK = '"+ no +"' AND CINS = '" + cins + "'";
 		stmt = con.prepareStatement(sql);
 		ResultSet rsCekler = stmt.executeQuery();
@@ -1501,7 +1489,6 @@ public class CARI_HESAP_MSSQL implements ICARI_HESAP {
 		String sqll = "INSERT INTO CEK (LOGO,FIR_ISMI,ADR_1,ADR_2,VD_VN,MAIL,DIGER,KASE ," +
 				 " BANKA,SUBE,SERI,HESAP,BORCLU,TARIH,TUTAR	) ";
 		sqll += "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-		
 		GLOBAL.CekPrintcon = GLOBAL.myCekPrintConnection();
 		PreparedStatement stmtcek = GLOBAL.CekPrintcon.prepareStatement(sqll);
 		while(rsCekler.next())
@@ -1536,9 +1523,9 @@ public class CARI_HESAP_MSSQL implements ICARI_HESAP {
 			cinString = " CINS = '" + cins + "' AND";
 		if(tur != 0)
 			turString = " TUR = '" + tur + "' AND";
-		String sql = " SELECT [EVRAK],[TARIH] ,[C_HES] ,[A_HES] ,CASE CINS  WHEN '0' THEN 'Tahsilat'  WHEN '1' THEN 'Tediye' END as CINS ,[TUTAR] ," +
+		String sql = " SELECT [EVRAK],[TARIH] ,[C_HES] ,[A_HES] ,CASE CINS  WHEN '0' THEN 'Tahsilat'  WHEN '1' THEN 'Tediye' END as CINS ," +
 				 " CASE TUR  WHEN '0' THEN 'Nakit'  WHEN '1' THEN 'Cek' WHEN '2' THEN 'Kredi Karti' END as TUR, " +
-				 " [DVZ_CINS] " +
+				 " [DVZ_CINS], [TUTAR]  " +
 				" FROM TAH_DETAY " +
 				" WHERE  " + cinString  + turString  +
 				" TARIH >= '" + ilktarih + "' AND TARIH < '" + sontarih + "' " + 

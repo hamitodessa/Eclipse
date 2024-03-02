@@ -289,7 +289,6 @@ public class RECETE_RAPOR extends JInternalFrame {
 			}
 		} catch (Exception ex) {
 			 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
-			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Recete  Raporlama", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	private static void grup_cevir()
@@ -401,7 +400,6 @@ public class RECETE_RAPOR extends JInternalFrame {
 				
 		} catch (Exception ex) {
 			 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
-			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Recete Raporlama",JOptionPane.ERROR_MESSAGE);
 		} 
 	}
 	public static void detay_doldur(String recno)

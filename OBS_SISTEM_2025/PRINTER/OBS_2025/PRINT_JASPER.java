@@ -178,7 +178,6 @@ public class PRINT_JASPER extends JInternalFrame {
 		} catch (Exception ex) 
 		{
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR, ex.getMessage());
-			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Yazdirma", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	private static void ekstre_kisa()
@@ -283,7 +282,6 @@ public class PRINT_JASPER extends JInternalFrame {
 			}
 		} catch (Exception e) {
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,e.getMessage());
-			//JOptionPane.showMessageDialog(null, e.getMessage(), "Etiket Yazdirma", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 

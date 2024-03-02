@@ -231,16 +231,13 @@ public class ADRES_LISTE extends JDialog {
 
 		} catch (Exception ex) {
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR, ex.getMessage());
-			//JOptionPane.showMessageDialog(null, ex.getMessage()); 
 		}
 	}
 
 	public void arama()  
 	{	
 		if (textField.getText().equals(""))
-		{
 			table.setRowSorter(null);
-		}
 		else
 		{
 			TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(((DefaultTableModel) table.getModel())); 

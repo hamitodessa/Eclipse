@@ -239,7 +239,6 @@ public class SMS extends JInternalFrame {
 				if (! bagli)
 				{
 					OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING, "Modem Bagli Degil......   ");
-					//JOptionPane.showMessageDialog(null, "Modem Bagli Degil......   ",  "Sms Gonderme", JOptionPane.PLAIN_MESSAGE);
 					return;
 				}
 				if ( chckbxNewCheckBox.isSelected()) //' Coklu gonderim
@@ -457,7 +456,6 @@ public class SMS extends JInternalFrame {
 					bagli = false;
 				} catch (Exception ex) {
 					OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR, ex.getMessage());
-					//JOptionPane.showMessageDialog(null,  ex.getMessage(),  "Sms Gonderme", JOptionPane.PLAIN_MESSAGE);	
 				}
 
 			}
@@ -662,7 +660,6 @@ public class SMS extends JInternalFrame {
 		catch (Exception ex)
 		{
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR, ex.getMessage());
-			//JOptionPane.showMessageDialog(null, ex.getMessage());   
 		}
 	}
 	private static void kutu_temizle() 
@@ -716,7 +713,6 @@ public class SMS extends JInternalFrame {
 		catch (Exception ex)
 		{
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR, ex.getMessage());
-			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Kayit Giris", JOptionPane.PLAIN_MESSAGE);		
 		}
 	}
 	public static void sil()
@@ -1021,7 +1017,6 @@ public class SMS extends JInternalFrame {
 		catch (Exception ex)
 		{
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,  ex.getMessage());
-			//JOptionPane.showMessageDialog(null,  ex.getMessage(),  "Com  Port Baglanti Okuma", JOptionPane.PLAIN_MESSAGE);	
 		}
 	}
 	public void setDatabits(int databits) throws IllegalArgumentException 

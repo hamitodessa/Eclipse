@@ -208,7 +208,6 @@ public class ORTALAMA_FIAT extends JInternalFrame {
 		 {
     	 GRID_TEMIZLE.grid_temizle(table);
     	 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
-    		//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Ortalama Fiat", JOptionPane.ERROR_MESSAGE);	
     	}
 	}
 	private static void mus_kodlu() 
@@ -288,7 +287,6 @@ public class ORTALAMA_FIAT extends JInternalFrame {
 		} 
 		catch (Exception ex) {
 			 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
-		//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Grup Hesap Kodu Raporlama",JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	private static void mus_ana_kodlu() 
@@ -376,7 +374,6 @@ public class ORTALAMA_FIAT extends JInternalFrame {
 		} 
 		catch (Exception ex) {
 			 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
-		//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Grup Hesap Kodu Raporlama", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	private static void diger_kodlu() 
@@ -496,7 +493,6 @@ public class ORTALAMA_FIAT extends JInternalFrame {
 		} 
 		catch (Exception ex) {
 			 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
-		//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Diger Kodlu Raporlama", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	private static void grup_cevir()
@@ -574,7 +570,6 @@ public class ORTALAMA_FIAT extends JInternalFrame {
 		} 
 		catch (Exception ex) {
 			 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
-			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Ort Raporlama", JOptionPane.ERROR_MESSAGE);
 		} 
 	}
 	private static void fontt()
@@ -600,7 +595,6 @@ public class ORTALAMA_FIAT extends JInternalFrame {
 		{
 			
 			 OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING,"Aktarilacak Bilgi Yok.....");
-		//JOptionPane.showMessageDialog(null, "Aktarilacak Bilgi Yok.....","Imalat Grup Raporlama", JOptionPane.PLAIN_MESSAGE);
 		}
 		else
 		{
@@ -1208,12 +1202,10 @@ public class ORTALAMA_FIAT extends JInternalFrame {
 				Progres_Bar_Temizle();
 				GuiUtil.setWaitCursor(splitPane,false);
 				 OBS_MAIN.mesaj_goster(5000,Notifications.Type.INFO,"Aktarma Islemi Tamamlandi.....");
-				//JOptionPane.showMessageDialog(null, "Aktarma Islemi Tamamlandi.....","Stok Detay", JOptionPane.PLAIN_MESSAGE);
 			}
 			catch (Exception ex)
 			{
 				 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
-				//JOptionPane.showMessageDialog(null,  ex.getMessage(),"Excell Aktarma", JOptionPane.ERROR_MESSAGE);
 			}
 		}
 		};

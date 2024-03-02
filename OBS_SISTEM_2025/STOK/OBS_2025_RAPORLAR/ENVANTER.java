@@ -581,7 +581,6 @@ public class ENVANTER extends JInternalFrame {
 			}
 		} catch (Exception ex) {
 			 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
-			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Envanter  Raporlama",JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	public static void fifo()
@@ -740,7 +739,6 @@ public class ENVANTER extends JInternalFrame {
 			}
 		} catch (Exception ex) {
 			 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
-			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Envanter  Raporlama",JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	private static void fifo_alt_doldur(int satir)
@@ -849,7 +847,6 @@ public class ENVANTER extends JInternalFrame {
 			}
 		} catch (Exception ex) {
 			 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
-			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Envanter  Raporlama",JOptionPane.ERROR_MESSAGE);
 		}
 
 	}
@@ -1023,7 +1020,6 @@ public class ENVANTER extends JInternalFrame {
 		} 
 		catch (Exception ex) {
 			 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
-			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Envanter  Raporlama",JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	private static void lifo_alt_doldur(int satir)
@@ -1132,7 +1128,6 @@ public class ENVANTER extends JInternalFrame {
 			}
 		} catch (Exception ex) {
 			 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
-			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Envanter  Raporlama",JOptionPane.ERROR_MESSAGE);
 		}
 
 	}
@@ -1286,7 +1281,6 @@ public class ENVANTER extends JInternalFrame {
 
 		} catch (Exception ex) {
 			 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
-			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Envanter  Raporlama",JOptionPane.ERROR_MESSAGE);
 		} 
 	}
 	public static void excell_aktar()
@@ -1298,7 +1292,6 @@ public class ENVANTER extends JInternalFrame {
 			if (mdl.getRowCount() == 0 )
 			{
 				 OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING,"Aktarilacak Bilgi Yok.....");
-				//JOptionPane.showMessageDialog(null, "Aktarilacak Bilgi Yok.....","Envanter Dokum", JOptionPane.ERROR_MESSAGE);
 			}
 			else
 			{
@@ -1312,7 +1305,6 @@ public class ENVANTER extends JInternalFrame {
 			if (mdl.getRowCount() == 0 )
 			{
 				 OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING,"Aktarilacak Bilgi Yok.....");
-				//JOptionPane.showMessageDialog(null, "Aktarilacak Bilgi Yok.....","Envanter Dokum FIFO", JOptionPane.ERROR_MESSAGE);
 			}
 			else
 			{
@@ -1327,7 +1319,6 @@ public class ENVANTER extends JInternalFrame {
 			if (mdl.getRowCount() == 0 )
 			{
 				 OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING,"Aktarilacak Bilgi Yok.....");
-				//JOptionPane.showMessageDialog(null, "Aktarilacak Bilgi Yok.....","Envanter Dokum LIFO", JOptionPane.ERROR_MESSAGE);
 			}
 			else
 			{
@@ -2058,12 +2049,10 @@ public class ENVANTER extends JInternalFrame {
 				GuiUtil.setWaitCursor(splitPane,false);
 				 OBS_MAIN.mesaj_goster(5000,Notifications.Type.INFO,"Aktarma Islemi Tamamlandi.....");
 
-				//JOptionPane.showMessageDialog(null, "Aktarma Islemi Tamamlandi.....","Stok Detay", JOptionPane.PLAIN_MESSAGE);
 			}
 			catch (Exception ex)
 			{
 				 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
-				//JOptionPane.showMessageDialog(null,  ex.getMessage(),"Excell Aktarma", JOptionPane.ERROR_MESSAGE);
 			}
 		}
 		};

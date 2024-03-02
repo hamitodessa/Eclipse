@@ -16,7 +16,7 @@ import javax.swing.event.DocumentListener;
 import OBS_C_2025.Obs_TextFIeld;
 
 
-@SuppressWarnings({"serial","unused","deprecation","static-access"})
+@SuppressWarnings({"serial","unused","static-access"})
 public class COKLU_GIRIS_HSP extends DefaultCellEditor {
 
 	private static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
@@ -39,7 +39,7 @@ public class COKLU_GIRIS_HSP extends DefaultCellEditor {
 					HESAP_PLN hsp ;
 					try {
 						hsp = new HESAP_PLN();
-						hsp.show();
+						hsp.setVisible(true);
 						textField.setText( oac.hsp_hsp_kodu);
 					} catch (Exception ex) {} 
 				}

@@ -149,7 +149,6 @@ public class KOD_ACIKLAMA extends JInternalFrame {
 		table.setFont(bigFont);
 		} catch (Exception ex) {
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage() );
-			//JOptionPane.showMessageDialog(null,  ex.getMessage(),  "KOD ACIKLAMA", JOptionPane.ERROR_MESSAGE);   
 		}
 	}
 	public static void kaydet() 

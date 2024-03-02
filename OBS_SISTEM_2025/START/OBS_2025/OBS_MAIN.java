@@ -1950,7 +1950,6 @@ public class OBS_MAIN extends JFrame  {
 				if (! varmi  ) 
 				{
 					mesaj_goster(7500,Notifications.Type.WARNING,"Oncelikli Olarak Envanter Dokumu Aliniz......");
-					//JOptionPane.showMessageDialog(null, "Oncelikli Olarak Envanter Dokumu Aliniz......", "Yil Sonu Aktarma",JOptionPane.ERROR_MESSAGE);
 					return;
 				}
 				form_ac("STOK YIL SONU","");
@@ -2462,7 +2461,6 @@ public class OBS_MAIN extends JFrame  {
 			public void actionPerformed(ActionEvent e) {
 				if(! GLOBAL.KULL_ADI.equals("Admin") && ! GLOBAL.KULL_ADI.equals("hamit"))
 				{
-					//JOptionPane.showMessageDialog(null, "Sadece Admin Gorebilir","Log Sorgulama", JOptionPane.INFORMATION_MESSAGE);
 					mesaj_goster(5000,Notifications.Type.WARNING,"Sadece Admin Gorebilir");
 					return;
 				}
@@ -3387,7 +3385,6 @@ public class OBS_MAIN extends JFrame  {
 				{
 					GuiUtil.setWaitCursor(toolBar,false);	
 					mesaj_goster(7500,Notifications.Type.ERROR,ex.getMessage());
-					//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Grafik", JOptionPane.ERROR_MESSAGE);
 				}
 			}
 		});
@@ -3910,7 +3907,6 @@ public class OBS_MAIN extends JFrame  {
 		} catch (Exception e) {
 			GuiUtil.setWaitCursor(toolBar,false);
 			mesaj_goster(10000,Notifications.Type.ERROR,e.getMessage() );
-			//JOptionPane.showMessageDialog(null,e.getMessage(), "Gunluk Kontrol", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	public static void gun_mesaj_goster(int zaman, Notifications.Type tipType , String mesaj)

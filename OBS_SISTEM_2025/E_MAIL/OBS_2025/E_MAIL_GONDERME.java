@@ -326,7 +326,6 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 					List<File> droppedFiles = (List<File>) evt .getTransferable().getTransferData(  DataFlavor.javaFileListFlavor);
 					if(droppedFiles.size() > 1){
 						OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING,  "Tek Seferde 1 Dosya Ekleyebilirsiniz.....!!");
-						//JOptionPane.showMessageDialog(null,  "Tek Seferde 1 Dosya Ekleyebilirsiniz.....!!", "Dosya Ekleme", JOptionPane.PLAIN_MESSAGE);
 					}
 					else{
 						File droppedFile = (File) droppedFiles.get(0);

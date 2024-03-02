@@ -910,7 +910,6 @@ public class CAL_DIZIN extends JDialog {
 						else
 						{
 							OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING, "Sifre Yanlis" );
-							//JOptionPane.showMessageDialog(null, "Sifre Yanlis", "Sifre Degistirme", JOptionPane.PLAIN_MESSAGE);
 							lblysif.setVisible(false);
 							txtyenisif.setVisible(false);
 							btnNewButton_2_1_1.setVisible(false);
@@ -970,7 +969,6 @@ public class CAL_DIZIN extends JDialog {
 				{
 					contentPane.setCursor(DEFAULT_CURSOR);
 					OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,  ex.getMessage() );
-					//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Sifre Kaydet", JOptionPane.PLAIN_MESSAGE);
 					txtsif.requestFocus();		
 				}		
 			}
@@ -1031,11 +1029,9 @@ public class CAL_DIZIN extends JDialog {
 					mAT.Logla(lBILGI,BAGLAN_LOG.cariLogDizin);
 					contentPane.setCursor(DEFAULT_CURSOR);
 					OBS_MAIN.mesaj_goster(5000,Notifications.Type.INFO,  "Deneme Mail Gonderildi........" );
-					//JOptionPane.showMessageDialog(null,  "Mail Gonderildi........", "OBS SISTEM", JOptionPane.INFORMATION_MESSAGE);
 				} catch (Exception ex) {
 					contentPane.setCursor(DEFAULT_CURSOR);
 					OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,  ex.getMessage() );
-					//JOptionPane.showMessageDialog(null,  e1.getMessage(), "OBS SISTEM", JOptionPane.WARNING_MESSAGE);
 				} 
 			}
 		});
@@ -1099,7 +1095,6 @@ public class CAL_DIZIN extends JDialog {
 				catch (Exception ex)
 				{
 					OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,  ex.getMessage().toString() );
-					//JOptionPane.showMessageDialog(null,  ex.getMessage().toString(),  "E_Mail Silme", JOptionPane.ERROR_MESSAGE);   
 				}
 			}
 		});
@@ -1136,7 +1131,6 @@ public class CAL_DIZIN extends JDialog {
 				{
 					contentPane.setCursor(DEFAULT_CURSOR);
 					OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,  ex.getMessage() );
-					//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Mail Kaydet", JOptionPane.PLAIN_MESSAGE);
 					txtsif.requestFocus();		
 				}				
 
@@ -1711,7 +1705,6 @@ public class CAL_DIZIN extends JDialog {
 			{
 				contentPane.setCursor(DEFAULT_CURSOR);
 				OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING,  "Baglanti Saglanamadi........" );
-				//JOptionPane.showMessageDialog(null, "Baglanti Saglanamadi........", "Server Baglanti", JOptionPane.ERROR_MESSAGE);
 				btnNewButton_1.setEnabled(false);
 			}
 		}
@@ -1732,7 +1725,6 @@ public class CAL_DIZIN extends JDialog {
 			{
 				contentPane.setCursor(DEFAULT_CURSOR);
 				OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING,  "Baglanti Saglanamadi........" );
-				//JOptionPane.showMessageDialog(null, "Baglanti Saglanamadi........", "Server Baglanti", JOptionPane.ERROR_MESSAGE);
 				btnNewButton_1.setEnabled(false);
 			}
 		}

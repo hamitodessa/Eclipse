@@ -382,7 +382,6 @@ public class MIZAN extends JInternalFrame {
 		catch (Exception ex)
 		{
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage() );
-			//JOptionPane.showMessageDialog(null, ex.getMessage(),"Mizan Raporlama", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 
@@ -455,7 +454,6 @@ public class MIZAN extends JInternalFrame {
 		catch (Exception ex)
 		{
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage() );
-			//JOptionPane.showMessageDialog(null, ex.getMessage(),"Mizan Raporlama", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	private static String isimoku(String kod) {
@@ -476,7 +474,6 @@ public class MIZAN extends JInternalFrame {
 		catch (Exception ex)
 		{
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage() );
-			//JOptionPane.showMessageDialog(null, ex.getMessage(),"Mizan Raporlama", JOptionPane.ERROR_MESSAGE);
 		}
 		return sonuc ;
 	}

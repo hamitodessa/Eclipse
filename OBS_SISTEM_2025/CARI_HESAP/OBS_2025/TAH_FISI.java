@@ -105,7 +105,7 @@ import javax.swing.KeyStroke;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
-@SuppressWarnings({ "unchecked", "rawtypes" ,"deprecation","static-access","removal"})
+@SuppressWarnings({ "unchecked", "rawtypes" ,"static-access","removal"})
 public class TAH_FISI extends JInternalFrame {
 
 	private static final long serialVersionUID = 1L;
@@ -435,7 +435,7 @@ public class TAH_FISI extends JInternalFrame {
 							HESAP_PLN hsp ;
 							getContentPane().setCursor(oac.WAIT_CURSOR);
 							hsp = new HESAP_PLN();
-							hsp.show();
+							hsp.setVisible(true);
 							textCKodu.setText(oac.hsp_hsp_kodu);
 							String[] bilgiStrings = CARI_ISIM_OKU.isim(textCKodu.getText());
 							lblCAdi.setText(bilgiStrings[0]);
@@ -457,7 +457,7 @@ public class TAH_FISI extends JInternalFrame {
 					HESAP_PLN hsp ;
 					try {
 						hsp = new HESAP_PLN();
-						hsp.show(); 
+						hsp.setVisible(true);
 						textCKodu.setText( oac.hsp_hsp_kodu);
 						getContentPane().setCursor(oac.WAIT_CURSOR);
 						String[] bilgiStrings = CARI_ISIM_OKU.isim(textCKodu.getText());
@@ -470,29 +470,25 @@ public class TAH_FISI extends JInternalFrame {
 			}
 		});
 		textCKodu.getDocument().addDocumentListener(new DocumentListener() {
-		 public void changedUpdate(DocumentEvent e) {
-		  
-			    	getContentPane().setCursor(oac.WAIT_CURSOR);
-			    	String[] bilgiStrings = CARI_ISIM_OKU.isim(textCKodu.getText());
-					lblCAdi.setText(bilgiStrings[0]);
-					getContentPane().setCursor(oac.DEFAULT_CURSOR);
-				
-		  }
-		  public void removeUpdate(DocumentEvent e) {
-		    
-			    	getContentPane().setCursor(oac.WAIT_CURSOR);
-			    	String[] bilgiStrings = CARI_ISIM_OKU.isim(textCKodu.getText());
-					lblCAdi.setText(bilgiStrings[0]);
-					getContentPane().setCursor(oac.DEFAULT_CURSOR);
-			  }
-		  public void insertUpdate(DocumentEvent e) {
-		    
-			    	getContentPane().setCursor(oac.WAIT_CURSOR);
-			    	String[] bilgiStrings = CARI_ISIM_OKU.isim(textCKodu.getText());
-					lblCAdi.setText(bilgiStrings[0]);
-					getContentPane().setCursor(oac.DEFAULT_CURSOR);
-			  }
-			});
+			public void changedUpdate(DocumentEvent e) {
+				getContentPane().setCursor(oac.WAIT_CURSOR);
+				String[] bilgiStrings = CARI_ISIM_OKU.isim(textCKodu.getText());
+				lblCAdi.setText(bilgiStrings[0]);
+				getContentPane().setCursor(oac.DEFAULT_CURSOR);
+			}
+			public void removeUpdate(DocumentEvent e) {
+				getContentPane().setCursor(oac.WAIT_CURSOR);
+				String[] bilgiStrings = CARI_ISIM_OKU.isim(textCKodu.getText());
+				lblCAdi.setText(bilgiStrings[0]);
+				getContentPane().setCursor(oac.DEFAULT_CURSOR);
+			}
+			public void insertUpdate(DocumentEvent e) {
+				getContentPane().setCursor(oac.WAIT_CURSOR);
+				String[] bilgiStrings = CARI_ISIM_OKU.isim(textCKodu.getText());
+				lblCAdi.setText(bilgiStrings[0]);
+				getContentPane().setCursor(oac.DEFAULT_CURSOR);
+			}
+		});
 		textCKodu.setColumns(10);
 		
 		lblCAdi = new JLabel("...");
@@ -762,7 +758,6 @@ public class TAH_FISI extends JInternalFrame {
 			
 			public void actionPerformed(ActionEvent e) {
 				getContentPane().setCursor(oac.WAIT_CURSOR);
-
 				UIManager.put("FileChooser.cancelButtonText", "Vazgec");
 				JFileChooser chooser = new JFileChooser();
 				chooser.setCurrentDirectory(new java.io.File("."));
@@ -789,9 +784,7 @@ public class TAH_FISI extends JInternalFrame {
 				}
 			}
 		});
-		
 		panel_Ayarlar.add(btnNewButton_4_1);
-		
 		JButton btnNewButton_5_1 = new JButton("Temizle");
 		btnNewButton_5_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -809,8 +802,6 @@ public class TAH_FISI extends JInternalFrame {
 		
 		scrollPane = new JScrollPane();
 		panel_5.add(scrollPane, BorderLayout.CENTER);
-		
-		
 		DefaultTableModel model = new DefaultTableModel() ; 
 		
 		tableCek = new JTable(model);
@@ -892,7 +883,6 @@ public class TAH_FISI extends JInternalFrame {
 	         {
 	           
 	         }
-	 
 	         @Override
 	         public void focusLost(FocusEvent e)
 	         {
@@ -1290,9 +1280,8 @@ public class TAH_FISI extends JInternalFrame {
 	{
 		try {
 		ResultSet rs = c_Access.tah_cek_doldur(textEvrakNo.getText(),cmbCins.getSelectedIndex());
-		if (!rs.isBeforeFirst() ) {  
+		if (!rs.isBeforeFirst() )
 			return;
-		} 
 		DefaultTableModel mdll = (DefaultTableModel) tableCek.getModel();
 		int satir =0 ;
 		while (rs.next()) 
@@ -1308,8 +1297,9 @@ public class TAH_FISI extends JInternalFrame {
 			else
 				mdll.removeRow(mdll.getRowCount() -1);	
 		}
-		} catch (Exception e) {
-			
+		} catch (Exception ex) 
+		{
+			 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
 		}
 	}
 }

@@ -228,7 +228,6 @@ public class GIDECEGI_YER extends JInternalFrame {
 		catch (Exception ex)
 		{
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
-			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Gidecegi Yer Okuma", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	private void kutu_doldur()
@@ -364,7 +363,6 @@ public class GIDECEGI_YER extends JInternalFrame {
 		catch (Exception ex)
 		{
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
-			//JOptionPane.showMessageDialog(null,  ex.getMessage(),"Gidecegi Adres Okuma", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 }

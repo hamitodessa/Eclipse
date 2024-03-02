@@ -373,7 +373,6 @@ public class EVRAK_FORMAT extends JInternalFrame {
 	catch (Exception ex)
 	{
 		OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
-		//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Evrak Formatlama", JOptionPane.ERROR_MESSAGE);
 	}
 	}
 	public static void kaydet()
@@ -469,7 +468,6 @@ public class EVRAK_FORMAT extends JInternalFrame {
 		catch (Exception ex)
 		{
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
-			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Evrak formatlama Kayit", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 }

@@ -50,7 +50,7 @@ import OBS_C_2025.lOG_BILGI;
 import raven.toast.Notifications;
 import javax.swing.JComboBox;
 
-@SuppressWarnings({"serial","static-access","deprecation"})
+@SuppressWarnings({"serial","static-access"})
 public class ADRES_GIRIS extends JInternalFrame {
 
 	private static Obs_TextFIeld txtkayit;
@@ -531,7 +531,7 @@ public class ADRES_GIRIS extends JInternalFrame {
 				getContentPane().setCursor(oac.WAIT_CURSOR);
 				ADRES_LISTE asp ;
 				asp = new ADRES_LISTE();
-				asp.show();
+				asp.setVisible(true);
 				getContentPane().setCursor(oac.DEFAULT_CURSOR);
 			}
 		});

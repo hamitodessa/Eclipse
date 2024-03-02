@@ -414,12 +414,9 @@ public class PRINT_YAPMA extends JInternalFrame {
 				clientDoc.getDatabaseController().logon(BAGLAN.cariDizin.kULLANICI, BAGLAN.cariDizin.sIFRESI);
 				
 				if (GLOBAL.dos_kontrol(GLOBAL.SURUCU + GLOBAL.TAH_CEK_DOSYA) == false)
-				{
 					GLOBAL.cek_print_dosya_olustur();
-				}
-				else {
+				else
 					GLOBAL.cek_dos_kayit_sil();
-				}
 				
 				c_Access.tah_cek_kayit_aktar(TAH_FISI.textEvrakNo.getText(),TAH_FISI.cmbCins.getSelectedIndex());
 				
@@ -427,26 +424,30 @@ public class PRINT_YAPMA extends JInternalFrame {
 				clientDoc.getDatabaseController().setDataSource(rs);
 				//**************************************************************************
 				ResultSet rstResultSet = a_Access.adr_etiket_arama_kod(TAH_FISI.textAKodu.getText());
+				String Unvan = "*****";
+				String Adr1  = "*****";
+				String Adr2  = "*****";
+				String Semt  = "*****";
 				if (!rstResultSet.isBeforeFirst() ) { 
 					
 				} 
-				rstResultSet.next();
-				String Unvan= rstResultSet.getString("Adi");
-				String Adr1= rstResultSet.getString("Adres_1");
-				String Adr2 = rstResultSet.getString("Adres_2");
-				String Semt = rstResultSet.getString("Semt") + " / "+ rstResultSet.getString("Sehir");
+				else {
+					rstResultSet.next();
+					Unvan = rstResultSet.getString("Adi");
+					Adr1 = rstResultSet.getString("Adres_1");
+					Adr2 = rstResultSet.getString("Adres_2");
+					Semt = rstResultSet.getString("Semt") + " / "+ rstResultSet.getString("Sehir");
+				}
+				
 				ReportObjects reportObjects = clientDoc.getReportDefController().getReportObjectController().getReportObjectsByKind(ReportObjectKind.text);
 				for(int i=0; i< reportObjects.size();i++)
 				{
 					ITextObject textObject = (ITextObject)reportObjects.get(i);
 					String cinString = "" ;
 					if(TAH_FISI.cmbCins.getSelectedIndex() == 0)
-					{
 						cinString = "TAHSILAT";
-					}
-					else {
+					else
 						cinString = "TEDIYE";
-					}
 					
 					if (textObject.getName().equals("Cins"))
 					{
@@ -600,17 +601,12 @@ public class PRINT_YAPMA extends JInternalFrame {
 						String qwe = Double.toString(aqw);
 						String cnt  = "" ;
 						if ( TAH_FISI.combCins.getSelectedItem().toString().equals("TL"))
-						{
 							cnt = "KURUŞ" ;
-						}
 						else
-						{
 							cnt = "Cent" ;
-						}
 						sayiyiYaziyaCevir cevir = new sayiyiYaziyaCevir();
 						String yaziylat = cevir.sayiyiYaziyaCevirr(qwe, 2, TAH_FISI.combCins.getSelectedItem().toString(), cnt , "#", null, null, null);
 						oParagraphTextElement.setText(yaziylat );
-
 						oParagraphTextElement.setKind(ParagraphElementKind.text);
 						IFontColor newFontColor = oTextObject.getFontColor();
 						Font fnt = new Font("Verdana", Font.PLAIN, 11);
@@ -630,13 +626,9 @@ public class PRINT_YAPMA extends JInternalFrame {
 						ParagraphElements oParagraphElements = new ParagraphElements();
 						ParagraphTextElement oParagraphTextElement = new ParagraphTextElement();
 						double aqw = DecimalFormat.getNumberInstance().parse(TAH_FISI.formattedTutar.getText()).doubleValue();
-						
-							oParagraphTextElement.setText("Aşağıda Dökümü Yapılan  " + FORMATLAMA.doub_2(aqw) + " " + TAH_FISI.combCins.getSelectedItem().toString() + 
+						oParagraphTextElement.setText("Aşağıda Dökümü Yapılan  " + FORMATLAMA.doub_2(aqw) + " " + TAH_FISI.combCins.getSelectedItem().toString() + 
 									" Tutarındaki " + FORMATLAMA.doub_0(Integer.valueOf(TAH_FISI.lblCekSayi.getText())) + " Adet Çek ");
-						
-						
 						oParagraphTextElement.setKind(ParagraphElementKind.text);
-						
 						IFontColor newFontColor = oTextObject.getFontColor();
 						Font fnt = new Font("Verdana", Font.PLAIN, 10);
 						newFontColor.setFont(fnt);
@@ -670,9 +662,7 @@ public class PRINT_YAPMA extends JInternalFrame {
 						clientDoc.getReportDefController().getReportObjectController().modify(textObject, oTextObject);
 					}
 				}
-
 			}
-
 			else if (nerden.equals("ekstre"))
 			{
 				//**************************************************************************
@@ -681,16 +671,11 @@ public class PRINT_YAPMA extends JInternalFrame {
 				clientDoc.getDatabaseController().logon(BAGLAN.cariDizin.kULLANICI, BAGLAN.cariDizin.sIFRESI);
 				//**************************************************************************
 				if (nasil.equals("normal"))
-				{
 					rs = c_Access.ekstre(FILTRE.txtkodu.getText(), TARIH_CEVIR.tarih_geri(FILTRE.dateChooser),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_1));
-				}
 				else if (nasil.equals("aratarih"))
-				{
 					rs = c_Access.ekstre_sqlite();
-				}
 			
 				clientDoc.getDatabaseController().setDataSource(rs);
-
 				com.crystaldecisions.sdk.occa.report.definition.ReportObjects reportObjects = clientDoc.getReportDefController().getReportObjectController().getReportObjectsByKind(ReportObjectKind.text);
 				for(int i=0; i< reportObjects.size();i++)
 				{
@@ -704,18 +689,14 @@ public class PRINT_YAPMA extends JInternalFrame {
 						ParagraphTextElement oParagraphTextElement = new ParagraphTextElement();
 						oParagraphTextElement.setText(FILTRE.txtkodu.getText());
 						oParagraphTextElement.setKind(ParagraphElementKind.text);
-						
 						IFontColor newFontColor = oTextObject.getFontColor();
 						Font fnt = new Font("Verdana", Font.BOLD, 12);
 						newFontColor.setFont(fnt);
 						oParagraphTextElement.setFontColor(newFontColor);
-						
 						oParagraphs.add(oParagraph);
 						oParagraph.setParagraphElements(oParagraphElements);
 						oParagraphElements.add(oParagraphTextElement);
-					
 						oTextObject.setParagraphs(oParagraphs);
-						
 						clientDoc.getReportDefController().getReportObjectController().modify(textObject, oTextObject);
 					}
 					else if (textObject.getName().equals("txtUnvan"))
@@ -3000,7 +2981,6 @@ public class PRINT_YAPMA extends JInternalFrame {
 		catch (Exception ex)
 		{
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
-			//JOptionPane.showMessageDialog(null, ex.getCause() + "==" + ex,  "Yazici Islem", JOptionPane.ERROR_MESSAGE);   
 		}
 	}
 	private static void doldur()
@@ -3045,7 +3025,6 @@ public class PRINT_YAPMA extends JInternalFrame {
 		catch (Exception ex)
 		{
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
-			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Evrak Formatlama", JOptionPane.PLAIN_MESSAGE);
 		}
 	}
 }

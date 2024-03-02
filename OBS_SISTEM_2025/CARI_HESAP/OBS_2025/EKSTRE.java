@@ -113,73 +113,73 @@ public class EKSTRE extends JInternalFrame {
 		
 		JPanel panel = new JPanel();
 		jScrollPane1alt.setViewportView(panel);
-		panel.setBorder(new LineBorder(new Color(0, 191, 255)));
+		panel.setBorder(new LineBorder(null));
 		panel.setPreferredSize(new Dimension(1120,90));
 
 		panel.setLayout(null);
 
 		lblNewLabel = new JLabel("...");
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblNewLabel.setForeground(new Color(139, 0, 0));
+		//lblNewLabel.setForeground(new Color(139, 0, 0));
 		lblNewLabel.setBounds(10, 11, 128, 14);
 		panel.add(lblNewLabel);
 
 		lblNewLabel_1 = new JLabel("...");
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblNewLabel_1.setForeground(new Color(139, 0, 0));
+		//lblNewLabel_1.setForeground(new Color(139, 0, 0));
 		lblNewLabel_1.setBounds(148, 11, 291, 14);
 		panel.add(lblNewLabel_1);
 
 		lblNewLabel_3 = new JLabel("0");
 		lblNewLabel_3.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblNewLabel_3.setForeground(new Color(0, 0, 128));
+		//lblNewLabel_3.setForeground(new Color(0, 0, 128));
 		lblNewLabel_3.setBounds(100, 65, 75, 14);
 		panel.add(lblNewLabel_3);
 
 		lblNewLabel_4 = new JLabel("0.00");
 		lblNewLabel_4.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblNewLabel_4.setForeground(new Color(0, 0, 128));
+		//lblNewLabel_4.setForeground(new Color(0, 0, 128));
 		lblNewLabel_4.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblNewLabel_4.setBounds(827, 11, 100, 14);
 		panel.add(lblNewLabel_4);
 
 		lblNewLabel_5 = new JLabel("0.00");
 		lblNewLabel_5.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblNewLabel_5.setForeground(new Color(0, 0, 128));
+		//lblNewLabel_5.setForeground(new Color(0, 0, 128));
 		lblNewLabel_5.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblNewLabel_5.setBounds(697, 11, 130, 14);
 		panel.add(lblNewLabel_5);
 
 		lblNewLabel_4_1 = new JLabel("0.00");
 		lblNewLabel_4_1.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblNewLabel_4_1.setForeground(new Color(0, 0, 128));
+		//lblNewLabel_4_1.setForeground(new Color(0, 0, 128));
 		lblNewLabel_4_1.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblNewLabel_4_1.setBounds(827, 31, 100, 14);
 		panel.add(lblNewLabel_4_1);
 
 		lblNewLabel_4_2 = new JLabel("0.00");
 		lblNewLabel_4_2.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblNewLabel_4_2.setForeground(new Color(0, 0, 128));
+		//lblNewLabel_4_2.setForeground(new Color(0, 0, 128));
 		lblNewLabel_4_2.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblNewLabel_4_2.setBounds(827, 56, 100, 14);
 		panel.add(lblNewLabel_4_2);
 
 		lblNewLabel_5_1 = new JLabel("0.00");
 		lblNewLabel_5_1.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblNewLabel_5_1.setForeground(new Color(0, 0, 128));
+		//lblNewLabel_5_1.setForeground(new Color(0, 0, 128));
 		lblNewLabel_5_1.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblNewLabel_5_1.setBounds(697, 31, 130, 14);
 		panel.add(lblNewLabel_5_1);
 
 		lblNewLabel_5_2 = new JLabel("0.00");
 		lblNewLabel_5_2.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblNewLabel_5_2.setForeground(new Color(0, 0, 128));
+		//lblNewLabel_5_2.setForeground(new Color(0, 0, 128));
 		lblNewLabel_5_2.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblNewLabel_5_2.setBounds(697, 56, 130, 14);
 		panel.add(lblNewLabel_5_2);
 
 		lblNewLabel_5_2_1 = new JLabel("0.00");
-		lblNewLabel_5_2_1.setForeground(new Color(0, 0, 128));
+		//lblNewLabel_5_2_1.setForeground(new Color(0, 0, 128));
 		lblNewLabel_5_2_1.setFont(new Font("Tahoma", Font.BOLD, 14));
 		lblNewLabel_5_2_1.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblNewLabel_5_2_1.setBounds(930, 56, 120, 14);
@@ -187,7 +187,7 @@ public class EKSTRE extends JInternalFrame {
 
 		lblNewLabel_1_1 = new JLabel("...");
 		lblNewLabel_1_1.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblNewLabel_1_1.setForeground(new Color(139, 0, 0));
+		//lblNewLabel_1_1.setForeground(new Color(139, 0, 0));
 		lblNewLabel_1_1.setBounds(10, 36, 111, 14);
 		panel.add(lblNewLabel_1_1);
 
@@ -211,7 +211,7 @@ public class EKSTRE extends JInternalFrame {
 		
 		lblNewLabel_5_2_1_1 = new JLabel("0.00");
 		lblNewLabel_5_2_1_1.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblNewLabel_5_2_1_1.setForeground(new Color(0, 0, 128));
+		//lblNewLabel_5_2_1_1.setForeground(new Color(0, 0, 128));
 		lblNewLabel_5_2_1_1.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblNewLabel_5_2_1_1.setBounds(930, 11, 120, 14);
 		panel.add(lblNewLabel_5_2_1_1);

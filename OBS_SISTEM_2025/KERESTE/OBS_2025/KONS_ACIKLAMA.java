@@ -147,7 +147,6 @@ public class KONS_ACIKLAMA extends JInternalFrame {
 		table.setFont(bigFont);
 		} catch (Exception ex) {
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage() );
-			//JOptionPane.showMessageDialog(null, ex.getMessage(), "KONSIMENTO", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	public static void kaydet() 

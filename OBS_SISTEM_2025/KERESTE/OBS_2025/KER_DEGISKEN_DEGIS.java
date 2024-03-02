@@ -133,7 +133,6 @@ public class KER_DEGISKEN_DEGIS extends JInternalFrame {
 			if (cmbAna.getSelectedItem().toString().equals(cmbyAna.getSelectedItem().toString()) &&  cmbAlt.getSelectedItem().toString().equals(cmbyAlt.getSelectedItem().toString()))
 			{
 				OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,"Aranacak ve Yazilacak Degiskenler Ayni" );
-				//JOptionPane.showMessageDialog(null, "Aranacak ve Yazilacak Degiskenler Ayni",  "Degisken Yenileme", JOptionPane.INFORMATION_MESSAGE);   
 				return;
 			}
 			GuiUtil.setWaitCursor(KER_DEGISKEN_DEGIS.panel,true);
@@ -179,13 +178,11 @@ public class KER_DEGISKEN_DEGIS extends JInternalFrame {
 			ker_Access.degisken_degistir(anagrp,altgrp,yanagrp,yaltgrp,(comboBox.getSelectedItem().toString().equals("GIRIS")) ? "G" :"C" , lBILGI,BAGLAN_LOG.fatLogDizin );
 			GuiUtil.setWaitCursor(KER_DEGISKEN_DEGIS.panel,false);
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.INFO,"Degisim Tamamlandi................." );
-			//JOptionPane.showMessageDialog(null, "Degisim Tamamlandi.................",  "Degisken Yenileme", JOptionPane.PLAIN_MESSAGE);   
 		}
 		catch (Exception ex)
 		{
 			GuiUtil.setWaitCursor(KER_DEGISKEN_DEGIS.panel,false);
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage() );
-			//JOptionPane.showMessageDialog(null, ex.getMessage(),  "Degisken Yenileme", JOptionPane.ERROR_MESSAGE);   
 		}
 	}
 	private void ana_grup_doldur()
@@ -219,7 +216,6 @@ public class KER_DEGISKEN_DEGIS extends JInternalFrame {
 		{
 			getContentPane().setCursor(oac.DEFAULT_CURSOR);
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage() );
-			//JOptionPane.showMessageDialog(null, ex.getMessage(),  "Ana Grup", JOptionPane.ERROR_MESSAGE);   
 		}
 	}
 	private void alt_grup_doldur(JComboBox<String> anabox,JComboBox<String> altbox)
@@ -261,7 +257,6 @@ public class KER_DEGISKEN_DEGIS extends JInternalFrame {
 		{
 			getContentPane().setCursor(oac.DEFAULT_CURSOR);
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage() );
-			//JOptionPane.showMessageDialog(null, ex.getMessage(),  "Alt Grup", JOptionPane.ERROR_MESSAGE);    	
 		}
 	}
 }

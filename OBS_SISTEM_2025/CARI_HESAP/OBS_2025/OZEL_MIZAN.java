@@ -875,12 +875,10 @@ public class OZEL_MIZAN extends JInternalFrame {
 			GuiUtil.setWaitCursor(splitPane,false);
 			
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.INFO, "Aktarma Islemi Tamamlandi....." );
-			//JOptionPane.showMessageDialog(null, "Aktarma Islemi Tamamlandi.....","Ozel Mizan", JOptionPane.PLAIN_MESSAGE);
 		}
 		catch (Exception ex)
 		{
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage() );
-			//JOptionPane.showMessageDialog(null, ex.getMessage(),"Ozel Mizan", JOptionPane.PLAIN_MESSAGE);
 		}
 	}
 	public static void mail_at() throws IOException
@@ -1043,7 +1041,6 @@ public class OZEL_MIZAN extends JInternalFrame {
 		catch (Exception ex)
 		{
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage() );
-			//JOptionPane.showMessageDialog(null, ex.getMessage(),"Ozel Mizan Raporlama", JOptionPane.ERROR_MESSAGE);
 		}
 		return sonuc ;
 	}	

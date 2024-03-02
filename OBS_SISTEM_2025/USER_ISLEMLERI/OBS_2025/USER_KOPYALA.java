@@ -95,7 +95,6 @@ public class USER_KOPYALA extends JInternalFrame {
 			{
 				panel.setCursor(oac.DEFAULT_CURSOR);
 				OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING,"Bu Kullanici isminde Cari Hesap Bilgiler Mevcut");
-				//JOptionPane.showMessageDialog(null, "Bu Kullanici isminde Cari Hesap Bilgiler Mevcut", "Kullanici Kopyalama", JOptionPane.WARNING_MESSAGE);
 				return ;
 			}
 			panel.setCursor(oac.WAIT_CURSOR);
@@ -108,7 +107,6 @@ public class USER_KOPYALA extends JInternalFrame {
 			{
 				panel.setCursor(oac.DEFAULT_CURSOR);
 				OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING,"Bu Kullanici isminde Adres Bilgiler Mevcut");
-				//JOptionPane.showMessageDialog(null, "Bu Kullanici isminde Adres Bilgiler Mevcut", "Kullanici Kopyalama", JOptionPane.WARNING_MESSAGE);
 				return ;
 			}
 			panel.setCursor(oac.WAIT_CURSOR);
@@ -121,7 +119,6 @@ public class USER_KOPYALA extends JInternalFrame {
 			{
 				panel.setCursor(oac.DEFAULT_CURSOR);
 				OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING,"Bu Kullanici isminde Kur Bilgiler Mevcut");
-				//JOptionPane.showMessageDialog(null, "Bu Kullanici isminde Kur Bilgiler Mevcut", "Kullanici Kopyalama", JOptionPane.WARNING_MESSAGE);
 				return ;
 			}
 			panel.setCursor(oac.WAIT_CURSOR);
@@ -134,7 +131,6 @@ public class USER_KOPYALA extends JInternalFrame {
 			{
 				panel.setCursor(oac.DEFAULT_CURSOR);
 				OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING,"Bu Kullanici isminde Fatura Bilgiler Mevcut");
-				//JOptionPane.showMessageDialog(null, "Bu Kullanici isminde Fatura Bilgiler Mevcurt", "Kullanici Kopyalama", JOptionPane.WARNING_MESSAGE);
 				return ;
 			}
 			panel.setCursor(oac.WAIT_CURSOR);
@@ -147,7 +143,6 @@ public class USER_KOPYALA extends JInternalFrame {
 			{
 				panel.setCursor(oac.DEFAULT_CURSOR);
 				OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING,"Bu Kullanici isminde Sms Bilgiler Mevcut");
-				//JOptionPane.showMessageDialog(null, "Bu Kullanici isminde Sms Bilgiler Mevcurt", "Kullanici Kopyalama", JOptionPane.WARNING_MESSAGE);
 				return ;
 			}
 			panel.setCursor(oac.WAIT_CURSOR);
@@ -160,7 +155,6 @@ public class USER_KOPYALA extends JInternalFrame {
 			{
 				panel.setCursor(oac.DEFAULT_CURSOR);
 				OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING,"Bu Kullanici isminde Gunluk Bilgiler Mevcut");
-				//JOptionPane.showMessageDialog(null, "Bu Kullanici isminde Gunluk Bilgiler Mevcurt", "Kullanici Kopyalama", JOptionPane.WARNING_MESSAGE);
 				return ;
 			}
 			panel.setCursor(oac.WAIT_CURSOR);
@@ -172,7 +166,6 @@ public class USER_KOPYALA extends JInternalFrame {
 			if (count  != 0) 
 			{
 				panel.setCursor(oac.DEFAULT_CURSOR);
-				//JOptionPane.showMessageDialog(null, "Bu Kullanici isminde Kambiyo Bilgiler Mevcurt", "Kullanici Kopyalama", JOptionPane.WARNING_MESSAGE);
 				return ;
 			}
 			panel.setCursor(oac.WAIT_CURSOR);
@@ -185,7 +178,6 @@ public class USER_KOPYALA extends JInternalFrame {
 			{
 				panel.setCursor(oac.DEFAULT_CURSOR);
 				OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING,"Bu Kullanici isminde Kereste Bilgiler Mevcut");
-				//JOptionPane.showMessageDialog(null, "Bu Kullanici isminde Kereste Bilgiler Mevcurt", "Kullanici Kopyalama", JOptionPane.WARNING_MESSAGE);
 				return ;
 			}
 			//*********CARI KOPYALA
@@ -207,13 +199,11 @@ public class USER_KOPYALA extends JInternalFrame {
 			//		            
 			panel.setCursor(oac.DEFAULT_CURSOR);   
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.INFO, "Kullanici Kopyalandi");
-			//JOptionPane.showMessageDialog(null, "Kullanici Kopyalandi", "Kullanici Kopyalama", JOptionPane.WARNING_MESSAGE);
 		}
 		catch (Exception ex)
 		{
 			panel.setCursor(oac.DEFAULT_CURSOR);   
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR, ex.getMessage());
-			//JOptionPane.showMessageDialog(null, ex.getMessage(), "Kullanici Kopyalama", JOptionPane.WARNING_MESSAGE);
 		}
 	}
 	private static void bILGILER (String mODUL) throws ClassNotFoundException, SQLException

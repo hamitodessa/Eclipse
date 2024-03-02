@@ -481,7 +481,6 @@ public class COKLU_IMALAT extends JInternalFrame {
 		catch (Exception ex)
 		{
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
-			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Bilgi Doldur", JOptionPane.ERROR_MESSAGE);
 		}
 		return isim ;
 	}
@@ -525,7 +524,6 @@ public class COKLU_IMALAT extends JInternalFrame {
 		catch (Exception ex)
 		{
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
-			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Stok Kodu", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	public static  void kaydet()
@@ -593,14 +591,12 @@ public class COKLU_IMALAT extends JInternalFrame {
 				Progres_Bar_Temizle();
 				GuiUtil.setWaitCursor(splitPane,false);
 				OBS_MAIN.mesaj_goster(5000,Notifications.Type.INFO, "Imalat Islemi Tamamlandi .....");
-				//JOptionPane.showMessageDialog(null,  "Imalat Islemi Tamamlandi .....", "Coklu Imalat", JOptionPane.PLAIN_MESSAGE);
 			}
 			catch (Exception ex)
 			{
 				Progres_Bar_Temizle();
 				GuiUtil.setWaitCursor(splitPane,false);
 				OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
-				//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Coklu Imalat", JOptionPane.ERROR_MESSAGE);
 			}
 		}
 		};
@@ -659,7 +655,6 @@ public class COKLU_IMALAT extends JInternalFrame {
 		{
 			getContentPane().setCursor(oac.DEFAULT_CURSOR);
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
-			//JOptionPane.showMessageDialog(null, ex.getMessage(),  "Ana Grup", JOptionPane.ERROR_MESSAGE);   
 		}
 	}
 	private void alt_grup_doldur()
@@ -699,7 +694,6 @@ public class COKLU_IMALAT extends JInternalFrame {
 		{
 			getContentPane().setCursor(oac.DEFAULT_CURSOR);
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
-			//JOptionPane.showMessageDialog(null, ex.getMessage(),  "Alt Grup", JOptionPane.ERROR_MESSAGE);    	
 		}
 	}
 	private void depo_doldur()
@@ -727,7 +721,6 @@ public class COKLU_IMALAT extends JInternalFrame {
 		catch (Exception ex)
 		{
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
-			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Depo Doldur", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	public static void bilgi_doldur(String cins) 
@@ -760,7 +753,6 @@ public class COKLU_IMALAT extends JInternalFrame {
 		catch (Exception ex)
 		{
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
-			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Bilgi Doldur", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 }

@@ -64,7 +64,7 @@ import javax.swing.border.EtchedBorder;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-@SuppressWarnings({"serial","static-access","deprecation"})
+@SuppressWarnings({"serial","static-access"})
 public class RECETE extends JInternalFrame {
 	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
 	static STOK_ACCESS f_Access = new STOK_ACCESS(OBS_SIS_2025_ANA_CLASS._IStok , OBS_SIS_2025_ANA_CLASS._IFatura_Loger);
@@ -199,7 +199,6 @@ public class RECETE extends JInternalFrame {
 		            		{
 		            	 textField.setText("");
 		            	 OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING, "Hic Kayit Yok...");
-		            	//JOptionPane.showMessageDialog(null,  "Hic Kayit Yok...", "Recete Okuma", JOptionPane.PLAIN_MESSAGE);
 		            	textField.requestFocus();
 		            		}
 		        	setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
@@ -208,7 +207,6 @@ public class RECETE extends JInternalFrame {
 				 {
 		        	setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 		        	 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
-		        	//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Recete Okuma", JOptionPane.ERROR_MESSAGE);
 				 }
 			}
 		});
@@ -296,7 +294,7 @@ public class RECETE extends JInternalFrame {
 					URUN_ARAMA arm ;
 					setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 						arm = new URUN_ARAMA();
-						arm.show();
+						arm.setVisible(true);
 					setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 					textField_1.setText( oac.stk_kodu);
 				}
@@ -419,7 +417,7 @@ public class RECETE extends JInternalFrame {
 				URUN_ARAMA arm ;
 				setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 					arm = new URUN_ARAMA();
-					arm.show();
+					arm.setVisible(true);
 				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 				table.getModel().setValueAt( oac.stk_kodu,table.getSelectedRow(), 1) ;
 				bilgi_doldur(oac.stk_kodu);
@@ -684,7 +682,6 @@ public class RECETE extends JInternalFrame {
 		catch (Exception ex)
 		{
 			 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
-			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Otomatik Doldurma", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	public static void satir_ilave()
@@ -783,7 +780,6 @@ public class RECETE extends JInternalFrame {
 		catch (Exception ex)
 		{
 			 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
-			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Urun Kodu", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	public static void kaydet()
@@ -874,7 +870,6 @@ public class RECETE extends JInternalFrame {
 	catch (Exception ex)
 	{
 		 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
-		//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Recete Stayz1", JOptionPane.ERROR_MESSAGE);
 	}
 	}
 	private static void gir_yaz ()

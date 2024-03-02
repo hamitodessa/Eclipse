@@ -57,7 +57,7 @@ import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import javax.swing.JComboBox;
 
-@SuppressWarnings({"serial" , "static-access" , "deprecation"})
+@SuppressWarnings({"serial" , "static-access" })
 public class H_PLANI extends JInternalFrame {
 	private static JTextField txtkayit;
 	private static Obs_TextFIeld txtkodu;
@@ -503,13 +503,13 @@ public class H_PLANI extends JInternalFrame {
 					HESAP_PLN hsp ;
 					hsp = new HESAP_PLN();
 					hsp.setLocation(853 ,191);
-					hsp.show();
+					hsp.setVisible(true);
 					getContentPane().setCursor(oac.DEFAULT_CURSOR);
 				}
 				catch (Exception ex)
 				{
 					 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage() );
-					//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Hesap Plani", JOptionPane.ERROR_MESSAGE);
+					
 					getContentPane().setCursor(oac.DEFAULT_CURSOR);
 				}
 

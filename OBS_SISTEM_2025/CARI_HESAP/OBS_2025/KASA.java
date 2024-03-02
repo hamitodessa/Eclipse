@@ -54,7 +54,7 @@ import net.proteanit.sql.DbUtils;
 import javax.swing.JPanel;
 import raven.toast.Notifications;
 
-@SuppressWarnings({ "serial", "static-access", "deprecation" })
+@SuppressWarnings({ "serial", "static-access" })
 public class KASA extends JInternalFrame {
 
 	private JTable table_1;
@@ -171,7 +171,7 @@ public class KASA extends JInternalFrame {
 							HESAP_PLN hsp;
 							getContentPane().setCursor(oac.WAIT_CURSOR);
 							hsp = new HESAP_PLN();
-							hsp.show();
+							hsp.setVisible(true);
 							textField.setText(oac.hsp_hsp_kodu);
 							getContentPane().setCursor(oac.DEFAULT_CURSOR);
 						}
@@ -188,7 +188,7 @@ public class KASA extends JInternalFrame {
 					HESAP_PLN hsp;
 					try {
 						hsp = new HESAP_PLN();
-						hsp.show();
+						hsp.setVisible(true);
 						textField.setText(oac.hsp_hsp_kodu);
 						getContentPane().setCursor(oac.WAIT_CURSOR);
 						isimoku_ekstre();
@@ -579,7 +579,6 @@ public class KASA extends JInternalFrame {
 			table_1.setFont(bigFont);
 		} catch (Exception ex) {
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage() );
-			//JOptionPane.showMessageDialog(null, ex.getMessage(), "Gunluk Islem", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 

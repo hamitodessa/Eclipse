@@ -448,7 +448,6 @@ public class STK_YIL_SONU extends JInternalFrame {
 		catch (Exception ex)
 		{
 			 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
-			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Yil Sonu Aktarma",JOptionPane.ERROR_MESSAGE);
 		}
 }
 	private void ana_alt()
@@ -468,13 +467,11 @@ public class STK_YIL_SONU extends JInternalFrame {
 			
 			getContentPane().setCursor(oac.DEFAULT_CURSOR);
 			 OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING,"Ana Grup Alt Grup Aktarildi.....");
-			//JOptionPane.showMessageDialog(null,  "Ana Grup Alt Grup Aktarildi.....", "Yil Sonu Aktarma",JOptionPane.PLAIN_MESSAGE);
 		 }
 		catch (Exception ex)
 		{
 			getContentPane().setCursor(oac.DEFAULT_CURSOR);
 			 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
-		//	JOptionPane.showMessageDialog(null,  ex.getMessage(), "Yil Sonu Aktarma",JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	private void gidecegi_yer()
@@ -493,13 +490,11 @@ public class STK_YIL_SONU extends JInternalFrame {
 		
 			getContentPane().setCursor(oac.DEFAULT_CURSOR);
 			 OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING, "Gidecegi Yer Aktarildi.....");
-			//JOptionPane.showMessageDialog(null,  "Gidecegi Yer Aktarildi.....", "Yil Sonu Aktarma",JOptionPane.PLAIN_MESSAGE);
 		 }
 		catch (Exception ex)
 		{
 			getContentPane().setCursor(oac.DEFAULT_CURSOR);
 			 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
-		//	JOptionPane.showMessageDialog(null,  ex.getMessage(), "Yil Sonu Aktarma",JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	private void evr_format()
@@ -518,13 +513,11 @@ public class STK_YIL_SONU extends JInternalFrame {
 			
 			getContentPane().setCursor(oac.DEFAULT_CURSOR);
 			 OBS_MAIN.mesaj_goster(5000,Notifications.Type.INFO, "Gidecegi Yer Aktarildi.....");
-		//	JOptionPane.showMessageDialog(null,  "Gidecegi Yer Aktarildi.....", "Yil Sonu Aktarma",JOptionPane.PLAIN_MESSAGE);
 		 }
 		catch (Exception ex)
 		{
 			getContentPane().setCursor(oac.DEFAULT_CURSOR);
 			 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
-			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Yil Sonu Aktarma",JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	private void envr_aktar()
@@ -543,7 +536,6 @@ public class STK_YIL_SONU extends JInternalFrame {
 				getContentPane().setCursor(oac.DEFAULT_CURSOR);
 				
 				 OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING,"Secili Satir Bulunamadi....");
-				//JOptionPane.showMessageDialog(null,  "Secili Satir Bulunamadi....", "Yil Sonu Aktarma",JOptionPane.ERROR_MESSAGE);
 				return;
 			}
 			int g =  JOptionPane.showOptionDialog( null,  "Aktarma Islemine Baslanacak .....Satir Sayisi:" + satir_kontrol()  ,

@@ -128,7 +128,7 @@ public class DISTAN_AKTAR extends JInternalFrame {
 	private JLabel lblunvan_2 ;
 	private JComboBox<String> cmbArama;
 	private JComboBox<String> cmbSecenek;
-	//Date simDIDate = new Date();;
+
 	@SuppressWarnings("removal")
 	public DISTAN_AKTAR() {
 		
@@ -153,7 +153,7 @@ public class DISTAN_AKTAR extends JInternalFrame {
 		scrollPaneust.setMaximumSize(new Dimension(1160, 105));
 		
 		JPanel panel = new JPanel();
-		panel.setBorder(new LineBorder(new Color(0, 191, 255)));
+		panel.setBorder(new LineBorder(null));
 		
 		panel.setPreferredSize(new Dimension(1160,100));
 		scrollPaneust.setViewportView(panel);
@@ -222,7 +222,7 @@ public class DISTAN_AKTAR extends JInternalFrame {
 							HESAP_PLN hsp ;
 							getContentPane().setCursor(OBS_SIS_2025_ANA_CLASS.WAIT_CURSOR);
 							hsp = new HESAP_PLN();
-							hsp.show();
+							hsp.setVisible(true);
 							txtBORCLU.setText(oac.hsp_hsp_kodu);
 							lblunvan_1.setText(CARI_ISIM_OKU.isim(txtBORCLU.getText())[0]);
 							getContentPane().setCursor(OBS_SIS_2025_ANA_CLASS.DEFAULT_CURSOR);
@@ -243,7 +243,7 @@ public class DISTAN_AKTAR extends JInternalFrame {
 					HESAP_PLN hsp ;
 					try {
 						hsp = new HESAP_PLN();
-						hsp.show(); 
+						hsp.setVisible(true); 
 						txtBORCLU.setText( OBS_SIS_2025_ANA_CLASS.hsp_hsp_kodu);
 						getContentPane().setCursor(OBS_SIS_2025_ANA_CLASS.WAIT_CURSOR);
 						lblunvan_1.setText(CARI_ISIM_OKU.isim(txtBORCLU.getText())[0]);
@@ -352,7 +352,7 @@ public class DISTAN_AKTAR extends JInternalFrame {
 					HESAP_PLN hsp ;
 					try {
 						hsp = new HESAP_PLN();
-						hsp.show(); 
+						hsp.setVisible(true); 
 						txtALACAK.setText( OBS_SIS_2025_ANA_CLASS.hsp_hsp_kodu);
 						getContentPane().setCursor(OBS_SIS_2025_ANA_CLASS.WAIT_CURSOR);
 						lblunvan_2.setText(CARI_ISIM_OKU.isim(txtALACAK.getText())[0]);
@@ -396,7 +396,7 @@ public class DISTAN_AKTAR extends JInternalFrame {
 							HESAP_PLN hsp ;
 							getContentPane().setCursor(OBS_SIS_2025_ANA_CLASS.WAIT_CURSOR);
 							hsp = new HESAP_PLN();
-							hsp.show();
+							hsp.setVisible(true);
 							txtALACAK.setText(oac.hsp_hsp_kodu);
 							lblunvan_2.setText(CARI_ISIM_OKU.isim(txtALACAK.getText())[0]);
 							getContentPane().setCursor(OBS_SIS_2025_ANA_CLASS.DEFAULT_CURSOR);
@@ -816,7 +816,6 @@ public class DISTAN_AKTAR extends JInternalFrame {
 			{
 			 GuiUtil.setWaitCursor(splitPane,false);
 			 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage() );
-			 //JOptionPane.showMessageDialog(null, ex.getMessage(),  "Distan Aktar", JOptionPane.ERROR_MESSAGE);   
 			}
 		}
 		});
@@ -842,7 +841,6 @@ public class DISTAN_AKTAR extends JInternalFrame {
 	    {
 	    	 getContentPane().setCursor(OBS_SIS_2025_ANA_CLASS.DEFAULT_CURSOR);
 	    	 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage() );
-	 		//JOptionPane.showMessageDialog(null, ex.getMessage(),  "Distan Aktar", JOptionPane.ERROR_MESSAGE);   
 	    }
 			}
 		});
@@ -858,7 +856,7 @@ public class DISTAN_AKTAR extends JInternalFrame {
 				HESAP_PLN hsp ;
 				try {
 					hsp = new HESAP_PLN();
-					hsp.show();
+					hsp.setVisible(true);
 					textField.setText( OBS_SIS_2025_ANA_CLASS.hsp_hsp_kodu);
 					getContentPane().setCursor(OBS_SIS_2025_ANA_CLASS.WAIT_CURSOR);
 					//lblNewLabel.setText(isimoku(textField.getText()));
@@ -1020,7 +1018,7 @@ public class DISTAN_AKTAR extends JInternalFrame {
 		scrollPane_1.setViewportView(table);
 		
 		JPanel panel_4 = new JPanel();
-		panel_4.setBorder(new LineBorder(new Color(0, 191, 255)));
+		panel_4.setBorder(new LineBorder(null));
 		panel_4.setMinimumSize(new Dimension(0, 30));
 		panel_4.setMaximumSize(new Dimension(0, 30));
 		panel_4.setLayout(null);
@@ -1050,20 +1048,20 @@ public class DISTAN_AKTAR extends JInternalFrame {
 		toolBar.add(btnNewButton_5);
 		
 		JPanel panel_3 = new JPanel();
-		panel_3.setBorder(new LineBorder(new Color(0, 191, 255)));
+		panel_3.setBorder(new LineBorder(null));
 		splitPane_1.setRightComponent(panel_3);
 		panel_3.setMinimumSize(new Dimension(0, 30));
 		panel_3.setMaximumSize(new Dimension(0, 30));
 		panel_3.setLayout(null);
 		
 		lblborc = new JLabel("...");
-		lblborc.setForeground(new Color(178, 34, 34));
+		//lblborc.setForeground(new Color(178, 34, 34));
 		lblborc.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblborc.setBounds(606, 11, 284, 14);
 		panel_3.add(lblborc);
 		
 		lblalacak = new JLabel("...");
-		lblalacak.setForeground(new Color(0, 128, 128));
+		//lblalacak.setForeground(new Color(0, 128, 128));
 		lblalacak.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblalacak.setBounds(943, 11, 262, 14);
 		panel_3.add(lblalacak);
@@ -1074,7 +1072,7 @@ public class DISTAN_AKTAR extends JInternalFrame {
 		panel_3.add(lblNewLabel_3);
 		
 		lblsatir = new JLabel("0");
-		lblsatir.setForeground(new Color(0, 0, 128));
+		//lblsatir.setForeground(new Color(0, 0, 128));
 		lblsatir.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblsatir.setBounds(100, 11, 56, 14);
 		panel_3.add(lblsatir);
@@ -1097,18 +1095,13 @@ public class DISTAN_AKTAR extends JInternalFrame {
 		try
 		{
 			if (tur.equals("B"))
-			{
 				lblborc.setText(CARI_ISIM_OKU.isim(kod)[0]);
-			}
 			else
-			{
 				lblalacak.setText(CARI_ISIM_OKU.isim(kod)[0]);
-			}
 		}
 		catch (Exception ex)
 		{
 			 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage() );
-			//JOptionPane.showMessageDialog(null, ex.getMessage(),  "Distan Aktar", JOptionPane.ERROR_MESSAGE);   
 		}
 	}
 	
@@ -1117,118 +1110,103 @@ public class DISTAN_AKTAR extends JInternalFrame {
 		try
 		{
 			GuiUtil.setWaitCursor(splitPane,true);
-		UIManager.put("FileChooser.cancelButtonText", "Vazgec");
-		chooser = new JFileChooser();
-		chooser.setCurrentDirectory(new java.io.File("."));
-	    chooser.setDialogTitle("Dosya Seciniz");
-	    chooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
-	    chooser.setAcceptAllFileFilterUsed(false);
-	    chooser.setApproveButtonText("Dosya Sec");
-	    chooser.setApproveButtonToolTipText("Dosya Sec");
-	    chooser.addChoosableFileFilter(new FileNameExtensionFilter("Excell Dosyalari", "xls", "xlsx"));
-	    chooser.setApproveButtonMnemonic('s');
-		GuiUtil.setWaitCursor(splitPane,false);
-	    Workbook workbook = null ;
-	    FileInputStream fis = null ;
-	    Sheet sheet = null;
-	    if (chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) { 
-	    	File excelFile = chooser.getSelectedFile();
-	    	String path = excelFile.getAbsolutePath();
-	    	  if(path.endsWith("xls"))
-	    	  {
-	    		  fis = new FileInputStream(excelFile); 
-	    		  workbook = new HSSFWorkbook(fis );
-	    	
-	    		  HSSFFont wbFont ;
-	    		  wbFont=  (HSSFFont) workbook.createFont();
-	    		  wbFont.setCharSet(HSSFFont.ANSI_CHARSET); //Your Character encoding goes in the parameter
-	    		  sheet = (HSSFSheet) workbook.getSheetAt(0);
-	    	  }
-	    	  else if(path.endsWith("xlsx"))
-	    	  {
-	    		  fis = new FileInputStream(excelFile); 
-	    		  workbook = new XSSFWorkbook(fis);
-		    		  XSSFFont wbFont ;
-	    		  wbFont=  (XSSFFont) workbook.createFont();
-	    		  wbFont.setCharSet(XSSFFont.ANSI_CHARSET); //Your Character encoding goes in the parameter
-	    		  sheet = (XSSFSheet) workbook.getSheetAt(0);
-	    	  }
-		}
-	    else
-	    {
-	    	return ;
-	    }
-		GuiUtil.setWaitCursor(splitPane,true);
-		 Iterator<Row> rowIt = sheet.iterator();
-		 String izahat = "" ;
-		 Double borc = (double) 0;
-		 Double alacak = (double) 0 ;
-		 GRID_TEMIZLE.grid_temizle(tblexcell);
-		 DefaultTableModel defaultModel = (DefaultTableModel) tblexcell.getModel();
-			Row row = rowIt.next();
-			
-		    while(rowIt.hasNext()) 
-		    {
-		      row = rowIt.next();
-		      izahat =  row.getCell(1).getStringCellValue();
-		      if (row.getCell(2) == null)
-		      {
-		    	borc = (double) 0 ;  
-		      } 
-		      else
-		      {
-		    	  if (row.getCell(2).getCellType().toString().equals("STRING"))
-		    	  {
-		    		  borc = (double) 0 ;
-		    	  }
-		    	  else
-		    	  {
-		    		  borc = row.getCell(2).getNumericCellValue(); 
-		    	  }
-		      }
-		      if (row.getCell(3) == null)
-		      {
-		    	alacak = (double) 0 ;  
-		      } 
-		      else
-		      {
-		    	  if (row.getCell(3).getCellType().toString().equals("STRING"))
-		    	  {
-		    		  alacak = (double) 0 ;
-		    	  }
-		    	  else
-		    	  {
-		    		  alacak = row.getCell(3).getNumericCellValue();  
-		    	  }
-		      }
-		      Date tar =new Date();
-		      if (row.getCell(0).getCellType().toString().equals("NUMERIC"))
-		       {
-		    	 tar = row.getCell(0).getDateCellValue() ;
-		    	// tar.setHours(simDIDate.getHours());
-				//	tar.setMinutes(simDIDate.getMinutes());
-				//	tar.setSeconds(simDIDate.getSeconds());
-	    	     }
-		      else
-		      {
-		    	    	String sDate1= row.getCell(0).toString();
-						tar = new SimpleDateFormat("dd.MM.yy").parse(sDate1);
-						//tar.setHours(simDIDate.getHours());
-						//tar.setMinutes(simDIDate.getMinutes());
-						//tar.setSeconds(simDIDate.getSeconds());
+			UIManager.put("FileChooser.cancelButtonText", "Vazgec");
+			chooser = new JFileChooser();
+			chooser.setCurrentDirectory(new java.io.File("."));
+			chooser.setDialogTitle("Dosya Seciniz");
+			chooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+			chooser.setAcceptAllFileFilterUsed(false);
+			chooser.setApproveButtonText("Dosya Sec");
+			chooser.setApproveButtonToolTipText("Dosya Sec");
+			chooser.addChoosableFileFilter(new FileNameExtensionFilter("Excell Dosyalari", "xls", "xlsx"));
+			chooser.setApproveButtonMnemonic('s');
+			GuiUtil.setWaitCursor(splitPane,false);
+			Workbook workbook = null ;
+			FileInputStream fis = null ;
+			Sheet sheet = null;
+			if (chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) { 
+				File excelFile = chooser.getSelectedFile();
+				String path = excelFile.getAbsolutePath();
+				if(path.endsWith("xls"))
+				{
+					fis = new FileInputStream(excelFile); 
+					workbook = new HSSFWorkbook(fis );
+
+					HSSFFont wbFont ;
+					wbFont=  (HSSFFont) workbook.createFont();
+					wbFont.setCharSet(HSSFFont.ANSI_CHARSET); //Your Character encoding goes in the parameter
+					sheet = (HSSFSheet) workbook.getSheetAt(0);
+				}
+				else if(path.endsWith("xlsx"))
+				{
+					fis = new FileInputStream(excelFile); 
+					workbook = new XSSFWorkbook(fis);
+					XSSFFont wbFont ;
+					wbFont=  (XSSFFont) workbook.createFont();
+					wbFont.setCharSet(XSSFFont.ANSI_CHARSET); //Your Character encoding goes in the parameter
+					sheet = (XSSFSheet) workbook.getSheetAt(0);
+				}
 			}
-		      defaultModel.addRow(new Object[]{tar, izahat  ,"", borc ,alacak,"",""});
-		    }
-	    workbook.close();
-	    fis.close();
-	    GuiUtil.setWaitCursor(splitPane,false);
-	    lblsatir.setText(Integer.toString(tblexcell.getRowCount()));
+			else
+				return ;
+			GuiUtil.setWaitCursor(splitPane,true);
+			Iterator<Row> rowIt = sheet.iterator();
+			String izahat = "" ;
+			Double borc = (double) 0;
+			Double alacak = (double) 0 ;
+			GRID_TEMIZLE.grid_temizle(tblexcell);
+			DefaultTableModel defaultModel = (DefaultTableModel) tblexcell.getModel();
+			Row row = rowIt.next();
+
+			while(rowIt.hasNext()) 
+			{
+				row = rowIt.next();
+				izahat =  row.getCell(1).getStringCellValue();
+				if (row.getCell(2) == null)
+					borc = (double) 0 ;  
+				else
+				{
+					if (row.getCell(2).getCellType().toString().equals("STRING"))
+						borc = (double) 0 ;
+					else
+						borc = row.getCell(2).getNumericCellValue(); 
+				}
+				if (row.getCell(3) == null)
+					alacak = (double) 0 ;  
+				else
+				{
+					if (row.getCell(3).getCellType().toString().equals("STRING"))
+						alacak = (double) 0 ;
+					else
+						alacak = row.getCell(3).getNumericCellValue();  
+				}
+				Date tar =new Date();
+				if (row.getCell(0).getCellType().toString().equals("NUMERIC"))
+				{
+					tar = row.getCell(0).getDateCellValue() ;
+					// tar.setHours(simDIDate.getHours());
+					//	tar.setMinutes(simDIDate.getMinutes());
+					//	tar.setSeconds(simDIDate.getSeconds());
+				}
+				else
+				{
+					String sDate1= row.getCell(0).toString();
+					tar = new SimpleDateFormat("dd.MM.yy").parse(sDate1);
+					//tar.setHours(simDIDate.getHours());
+					//tar.setMinutes(simDIDate.getMinutes());
+					//tar.setSeconds(simDIDate.getSeconds());
+				}
+				defaultModel.addRow(new Object[]{tar, izahat  ,"", borc ,alacak,"",""});
+			}
+			workbook.close();
+			fis.close();
+			GuiUtil.setWaitCursor(splitPane,false);
+			lblsatir.setText(Integer.toString(tblexcell.getRowCount()));
 		}
 		catch (Exception ex)
 		{
 			GuiUtil.setWaitCursor(splitPane,false);
-			 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage() );
-			//JOptionPane.showMessageDialog(null, ex.getMessage(),  "Distan Aktar", JOptionPane.ERROR_MESSAGE);   
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage() );
 		}
 	}
 	public static void satir_sil()
@@ -1251,9 +1229,7 @@ public class DISTAN_AKTAR extends JInternalFrame {
 				return ;
 			} 
 			while(rs.next())
-			{
 				comboBox.addItem(rs.getString("TEMA").toString());
-			}
 			oac.tCR.conn.close();
 			comboBox.addItem("");
 			textField.setText(Tema_Cari.tema_anahesap(comboBox.getSelectedItem().toString()));
@@ -1261,7 +1237,6 @@ public class DISTAN_AKTAR extends JInternalFrame {
 			table_1.enable(true);
 		} catch (Exception ex) {
 			 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage() );
-			//JOptionPane.showMessageDialog(null, ex.getMessage(),  "OBS SISTEM", JOptionPane.ERROR_MESSAGE);   
 		}
 	}
 	private void sol_tablo_ilave(JTable tbl)
@@ -1288,17 +1263,14 @@ public class DISTAN_AKTAR extends JInternalFrame {
 				return;
 			} 
 			DefaultTableModel mdl = (DefaultTableModel) table_1.getModel();
-			while(rs.next()) 
-			{
+			while(rs.next())
 				mdl.addRow(new Object[]{rs.getString("ARANACAK"),rs.getString("HESAP_KODU")}); 
-			}
 			oac.tCR.conn.close();
 		}
 		catch (Exception ex)
 		{
 			getContentPane().setCursor(OBS_SIS_2025_ANA_CLASS.DEFAULT_CURSOR);
 			 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage() );
-			//JOptionPane.showMessageDialog(null, ex.getMessage(),  "Distan Aktar", JOptionPane.ERROR_MESSAGE);   
 		}
 	}
 	private void temadoldur() 
@@ -1313,17 +1285,14 @@ public class DISTAN_AKTAR extends JInternalFrame {
 				return;
 			} 
 			DefaultTableModel mdl = (DefaultTableModel) table.getModel();
-			while(rs.next()) 
-			{
+			while(rs.next())
 				mdl.addRow(new Object[]{rs.getString("ARANACAK"),rs.getString("YAZILACAK")}); 
-			}
 			oac.tCR.conn.close();
 		}
 		catch (Exception ex)
 		{
 			getContentPane().setCursor(OBS_SIS_2025_ANA_CLASS.DEFAULT_CURSOR);
 			 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage() );
-			//JOptionPane.showMessageDialog(null, ex.getMessage(),  "Distan Aktarma", JOptionPane.ERROR_MESSAGE);   
 		}
 	}
 	private void te_sifirla()
@@ -1338,55 +1307,52 @@ public class DISTAN_AKTAR extends JInternalFrame {
 	{
 		if ( tblexcell.getRowCount() == 0 ) return ;
 		Runnable runner = new Runnable()
-	    { public void run() {
-	    	 try {
-	    	String iki,ass ,degisen= "" ;
-	    	DefaultTableModel model = (DefaultTableModel) tblexcell.getModel();
-	    	getContentPane().setCursor(OBS_SIS_2025_ANA_CLASS.WAIT_CURSOR);
-	    	Progres_Bar_Temizle();
-	    	OBS_MAIN.progressBar.setMaximum(tblexcell.getRowCount() - 1);
-	      for( int i = 0 ; i <= tblexcell.getRowCount() - 1;i ++)
-	   		{
-				Progres_Bar(tblexcell.getRowCount() - 1, i);
-               iki =  model.getValueAt(i , 3).toString();
-               if (! iki.equals("") &&  Double.parseDouble(iki) != 0 ) 
-               {
-                   model.setValueAt(textField.getText(), i, 2);
-	           }
-	           else
-	           {
-	                model.setValueAt(textField.getText(), i, 5);
-	                iki = "" ;
-	           }
-	   		}
-	      Progres_Bar_Temizle();
-	      OBS_MAIN.progressBar.setStringPainted(true);
-	      OBS_MAIN.progressBar.setMaximum(table.getRowCount() - 1);
-	      DefaultTableModel mdl = (DefaultTableModel) table.getModel();
-	       for(int  t = 0 ; t <= table.getRowCount() - 1;t ++) 
-	       {   
-				Progres_Bar(table.getRowCount() - 1, t);
-	    	   for( int  i = 0 ; i <= tblexcell.getRowCount() - 1;i ++)
-	    	   {
-    		   ass =  model.getValueAt(i , 1).toString() ;
-	 		   degisen= ass.replace( mdl.getValueAt(t , 0).toString().equals("vbLf") ? "\n" :mdl.getValueAt(t , 0).toString(),  mdl.getValueAt(t ,1).toString());
-  			   model.setValueAt(degisen, i, 1);
-	    	   ass = "";
-	           }
-	      }
-	     Thread.currentThread().isInterrupted();
-	     getContentPane().setCursor(OBS_SIS_2025_ANA_CLASS.DEFAULT_CURSOR);  
-	     }
-	    	 catch (Exception ex) {
-	    		 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage() );
-		    		//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Cari Distan Aktarma", JOptionPane.ERROR_MESSAGE);
+		{ public void run() {
+			try {
+				String iki,ass ,degisen= "" ;
+				DefaultTableModel model = (DefaultTableModel) tblexcell.getModel();
+				getContentPane().setCursor(OBS_SIS_2025_ANA_CLASS.WAIT_CURSOR);
+				Progres_Bar_Temizle();
+				OBS_MAIN.progressBar.setMaximum(tblexcell.getRowCount() - 1);
+				for( int i = 0 ; i <= tblexcell.getRowCount() - 1;i ++)
+				{
+					Progres_Bar(tblexcell.getRowCount() - 1, i);
+					iki =  model.getValueAt(i , 3).toString();
+					if (! iki.equals("") &&  Double.parseDouble(iki) != 0 )
+						model.setValueAt(textField.getText(), i, 2);
+					else
+					{
+						model.setValueAt(textField.getText(), i, 5);
+						iki = "" ;
+					}
 				}
-	    	  Progres_Bar_Temizle();
-	    }
-	    };
-	    //// Progress Bar
-	    Thread t = new Thread(runner, "Code Executer");
-	    t.start();
+				Progres_Bar_Temizle();
+				OBS_MAIN.progressBar.setStringPainted(true);
+				OBS_MAIN.progressBar.setMaximum(table.getRowCount() - 1);
+				DefaultTableModel mdl = (DefaultTableModel) table.getModel();
+				for(int  t = 0 ; t <= table.getRowCount() - 1;t ++) 
+				{   
+					Progres_Bar(table.getRowCount() - 1, t);
+					for( int  i = 0 ; i <= tblexcell.getRowCount() - 1;i ++)
+					{
+						ass =  model.getValueAt(i , 1).toString() ;
+						degisen= ass.replace( mdl.getValueAt(t , 0).toString().equals("vbLf") ? "\n" :mdl.getValueAt(t , 0).toString(),  mdl.getValueAt(t ,1).toString());
+						model.setValueAt(degisen, i, 1);
+						ass = "";
+					}
+				}
+				Thread.currentThread().isInterrupted();
+				getContentPane().setCursor(OBS_SIS_2025_ANA_CLASS.DEFAULT_CURSOR);  
+			}
+			catch (Exception ex) {
+				OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage() );
+			}
+			Progres_Bar_Temizle();
+		}
+		};
+		//// Progress Bar
+		Thread t = new Thread(runner, "Code Executer");
+		t.start();
 	}
 	private void hesap_uygula()
 	{
@@ -1419,25 +1385,17 @@ public class DISTAN_AKTAR extends JInternalFrame {
 							uc = tblexcell.getModel().getValueAt(sat, 3).toString();
 							if (! iki.equals("") &&   Double.parseDouble(uc) != 0 ) 
 							{
-								if( tblexcell.getModel().getValueAt(sat, 2).toString().equals("") ) 
-								{
+								if( tblexcell.getModel().getValueAt(sat, 2).toString().equals("") )
 									tblexcell.getModel().setValueAt(iki,sat, 2) ;
-								}
 								else
-								{
 									tblexcell.getModel().setValueAt(iki,sat, 5) ;
-								}
 							}
 							else
 							{
-								if( tblexcell.getModel().getValueAt(sat, 5).toString().equals("")) 
-								{
+								if( tblexcell.getModel().getValueAt(sat, 5).toString().equals(""))
 									tblexcell.getModel().setValueAt(iki,sat, 5) ;
-								}
 								else
-								{
 									tblexcell.getModel().setValueAt(iki,sat, 2) ;
-								}
 							}
 						}
 					}
@@ -1451,7 +1409,6 @@ public class DISTAN_AKTAR extends JInternalFrame {
 			{
 				getContentPane().setCursor(OBS_SIS_2025_ANA_CLASS.DEFAULT_CURSOR); 
 				 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage() );
-				//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Cari Distan Aktarma", JOptionPane.ERROR_MESSAGE);
 			}
 //***********			
 		//}
@@ -1470,9 +1427,7 @@ public class DISTAN_AKTAR extends JInternalFrame {
         for(int  i = 0 ;i <= model.getRowCount() - 1; i ++)
         {
             if( model.getValueAt(i, 2).toString().equals("") || model.getValueAt(i, 5).toString().equals("") )
-            {
-                kon += 1 ;
-            }
+            	kon += 1 ;
         }
         if ( kon > 0 )
         {
@@ -1516,14 +1471,9 @@ public class DISTAN_AKTAR extends JInternalFrame {
 			for(int  r = 0 ; r <= tblexcell.getRowCount() - 1;r ++) 
 			{
 				if (tblexcell.getRowSorter() !=  null)
-				{
 					sat = tblexcell.getRowSorter().convertRowIndexToModel(r);
-				}
 				else
-				{
 					sat = r ;
-				}
-				
 				tblexcell.getModel().setValueAt(txtBORCLU.getText(),sat, 2) ;
 			} 
 		}
@@ -1537,13 +1487,9 @@ public class DISTAN_AKTAR extends JInternalFrame {
 			for(int  r = 0 ; r <= tblexcell.getRowCount() - 1;r ++) 
 			{
 				if (tblexcell.getRowSorter() !=  null)
-				{
 					sat = tblexcell.getRowSorter().convertRowIndexToModel(r);
-				}
 				else
-				{
 					sat = r ;
-				}
 				tblexcell.getModel().setValueAt(txtALACAK.getText(),sat, 5) ;
 			} 
 		}
@@ -1554,98 +1500,88 @@ public class DISTAN_AKTAR extends JInternalFrame {
 	{
 		//
 		Runnable runner = new Runnable()
-	    { public void run() {
-	    //
-		try
-		{
-		GuiUtil.setWaitCursor(splitPane,true);
-		 Progres_Bar_Temizle();
-		 OBS_MAIN.progressBar.setStringPainted(true);
-		 DefaultTableModel model = (DefaultTableModel) tblexcell.getModel();
-         int  evr_no  = 0;
-         String strg  = "";
-         evr_no = c_Access.coklu_cari_fisno_al(tblexcell.getRowCount());
-         double asdd = 0.00 ;
-         double dsa = 0.00 ;
-         double dds = 0.00 ;
-          OBS_MAIN.progressBar.setMaximum(tblexcell.getRowCount() - 1);
-		  for(int  i = 0 ;i <= tblexcell.getRowCount() - 1; i ++)
-         {
-        	Progres_Bar(tblexcell.getRowCount() - 1, i);
-        	String iki = tblexcell.getModel().getValueAt(i, 3).toString();
-            if (! iki.equals("") &&   Double.parseDouble(iki) != 0 ) 
-              {
-                 dds = Double.parseDouble( model.getValueAt(i, 3).toString());
-                 dsa = 0;
-             }
-             else
-             {
-                 dsa = Double.parseDouble( model.getValueAt(i, 4).toString());
-                 dds = 0;
-             }
-             asdd = dds + dsa;
-             if (model.getValueAt(i, 1).toString().length() > 100)
-             {
-             strg = model.getValueAt(i, 1).toString().substring(0, 100);
-             }
-             else
-             {
-            	 strg = model.getValueAt(i, 1).toString();
-             }
-         	String strDate = TARIH_CEVIR.dateFormater(model.getValueAt(i , 0).toString() , "yyyy.MM.dd HH:mm:ss.sss", "EEE MMM dd kk:mm:ss zzzz yyyy" ) ;
-			String mesaj = "A. Hes:" +  model.getValueAt(i, 2).toString() + " Tut:" + asdd  +
-					" B. Hes:"+  model.getValueAt(i, 5).toString() + " Tut:" +asdd;
-			if( mesaj.length() + strg.length() <= 95)
+		{ public void run() {
+			//
+			try
 			{
-				mesaj = mesaj + " Msj:" + strg ;
+				GuiUtil.setWaitCursor(splitPane,true);
+				Progres_Bar_Temizle();
+				OBS_MAIN.progressBar.setStringPainted(true);
+				DefaultTableModel model = (DefaultTableModel) tblexcell.getModel();
+				int  evr_no  = 0;
+				String strg  = "";
+				evr_no = c_Access.coklu_cari_fisno_al(tblexcell.getRowCount());
+				double asdd = 0.00 ;
+				double dsa = 0.00 ;
+				double dds = 0.00 ;
+				OBS_MAIN.progressBar.setMaximum(tblexcell.getRowCount() - 1);
+				for(int  i = 0 ;i <= tblexcell.getRowCount() - 1; i ++)
+				{
+					Progres_Bar(tblexcell.getRowCount() - 1, i);
+					String iki = tblexcell.getModel().getValueAt(i, 3).toString();
+					if (! iki.equals("") &&   Double.parseDouble(iki) != 0 ) 
+					{
+						dds = Double.parseDouble( model.getValueAt(i, 3).toString());
+						dsa = 0;
+					}
+					else
+					{
+						dsa = Double.parseDouble( model.getValueAt(i, 4).toString());
+						dds = 0;
+					}
+					asdd = dds + dsa;
+					if (model.getValueAt(i, 1).toString().length() > 100)
+						strg = model.getValueAt(i, 1).toString().substring(0, 100);
+					else
+						strg = model.getValueAt(i, 1).toString();
+					String strDate = TARIH_CEVIR.dateFormater(model.getValueAt(i , 0).toString() , "yyyy.MM.dd HH:mm:ss.sss", "EEE MMM dd kk:mm:ss zzzz yyyy" ) ;
+					String mesaj = "A. Hes:" +  model.getValueAt(i, 2).toString() + " Tut:" + asdd  +
+							" B. Hes:"+  model.getValueAt(i, 5).toString() + " Tut:" +asdd;
+					if( mesaj.length() + strg.length() <= 95)
+						mesaj = mesaj + " Msj:" + strg ;
+					else
+						mesaj = mesaj + " Msj:" + strg.substring(0, 95  -(mesaj.length())) ;
+
+					dEKONT_BILGI dBilgi = new dEKONT_BILGI();
+					dBilgi.setbHES(model.getValueAt(i, 2).toString());
+					dBilgi.settAR(strDate);
+					dBilgi.seteVRAK(evr_no);
+					dBilgi.setbCINS("");
+					dBilgi.setbKUR(1);
+					dBilgi.setbORC(asdd);
+					dBilgi.setaHES(model.getValueAt(i, 5).toString());
+					dBilgi.setaCINS("");
+					dBilgi.setaKUR(1);
+					dBilgi.setaLACAK(asdd);
+					dBilgi.setiZAHAT(strg);
+					dBilgi.setkOD("");
+					dBilgi.setuSER( GLOBAL.KULL_ADI);
+					lOG_BILGI lBILGI = new lOG_BILGI();
+					lBILGI.setmESAJ(mesaj);
+					lBILGI.seteVRAK(String.valueOf(evr_no));
+
+					c_Access.cari_dekont_kaydet(dBilgi,	lBILGI ,	BAGLAN_LOG.cariLogDizin);
+					model.setValueAt(evr_no,i, 6);
+					evr_no += 1;
+					asdd = 0;
+					dds = 0;
+					dsa = 0;
+				}
+				GuiUtil.setWaitCursor(splitPane,false);
+				Thread.currentThread().isInterrupted();
+				Progres_Bar_Temizle();
+				OBS_MAIN.mesaj_goster(15000,Notifications.Type.INFO, "Disardan Aktarma Cari Hesaba Basari ile Kaydedilmistir...." + System.lineSeparator()  +  System.lineSeparator() +  "Evrak No:" +  model.getValueAt(0, 6 ).toString() + " / " + model.getValueAt(model.getRowCount() -1, 6 ).toString() );
 			}
-			else
+			catch (Exception ex)
 			{
-				mesaj = mesaj + " Msj:" + strg.substring(0, 95  -(mesaj.length())) ;
+				OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage() );
 			}
-		
-		dEKONT_BILGI dBilgi = new dEKONT_BILGI();
-		dBilgi.setbHES(model.getValueAt(i, 2).toString());
-		dBilgi.settAR(strDate);
-		dBilgi.seteVRAK(evr_no);
-		dBilgi.setbCINS("");
-		dBilgi.setbKUR(1);
-		dBilgi.setbORC(asdd);
-		dBilgi.setaHES(model.getValueAt(i, 5).toString());
-		dBilgi.setaCINS("");
-		dBilgi.setaKUR(1);
-		dBilgi.setaLACAK(asdd);
-		dBilgi.setiZAHAT(strg);
-		dBilgi.setkOD("");
-		dBilgi.setuSER( GLOBAL.KULL_ADI);
-		lOG_BILGI lBILGI = new lOG_BILGI();
-		lBILGI.setmESAJ(mesaj);
-		lBILGI.seteVRAK(String.valueOf(evr_no));
-		
-       	c_Access.cari_dekont_kaydet(dBilgi,	lBILGI ,	BAGLAN_LOG.cariLogDizin);
-        model.setValueAt(evr_no,i, 6);
-        evr_no += 1;
-        asdd = 0;
-        dds = 0;
-        dsa = 0;
-         }
-		  GuiUtil.setWaitCursor(splitPane,false);
-         Thread.currentThread().isInterrupted();
-         Progres_Bar_Temizle();
-         OBS_MAIN.mesaj_goster(15000,Notifications.Type.INFO, "Disardan Aktarma Cari Hesaba Basari ile Kaydedilmistir...." + System.lineSeparator()  +  System.lineSeparator() +  "Evrak No:" +  model.getValueAt(0, 6 ).toString() + " / " + model.getValueAt(model.getRowCount() -1, 6 ).toString() );
-         //JOptionPane.showMessageDialog(null, "Disardan Aktarma Cari Hesaba Basari ile Kaydedilmistir...." + System.lineSeparator()  +  System.lineSeparator() +  "Evrak No:" +  model.getValueAt(0, 6 ).toString() + " / " + model.getValueAt(model.getRowCount() -1, 6 ).toString() ); 
+			//// Progress Bar
 		}
-		catch (Exception ex)
-		{
-			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage() );
-			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Coklu Giris", JOptionPane.ERROR_MESSAGE);
-		}
-		//// Progress Bar
-		    }
-	    };
-	    Thread t = new Thread(runner, "Code Executer");
-	    t.start();
-	    //
+		};
+		Thread t = new Thread(runner, "Code Executer");
+		t.start();
+		//
 	}
 	private static List<String> kod_sirala(int cOLUMN)
 	{
@@ -1654,9 +1590,7 @@ public class DISTAN_AKTAR extends JInternalFrame {
 		for (int i =0;i<= mdl.getRowCount() -1 ;i++)
 		{
 			if (! mdl.getValueAt(i, cOLUMN).equals("") )
-			{
 				list.add( mdl.getValueAt(i,cOLUMN).toString().trim());	//;
-			}
 		}
 		List<String> uniqueDataList = list.stream().distinct().collect(Collectors.toList());
 		return uniqueDataList ;
@@ -1728,28 +1662,18 @@ public class DISTAN_AKTAR extends JInternalFrame {
     	else if  (column == 1)
     	{
     		if(secenek.equals("Bos Olanlar"))
-    		{
     			sorter.setRowFilter(RowFilter.regexFilter("^$",column));
-    		}
     		else if(secenek.equals("Icinde"))
-    		{
     			sorter.setRowFilter(RowFilter.regexFilter("(?iu)" + arama.toLowerCase(),column));
-    		}
     	}
     	else if  (column == 2 || column ==5)
     	{
     		if(secenek.equals("Bos Olanlar"))
-    		{
     			sorter.setRowFilter(RowFilter.regexFilter("^$",column));
-    		}
     		else if(secenek.equals("Esit"))
-    		{
     			sorter.setRowFilter(RowFilter.regexFilter("(?iu)" + arama.toLowerCase(),column));
-    		}
     		else if(secenek.equals("Bos Olmayanlar"))
-    		{
     			sorter.setRowFilter(RowFilter.regexFilter(".*\\S.*",column));
-    		}
     	}
     	else if(column == 3 || column == 4)
 		{
@@ -1759,17 +1683,11 @@ public class DISTAN_AKTAR extends JInternalFrame {
        		 return;
 			}
 			if(secenek.equals("Esit"))
-			{
-				  sorter.setRowFilter(RowFilter.numberFilter(ComparisonType.EQUAL ,Double.valueOf(arama),column));
-			}
+				sorter.setRowFilter(RowFilter.numberFilter(ComparisonType.EQUAL ,Double.valueOf(arama),column));
 			else if(secenek.equals("Buyuk"))
-			{
-				  sorter.setRowFilter(RowFilter.numberFilter(ComparisonType.AFTER ,Double.valueOf(arama),column));
-			}
+				sorter.setRowFilter(RowFilter.numberFilter(ComparisonType.AFTER ,Double.valueOf(arama),column));
 			else if(secenek.equals("Kucuk"))
-			{
-				  sorter.setRowFilter(RowFilter.numberFilter(ComparisonType.BEFORE ,Double.valueOf(arama),column));
-			}
+				sorter.setRowFilter(RowFilter.numberFilter(ComparisonType.BEFORE ,Double.valueOf(arama),column));
 		}
     	tblexcell.setRowSorter(sorter);
     	tblexcell.revalidate();

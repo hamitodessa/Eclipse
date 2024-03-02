@@ -259,7 +259,6 @@ public class DEGISKEN_GIRIS extends JInternalFrame {
 		catch (Exception ex)
 		{
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
-			//JOptionPane.showMessageDialog(null,  ex.getMessage(),  "Degiskenler", JOptionPane.ERROR_MESSAGE);        
 		}
 		}
 	private static void grid_doldur()
@@ -288,7 +287,6 @@ public class DEGISKEN_GIRIS extends JInternalFrame {
 		catch (Exception ex)
 		{
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
-			//JOptionPane.showMessageDialog(null, ex.getMessage(),  "Tablo Doldur", JOptionPane.ERROR_MESSAGE);    
 		}
 	}
 	public static  void sil()
@@ -330,7 +328,6 @@ public class DEGISKEN_GIRIS extends JInternalFrame {
 				{
 					
 					OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING, "Ilk once Degisken Yenileme Bolumunden degistirip sonra siliniz....");
-					//JOptionPane.showMessageDialog(null, "Ilk once Degisken Yenileme Bolumunden degistirip sonra siliniz....",  "Degiskenler", JOptionPane.ERROR_MESSAGE);        
 					return;
 				}
 
@@ -449,7 +446,6 @@ public class DEGISKEN_GIRIS extends JInternalFrame {
 		catch (Exception ex)
 		{
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
-			//JOptionPane.showMessageDialog(null, ex.getMessage(),  "Degiskenler", JOptionPane.ERROR_MESSAGE);        
 		}
 	}
 	private static void ana_grup_doldur()
@@ -492,7 +488,6 @@ public class DEGISKEN_GIRIS extends JInternalFrame {
 		catch (Exception ex)
 		{
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
-			//JOptionPane.showMessageDialog(null, "DDDDDD" + ex.getMessage(),  "Degiskenler", JOptionPane.ERROR_MESSAGE);    
 		}
 	}
 	private void alt_grup_degis()
@@ -523,7 +518,6 @@ public class DEGISKEN_GIRIS extends JInternalFrame {
 		{
 			getContentPane().setCursor(oac.DEFAULT_CURSOR);
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
-			//JOptionPane.showMessageDialog(null, ex.getMessage(),  "Degiskenler", JOptionPane.ERROR_MESSAGE);    
 		}		
 	}
 	public static void yeni ()
@@ -671,7 +665,6 @@ public class DEGISKEN_GIRIS extends JInternalFrame {
 			catch (Exception ex)
 			{
 				OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
-				//JOptionPane.showMessageDialog(null, ex.getMessage(),  "Degiskenler", JOptionPane.ERROR_MESSAGE);        
 			}
 	}
 }

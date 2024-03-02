@@ -138,7 +138,7 @@ import OBS_C_2025.dEKONT_BILGI;
 import OBS_C_2025.lOG_BILGI;
 import raven.toast.Notifications;
 
-@SuppressWarnings({"serial","static-access","unused","deprecation"})
+@SuppressWarnings({"serial","static-access","unused"})
 public class KERESTE_GIRIS extends JInternalFrame {
 	private static JSplitPane splitPane ;
 	private static Obs_TextFIeld textField;
@@ -351,7 +351,7 @@ public class KERESTE_GIRIS extends JInternalFrame {
 							HESAP_PLN hsp ;
 							getContentPane().setCursor(oac.WAIT_CURSOR);
 							hsp = new HESAP_PLN();
-							hsp.show();
+							hsp.setVisible(true);
 							if (! oac.hsp_hsp_kodu.equals(""))
 							{
 								txtcari.setText(oac.hsp_hsp_kodu);
@@ -493,7 +493,6 @@ public class KERESTE_GIRIS extends JInternalFrame {
 				catch (Exception ex)
 				{	
 					OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR, ex.getMessage() );
-					//JOptionPane.showMessageDialog(null, ex.getMessage(),  "Adres Hesap  Okuma", JOptionPane.ERROR_MESSAGE);   
 				}
 			}
 			public void removeUpdate(DocumentEvent e) {

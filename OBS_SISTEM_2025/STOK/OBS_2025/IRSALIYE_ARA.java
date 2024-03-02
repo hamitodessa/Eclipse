@@ -46,7 +46,7 @@ import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import java.awt.Font;
 
-@SuppressWarnings({"serial","static-access","deprecation","unused"})
+@SuppressWarnings({"serial","static-access","unused"})
 public class IRSALIYE_ARA extends JDialog {
 	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
 	static STOK_ACCESS f_Access = new STOK_ACCESS(OBS_SIS_2025_ANA_CLASS._IStok , OBS_SIS_2025_ANA_CLASS._IFatura_Loger);
@@ -184,7 +184,7 @@ public class IRSALIYE_ARA extends JDialog {
 						HESAP_PLN hsp ;
 						getContentPane().setCursor(oac.WAIT_CURSOR);
 						hsp = new HESAP_PLN();
-						hsp.show();
+						hsp.setVisible(true);
 						textField_1.setText( oac.hsp_hsp_kodu);
 						isimoku();
 					} catch (ClassNotFoundException e1) {
@@ -362,7 +362,6 @@ public class IRSALIYE_ARA extends JDialog {
 		catch (Exception ex)
 		{
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
-			//JOptionPane.showMessageDialog(null, ex.getMessage(),  "Fatura Okuma", JOptionPane.ERROR_MESSAGE);   
 		}
 	}
 		private void ana_grup_doldur()
@@ -436,7 +435,6 @@ public class IRSALIYE_ARA extends JDialog {
 			{
 				getContentPane().setCursor(oac.DEFAULT_CURSOR);
 				OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
-				//JOptionPane.showMessageDialog(null, ex.getMessage(),  "Alt Grup", JOptionPane.ERROR_MESSAGE);    	
 			}
 		}
 		public void isimoku()  {
@@ -460,7 +458,6 @@ public class IRSALIYE_ARA extends JDialog {
 		    catch (Exception ex)
 		    {
 		    	OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
-		    	//JOptionPane.showMessageDialog(null, ex.getMessage(),  "Unvan Okuma", JOptionPane.ERROR_MESSAGE);   
 		    }
 	  }
 }

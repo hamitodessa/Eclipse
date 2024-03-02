@@ -90,7 +90,7 @@ public class CEK_CIKIS extends JInternalFrame {
 	static KAMBIYO_ACCESS ka_Access = new KAMBIYO_ACCESS(OBS_SIS_2025_ANA_CLASS._IKambiyo , OBS_SIS_2025_ANA_CLASS._IKambiyo_Loger);
 	static CARI_ACCESS c_Access = new CARI_ACCESS(OBS_SIS_2025_ANA_CLASS._ICar ,OBS_SIS_2025_ANA_CLASS._ICari_Loger);
 	private ArrayList<String> listCek = new ArrayList<String>();
-	@SuppressWarnings({"removal","deprecation"})
+	@SuppressWarnings({"removal"})
 	public CEK_CIKIS() {
 
 		setTitle("CEK CIKIS");
@@ -340,7 +340,7 @@ public class CEK_CIKIS extends JInternalFrame {
 					HESAP_PLN hsp ;
 					try {
 						hsp = new HESAP_PLN();
-						hsp.show();
+						hsp.setVisible(true);
 						textField_1.setText( oac.hsp_hsp_kodu);
 					} catch (Exception e1) {
 						e1.printStackTrace();

@@ -719,7 +719,6 @@ public class URUN_KART extends JInternalFrame {
 				{
 					getContentPane().setCursor(oac.DEFAULT_CURSOR);
 					 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
-					//JOptionPane.showMessageDialog(null, ex.getMessage(),  "Kamera", JOptionPane.ERROR_MESSAGE);        
 				}
 			}
 		});
@@ -800,7 +799,6 @@ public class URUN_KART extends JInternalFrame {
 		catch (Exception ex)
 		{
 			 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
-			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Hesap Plani", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	private static  void doldur(String nereye)
@@ -968,7 +966,6 @@ public class URUN_KART extends JInternalFrame {
 		catch(Exception ex)
 		{
 			 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
-			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Hesap Plani", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	public static void yeni()
@@ -1056,7 +1053,6 @@ public class URUN_KART extends JInternalFrame {
 		{
 			getContentPane().setCursor(oac.DEFAULT_CURSOR);
 			 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
-			//JOptionPane.showMessageDialog(null, ex.getMessage(),  "Ana Grup", JOptionPane.ERROR_MESSAGE);   
 		}
 	}
 	private void oz1_doldur()
@@ -1085,7 +1081,6 @@ public class URUN_KART extends JInternalFrame {
 		{
 			getContentPane().setCursor(oac.DEFAULT_CURSOR);
 			 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
-			//JOptionPane.showMessageDialog(null, ex.getMessage(),  "Alt Grup", JOptionPane.ERROR_MESSAGE);    	
 		}
 	}
 	private void oz2_doldur()
@@ -1314,22 +1309,15 @@ public class URUN_KART extends JInternalFrame {
 				os.flush();
 				os.close();
 			}
-
-
 			f_Access.stk_ur_kayit(txtkodu.getText(), txtadi.getText(), txtbirim.getText(), dbl1, txtsinif.getText(), int2, int3, txtacik1.getText(), txtacik2.getText(), int6,
 					int7,  txtbarkod.getText(), int4, dbl3,  fis, dbl2, dbl4, txtrecete.getText(), GLOBAL.KULL_ADI, dbl5);
-
-
 			temizle();
 			txtkodu.setEnabled(false);
-
 			hisset("Kodu","");
-
 		}
 		catch (Exception ex)
 		{
 			 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
-			//JOptionPane.showMessageDialog(null, ex.getMessage(),  "Urun Kayit", JOptionPane.ERROR_MESSAGE);   
 		}
 
 	}

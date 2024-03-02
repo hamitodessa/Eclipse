@@ -295,25 +295,23 @@ public class ZAYI extends JInternalFrame {
 		JButton button = new JButton("");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				 try {
-						getContentPane().setCursor(oac.WAIT_CURSOR);
-			            textField.setText("");
-			        		  textField.setText( f_Access.zayi_son_bordro_no_al());
-			            if ( textField.getText().equals("0") )
-			            		{
-			            	 textField.setText("");
-			            	 OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING, "Hic Kayit Yok...");
-			            //	JOptionPane.showMessageDialog(null,  "Hic Kayit Yok...", "Zayi Fisi Okuma", JOptionPane.ERROR_MESSAGE);
-			            	textField.requestFocus();
-			            		}
-			        	getContentPane().setCursor(oac.DEFAULT_CURSOR);
-					 }
-			        catch (Exception ex)
-					 {
-			        	getContentPane().setCursor(oac.DEFAULT_CURSOR);
-			        	 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
-			        	//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Zayi Fisi Okuma", JOptionPane.ERROR_MESSAGE);
-					 }
+				try {
+					getContentPane().setCursor(oac.WAIT_CURSOR);
+					textField.setText("");
+					textField.setText( f_Access.zayi_son_bordro_no_al());
+					if ( textField.getText().equals("0") )
+					{
+						textField.setText("");
+						OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING, "Hic Kayit Yok...");
+						textField.requestFocus();
+					}
+					getContentPane().setCursor(oac.DEFAULT_CURSOR);
+				}
+				catch (Exception ex)
+				{
+					getContentPane().setCursor(oac.DEFAULT_CURSOR);
+					OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
+				}
 			}
 		});
 		button.setIcon(new ImageIcon(ZAYI.class.getResource("/ICONLAR/icons8-view-16.png")));
@@ -760,84 +758,81 @@ public class ZAYI extends JInternalFrame {
         catch (Exception ex)
         {
         	 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
-        	//JOptionPane.showMessageDialog(null, ex.getMessage(),  "Zayi Kayit", JOptionPane.ERROR_MESSAGE);             
          }
 	}
 	private void fiskont()
 	{
 		try {
-			// GuiUtil.setWaitCursor(ZAYI.splitPane,true);
-			 long startTime = System.currentTimeMillis();
+			long startTime = System.currentTimeMillis();
 			ResultSet rss = null;
-				 	rss = f_Access.zayi_oku(textField.getText(), "ZAI");
-			  if (!rss.isBeforeFirst() ) {  
-	              GRID_TEMIZLE.grid_temizle(table);
-	              sifirla();
-	 			}
-				else
-				{
+			rss = f_Access.zayi_oku(textField.getText(), "ZAI");
+			if (!rss.isBeforeFirst() ) {  
+				GRID_TEMIZLE.grid_temizle(table);
+				sifirla();
+			}
+			else
+			{
 				rss.next();
-				  GRID_TEMIZLE.grid_temizle(table);
-				  sifirla();
-				  dtc.setDate(rss.getDate("Tarih"));
-			  //  '***********GRUP DOLDUR
-			  cmbanagrup.setSelectedItem(rss.getString("Ana_Grup") == null ? "" :rss.getString("Ana_Grup"));
-	         cmbaltgrup.setSelectedItem(rss.getString("Alt_Grup") == null ? "" :rss.getString("Alt_Grup"));
-					//  '************ACIKLAMA OKU ***********************************************************
-						
-							textField_9.setText( f_Access.aciklama_oku("ZAI", 1, textField.getText(), "C"));
-							textField_10.setText( f_Access.aciklama_oku("ZAI", 2, textField.getText(), "C"));
-						
-					 // '*************************************************************************************
-			        rss.first();   
-			    	DefaultTableModel mdl = (DefaultTableModel) table.getModel();
-			    	int satir =0 ;
-			    	do
-			        {
-			   		 mdl.insertRow(satir,new Object[]{rss.getString("Barkod"),rss.getString("Urun_Kodu"),rss.getString("Depo"),
-			   				 			rss.getDouble("Fiat"), Math.abs(rss.getDouble("Miktar")),
-			   				 			rss.getString("Birim"),  Math.abs(rss.getDouble("Tutar")),rss.getString("Izahat")});
-			   		satir +=1 ;
-			   		mdl.removeRow(mdl.getRowCount() -1);
-			        }  while (rss.next()) ;
-		                urun_bilgi_doldur(mdl.getValueAt(0,1).toString()); 
-		                toplam();
-		                long endTime = System.currentTimeMillis();
-		        		long estimatedTime = endTime - startTime;
-		        		double seconds = (double)estimatedTime/1000; 
-		        		OBS_MAIN.lblNewLabel_9.setText("Son Raporlama Suresi : " + FORMATLAMA.doub_4(seconds) +  " saniye");
-				}
+				GRID_TEMIZLE.grid_temizle(table);
+				sifirla();
+				dtc.setDate(rss.getDate("Tarih"));
+				//  '***********GRUP DOLDUR
+				cmbanagrup.setSelectedItem(rss.getString("Ana_Grup") == null ? "" :rss.getString("Ana_Grup"));
+				cmbaltgrup.setSelectedItem(rss.getString("Alt_Grup") == null ? "" :rss.getString("Alt_Grup"));
+				//  '************ACIKLAMA OKU ***********************************************************
+
+				textField_9.setText( f_Access.aciklama_oku("ZAI", 1, textField.getText(), "C"));
+				textField_10.setText( f_Access.aciklama_oku("ZAI", 2, textField.getText(), "C"));
+
+				// '*************************************************************************************
+				rss.first();   
+				DefaultTableModel mdl = (DefaultTableModel) table.getModel();
+				int satir =0 ;
+				do
+				{
+					mdl.insertRow(satir,new Object[]{rss.getString("Barkod"),rss.getString("Urun_Kodu"),rss.getString("Depo"),
+							rss.getDouble("Fiat"), Math.abs(rss.getDouble("Miktar")),
+							rss.getString("Birim"),  Math.abs(rss.getDouble("Tutar")),rss.getString("Izahat")});
+					satir +=1 ;
+					mdl.removeRow(mdl.getRowCount() -1);
+				}  while (rss.next()) ;
+				urun_bilgi_doldur(mdl.getValueAt(0,1).toString()); 
+				toplam();
+				long endTime = System.currentTimeMillis();
+				long estimatedTime = endTime - startTime;
+				double seconds = (double)estimatedTime/1000; 
+				OBS_MAIN.lblNewLabel_9.setText("Son Raporlama Suresi : " + FORMATLAMA.doub_4(seconds) +  " saniye");
+			}
 		}
 		catch (Exception ex)
 		{
-			// GuiUtil.setWaitCursor(ZAYI.splitPane,false);
-			 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
-			//JOptionPane.showMessageDialog(null, ex.getMessage(),  "Zayii Fis Kontrol", JOptionPane.ERROR_MESSAGE);   
+		
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
 		}
 	}
 	private void sifirla()
 	{
 		String deger;
 		Integer sat_sayi;
-				try {
-					deger = GLOBAL.setting_oku("STK_FAT_SATIR").toString();
-					sat_sayi =Integer.parseInt(deger);
-					for (int i = 0; i <= sat_sayi; i ++)
-					{
-						satir_ilave();
-					}
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-	        table.isRowSelected(0);
-	        label_8.setText("0.000");
-	        label_9.setText("0.00");
-	        cmbanagrup.setSelectedItem("");
-	        cmbaltgrup.setSelectedItem("");
-	        textField_9.setText("");
-	        textField_10.setText("");
-	        lblNewLabel_12.setText("....");
-	        label_5.setText("");
+		try {
+			deger = GLOBAL.setting_oku("STK_FAT_SATIR").toString();
+			sat_sayi =Integer.parseInt(deger);
+			for (int i = 0; i <= sat_sayi; i ++)
+			{
+				satir_ilave();
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		table.isRowSelected(0);
+		label_8.setText("0.000");
+		label_9.setText("0.00");
+		cmbanagrup.setSelectedItem("");
+		cmbaltgrup.setSelectedItem("");
+		textField_9.setText("");
+		textField_10.setText("");
+		lblNewLabel_12.setText("....");
+		label_5.setText("");
 	       dtc.setDate(new Date());
 	}
 	private static void stok_isle() throws ClassNotFoundException, SQLException 
@@ -860,7 +855,6 @@ public class ZAYI extends JInternalFrame {
 	catch (Exception ex)
 	{
 		 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
-		//JOptionPane.showMessageDialog(null, ex.getMessage(),  "Zayi  Stokisl", JOptionPane.ERROR_MESSAGE);   
 	}
 	}
 	private static void stk_yaz_2(int sat) throws ClassNotFoundException, SQLException
@@ -1147,7 +1141,6 @@ public class ZAYI extends JInternalFrame {
 		catch (Exception ex)
 		{
 			 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
-			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Stok Kodu", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	private  void depo_auto()
@@ -1202,7 +1195,6 @@ public class ZAYI extends JInternalFrame {
 		{
 			getContentPane().setCursor(oac.DEFAULT_CURSOR);
 			 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
-			//JOptionPane.showMessageDialog(null, ex.getMessage(),  "Ana Grup", JOptionPane.ERROR_MESSAGE);   
 		}
 	}
 	private void alt_grup_doldur()
@@ -1244,7 +1236,6 @@ public class ZAYI extends JInternalFrame {
 		{
 			getContentPane().setCursor(oac.DEFAULT_CURSOR);
 			 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
-			//JOptionPane.showMessageDialog(null, ex.getMessage(),  "Alt Grup", JOptionPane.ERROR_MESSAGE);    	
 		}
 	}
 	private static void toplam()
@@ -1264,7 +1255,6 @@ public class ZAYI extends JInternalFrame {
 		catch (Exception ex)
 		{
 			 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
-		//	JOptionPane.showMessageDialog(null, ex.getMessage(),  "Toplam", JOptionPane.ERROR_MESSAGE);   
 		}
 	}
 	public static void zai_sil()
@@ -1298,7 +1288,6 @@ public class ZAYI extends JInternalFrame {
 		catch (Exception ex)
 		{
 			 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
-		//	JOptionPane.showMessageDialog(null, ex.getMessage(),  "Zayi Silme", JOptionPane.ERROR_MESSAGE);   
 		}
 	}
 	public static void urun_bilgi_doldur(String cins) 
@@ -1322,40 +1311,38 @@ public class ZAYI extends JInternalFrame {
 	catch (Exception ex)
 	{
 		 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
-		//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Bilgi Doldur.", JOptionPane.ERROR_MESSAGE);
 	}
 	}
-	 private void depo_doldur()
-		{
-				try {
-					getContentPane().setCursor(oac.WAIT_CURSOR);
-					cmbdepo.removeAllItems();
-				ResultSet rs = null;
-				
-					   rs = f_Access.stk_kod_degisken_oku("DEPO", "DPID_Y", "DEPO_DEGISKEN");
-				
-				if (!rs.isBeforeFirst() ) {  
-					cmbdepo.addItem("");
-					cmbdepo.addItem("Bos Olanlar");
-					cmbdepo.setSelectedItem("");
-				}
-				else
-				{
-					cmbdepo.addItem("");
-					cmbdepo.addItem("Bos Olanlar");
-					while (rs.next())
-					{
-						cmbdepo.addItem(rs.getString("DEPO"));
-					}
-				}
+	private void depo_doldur()
+	{
+		try {
+			getContentPane().setCursor(oac.WAIT_CURSOR);
+			cmbdepo.removeAllItems();
+			ResultSet rs = null;
+
+			rs = f_Access.stk_kod_degisken_oku("DEPO", "DPID_Y", "DEPO_DEGISKEN");
+
+			if (!rs.isBeforeFirst() ) {  
+				cmbdepo.addItem("");
+				cmbdepo.addItem("Bos Olanlar");
 				cmbdepo.setSelectedItem("");
-				getContentPane().setCursor(oac.DEFAULT_CURSOR);
-				}
-				catch (Exception ex)
+			}
+			else
+			{
+				cmbdepo.addItem("");
+				cmbdepo.addItem("Bos Olanlar");
+				while (rs.next())
 				{
-					getContentPane().setCursor(oac.DEFAULT_CURSOR);
-					 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
-					//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Depo Doldur", JOptionPane.ERROR_MESSAGE);
+					cmbdepo.addItem(rs.getString("DEPO"));
 				}
 			}
+			cmbdepo.setSelectedItem("");
+			getContentPane().setCursor(oac.DEFAULT_CURSOR);
+		}
+		catch (Exception ex)
+		{
+			getContentPane().setCursor(oac.DEFAULT_CURSOR);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
+		}
+	}
 }

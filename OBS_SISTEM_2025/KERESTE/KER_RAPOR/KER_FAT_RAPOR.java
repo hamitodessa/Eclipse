@@ -291,7 +291,6 @@ public class KER_FAT_RAPOR extends JInternalFrame {
 			}
 		} catch (Exception ex) {
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage() );
-			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Fatura Raporlama", JOptionPane.PLAIN_MESSAGE);
 		}
 	}
 	public static void filtrele()
@@ -458,7 +457,6 @@ public class KER_FAT_RAPOR extends JInternalFrame {
 			}
 		} catch (Exception ex) {
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage() );
-			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Fatura Raporlama", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	private static void genislik(int gen)
@@ -641,7 +639,6 @@ public class KER_FAT_RAPOR extends JInternalFrame {
 		} catch (Exception ex) 
 		{
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage() );
-			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Fatura Raporlama", JOptionPane.ERROR_MESSAGE);
 		} 
 	}
 	public static void filtre_fat_tarih()
@@ -851,7 +848,6 @@ public class KER_FAT_RAPOR extends JInternalFrame {
 			}
 		} catch (Exception ex) {
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage() );
-			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Fatura Raporlama", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	public static void filtre_cari_kod()
@@ -1053,7 +1049,6 @@ public class KER_FAT_RAPOR extends JInternalFrame {
 		catch (Exception ex) 
 		{
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage() );
-			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Fatura Raporlama",  JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	public static void detay_doldur(String fatno,String har)
@@ -1231,7 +1226,6 @@ public class KER_FAT_RAPOR extends JInternalFrame {
 			}
 		} catch (Exception ex) {
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage() );
-			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Kereste Fatura ", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	public static void excell_aktar()
@@ -1241,7 +1235,6 @@ public class KER_FAT_RAPOR extends JInternalFrame {
 		if (mdl.getRowCount() == 0 )
 		{
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING,  "Aktarilacak Bilgi Yok....." );
-			//JOptionPane.showMessageDialog(null, "Aktarilacak Bilgi Yok.....","Kereste Fatura Raporlama", JOptionPane.PLAIN_MESSAGE);
 		}
 		else
 		{
@@ -1697,12 +1690,10 @@ public class KER_FAT_RAPOR extends JInternalFrame {
 				GuiUtil.setWaitCursor(splitPane,false);
 				
 				OBS_MAIN.mesaj_goster(5000,Notifications.Type.INFO,"Aktarma Islemi Tamamlandi....." );
-				//JOptionPane.showMessageDialog(null, "Aktarma Islemi Tamamlandi.....","Kereste Fatura", JOptionPane.PLAIN_MESSAGE);
 			}
 			catch (Exception ex)
 			{
 				OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage() );
-				//JOptionPane.showMessageDialog(null,  ex.getMessage(),"Excell Aktarma", JOptionPane.ERROR_MESSAGE);
 			}
 		}
 		};

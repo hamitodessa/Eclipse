@@ -299,7 +299,6 @@ public class ZAYI_RAPOR extends JInternalFrame {
 			}
 		} catch (Exception ex) {
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
-			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Zayi Raporlama", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	private static void grup_cevir()
@@ -415,7 +414,6 @@ public class ZAYI_RAPOR extends JInternalFrame {
 		        }
 		} catch (Exception ex) {
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
-			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Zayi Rapor", JOptionPane.ERROR_MESSAGE);
 		} 
 	}
 }

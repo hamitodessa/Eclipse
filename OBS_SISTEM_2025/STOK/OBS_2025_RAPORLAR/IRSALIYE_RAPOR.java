@@ -282,7 +282,6 @@ public class IRSALIYE_RAPOR extends JInternalFrame {
 			}
 		} catch (Exception ex) {
 			 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
-			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Irsaliye Raporlama", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	private static void grup_cevir()
@@ -349,7 +348,6 @@ public class IRSALIYE_RAPOR extends JInternalFrame {
 				
 		} catch (Exception ex) {
 			 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
-			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Fatura Raporlama", JOptionPane.ERROR_MESSAGE);
 		} 
 	}
 	public static void detay_doldur(String irsno,String har)
@@ -459,7 +457,6 @@ public class IRSALIYE_RAPOR extends JInternalFrame {
 			}
 		} catch (Exception ex) {
 			 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
-			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Irsaliye Detay",JOptionPane.ERROR_MESSAGE);
 		}
 	}
 }

@@ -1282,7 +1282,6 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 		stmt.setString(4, vdvn);
 		stmt.setString(5, amail);
 		stmt.setString(6, diger);
-
 		if (  resim != null)
 		{
 			ByteArrayOutputStream bos = new ByteArrayOutputStream();
@@ -1294,9 +1293,7 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 			stmt.setBytes(7,bytes);
 		}
 		else
-		{
 			stmt.setBytes(7,null);
-		}
 		if (  kase != null)
 		{
 			ByteArrayOutputStream bos = new ByteArrayOutputStream();
@@ -1308,9 +1305,7 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 			stmt.setBytes(8,bytes);
 		}
 		else
-		{
 			stmt.setBytes(8,null);
-		}
 		stmt.executeUpdate();
 		stmt.close();
 		
@@ -1323,7 +1318,6 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 		PreparedStatement stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();
 		stmt.close();
-		
 	}
 	@Override
 	public ResultSet tah_ayar_oku() throws ClassNotFoundException, SQLException {
@@ -1342,7 +1336,6 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();
-		
 		sql  = "INSERT INTO TAH_DETAY (EVRAK,TARIH,C_HES,A_HES,CINS,TUTAR,TUR,ACIKLAMA,DVZ_CINS)" +
 				" VALUES (?,?,?,?,?,?,?,?,?)" ;
 		stmt = null;
@@ -1399,7 +1392,6 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 		stmt.setDouble(9, tut);
 		stmt.executeUpdate();
 		stmt.close();
-		
 	}
 	@Override
 	public ResultSet tah_cek_doldur(String no, int cins) throws ClassNotFoundException, SQLException {
@@ -1419,7 +1411,6 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 		PreparedStatement stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();
 		stmt.close();
-		
 	}
 	@Override
 	public void tah_cek_kayit_aktar(String no, int cins) throws ClassNotFoundException, SQLException {
@@ -1427,7 +1418,6 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 		kONTROL();
 		PreparedStatement stmt = con.prepareStatement("SELECT * FROM TAH_AYARLAR ");
 		ResultSet rsAyar = stmt.executeQuery();
-		
 		String sql = "SELECT * FROM TAH_CEK WHERE EVRAK = '"+ no +"' AND CINS = '" + cins + "'";
 		stmt = con.prepareStatement(sql);
 		ResultSet rsCekler = stmt.executeQuery();
@@ -1464,7 +1454,25 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 	@Override
 	public ResultSet tah_listele(int cins, int tur, String ilktarih, String sontarih, String ilkevr, String sonevr,String ilkck,String sonck)
 			throws ClassNotFoundException, SQLException {
-		// TODO Auto-generated method stub
-		return null;
+		Class.forName("com.mysql.cj.jdbc.Driver");
+		ResultSet	rss = null;
+		String cinString = "" , turString=""  ;
+		if(cins !=0)
+			cinString = " CINS = '" + cins + "' AND";
+		if(tur != 0)
+			turString = " TUR = '" + tur + "' AND";
+		String sql = " SELECT EVRAK,TARIH ,C_HES ,A_HES ,CASE CINS  WHEN '0' THEN 'Tahsilat'  WHEN '1' THEN 'Tediye' END as CINS ," +
+				 " CASE TUR  WHEN '0' THEN 'Nakit'  WHEN '1' THEN 'Cek' WHEN '2' THEN 'Kredi Karti' END as TUR, " +
+				 " DVZ_CINS, TUTAR  " +
+				" FROM TAH_DETAY " +
+				" WHERE  " + cinString  + turString  +
+				" TARIH >= '" + ilktarih + "' AND TARIH < '" + sontarih + "' " + 
+				" AND EVRAK >= '" + ilkevr + "' AND EVRAK < '" + sonevr + "' " + 
+				" AND C_HES >= '" + ilkck + "' AND C_HES < '" + sonck + "' " + 
+				" ORDER BY TARIH " ;
+		kONTROL();
+		PreparedStatement stmt = con.prepareStatement(sql);
+		rss = stmt.executeQuery();
+		return rss;	
 	}
 }

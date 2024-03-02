@@ -862,7 +862,6 @@ public class Gunluk extends JInternalFrame {
 		{
 			setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,  ex.getMessage());
-			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Gunluk Okuma", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	private String getDayNumber(String tar) 
@@ -1310,7 +1309,6 @@ public class Gunluk extends JInternalFrame {
 		catch (Exception ex) 
 		{
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,  ex.getMessage());
-			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Gunluk Okuma", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	private void yillik_gorunum_doldur() throws SQLException, ClassNotFoundException, ParseException
@@ -1347,7 +1345,6 @@ public class Gunluk extends JInternalFrame {
 		catch (Exception ex) 
 		{
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,  ex.getMessage());
-			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Gunluk Okuma", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	private ResultSet yillik_gorev_oku() throws ClassNotFoundException, SQLException
@@ -1519,7 +1516,6 @@ public class Gunluk extends JInternalFrame {
 		{
 			setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	 
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,  ex.getMessage());
-			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Gunluk Okuma", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	private void sonraki_gorev_bul_yil()
@@ -1562,7 +1558,6 @@ public class Gunluk extends JInternalFrame {
 		{
 			setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,  ex.getMessage());
-			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Gunluk Okuma", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 }

@@ -62,7 +62,7 @@ import OBS_C_2025.CheckBoxHeader;
 import net.proteanit.sql.DbUtils;
 import raven.toast.Notifications;
 
-@SuppressWarnings({"serial" , "static-access" ,"deprecation" ,"unused","removal"})
+@SuppressWarnings({"serial" , "static-access"  ,"unused","removal"})
 public class YIL_SONU extends JInternalFrame {
 	private static final Vector<?> Boolean = null;
 	private static JTable table;
@@ -234,7 +234,7 @@ public class YIL_SONU extends JInternalFrame {
 					HESAP_PLN hsp ;
 					try {
 						hsp = new HESAP_PLN();
-						hsp.show();
+						hsp.setVisible(true);
 						textField_1.setText( oac.hsp_hsp_kodu);
 					} catch (Exception e1) {
 						e1.printStackTrace();

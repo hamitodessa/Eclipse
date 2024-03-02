@@ -497,7 +497,6 @@ public class KER_DETAY extends JInternalFrame {
 			}
 		} catch (Exception ex) {
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage() );
-			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Kereste Raporlama", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	private static void topla()
@@ -680,7 +679,6 @@ public class KER_DETAY extends JInternalFrame {
 		}
 		} catch (Exception ex) {
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage() );
-			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Kereste Detay", JOptionPane.ERROR_MESSAGE);
 		} 
 	}
 	public static void excell_aktar()
@@ -690,7 +688,6 @@ public class KER_DETAY extends JInternalFrame {
 		if (mdl.getRowCount() == 0 )
 		{
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING,"Aktarilacak Bilgi Yok....." );
-			//JOptionPane.showMessageDialog(null, "Aktarilacak Bilgi Yok.....","Kereste Detay", JOptionPane.PLAIN_MESSAGE);
 		}
 		else
 		{
@@ -1052,12 +1049,10 @@ public class KER_DETAY extends JInternalFrame {
 				GuiUtil.setWaitCursor(splitPane,false);
 				
 				OBS_MAIN.mesaj_goster(5000,Notifications.Type.INFO,"Aktarma Islemi Tamamlandi....." );
-				//JOptionPane.showMessageDialog(null, "Aktarma Islemi Tamamlandi.....","Stok Detay", JOptionPane.PLAIN_MESSAGE);
 			}
 			catch (Exception ex)
 			{
 				OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage() );
-				//JOptionPane.showMessageDialog(null,  ex.getMessage(),"Excell Aktarma", JOptionPane.ERROR_MESSAGE);
 			}
 		}
 		};

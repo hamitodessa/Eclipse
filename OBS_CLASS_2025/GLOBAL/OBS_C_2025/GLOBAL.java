@@ -74,7 +74,7 @@ public class GLOBAL {
 
 	public static final String OBS_DOSYA = System.getProperty("user.name") + "_OBS_SISTEM_2025.DB";
 	public static final String EKSTRE_DOSYA = System.getProperty("user.name") + "_EKSTRE.DB";
-	public static final String TAH_CEK_DOSYA = System.getProperty("user.name") + "_CEK_PRINT.MDB";
+	public static final String TAH_CEK_DOSYA = System.getProperty("user.name") + "_CEK_PRINT.accdb";
 	public static final String SURUCU = "C:" + File.separator + "OBS_SISTEM" + File.separator;
 	public static final String LOG_SURUCU =  "C:" + File.separator + "OBS_SISTEM" + File.separator + "LOGLAMA" + File.separator + "";
 	public static final String DBYERI = "C:" + File.separator + "OBS_DATABASES" + File.separator + "";
@@ -237,7 +237,7 @@ public class GLOBAL {
 		File file = new File(SURUCU + TAH_CEK_DOSYA );
 		try {
 			Database db;
-			db = new DatabaseBuilder(file).setFileFormat(Database.FileFormat.V2000)	
+			db = new DatabaseBuilder(file).setFileFormat(Database.FileFormat.V2019)	
 					//.setCodecProvider(new CryptCodecProvider("oOk271972"))
 					.create();
 			db.close();

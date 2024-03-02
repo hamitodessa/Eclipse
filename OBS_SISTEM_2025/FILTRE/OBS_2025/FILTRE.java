@@ -82,7 +82,6 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import javax.swing.JFormattedTextField;
-import javax.swing.JTextField;
 
 @SuppressWarnings({ "static-access", "serial" })
 public class FILTRE extends JDialog {
@@ -137,10 +136,10 @@ public class FILTRE extends JDialog {
 	public static JComboBox<String> comboBox_86 ;
 	public static JDateChooser dateChooser_35;
 	public static JDateChooser dateChooser_36;
-	public static JTextField textTaheno1;
-	public static JTextField textTaheno2;
-	public static JTextField textTahck1;
-	public static JTextField textTahck2;
+	public static Obs_TextFIeld textTaheno1;
+	public static Obs_TextFIeld textTaheno2;
+	public static Obs_TextFIeld textTahck1;
+	public static Obs_TextFIeld textTahck2;
 	//**** Gunluk ISLEM
 	public static JDateChooser dateChooser_5 ;
 	public static JDateChooser dateChooser_5_1 ;
@@ -454,10 +453,6 @@ public class FILTRE extends JDialog {
 	public static JComboBox<String> comboBox_83;
 	public static JCheckBox chckbxNewCheckBox_5 ;
 	
-	
-	
-
-	@SuppressWarnings("deprecation")
 	public FILTRE() {
 
 		setTitle("FILTRE");
@@ -508,13 +503,13 @@ public class FILTRE extends JDialog {
 		paneleks.add(lblNewLabelh);
 		lblNewLabel_1 = new JLabel(".....");
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblNewLabel_1.setForeground(new Color(25, 25, 112));
+		//lblNewLabel_1.setForeground(new Color(25, 25, 112));
 		lblNewLabel_1.setBounds(139, 58, 315, 14);
 		paneleks.add(lblNewLabel_1);
 
 		lblNewLabel_2 = new JLabel(".....");
 		lblNewLabel_2.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblNewLabel_2.setForeground(new Color(25, 25, 112));
+		//lblNewLabel_2.setForeground(new Color(25, 25, 112));
 		lblNewLabel_2.setBounds(139, 83, 120, 14);
 		paneleks.add(lblNewLabel_2);
 		JLabel lblNewLabel_3e = new JLabel("Ilk Tarih");
@@ -661,7 +656,7 @@ public class FILTRE extends JDialog {
 					HESAP_PLN hsp ;
 					try {
 						hsp = new HESAP_PLN();
-						hsp.show();
+						hsp.setVisible(true);
 						txtkodu.setText( oac.hsp_hsp_kodu);
 					} catch (Exception e1) {
 						e1.printStackTrace();
@@ -706,7 +701,7 @@ public class FILTRE extends JDialog {
 							HESAP_PLN hsp ;
 							getContentPane().setCursor(oac.WAIT_CURSOR);
 							hsp = new HESAP_PLN();
-							hsp.show();
+							hsp.setVisible(true);
 							txtkodu.setText(oac.hsp_hsp_kodu);
 							getContentPane().setCursor(oac.DEFAULT_CURSOR);
 						}
@@ -751,7 +746,7 @@ public class FILTRE extends JDialog {
 					HESAP_PLN hsp ;
 					try {
 						hsp = new HESAP_PLN();
-						hsp.show();
+						hsp.setVisible(true);
 						txtilk.setText( oac.hsp_hsp_kodu);
 					} catch (Exception ex) {
 					}
@@ -779,7 +774,7 @@ public class FILTRE extends JDialog {
 							HESAP_PLN hsp ;
 							getContentPane().setCursor(oac.WAIT_CURSOR);
 							hsp = new HESAP_PLN();
-							hsp.show();
+							hsp.setVisible(true);
 							txtilk.setText(oac.hsp_hsp_kodu);
 							getContentPane().setCursor(oac.DEFAULT_CURSOR);
 						}
@@ -835,7 +830,7 @@ public class FILTRE extends JDialog {
 					HESAP_PLN hsp ;
 					try {
 						hsp = new HESAP_PLN();
-						hsp.show();
+						hsp.setVisible(true);
 						txtson.setText( oac.hsp_hsp_kodu);
 					} catch (Exception ex) {}
 				}
@@ -861,7 +856,7 @@ public class FILTRE extends JDialog {
 							HESAP_PLN hsp ;
 							getContentPane().setCursor(oac.WAIT_CURSOR);
 							hsp = new HESAP_PLN();
-							hsp.show();
+							hsp.setVisible(true);
 							txtson.setText(oac.hsp_hsp_kodu);
 							getContentPane().setCursor(oac.DEFAULT_CURSOR);
 						}
@@ -1079,7 +1074,7 @@ public class FILTRE extends JDialog {
 		panel_1m.add(lblNewLabel_9);
 
 		comboBox = new JComboBox<String>();
-		comboBox.setForeground(new Color(0, 0, 128));
+		//comboBox.setForeground(new Color(0, 0, 128));
 		comboBox.setFont(new Font("Tahoma", Font.BOLD, 12));
 		comboBox.setModel(new DefaultComboBoxModel<String>(new String[] {"Butun Hesaplar", "Borclu Hesaplar", "Alacakli Hesaplar", "Bakiyesi 0 Olanlar", "Bakiyesi 0 Olmayanlar"}));
 		comboBox.setBounds(96, 151, 167, 22);
@@ -1135,7 +1130,7 @@ public class FILTRE extends JDialog {
 					HESAP_PLN hsp ;
 					try {
 						hsp = new HESAP_PLN();
-						hsp.show();
+						hsp.setVisible(true);
 						txtdvz.setText( oac.hsp_hsp_kodu);
 						//isimoku_dvz();
 					} catch (Exception ex) {}
@@ -1162,7 +1157,7 @@ public class FILTRE extends JDialog {
 							HESAP_PLN hsp ;
 							getContentPane().setCursor(oac.WAIT_CURSOR);
 							hsp = new HESAP_PLN();
-							hsp.show();
+							hsp.setVisible(true);
 							txtdvz.setText(oac.hsp_hsp_kodu);
 							getContentPane().setCursor(oac.DEFAULT_CURSOR);
 						}
@@ -1180,13 +1175,13 @@ public class FILTRE extends JDialog {
 
 		lblNewLabel_1_1 = new JLabel(".....");
 		lblNewLabel_1_1.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblNewLabel_1_1.setForeground(new Color(25, 25, 112));
+		//lblNewLabel_1_1.setForeground(new Color(25, 25, 112));
 		lblNewLabel_1_1.setBounds(123, 56, 315, 14);
 		panel.add(lblNewLabel_1_1);
 
 		lblNewLabel_2_1 = new JLabel(".....");
 		lblNewLabel_2_1.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblNewLabel_2_1.setForeground(new Color(25, 25, 112));
+		//lblNewLabel_2_1.setForeground(new Color(25, 25, 112));
 		lblNewLabel_2_1.setBounds(123, 81, 120, 14);
 		panel.add(lblNewLabel_2_1);
 
@@ -1305,7 +1300,7 @@ public class FILTRE extends JDialog {
 		panel.add(dateChooser_4);
 
 		comboBox_1 = new JComboBox<String>();
-		comboBox_1.setForeground(new Color(0, 0, 128));
+		//comboBox_1.setForeground(new Color(0, 0, 128));
 		comboBox_1.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent e) {
 				DVZ_CEVIRME.lblcevrilen.setText(comboBox_1.getItemAt(comboBox_1.getSelectedIndex()) + " / " + comboBox_2.getItemAt(comboBox_2.getSelectedIndex()));
@@ -1317,7 +1312,7 @@ public class FILTRE extends JDialog {
 		panel.add(comboBox_1);
 
 		comboBox_2 = new JComboBox<String>();
-		comboBox_2.setForeground(new Color(0, 0, 128));
+		//comboBox_2.setForeground(new Color(0, 0, 128));
 		comboBox_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				DVZ_CEVIRME.lblcevrilen.setText(comboBox_1.getItemAt(comboBox_1.getSelectedIndex()) + " / " + comboBox_2.getItemAt(comboBox_2.getSelectedIndex()));
@@ -1387,7 +1382,7 @@ public class FILTRE extends JDialog {
 					HESAP_PLN hsp ;
 					try {
 						hsp = new HESAP_PLN();
-						hsp.show();
+						hsp.setVisible(true);
 						textField.setText( oac.hsp_hsp_kodu);
 					} catch (Exception ex) {}
 				}
@@ -1480,7 +1475,7 @@ public class FILTRE extends JDialog {
 		panel_1.add(textField_5);
 
 		JPanel panel_2 = new JPanel();
-		panel_2.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Arama Kriteri", TitledBorder.LEADING, TitledBorder.TOP, null, SystemColor.textHighlight));
+		panel_2.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Arama Kriteri", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panel_2.setBounds(327, 95, 290, 88);
 		panel_1.add(panel_2);
 		panel_2.setLayout(null);
@@ -1847,7 +1842,7 @@ public class FILTRE extends JDialog {
 					HESAP_PLN hsp ;
 					try {
 						hsp = new HESAP_PLN();
-						hsp.show();
+						hsp.setVisible(true);
 						txtgh1.setText( oac.hsp_hsp_kodu);
 					} catch (Exception ex) {}
 				}
@@ -1868,7 +1863,7 @@ public class FILTRE extends JDialog {
 					HESAP_PLN hsp ;
 					try {
 						hsp = new HESAP_PLN();
-						hsp.show();
+						hsp.setVisible(true);
 						txtgh2.setText( oac.hsp_hsp_kodu);
 					} catch (Exception ex) {}
 				}
@@ -1940,7 +1935,7 @@ public class FILTRE extends JDialog {
 		panel_4.add(lblNewLabel_20);
 
 		cmbg = new JComboBox<String>();
-		cmbg.setForeground(new Color(0, 0, 128));
+		//cmbg.setForeground(new Color(0, 0, 128));
 		cmbg.setFont(new Font("Tahoma", Font.BOLD, 11));
 		cmbg.setModel(new DefaultComboBoxModel<String>(new String[] {"", "Bos"}));
 		cmbg.setEditable(true);
@@ -1953,7 +1948,7 @@ public class FILTRE extends JDialog {
 		panel_4.add(lblNewLabel_20_1);
 
 		cmbc = new JComboBox<String>();
-		cmbc.setForeground(new Color(0, 0, 128));
+		//cmbc.setForeground(new Color(0, 0, 128));
 		cmbc.setFont(new Font("Tahoma", Font.BOLD, 11));
 		cmbc.setModel(new DefaultComboBoxModel<String>(new String[] {"", "Bos"}));
 		cmbc.setEditable(true);
@@ -1994,7 +1989,7 @@ public class FILTRE extends JDialog {
 					HESAP_PLN hsp ;
 					try {
 						hsp = new HESAP_PLN();
-						hsp.show();
+						hsp.setVisible(true);
 						txtch1.setText( oac.hsp_hsp_kodu);
 					} catch (Exception ex) {}
 				}
@@ -2015,7 +2010,7 @@ public class FILTRE extends JDialog {
 					HESAP_PLN hsp ;
 					try {
 						hsp = new HESAP_PLN();
-						hsp.show();
+						hsp.setVisible(true);
 						txtch2.setText( oac.hsp_hsp_kodu);
 					} catch (Exception ex) {}
 				}
@@ -2158,7 +2153,7 @@ public class FILTRE extends JDialog {
 					HESAP_PLN hsp ;
 					try {
 						hsp = new HESAP_PLN();
-						hsp.show();
+						hsp.setVisible(true);
 						textField_7.setText( oac.hsp_hsp_kodu);
 					} catch (Exception e1) {
 						e1.printStackTrace();
@@ -2262,7 +2257,7 @@ public class FILTRE extends JDialog {
 					HESAP_PLN hsp ;
 					try {
 						hsp = new HESAP_PLN();
-						hsp.show();
+						hsp.setVisible(true);
 						txtZzzzzzzzzzzz.setText( oac.hsp_hsp_kodu);
 					} catch (Exception e1) {
 						e1.printStackTrace();
@@ -2324,7 +2319,7 @@ public class FILTRE extends JDialog {
 		panel_6.add(lblNewLabel_31);
 
 		comboBox_3 = new JComboBox<String>();
-		comboBox_3.setForeground(new Color(0, 0, 128));
+		//comboBox_3.setForeground(new Color(0, 0, 128));
 		comboBox_3.setFont(new Font("Tahoma", Font.BOLD, 12));
 		comboBox_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -2335,7 +2330,7 @@ public class FILTRE extends JDialog {
 		panel_6.add(comboBox_3);
 
 		comboBox_4 = new JComboBox<String>();
-		comboBox_4.setForeground(new Color(0, 0, 128));
+		//comboBox_4.setForeground(new Color(0, 0, 128));
 		comboBox_4.setFont(new Font("Tahoma", Font.BOLD, 12));
 		comboBox_4.setEnabled(false);
 
@@ -2343,13 +2338,13 @@ public class FILTRE extends JDialog {
 		panel_6.add(comboBox_4);
 
 		comboBox_5 = new JComboBox<String>();
-		comboBox_5.setForeground(new Color(0, 0, 128));
+		//comboBox_5.setForeground(new Color(0, 0, 128));
 		comboBox_5.setFont(new Font("Tahoma", Font.BOLD, 12));
 		comboBox_5.setBounds(566, 63, 165, 22);
 		panel_6.add(comboBox_5);
 
 		comboBox_6 = new JComboBox<String>();
-		comboBox_6.setForeground(new Color(0, 0, 128));
+		//comboBox_6.setForeground(new Color(0, 0, 128));
 		comboBox_6.setFont(new Font("Tahoma", Font.BOLD, 12));
 		comboBox_6.setModel(new DefaultComboBoxModel<String>(new String[] {"", "GIREN", "CIKAN"}));
 		comboBox_6.setBounds(566, 91, 165, 22);
@@ -2372,14 +2367,14 @@ public class FILTRE extends JDialog {
 		panel_7.setLayout(null);
 
 		comboBox_7 = new JComboBox<String>();
-		comboBox_7.setForeground(new Color(0, 0, 128));
+		//comboBox_7.setForeground(new Color(0, 0, 128));
 		comboBox_7.setFont(new Font("Tahoma", Font.BOLD, 12));
 		comboBox_7.setModel(new DefaultComboBoxModel<String>(new String[] {"Fatura No", "Firma Kodu", "Fatura_No_Tarih"}));
 		comboBox_7.setBounds(107, 11, 149, 22);
 		panel_7.add(comboBox_7);
 
 		comboBox_8 = new JComboBox<String>();
-		comboBox_8.setForeground(new Color(0, 0, 128));
+		//comboBox_8.setForeground(new Color(0, 0, 128));
 		comboBox_8.setFont(new Font("Tahoma", Font.BOLD, 12));
 		comboBox_8.setModel(new DefaultComboBoxModel<String>(new String[] {"Cari_Firma", "Adres_Firma"}));
 		comboBox_8.setBounds(107, 37, 149, 22);
@@ -2540,7 +2535,7 @@ public class FILTRE extends JDialog {
 		panel_8.add(lblUrunAltGrup);
 
 		comboBox_9 = new JComboBox<String>();
-		comboBox_9.setForeground(new Color(0, 0, 128));
+		//comboBox_9.setForeground(new Color(0, 0, 128));
 		comboBox_9.setFont(new Font("Tahoma", Font.BOLD, 12));
 		comboBox_9.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -2551,14 +2546,14 @@ public class FILTRE extends JDialog {
 		panel_8.add(comboBox_9);
 
 		comboBox_10 = new JComboBox<String>();
-		comboBox_10.setForeground(new Color(0, 0, 128));
+		//comboBox_10.setForeground(new Color(0, 0, 128));
 		comboBox_10.setFont(new Font("Tahoma", Font.BOLD, 12));
 		comboBox_10.setEnabled(false);
 		comboBox_10.setBounds(566, 35, 149, 22);
 		panel_8.add(comboBox_10);
 
 		comboBox_11 = new JComboBox<String>();
-		comboBox_11.setForeground(new Color(0, 0, 128));
+		//comboBox_11.setForeground(new Color(0, 0, 128));
 		comboBox_11.setFont(new Font("Tahoma", Font.BOLD, 12));
 		comboBox_11.setBounds(566, 81, 149, 22);
 		panel_8.add(comboBox_11);
@@ -2592,7 +2587,7 @@ public class FILTRE extends JDialog {
 		panel_8.add(label);
 
 		comboBox_12 = new JComboBox<String>();
-		comboBox_12.setForeground(new Color(0, 0, 128));
+		//comboBox_12.setForeground(new Color(0, 0, 128));
 		comboBox_12.setFont(new Font("Tahoma", Font.BOLD, 12));
 		comboBox_12.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -2608,7 +2603,7 @@ public class FILTRE extends JDialog {
 		panel_8.add(label_2);
 
 		comboBox_13 = new JComboBox<String>();
-		comboBox_13.setForeground(new Color(0, 0, 128));
+		//comboBox_13.setForeground(new Color(0, 0, 128));
 		comboBox_13.setFont(new Font("Tahoma", Font.BOLD, 12));
 		comboBox_13.setEnabled(false);
 		comboBox_13.setBounds(90, 168, 174, 22);
@@ -2698,7 +2693,7 @@ public class FILTRE extends JDialog {
 		panel_9.add(label_4);
 
 		comboBox_14 = new JComboBox<String>();
-		comboBox_14.setForeground(new Color(0, 0, 128));
+		//comboBox_14.setForeground(new Color(0, 0, 128));
 		comboBox_14.setFont(new Font("Tahoma", Font.BOLD, 12));
 		comboBox_14.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -2714,7 +2709,7 @@ public class FILTRE extends JDialog {
 		panel_9.add(label_5);
 
 		comboBox_15 = new JComboBox<String>();
-		comboBox_15.setForeground(new Color(0, 0, 128));
+		//comboBox_15.setForeground(new Color(0, 0, 128));
 		comboBox_15.setFont(new Font("Tahoma", Font.BOLD, 12));
 		comboBox_15.setEnabled(false);
 		comboBox_15.setBounds(79, 121, 174, 22);
@@ -2726,7 +2721,7 @@ public class FILTRE extends JDialog {
 		panel_9.add(label_6);
 
 		comboBox_16 = new JComboBox<String>();
-		comboBox_16.setForeground(new Color(0, 0, 128));
+		//comboBox_16.setForeground(new Color(0, 0, 128));
 		comboBox_16.setFont(new Font("Tahoma", Font.BOLD, 12));
 		comboBox_16.setBounds(79, 150, 174, 22);
 		panel_9.add(comboBox_16);
@@ -2737,7 +2732,7 @@ public class FILTRE extends JDialog {
 		panel_9.add(label_7);
 
 		comboBox_17 = new JComboBox<String>();
-		comboBox_17.setForeground(new Color(0, 0, 128));
+		//comboBox_17.setForeground(new Color(0, 0, 128));
 		comboBox_17.setFont(new Font("Tahoma", Font.BOLD, 12));
 		comboBox_17.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -2753,7 +2748,7 @@ public class FILTRE extends JDialog {
 		panel_9.add(label_8);
 
 		comboBox_18 = new JComboBox<String>();
-		comboBox_18.setForeground(new Color(0, 0, 128));
+		//comboBox_18.setForeground(new Color(0, 0, 128));
 		comboBox_18.setFont(new Font("Tahoma", Font.BOLD, 12));
 		comboBox_18.setEnabled(false);
 		comboBox_18.setBounds(571, 34, 149, 22);
@@ -2779,7 +2774,7 @@ public class FILTRE extends JDialog {
 				}
 			}
 		});
-		comboBox_19.setForeground(new Color(0, 0, 128));
+		//comboBox_19.setForeground(new Color(0, 0, 128));
 		comboBox_19.setFont(new Font("Tahoma", Font.BOLD, 12));
 		comboBox_19.setModel(new DefaultComboBoxModel<String>(new String[] {"Urun Kodu", "Ana_Grup_Alt_Grup"}));
 		comboBox_19.setBounds(40, 25, 195, 22);
@@ -2885,7 +2880,7 @@ public class FILTRE extends JDialog {
 		panel_11.add(label_13);
 
 		comboBox_20 = new JComboBox<String>();
-		comboBox_20.setForeground(new Color(0, 0, 128));
+		//comboBox_20.setForeground(new Color(0, 0, 128));
 		comboBox_20.setFont(new Font("Tahoma", Font.BOLD, 12));
 		comboBox_20.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -2901,7 +2896,7 @@ public class FILTRE extends JDialog {
 		panel_11.add(label_14);
 
 		comboBox_21 = new JComboBox<String>();
-		comboBox_21.setForeground(new Color(0, 0, 128));
+		//comboBox_21.setForeground(new Color(0, 0, 128));
 		comboBox_21.setFont(new Font("Tahoma", Font.BOLD, 12));
 		comboBox_21.setEnabled(false);
 		comboBox_21.setBounds(317, 117, 150, 22);
@@ -2913,7 +2908,7 @@ public class FILTRE extends JDialog {
 		panel_11.add(label_15);
 
 		comboBox_22 = new JComboBox<String>();
-		comboBox_22.setForeground(new Color(0, 0, 128));
+		//comboBox_22.setForeground(new Color(0, 0, 128));
 		comboBox_22.setFont(new Font("Tahoma", Font.BOLD, 12));
 		comboBox_22.setBounds(79, 150, 150, 22);
 		panel_11.add(comboBox_22);
@@ -2924,7 +2919,7 @@ public class FILTRE extends JDialog {
 		panel_11.add(label_16);
 
 		comboBox_23 = new JComboBox<String>();
-		comboBox_23.setForeground(new Color(0, 0, 128));
+		//comboBox_23.setForeground(new Color(0, 0, 128));
 		comboBox_23.setFont(new Font("Tahoma", Font.BOLD, 12));
 		comboBox_23.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -2940,7 +2935,7 @@ public class FILTRE extends JDialog {
 		panel_11.add(label_17);
 
 		comboBox_24 = new JComboBox<String>();
-		comboBox_24.setForeground(new Color(0, 0, 128));
+		//comboBox_24.setForeground(new Color(0, 0, 128));
 		comboBox_24.setFont(new Font("Tahoma", Font.BOLD, 12));
 		comboBox_24.setEnabled(false);
 		comboBox_24.setBounds(571, 34, 149, 22);
@@ -2963,7 +2958,7 @@ public class FILTRE extends JDialog {
 		panel_11.add(lblNewLabel_34);
 
 		comboBox_25 = new JComboBox<String>();
-		comboBox_25.setForeground(new Color(0, 0, 128));
+		//comboBox_25.setForeground(new Color(0, 0, 128));
 		comboBox_25.setFont(new Font("Tahoma", Font.BOLD, 12));
 		comboBox_25.setModel(new DefaultComboBoxModel<String>(new String[] {"", "Giren", "Cikan"}));
 		comboBox_25.setBounds(571, 92, 149, 22);
@@ -3051,7 +3046,7 @@ public class FILTRE extends JDialog {
 					HESAP_PLN hsp ;
 					try {
 						hsp = new HESAP_PLN();
-						hsp.show();
+						hsp.setVisible(true);
 						textField_31.setText( oac.hsp_hsp_kodu);
 					} catch (Exception e1) {
 						e1.printStackTrace();
@@ -3087,7 +3082,7 @@ public class FILTRE extends JDialog {
 					HESAP_PLN hsp ;
 					try {
 						hsp = new HESAP_PLN();
-						hsp.show();
+						hsp.setVisible(true);
 						textField_34.setText( oac.hsp_hsp_kodu);
 					} catch (Exception e1) {
 						e1.printStackTrace();
@@ -3103,7 +3098,7 @@ public class FILTRE extends JDialog {
 		panel_12.add(label_24);
 
 		comboBox_29 = new JComboBox<String>();
-		comboBox_29.setForeground(new Color(0, 0, 128));
+		//comboBox_29.setForeground(new Color(0, 0, 128));
 		comboBox_29.setFont(new Font("Tahoma", Font.BOLD, 12));
 		comboBox_29.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -3119,7 +3114,7 @@ public class FILTRE extends JDialog {
 		panel_12.add(label_25);
 
 		comboBox_30 = new JComboBox<String>();
-		comboBox_30.setForeground(new Color(0, 0, 128));
+		//comboBox_30.setForeground(new Color(0, 0, 128));
 		comboBox_30.setFont(new Font("Tahoma", Font.BOLD, 12));
 		comboBox_30.setEnabled(false);
 		comboBox_30.setBounds(520, 39, 184, 22);
@@ -3186,7 +3181,7 @@ public class FILTRE extends JDialog {
 		panel_12.add(lblBirim);
 
 		comboBox_26 = new JComboBox<String>();
-		comboBox_26.setForeground(new Color(0, 0, 128));
+		//comboBox_26.setForeground(new Color(0, 0, 128));
 		comboBox_26.setFont(new Font("Tahoma", Font.BOLD, 12));
 		comboBox_26.setModel(new DefaultComboBoxModel<String>(new String[] {"Tutar", "Miktar", "Agirlik"}));
 		comboBox_26.setBounds(90, 113, 149, 22);
@@ -3198,7 +3193,7 @@ public class FILTRE extends JDialog {
 		panel_12.add(lblGruplama);
 
 		comboBox_27 = new JComboBox<String>();
-		comboBox_27.setForeground(new Color(0, 0, 128));
+		//comboBox_27.setForeground(new Color(0, 0, 128));
 		comboBox_27.setFont(new Font("Tahoma", Font.BOLD, 12));
 		comboBox_27.setModel(new DefaultComboBoxModel<String>(new String[] {"Urun Kodu", "Urun Kodu-Yil", "Hesap Kodu", "Yil", "Hesap Kodu-Yil", "Yil_Ay", "Urun_Ana_Grup", "Urun_Ana_Grup_Yil"}));
 		comboBox_27.setSelectedIndex(3);
@@ -3211,7 +3206,7 @@ public class FILTRE extends JDialog {
 		panel_12.add(lblStunlar);
 
 		comboBox_28 = new JComboBox<String>();
-		comboBox_28.setForeground(new Color(0, 0, 128));
+		//comboBox_28.setForeground(new Color(0, 0, 128));
 		comboBox_28.setFont(new Font("Tahoma", Font.BOLD, 12));
 		comboBox_28.setModel(new DefaultComboBoxModel<String>(new String[] {"Yil", "Ay", "Gun", "Ana Grup", "Hesap Kodu"}));
 		comboBox_28.setSelectedIndex(1);
@@ -3224,7 +3219,7 @@ public class FILTRE extends JDialog {
 		panel_12.add(lblUrunOzelKod);
 
 		comboBox_31 = new JComboBox<String>();
-		comboBox_31.setForeground(new Color(0, 0, 128));
+		//comboBox_31.setForeground(new Color(0, 0, 128));
 		comboBox_31.setFont(new Font("Tahoma", Font.BOLD, 12));
 		comboBox_31.setBounds(520, 72, 184, 22);
 		panel_12.add(comboBox_31);
@@ -3237,7 +3232,7 @@ public class FILTRE extends JDialog {
 		textField_37.setColumns(10);
 
 		comboBox_32 = new JComboBox<String>();
-		comboBox_32.setForeground(new Color(0, 0, 128));
+		//comboBox_32.setForeground(new Color(0, 0, 128));
 		comboBox_32.setFont(new Font("Tahoma", Font.BOLD, 12));
 		comboBox_32.setModel(new DefaultComboBoxModel<String>(new String[] {"USD", "EUR"}));
 		comboBox_32.setBounds(520, 139, 74, 22);
@@ -3245,7 +3240,7 @@ public class FILTRE extends JDialog {
 		panel_12.add(comboBox_32);
 
 		comboBox_33 = new JComboBox<String>();
-		comboBox_33.setForeground(new Color(0, 0, 128));
+		//comboBox_33.setForeground(new Color(0, 0, 128));
 		comboBox_33.setFont(new Font("Tahoma", Font.BOLD, 12));
 		comboBox_33.setModel(new DefaultComboBoxModel<String>(new String[] {"MA", "MS", "BA", "BS", "SA", "SS"}));
 		comboBox_33.setBounds(520, 168, 74, 22);
@@ -3336,7 +3331,7 @@ public class FILTRE extends JDialog {
 		panel_13.add(label_26);
 
 		comboBox_34 = new JComboBox<String>();
-		comboBox_34.setForeground(new Color(0, 0, 128));
+		//comboBox_34.setForeground(new Color(0, 0, 128));
 		comboBox_34.setFont(new Font("Tahoma", Font.BOLD, 12));
 		comboBox_34.setModel(new DefaultComboBoxModel<String>(new String[] {"Agirlik", "Tutar", "Miktar"}));
 		comboBox_34.setBounds(90, 92, 125, 22);
@@ -3348,7 +3343,7 @@ public class FILTRE extends JDialog {
 		panel_13.add(label_27);
 
 		comboBox_35 = new JComboBox<String>();
-		comboBox_35.setForeground(new Color(0, 0, 128));
+		//comboBox_35.setForeground(new Color(0, 0, 128));
 		comboBox_35.setFont(new Font("Tahoma", Font.BOLD, 12));
 		comboBox_35.setModel(new DefaultComboBoxModel<String>(new String[] {"Urun Kodu", "Yil_Ay", "Yil", "Ana_Grup", "Alt_Grup", "Alt_Grup_Yil", "Alt_Grup_Yil_Ay", "Depo"}));
 		comboBox_35.setSelectedIndex(2);
@@ -3361,7 +3356,7 @@ public class FILTRE extends JDialog {
 		panel_13.add(label_28);
 
 		comboBox_36 = new JComboBox<String>();
-		comboBox_36.setForeground(new Color(0, 0, 128));
+		//comboBox_36.setForeground(new Color(0, 0, 128));
 		comboBox_36.setFont(new Font("Tahoma", Font.BOLD, 12));
 		comboBox_36.setModel(new DefaultComboBoxModel<String>(new String[] {"Yil", "Ay", "Gun", "Ana Grup", "Depo"}));
 		comboBox_36.setSelectedIndex(1);
@@ -3379,14 +3374,14 @@ public class FILTRE extends JDialog {
 		panel_13.add(label_32);
 
 		comboBox_39 = new JComboBox<String>();
-		comboBox_39.setForeground(new Color(0, 0, 128));
+		//comboBox_39.setForeground(new Color(0, 0, 128));
 		comboBox_39.setFont(new Font("Tahoma", Font.BOLD, 12));
 		comboBox_39.setEnabled(false);
 		comboBox_39.setBounds(512, 135, 174, 22);
 		panel_13.add(comboBox_39);
 
 		comboBox_40 = new JComboBox<String>();
-		comboBox_40.setForeground(new Color(0, 0, 128));
+		//comboBox_40.setForeground(new Color(0, 0, 128));
 		comboBox_40.setFont(new Font("Tahoma", Font.BOLD, 12));
 		comboBox_40.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -3397,7 +3392,7 @@ public class FILTRE extends JDialog {
 		panel_13.add(comboBox_40);
 
 		comboBox_41 = new JComboBox<String>();
-		comboBox_41.setForeground(new Color(0, 0, 128));
+		//comboBox_41.setForeground(new Color(0, 0, 128));
 		comboBox_41.setFont(new Font("Tahoma", Font.BOLD, 12));
 		comboBox_41.setModel(new DefaultComboBoxModel<String>(new String[] {"Giren", "Cikan"}));
 		comboBox_41.setBounds(512, 164, 117, 22);
@@ -3410,7 +3405,7 @@ public class FILTRE extends JDialog {
 		panel_14.setLayout(null);
 
 		comboBox_38 = new JComboBox<String>();
-		comboBox_38.setForeground(new Color(0, 0, 128));
+		//comboBox_38.setForeground(new Color(0, 0, 128));
 		comboBox_38.setFont(new Font("Tahoma", Font.BOLD, 12));
 		comboBox_38.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -3421,7 +3416,7 @@ public class FILTRE extends JDialog {
 		panel_14.add(comboBox_38);
 
 		comboBox_37 = new JComboBox<String>();
-		comboBox_37.setForeground(new Color(0, 0, 128));
+		//comboBox_37.setForeground(new Color(0, 0, 128));
 		comboBox_37.setFont(new Font("Tahoma", Font.BOLD, 12));
 		comboBox_37.setBounds(32, 50, 184, 22);
 		panel_14.add(comboBox_37);
@@ -3486,7 +3481,7 @@ public class FILTRE extends JDialog {
 					HESAP_PLN hsp ;
 					try {
 						hsp = new HESAP_PLN();
-						hsp.show();
+						hsp.setVisible(true);
 						textField_41.setText( oac.hsp_hsp_kodu);
 					} catch (Exception e1) {
 						e1.printStackTrace();
@@ -3565,7 +3560,7 @@ public class FILTRE extends JDialog {
 					HESAP_PLN hsp ;
 					try {
 						hsp = new HESAP_PLN();
-						hsp.show();
+						hsp.setVisible(true);
 						textField_49.setText( oac.hsp_hsp_kodu);
 					} catch (Exception e1) {
 						e1.printStackTrace();
@@ -3600,7 +3595,7 @@ public class FILTRE extends JDialog {
 		panel_15.add(label_38);
 
 		comboBox_42 = new JComboBox<String>();
-		comboBox_42.setForeground(new Color(0, 0, 128));
+		//comboBox_42.setForeground(new Color(0, 0, 128));
 		comboBox_42.setFont(new Font("Tahoma", Font.BOLD, 12));
 		comboBox_42.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -3611,14 +3606,14 @@ public class FILTRE extends JDialog {
 		panel_15.add(comboBox_42);
 
 		comboBox_43 = new JComboBox<String>();
-		comboBox_43.setForeground(new Color(0, 0, 128));
+		//comboBox_43.setForeground(new Color(0, 0, 128));
 		comboBox_43.setFont(new Font("Tahoma", Font.BOLD, 12));
 		comboBox_43.setEnabled(false);
 		comboBox_43.setBounds(566, 35, 149, 22);
 		panel_15.add(comboBox_43);
 
 		comboBox_45 = new JComboBox<String>();
-		comboBox_45.setForeground(new Color(0, 0, 128));
+		//comboBox_45.setForeground(new Color(0, 0, 128));
 		comboBox_45.setFont(new Font("Tahoma", Font.BOLD, 12));
 		comboBox_45.setModel(new DefaultComboBoxModel<String>(new String[] {"","GIREN", "CIKAN"}));
 		comboBox_45.setBounds(566, 91, 149, 22);
@@ -3681,7 +3676,7 @@ public class FILTRE extends JDialog {
 		panel_16.add(label_45);
 
 		comboBox_44 = new JComboBox<String>();
-		comboBox_44.setForeground(new Color(0, 0, 128));
+		//comboBox_44.setForeground(new Color(0, 0, 128));
 		comboBox_44.setFont(new Font("Tahoma", Font.BOLD, 12));
 		comboBox_44.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -3692,14 +3687,14 @@ public class FILTRE extends JDialog {
 		panel_16.add(comboBox_44);
 
 		comboBox_46 = new JComboBox<String>();
-		comboBox_46.setForeground(new Color(0, 0, 128));
+		//comboBox_46.setForeground(new Color(0, 0, 128));
 		comboBox_46.setFont(new Font("Tahoma", Font.BOLD, 12));
 		comboBox_46.setEnabled(false);
 		comboBox_46.setBounds(90, 95, 176, 22);
 		panel_16.add(comboBox_46);
 
 		comboBox_47 = new JComboBox<String>();
-		comboBox_47.setForeground(new Color(0, 0, 128));
+		//comboBox_47.setForeground(new Color(0, 0, 128));
 		comboBox_47.setFont(new Font("Tahoma", Font.BOLD, 12));
 		comboBox_47.setModel(new DefaultComboBoxModel<String>(new String[] {"", "AKTIV", "PASIV"}));
 		comboBox_47.setBounds(90, 124, 104, 22);
@@ -3731,12 +3726,12 @@ public class FILTRE extends JDialog {
 		JPanel panel_17 = new JPanel();
 
 		panel_17.setLayout(null);
-		panel_17.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Urun Ana Grup / Alt Grup", TitledBorder.LEADING, TitledBorder.TOP, null, SystemColor.textHighlight));
+		panel_17.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Urun Ana Grup / Alt Grup", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panel_17.setBounds(472, 11, 243, 88);
 		panel_16.add(panel_17);
 
 		comboBox_48 = new JComboBox<String>();
-		comboBox_48.setForeground(new Color(0, 0, 128));
+		//comboBox_48.setForeground(new Color(0, 0, 128));
 		comboBox_48.setFont(new Font("Tahoma", Font.BOLD, 12));
 		comboBox_48.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -3747,7 +3742,7 @@ public class FILTRE extends JDialog {
 		panel_17.add(comboBox_48);
 
 		comboBox_49 = new JComboBox<String>();
-		comboBox_49.setForeground(new Color(0, 0, 128));
+		//comboBox_49.setForeground(new Color(0, 0, 128));
 		comboBox_49.setFont(new Font("Tahoma", Font.BOLD, 12));
 		comboBox_49.setEnabled(false);
 		comboBox_49.setBounds(32, 50, 184, 22);
@@ -3837,7 +3832,7 @@ public class FILTRE extends JDialog {
 		panel_18.add(label_42);
 
 		comboBox_51 = new JComboBox<String>();
-		comboBox_51.setForeground(new Color(0, 0, 128));
+		//comboBox_51.setForeground(new Color(0, 0, 128));
 		comboBox_51.setFont(new Font("Tahoma", Font.BOLD, 12));
 		comboBox_51.setModel(new DefaultComboBoxModel<String>(new String[] {"Urun Kodu", "Hesap Kodu", "Hesap Kodu-Ana_Alt_Grup", "Yil", "Yil_Ay", "Urun Ana Grup"}));
 		comboBox_51.setBounds(90, 122, 216, 22);
@@ -3850,7 +3845,7 @@ public class FILTRE extends JDialog {
 		panel_18.add(panel_19);
 
 		comboBox_56 = new JComboBox<String>();
-		comboBox_56.setForeground(new Color(0, 0, 128));
+		//comboBox_56.setForeground(new Color(0, 0, 128));
 		comboBox_56.setFont(new Font("Tahoma", Font.BOLD, 12));
 		comboBox_56.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -3861,7 +3856,7 @@ public class FILTRE extends JDialog {
 		panel_19.add(comboBox_56);
 
 		comboBox_57 = new JComboBox<String>();
-		comboBox_57.setForeground(new Color(0, 0, 128));
+		//comboBox_57.setForeground(new Color(0, 0, 128));
 		comboBox_57.setFont(new Font("Tahoma", Font.BOLD, 12));
 		comboBox_57.setEnabled(false);
 		comboBox_57.setBounds(32, 50, 184, 22);
@@ -3884,7 +3879,7 @@ public class FILTRE extends JDialog {
 					HESAP_PLN hsp ;
 					try {
 						hsp = new HESAP_PLN();
-						hsp.show();
+						hsp.setVisible(true);
 						textField_59.setText( oac.hsp_hsp_kodu);
 					} catch (Exception e1) {
 						e1.printStackTrace();
@@ -3908,7 +3903,7 @@ public class FILTRE extends JDialog {
 					HESAP_PLN hsp ;
 					try {
 						hsp = new HESAP_PLN();
-						hsp.show();
+						hsp.setVisible(true);
 						textField_60.setText( oac.hsp_hsp_kodu);
 					} catch (Exception e1) {
 						e1.printStackTrace();
@@ -3919,7 +3914,7 @@ public class FILTRE extends JDialog {
 		panel_18.add(textField_60);
 
 		comboBox_50 = new JComboBox<String>();
-		comboBox_50.setForeground(new Color(0, 0, 128));
+		//comboBox_50.setForeground(new Color(0, 0, 128));
 		comboBox_50.setFont(new Font("Tahoma", Font.BOLD, 12));
 		comboBox_50.setModel(new DefaultComboBoxModel<String>(new String[] {"USD", "EUR"}));
 		comboBox_50.setBounds(561, 118, 125, 22);
@@ -3978,7 +3973,7 @@ public class FILTRE extends JDialog {
 		panel_20.add(label_51);
 
 		comboBox_54 = new JComboBox<String>();
-		comboBox_54.setForeground(new Color(0, 0, 128));
+		//comboBox_54.setForeground(new Color(0, 0, 128));
 		comboBox_54.setFont(new Font("Tahoma", Font.BOLD, 12));
 		comboBox_54.setBounds(79, 116, 174, 22);
 		panel_20.add(comboBox_54);
@@ -3989,7 +3984,7 @@ public class FILTRE extends JDialog {
 		panel_20.add(label_52);
 
 		comboBox_55 = new JComboBox<String>();
-		comboBox_55.setForeground(new Color(0, 0, 128));
+		//comboBox_55.setForeground(new Color(0, 0, 128));
 		comboBox_55.setFont(new Font("Tahoma", Font.BOLD, 12));
 		comboBox_55.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -4005,7 +4000,7 @@ public class FILTRE extends JDialog {
 		panel_20.add(label_53);
 
 		comboBox_58 = new JComboBox<String>();
-		comboBox_58.setForeground(new Color(0, 0, 128));
+		//comboBox_58.setForeground(new Color(0, 0, 128));
 		comboBox_58.setFont(new Font("Tahoma", Font.BOLD, 12));
 		comboBox_58.setEnabled(false);
 		comboBox_58.setBounds(571, 34, 149, 22);
@@ -4017,7 +4012,7 @@ public class FILTRE extends JDialog {
 		panel_20.add(lblOzelKod);
 
 		comboBox_59 = new JComboBox<String>();
-		comboBox_59.setForeground(new Color(0, 0, 128));
+		//comboBox_59.setForeground(new Color(0, 0, 128));
 		comboBox_59.setFont(new Font("Tahoma", Font.BOLD, 12));
 		comboBox_59.setBounds(571, 92, 149, 22);
 		panel_20.add(comboBox_59);
@@ -4064,7 +4059,7 @@ public class FILTRE extends JDialog {
 		panel_20.add(lblMensei);
 
 		comboBox_52 = new JComboBox<String>();
-		comboBox_52.setForeground(new Color(0, 0, 128));
+		//comboBox_52.setForeground(new Color(0, 0, 128));
 		comboBox_52.setFont(new Font("Tahoma", Font.BOLD, 12));
 		comboBox_52.setBounds(79, 145, 174, 22);
 		panel_20.add(comboBox_52);
@@ -4075,7 +4070,7 @@ public class FILTRE extends JDialog {
 		panel_20.add(lblOzelKod_1);
 
 		comboBox_53 = new JComboBox<String>();
-		comboBox_53.setForeground(new Color(0, 0, 128));
+		//comboBox_53.setForeground(new Color(0, 0, 128));
 		comboBox_53.setFont(new Font("Tahoma", Font.BOLD, 12));
 		comboBox_53.setBounds(571, 120, 149, 22);
 		panel_20.add(comboBox_53);
@@ -4165,7 +4160,7 @@ public class FILTRE extends JDialog {
 		panel_21.add(label_50);
 
 		comboBox_60 = new JComboBox<String>();
-		comboBox_60.setForeground(new Color(0, 0, 128));
+		//comboBox_60.setForeground(new Color(0, 0, 128));
 		comboBox_60.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				alt_grup_doldur(comboBox_61,comboBox_60 .getItemAt(comboBox_60 .getSelectedIndex()));
@@ -4181,7 +4176,7 @@ public class FILTRE extends JDialog {
 		panel_21.add(label_54);
 
 		comboBox_61 = new JComboBox<String>();
-		comboBox_61.setForeground(new Color(0, 0, 128));
+		//comboBox_61.setForeground(new Color(0, 0, 128));
 		comboBox_61.setFont(new Font("Tahoma", Font.BOLD, 12));
 		comboBox_61.setEnabled(false);
 		comboBox_61.setBounds(79, 121, 174, 22);
@@ -4193,7 +4188,7 @@ public class FILTRE extends JDialog {
 		panel_21.add(label_55);
 
 		comboBox_62 = new JComboBox<String>();
-		comboBox_62.setForeground(new Color(0, 0, 128));
+		//comboBox_62.setForeground(new Color(0, 0, 128));
 		comboBox_62.setFont(new Font("Tahoma", Font.BOLD, 12));
 		comboBox_62.setBounds(79, 150, 174, 22);
 		panel_21.add(comboBox_62);
@@ -4204,7 +4199,7 @@ public class FILTRE extends JDialog {
 		panel_21.add(label_56);
 
 		comboBox_63 = new JComboBox<String>();
-		comboBox_63.setForeground(new Color(0, 0, 128));
+		//comboBox_63.setForeground(new Color(0, 0, 128));
 		comboBox_63.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				alt_grup_doldur(comboBox_64,comboBox_63 .getItemAt(comboBox_63 .getSelectedIndex()));
@@ -4220,7 +4215,7 @@ public class FILTRE extends JDialog {
 		panel_21.add(label_57);
 
 		comboBox_64 = new JComboBox<String>();
-		comboBox_64.setForeground(new Color(0, 0, 128));
+		//comboBox_64.setForeground(new Color(0, 0, 128));
 		comboBox_64.setFont(new Font("Tahoma", Font.BOLD, 12));
 		comboBox_64.setEnabled(false);
 		comboBox_64.setBounds(571, 34, 149, 22);
@@ -4243,7 +4238,7 @@ public class FILTRE extends JDialog {
 		panel_21.add(lblGruplama_1);
 
 		comboBox_65 = new JComboBox<String>();
-		comboBox_65.setForeground(new Color(0, 0, 128));
+		//comboBox_65.setForeground(new Color(0, 0, 128));
 		comboBox_65.setModel(new DefaultComboBoxModel<String>(new String[] {"Urun Kodu"}));
 		comboBox_65.setFont(new Font("Tahoma", Font.BOLD, 12));
 		comboBox_65.setBounds(571, 92, 149, 22);
@@ -4255,7 +4250,7 @@ public class FILTRE extends JDialog {
 		panel_21.add(lblFiatlama);
 
 		comboBox_66 = new JComboBox<String>();
-		comboBox_66.setForeground(new Color(0, 0, 128));
+		//comboBox_66.setForeground(new Color(0, 0, 128));
 		comboBox_66.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (! comboBox_66.getSelectedItem().toString().equals("Agirlikli Ortalama"))
@@ -4361,7 +4356,7 @@ public class FILTRE extends JDialog {
 		panel_22.add(label_61);
 
 		comboBox_67 = new JComboBox<String>();
-		comboBox_67.setForeground(new Color(0, 0, 128));
+		//comboBox_67.setForeground(new Color(0, 0, 128));
 		comboBox_67.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				alt_grup_doldur(comboBox_68,comboBox_67 .getItemAt(comboBox_67 .getSelectedIndex()));
@@ -4377,7 +4372,7 @@ public class FILTRE extends JDialog {
 		panel_22.add(label_62);
 
 		comboBox_68 = new JComboBox<String>();
-		comboBox_68.setForeground(new Color(0, 0, 128));
+		//comboBox_68.setForeground(new Color(0, 0, 128));
 		comboBox_68.setFont(new Font("Tahoma", Font.BOLD, 12));
 		comboBox_68.setEnabled(false);
 		comboBox_68.setBounds(79, 121, 174, 22);
@@ -4389,7 +4384,7 @@ public class FILTRE extends JDialog {
 		panel_22.add(label_63);
 
 		comboBox_69 = new JComboBox<String>();
-		comboBox_69.setForeground(new Color(0, 0, 128));
+		//comboBox_69.setForeground(new Color(0, 0, 128));
 		comboBox_69.setFont(new Font("Tahoma", Font.BOLD, 12));
 		comboBox_69.setBounds(79, 150, 174, 22);
 		panel_22.add(comboBox_69);
@@ -4400,7 +4395,7 @@ public class FILTRE extends JDialog {
 		panel_22.add(label_64);
 
 		comboBox_70 = new JComboBox<String>();
-		comboBox_70.setForeground(new Color(0, 0, 128));
+		//comboBox_70.setForeground(new Color(0, 0, 128));
 		comboBox_70.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				alt_grup_doldur(comboBox_71,comboBox_70 .getItemAt(comboBox_70 .getSelectedIndex()));
@@ -4416,7 +4411,7 @@ public class FILTRE extends JDialog {
 		panel_22.add(label_65);
 
 		comboBox_71 = new JComboBox<String>();
-		comboBox_71.setForeground(new Color(0, 0, 128));
+		//comboBox_71.setForeground(new Color(0, 0, 128));
 		comboBox_71.setFont(new Font("Tahoma", Font.BOLD, 12));
 		comboBox_71.setEnabled(false);
 		comboBox_71.setBounds(571, 34, 149, 22);
@@ -4471,20 +4466,20 @@ public class FILTRE extends JDialog {
 
 		comboBox_72 = new JComboBox<String>();
 		comboBox_72.setFont(new Font("Tahoma", Font.BOLD, 12));
-		comboBox_72.setForeground(new Color(0, 0, 128));
+		//comboBox_72.setForeground(new Color(0, 0, 128));
 		comboBox_72.setModel(new DefaultComboBoxModel<String>(new String[] {"MA", "MS", "SA", "SS", "BA", "BB"}));
 		comboBox_72.setBounds(110, 90, 62, 22);
 		panel_23.add(comboBox_72);
 
 		comboBox_73 = new JComboBox<String>();
 		comboBox_73.setFont(new Font("Tahoma", Font.BOLD, 12));
-		comboBox_73.setForeground(new Color(0, 0, 128));
+		//comboBox_73.setForeground(new Color(0, 0, 128));
 		comboBox_73.setModel(new DefaultComboBoxModel<String>(new String[] {"Gun", "Ay", "Yil"}));
 		comboBox_73.setBounds(110, 123, 62, 22);
 		panel_23.add(comboBox_73);
 
 		comboBox_74 = new JComboBox<String>();
-		comboBox_74.setForeground(new Color(25, 25, 112));
+		//comboBox_74.setForeground(new Color(25, 25, 112));
 		comboBox_74.setFont(new Font("Tahoma", Font.BOLD, 12));
 		comboBox_74.setModel(new DefaultComboBoxModel<String>(new String[] {"USD", "EUR"}));
 		comboBox_74.setEditable(true);
@@ -4619,7 +4614,7 @@ public class FILTRE extends JDialog {
 		panel_KERESTE.add(textField_83);
 
 		comboBox_26_1 = new JComboBox<String>();
-		comboBox_26_1.setForeground(new Color(0, 0, 128));
+		//comboBox_26_1.setForeground(new Color(0, 0, 128));
 		comboBox_26_1.setFont(new Font("Tahoma", Font.BOLD, 12));
 		comboBox_26_1.setModel(new DefaultComboBoxModel<String>(new String[] {"m3","Tutar", "Miktar"}));
 		comboBox_26_1.setBounds(90, 129, 149, 22);
@@ -4639,7 +4634,7 @@ public class FILTRE extends JDialog {
 		panel_KERESTE.add(comboBox_26_1);
 
 		comboBox_27_1 = new JComboBox<String>();
-		comboBox_27_1.setForeground(new Color(0, 0, 128));
+		//comboBox_27_1.setForeground(new Color(0, 0, 128));
 		comboBox_27_1.setFont(new Font("Tahoma", Font.BOLD, 12));
 		comboBox_27_1.setModel(new DefaultComboBoxModel<String>(new String[] {"Urun Kodu","Sinif" , "Sinif-Kal" ,"Sinif-Kal-Boy","Sinif-Kal-Gen", "Urun Kodu-Yil", "Yil",  "Yil-Ay","Paket-Sinif-Kal-Boy","Paket-Sinif-Kal-Gen","Kons-Paket-Sinif-Kal-Gen" ,"Kons-Paket-Sinif-Kal-Boy","Paket-Konsimento","Hesap-Kodu","Hesap-Kodu-Yil","Konsimento","Ortalama-Genislik"}));
 		comboBox_27_1.setBounds(90, 155, 200, 22);
@@ -4659,7 +4654,7 @@ public class FILTRE extends JDialog {
 		panel_KERESTE.add(comboBox_27_1);
 
 		comboBox_28_1 = new JComboBox<String>();
-		comboBox_28_1.setForeground(new Color(0, 0, 128));
+		//comboBox_28_1.setForeground(new Color(0, 0, 128));
 		comboBox_28_1.setFont(new Font("Tahoma", Font.BOLD, 12));
 		comboBox_28_1.setModel(new DefaultComboBoxModel<String>(new String[] {"Yil", "Ay", "Gun", "Kalinlik", "Boy","Genislik","Sinif","Hesap-Kodu"}));
 		//comboBox_28_1.setSelectedIndex(1);
@@ -4693,7 +4688,7 @@ public class FILTRE extends JDialog {
 		panel_KERESTE.add(formattedTextField_1);
 
 		comboBox_77 = new JComboBox<String>();
-		comboBox_77.setForeground(new Color(0, 0, 128));
+		//comboBox_77.setForeground(new Color(0, 0, 128));
 		comboBox_77.setFont(new Font("Tahoma", Font.BOLD, 12));
 		comboBox_77.setModel(new DefaultComboBoxModel<String>(new String[] { "GIREN", "CIKAN","STOK"}));
 		comboBox_77.setBounds(594, 114, 110, 22);
@@ -4705,7 +4700,7 @@ public class FILTRE extends JDialog {
 		panel_KERESTE.add(lblNewLabel_41);
 
 		comboBox_78 = new JComboBox<String>();
-		comboBox_78.setForeground(new Color(0, 0, 128));
+		//comboBox_78.setForeground(new Color(0, 0, 128));
 		comboBox_78.setFont(new Font("Tahoma", Font.BOLD, 12));
 		comboBox_78.setBounds(520, 11, 184, 22);
 		comboBox_78.addActionListener(new ActionListener() {
@@ -4716,14 +4711,14 @@ public class FILTRE extends JDialog {
 		panel_KERESTE.add(comboBox_78);
 
 		comboBox_79 = new JComboBox<String>();
-		comboBox_79.setForeground(new Color(0, 0, 128));
+		//comboBox_79.setForeground(new Color(0, 0, 128));
 		comboBox_79.setFont(new Font("Tahoma", Font.BOLD, 12));
 		comboBox_79.setEnabled(false);
 		comboBox_79.setBounds(520, 35, 184, 22);
 		panel_KERESTE.add(comboBox_79);
 
 		comboBox_80 = new JComboBox<String>();
-		comboBox_80.setForeground(new Color(0, 0, 128));
+		//comboBox_80.setForeground(new Color(0, 0, 128));
 		comboBox_80.setFont(new Font("Tahoma", Font.BOLD, 12));
 		comboBox_80.setBounds(520, 62, 184, 22);
 		panel_KERESTE.add(comboBox_80);
@@ -4767,7 +4762,7 @@ public class FILTRE extends JDialog {
 
 		///
 		comboBox_77_1 = new JComboBox<String>();
-		comboBox_77_1.setForeground(new Color(0, 0, 128));
+		//comboBox_77_1.setForeground(new Color(0, 0, 128));
 		comboBox_77_1.setFont(new Font("Tahoma", Font.BOLD, 12));
 		comboBox_77_1.setModel(new DefaultComboBoxModel<String>(new String[] {"USD", "EUR"}));
 		comboBox_77_1.setBounds(646, 145, 58, 22);
@@ -4775,7 +4770,7 @@ public class FILTRE extends JDialog {
 		panel_KERESTE.add(comboBox_77_1);
 
 		comboBox_77_2 = new JComboBox<String>();
-		comboBox_77_2.setForeground(new Color(0, 0, 128));
+		//comboBox_77_2.setForeground(new Color(0, 0, 128));
 		comboBox_77_2.setFont(new Font("Tahoma", Font.BOLD, 12));
 		comboBox_77_2.setModel(new DefaultComboBoxModel<String>(new String[] {"MA", "MS", "BA", "BS", "SA", "SS"}));
 		comboBox_77_2.setBounds(646, 170, 58, 22);
@@ -4806,7 +4801,7 @@ public class FILTRE extends JDialog {
 		panel_KERESTE.add(chckbxNewCheckBox_3);
 
 		comboBox_80_6 = new JComboBox<String>();
-		comboBox_80_6.setForeground(new Color(0, 0, 128));
+		//comboBox_80_6.setForeground(new Color(0, 0, 128));
 		comboBox_80_6.setFont(new Font("Tahoma", Font.BOLD, 12));
 		comboBox_80_6.setBounds(520, 88, 184, 22);
 		panel_KERESTE.add(comboBox_80_6);
@@ -4962,7 +4957,7 @@ public class FILTRE extends JDialog {
 		panel_KERESTE_DETAY.add(textField_88_1);
 
 		comboBox_78_1 = new JComboBox<String>();
-		comboBox_78_1.setForeground(new Color(0, 0, 128));
+		//comboBox_78_1.setForeground(new Color(0, 0, 128));
 		comboBox_78_1.setFont(new Font("Tahoma", Font.BOLD, 12));
 		comboBox_78_1.setBounds(100, 123, 125, 22);
 		comboBox_78_1.addActionListener(new ActionListener() {
@@ -4973,14 +4968,14 @@ public class FILTRE extends JDialog {
 		panel_KERESTE_DETAY.add(comboBox_78_1);
 
 		comboBox_79_1 = new JComboBox<String>();
-		comboBox_79_1.setForeground(new Color(0, 0, 128));
+		//comboBox_79_1.setForeground(new Color(0, 0, 128));
 		comboBox_79_1.setFont(new Font("Tahoma", Font.BOLD, 12));
 		comboBox_79_1.setEnabled(false);
 		comboBox_79_1.setBounds(258, 123, 125, 22);
 		panel_KERESTE_DETAY.add(comboBox_79_1);
 
 		comboBox_80_1 = new JComboBox<String>();
-		comboBox_80_1.setForeground(new Color(0, 0, 128));
+		//comboBox_80_1.setForeground(new Color(0, 0, 128));
 		comboBox_80_1.setFont(new Font("Tahoma", Font.BOLD, 12));
 		comboBox_80_1.setBounds(100, 173, 151, 22);
 		panel_KERESTE_DETAY.add(comboBox_80_1);
@@ -4993,7 +4988,7 @@ public class FILTRE extends JDialog {
 
 		comboBox_84 = new JComboBox<String>();
 		comboBox_84.setModel(new DefaultComboBoxModel<String>(new String[] {"Urun Kodu","Konsimento","Hesap-Kodu","Ana_Grup-Alt_Grup"}));
-		comboBox_84.setForeground(new Color(0, 0, 128));
+		//comboBox_84.setForeground(new Color(0, 0, 128));
 		comboBox_84.setFont(new Font("Tahoma", Font.BOLD, 12));
 		comboBox_84.setBounds(100, 200, 200, 22);
 		panel_KERESTE_DETAY.add(comboBox_84);
@@ -5065,20 +5060,20 @@ public class FILTRE extends JDialog {
 		panel_KERESTE_DETAY.add(lblUrunOzelKod_1_2);
 
 		comboBox_80_2 = new JComboBox<String>();
-		comboBox_80_2.setForeground(new Color(0, 0, 128));
+		//comboBox_80_2.setForeground(new Color(0, 0, 128));
 		comboBox_80_2.setFont(new Font("Tahoma", Font.BOLD, 12));
 		comboBox_80_2.setBounds(480, 130, 151, 22);
 		panel_KERESTE_DETAY.add(comboBox_80_2);
 
 		comboBox_79_2 = new JComboBox<String>();
-		comboBox_79_2.setForeground(new Color(0, 0, 128));
+		//comboBox_79_2.setForeground(new Color(0, 0, 128));
 		comboBox_79_2.setFont(new Font("Tahoma", Font.BOLD, 12));
 		comboBox_79_2.setEnabled(false);
 		comboBox_79_2.setBounds(480, 105, 151, 22);
 		panel_KERESTE_DETAY.add(comboBox_79_2);
 
 		comboBox_78_2 = new JComboBox<String>();
-		comboBox_78_2.setForeground(new Color(0, 0, 128));
+		//comboBox_78_2.setForeground(new Color(0, 0, 128));
 		comboBox_78_2.setFont(new Font("Tahoma", Font.BOLD, 12));
 		comboBox_78_2.setBounds(480, 80, 151, 22);
 		comboBox_78_2.addActionListener(new ActionListener() {
@@ -5094,7 +5089,7 @@ public class FILTRE extends JDialog {
 		panel_KERESTE_DETAY.add(lblUrunOzelKod_1_3);
 
 		comboBox_80_3 = new JComboBox<String>();
-		comboBox_80_3.setForeground(new Color(0, 0, 128));
+		//comboBox_80_3.setForeground(new Color(0, 0, 128));
 		comboBox_80_3.setFont(new Font("Tahoma", Font.BOLD, 12));
 		comboBox_80_3.setBounds(100, 148, 125, 22);
 		panel_KERESTE_DETAY.add(comboBox_80_3);
@@ -5105,13 +5100,13 @@ public class FILTRE extends JDialog {
 		panel_KERESTE_DETAY.add(lblUrunOzelKod_1_4);
 
 		comboBox_80_4 = new JComboBox<String>();
-		comboBox_80_4.setForeground(new Color(0, 0, 128));
+		//comboBox_80_4.setForeground(new Color(0, 0, 128));
 		comboBox_80_4.setFont(new Font("Tahoma", Font.BOLD, 12));
 		comboBox_80_4.setBounds(480, 155, 125, 22);
 		panel_KERESTE_DETAY.add(comboBox_80_4);
 
 		comboBox_7_1 = new JComboBox<String>();
-		comboBox_7_1.setForeground(new Color(0, 0, 128));
+		//comboBox_7_1.setForeground(new Color(0, 0, 128));
 		comboBox_7_1.setFont(new Font("Tahoma", Font.BOLD, 12));
 		comboBox_7_1.setBounds(638, 153, 125, 22);
 		comboBox_7_1.setModel(new DefaultComboBoxModel<String>(new String[] {"Fatura No", "Firma Kodu", "Fatura_No_Tarih"}));
@@ -5119,7 +5114,7 @@ public class FILTRE extends JDialog {
 		panel_KERESTE_DETAY.add(comboBox_7_1);
 
 		comboBox_8_1 = new JComboBox<String>();
-		comboBox_8_1.setForeground(new Color(0, 0, 128));
+		//comboBox_8_1.setForeground(new Color(0, 0, 128));
 		comboBox_8_1.setFont(new Font("Tahoma", Font.BOLD, 12));
 		comboBox_8_1.setBounds(638, 179, 125, 22);
 		comboBox_8_1.setModel(new DefaultComboBoxModel<String>(new String[] {"Cari_Firma", "Adres_Firma"}));
@@ -5160,7 +5155,7 @@ public class FILTRE extends JDialog {
 			}
 		});
 		comboBox_81.setModel(new DefaultComboBoxModel<String>(new String[] {"GIREN", "CIKAN"}));
-		comboBox_81.setForeground(new Color(0, 0, 128));
+		//comboBox_81.setForeground(new Color(0, 0, 128));
 		comboBox_81.setFont(new Font("Tahoma", Font.BOLD, 12));
 		comboBox_81.setBounds(638, 100, 125, 22);
 		comboBox_81.setVisible(false);
@@ -5266,7 +5261,7 @@ public class FILTRE extends JDialog {
 		panel_KERESTE_ORTFIAT.add(lblGruplama_2_1);
 
 		comboBox_27_1_1 = new JComboBox<String>();
-		comboBox_27_1_1.setForeground(new Color(0, 0, 128));
+		//comboBox_27_1_1.setForeground(new Color(0, 0, 128));
 		comboBox_27_1_1.setFont(new Font("Tahoma", Font.BOLD, 12));
 		comboBox_27_1_1.setBounds(90, 137, 201, 22);
 		comboBox_27_1_1.setModel(new DefaultComboBoxModel<String>(new String[] { "Sinif","Sinif-Kal" , "Sinif-Boy" ,"Sinif-Gen" ,"Kodu", "Konsimento", "Hesap Kodu", "Hesap Kodu-Ana_Alt_Grup", "Yil", "Yil_Ay", "Ana Grup"}));
@@ -5278,7 +5273,7 @@ public class FILTRE extends JDialog {
 		panel_KERESTE_ORTFIAT.add(label_66_3);
 
 		comboBox_78_3 = new JComboBox<String>();
-		comboBox_78_3.setForeground(new Color(0, 0, 128));
+		//comboBox_78_3.setForeground(new Color(0, 0, 128));
 		comboBox_78_3.setFont(new Font("Tahoma", Font.BOLD, 12));
 		comboBox_78_3.setBounds(534, 20, 184, 22);
 		comboBox_78_3.addActionListener(new ActionListener() {
@@ -5289,7 +5284,7 @@ public class FILTRE extends JDialog {
 		panel_KERESTE_ORTFIAT.add(comboBox_78_3);
 
 		comboBox_79_3 = new JComboBox<String>();
-		comboBox_79_3.setForeground(new Color(0, 0, 128));
+		//comboBox_79_3.setForeground(new Color(0, 0, 128));
 		comboBox_79_3.setFont(new Font("Tahoma", Font.BOLD, 12));
 		comboBox_79_3.setEnabled(false);
 		comboBox_79_3.setBounds(534, 45, 184, 22);
@@ -5306,13 +5301,13 @@ public class FILTRE extends JDialog {
 		panel_KERESTE_ORTFIAT.add(lblUrunOzelKod_1_5);
 
 		comboBox_80_5 = new JComboBox<String>();
-		comboBox_80_5.setForeground(new Color(0, 0, 128));
+		//comboBox_80_5.setForeground(new Color(0, 0, 128));
 		comboBox_80_5.setFont(new Font("Tahoma", Font.BOLD, 12));
 		comboBox_80_5.setBounds(534, 70, 184, 22);
 		panel_KERESTE_ORTFIAT.add(comboBox_80_5);
 
 		comboBox_82 = new JComboBox<String>();
-		comboBox_82.setForeground(new Color(0, 0, 128));
+		//comboBox_82.setForeground(new Color(0, 0, 128));
 		comboBox_82.setFont(new Font("Tahoma", Font.BOLD, 12));
 		comboBox_82.setModel(new DefaultComboBoxModel<String>(new String[] {"USD", "EUR"}));
 		comboBox_82.setBounds(535, 165, 69, 22);
@@ -5325,7 +5320,7 @@ public class FILTRE extends JDialog {
 		panel_KERESTE_ORTFIAT.add(lblNewLabel_43);
 
 		comboBox_83 = new JComboBox<String>();
-		comboBox_83.setForeground(new Color(0, 0, 128));
+		//comboBox_83.setForeground(new Color(0, 0, 128));
 		comboBox_83.setFont(new Font("Tahoma", Font.BOLD, 12));
 		comboBox_83.setModel(new DefaultComboBoxModel<String>(new String[] { "GIREN", "CIKAN","STOK"}));
 		comboBox_83.setBounds(534, 111, 110, 22);
@@ -5376,27 +5371,61 @@ public class FILTRE extends JDialog {
 		dateChooser_36.setBounds(234, 115, 120, 20);
 		panel_24.add(dateChooser_36);
 		
-		textTaheno1 = new JTextField();
+		textTaheno1 = new Obs_TextFIeld(15);
 		textTaheno1.setBounds(70, 148, 135, 20);
+		textTaheno1.setFont(new Font("Tahoma", Font.BOLD, 11));
 		panel_24.add(textTaheno1);
 		textTaheno1.setColumns(10);
 		
-		textTaheno2 = new JTextField();
+		textTaheno2 = new Obs_TextFIeld(15);
 		textTaheno2.setFont(new Font("Tahoma", Font.BOLD, 11));
 		textTaheno2.setText("ZZZZZZZZZZZZZZZ");
 		textTaheno2.setBounds(234, 148, 135, 20);
 		panel_24.add(textTaheno2);
 		textTaheno2.setColumns(10);
 		
-		textTahck1 = new JTextField();
-		textTahck1.setBounds(70, 174, 103, 20);
+		textTahck1 = new Obs_TextFIeld(12);
+		textTahck1.setBounds(70, 174, 120, 20);
+		textTahck1.setFont(new Font("Tahoma", Font.BOLD, 11));
+		textTahck1.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if (e.getClickCount() == 2) 
+				{
+					HESAP_PLN hsp ;
+					try {
+						hsp = new HESAP_PLN();
+						hsp.setVisible(true);
+						textTahck1.setText( oac.hsp_hsp_kodu);
+					} catch (Exception e1) {
+						e1.printStackTrace();
+					}
+				}
+			}
+		});
 		panel_24.add(textTahck1);
 		textTahck1.setColumns(10);
 		
-		textTahck2 = new JTextField();
+		textTahck2 = new Obs_TextFIeld(12);
 		textTahck2.setFont(new Font("Tahoma", Font.BOLD, 11));
 		textTahck2.setText("ZZZZZZZZZZZZ");
-		textTahck2.setBounds(234, 174, 103, 20);
+		textTahck2.setBounds(234, 174, 120, 20);
+		textTahck2.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if (e.getClickCount() == 2) 
+				{
+					HESAP_PLN hsp ;
+					try {
+						hsp = new HESAP_PLN();
+						hsp.setVisible(true);
+						textTahck2.setText( oac.hsp_hsp_kodu);
+					} catch (Exception e1) {
+						e1.printStackTrace();
+					}
+				}
+			}
+		});
 		panel_24.add(textTahck2);
 		textTahck2.setColumns(10);
 		
@@ -5744,7 +5773,6 @@ public class FILTRE extends JDialog {
 		{
 			getContentPane().setCursor(oac.DEFAULT_CURSOR);
 			OBS_MAIN.mesaj_goster(10000,Notifications.Type.ERROR,ex.getMessage() );
-			//JOptionPane.showMessageDialog(null, ex.getMessage(),  "Isim Okuma", JOptionPane.ERROR_MESSAGE);    	
 		}
 	}
 	public void isimoku_dvz()  {
@@ -5770,7 +5798,6 @@ public class FILTRE extends JDialog {
 		{
 			getContentPane().setCursor(oac.DEFAULT_CURSOR);
 			OBS_MAIN.mesaj_goster(10000,Notifications.Type.ERROR,ex.getMessage() );
-			//JOptionPane.showMessageDialog(null, ex.getMessage(),  "Isim Okuma", JOptionPane.ERROR_MESSAGE);    	
 		}
 	}
 	public void sayfa_ac (int syfa)
@@ -5902,7 +5929,6 @@ public class FILTRE extends JDialog {
 		{
 			getContentPane().setCursor(oac.DEFAULT_CURSOR);
 			OBS_MAIN.mesaj_goster(10000,Notifications.Type.ERROR,ex.getMessage() );
-			//JOptionPane.showMessageDialog(null, ex.getMessage(),  "Ana Grup", JOptionPane.ERROR_MESSAGE);   
 		}
 	}
 	private void alt_grup_doldur(JComboBox<String> box,String altgrp)
@@ -5942,7 +5968,6 @@ public class FILTRE extends JDialog {
 		{
 			getContentPane().setCursor(oac.DEFAULT_CURSOR);
 			OBS_MAIN.mesaj_goster(10000,Notifications.Type.ERROR,ex.getMessage() );
-			//JOptionPane.showMessageDialog(null, ex.getMessage(),  "Alt Grup", JOptionPane.ERROR_MESSAGE);    	
 		}
 	}
 	private void ker_ana_grup_doldur(JComboBox<String> box)
@@ -5973,7 +5998,6 @@ public class FILTRE extends JDialog {
 		{
 			getContentPane().setCursor(oac.DEFAULT_CURSOR);
 			OBS_MAIN.mesaj_goster(10000,Notifications.Type.ERROR,ex.getMessage() );
-			//JOptionPane.showMessageDialog(null, ex.getMessage(),  "Ana Grup", JOptionPane.ERROR_MESSAGE);   
 		}
 	}
 	private void ker_alt_grup_doldur(JComboBox<String> box,String altgrp)
@@ -6014,7 +6038,6 @@ public class FILTRE extends JDialog {
 		{
 			getContentPane().setCursor(oac.DEFAULT_CURSOR);
 			OBS_MAIN.mesaj_goster(10000,Notifications.Type.ERROR,ex.getMessage() );
-			//JOptionPane.showMessageDialog(null, ex.getMessage(),  "Alt Grup", JOptionPane.ERROR_MESSAGE);    	
 		}
 	}
 	private void depo_doldur(JComboBox<String> box)
@@ -6047,7 +6070,6 @@ public class FILTRE extends JDialog {
 		{
 			getContentPane().setCursor(oac.DEFAULT_CURSOR);
 			OBS_MAIN.mesaj_goster(10000,Notifications.Type.ERROR,ex.getMessage() );
-			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Depo Doldur", JOptionPane.PLAIN_MESSAGE);
 		}
 	}
 	private void ker_depo_doldur(JComboBox<String> box)
@@ -6080,7 +6102,6 @@ public class FILTRE extends JDialog {
 		{
 			getContentPane().setCursor(oac.DEFAULT_CURSOR);
 			OBS_MAIN.mesaj_goster(10000,Notifications.Type.ERROR,ex.getMessage() );
-			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Depo Doldur", JOptionPane.PLAIN_MESSAGE);
 		}
 	}
 	private void oz1_doldur(JComboBox<String> box)
@@ -6112,7 +6133,6 @@ public class FILTRE extends JDialog {
 		{
 			getContentPane().setCursor(oac.DEFAULT_CURSOR);
 			OBS_MAIN.mesaj_goster(10000,Notifications.Type.ERROR,ex.getMessage() );
-			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Ozel Kod Doldur", JOptionPane.PLAIN_MESSAGE);
 		}
 	}
 	private void oz2_doldur(JComboBox<String> box)
@@ -6144,7 +6164,6 @@ public class FILTRE extends JDialog {
 		{
 			getContentPane().setCursor(oac.DEFAULT_CURSOR);
 			OBS_MAIN.mesaj_goster(10000,Notifications.Type.ERROR,ex.getMessage() );
-			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Ozel Kod 2 Doldur", JOptionPane.PLAIN_MESSAGE);
 		}
 	}
 	private void ker_oz1_doldur(JComboBox<String> box)
@@ -6176,7 +6195,6 @@ public class FILTRE extends JDialog {
 		{
 			getContentPane().setCursor(oac.DEFAULT_CURSOR);
 			OBS_MAIN.mesaj_goster(10000,Notifications.Type.ERROR,ex.getMessage() );
-			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Ozel Kod Doldur", JOptionPane.PLAIN_MESSAGE);
 		}
 	}
 	private void gun_isim_doldur()
@@ -6207,7 +6225,6 @@ public class FILTRE extends JDialog {
 		{
 			getContentPane().setCursor(oac.DEFAULT_CURSOR);
 			OBS_MAIN.mesaj_goster(10000,Notifications.Type.ERROR,ex.getMessage() );
-			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Ozel Kod 2 Doldur", JOptionPane.PLAIN_MESSAGE);
 		}
 	}
 	private void mensei_doldur(JComboBox<String> box)
@@ -6239,7 +6256,6 @@ public class FILTRE extends JDialog {
 		{
 			getContentPane().setCursor(oac.DEFAULT_CURSOR);
 			OBS_MAIN.mesaj_goster(10000,Notifications.Type.ERROR,ex.getMessage() );
-			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Ozel Kod Doldur", JOptionPane.PLAIN_MESSAGE);
 		}
 	}
 	private static String[] isim(String kod)  {
@@ -6264,7 +6280,6 @@ public class FILTRE extends JDialog {
 		catch (Exception ex)
 		{
 			OBS_MAIN.mesaj_goster(10000,Notifications.Type.ERROR,ex.getMessage() );
-			//JOptionPane.showMessageDialog(null, ex.getMessage() + " clss",  "Hesap Ismi Okuma", JOptionPane.ERROR_MESSAGE);     
 		}
 		return sonuc;
 	}

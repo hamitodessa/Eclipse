@@ -132,7 +132,6 @@ public class FIRMA_ISMI_DEGIS extends JInternalFrame {
 		catch (Exception ex)
 		{
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR, ex.getMessage() );
-			//JOptionPane.showMessageDialog(null,  ex.getMessage()); 
 		}
 	}
 	public static void kaydet()
@@ -183,7 +182,6 @@ public class FIRMA_ISMI_DEGIS extends JInternalFrame {
 		catch (Exception ex)
 		{
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR, ex.getMessage() );
-			//JOptionPane.showMessageDialog(null,  ex.getMessage()); 
 		}
 	}
 	private static void kapat()

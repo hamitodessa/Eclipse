@@ -28,7 +28,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
 
-@SuppressWarnings({"serial" , "static-access" , "deprecation"})
+@SuppressWarnings({"serial" , "static-access"})
 public class KOD_DEGISTIRME extends JInternalFrame {
 	
 	private static Obs_TextFIeld textField_1;
@@ -71,7 +71,7 @@ public class KOD_DEGISTIRME extends JInternalFrame {
 					HESAP_PLN hsp ;
 					try {
 						hsp = new HESAP_PLN();
-						hsp.show();
+						hsp.setVisible(true);
 						textField_2.setText( oac.hsp_hsp_kodu);
 					} catch (Exception e1) {
 						e1.printStackTrace();
@@ -120,7 +120,7 @@ public class KOD_DEGISTIRME extends JInternalFrame {
 					HESAP_PLN hsp ;
 					try {
 						hsp = new HESAP_PLN();
-						hsp.show();
+						hsp.setVisible(true);
 						textField_1.setText( oac.hsp_hsp_kodu);
 					} catch (Exception e1) {
 						e1.printStackTrace();

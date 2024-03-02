@@ -128,7 +128,6 @@ public class ETIKET_AYAR extends JInternalFrame {
 			GLOBAL.setting_yaz("ETIKET_YAZIM", eTIKETYAZIMBox.getSelectedItem().toString());
 		} catch (Exception ex) {
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR, ex.getMessage());
-			//JOptionPane.showMessageDialog(null, ex.getMessage(),  "Etiket Ayar Kayit", JOptionPane.ERROR_MESSAGE);   
 		}
 	}
 	private void doldur()
@@ -147,7 +146,6 @@ public class ETIKET_AYAR extends JInternalFrame {
 		catch (Exception ex) 
 		{
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR, ex.getMessage());
-			//JOptionPane.showMessageDialog(null, ex.getMessage(),  "Etiket Ayar Okuma", JOptionPane.ERROR_MESSAGE);   
 		}
 	}
 	public void installFocusListener(JSpinner spinner) {

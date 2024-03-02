@@ -268,7 +268,6 @@ public class E_FATURA extends JInternalFrame {
 				    			doldur3(file);
 							} catch (Exception ex) {
 								OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
-								//JOptionPane.showMessageDialog(null, ex.getMessage());
 							}
 	  			       }
 				      else {

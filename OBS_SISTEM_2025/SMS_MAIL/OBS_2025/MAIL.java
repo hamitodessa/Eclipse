@@ -84,7 +84,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 
-@SuppressWarnings("serial")
+@SuppressWarnings({"serial","static-access"})
 public class MAIL extends JInternalFrame {
 
 	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
@@ -113,7 +113,6 @@ public class MAIL extends JInternalFrame {
 	private static MaterialTabbed tabbedPane ;
 	private static JCheckBox chckbxNewCheckBox ;
 
-	@SuppressWarnings("static-access")
 	public MAIL() {
 		setTitle("MAIL");
 		setResizable(true);
@@ -303,7 +302,6 @@ public class MAIL extends JInternalFrame {
 					List droppedFiles = (List) evt .getTransferable().getTransferData(  DataFlavor.javaFileListFlavor);
 					if(droppedFiles.size() > 1){
 						OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING,"Tek Seferde 1 Dosya Ekleyebilirsiniz.....!!");
-						//JOptionPane.showMessageDialog(null,  "Tek Seferde 1 Dosya Ekleyebilirsiniz.....!!", "Dosya Ekleme", JOptionPane.PLAIN_MESSAGE);
 					}
 					else{
 						File droppedFile = (File) droppedFiles.get(0);
@@ -311,7 +309,6 @@ public class MAIL extends JInternalFrame {
 					}
 				} catch (Exception ex) {
 					OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR, ex.getMessage());
-					//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Dosya Ekleme", JOptionPane.PLAIN_MESSAGE);
 				}
 			}
 		});	
@@ -355,7 +352,6 @@ public class MAIL extends JInternalFrame {
 				if (oac.glb.internet_kontrol() == false)
 				{
 					OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING,"Internet Baglantisi Yok ");
-					//JOptionPane.showMessageDialog(null,  "Internet Baglantisi Yok ",  "Mail Gonderme ", JOptionPane.ERROR_MESSAGE);	
 					return ;
 				}
 				if ( chckbxNewCheckBox.isSelected()) //' Coklu gonderim
@@ -624,7 +620,6 @@ public class MAIL extends JInternalFrame {
 		catch (Exception ex)
 		{
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR, ex.getMessage());
-			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Kayit Giris", JOptionPane.PLAIN_MESSAGE);			 
 		}
 	}
 	private static void kutu_temizle() 
@@ -681,7 +676,6 @@ public class MAIL extends JInternalFrame {
 		catch (Exception ex)
 		{
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR, ex.getMessage());
-			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Kayit Giris", JOptionPane.PLAIN_MESSAGE);	
 		}
 	}
 	public static void sil()
@@ -703,10 +697,9 @@ public class MAIL extends JInternalFrame {
 		catch (Exception ex)
 		{
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR, ex.getMessage());
-			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Kayit Silme", JOptionPane.PLAIN_MESSAGE);		        
 		}
 	}
-	@SuppressWarnings("static-access")
+
 	private void isim_doldur() 
 	{
 		try {
@@ -775,7 +768,7 @@ public class MAIL extends JInternalFrame {
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR, ex.getMessage());
 		}
 	}
-	@SuppressWarnings("static-access")
+
 	private void coklu_gonder()
 	{
 		if ( ! ValidEmailAddress.isValid(txtgonderen.getText()))
@@ -827,7 +820,6 @@ public class MAIL extends JInternalFrame {
 			Progres_Bar_Temizle();
 			getContentPane().setCursor(oac.DEFAULT_CURSOR);
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.INFO,  say + " Adet Mailiniz Gonderildi   ");
-			//JOptionPane.showMessageDialog(null,  say + " Adet Mailiniz Gonderildi   ",  "Mail Gonderme", JOptionPane.PLAIN_MESSAGE);	
 
 		}
 		};
@@ -835,7 +827,7 @@ public class MAIL extends JInternalFrame {
 		Thread t = new Thread(runner, "Code Executer");
 		t.start();
 	}
-	@SuppressWarnings("static-access")
+
 	private void tek_gonder()
 	{
 		if ( ! ValidEmailAddress.isValid(txtgonderen.getText()))
@@ -852,7 +844,6 @@ public class MAIL extends JInternalFrame {
 		{	
 			getContentPane().setCursor(oac.DEFAULT_CURSOR);
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING,  "Konu Bos .....");
-			//JOptionPane.showMessageDialog(null,  "Konu Bos...",  "Mail Gonderme", JOptionPane.PLAIN_MESSAGE);	
 			txtkonu.requestFocus();
 			return ;
 		}
@@ -860,7 +851,6 @@ public class MAIL extends JInternalFrame {
 		{
 			getContentPane().setCursor(oac.DEFAULT_CURSOR);
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING,  "Aciklama Bos .....");
-			//JOptionPane.showMessageDialog(null,  "Aciklama Bos...",  "Mail Gonderme", JOptionPane.PLAIN_MESSAGE);	
 			txtaciklama.requestFocus();
 			return ;
 		}
@@ -870,21 +860,20 @@ public class MAIL extends JInternalFrame {
 			{
 				getContentPane().setCursor(oac.DEFAULT_CURSOR);
 				OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING, "SMTP Bilgilerine Ulasilamadi ...");
-				//JOptionPane.showMessageDialog(null,  "SMTP Bilgilerine Ulasilamadi ...",  "Mail Gonderme", JOptionPane.PLAIN_MESSAGE);	
 				return ;
 			}
 			send_mail(txtalici.getText()) ;
 			getContentPane().setCursor(oac.DEFAULT_CURSOR);
-			JOptionPane.showMessageDialog(null,   "Mailiniz Gonderildi   ",  "Mail Gonderme", JOptionPane.PLAIN_MESSAGE);	
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING, "Mailiniz Gonderildi   ");
+
 		}
 		catch (Exception ex)
 		{
 			getContentPane().setCursor(oac.DEFAULT_CURSOR);
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,  ex.getMessage());
-			//JOptionPane.showMessageDialog(null,  ex.getMessage(),  "Mail Gonderme", JOptionPane.PLAIN_MESSAGE);	
 		}
 	}
-	@SuppressWarnings("static-access")
+
 	private boolean smtp_bak ()
 	{
 		boolean result = false;
@@ -906,12 +895,11 @@ public class MAIL extends JInternalFrame {
 		{
 			getContentPane().setCursor(oac.DEFAULT_CURSOR);
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,  ex.getMessage());
-			//JOptionPane.showMessageDialog(null,  ex.getMessage(),  "SMTP Bilgisi Okuma", JOptionPane.PLAIN_MESSAGE);		
 		}
 		return result;
 
 	}
-	@SuppressWarnings("static-access")
+	
 	private void send_mail(String alici)
 	{
 		try
@@ -977,7 +965,6 @@ public class MAIL extends JInternalFrame {
 		{
 			getContentPane().setCursor(oac.DEFAULT_CURSOR);
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,  ex.getMessage());
-			//JOptionPane.showMessageDialog(null,  ex.getMessage(),  "Mail Gonderme", JOptionPane.PLAIN_MESSAGE);	
 		}
 	}
 	public static void satir_sil()
@@ -994,7 +981,7 @@ public class MAIL extends JInternalFrame {
 			txtalici.setEnabled(true);
 		}
 	}
-	@SuppressWarnings("static-access")
+
 	private void giden_doldur()
 	{
 		try {

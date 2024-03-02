@@ -670,7 +670,6 @@ public class USER_DETAY_EKLEME extends JInternalFrame {
 		if (comboBox.getItemAt(comboBox.getSelectedIndex()).equals("Admin")  &&  ! GLOBAL.KULL_ADI.equals("Admin") ) 
 		{
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING, "Admin - Harici 'Admin' Bilgisini degisemez... ");
-			//JOptionPane.showMessageDialog(null, "Admin - Harici 'Admin' Bilgisini degisemez... ", "Kullanici", JOptionPane.WARNING_MESSAGE);
 			return;
 		}
 		try
@@ -692,7 +691,6 @@ public class USER_DETAY_EKLEME extends JInternalFrame {
 		{
 			splitPane.setCursor(DEFAULT_CURSOR);
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR, ex.getMessage());
-			//JOptionPane.showMessageDialog(null, ex.getMessage(), "Kullanici Ekleme", JOptionPane.WARNING_MESSAGE);
 		}
 	}
 	public static void sil() 
@@ -701,7 +699,6 @@ public class USER_DETAY_EKLEME extends JInternalFrame {
 		if (comboBox.getItemAt(comboBox.getSelectedIndex()).equals("Admin"))
 		{   
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING,  "Admin - Kullanici Silinemez... ");
-			//JOptionPane.showMessageDialog(null, "Admin - Kullanici Silinemez... ", "Kullanici Silme", JOptionPane.WARNING_MESSAGE);
 			return;
 		}
 		ImageIcon icon = new ImageIcon(Toolkit.getDefaultToolkit().getImage(LOGIN.class.getResource("/ICONLAR/sil.png")));

@@ -128,7 +128,6 @@ public class DEGISKEN_DEGIS extends JInternalFrame {
 			{
 			
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING,"Aranacak ve Yazilacak Degiskenler Ayni");
-			//JOptionPane.showMessageDialog(null, "Aranacak ve Yazilacak Degiskenler Ayni",  "Degisken Yenileme", JOptionPane.INFORMATION_MESSAGE);   
 			return;
 			}
 		GuiUtil.setWaitCursor(DEGISKEN_DEGIS.panel,true);
@@ -175,13 +174,11 @@ public class DEGISKEN_DEGIS extends JInternalFrame {
     	    	f_Access.degisken_degistir(anagrp,altgrp,yanagrp,yaltgrp, lBILGI,BAGLAN_LOG.fatLogDizin );
       	       GuiUtil.setWaitCursor(DEGISKEN_DEGIS.panel,false);
       	     OBS_MAIN.mesaj_goster(5000,Notifications.Type.INFO,"Degisim Tamamlandi.................");
-    	      //	JOptionPane.showMessageDialog(null, "Degisim Tamamlandi.................",  "Degisken Yenileme", JOptionPane.PLAIN_MESSAGE);   
-		}
+ 		}
 		catch (Exception ex)
 		{
 		    GuiUtil.setWaitCursor(DEGISKEN_DEGIS.panel,false);
 		    OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
-			//JOptionPane.showMessageDialog(null, ex.getMessage(),  "Degisken Yenileme", JOptionPane.ERROR_MESSAGE);   
 		}
 	}
 	private void ana_grup_doldur()
@@ -215,7 +212,6 @@ public class DEGISKEN_DEGIS extends JInternalFrame {
 		{
 			getContentPane().setCursor(oac.DEFAULT_CURSOR);
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
-			//JOptionPane.showMessageDialog(null, ex.getMessage(),  "Ana Grup", JOptionPane.ERROR_MESSAGE);   
 		}
 	}
 	private void alt_grup_doldur(JComboBox<String> anabox,JComboBox<String> altbox)
@@ -257,7 +253,6 @@ public class DEGISKEN_DEGIS extends JInternalFrame {
 		{
 			getContentPane().setCursor(oac.DEFAULT_CURSOR);
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
-			//JOptionPane.showMessageDialog(null, ex.getMessage(),  "Alt Grup", JOptionPane.ERROR_MESSAGE);    	
 		}
 	}
 

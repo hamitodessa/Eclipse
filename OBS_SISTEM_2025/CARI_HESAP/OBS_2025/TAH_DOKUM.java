@@ -27,6 +27,7 @@ import OBS_C_2025.TABLO_RENDERER;
 import OBS_C_2025.TARIH;
 import OBS_C_2025.TARIH_CEVIR;
 import net.proteanit.sql.DbUtils;
+import raven.toast.Notifications;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -219,10 +220,9 @@ public class TAH_DOKUM extends JInternalFrame {
 		tc.setMaxWidth(70);
 		
 		tc = tcm.getColumn(5);
-		tc.setHeaderRenderer(new SAGA());
-		tc.setCellRenderer(new TABLO_RENDERER(2,true));
-		tc.setMinWidth(120);
-		tc.setMaxWidth(120);
+		tc.setHeaderRenderer(new SOLA());
+		tc.setMinWidth(70);
+		tc.setMaxWidth(70);
 		
 		tc = tcm.getColumn(6);
 		tc.setHeaderRenderer(new SOLA());
@@ -230,10 +230,10 @@ public class TAH_DOKUM extends JInternalFrame {
 		tc.setMaxWidth(70);
 		
 		tc = tcm.getColumn(7);
-		tc.setHeaderRenderer(new SOLA());
-		tc.setMinWidth(70);
-		tc.setMaxWidth(70);
-		
+		tc.setHeaderRenderer(new SAGA());
+		tc.setCellRenderer(new TABLO_RENDERER(2,true));
+		tc.setMinWidth(120);
+		tc.setMaxWidth(120);
 		
 		Dimension dd = th.getPreferredSize();
 		dd.height = 30;
@@ -255,29 +255,23 @@ public class TAH_DOKUM extends JInternalFrame {
 		bigFont = new Font(parts[0], Integer.parseInt(parts[1].trim()), Integer.parseInt(parts[2].trim()));
 		table.setFont(bigFont);
 		table.repaint();
-		} catch (Exception e) {
-			// TODO: handle exception
+		} catch (Exception ex) {
+			 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
 		}
 	}
 	public static void detay_doldur(String evrno,String cins)
 	{
-		try {
-			
-		
+		try 
+		{
 		int cin = 0 ;
 		if(cins.equals("Tadilat"))
 			cin = 1 ;
-		
 		long startTime = System.currentTimeMillis(); 
-		
 		GRID_TEMIZLE.grid_temizle(table_1);
-		
 		ResultSet	rs = null;
 		rs = c_Access.tah_cek_doldur(evrno,cin	);
-		
-		if (!rs.isBeforeFirst() ) {  
+		if (!rs.isBeforeFirst() )
 			return;
-		} 
 		table_1.setModel(DbUtils.resultSetToTableModel(rs));
 		JTableHeader th = table_1.getTableHeader();
 		TableColumnModel tcm = th.getColumnModel();
@@ -290,11 +284,9 @@ public class TAH_DOKUM extends JInternalFrame {
 		tc.setHeaderRenderer(new SOLA());
 		tc.setMinWidth(200);
 	
-		
 		tc = tcm.getColumn(1);
 		tc.setHeaderRenderer(new SOLA());
 		tc.setMinWidth(150);
-		
 		
 		tc = tcm.getColumn(2);
 		tc.setHeaderRenderer(new SOLA());
@@ -323,9 +315,17 @@ public class TAH_DOKUM extends JInternalFrame {
 		tc.setMinWidth(100);
 		tc.setMaxWidth(100);
 		
-		
-		} catch (Exception e) {
-			// TODO: handle exception
+		String deger;
+		String[] parts;
+		Font bigFont;
+		deger = GLOBAL.setting_oku("CARI_EKSTRE").toString();
+		deger = deger.substring(1, deger.length()-1);
+		parts = deger.split(",");
+		bigFont = new Font(parts[0], Integer.parseInt(parts[1].trim()), Integer.parseInt(parts[2].trim()));
+		table_1.setFont(bigFont);
+		table_1.repaint();
+		} catch (Exception ex) {
+			 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
 		}
 	}
 }

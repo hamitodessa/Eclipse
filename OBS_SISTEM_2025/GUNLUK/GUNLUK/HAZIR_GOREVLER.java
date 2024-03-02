@@ -291,7 +291,6 @@ public class HAZIR_GOREVLER extends JInternalFrame {
 		catch (Exception ex) 
 		{
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,  ex.getMessage());
-			//JOptionPane.showMessageDialog(null,  ex.getMessage(),  "Hazir Gorevler", JOptionPane.ERROR_MESSAGE); 
 		}
 	}
 	private void grv_degis_sil() throws PropertyVetoException, ClassNotFoundException, SQLException
@@ -342,7 +341,6 @@ public class HAZIR_GOREVLER extends JInternalFrame {
 		catch (Exception ex) 
 		{
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,  ex.getMessage());
-			//JOptionPane.showMessageDialog(null,  ex.getMessage(),  "Gorev Silme", JOptionPane.ERROR_MESSAGE); 
 		}
 	}
 }

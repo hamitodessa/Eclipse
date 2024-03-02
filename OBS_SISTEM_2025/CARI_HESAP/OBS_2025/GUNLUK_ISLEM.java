@@ -213,7 +213,7 @@ public class GUNLUK_ISLEM extends JInternalFrame {
 
 		lblNewLabel_1 = new JLabel("0");
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblNewLabel_1.setForeground(new Color(0, 0, 128));
+		//lblNewLabel_1.setForeground(new Color(0, 0, 128));
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.LEFT);
 		lblNewLabel_1.setBounds(100, 5, 58, 14);
 		panel.add(lblNewLabel_1);

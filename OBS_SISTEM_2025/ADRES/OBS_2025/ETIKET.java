@@ -56,6 +56,7 @@ import javax.swing.JPanel;
 
 import javax.swing.ListSelectionModel;
 import javax.swing.RowFilter;
+import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
@@ -105,7 +106,7 @@ private boolean hEPSI = false;
 		ScrollPaneWin11 scrollPane = new ScrollPaneWin11();
 		orTabbedPane = new MaterialTabbed();
 		orTabbedPane.setFont(new Font("Tahoma", Font.BOLD, 14));
-		orTabbedPane.setForeground(new Color(0, 0, 128));
+		//orTabbedPane.setForeground(new Color(0, 0, 128));
 		orTabbedPane.addTab("Genel", null,scrollPane , null);  //
 		JPanel tekPanel = new JPanel();
 		tekPanel.setLayout(null);
@@ -184,6 +185,8 @@ private boolean hEPSI = false;
 		JPanel panel = new JPanel();
 		panel.setMinimumSize(new Dimension(0, 25));
 		panel.setMaximumSize(new Dimension(0, 25));
+		panel.setBorder(new LineBorder(null));
+		
 		splitPane_1.setRightComponent(panel);
 		panel.setLayout(null);
 		
@@ -194,12 +197,13 @@ private boolean hEPSI = false;
 		lbladet = new JLabel("0");
 		lbladet.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lbladet.setBounds(100, 5, 57, 14);
-		lbladet.setForeground(new Color(0, 0, 128));
+		//lbladet.setForeground(new Color(0, 0, 128));
 		panel.add(lbladet);
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setMinimumSize(new Dimension(0, 50));
 		panel_1.setMaximumSize(new Dimension(0, 50));
+		panel_1.setBorder(new LineBorder(null));
 		splitPane.setLeftComponent(panel_1);
 		panel_1.setLayout(null);
 		

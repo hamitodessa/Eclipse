@@ -157,7 +157,7 @@ public class PARAMETRELER   extends JInternalFrame   {
 		setBounds(0, 0, 540, 594);
 
 		MaterialTabbed tabbedPane = new MaterialTabbed();
-		tabbedPane.setForeground(new Color(25, 25, 112));
+		//tabbedPane.setForeground(new Color(25, 25, 112));
 		tabbedPane.setFont(new Font("Tahoma", Font.BOLD, 14));
 		tabbedPane.addKeyListener(new KeyAdapter() {
 
@@ -187,7 +187,7 @@ public class PARAMETRELER   extends JInternalFrame   {
 		tabbedPane.addTab("Program", null, scrollPane_5, null);
 
 		JPanel panel_4 = new JPanel();
-		panel_4.setBorder(new LineBorder(new Color(0, 191, 255)));
+		panel_4.setBorder(new LineBorder(null));
 		scrollPane_5.setViewportView(panel_4);
 		panel_4.setLayout(null);
 
@@ -250,7 +250,7 @@ public class PARAMETRELER   extends JInternalFrame   {
 		panel_4.add(chckbxNewCheckBox_2_1_1_1_1);
 
 		comboBox_2_1_1_1 = new JComboBox<String>(comboModel);
-		comboBox_2_1_1_1.setForeground(new Color(25, 25, 112));
+		//comboBox_2_1_1_1.setForeground(new Color(25, 25, 112));
 		comboBox_2_1_1_1.setFont(new Font("Tahoma", Font.BOLD, 14));
 		comboBox_2_1_1_1.setBounds(295, 35, 55, 22);
 		panel_4.add(comboBox_2_1_1_1);
@@ -279,7 +279,7 @@ public class PARAMETRELER   extends JInternalFrame   {
 		panel_4.add(chckbxNewCheckBox_2_1_1_1_2);
 
 		comboBox_2_1_1_2 = new JComboBox<String>(comboModel1);
-		comboBox_2_1_1_2.setForeground(new Color(25, 25, 112));
+		//comboBox_2_1_1_2.setForeground(new Color(25, 25, 112));
 		comboBox_2_1_1_2.setFont(new Font("Tahoma", Font.BOLD, 14));
 		comboBox_2_1_1_2.setBounds(295, 60, 55, 22);
 		panel_4.add(comboBox_2_1_1_2);
@@ -308,7 +308,7 @@ public class PARAMETRELER   extends JInternalFrame   {
 		panel_4.add(chckbxNewCheckBox_2_1_1_1_2_2);
 
 		comboBox_2_1_1_2_2 = new JComboBox<String>(comboModel2);
-		comboBox_2_1_1_2_2.setForeground(new Color(25, 25, 112));
+		//comboBox_2_1_1_2_2.setForeground(new Color(25, 25, 112));
 		comboBox_2_1_1_2_2.setFont(new Font("Tahoma", Font.BOLD, 14));
 		comboBox_2_1_1_2_2.setBounds(295, 98, 55, 22);
 		panel_4.add(comboBox_2_1_1_2_2);
@@ -337,14 +337,14 @@ public class PARAMETRELER   extends JInternalFrame   {
 		panel_4.add(chckbxNewCheckBox_2_1_1_1_2_3);
 
 		comboBox_2_1_1_2_3 = new JComboBox<String>(comboModel3);
-		comboBox_2_1_1_2_3.setForeground(new Color(25, 25, 112));
+		//comboBox_2_1_1_2_3.setForeground(new Color(25, 25, 112));
 		comboBox_2_1_1_2_3.setFont(new Font("Tahoma", Font.BOLD, 14));
 		comboBox_2_1_1_2_3.setBounds(295, 123, 55, 22);
 		panel_4.add(comboBox_2_1_1_2_3);
 
 		JSeparator separator_2 = new JSeparator();
 		separator_2.setBounds(10, 89, 340, 2);
-		separator_2.setForeground(new Color(0, 191, 255));
+		//separator_2.setForeground(new Color(0, 191, 255));
 		panel_4.add(separator_2);
 
 		JLabel lblNewLabel_2 = new JLabel("Gorunum");
@@ -353,7 +353,7 @@ public class PARAMETRELER   extends JInternalFrame   {
 		panel_4.add(lblNewLabel_2);
 
 		comboBox_2 = new JComboBox<String>();
-		comboBox_2.setForeground(new Color(25, 25, 112));
+		//comboBox_2.setForeground(new Color(25, 25, 112));
 		comboBox_2.setFont(new Font("Tahoma", Font.BOLD, 14));
 
 
@@ -393,7 +393,7 @@ public class PARAMETRELER   extends JInternalFrame   {
 		panel_4.add(chckbxNewCheckBox_2);
 
 		JSeparator separator_2_1 = new JSeparator();
-		separator_2_1.setForeground(new Color(0, 191, 255));
+		//separator_2_1.setForeground(new Color(0, 191, 255));
 		separator_2_1.setBounds(10, 328, 340, 2);
 		panel_4.add(separator_2_1);
 
@@ -432,7 +432,7 @@ public class PARAMETRELER   extends JInternalFrame   {
 		tabbedPane.addTab("Cari Hesap", null, scrollPane, null);
 
 		JPanel panel = new JPanel();
-		panel.setBorder(new LineBorder(new Color(0, 191, 255)));
+		panel.setBorder(new LineBorder(null));
 		scrollPane.setViewportView(panel);
 		panel.setLayout(null);
 
@@ -728,7 +728,7 @@ public class PARAMETRELER   extends JInternalFrame   {
 		panel.add(chckbxNewCheckBox_2_1_1);
 
 		comboBox_2_1 = new JComboBox<String>(comboModel);
-		comboBox_2_1.setForeground(new Color(25, 25, 112));
+		//comboBox_2_1.setForeground(new Color(25, 25, 112));
 		comboBox_2_1.setFont(new Font("Tahoma", Font.BOLD, 14));
 		comboBox_2_1.setBounds(295, 71, 55, 22);
 		panel.add(comboBox_2_1);
@@ -757,7 +757,7 @@ public class PARAMETRELER   extends JInternalFrame   {
 		panel.add(chckbxNewCheckBox_2_1_1_1);
 
 		comboBox_2_1_1 =  new JComboBox<String>(comboModel1);
-		comboBox_2_1_1.setForeground(new Color(25, 25, 112));
+		//comboBox_2_1_1.setForeground(new Color(25, 25, 112));
 		comboBox_2_1_1.setFont(new Font("Tahoma", Font.BOLD, 14));
 		comboBox_2_1_1.setBounds(295, 221, 55, 22);
 		panel.add(comboBox_2_1_1);
@@ -794,7 +794,7 @@ public class PARAMETRELER   extends JInternalFrame   {
 		tabbedPane.addTab("Fatura", null, scrollPane_1, null);
 
 		JPanel panel_1 = new JPanel();
-		panel_1.setBorder(new LineBorder(new Color(0, 191, 255)));
+		panel_1.setBorder(new LineBorder(null));
 		scrollPane_1.setViewportView(panel_1);
 		panel_1.setLayout(null);
 
@@ -882,7 +882,7 @@ public class PARAMETRELER   extends JInternalFrame   {
 		panel_1.add(lblNewLabel_4_1_1);
 
 		comboBox = new JComboBox<String>();
-		comboBox.setForeground(new Color(25, 25, 112));
+		//comboBox.setForeground(new Color(25, 25, 112));
 		comboBox.setFont(new Font("Tahoma", Font.BOLD, 14));
 		comboBox.setModel(new DefaultComboBoxModel<String>(new String[] {"Cari_Dosya", "Adres_Dosya"}));
 		comboBox.setBounds(150, 86, 139, 22);
@@ -1065,7 +1065,7 @@ public class PARAMETRELER   extends JInternalFrame   {
 		panel_1.add(lblNewLabel_4_1_1_1);
 
 		comboBox_1 = new JComboBox<String>();
-		comboBox_1.setForeground(new Color(25, 25, 112));
+		//comboBox_1.setForeground(new Color(25, 25, 112));
 		comboBox_1.setFont(new Font("Tahoma", Font.BOLD, 14));
 		comboBox_1.setModel(new DefaultComboBoxModel<String>(new String[] {"Cari_Dosya", "Adres_Dosya"}));
 		comboBox_1.setBounds(150, 309, 139, 22);
@@ -1099,7 +1099,7 @@ public class PARAMETRELER   extends JInternalFrame   {
 
 		JSeparator separator = new JSeparator();
 		separator.setBounds(10, 225, 453, 2);
-		separator.setForeground(new Color(0, 191, 255));
+		//separator.setForeground(new Color(0, 191, 255));
 		panel_1.add(separator);
 
 		JLabel lblNewLabel_4_1_2_1_1 = new JLabel("Irsaliye Satir Sayi");
@@ -1136,7 +1136,7 @@ public class PARAMETRELER   extends JInternalFrame   {
 
 		JSeparator separator_1 = new JSeparator();
 		separator_1.setBounds(10, 395, 453, 2);
-		separator_1.setForeground(new Color(0, 191, 255));
+		//separator_1.setForeground(new Color(0, 191, 255));
 		panel_1.add(separator_1);
 
 		JLabel lblNewLabel_1_1_1_1 = new JLabel("Raporlama Font");
@@ -1200,7 +1200,7 @@ public class PARAMETRELER   extends JInternalFrame   {
 		tabbedPane.addTab("Gunluk", null, scrollPane_2, null);
 
 		JPanel panel_2 = new JPanel();
-		panel_2.setBorder(new LineBorder(new Color(0, 191, 255)));
+		panel_2.setBorder(new LineBorder(null));
 		scrollPane_2.setViewportView(panel_2);
 		panel_2.setLayout(null);
 
@@ -1298,7 +1298,7 @@ public class PARAMETRELER   extends JInternalFrame   {
 		tabbedPane.addTab("Kambiyo", null, scrollPane_3, null);
 
 		JPanel panel_3 = new JPanel();
-		panel_3.setBorder(new LineBorder(new Color(0, 191, 255)));
+		panel_3.setBorder(new LineBorder(null));
 		scrollPane_3.setViewportView(panel_3);
 		panel_3.setLayout(null);
 
@@ -1456,7 +1456,7 @@ public class PARAMETRELER   extends JInternalFrame   {
 		panel_3.add(chckbxNewCheckBox_2_1_1_1_1_1);
 
 		comboBox_2_1_1_1_1 = new JComboBox<String>(comboModel);
-		comboBox_2_1_1_1_1.setForeground(new Color(25, 25, 112));
+		//comboBox_2_1_1_1_1.setForeground(new Color(25, 25, 112));
 		comboBox_2_1_1_1_1.setFont(new Font("Tahoma", Font.BOLD, 14));
 		comboBox_2_1_1_1_1.setBounds(295, 127, 55, 22);
 		panel_3.add(comboBox_2_1_1_1_1);
@@ -1485,7 +1485,7 @@ public class PARAMETRELER   extends JInternalFrame   {
 		panel_3.add(chckbxNewCheckBox_2_1_1_1_2_1);
 
 		comboBox_2_1_1_2_1 = new JComboBox<String>(comboModel1);
-		comboBox_2_1_1_2_1.setForeground(new Color(25, 25, 112));
+		//comboBox_2_1_1_2_1.setForeground(new Color(25, 25, 112));
 		comboBox_2_1_1_2_1.setFont(new Font("Tahoma", Font.BOLD, 14));
 		comboBox_2_1_1_2_1.setBounds(295, 152, 55, 22);
 		panel_3.add(comboBox_2_1_1_2_1);
@@ -1495,7 +1495,7 @@ public class PARAMETRELER   extends JInternalFrame   {
 		tabbedPane.addTab("Kereste", null, scrollPane_4, null);
 
 		JPanel panel_5 = new JPanel();
-		panel_5.setBorder(new LineBorder(new Color(0, 191, 255)));
+		panel_5.setBorder(new LineBorder(null));
 		scrollPane_4.setViewportView(panel_5);
 		panel_5.setLayout(null);
 
@@ -1505,7 +1505,7 @@ public class PARAMETRELER   extends JInternalFrame   {
 		panel_5.add(lblNewLabel_4_1_1_2);
 
 		comboBox_3 = new JComboBox<String>();
-		comboBox_3.setForeground(new Color(25, 25, 112));
+		//comboBox_3.setForeground(new Color(25, 25, 112));
 		comboBox_3.setFont(new Font("Tahoma", Font.BOLD, 14));
 		comboBox_3.setModel(new DefaultComboBoxModel<String>(new String[] {"Cari_Dosya", "Adres_Dosya"}));
 		comboBox_3.setBounds(150, 27, 139, 22);
@@ -1530,7 +1530,7 @@ public class PARAMETRELER   extends JInternalFrame   {
 		textField_10.setText("15");
 		textField_10.setFont(new Font("Tahoma", Font.BOLD, 11));
 		textField_10.setColumns(10);
-		textField_10.setBounds(150, 85, 40, 20);
+		textField_10.setBounds(150, 85, 50, 20);
 		panel_5.add(textField_10);
 
 		JLabel lblNewLabel_4_1_2_2_4 = new JLabel("Kereste Stok Kontrol");

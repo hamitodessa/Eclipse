@@ -104,12 +104,12 @@ public class ADRES_GIRIS extends JInternalFrame {
 
 		JSeparator separator = new JSeparator();
 		separator.setBounds(28, 58, 787, 2);
-		separator.setForeground(new Color(0, 191, 255));
+		//separator.setForeground(new Color(0, 191, 255));
 		panel.add(separator);
 
 		JSeparator separator_1 = new JSeparator();
 		separator_1.setBounds(28, 103, 787, 2);
-		separator_1.setForeground(new Color(0, 191, 255));
+		//separator_1.setForeground(new Color(0, 191, 255));
 		panel.add(separator_1);
 
 		JButton btnNewButton = new JButton("|<<");
@@ -163,7 +163,7 @@ public class ADRES_GIRIS extends JInternalFrame {
 
 		JSeparator separator_2 = new JSeparator();
 		separator_2.setBounds(28, 141, 787, 2);
-		separator_2.setForeground(new Color(0, 191, 255));
+		//separator_2.setForeground(new Color(0, 191, 255));
 		panel.add(separator_2);
 
 		JLabel lblNewLabel_1 = new JLabel("Kodu");
@@ -313,7 +313,7 @@ public class ADRES_GIRIS extends JInternalFrame {
 
 		imagePanel = new ImagePanel();
 		imagePanel.setBounds(665, 272, 155, 175);
-		imagePanel.setBorder(new LineBorder(new Color(95, 158, 160), 2,true));
+		imagePanel.setBorder(new LineBorder(null, 2,true));
 		panel.add( imagePanel);
 
 		chcsms = new JCheckBox("Sms Gonder");
@@ -631,7 +631,7 @@ public class ADRES_GIRIS extends JInternalFrame {
 
 		JSeparator separator_3 = new JSeparator();
 		separator_3.setBounds(28, 11, 787, 2);
-		separator_3.setForeground(new Color(0, 191, 255));
+		//separator_3.setForeground(new Color(0, 191, 255));
 		panel.add(separator_3);
 
 		chcbas = new JCheckBox("Ile Baslayan");

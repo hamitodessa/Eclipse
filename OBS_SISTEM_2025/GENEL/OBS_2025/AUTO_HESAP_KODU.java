@@ -24,9 +24,7 @@ public class AUTO_HESAP_KODU {
 			else
 			{
 				while (rs.next())
-				{
 					cmbox.addItem(rs.getString("HESAP"));
-				}
 			}
 		}
 		catch (Exception ex)

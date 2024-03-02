@@ -16,7 +16,6 @@ import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JSplitPane;
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Dimension;
 
 import javax.swing.JTable;
@@ -53,6 +52,7 @@ import java.awt.Font;
 import java.awt.Rectangle;
 
 import javax.swing.SwingConstants;
+import javax.swing.border.LineBorder;
 
 @SuppressWarnings("serial")
 public class HAZIR_GOREVLER extends JInternalFrame {
@@ -173,6 +173,7 @@ public class HAZIR_GOREVLER extends JInternalFrame {
 		panel = new JPanel();
 		panel.setMinimumSize(new Dimension(0, 25));
 		panel.setMaximumSize(new Dimension(0, 25));
+		panel.setBorder(new LineBorder(null));
 		panel.setLayout(null);
 		splitPane.setRightComponent(panel);
 
@@ -182,7 +183,7 @@ public class HAZIR_GOREVLER extends JInternalFrame {
 
 		lbladet = new JLabel("0");
 		lbladet.setHorizontalAlignment(SwingConstants.LEFT);
-		lbladet.setForeground(new Color(0, 0, 128));
+		//lbladet.setForeground(new Color(0, 0, 128));
 		lbladet.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lbladet.setBounds(100, 5, 66, 14);
 		panel.add(lbladet);

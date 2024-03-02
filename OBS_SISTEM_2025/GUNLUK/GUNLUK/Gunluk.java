@@ -353,7 +353,7 @@ public class Gunluk extends JInternalFrame {
 		panel_2.add(splitPane_5, BorderLayout.CENTER);
 
 		comboIsim = new JComboBox<String>();
-		comboIsim.setForeground(new Color(0, 0, 139));
+		//comboIsim.setForeground(new Color(0, 0, 139));
 		comboIsim.setMinimumSize(new Dimension(0, 30));
 		comboIsim.setMaximumSize(new Dimension(0, 30));
 		splitPane_5.setLeftComponent(comboIsim);

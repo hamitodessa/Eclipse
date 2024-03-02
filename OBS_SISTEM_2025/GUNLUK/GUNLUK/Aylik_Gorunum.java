@@ -1,6 +1,5 @@
 package GUNLUK;
 
-import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.GridLayout;
@@ -29,7 +28,7 @@ public class Aylik_Gorunum extends JPanel{
 		gridRow = 4;
 		}
     	setPreferredSize( new Dimension(600, 400) );
-        setBorder(new LineBorder(new Color(0, 191, 255)));
+        setBorder(new LineBorder(null));
         setLayout(new GridLayout(gridRow, gridColumn, 2, 2));
         JButton button  ;
        int gunler = 1 ;

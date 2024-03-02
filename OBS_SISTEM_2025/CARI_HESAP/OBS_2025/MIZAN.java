@@ -223,28 +223,28 @@ public class MIZAN extends JInternalFrame {
 		jScrollPane1.setViewportView(table);
 
 		JPanel panel = new JPanel();
-		panel.setBorder(new LineBorder(new Color(0, 191, 255)));
+		panel.setBorder(new LineBorder(null));
 		panel.setMinimumSize(new Dimension(0, 25));
 		panel.setMaximumSize(new Dimension(0, 25));
 		splitPane.setRightComponent(panel);
 		panel.setLayout(null);
 
 		lblbakiye = new JLabel("0.00");
-		lblbakiye.setForeground(new Color(0, 0, 128));
+		//lblbakiye.setForeground(new Color(0, 0, 128));
 		lblbakiye.setFont(new Font("Tahoma", Font.BOLD, 12));
 		lblbakiye.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblbakiye.setBounds(762, 5, 117, 14);
 		panel.add(lblbakiye);
 
 		lblalacak = new JLabel("0.00");
-		lblalacak.setForeground(new Color(0, 0, 128));
+		//lblalacak.setForeground(new Color(0, 0, 128));
 		lblalacak.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblalacak.setFont(new Font("Tahoma", Font.BOLD, 12));
 		lblalacak.setBounds(643, 6, 117, 14);
 		panel.add(lblalacak);
 
 		lblborc = new JLabel("0.00");
-		lblborc.setForeground(new Color(0, 0, 128));
+		//lblborc.setForeground(new Color(0, 0, 128));
 		lblborc.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblborc.setFont(new Font("Tahoma", Font.BOLD, 12));
 		lblborc.setBounds(524, 6, 117, 14);
@@ -256,7 +256,7 @@ public class MIZAN extends JInternalFrame {
 		panel.add(lblNewLabel_2);
 		
 		lblNewLabel_3 = new JLabel("0");
-		lblNewLabel_3.setForeground(new Color(0, 0, 128));
+		//lblNewLabel_3.setForeground(new Color(0, 0, 128));
 		lblNewLabel_3.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblNewLabel_3.setBounds(100, 5, 51, 14);
 		panel.add(lblNewLabel_3);

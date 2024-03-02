@@ -1,7 +1,6 @@
 package OBS_2025;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import javax.swing.JButton;
@@ -76,7 +75,7 @@ public class HESAP_PLN extends JDialog {
 		contentPanel.add(splitPane, BorderLayout.CENTER);
 		
 		JPanel panel = new JPanel();
-		panel.setBorder(new LineBorder(new Color(0, 191, 255)));
+		panel.setBorder(new LineBorder(null));
 		splitPane.setLeftComponent(panel);
 		panel.setMinimumSize(new Dimension(0, 40));
 		

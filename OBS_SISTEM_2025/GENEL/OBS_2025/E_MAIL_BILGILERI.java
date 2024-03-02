@@ -11,7 +11,6 @@ import raven.toast.Notifications;
 
 import javax.swing.JSeparator;
 import java.awt.Font;
-import java.awt.Color;
 import javax.swing.JPasswordField;
 
 @SuppressWarnings({"serial","static-access"})
@@ -61,21 +60,21 @@ public class E_MAIL_BILGILERI extends JInternalFrame {
 		panel.add(chckbxNewCheckBox_1);
 
 		txtmail = new Obs_TextFIeld(40);
-		txtmail.setForeground(new Color(0, 0, 128));
+		//txtmail.setForeground(new Color(0, 0, 128));
 		txtmail.setFont(new Font("Tahoma", Font.BOLD, 12));
 		txtmail.setBounds(127, 11, 315, 20);
 		panel.add(txtmail);
 		txtmail.setColumns(10);
 
 		txthost = new Obs_TextFIeld(30);
-		txthost.setForeground(new Color(0, 0, 128));
+		//txthost.setForeground(new Color(0, 0, 128));
 		txthost.setFont(new Font("Tahoma", Font.BOLD, 12));
 		txthost.setBounds(127, 36, 315, 20);
 		panel.add(txthost);
 		txthost.setColumns(10);
 
 		txtport = new Obs_TextFIeld(20);
-		txtport.setForeground(new Color(0, 0, 128));
+		//txtport.setForeground(new Color(0, 0, 128));
 		txtport.setFont(new Font("Tahoma", Font.BOLD, 12));
 		txtport.setBounds(127, 61, 61, 20);
 		panel.add(txtport);
@@ -90,21 +89,21 @@ public class E_MAIL_BILGILERI extends JInternalFrame {
 		panel.add(lblNewLabel_7);
 
 		txtgonhesap = new Obs_TextFIeld(40);
-		txtgonhesap.setForeground(new Color(0, 0, 128));
+		//txtgonhesap.setForeground(new Color(0, 0, 128));
 		txtgonhesap.setFont(new Font("Tahoma", Font.BOLD, 12));
 		txtgonhesap.setBounds(127, 153, 315, 20);
 		panel.add(txtgonhesap);
 		txtgonhesap.setColumns(10);
 
 		txtgonisim = new Obs_TextFIeld(50);
-		txtgonisim.setForeground(new Color(0, 0, 128));
+		//txtgonisim.setForeground(new Color(0, 0, 128));
 		txtgonisim.setFont(new Font("Tahoma", Font.BOLD, 12));
 		txtgonisim.setBounds(127, 180, 315, 20);
 		panel.add(txtgonisim);
 		txtgonisim.setColumns(10);
 
 		JSeparator separator = new JSeparator();
-		separator.setForeground(new Color(135, 206, 235));
+		//separator.setForeground(new Color(135, 206, 235));
 		separator.setBounds(39, 140, 403, 2);
 		panel.add(separator);
 

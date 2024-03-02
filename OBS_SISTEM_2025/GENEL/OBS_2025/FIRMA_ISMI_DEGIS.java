@@ -21,7 +21,6 @@ import OBS_C_2025.lOG_BILGI;
 import raven.toast.Notifications;
 
 import java.awt.Font;
-import java.awt.SystemColor;
 
 @SuppressWarnings({"serial","static-access"})
 public class FIRMA_ISMI_DEGIS extends JInternalFrame {
@@ -53,13 +52,13 @@ public class FIRMA_ISMI_DEGIS extends JInternalFrame {
 		panel.setLayout(null);
 
 		panel_1 = new JPanel();
-		panel_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Baslik", TitledBorder.LEADING, TitledBorder.TOP, null, SystemColor.textHighlight));
+		panel_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Baslik", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panel_1.setBounds(52, 11, 529, 64);
 		panel.add(panel_1);
 		panel_1.setLayout(null);
 
 		textField = new Obs_TextFIeld(50);
-		textField.setForeground(new Color(0, 0, 128));
+		//textField.setForeground(new Color(0, 0, 128));
 		textField.setFont(new Font("Tahoma", Font.BOLD, 12));
 		textField.setBounds(53, 25, 423, 20);
 		panel_1.add(textField);

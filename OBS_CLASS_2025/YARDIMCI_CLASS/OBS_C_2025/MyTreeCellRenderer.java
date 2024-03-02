@@ -22,7 +22,11 @@ public class MyTreeCellRenderer extends DefaultTreeCellRenderer {
         // If the node is a leaf and ends with "xxx"
         //if (leaf && node.endsWith("xxx")) {
             // Paint the node in blue
-            setForeground(new Color(23, 59, 152));
+		
+		
+         //   setForeground(new Color(23, 59, 152));
+		
+		
         //}
 
         return this;

@@ -1142,9 +1142,9 @@ public class CARI_HESAP_MSSQL implements ICARI_HESAP {
 	}
 	public ResultSet eksik_kur_okuma(String hesap,String t1,String t2,String kur) throws ClassNotFoundException, SQLException
 	{
-		String str1, str2 ;
+		String str1 ;
 		str1 = "" ;
-		str2 = "" ;
+		//str2 = "" ;
 		if (BAGLAN.kurDizin.dIZIN_CINS.equals("L"))
 		{
 			str1 = "OK_Kur" + BAGLAN.kurDizin.kOD + ".dbo.kurlar  " ;
@@ -1154,25 +1154,26 @@ public class CARI_HESAP_MSSQL implements ICARI_HESAP {
 			if ( BAGLAN.cariDizin.sERVER.equals(BAGLAN.kurDizin.sERVER))
 			{
 				str1 = "OK_Kur" + BAGLAN.kurDizin.kOD + ".dbo.kurlar  " ;
-				str2 = "";
+				//str2 = "";
 			}
-			else
-			{
-				str2 = "EXEC sp_configure 'show advanced options', 1 " +
-						" RECONFIGURE GO " +
-						" EXEC sp_configure 'ad hoc distributed queries', 1 " +
-						" RECONFIGURE GO ";
-				str1 = "OPENROWSET('SQLOLEDB','" + BAGLAN.kurDizin.sERVER + "\\" + BAGLAN.kurDizin.iNSTANCE + "';'" + BAGLAN.kurDizin.kULLANICI +  "';'" + BAGLAN.kurDizin.sIFRESI +  "','SELECT * FROM [OK_Kur" + BAGLAN.kurDizin.kOD + "].[dbo].[kurlar]  ') ";
-			}
+//			else
+//			{
+//				str2 = "EXEC sp_configure 'show advanced options', 1 " +
+//						" RECONFIGURE GO " +
+//						" EXEC sp_configure 'ad hoc distributed queries', 1 " +
+//						" RECONFIGURE GO ";
+//				str1 = "OPENROWSET('SQLOLEDB','" + BAGLAN.kurDizin.sERVER + "\\" + BAGLAN.kurDizin.iNSTANCE + "';'" + BAGLAN.kurDizin.kULLANICI +  "';'" + BAGLAN.kurDizin.sIFRESI +  "','SELECT * FROM [OK_Kur" + BAGLAN.kurDizin.kOD + "].[dbo].[kurlar]  ') ";
+//			}
 		}
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 		ResultSet	rss = null;
-		String sql = str2 +  " SELECT DISTINCT   convert(varchar(10), SATIRLAR.TARIH, 102) as Tarih  " +
+		String sql =   " SELECT DISTINCT   convert(varchar(10), SATIRLAR.TARIH, 102) as Tarih  " +
 				" FROM SATIRLAR   LEFT OUTER JOIN " + str1 + " AS k WITH (INDEX (IX_KUR))  " +
 				" ON k.Tarih = CONVERT(VARCHAR(25), SATIRLAR.TARIH, 121) AND k.Kur = '" + kur + "' " +
 				" WHERE HESAP ='" + hesap + "' AND  k.kur IS NULL " +
 				" AND SATIRLAR.TARIH BETWEEN  '" + t1 + "'  AND '" + t2 + " 23:59:59.998'" +
 				" ORDER BY   convert(varchar(10), SATIRLAR.TARIH, 102) ";
+		
 		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
@@ -1524,7 +1525,7 @@ public class CARI_HESAP_MSSQL implements ICARI_HESAP {
 		if(tur != 0)
 			turString = " TUR = '" + tur + "' AND";
 		String sql = " SELECT [EVRAK],[TARIH] ,[C_HES] ,[A_HES] ,CASE CINS  WHEN '0' THEN 'Tahsilat'  WHEN '1' THEN 'Tediye' END as CINS ," +
-				 " CASE TUR  WHEN '0' THEN 'Nakit'  WHEN '1' THEN 'Cek' WHEN '2' THEN 'Kredi Karti' END as TUR, " +
+				 " CASE TUR  WHEN '0' THEN 'Nakit'  WHEN '1' THEN 'Cek' WHEN '2' THEN 'Kredi Kartı' END as TUR, " +
 				 " [DVZ_CINS], [TUTAR]  " +
 				" FROM TAH_DETAY " +
 				" WHERE  " + cinString  + turString  +

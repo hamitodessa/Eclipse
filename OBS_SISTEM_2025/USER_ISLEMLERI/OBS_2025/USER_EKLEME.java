@@ -4,7 +4,6 @@ import javax.swing.JInternalFrame;
 import javax.swing.JPanel;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Font;
 import java.awt.Toolkit;
@@ -177,7 +176,7 @@ public class USER_EKLEME extends JInternalFrame {
 		JPanel panel = new JPanel();
 		panel.setPreferredSize(new Dimension(730,100));
 		scrollPaneust.setViewportView(panel);
-		panel.setBorder(new LineBorder(new Color(0, 191, 255)));
+		panel.setBorder(new LineBorder(null));
 		splitPane.setLeftComponent(scrollPaneust);
 		panel.setLayout(null);
 

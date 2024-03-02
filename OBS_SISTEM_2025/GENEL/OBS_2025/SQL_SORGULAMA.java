@@ -9,7 +9,6 @@ import javax.swing.BorderFactory;
 import javax.swing.JInternalFrame;
 import javax.swing.JSplitPane;
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Dimension;
 
 import javax.swing.ListSelectionModel;
@@ -67,18 +66,16 @@ public class SQL_SORGULAMA extends JInternalFrame {
 			public boolean isCellEditable(int row, int column) {     return false;          }
 		};
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		if(! oac.gridcolor.toString().equals("java.awt.Color[r=255,g=255,b=255]")) 
-		{
+		if(! oac.gridcolor.toString().equals("java.awt.Color[r=255,g=255,b=255]"))
 			table.setGridColor(oac.gridcolor);
-		}
 		table.setShowHorizontalLines(true);
 		table.setShowVerticalLines(true);
-		table.setAutoResizeMode( JTable.AUTO_RESIZE_OFF );
+		//table.setAutoResizeMode( JTable.AUTO_RESIZE_OFF );
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		scrollPane.setViewportView(table);
 
 		textArea = new JTextArea();
-		textArea.setBorder(new LineBorder(new Color(0, 191, 255)));
+		textArea.setBorder(new LineBorder(null));
 		textArea.setFont(new Font("Monospaced", Font.BOLD, 14));
 		textArea.setMinimumSize(new Dimension(0, 100));
 		textArea.setMaximumSize(new Dimension(0, 100));
@@ -100,7 +97,7 @@ public class SQL_SORGULAMA extends JInternalFrame {
 				}
 			}
 		});
-		Border borderr = BorderFactory.createLineBorder(Color.GRAY);
+		Border borderr = BorderFactory.createLineBorder(null);
 		textArea.setBorder(BorderFactory.createCompoundBorder(borderr,BorderFactory.createEmptyBorder(2, 2, 2, 2)));
 		splitPane.setLeftComponent(textArea);
 		modul = nerden ;
@@ -144,18 +141,13 @@ public class SQL_SORGULAMA extends JInternalFrame {
 				String mesaj = "Aranan:" ;
 				String mesaj1 = textArea.getText();
 				if( mesaj1.length() <= 93)
-				{
 					mesaj = mesaj +  mesaj1 ;
-				}
 				else
-				{
 					mesaj = mesaj +  mesaj1.substring(0, 93  -(mesaj.length())) ;
-				}
 				lOG_BILGI lBILGI = new lOG_BILGI();
 				lBILGI.setmESAJ(mesaj);
 				lBILGI.seteVRAK("");
 				rs = f_Access.sql_sorgu(textArea.getText(),lBILGI,BAGLAN_LOG.fatLogDizin);
-
 				if (!rs.isBeforeFirst() ) {  
 					GRID_TEMIZLE.grid_temizle(table);
 					return;
@@ -166,18 +158,13 @@ public class SQL_SORGULAMA extends JInternalFrame {
 				String mesaj = "Aranan:" ;
 				String mesaj1 = textArea.getText();
 				if( mesaj1.length() <= 93)
-				{
 					mesaj = mesaj +  mesaj1 ;
-				}
 				else
-				{
 					mesaj = mesaj +  mesaj1.substring(0, 93  -(mesaj.length())) ;
-				}
 				lOG_BILGI lBILGI = new lOG_BILGI();
 				lBILGI.setmESAJ(mesaj);
 				lBILGI.seteVRAK("");
 				rs = ker_Access.sql_sorgu(textArea.getText(),lBILGI,BAGLAN_LOG.kerLogDizin);
-
 				if (!rs.isBeforeFirst() ) {  
 					GRID_TEMIZLE.grid_temizle(table);
 					return;
@@ -198,7 +185,7 @@ public class SQL_SORGULAMA extends JInternalFrame {
 			 {
 				tc = tcm.getColumn(i);
 				tc.setHeaderRenderer(new SOLA());
-				tc.setMinWidth(100);
+				//tc.setMinWidth(100);
 			 }
 			//table.setAutoResizeMode( JTable.AUTO_RESIZE_ALL_COLUMNS );
 			table.setRowSelectionInterval(0, 0);

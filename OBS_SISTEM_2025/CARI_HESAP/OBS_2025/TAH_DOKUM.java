@@ -95,8 +95,10 @@ public class TAH_DOKUM extends JInternalFrame {
 			        	 DefaultTableModel model = (DefaultTableModel)table.getModel();
 			        	 if (model.getRowCount() == 0) return ;
 			        	 if (table.getSelectedRow()  < 0) return;
-			        	 table.setCursor(oac.WAIT_CURSOR);
-			        	 detay_doldur(model.getValueAt(table.getSelectedRow() , 0).toString(),model.getValueAt(table.getSelectedRow() , 4).toString());
+			        	 table.setCursor(oac.WAIT_CURSOR);//
+			        	 GRID_TEMIZLE.grid_temizle(table_1);
+			        	 if(model.getValueAt(table.getSelectedRow() , 5).toString().equals("Cek"))
+			        		 detay_doldur(model.getValueAt(table.getSelectedRow() , 0).toString(),model.getValueAt(table.getSelectedRow() , 4).toString());
 			        	 table.setCursor(oac.DEFAULT_CURSOR);
 			        }
 			    }
@@ -268,6 +270,7 @@ public class TAH_DOKUM extends JInternalFrame {
 			cin = 1 ;
 		long startTime = System.currentTimeMillis(); 
 		GRID_TEMIZLE.grid_temizle(table_1);
+		
 		ResultSet	rs = null;
 		rs = c_Access.tah_cek_doldur(evrno,cin	);
 		if (!rs.isBeforeFirst() )

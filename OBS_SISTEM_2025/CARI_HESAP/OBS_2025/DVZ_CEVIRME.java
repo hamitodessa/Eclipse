@@ -82,26 +82,26 @@ public class DVZ_CEVIRME extends JInternalFrame {
 		
 		
 		JPanel panel = new JPanel();
-		panel.setBorder(new LineBorder(new Color(0, 191, 255)));
+		panel.setBorder(new LineBorder(null));
 		splitPane.setLeftComponent(panel);
 		panel.setMinimumSize(new Dimension(0, 30));
 		panel.setMaximumSize(new Dimension(0, 30));
 		panel.setLayout(null);
 		
 		lblkod = new JLabel("...");
-		lblkod.setForeground(new Color(139, 0, 0));
+		//lblkod.setForeground(new Color(139, 0, 0));
 		lblkod.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblkod.setBounds(10, 8, 116, 14);
 		panel.add(lblkod);
 		
 		lblunvan = new JLabel("...");
-		lblunvan.setForeground(new Color(139, 0, 0));
+		//lblunvan.setForeground(new Color(139, 0, 0));
 		lblunvan.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblunvan.setBounds(149, 8, 312, 14);
 		panel.add(lblunvan);
 		
 		lblcins = new JLabel("...");
-		lblcins.setForeground(new Color(139, 0, 0));
+		//lblcins.setForeground(new Color(139, 0, 0));
 		lblcins.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblcins.setBounds(491, 8, 60, 14);
 		panel.add(lblcins);
@@ -112,7 +112,7 @@ public class DVZ_CEVIRME extends JInternalFrame {
 		panel.add(lblNewLabel);
 		
 		lblcevrilen = new JLabel("...");
-		lblcevrilen.setForeground(new Color(0, 0, 128));
+		//lblcevrilen.setForeground(new Color(0, 0, 128));
 		lblcevrilen.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblcevrilen.setBounds(736, 8, 66, 14);
 		panel.add(lblcevrilen);
@@ -159,7 +159,7 @@ public class DVZ_CEVIRME extends JInternalFrame {
 		
 		lblboskur = new JLabel("...");
 		lblboskur.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblboskur.setForeground(Color.RED);
+		//lblboskur.setForeground(Color.RED);
 		lblboskur.setBounds(918, 8, 53, 14);
 		panel.add(lblboskur);
 		
@@ -169,7 +169,7 @@ public class DVZ_CEVIRME extends JInternalFrame {
 		panel.add(lblKayitSayisi);
 		
 		label_1 = new JLabel("0");
-		label_1.setForeground(new Color(0, 0, 128));
+		//label_1.setForeground(new Color(0, 0, 128));
 		label_1.setFont(new Font("Tahoma", Font.BOLD, 11));
 		label_1.setBounds(1112, 8, 60, 14);
 		panel.add(label_1);
@@ -273,8 +273,7 @@ public class DVZ_CEVIRME extends JInternalFrame {
 	             		{
 	             	try {
 	             		OBS_MAIN.pencere_aktiv_yap("DEKONT");
-						} catch (PropertyVetoException e1) {
-							// TODO Auto-generated catch block
+						} catch (Exception e1) {
 							e1.printStackTrace();
 						}
 	              	}
@@ -290,7 +289,7 @@ public class DVZ_CEVIRME extends JInternalFrame {
 						DEKONT.txtevrak.setText(table.getValueAt(table.getSelectedRow(), 1).toString());
 						DEKONT.fiskont();
 					} 
-					catch (NumberFormatException e1) 
+					catch (Exception e1) 
 					{
 						e1.printStackTrace();
 					}

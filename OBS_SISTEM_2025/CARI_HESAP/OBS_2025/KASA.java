@@ -1,7 +1,6 @@
 package OBS_2025;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -210,7 +209,7 @@ public class KASA extends JInternalFrame {
 
 		lblNewLabel_1 = new JLabel("...");
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblNewLabel_1.setForeground(new Color(25, 25, 112));
+		//lblNewLabel_1.setForeground(new Color(25, 25, 112));
 		lblNewLabel_1.setBounds(87, 40, 360, 14);
 		leftPanel.add(lblNewLabel_1);
 
@@ -346,14 +345,14 @@ public class KASA extends JInternalFrame {
 		scrollPane_1.setViewportView(rightPanel);
 		
 		lblNewLabel_4 = new JLabel("0.00");
-		lblNewLabel_4.setForeground(new Color(0, 0, 139));
+		//lblNewLabel_4.setForeground(new Color(0, 0, 139));
 		lblNewLabel_4.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblNewLabel_4.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblNewLabel_4.setBounds(503, 11, 96, 14);
 		rightPanel.add(lblNewLabel_4);
 
 		lblNewLabel_5 = new JLabel("0.00");
-		lblNewLabel_5.setForeground(new Color(0, 0, 139));
+		//lblNewLabel_5.setForeground(new Color(0, 0, 139));
 		lblNewLabel_5.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblNewLabel_5.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblNewLabel_5.setBounds(400, 11, 100, 14);
@@ -366,7 +365,7 @@ public class KASA extends JInternalFrame {
 		rightPanel.add(lblNewLabel_4_1);
 
 		lblNewLabel_4_2 = new JLabel("0.00");
-		lblNewLabel_4_2.setForeground(new Color(0, 0, 128));
+		//lblNewLabel_4_2.setForeground(new Color(0, 0, 128));
 		lblNewLabel_4_2.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblNewLabel_4_2.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblNewLabel_4_2.setBounds(503, 56, 96, 14);
@@ -379,14 +378,14 @@ public class KASA extends JInternalFrame {
 		rightPanel.add(lblNewLabel_5_1);
 
 		lblNewLabel_5_2 = new JLabel("0.00");
-		lblNewLabel_5_2.setForeground(new Color(0, 0, 128));
+		//lblNewLabel_5_2.setForeground(new Color(0, 0, 128));
 		lblNewLabel_5_2.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblNewLabel_5_2.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblNewLabel_5_2.setBounds(400, 56, 100, 14);
 		rightPanel.add(lblNewLabel_5_2);
 
 		lblNewLabel_5_2_1 = new JLabel("0.00");
-		lblNewLabel_5_2_1.setForeground(new Color(0, 0, 128));
+		//lblNewLabel_5_2_1.setForeground(new Color(0, 0, 128));
 		lblNewLabel_5_2_1.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblNewLabel_5_2_1.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblNewLabel_5_2_1.setBounds(609, 56, 111, 14);
@@ -399,7 +398,7 @@ public class KASA extends JInternalFrame {
 		rightPanel.add(lblNewLabel_4_1_1);
 
 		lblNewLabel_4_1_2 = new JLabel("0.00");
-		lblNewLabel_4_1_2.setForeground(new Color(0, 0, 139));
+		//lblNewLabel_4_1_2.setForeground(new Color(0, 0, 139));
 		lblNewLabel_4_1_2.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblNewLabel_4_1_2.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblNewLabel_4_1_2.setBounds(624, 11, 96, 14);
@@ -411,7 +410,7 @@ public class KASA extends JInternalFrame {
 		rightPanel.add(lblNewLabel_2);
 
 		lblNewLabel_3 = new JLabel("0");
-		lblNewLabel_3.setForeground(new Color(0, 0, 128));
+		//lblNewLabel_3.setForeground(new Color(0, 0, 128));
 		lblNewLabel_3.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblNewLabel_3.setHorizontalAlignment(SwingConstants.LEFT);
 		lblNewLabel_3.setBounds(100, 65, 43, 14);

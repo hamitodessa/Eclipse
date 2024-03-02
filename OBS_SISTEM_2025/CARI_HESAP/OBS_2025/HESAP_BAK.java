@@ -276,7 +276,7 @@ public class HESAP_BAK extends JInternalFrame {
 		
 		JPanel panel = new JPanel();
 		jScrollPane1alt.setViewportView(panel);
-		panel.setBorder(new LineBorder(new Color(0, 191, 255)));
+		panel.setBorder(new LineBorder(null));
 		//panel.setMinimumSize(new Dimension(0,35));
 		panel.setPreferredSize(new Dimension(1060,35));
 		panel.setLayout(null);
@@ -304,7 +304,7 @@ public class HESAP_BAK extends JInternalFrame {
 		textField.setColumns(10);
 
 		lblNewLabel_1 = new JLabel("0.00");
-		lblNewLabel_1.setForeground(new Color(0, 0, 128));
+		//lblNewLabel_1.setForeground(new Color(0, 0, 128));
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 12));
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblNewLabel_1.setBounds(914, 7, 134, 14);
@@ -321,7 +321,7 @@ public class HESAP_BAK extends JInternalFrame {
 		panel.add(lblNewLabel_2_1);
 
 		lblNewLabel_2_2 = new JLabel("0");
-		lblNewLabel_2_2.setForeground(new Color(0, 0, 128));
+		//lblNewLabel_2_2.setForeground(new Color(0, 0, 128));
 		lblNewLabel_2_2.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblNewLabel_2_2.setHorizontalAlignment(SwingConstants.LEFT);
 		lblNewLabel_2_2.setBounds(570, 7, 50, 14);

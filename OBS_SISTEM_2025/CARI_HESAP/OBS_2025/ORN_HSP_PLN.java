@@ -19,7 +19,6 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 import java.awt.Font;
-import java.awt.SystemColor;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -50,7 +49,7 @@ public class ORN_HSP_PLN extends JInternalFrame {
 		panel.setLayout(null);
 
 		JPanel panel_1 = new JPanel();
-		panel_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Dosyadaki Kayit Sayisi", TitledBorder.LEADING, TitledBorder.TOP, null, SystemColor.textHighlight));
+		panel_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Dosyadaki Kayit Sayisi", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panel_1.setBounds(71, 11, 274, 63);
 		panel.add(panel_1);
 

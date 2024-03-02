@@ -56,7 +56,6 @@ import org.apache.commons.lang.StringUtils;
 
 import javax.swing.JComboBox;
 import java.awt.Font;
-import java.awt.SystemColor;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
@@ -272,7 +271,7 @@ public class CEK_GIRIS extends JInternalFrame {
 		scrollPane.setViewportView(table);
 
 		JPanel panel = new JPanel();
-		panel.setBorder(new LineBorder(new Color(0, 191, 255)));
+		panel.setBorder(new LineBorder(null));
 		splitPane_1.setRightComponent(panel);
 		panel.setMinimumSize(new Dimension(0, 30));
 		panel.setMaximumSize(new Dimension(0, 30));
@@ -283,12 +282,12 @@ public class CEK_GIRIS extends JInternalFrame {
 		panel.add(lblNewLabel_6);
 
 		lblNewLabel_12 = new JLabel("0");
-		lblNewLabel_12.setForeground(new Color(0, 0, 139));
+		//lblNewLabel_12.setForeground(new Color(0, 0, 139));
 		lblNewLabel_12.setBounds(103, 11, 58, 14);
 		panel.add(lblNewLabel_12);
 
 		label = new JLabel("0.00");
-		label.setForeground(new Color(139, 0, 0));
+		//label.setForeground(new Color(139, 0, 0));
 		label.setFont(new Font("Tahoma", Font.BOLD, 12));
 		label.setHorizontalAlignment(SwingConstants.RIGHT);
 		label.setBounds(1073, 11, 136, 14);
@@ -302,7 +301,7 @@ public class CEK_GIRIS extends JInternalFrame {
 		splitPane.setLeftComponent(tabbedPane);
 
 		JPanel panel_2 = new JPanel();
-		panel_2.setBorder(new LineBorder(new Color(0, 191, 255)));
+		panel_2.setBorder(new LineBorder(null));
 		tabbedPane.addTab("Cek Giris", null, panel_2, null);
 		panel_2.setLayout(null);
 
@@ -401,7 +400,7 @@ public class CEK_GIRIS extends JInternalFrame {
 
 		lblNewLabel_2 = new JLabel(".....");
 		lblNewLabel_2.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblNewLabel_2.setForeground(new Color(139, 0, 0));
+		//lblNewLabel_2.setForeground(new Color(139, 0, 0));
 		lblNewLabel_2.setBounds(87, 60, 273, 14);
 		panel_2.add(lblNewLabel_2);
 
@@ -501,7 +500,7 @@ public class CEK_GIRIS extends JInternalFrame {
 		panel_2.add(dateChooser);
 
 		JPanel panel_3 = new JPanel();
-		panel_3.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Vade Farki", TitledBorder.LEADING, TitledBorder.TOP, null, SystemColor.textHighlight));
+		panel_3.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Vade Farki", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panel_3.setBounds(451, 5, 352, 53);
 		panel_2.add(panel_3);
 		panel_3.setLayout(null);
@@ -536,7 +535,7 @@ public class CEK_GIRIS extends JInternalFrame {
 		panel_3.add(lblNewLabel_5);
 
 		lblNewLabel_7 = new JLabel("0.00");
-		lblNewLabel_7.setForeground(Color.RED);
+		//lblNewLabel_7.setForeground(Color.RED);
 		lblNewLabel_7.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblNewLabel_7.setFont(new Font("Tahoma", Font.BOLD, 12));
 		lblNewLabel_7.setBounds(228, 26, 101, 14);
@@ -544,7 +543,7 @@ public class CEK_GIRIS extends JInternalFrame {
 		
 		lblOrtgun = new JLabel("0");
 		lblOrtgun.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblOrtgun.setForeground(new Color(0, 0, 205));
+		//lblOrtgun.setForeground(new Color(0, 0, 205));
 		lblOrtgun.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblOrtgun.setBounds(148, 27, 48, 14);
 		panel_3.add(lblOrtgun);

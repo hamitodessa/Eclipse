@@ -27,8 +27,11 @@ public class TARIH extends DefaultTableCellRenderer {
 			{
 				if(value != null &&  ! value.toString().equals(""))
 				{
-					///
-					SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
+					SimpleDateFormat format ;
+					if(value.toString().toString().substring(4, 5).equals("-"))
+						format = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
+					else
+						format = new SimpleDateFormat("yyyy.MM.dd", Locale.ENGLISH);
 					Date date = format.parse(value.toString());
 					SimpleDateFormat df = new SimpleDateFormat("dd.MM.yyyy");
 					value = df.format(date);

@@ -1,7 +1,6 @@
 package OBS_2025;
 
 import java.awt.Font;
-import java.awt.SystemColor;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.ResultSet;
@@ -84,7 +83,7 @@ public class CEK_TAKIP extends JInternalFrame {
 		panel.setLayout(null);
 
 		JPanel panel_1 = new JPanel();
-		panel_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Cek No", TitledBorder.LEADING, TitledBorder.TOP, null, SystemColor.textHighlight));
+		panel_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Cek No", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panel_1.setBounds(10, 11, 587, 59);
 		panel.add(panel_1);
 		panel_1.setLayout(null);
@@ -176,7 +175,7 @@ public class CEK_TAKIP extends JInternalFrame {
 
 		JPanel panel_1_1 = new JPanel();
 		panel_1_1.setLayout(null);
-		panel_1_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Islem", TitledBorder.LEADING, TitledBorder.TOP, null, SystemColor.textHighlight));
+		panel_1_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Islem", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panel_1_1.setBounds(10, 301, 587, 59);
 		panel.add(panel_1_1);
 
@@ -289,7 +288,7 @@ public class CEK_TAKIP extends JInternalFrame {
 		panel.add(lblNewLabel_21);
 
 		lblNewLabel_22 = new JLabel("0.00");
-		lblNewLabel_22.setForeground(Color.BLUE);
+		//lblNewLabel_22.setForeground(Color.BLUE);
 		lblNewLabel_22.setFont(new Font("Tahoma", Font.BOLD, 12));
 		lblNewLabel_22.setHorizontalAlignment(SwingConstants.LEFT);
 		lblNewLabel_22.setBounds(371, 257, 130, 14);

@@ -1,7 +1,6 @@
 package OBS_2025;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -71,7 +70,7 @@ public class ADRES_LISTE extends JDialog {
 
 	JPanel panel = new JPanel();
 	splitPane.setLeftComponent(panel);
-	panel.setBorder(new LineBorder(new Color(0, 191, 255)));
+	panel.setBorder(new LineBorder(null));
 	panel.setMinimumSize(new Dimension(0, 40));
 	panel.setMaximumSize(new Dimension(0, 40));
 	panel.setLayout(null);

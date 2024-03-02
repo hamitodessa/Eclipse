@@ -10,7 +10,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSplitPane;
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Dimension;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
@@ -106,7 +105,7 @@ public class EKSIK_KUR extends JInternalFrame
 		JButton btnNewButton = new JButton("Bos Tarihleri Bul");
 		btnNewButton.setHorizontalAlignment(SwingConstants.LEFT);
 		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 10));
-		btnNewButton.setForeground(new Color(0, 0, 128));
+		//btnNewButton.setForeground(new Color(0, 0, 128));
 		btnNewButton.setMargin(new Insets(2, 1, 2, 1));
 		btnNewButton.addActionListener(new ActionListener() 
 		{
@@ -122,14 +121,14 @@ public class EKSIK_KUR extends JInternalFrame
 		panel.add(btnNewButton);
 
 		lblkayit = new JLabel("0");
-		lblkayit.setForeground(new Color(0, 0, 205));
+		//lblkayit.setForeground(new Color(0, 0, 205));
 		lblkayit.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblkayit.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblkayit.setBounds(300, 79, 40, 14);
 		panel.add(lblkayit);
 
 		JButton btnMerkezOku = new JButton("Merkez Oku");
-		btnMerkezOku.setForeground(new Color(0, 0, 128));
+		//btnMerkezOku.setForeground(new Color(0, 0, 128));
 		btnMerkezOku.setFont(new Font("Tahoma", Font.BOLD, 10));
 		btnMerkezOku.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

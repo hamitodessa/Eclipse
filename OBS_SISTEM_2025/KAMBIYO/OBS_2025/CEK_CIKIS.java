@@ -5,7 +5,6 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -246,7 +245,7 @@ public class CEK_CIKIS extends JInternalFrame {
 
 		JPanel panel = new JPanel();
 		splitPane_1.setRightComponent(panel);
-		panel.setBorder(new LineBorder(new Color(0, 191, 255)));
+		panel.setBorder(new LineBorder(null));
 		panel.setMinimumSize(new Dimension(0, 30));
 		panel.setMaximumSize(new Dimension(0, 30));
 		panel.setLayout(null);
@@ -256,12 +255,12 @@ public class CEK_CIKIS extends JInternalFrame {
 		panel.add(lblNewLabel_6);
 
 		lblNewLabel_12 = new JLabel("0");
-		lblNewLabel_12.setForeground(new Color(0, 0, 139));
+		//lblNewLabel_12.setForeground(new Color(0, 0, 139));
 		lblNewLabel_12.setBounds(103, 11, 58, 14);
 		panel.add(lblNewLabel_12);
 
 		label = new JLabel("0.00");
-		label.setForeground(new Color(139, 0, 0));
+		//label.setForeground(new Color(139, 0, 0));
 		label.setFont(new Font("Tahoma", Font.BOLD, 12));
 		label.setHorizontalAlignment(SwingConstants.RIGHT);
 		label.setBounds(1073, 11, 136, 14);
@@ -275,7 +274,7 @@ public class CEK_CIKIS extends JInternalFrame {
 		splitPane.setLeftComponent(tabbedPane);
 
 		JPanel panel_2 = new JPanel();
-		panel_2.setBorder(new LineBorder(new Color(0, 191, 255)));
+		panel_2.setBorder(new LineBorder(null));
 		tabbedPane.addTab("Cek Cikis", null, panel_2, null);
 		panel_2.setLayout(null);
 
@@ -373,7 +372,7 @@ public class CEK_CIKIS extends JInternalFrame {
 
 		lblNewLabel_2 = new JLabel(".....");
 		lblNewLabel_2.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblNewLabel_2.setForeground(new Color(139, 0, 0));
+		//lblNewLabel_2.setForeground(new Color(139, 0, 0));
 		lblNewLabel_2.setBounds(87, 60, 273, 14);
 		panel_2.add(lblNewLabel_2);
 
@@ -474,7 +473,7 @@ public class CEK_CIKIS extends JInternalFrame {
 		panel_2.add(dateChooser);
 
 		JPanel panel_3 = new JPanel();
-		panel_3.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Vade Farki", TitledBorder.LEADING, TitledBorder.TOP, null, SystemColor.textHighlight));
+		panel_3.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Vade Farki", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panel_3.setBounds(451, 5, 352, 53);
 		panel_2.add(panel_3);
 		panel_3.setLayout(null);
@@ -519,7 +518,7 @@ public class CEK_CIKIS extends JInternalFrame {
 		textField_3.setColumns(10);
 
 		lblNewLabel_7 = new JLabel("0.00");
-		lblNewLabel_7.setForeground(Color.RED);
+		//lblNewLabel_7.setForeground(Color.RED);
 		lblNewLabel_7.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblNewLabel_7.setFont(new Font("Tahoma", Font.BOLD, 12));
 		lblNewLabel_7.setBounds(228, 26, 101, 14);

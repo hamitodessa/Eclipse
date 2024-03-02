@@ -40,7 +40,6 @@ import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import java.awt.Font;
-import java.awt.SystemColor;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.sql.ResultSet;
@@ -148,7 +147,7 @@ public class KUR_GIRIS extends JInternalFrame {
 		panel.setLayout(null);
 
 		comboBox = new JComboBox<String>();
-		comboBox.setForeground(new Color(0, 0, 128));
+		//comboBox.setForeground(new Color(0, 0, 128));
 		comboBox.setFont(new Font("Tahoma", Font.BOLD, 11));
 		comboBox.setModel(new DefaultComboBoxModel<String>(new String[] {"USD", "EUR", "RUB", "GBR", "CHF", "SEK", "NOK", "SAR"}));
 		comboBox.setEditable(true);
@@ -218,7 +217,7 @@ public class KUR_GIRIS extends JInternalFrame {
 		panel.add(btnNewButton);
 
 		JPanel panel_1 = new JPanel();
-		panel_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Merkez", TitledBorder.LEADING, TitledBorder.TOP, null, SystemColor.textHighlight));
+		panel_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Merkez", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panel_1.setBounds(75, 51, 120, 79);
 		panel.add(panel_1);
 		panel_1.setLayout(null);
@@ -262,7 +261,7 @@ public class KUR_GIRIS extends JInternalFrame {
 
 		JPanel panel_1_1 = new JPanel();
 		panel_1_1.setLayout(null);
-		panel_1_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Serbest", TitledBorder.LEADING, TitledBorder.TOP, null, SystemColor.textHighlight));
+		panel_1_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Serbest", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panel_1_1.setBounds(200, 51, 120, 79);
 		panel.add(panel_1_1);
 
@@ -303,7 +302,7 @@ public class KUR_GIRIS extends JInternalFrame {
 
 		JPanel panel_1_2 = new JPanel();
 		panel_1_2.setLayout(null);
-		panel_1_2.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Bankalar Arasi", TitledBorder.LEADING, TitledBorder.TOP, null, SystemColor.textHighlight));
+		panel_1_2.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Bankalar Arasi", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panel_1_2.setBounds(335, 51, 120, 79);
 		panel.add(panel_1_2);
 

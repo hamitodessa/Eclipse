@@ -255,27 +255,27 @@ public class OZEL_MIZAN extends JInternalFrame {
 		scrollPane.setViewportView(table);
 
 		JPanel panel = new JPanel();
-		panel.setBorder(new LineBorder(new Color(0, 191, 255)));
+		panel.setBorder(new LineBorder(null));
 		panel.setMinimumSize(new Dimension(0, 25));
 		panel.setMaximumSize(new Dimension(0, 25));
 		panel.setLayout(null);
 
 		lblbakiye = new JLabel("0.00");
-		lblbakiye.setForeground(new Color(0, 0, 128));
+		//lblbakiye.setForeground(new Color(0, 0, 128));
 		lblbakiye.setFont(new Font("Tahoma", Font.BOLD, 12));
 		lblbakiye.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblbakiye.setBounds(1003, 5, 117, 14);
 		panel.add(lblbakiye);
 
 		lblbakkvartal = new JLabel("0.00");
-		lblbakkvartal.setForeground(new Color(0, 0, 128));
+		//lblbakkvartal.setForeground(new Color(0, 0, 128));
 		lblbakkvartal.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblbakkvartal.setFont(new Font("Tahoma", Font.BOLD, 12));
 		lblbakkvartal.setBounds(883, 6, 117, 14);
 		panel.add(lblbakkvartal);
 
 		lblalacak = new JLabel("0.00");
-		lblalacak.setForeground(new Color(0, 0, 128));
+		//lblalacak.setForeground(new Color(0, 0, 128));
 		lblalacak.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblalacak.setFont(new Font("Tahoma", Font.BOLD, 12));
 		lblalacak.setBounds(763, 6, 117, 14);
@@ -284,14 +284,14 @@ public class OZEL_MIZAN extends JInternalFrame {
 
 		lblborc = new JLabel("0.00");
 		lblborc.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblborc.setForeground(new Color(0, 0, 128));
+		//lblborc.setForeground(new Color(0, 0, 128));
 		lblborc.setFont(new Font("Tahoma", Font.BOLD, 12));
 		lblborc.setBounds(643, 6, 117, 14);
 		panel.add(lblborc);
 
 		lblonceki = new JLabel("0.00");
 		lblonceki.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblonceki.setForeground(new Color(0, 0, 128));
+		//lblonceki.setForeground(new Color(0, 0, 128));
 		lblonceki.setFont(new Font("Tahoma", Font.BOLD, 12));
 		lblonceki.setBounds(523, 6, 117, 14);
 		panel.add(lblonceki);
@@ -302,7 +302,7 @@ public class OZEL_MIZAN extends JInternalFrame {
 		panel.add(lblNewLabel);
 		
 		lblNewLabel_1 = new JLabel("0");
-		lblNewLabel_1.setForeground(new Color(0, 0, 128));
+		//lblNewLabel_1.setForeground(new Color(0, 0, 128));
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblNewLabel_1.setBounds(100, 5, 51, 14);
 		panel.add(lblNewLabel_1);

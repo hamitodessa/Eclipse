@@ -1,7 +1,6 @@
 package OBS_2025;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -120,7 +119,7 @@ public class ADRESLER extends JInternalFrame {
 	splitPane.setLeftComponent(panel);
 	panel.setMinimumSize(new Dimension(0, 30));
 	panel.setMaximumSize(new Dimension(0, 30));
-	panel.setBorder(new LineBorder(new Color(0, 191, 255)));
+	panel.setBorder(new LineBorder(null));
 	panel.setLayout(null);
 
 	JLabel lblNewLabel = new JLabel("Arama");
@@ -165,6 +164,7 @@ public class ADRESLER extends JInternalFrame {
 	JPanel panelalt = new JPanel();
 	panelalt.setMinimumSize(new Dimension(0, 25));
 	panelalt.setMaximumSize(new Dimension(0, 25));
+	panelalt.setBorder(new LineBorder(null));
 	splitPane_1.setRightComponent(panelalt);
 	panelalt.setLayout(null);
 	
@@ -173,7 +173,7 @@ public class ADRESLER extends JInternalFrame {
 	panelalt.add(lblNewLabel_1);
 	
 	lbladet = new JLabel("0");
-	lbladet.setForeground(new Color(0, 0, 128));
+	//lbladet.setForeground(new Color(0, 0, 128));
 	lbladet.setFont(new Font("Tahoma", Font.BOLD, 11));
 	lbladet.setBounds(100, 5, 75, 14);
 	panelalt.add(lbladet);

@@ -4,7 +4,6 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Font;
-import java.awt.SystemColor;
 import java.awt.datatransfer.DataFlavor;
 import java.awt.dnd.DnDConstants;
 import java.awt.dnd.DropTarget;
@@ -108,7 +107,7 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 		panel.setLayout(null);
 
 		JPanel panel_1 = new JPanel();
-		panel_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Gonderen", TitledBorder.LEADING, TitledBorder.TOP, null, SystemColor.textHighlight));
+		panel_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Gonderen", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panel_1.setBounds(10, 11, 324, 77);
 		panel.add(panel_1);
 		panel_1.setLayout(null);
@@ -135,7 +134,7 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 		panel_1.add(lblNewLabel_1);
 
 		JPanel panel_1_1 = new JPanel();
-		panel_1_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Alici", TitledBorder.LEADING, TitledBorder.TOP, null, SystemColor.textHighlight));
+		panel_1_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Alici", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panel_1_1.setBounds(10, 99, 324, 55);
 		panel.add(panel_1_1);
 		panel_1_1.setLayout(null);
@@ -147,13 +146,13 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 		panel_1_1.add(cmbalici);
 
 		JPanel panel_1_2 = new JPanel();
-		panel_1_2.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Format Turu", TitledBorder.LEADING, TitledBorder.TOP, null, SystemColor.textHighlight));
+		panel_1_2.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Format Turu", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panel_1_2.setBounds(10, 166, 324, 55);
 		panel.add(panel_1_2);
 		panel_1_2.setLayout(null);
 
 		comboBox = new JComboBox<String>();
-		comboBox.setForeground(new Color(0, 0, 128));
+		//comboBox.setForeground(new Color(0, 0, 128));
 		comboBox.setFont(new Font("Tahoma", Font.BOLD, 11));
 		comboBox.setModel(new DefaultComboBoxModel<String>(new String[] {"PDF", "EXCELL", "WORD"}));
 		comboBox.setBounds(75, 22, 134, 22);
@@ -162,7 +161,7 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 
 
 		JPanel panel_1_3 = new JPanel();
-		panel_1_3.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Konu", TitledBorder.LEADING, TitledBorder.TOP, null, SystemColor.textHighlight));
+		panel_1_3.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Konu", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panel_1_3.setBounds(10, 232, 324, 55);
 		panel.add(panel_1_3);
 		panel_1_3.setLayout(null);
@@ -175,7 +174,7 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 
 
 		JPanel panel_1_3_1 = new JPanel();
-		panel_1_3_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Aciklama", TitledBorder.LEADING, TitledBorder.TOP, null, SystemColor.textHighlight));
+		panel_1_3_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Aciklama", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panel_1_3_1.setBounds(10, 293, 567, 87);
 		panel.add(panel_1_3_1);
 		panel_1_3_1.setLayout(new BorderLayout(0, 0));
@@ -313,9 +312,9 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 
 		DefaultListModel<String> model = new DefaultListModel<>();
 		list = new JList<String>(model);
-		list.setForeground(new Color(0, 0, 128));
+		//list.setForeground(new Color(0, 0, 128));
 		list.setFont(new Font("Tahoma", Font.BOLD, 11));
-		list.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Ek Dosya Secimi", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 120, 215)));
+		list.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Ek Dosya Secimi", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		list.setBounds(338, 11, 239, 218);
 		list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		list.setDropTarget(new DropTarget() {
@@ -411,7 +410,7 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 
 		lblNewLabel_2 = new JLabel();
 		lblNewLabel_2.setText(".....");
-		lblNewLabel_2.setForeground(Color.BLUE);
+		//lblNewLabel_2.setForeground(Color.BLUE);
 		lblNewLabel_2.setBounds(344, 235, 195, 14);
 		panel.add(lblNewLabel_2);
 
@@ -419,10 +418,10 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 		txtaciklama.setText("");
 		txtkonu.setText("");
 		lblNewLabel_3 = new JLabel("0");
-		lblNewLabel_3.setForeground(new Color(0, 0, 139));
+		//lblNewLabel_3.setForeground(new Color(0, 0, 139));
 		lblNewLabel_3.setFont(new Font("Tahoma", Font.BOLD, 12));
 		lblNewLabel_3.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblNewLabel_3.setBounds(551, 235, 21, 14);
+		lblNewLabel_3.setBounds(538, 235, 34, 14);
 		panel.add(lblNewLabel_3);
 		try {
 			lblNewLabel_2.setText("");

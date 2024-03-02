@@ -101,7 +101,7 @@ public class USER_DETAY_EKLEME extends JInternalFrame {
 		
 		
 		JPanel panel = new JPanel();
-		panel.setBorder(new LineBorder(new Color(0, 191, 255)));
+		panel.setBorder(new LineBorder(null));
 		panel.setPreferredSize(new Dimension(1130,120));
 		scrollPaneust.setViewportView(panel);
 		splitPane.setLeftComponent(scrollPaneust);
@@ -120,13 +120,13 @@ public class USER_DETAY_EKLEME extends JInternalFrame {
 		panel.add(lblNewLabel_2);
 
 		comboBox = new JComboBox<String>();
-		comboBox.setForeground(new Color(0, 0, 128));
+		//comboBox.setForeground(new Color(0, 0, 128));
 		comboBox.setFont(new Font("Tahoma", Font.BOLD, 14));
 		comboBox.setBounds(107, 8, 125, 22);
 		panel.add(comboBox);
 
 		comboBox_1 = new JComboBox<String>();
-		comboBox_1.setForeground(new Color(0, 0, 128));
+		//comboBox_1.setForeground(new Color(0, 0, 128));
 		comboBox_1.setFont(new Font("Tahoma", Font.BOLD, 14));
 		comboBox_1.setModel(new DefaultComboBoxModel<String>(new String[] {"Cari Hesap", "Fatura", "Kambiyo", "Adres", "Kur", "Sms", "Gunluk"}));
 		comboBox_1.setBounds(107, 33, 125, 22);
@@ -229,7 +229,7 @@ public class USER_DETAY_EKLEME extends JInternalFrame {
 		panel.add(lblNewLabel_12);
 
 		comboBox_2 = new JComboBox<String>();
-		comboBox_2.setForeground(new Color(0, 0, 128));
+		//comboBox_2.setForeground(new Color(0, 0, 128));
 		comboBox_2.setFont(new Font("Tahoma", Font.BOLD, 14));
 
 
@@ -296,7 +296,7 @@ public class USER_DETAY_EKLEME extends JInternalFrame {
 		menu.add(cbMail);
 		JButton btnNewButton_6 = new JButton();
 		btnNewButton_6.setFont(new Font("Tahoma", Font.BOLD, 11));
-		btnNewButton_6.setForeground(new Color(0, 128, 128));
+		//btnNewButton_6.setForeground(new Color(0, 128, 128));
 		btnNewButton_6.setText("Loglama Secimi");
 		btnNewButton_6.setBounds(800, 82, 130, 23);
 		btnNewButton_6.setAction(new AbstractAction("Loglama Secimi") {

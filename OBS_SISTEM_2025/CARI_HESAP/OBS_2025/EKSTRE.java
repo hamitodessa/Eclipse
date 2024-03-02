@@ -101,6 +101,7 @@ public class EKSTRE extends JInternalFrame {
 
 		
 		jScrollPane1alt = new ScrollPaneWin11();
+		jScrollPane1alt.setBorder(new LineBorder(null));
 		jScrollPane1alt.getHorizontalScrollBar().addAdjustmentListener(new AdjustmentListener() {
 			@Override
 			public void adjustmentValueChanged(AdjustmentEvent e) {
@@ -113,7 +114,7 @@ public class EKSTRE extends JInternalFrame {
 		
 		JPanel panel = new JPanel();
 		jScrollPane1alt.setViewportView(panel);
-		panel.setBorder(new LineBorder(null));
+		
 		panel.setPreferredSize(new Dimension(1120,90));
 
 		panel.setLayout(null);

@@ -75,14 +75,14 @@ public class GLOBAL {
 	public static final String OBS_DOSYA = System.getProperty("user.name") + "_OBS_SISTEM_2025.DB";
 	public static final String EKSTRE_DOSYA = System.getProperty("user.name") + "_EKSTRE.DB";
 	public static final String TAH_CEK_DOSYA = System.getProperty("user.name") + "_CEK_PRINT.accdb";
-	public static final String SURUCU = "C:" + File.separator + "OBS_SISTEM" + File.separator;
-	public static final String LOG_SURUCU =  "C:" + File.separator + "OBS_SISTEM" + File.separator + "LOGLAMA" + File.separator + "";
-	public static final String DBYERI = "C:" + File.separator + "OBS_DATABASES" + File.separator + "";
-	public static final String BACKUP_YERI = "C:" + File.separator + "OBS_SISTEM" + File.separator + "BACKUP" + File.separator + "";
 	public static final String GOREV_DOSYA = System.getProperty("user.name") + "_OBS_GOREV.DB";
 	public static final String BACKUP_DOSYA = System.getProperty("user.name") + "_SQL_BACKUP.DB";
 	public static final String BACKUP_LOG_DOSYA = System.getProperty("user.name") + "_SQL_LOG.DB";
 	public static final String BACKUP_PID = System.getProperty("user.name") + "_BACKUP_PID.txt";
+	public static final String SURUCU = "C:" + File.separator + "OBS_SISTEM" + File.separator;
+	public static final String LOG_SURUCU =  "C:" + File.separator + "OBS_SISTEM" + File.separator + "LOGLAMA" + File.separator + "";
+	public static final String DBYERI = "C:" + File.separator + "OBS_DATABASES" + File.separator + "";
+	public static final String BACKUP_YERI = "C:" + File.separator + "OBS_SISTEM" + File.separator + "BACKUP" + File.separator + "";
 	static Connection con ;
 	static Connection Ekstrecon ;
 	static Connection CekPrintcon ;

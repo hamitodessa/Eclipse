@@ -1821,7 +1821,7 @@ public class PARAMETRELER   extends JInternalFrame   {
 			lblNewLabel_3_10_1_1_1.setFont(bigFont);
 			//*********************PROGRAM *************************************
 			deger = oac.glb.setting_oku("PRG_PARA").toString();
-			textField_9.setText(deger);
+			textField_9.setText("TL");
 			deger = oac.glb.setting_oku("PRG_FILTRE").toString();
 			parts = deger.split(",");
 			if (parts[0].equals("E")) {chckbxNewCheckBox_2_2_1_1.setSelected(true);} else {chckbxNewCheckBox_2_2_1_1.setSelected(false);}

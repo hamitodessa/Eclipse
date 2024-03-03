@@ -3052,6 +3052,14 @@ public class OBS_MAIN extends JFrame  {
 							GuiUtil.setWaitCursor(tabbedPane,false); 
 							return ;
 						}
+						if(TAH_FISI.textAKodu.getText().equals(""))
+						{
+							GuiUtil.setWaitCursor(toolBar,false);
+							GuiUtil.setWaitCursor(tabbedPane,false);
+							mesaj_goster(10000,Notifications.Type.WARNING,"Adres Kodu Bos...");
+							TAH_FISI.textAKodu.requestFocus();
+							return ;
+						}
 						if(TAH_FISI.cmbTur.getSelectedIndex()==1)
 						{
 							InputStream is = this.getClass().getClassLoader().getResourceAsStream("RPT/TAHSILAT_CEK.rpt");

@@ -412,18 +412,15 @@ public class PRINT_YAPMA extends JInternalFrame {
 				file = new File(GLOBAL.SURUCU + "\\TAHSILAT_CEK.rpt");
 				clientDoc.open(file.getPath(), 0);
 				clientDoc.getDatabaseController().logon(BAGLAN.cariDizin.kULLANICI, BAGLAN.cariDizin.sIFRESI);
-				
 				if (GLOBAL.dos_kontrol(GLOBAL.SURUCU + GLOBAL.TAH_CEK_DOSYA) == false)
 					GLOBAL.cek_print_dosya_olustur();
 				else
 					GLOBAL.cek_dos_kayit_sil();
-				
 				c_Access.tah_cek_kayit_aktar(TAH_FISI.textEvrakNo.getText(),TAH_FISI.cmbCins.getSelectedIndex());
-				
 				rs = GLOBAL.tah_cek_oku(TAH_FISI.textEvrakNo.getText(),TAH_FISI.cmbCins.getSelectedIndex());
 				clientDoc.getDatabaseController().setDataSource(rs);
 				//**************************************************************************
-				ResultSet rstResultSet = a_Access.adr_etiket_arama_kod(TAH_FISI.textAKodu.getText());
+				ResultSet rstResultSet = a_Access.adr_etiket_arama_kod(TAH_FISI.textAKodu.getText().toString());
 				String Unvan = "*****";
 				String Adr1  = "*****";
 				String Adr2  = "*****";

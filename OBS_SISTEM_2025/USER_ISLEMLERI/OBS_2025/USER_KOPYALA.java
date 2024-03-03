@@ -16,7 +16,6 @@ import OBS_C_2025.ENCRYPT_DECRYPT_STRING;
 import raven.toast.Notifications;
 import OBS_C_2025.DIZIN_DETAY;
 import java.awt.Font;
-import java.awt.Color;
 @SuppressWarnings("static-access")
 public class USER_KOPYALA extends JInternalFrame {
 	/**
@@ -50,13 +49,13 @@ public class USER_KOPYALA extends JInternalFrame {
 		panel.add(lblNewLabel);
 
 		comboBox = new JComboBox<String>();
-		comboBox.setForeground(new Color(0, 0, 128));
+		//comboBox.setForeground(new Color(0, 0, 128));
 		comboBox.setFont(new Font("Tahoma", Font.BOLD, 11));
 		comboBox.setBounds(127, 31, 157, 22);
 		panel.add(comboBox);
 
 		comboBox_1 = new JComboBox<String>();
-		comboBox_1.setForeground(new Color(0, 0, 128));
+		//comboBox_1.setForeground(new Color(0, 0, 128));
 		comboBox_1.setFont(new Font("Tahoma", Font.BOLD, 11));
 		comboBox_1.setBounds(127, 67, 157, 22);
 		panel.add(comboBox_1);

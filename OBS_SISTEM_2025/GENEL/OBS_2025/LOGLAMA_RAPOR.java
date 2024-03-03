@@ -139,7 +139,7 @@ public class LOGLAMA_RAPOR extends JInternalFrame {
 		getContentPane().add(sp2, BorderLayout.CENTER);
 
 		comboBox = new JComboBox<String>();
-		comboBox.setForeground(new Color(0, 0, 139));
+		//comboBox.setForeground(new Color(0, 0, 139));
 		comboBox.setFont(new Font("Tahoma", Font.BOLD, 14));
 		comboBox.setModel(new DefaultComboBoxModel<String>(new String[] {"Cari Hesap", "Fatura", "Kambiyo", "Adres", "Kur", "Sms-Mail", "Gunluk","Kereste"}));
 		comboBox.setBounds(10, 11, 120, 27);

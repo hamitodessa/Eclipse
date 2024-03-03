@@ -19,8 +19,8 @@ public class ORTA extends JLabel implements TableCellRenderer {
 	  	    setToolTipText((String) value);
 	  	    setResizable(false);
 	  	    setHorizontalAlignment(JLabel.CENTER);
-	  	  setVerticalAlignment(JLabel.BOTTOM);
-	  	    setForeground(new Color(0, 0, 128));
+	  	    //setVerticalAlignment(JLabel.BOTTOM);
+	  	    //setForeground(new Color(0, 0, 128));
 	        setBorder(border);
 	        setFont(new Font(table.getFont().getFontName(), Font.BOLD, 12));
 	  	    return this;

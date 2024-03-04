@@ -546,46 +546,46 @@ public class YIL_SONU extends JInternalFrame {
 		{
 			//
 			Runnable runner = new Runnable()
-		    { public void run() {
-		    //
-			try 
-			{
-			Object source = e.getSource();
-			if (source instanceof AbstractButton == false) return;
-			boolean checked = e.getStateChange() == ItemEvent.SELECTED;
-			getContentPane().setCursor(oac.WAIT_CURSOR);
-			Progres_Bar_Temizle();  
-			OBS_MAIN.progressBar.setStringPainted(true);
-		    OBS_MAIN.progressBar.setMaximum(table.getRowCount()-1); 
-		    hEPSI = true;
-			for(int x = 0, y = table.getRowCount(); x < y; x++)
-			{
-				Progres_Bar(table.getRowCount()-1, x);
-				table.setValueAt(new Boolean(checked),x,0);
+			{ public void run() {
+				//
+				try 
+				{
+					Object source = e.getSource();
+					if (source instanceof AbstractButton == false) return;
+					boolean checked = e.getStateChange() == ItemEvent.SELECTED;
+					getContentPane().setCursor(oac.WAIT_CURSOR);
+					Progres_Bar_Temizle();  
+					OBS_MAIN.progressBar.setStringPainted(true);
+					OBS_MAIN.progressBar.setMaximum(table.getRowCount()-1); 
+					hEPSI = true;
+					for(int x = 0, y = table.getRowCount(); x < y; x++)
+					{
+						Progres_Bar(table.getRowCount()-1, x);
+						table.setValueAt(new Boolean(checked),x,0);
+					}
+					hEPSI = false;
+					secilen_satir();
+					Progres_Bar_Temizle();
+					getContentPane().setCursor(oac.DEFAULT_CURSOR);
+				} catch (InterruptedException e1) 
+				{
+					e1.printStackTrace();
+				}
 			}
-			hEPSI = false;
-			secilen_satir();
-			Progres_Bar_Temizle();
-			getContentPane().setCursor(oac.DEFAULT_CURSOR);
-			} catch (InterruptedException e1) 
-			{
-			e1.printStackTrace();
-			}
-		    }
-	    };
-	    Thread t = new Thread(runner, "Code Executer");
-	    t.start();
-	    //
+			};
+			Thread t = new Thread(runner, "Code Executer");
+			t.start();
+			//
 		}
 		static void Progres_Bar(int max, int deger) throws InterruptedException
-	    {
-	 	    OBS_MAIN.progressBar.setValue(deger);
-	     }
-	    static void Progres_Bar_Temizle()
-	    {
-	    	OBS_MAIN.progressBar.setMaximum(0);
-	    	OBS_MAIN.progressBar.setValue(0);
-	    	OBS_MAIN.progressBar.setStringPainted(false);
-	    }
+		{
+			OBS_MAIN.progressBar.setValue(deger);
+		}
+		static void Progres_Bar_Temizle()
+		{
+			OBS_MAIN.progressBar.setMaximum(0);
+			OBS_MAIN.progressBar.setValue(0);
+			OBS_MAIN.progressBar.setStringPainted(false);
+		}
 	}
 }

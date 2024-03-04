@@ -70,15 +70,11 @@ public class ComboBoxTableCellEditor extends AbstractCellEditor implements Table
 				for (int i = 0; i < list.getModel().getSize(); i++)
 				{
 					String value =  list.getModel().getElementAt(i).toString();
-					if ( value.toString().startsWith(editor.getEditor().getItem().toString())  )
-					{
+					if ( value.toString().startsWith(editor.getEditor().getItem().toString()))
 						result = true;
-					}
 				}
 				if (result == false)
-				{
 					editor.getEditor().setItem( editor.getEditor().getItem().toString().substring(0, editor.getEditor().getItem().toString().length() - 1));
-				}
 				//***********************************
 				for (int i = 0; i < list.getModel().getSize(); i++)
 				{
@@ -90,33 +86,19 @@ public class ComboBoxTableCellEditor extends AbstractCellEditor implements Table
 						list.setSelectedIndex(i);
 						list.scrollRectToVisible(list.getCellBounds(i, i+3));
 						if (nerden.equals("fatura"))
-						{
 							FATURA.bilgi_doldur( value);
-						}
 						else  if (nerden.equals("imalat"))
-						{
 							IMALAT.bilgi_doldur( value);
-						}
 						else  if (nerden.equals("toplu"))
-						{
 							COKLU_IMALAT.bilgi_doldur(editorComponent.getText().toString());
-						}
 						else if (nerden.equals("zayi"))
-						{
 							ZAYI.bilgi_doldur(editorComponent.getText().toString());
-						}
 						else if (nerden.equals("irsaliye"))
-						{
 							IRSALIYE.bilgi_doldur(editorComponent.getText().toString());
-						}
 						else if (nerden.equals("recete"))
-						{
 							RECETE.bilgi_doldur(editorComponent.getText().toString());
-						}
 						else if (nerden.equals("kam_cikis"))
-						{
 							CEK_CIKIS.cek_kontrol(editorComponent.getText().toString(),table.getSelectedRow());
-						}
 						else if (nerden.equals("ker_cikis"))
 						{
 							try {
@@ -185,33 +167,19 @@ public class ComboBoxTableCellEditor extends AbstractCellEditor implements Table
 			public void popupMenuWillBecomeInvisible(PopupMenuEvent e) {
 				
 				if (nerden.equals("fatura"))
-				{
 					FATURA.bilgi_doldur( editorComponent.getText().toString());
-				}
 				else  if (nerden.equals("imalat"))
-				{
 					IMALAT.bilgi_doldur(editorComponent.getText().toString());
-				}
 				else  if (nerden.equals("toplu"))
-				{
 					COKLU_IMALAT.bilgi_doldur(editorComponent.getText().toString());
-				}
 				else if (nerden.equals("zayi"))
-				{
 					ZAYI.bilgi_doldur(editorComponent.getText().toString());
-				}
 				else if (nerden.equals("irsaliye"))
-				{
 					IRSALIYE.bilgi_doldur(editorComponent.getText().toString());
-				}
 				else if (nerden.equals("recete"))
-				{
 					RECETE.bilgi_doldur(editorComponent.getText().toString());
-				}
 				else if (nerden.equals("kam_cikis"))
-				{
 					CEK_CIKIS.cek_kontrol(editorComponent.getText().toString(),table.getSelectedRow());
-				}
 				else if (nerden.equals("ker_cikis"))
 				{
 					try {

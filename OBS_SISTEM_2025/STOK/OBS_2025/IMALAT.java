@@ -83,7 +83,6 @@ import java.util.Calendar;
 import java.util.Date;
 
 import javax.swing.JFormattedTextField;
-import javax.swing.border.EtchedBorder;
 import javax.swing.border.LineBorder;
 import javax.swing.DefaultComboBoxModel;
 import java.awt.event.ActionListener;
@@ -162,7 +161,7 @@ public class IMALAT extends JInternalFrame {
 		panel.add(tabbedPane_1, BorderLayout.CENTER);
 
 		JPanel panel_2 = new JPanel();
-		panel_2.setBorder(new LineBorder(new Color(0, 191, 255)));
+		panel_2.setBorder(new LineBorder(null));
 		tabbedPane_1.addTab("Imalat Bilgileri", null, panel_2, null);
 		tabbedPane_1.setEnabledAt(0, true);
 		panel_2.setLayout(null);
@@ -374,7 +373,8 @@ public class IMALAT extends JInternalFrame {
 
 
 		JPanel panel_5 = new JPanel();
-		panel_5.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(0, 128, 0), new Color(160, 160, 160)), "Uretimi Yapilacak Yeni Urun  (GIREN)", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 128, 128)));
+		panel_5.setBorder(new TitledBorder(null,  "Uretimi Yapilacak Yeni Urun  (GIREN)", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		//panel_5.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(0, 128, 0), new Color(160, 160, 160)), "Uretimi Yapilacak Yeni Urun  (GIREN)", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panel_5.setBounds(10, 66, 898, 52);
 		panel_2.add(panel_5);
 		panel_5.setLayout(null);
@@ -491,14 +491,14 @@ public class IMALAT extends JInternalFrame {
 		});
 		txtmiktar.setText("0");
 		txtmiktar.setHorizontalAlignment(SwingConstants.RIGHT);
-		txtmiktar.setForeground(Color.BLUE);
+		//txtmiktar.setForeground(Color.BLUE);
 		txtmiktar.setFont(new Font("Tahoma", Font.BOLD, 15));
 		txtmiktar.setBounds(590, 15, 101, 25);
 		panel_5.add(txtmiktar);
 
 		lblNewLabel_3 = new JLabel("");
 		lblNewLabel_3.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblNewLabel_3.setForeground(Color.RED);
+		//lblNewLabel_3.setForeground(Color.RED);
 		lblNewLabel_3.setBounds(701, 21, 80, 14);
 		panel_5.add(lblNewLabel_3);
 
@@ -515,7 +515,7 @@ public class IMALAT extends JInternalFrame {
 		panel_2.add(lblNewLabel_4);
 
 		cmbfiat = new JComboBox<String>();
-		cmbfiat.setForeground(new Color(0, 0, 128));
+		//cmbfiat.setForeground(new Color(0, 0, 128));
 		cmbfiat.setFont(new Font("Tahoma", Font.BOLD, 12));
 		cmbfiat.setModel(new DefaultComboBoxModel<String>(new String[] {"", "Ortalama_Giris_Fiati", "Son_Imalat", "Fiat_1", "Fiat_2", "Fiat_3"}));
 		cmbfiat.setBounds(130, 121, 186, 22);
@@ -527,7 +527,7 @@ public class IMALAT extends JInternalFrame {
 		panel_2.add(lblNewLabel_5);
 
 		lblNewLabel_6 = new JLabel("0.00");
-		lblNewLabel_6.setForeground(Color.BLUE);
+		//lblNewLabel_6.setForeground(Color.BLUE);
 		lblNewLabel_6.setFont(new Font("Tahoma", Font.BOLD, 16));
 		lblNewLabel_6.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblNewLabel_6.setBounds(726, 124, 106, 22);
@@ -566,8 +566,8 @@ public class IMALAT extends JInternalFrame {
 		splitPane.setRightComponent(splitPane_1);
 
 		JPanel panel_3 = new JPanel();
-
-		panel_3.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(0, 191, 255), new Color(160, 160, 160)), "Giren Urun Bilgileri", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 128, 128)));
+		panel_3.setBorder(new TitledBorder(null, "Giren Urun Bilgileri", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		//panel_3.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(0, 191, 255), new Color(160, 160, 160)), "Giren Urun Bilgileri", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		splitPane_1.setRightComponent(panel_3);
 		panel_3.setMinimumSize(new Dimension(0, 80));
 		panel_3.setMaximumSize(new Dimension(0, 80));
@@ -589,8 +589,8 @@ public class IMALAT extends JInternalFrame {
 		panel_3.add(label_5);
 
 		label_6 = new JLabel("...");
-		label_6.setForeground(new Color(128, 0, 0));
-		label_6.setBounds(77, 23, 221, 14);
+		//label_6.setForeground(new Color(128, 0, 0));
+		label_6.setBounds(75, 23, 221, 14);
 		panel_3.add(label_6);
 
 		JLabel label_7 = new JLabel("Birim");
@@ -604,12 +604,12 @@ public class IMALAT extends JInternalFrame {
 		panel_3.add(label_8);
 
 		label_9 = new JLabel("...");
-		label_9.setForeground(new Color(128, 0, 0));
+		//label_9.setForeground(new Color(128, 0, 0));
 		label_9.setBounds(393, 48, 71, 14);
 		panel_3.add(label_9);
 
 		label_10 = new JLabel("...");
-		label_10.setForeground(new Color(128, 0, 0));
+		//label_10.setForeground(new Color(128, 0, 0));
 		label_10.setBounds(393, 23, 71, 14);
 		panel_3.add(label_10);
 
@@ -619,7 +619,7 @@ public class IMALAT extends JInternalFrame {
 		panel_3.add(label_11);
 
 		label_12 = new JLabel("...");
-		label_12.setForeground(new Color(128, 0, 0));
+		//label_12.setForeground(new Color(128, 0, 0));
 		label_12.setBounds(553, 23, 71, 14);
 		panel_3.add(label_12);
 
@@ -634,18 +634,18 @@ public class IMALAT extends JInternalFrame {
 		panel_3.add(label_14);
 
 		label_15 = new JLabel("...");
-		label_15.setForeground(new Color(128, 0, 0));
+		//label_15.setForeground(new Color(128, 0, 0));
 		label_15.setBounds(701, 48, 183, 14);
 		panel_3.add(label_15);
 
 		label_16 = new JLabel("...");
-		label_16.setForeground(new Color(128, 0, 0));
+		//label_16.setForeground(new Color(128, 0, 0));
 		label_16.setBounds(701, 23, 183, 14);
 		panel_3.add(label_16);
 
 		label_17 = new JLabel("0.00");
 		label_17.setHorizontalAlignment(SwingConstants.RIGHT);
-		label_17.setForeground(Color.BLUE);
+		//label_17.setForeground(Color.BLUE);
 		label_17.setFont(new Font("Tahoma", Font.BOLD, 14));
 		label_17.setBounds(917, 23, 176, 14);
 		panel_3.add(label_17);
@@ -717,11 +717,8 @@ public class IMALAT extends JInternalFrame {
 				}
 			}	
 		};
-		if(! oac.gridcolor.toString().equals("java.awt.Color[r=255,g=255,b=255]")) 
-		{
+		if(! oac.gridcolor.toString().equals("java.awt.Color[r=255,g=255,b=255]"))
 			table.setGridColor(oac.gridcolor);
-		}
-
 		table.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
@@ -853,7 +850,7 @@ public class IMALAT extends JInternalFrame {
 				super.getTableCellRendererComponent(table, value, isSelected, hasFocus,
 						row, column);
 				setFont(font);
-				setForeground(Color.BLUE);
+				//setForeground(Color.BLUE);
 				return this;
 			}
 		};

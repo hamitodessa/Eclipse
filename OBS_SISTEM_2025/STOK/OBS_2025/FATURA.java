@@ -181,7 +181,7 @@ public class FATURA extends JInternalFrame {
 		panel.add(tabbedPane_1, BorderLayout.CENTER);
 
 		JPanel panel_2 = new JPanel();
-		panel_2.setBorder(new LineBorder(new Color(0, 191, 255)));
+		panel_2.setBorder(new LineBorder(null));
 		tabbedPane_1.addTab("Fatura Bilgileri", null, panel_2, null);
 		panel_2.setLayout(null);
 
@@ -311,7 +311,7 @@ public class FATURA extends JInternalFrame {
 
 		lblNewLabel_3 = new JLabel(".....");
 		lblNewLabel_3.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblNewLabel_3.setForeground(new Color(25, 25, 112));
+		//lblNewLabel_3.setForeground(new Color(25, 25, 112));
 		lblNewLabel_3.setBounds(89, 62, 262, 14);
 		panel_2.add(lblNewLabel_3);
 
@@ -423,7 +423,7 @@ public class FATURA extends JInternalFrame {
 
 		lblNewLabel_6 = new JLabel(".....");
 		lblNewLabel_6.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblNewLabel_6.setForeground(new Color(139, 0, 0));
+		//lblNewLabel_6.setForeground(new Color(139, 0, 0));
 		lblNewLabel_6.setBounds(353, 62, 363, 14);
 		panel_2.add(lblNewLabel_6);
 
@@ -446,7 +446,7 @@ public class FATURA extends JInternalFrame {
 		panel_2.add(lblNewLabel_8);
 
 		cmbfiat = new JComboBox<String>();
-		cmbfiat.setForeground(new Color(0, 0, 128));
+		//cmbfiat.setForeground(new Color(0, 0, 128));
 		cmbfiat.setFont(new Font("Dialog", Font.BOLD, 12));
 		cmbfiat.setModel(new DefaultComboBoxModel<String>(new String[] {"", "Fiat_1", "Fiat_2", "Fiat_3", "Son Alis/Satis Fiati"}));
 		cmbfiat.setBounds(560, 33, 156, 22);
@@ -474,7 +474,7 @@ public class FATURA extends JInternalFrame {
 		panel_2.add(lblAltGrup);
 
 		cmbaltgrup = new JComboBox<String>();
-		cmbaltgrup.setForeground(new Color(0, 0, 128));
+		//cmbaltgrup.setForeground(new Color(0, 0, 128));
 		cmbaltgrup.setFont(new Font("Dialog", Font.BOLD, 12));
 		cmbaltgrup.setBounds(797, 33, 148, 22);
 		panel_2.add(cmbaltgrup);
@@ -711,7 +711,7 @@ public class FATURA extends JInternalFrame {
 	
 		//***
 		JPanel panel_71 = new JPanel();
-		panel_71.setBorder(new LineBorder(new Color(0, 191, 255)));
+		panel_71.setBorder(new LineBorder(null));
 		panel_71.setMinimumSize(new Dimension(0, 25));
 		panel_71.setMaximumSize(new Dimension(0,25));
 
@@ -723,21 +723,21 @@ public class FATURA extends JInternalFrame {
 		panel_71.add(lblNewLabel);
 
 		lblNewLabel_13 = new JLabel("0");
-		lblNewLabel_13.setForeground(new Color(0, 0, 128));
+		//lblNewLabel_13.setForeground(new Color(0, 0, 128));
 		lblNewLabel_13.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblNewLabel_13.setBounds(122, 3, 40, 14);
 		panel_71.add(lblNewLabel_13);
 
 		label_8 = new JLabel("0.000");
 		label_8.setHorizontalAlignment(SwingConstants.RIGHT);
-		label_8.setForeground(new Color(139, 0, 0));
+		//label_8.setForeground(new Color(139, 0, 0));
 		label_8.setFont(new Font("Tahoma", Font.BOLD, 11));
 		label_8.setBounds(560, 3, 102, 14);
 		panel_71.add(label_8);
 
 		label_9 = new JLabel("0.00");
 		label_9.setHorizontalAlignment(SwingConstants.RIGHT);
-		label_9.setForeground(new Color(139, 0, 0));
+		//label_9.setForeground(new Color(139, 0, 0));
 		label_9.setFont(new Font("Tahoma", Font.BOLD, 11));
 		label_9.setBounds(800, 3, 125, 14);
 		panel_71.add(label_9);
@@ -756,7 +756,7 @@ public class FATURA extends JInternalFrame {
 		splitPane_11.setRightComponent(panell);
 		panell.add(tabbedPane_2, BorderLayout.CENTER);
 		JPanel panel_1 = new JPanel();
-		panel_1.setBorder(new LineBorder(new Color(0, 191, 255)));
+		panel_1.setBorder(new LineBorder(null));
 		tabbedPane_2.addTab("Toplamlar", null, panel_1, null);
 		panel_1.setLayout(null);
 
@@ -771,19 +771,19 @@ public class FATURA extends JInternalFrame {
 		textField_4.setColumns(10);
 
 		lblNewLabel_12 = new JLabel(".....");
-		lblNewLabel_12.setForeground(new Color(139, 0, 0));
+		//lblNewLabel_12.setForeground(new Color(139, 0, 0));
 		lblNewLabel_12.setBounds(66, 32, 270, 14);
 		panel_1.add(lblNewLabel_12);
 
 		lblNewLabel_20 = new JLabel("0.00");
-		lblNewLabel_20.setForeground(new Color(0, 0, 255));
+		//lblNewLabel_20.setForeground(new Color(0, 0, 255));
 		lblNewLabel_20.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		lblNewLabel_20.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblNewLabel_20.setBounds(1019, 11, 109, 14);
 		panel_1.add(lblNewLabel_20);
 
 		label = new JLabel("0.00");
-		label.setForeground(new Color(0, 0, 128));
+		//label.setForeground(new Color(0, 0, 128));
 		label.setFont(new Font("Tahoma", Font.BOLD, 12));
 		label.setHorizontalAlignment(SwingConstants.RIGHT);
 		label.setBounds(1019, 39, 109, 14);
@@ -800,14 +800,14 @@ public class FATURA extends JInternalFrame {
 		panel_1.add(lblNewLabel_22);
 
 		label_1 = new JLabel("0.00");
-		label_1.setForeground(new Color(0, 0, 255));
+		//label_1.setForeground(new Color(0, 0, 255));
 		label_1.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		label_1.setHorizontalAlignment(SwingConstants.RIGHT);
 		label_1.setBounds(810, 11, 99, 14);
 		panel_1.add(label_1);
 
 		label_2 = new JLabel("0.00");
-		label_2.setForeground(new Color(0, 0, 255));
+		//label_2.setForeground(new Color(0, 0, 255));
 		label_2.setHorizontalAlignment(SwingConstants.RIGHT);
 		label_2.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		label_2.setBounds(810, 39, 99, 14);
@@ -824,7 +824,7 @@ public class FATURA extends JInternalFrame {
 		panel_1.add(lblTevdahtoptutar);
 
 		label_3 = new JLabel("0.00");
-		label_3.setForeground(new Color(0, 0, 255));
+		//label_3.setForeground(new Color(0, 0, 255));
 		label_3.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		label_3.setHorizontalAlignment(SwingConstants.RIGHT);
 		label_3.setBounds(585, 11, 99, 14);
@@ -846,14 +846,14 @@ public class FATURA extends JInternalFrame {
 		panel_1.add(lblIskonto);
 
 		label_6 = new JLabel("0.00");
-		label_6.setForeground(new Color(0, 0, 255));
+		//label_6.setForeground(new Color(0, 0, 255));
 		label_6.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		label_6.setHorizontalAlignment(SwingConstants.RIGHT);
 		label_6.setBounds(411, 11, 99, 14);
 		panel_1.add(label_6);
 
 		label_7 = new JLabel("0.00");
-		label_7.setForeground(new Color(0, 0, 255));
+		//label_7.setForeground(new Color(0, 0, 255));
 		label_7.setHorizontalAlignment(SwingConstants.RIGHT);
 		label_7.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		label_7.setBounds(411, 39, 99, 14);
@@ -865,12 +865,12 @@ public class FATURA extends JInternalFrame {
 		panel_1.add(lblBakiye);
 
 		label_5 = new JLabel(".....");
-		label_5.setForeground(new Color(0, 0, 128));
+		//label_5.setForeground(new Color(0, 0, 128));
 		label_5.setBounds(66, 50, 348, 14);
 		panel_1.add(label_5);
 
 		txttev = new JFormattedTextField();
-		txttev.setBackground(Color.CYAN);
+		//txttev.setBackground(Color.CYAN);
 		txttev.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (txttev.getText().equals("")) return ;
@@ -1189,7 +1189,7 @@ public class FATURA extends JInternalFrame {
 				super.getTableCellRendererComponent(table, value, isSelected, hasFocus,
 						row, column);
 				setFont(new Font(table.getFont().getFontName(),1 ,table.getFont().getSize()));
-				setForeground(Color.BLUE);
+				//setForeground(Color.BLUE);
 				return this;
 			}
 
@@ -1243,7 +1243,7 @@ public class FATURA extends JInternalFrame {
 				super.getTableCellRendererComponent(table, value, isSelected, hasFocus,
 						row, column);
 				setFont(font);
-				setForeground(Color.BLUE);
+				//setForeground(Color.BLUE);
 				return this;
 			}
 		};
@@ -1327,8 +1327,8 @@ public class FATURA extends JInternalFrame {
 				}
 			}
 		});
-		cmbcins.setBackground(Color.WHITE);
-		cmbcins.setForeground(Color.RED);
+		//cmbcins.setBackground(Color.WHITE);
+		//cmbcins.setForeground(Color.RED);
 		cmbcins.setFont(new Font("Tahoma", Font.BOLD, 16));
 		cmbcins.setModel(new DefaultComboBoxModel<String>(new String[] {"SATIS", "ALIS"}));
 		cmbcins.setBounds(497, 78, 182, 22);

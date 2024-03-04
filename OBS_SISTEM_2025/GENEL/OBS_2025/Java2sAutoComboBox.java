@@ -1,6 +1,5 @@
 package OBS_2025;
 
-import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ItemEvent;
 import java.util.List;
@@ -29,7 +28,7 @@ public class Java2sAutoComboBox extends JComboBox    {
 		dnm = list;
 		autoTextFieldEditor = new AutoTextFieldEditor(list);
 		setFont(new Font("Tahoma", Font.BOLD, 12));
-		setForeground(Color.BLUE);
+		//setForeground(Color.BLUE);
 		setEditable(true);
 		setModel(new DefaultComboBoxModel(list.toArray()) 
 		{
@@ -67,31 +66,19 @@ public class Java2sAutoComboBox extends JComboBox    {
 			isFired = true;
 			autoTextFieldEditor.setItem(obj);
 			if (nerden.equals("fatura"))
-			{
 				FATURA.bilgi_doldur(obj.toString());
-			}
 			else if (nerden.equals("kereste"))
 			{
 
 			}
 			else if (nerden.equals("recete"))
-			{
 				RECETE.bilgi_doldur(obj.toString());
-			}
-
 			else if (nerden.equals("imalat"))
-			{
-
 				IMALAT.bilgi_doldur(obj.toString());
-			}
 			else if (nerden.equals("irsaliye"))
-			{
 				IRSALIYE.bilgi_doldur(obj.toString());
-			}
 			else if (nerden.equals("zayi"))
-			{
 				ZAYI.bilgi_doldur(obj.toString());
-			}
 			else if (nerden.equals("toplu"))
 			{
 				// ZAYI.bilgi_doldur(obj.toString());

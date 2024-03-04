@@ -1538,6 +1538,27 @@ public class CARI_HESAP_MSSQL implements ICARI_HESAP {
 		rss = stmt.executeQuery();
 		return rss;	
 	}
+	@Override
+	public void yilsonu_tahsilat_bilgi_kayit() throws ClassNotFoundException, SQLException {
+		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+		String sql  = "INSERT INTO TAH_AYARLAR (FIR_ISMI,ADR_1,ADR_2,VD_VN,MAIL,DIGER,LOGO,KASE)" +
+				" VALUES (?,?,?,?,?,?,?,?)" ;
+		PreparedStatement stmt = null;
+		kONTROL();
+		ResultSet ayar = tah_ayar_oku();
+		ayar.next();
+		stmt = akt_con.prepareStatement(sql);
+		stmt.setString(1, ayar.getString("FIR_ISMI"));
+		stmt.setString(2, ayar.getString("ADR_1"));
+		stmt.setString(3, ayar.getString("ADR_2"));
+		stmt.setString(4, ayar.getString("VD_VN"));
+		stmt.setString(5, ayar.getString("MAIL"));
+		stmt.setString(6, ayar.getString("DIGER"));
+		stmt.setBytes(7,ayar.getBytes("LOGO"));
+		stmt.setBytes(8,ayar.getBytes("KASE"));
+		stmt.executeUpdate();
+		stmt.close();
+	}
 }
 
 

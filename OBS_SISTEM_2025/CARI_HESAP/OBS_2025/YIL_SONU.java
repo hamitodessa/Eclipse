@@ -14,6 +14,7 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -73,6 +74,7 @@ public class YIL_SONU extends JInternalFrame {
 	private JPanel panel_1 ;
 	private JLabel lblNewLabel_1;
 	private static JCheckBox chckbxNewCheckBox ;
+	private static JCheckBox chckbxTahFisi ;
 	private static JDateChooser dateChooser ;
 	private  JLabel lblNewLabel_3 ;
 	private static JSplitPane splitPaneana ;
@@ -170,12 +172,12 @@ public class YIL_SONU extends JInternalFrame {
 				}
 			}
 		});
-		chckbxNewCheckBox.setBounds(160, 7, 115, 23);
+		chckbxNewCheckBox.setBounds(138, 10, 115, 23);
 		panel.add(chckbxNewCheckBox);
 
 		panel_1 = new JPanel();
 		panel_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Mizan Devir Bilgileri", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panel_1.setBounds(281, 5, 391, 63);
+		panel_1.setBounds(305, 5, 367, 63);
 		panel_1.setVisible(false);
 		panel.add(panel_1);
 		panel_1.setLayout(null);
@@ -268,8 +270,12 @@ public class YIL_SONU extends JInternalFrame {
 		panel_1.add(textField_1);
 
 		lblNewLabel_1 = new JLabel("....");
-		lblNewLabel_1.setBounds(148, 42, 233, 14);
+		lblNewLabel_1.setBounds(148, 42, 209, 14);
 		panel_1.add(lblNewLabel_1);
+		
+		chckbxTahFisi = new JCheckBox("Tahsilat Fisi Bilgileri Aktar");
+		chckbxTahFisi.setBounds(138, 35, 161, 23);
+		panel.add(chckbxTahFisi);
 		doldur();
 	}
 	private void doldur()
@@ -414,11 +420,11 @@ public class YIL_SONU extends JInternalFrame {
 			DefaultTableModel model = (DefaultTableModel) table.getModel();
 			for(int  i = 0 ;i <= model.getRowCount() - 1; i ++)
 			{
-				if ( model.getValueAt(i,0).toString().equals("true")) 
-				{
+				if ( model.getValueAt(i,0).toString().equals("true"))
 					kaysay += 1 ;
-				}
 			}
+			if(kaysay!=0)
+			{
 			int g = JOptionPane.showOptionDialog( null,  "Aktarilacak Kayit Sayisi.. =" + kaysay, "Aktarma",   JOptionPane.YES_NO_OPTION,
 					JOptionPane.QUESTION_MESSAGE,null, oac.options, oac.options[1]); 
 			if(g != 0 ) { return;	}	
@@ -441,16 +447,22 @@ public class YIL_SONU extends JInternalFrame {
 			}
 			OBS_MAIN.mesaj_goster(10000,Notifications.Type.INFO, "Hesap Plani Aktarma Islemi Basari ile gerceklestirildi...." 
 					+ System.lineSeparator() + System.lineSeparator()  + "Aktarilan Hesap Sayisi...: " + say );
+			}
 			//'*****MIZAN AKTARMA YAP '******
 			if (chckbxNewCheckBox.isSelected() )
-			{
 				mizan_aktar() ;
-			}
+			if(chckbxTahFisi.isSelected())
+				tahsil_aktar();
 		}
 		catch (Exception ex)
 		{
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage() );
 		}
+	}
+	private static void tahsil_aktar() throws ClassNotFoundException, SQLException
+	{
+		c_Access.yilsonu_tahsilat_bilgi_kayit();
+		OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING,"Tahsilat Fisi Bilgileri Aktarildi..." );
 	}
 	private static void mizan_aktar()
 	{
@@ -482,7 +494,6 @@ public class YIL_SONU extends JInternalFrame {
 						bir = rs.getDouble("BORC");
 						iki = rs.getDouble("ALACAK");
 						uc = iki - bir ;
-
 						lOG_BILGI lBILGI = new lOG_BILGI();
 						if ( bir == iki)   // ' Bakiye Sifir  bir = iki
 						{
@@ -490,7 +501,6 @@ public class YIL_SONU extends JInternalFrame {
 							double sifir = 0 ;
 							lBILGI.setmESAJ("A.Hes:" + textField_1.getText() + " B.Hes:" + rs.getString("HESAP")  + " Tut:" +sifir + " Msj:" +"Devir Islemi...");
 							lBILGI.seteVRAK(String.valueOf(enumara));
-
 							c_Access.yilsonu_cari_dekont_kaydet(rs.getString("HESAP"), str, 
 									enumara, "", 1.0, sifir,textField_1.getText(),"", 1.0,sifir,"Devir Islemi...", "D", GLOBAL.KULL_ADI,
 									lBILGI ,BAGLAN_LOG.cariLogDizin);

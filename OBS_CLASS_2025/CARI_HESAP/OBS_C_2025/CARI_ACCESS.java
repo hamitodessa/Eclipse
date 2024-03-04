@@ -326,4 +326,8 @@ public class CARI_ACCESS {
 	{
 		return _ICari.tah_listele(cins, tur, ilktarih, sontarih, ilkevr, sonevr, ilkck, sonck);
 	}
+	public void yilsonu_tahsilat_bilgi_kayit() throws ClassNotFoundException, SQLException
+	{
+		_ICari.yilsonu_tahsilat_bilgi_kayit();
+	}
 }

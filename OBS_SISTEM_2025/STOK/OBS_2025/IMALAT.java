@@ -321,7 +321,7 @@ public class IMALAT extends JInternalFrame {
 		panel_2.add(dtc);
 
 		cmbdepo = new JComboBox<String>();
-		cmbdepo.setForeground(new Color(0, 0, 128));
+		//cmbdepo.setForeground(new Color(0, 0, 128));
 		cmbdepo.setFont(new Font("Tahoma", Font.BOLD, 12));
 		cmbdepo.setBounds(492, 8, 137, 22);
 		panel_2.add(cmbdepo);
@@ -337,14 +337,14 @@ public class IMALAT extends JInternalFrame {
 		panel_2.add(label_1);
 
 		cmbaltgrup = new JComboBox<String>();
-		cmbaltgrup.setForeground(new Color(0, 0, 128));
+		//cmbaltgrup.setForeground(new Color(0, 0, 128));
 		cmbaltgrup.setFont(new Font("Tahoma", Font.BOLD, 12));
 		cmbaltgrup.setEnabled(false);
 		cmbaltgrup.setBounds(726, 37, 142, 22);
 		panel_2.add(cmbaltgrup);
 
 		cmbanagrup = new JComboBox<String>();
-		cmbanagrup.setForeground(new Color(0, 0, 128));
+		//cmbanagrup.setForeground(new Color(0, 0, 128));
 		cmbanagrup.setFont(new Font("Tahoma", Font.BOLD, 12));
 		cmbanagrup.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

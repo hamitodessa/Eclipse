@@ -689,7 +689,7 @@ public class DISTAN_AKTAR extends JInternalFrame {
 				super.getTableCellRendererComponent(table, value, isSelected, hasFocus,
 						row, column);
 				Font font =new Font(table.getFont().getFontName(),Font.BOLD ,table.getFont().getSize());
-				setForeground(new Color(0, 0, 139));
+				//setForeground(new Color(0, 0, 139));
 				setFont(font);
 				return this;
 			}

@@ -4,8 +4,6 @@ import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Graphics;
-import java.awt.SystemColor;
-
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
@@ -2361,7 +2359,7 @@ public class FILTRE extends JDialog {
 		panel_6.add(lblNewLabel_33);
 
 		JPanel panel_7 = new JPanel();
-		panel_7.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Gruplama", TitledBorder.LEADING, TitledBorder.TOP, null, SystemColor.textHighlight));
+		panel_7.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Gruplama", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panel_7.setBounds(459, 133, 272, 70);
 		panel_6.add(panel_7);
 		panel_7.setLayout(null);
@@ -2755,7 +2753,7 @@ public class FILTRE extends JDialog {
 		panel_9.add(comboBox_18);
 
 		JPanel panel_10 = new JPanel();
-		panel_10.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Gruplama", TitledBorder.LEADING, TitledBorder.TOP, null, SystemColor.textHighlight));
+		panel_10.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Gruplama", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panel_10.setBounds(484, 100, 256, 68);
 		panel_9.add(panel_10);
 		panel_10.setLayout(null);
@@ -3399,7 +3397,7 @@ public class FILTRE extends JDialog {
 		panel_13.add(comboBox_41);
 
 		JPanel panel_14 = new JPanel();
-		panel_14.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Urun Ana Grup / Alt Grup", TitledBorder.LEADING, TitledBorder.TOP, null, SystemColor.textHighlight));
+		panel_14.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Urun Ana Grup / Alt Grup", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panel_14.setBounds(443, 11, 243, 88);
 		panel_13.add(panel_14);
 		panel_14.setLayout(null);
@@ -3840,7 +3838,7 @@ public class FILTRE extends JDialog {
 
 		JPanel panel_19 = new JPanel();
 		panel_19.setLayout(null);
-		panel_19.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Urun Ana Grup / Alt Grup", TitledBorder.LEADING, TitledBorder.TOP, null, SystemColor.textHighlight));
+		panel_19.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Urun Ana Grup / Alt Grup", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panel_19.setBounds(443, 11, 243, 88);
 		panel_18.add(panel_19);
 

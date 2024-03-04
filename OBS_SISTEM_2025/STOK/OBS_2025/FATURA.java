@@ -48,7 +48,6 @@ import javax.swing.JFormattedTextField;
 import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.Image;
-import java.awt.SystemColor;
 import java.sql.ResultSet;
 import java.text.DecimalFormat;
 import java.text.ParseException;
@@ -509,7 +508,7 @@ public class FATURA extends JInternalFrame {
 
 
 		JPanel panel_4 = new JPanel();
-		panel_4.setBorder(new LineBorder(new Color(0, 191, 255)));
+		panel_4.setBorder(new LineBorder(null));
 		tabbedPane_1.addTab("Yazici Bilgileri", null, panel_4, null);
 		panel_4.setLayout(null);
 
@@ -553,7 +552,7 @@ public class FATURA extends JInternalFrame {
 		panel_4.add(chckbxNewCheckBox);
 
 		JPanel panel_7 = new JPanel();
-		panel_7.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Gidecegi Yer Bilgileri", TitledBorder.LEADING, TitledBorder.TOP, null, SystemColor.textHighlight));
+		panel_7.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Gidecegi Yer Bilgileri", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 
 		panel_7.setBounds(710, 5, 257, 70);
 		panel_4.add(panel_7);
@@ -631,7 +630,7 @@ public class FATURA extends JInternalFrame {
 		textField_8.setColumns(10);
 
 		lblNewLabel_17 = new JLabel(".....");
-		lblNewLabel_17.setForeground(new Color(0, 0, 139));
+		//lblNewLabel_17.setForeground(new Color(0, 0, 139));
 		lblNewLabel_17.setBounds(10, 45, 237, 14);
 		panel_7.add(lblNewLabel_17);
 
@@ -666,7 +665,7 @@ public class FATURA extends JInternalFrame {
 		panel_7.add(btnNewButton_4);
 
 		JPanel panel_5 = new JPanel();
-		panel_5.setBorder(new LineBorder(new Color(0, 191, 255)));
+		panel_5.setBorder(new LineBorder(null));
 		tabbedPane_1.addTab("Ek Bilgi", null, panel_5, null);
 		panel_5.setLayout(null);
 
@@ -752,7 +751,7 @@ public class FATURA extends JInternalFrame {
 		
 		MaterialTabbed tabbedPane_2 = new MaterialTabbed();
 		//tabbedPane_2.setForeground(new Color(0, 0, 128));
-		tabbedPane_2.setFont(new Font("Tahoma", Font.BOLD, 10));
+		tabbedPane_2.setFont(new Font("Tahoma", Font.BOLD, 12));
 		splitPane_11.setRightComponent(panell);
 		panell.add(tabbedPane_2, BorderLayout.CENTER);
 		JPanel panel_1 = new JPanel();

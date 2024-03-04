@@ -82,7 +82,7 @@ public class KER_DEGISKEN_GIRIS extends JInternalFrame {
 		panel.setLayout(null);
 		
 		JPanel panel_1 = new JPanel();
-		panel_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Arama", TitledBorder.LEADING, TitledBorder.TOP, null, SystemColor.textHighlight));
+		panel_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Arama", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panel_1.setBounds(10, 11, 320, 50);
 		panel.add(panel_1);
 		panel_1.setLayout(null);
@@ -106,7 +106,7 @@ public class KER_DEGISKEN_GIRIS extends JInternalFrame {
 		
 		JPanel panel_2 = new JPanel();
 		panel_2.setLayout(null);
-		panel_2.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Kullanici", TitledBorder.LEADING, TitledBorder.TOP, null, SystemColor.textHighlight));
+		panel_2.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Kullanici", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panel_2.setBounds(10, 72, 320, 50);
 		panel.add(panel_2);
 		
@@ -124,12 +124,12 @@ public class KER_DEGISKEN_GIRIS extends JInternalFrame {
 		
 		JPanel panel_3 = new JPanel();
 		panel_3.setLayout(null);
-		panel_3.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Ana Grup", TitledBorder.LEADING, TitledBorder.TOP, null, SystemColor.textHighlight));
+		panel_3.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Ana Grup", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panel_3.setBounds(10, 133, 320, 50);
 		panel.add(panel_3);
 		
 		cmbanagrup = new JComboBox<String>();
-		cmbanagrup.setForeground(new Color(0, 0, 128));
+		//cmbanagrup.setForeground(new Color(0, 0, 128));
 		cmbanagrup.setFont(new Font("Tahoma", Font.BOLD, 12));
 		cmbanagrup.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

@@ -1,7 +1,6 @@
 package KER_RAPOR;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.KeyAdapter;
@@ -163,7 +162,7 @@ public class KER_ENVANTER extends JInternalFrame {
 		scrollPane.setViewportView(table);
 		
 		JPanel panel = new JPanel();
-		panel.setBorder(new LineBorder(new Color(0, 191, 255)));
+		panel.setBorder(new LineBorder(null));
 		panel.setMinimumSize(new Dimension(0, 25));
 		panel.setMaximumSize(new Dimension(0, 25));
 		splitPane.setRightComponent(panel);
@@ -174,7 +173,7 @@ public class KER_ENVANTER extends JInternalFrame {
 		panel.add(lblNewLabel);
 		
 		lbladet = new JLabel("0");
-		lbladet.setForeground(new Color(0, 0, 128));
+		//lbladet.setForeground(new Color(0, 0, 128));
 		lbladet.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lbladet.setHorizontalAlignment(SwingConstants.LEFT);
 		lbladet.setBounds(100, 5, 40, 14);
@@ -182,14 +181,14 @@ public class KER_ENVANTER extends JInternalFrame {
 		
 		lblm3 = new JLabel("0.000");
 		lblm3.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblm3.setForeground(new Color(0, 0, 128));
+		//lblm3.setForeground(new Color(0, 0, 128));
 		lblm3.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblm3.setBounds(730, 5, 91, 14);
 		panel.add(lblm3);
 		
 		lblmiktar = new JLabel("0.00");
 		lblmiktar.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblmiktar.setForeground(new Color(0, 0, 128));
+		//lblmiktar.setForeground(new Color(0, 0, 128));
 		lblmiktar.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblmiktar.setBounds(940, 5, 85, 14);
 		panel.add(lblmiktar);

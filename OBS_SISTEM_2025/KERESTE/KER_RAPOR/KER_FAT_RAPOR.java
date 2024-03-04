@@ -236,7 +236,7 @@ public class KER_FAT_RAPOR extends JInternalFrame {
 		scrollPane_1.setViewportView(table_1);
 
 		JPanel panel_1 = new JPanel();
-		panel_1.setBorder(new LineBorder(new Color(0, 191, 255)));
+		panel_1.setBorder(new LineBorder(null));
 		panel_1.setMinimumSize(new Dimension(0, 25));
 		panel_1.setMaximumSize(new Dimension(0, 25));
 		splitPane_1.setRightComponent(panel_1);
@@ -248,14 +248,14 @@ public class KER_FAT_RAPOR extends JInternalFrame {
 
 		lbladet = new JLabel("0");
 		lbladet.setHorizontalAlignment(SwingConstants.LEFT);
-		lbladet.setForeground(new Color(0, 0, 128));
+		//lbladet.setForeground(new Color(0, 0, 128));
 		lbladet.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lbladet.setBounds(260, 5, 47, 14);
 		panel_1.add(lbladet);
 
 		lblana = new JLabel("0");
 		lblana.setHorizontalAlignment(SwingConstants.LEFT);
-		lblana.setForeground(new Color(0, 0, 128));
+		//lblana.setForeground(new Color(0, 0, 128));
 		lblana.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblana.setBounds(100, 5, 40, 14);
 		panel_1.add(lblana);

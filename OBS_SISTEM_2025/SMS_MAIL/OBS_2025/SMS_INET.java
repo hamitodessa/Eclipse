@@ -1,7 +1,6 @@
 package OBS_2025;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Dimension;
 import javax.swing.JInternalFrame;
 import javax.swing.JPanel;
@@ -41,7 +40,7 @@ public class SMS_INET extends JInternalFrame {
 		getContentPane().add(splitPane, BorderLayout.CENTER);
 
 		JPanel panel = new JPanel();
-		panel.setBorder(new LineBorder(new Color(0, 191, 255)));
+		panel.setBorder(new LineBorder(null));
 		panel.setMinimumSize(new Dimension(0, 100));
 		panel.setMaximumSize(new Dimension(0, 100));
 		splitPane.setLeftComponent(panel);
@@ -74,8 +73,8 @@ public class SMS_INET extends JInternalFrame {
 		//request.getIds().add(30584624);
 		//request.getIds().add(23312871);
 		
-		//Eðer kiþisel id nize göre sorgulamak yapmak istenirse
-		//customIDs gönderiminde ids göndermeye gerek yoktur
+		//Eï¿½er kiï¿½isel id nize gï¿½re sorgulamak yapmak istenirse
+		//customIDs gï¿½nderiminde ids gï¿½ndermeye gerek yoktur
 		//request.getCustomIds().add("mesajId100");
 		//request.getCustomIds().add("mesajId101");
 		

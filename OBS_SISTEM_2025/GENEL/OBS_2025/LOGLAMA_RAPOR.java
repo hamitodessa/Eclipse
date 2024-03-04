@@ -1,7 +1,6 @@
 package OBS_2025;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
@@ -109,14 +108,14 @@ public class LOGLAMA_RAPOR extends JInternalFrame {
 		leftPanel.setPreferredSize(new Dimension(1033,50));
 		scrollPaneust.setViewportView(leftPanel);
 
-		leftPanel.setBorder(new LineBorder(new Color(0, 191, 255)));
+		leftPanel.setBorder(new LineBorder(null));
 		leftPanel.setMinimumSize(new Dimension(0, 50));
 		leftPanel.setMaximumSize(new Dimension(0, 50));
 		ScrollPaneWin11 centerPanel = new ScrollPaneWin11();
 		JPanel rightPanel = new JPanel();
-		rightPanel.setBorder(new LineBorder(new Color(0, 191, 255)));
-		rightPanel.setMinimumSize(new Dimension(0, 20));
-		rightPanel.setMaximumSize(new Dimension(0, 20));
+		rightPanel.setBorder(new LineBorder(null));
+		rightPanel.setMinimumSize(new Dimension(0, 30));
+		rightPanel.setMaximumSize(new Dimension(0, 30));
 		JSplitPane sp = new JSplitPane(JSplitPane.VERTICAL_SPLIT, scrollPaneust, centerPanel);
 		sp.setDividerSize(0);
 		leftPanel.setLayout(null);
@@ -125,7 +124,7 @@ public class LOGLAMA_RAPOR extends JInternalFrame {
 
 		lblSatir = new JLabel("0");
 		lblSatir.setBounds(97, 3, 47, 14);
-		lblSatir.setForeground(new Color(0, 0, 128));
+		//lblSatir.setForeground(new Color(0, 0, 128));
 		lblSatir.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblSatir.setHorizontalAlignment(SwingConstants.RIGHT);
 		rightPanel.add(lblSatir);

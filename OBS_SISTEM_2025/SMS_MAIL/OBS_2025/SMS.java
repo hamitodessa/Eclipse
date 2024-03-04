@@ -4,7 +4,6 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
@@ -118,7 +117,7 @@ public class SMS extends JInternalFrame {
 		getContentPane().add(splitPane, BorderLayout.CENTER);
 
 		JPanel panel = new JPanel();
-		panel.setBorder(new LineBorder(new Color(0, 191, 255)));
+		panel.setBorder(new LineBorder(null));
 		panel.setMinimumSize(new Dimension(0, 30));
 		panel.setMaximumSize(new Dimension(0, 30));
 		splitPane.setRightComponent(panel);
@@ -159,7 +158,7 @@ public class SMS extends JInternalFrame {
 		tabbedPane.addTab("Sms Gonder", null, splitPane_1, null);
 
 		JPanel panel_1 = new JPanel();
-		panel_1.setBorder(new LineBorder(new Color(0, 191, 255)));
+		panel_1.setBorder(new LineBorder(null));
 		panel_1.setMinimumSize(new Dimension(0, 130));
 		panel_1.setMaximumSize(new Dimension(0, 130));
 		splitPane_1.setLeftComponent(panel_1);
@@ -194,7 +193,7 @@ public class SMS extends JInternalFrame {
 		panel_1.add(lblNewLabel_5);
 
 		comboBox = new JComboBox<String>();
-		comboBox.setForeground(new Color(0, 0, 128));
+		//comboBox.setForeground(new Color(0, 0, 128));
 		comboBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//
@@ -263,7 +262,7 @@ public class SMS extends JInternalFrame {
 		panel_1.add(btnNewButton_2);
 
 		comboBox_1 = new JComboBox<String>();
-		comboBox_1.setForeground(new Color(0, 0, 128));
+		//comboBox_1.setForeground(new Color(0, 0, 128));
 		comboBox_1.setFont(new Font("Tahoma", Font.BOLD, 11));
 		comboBox_1.setModel(new DefaultComboBoxModel<String>(new String[] {"TEL_1", "TEL_2", "TEL_3", "FAX"}));
 		comboBox_1.setBounds(719, 25, 112, 22);
@@ -292,7 +291,7 @@ public class SMS extends JInternalFrame {
 		tabbedPane.addTab("Gonderilmis  Sms", null, splitPane_2, null);
 
 		JPanel panel_2 = new JPanel();
-		panel_2.setBorder(new LineBorder(new Color(0, 191, 255)));
+		panel_2.setBorder(new LineBorder(null));
 		panel_2.setMinimumSize(new Dimension(0, 30));
 		panel_2.setMaximumSize(new Dimension(0, 30));
 		splitPane_2.setLeftComponent(panel_2);
@@ -323,13 +322,13 @@ public class SMS extends JInternalFrame {
 
 		comboBox_3 = new JComboBox<String>();
 		comboBox_3.setFont(new Font("Tahoma", Font.BOLD, 11));
-		comboBox_3.setForeground(new Color(0, 0, 128));
+		//comboBox_3.setForeground(new Color(0, 0, 128));
 		comboBox_3.setBounds(220, 63, 90, 22);
 		panel_4.add(comboBox_3);
 
 		comboBox_4 = new JComboBox<String>();
 		comboBox_4.setFont(new Font("Tahoma", Font.BOLD, 11));
-		comboBox_4.setForeground(new Color(0, 0, 128));
+		//comboBox_4.setForeground(new Color(0, 0, 128));
 		comboBox_4.setModel(new DefaultComboBoxModel<String>(new String[] {"4800", "9600", "19200", "38400", "57600", "115200", "230400", "460800", "4921600"}));
 		comboBox_4.setSelectedIndex(1);
 		comboBox_4.setBounds(220, 96, 90, 22);
@@ -341,7 +340,7 @@ public class SMS extends JInternalFrame {
 
 		JComboBox<String> comboBox_5 = new JComboBox<String>();
 		comboBox_5.setFont(new Font("Tahoma", Font.BOLD, 11));
-		comboBox_5.setForeground(new Color(0, 0, 128));
+		//comboBox_5.setForeground(new Color(0, 0, 128));
 		comboBox_5.setModel(new DefaultComboBoxModel<String>(new String[] {"5", "6", "7", "8"}));
 		comboBox_5.setSelectedIndex(3);
 		comboBox_5.setBounds(220, 129, 90, 22);
@@ -353,7 +352,7 @@ public class SMS extends JInternalFrame {
 
 		JComboBox<String> comboBox_6 = new JComboBox<String>();
 		comboBox_6.setFont(new Font("Tahoma", Font.BOLD, 11));
-		comboBox_6.setForeground(new Color(0, 0, 128));
+		//comboBox_6.setForeground(new Color(0, 0, 128));
 		comboBox_6.setModel(new DefaultComboBoxModel<String>(new String[] {"0", "1", "1.5", "2"}));
 		comboBox_6.setSelectedIndex(1);
 		comboBox_6.setBounds(220, 162, 90, 22);
@@ -365,7 +364,7 @@ public class SMS extends JInternalFrame {
 
 		JComboBox<String> comboBox_7 = new JComboBox<String>();
 		comboBox_7.setFont(new Font("Tahoma", Font.BOLD, 11));
-		comboBox_7.setForeground(new Color(0, 0, 128));
+		//comboBox_7.setForeground(new Color(0, 0, 128));
 		comboBox_7.setModel(new DefaultComboBoxModel<String>(new String[] {"None", "Even", "Mark", "Odd", "Space"}));
 		comboBox_7.setSelectedIndex(0);
 		comboBox_7.setBounds(220, 195, 90, 22);
@@ -432,13 +431,13 @@ public class SMS extends JInternalFrame {
 		panel_4.add(btnNewButton);
 
 		JPanel panel_5 = new JPanel();
-		panel_5.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Baglanti durumu", TitledBorder.LEADING, TitledBorder.TOP, null, SystemColor.textHighlight));
+		panel_5.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Baglanti durumu", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panel_5.setBounds(97, 350, 251, 66);
 		panel_4.add(panel_5);
 		panel_5.setLayout(null);
 
 		lblNewLabel_3 = new JLabel("Bagli Degil");
-		lblNewLabel_3.setForeground(Color.RED);
+		//lblNewLabel_3.setForeground(Color.RED);
 		lblNewLabel_3.setBounds(27, 28, 85, 14);
 		panel_5.add(lblNewLabel_3);
 
@@ -470,7 +469,7 @@ public class SMS extends JInternalFrame {
 		tabbedPane.addTab("Bilgi Girisi", null, splitPane_3, null);
 
 		JPanel panel_3 = new JPanel();
-		panel_3.setBorder(new LineBorder(new Color(0, 191, 255)));
+		panel_3.setBorder(new LineBorder(null));
 		panel_3.setMinimumSize(new Dimension(0, 100));
 		panel_3.setMaximumSize(new Dimension(0, 100));
 		splitPane_3.setLeftComponent(panel_3);
@@ -542,7 +541,7 @@ public class SMS extends JInternalFrame {
 		txtkodu.setColumns(10);
 
 		comboBox_2 = new JComboBox<String>();
-		comboBox_2.setForeground(new Color(0, 0, 128));
+		//comboBox_2.setForeground(new Color(0, 0, 128));
 		comboBox_2.setFont(new Font("Tahoma", Font.BOLD, 11));
 		comboBox_2.setEditable(true);
 		comboBox_2.setModel(new DefaultComboBoxModel<String>(new String[] {""}));

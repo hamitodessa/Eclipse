@@ -170,7 +170,7 @@ public class MAIL extends JInternalFrame {
 		tabbedPane.addTab("Mail Gonder", null, splitPane_1, null);
 
 		JPanel panel_1 = new JPanel();
-		panel_1.setBorder(new LineBorder(new Color(0, 191, 255)));
+		panel_1.setBorder(new LineBorder(null));
 		panel_1.setMinimumSize(new Dimension(0, 160));
 		panel_1.setMaximumSize(new Dimension(0, 160));
 		splitPane_1.setLeftComponent(panel_1);
@@ -259,7 +259,7 @@ public class MAIL extends JInternalFrame {
 		panel_1.add(lblNewLabel_5);
 
 		comboBox = new JComboBox<String>();
-		comboBox.setForeground(new Color(0, 0, 128));
+		//comboBox.setForeground(new Color(0, 0, 128));
 		comboBox.setFont(new Font("Tahoma", Font.BOLD, 11));
 		comboBox.setModel(new DefaultComboBoxModel<String>(new String[] {"Dosyadan", "Cari Hesap", "Adres"}));
 		comboBox.setBounds(565, 25, 121, 22);
@@ -292,7 +292,7 @@ public class MAIL extends JInternalFrame {
 
 
 		comboBox_1 = new JComboBox<String>();
-		comboBox_1.setForeground(new Color(0, 0, 128));
+		//comboBox_1.setForeground(new Color(0, 0, 128));
 		comboBox_1.setBounds(565, 56, 278, 22);
 		comboBox_1.setDropTarget(new DropTarget() {
 			@SuppressWarnings("rawtypes")
@@ -393,7 +393,7 @@ public class MAIL extends JInternalFrame {
 		tabbedPane.addTab("Gonderilmis Mail", null, splitPane_2, null);
 
 		JPanel panel_2 = new JPanel();
-		panel_2.setBorder(new LineBorder(new Color(0, 191, 255)));
+		panel_2.setBorder(new LineBorder(null));
 		panel_2.setMinimumSize(new Dimension(0, 30));
 		panel_2.setMaximumSize(new Dimension(0, 30));
 		splitPane_2.setLeftComponent(panel_2);
@@ -420,7 +420,7 @@ public class MAIL extends JInternalFrame {
 		tabbedPane.addTab("Bilgi Girisi", null, splitPane_3, null);
 
 		JPanel panel_3 = new JPanel();
-		panel_3.setBorder(new LineBorder(new Color(0, 191, 255)));
+		panel_3.setBorder(new LineBorder(null));
 		panel_3.setMinimumSize(new Dimension(0, 100));
 		panel_3.setMaximumSize(new Dimension(0, 100));
 		splitPane_3.setLeftComponent(panel_3);
@@ -501,7 +501,7 @@ public class MAIL extends JInternalFrame {
 		txtkodu.setColumns(10);
 
 		comboBox_2 = new JComboBox<String>();
-		comboBox_2.setForeground(new Color(0, 0, 128));
+		//comboBox_2.setForeground(new Color(0, 0, 128));
 		comboBox_2.setFont(new Font("Tahoma", Font.BOLD, 11));
 		comboBox_2.setEditable(true);
 		comboBox_2.setModel(new DefaultComboBoxModel<String>(new String[] {""}));

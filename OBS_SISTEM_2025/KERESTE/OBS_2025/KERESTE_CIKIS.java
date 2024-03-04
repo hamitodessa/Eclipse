@@ -230,7 +230,7 @@ public class KERESTE_CIKIS extends JInternalFrame {
 				     table.getCellEditor().stopCellEditing();
 			}
 		});
-		panel_2.setBorder(new LineBorder(new Color(0, 191, 255)));
+		panel_2.setBorder(new LineBorder(null));
 		tabbedPane_1.addTab("Urun Cikis", null, panel_2, null);
 		panel_2.setLayout(null);
 
@@ -419,7 +419,7 @@ public class KERESTE_CIKIS extends JInternalFrame {
 
 		lblNewLabel_3 = new JLabel(".....");
 		lblNewLabel_3.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblNewLabel_3.setForeground(new Color(25, 25, 112));
+		//lblNewLabel_3.setForeground(new Color(25, 25, 112));
 		lblNewLabel_3.setBounds(89, 62, 262, 14);
 		panel_2.add(lblNewLabel_3);
 
@@ -603,7 +603,7 @@ public class KERESTE_CIKIS extends JInternalFrame {
 
 		cmbozkod = new JComboBox<String>();
 		cmbozkod.setBounds(555, 7, 156, 22);
-		cmbozkod.setForeground(new Color(0, 0, 128));
+		//cmbozkod.setForeground(new Color(0, 0, 128));
 		cmbozkod.setFont(new Font("Dialog", Font.BOLD, 12));
 		panel_2.add(cmbozkod);
 
@@ -613,7 +613,7 @@ public class KERESTE_CIKIS extends JInternalFrame {
 		panel_2.add(lblAnaGrup);
 
 		cmbanagrup = new JComboBox<String>();
-		cmbanagrup.setForeground(new Color(0, 0, 128));
+		//cmbanagrup.setForeground(new Color(0, 0, 128));
 		cmbanagrup.setFont(new Font("Dialog", Font.BOLD, 12));
 		cmbanagrup.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -640,7 +640,7 @@ public class KERESTE_CIKIS extends JInternalFrame {
 		panel_2.add(lblAltGrup);
 
 		cmbaltgrup = new JComboBox<String>();
-		cmbaltgrup.setForeground(new Color(0, 0, 128));
+		//cmbaltgrup.setForeground(new Color(0, 0, 128));
 		cmbaltgrup.setFont(new Font("Dialog", Font.BOLD, 12));
 		cmbaltgrup.setBounds(809, 33, 148, 22);
 		panel_2.add(cmbaltgrup);
@@ -674,7 +674,7 @@ public class KERESTE_CIKIS extends JInternalFrame {
 		panel_2.add(lblNewLabel_7_1);
 
 		cmbnakliyeci = new JComboBox<String>();
-		cmbnakliyeci.setForeground(new Color(0, 0, 128));
+		//cmbnakliyeci.setForeground(new Color(0, 0, 128));
 		cmbnakliyeci.setFont(new Font("Dialog", Font.BOLD, 12));
 		cmbnakliyeci.setBounds(555, 33, 156, 22);
 		panel_2.add(cmbnakliyeci);
@@ -703,7 +703,7 @@ public class KERESTE_CIKIS extends JInternalFrame {
 
 
 		JPanel panel_4 = new JPanel();
-		panel_4.setBorder(new LineBorder(new Color(0, 191, 255)));
+		panel_4.setBorder(new LineBorder(null));
 		tabbedPane_1.addTab("Notlar", null, panel_4, null);
 		panel_4.setLayout(null);
 
@@ -742,7 +742,7 @@ public class KERESTE_CIKIS extends JInternalFrame {
 
 
 		JPanel panel_5 = new JPanel();
-		panel_5.setBorder(new LineBorder(new Color(0, 191, 255)));
+		panel_5.setBorder(new LineBorder(null));
 		tabbedPane_1.addTab("Ek Bilgi", null, panel_5, null);
 		panel_5.setLayout(null);
 
@@ -791,7 +791,7 @@ public class KERESTE_CIKIS extends JInternalFrame {
 		splitPane_3.setLeftComponent(scrollPanetoplam);
 		
 		JPanel panel_71 = new JPanel();
-		panel_71.setBorder(new LineBorder(new Color(0, 191, 255)));
+		panel_71.setBorder(new LineBorder(null));
 		panel_71.setPreferredSize(new Dimension(1128,30));
 		scrollPanetoplam.setViewportView(panel_71);
 		
@@ -802,35 +802,35 @@ public class KERESTE_CIKIS extends JInternalFrame {
 		panel_71.add(lblNewLabel);
 
 		lblNewLabel_13 = new JLabel("0");
-		lblNewLabel_13.setForeground(new Color(0, 0, 128));
+		//lblNewLabel_13.setForeground(new Color(0, 0, 128));
 		lblNewLabel_13.setFont(new Font("Tahoma", Font.BOLD, 12));
 		lblNewLabel_13.setBounds(122, 5, 40, 14);
 		panel_71.add(lblNewLabel_13);
 
 		label_8_1 = new JLabel("0");
 		label_8_1.setHorizontalAlignment(SwingConstants.RIGHT);
-		label_8_1.setForeground(new Color(139, 0, 0));
+		//label_8_1.setForeground(new Color(139, 0, 0));
 		label_8_1.setFont(new Font("Tahoma", Font.BOLD, 12));
 		label_8_1.setBounds(373, 5, 73, 14);
 		panel_71.add(label_8_1);
 
 		label_8 = new JLabel("0.000");
 		label_8.setHorizontalAlignment(SwingConstants.RIGHT);
-		label_8.setForeground(new Color(139, 0, 0));
+		//label_8.setForeground(new Color(139, 0, 0));
 		label_8.setFont(new Font("Tahoma", Font.BOLD, 12));
 		label_8.setBounds(453, 5, 67, 14);
 		panel_71.add(label_8);
 
 		label_9 = new JLabel("0.00");
 		label_9.setHorizontalAlignment(SwingConstants.RIGHT);
-		label_9.setForeground(new Color(139, 0, 0));
+		//label_9.setForeground(new Color(139, 0, 0));
 		label_9.setFont(new Font("Tahoma", Font.BOLD, 12));
 		label_9.setBounds(821, 5, 201, 14);
 		panel_71.add(label_9);
 	
 		lblPaket = new JLabel("0");
 		lblPaket.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblPaket.setForeground(new Color(139, 0, 0));
+		//lblPaket.setForeground(new Color(139, 0, 0));
 		lblPaket.setFont(new Font("Tahoma", Font.BOLD, 12));
 		lblPaket.setBounds(524, 5, 73, 14);
 		panel_71.add(lblPaket);
@@ -857,7 +857,7 @@ public class KERESTE_CIKIS extends JInternalFrame {
 
 
 		JPanel panel_1 = new JPanel(); 
-		panel_1.setBorder(new LineBorder(new Color(0, 191, 255))); 
+		panel_1.setBorder(new LineBorder(null)); 
 
 		panel_1.setLayout(null);
 		tabbedPane_2.addTab("Toplamlar", null, panel_1, null);
@@ -865,7 +865,7 @@ public class KERESTE_CIKIS extends JInternalFrame {
 
 		lblkodAciklama = new JLabel(); 
 		lblkodAciklama.setFont(new Font("Dialog", Font.BOLD, 12)); 
-		lblkodAciklama.setForeground(new Color(0, 0, 128));
+		//lblkodAciklama.setForeground(new Color(0, 0, 128));
 		lblkodAciklama.setBounds(10, 55,50, 14); 
 		panel_1.add(lblkodAciklama);
 
@@ -876,7 +876,7 @@ public class KERESTE_CIKIS extends JInternalFrame {
 
 		label_6 = new JLabel("0.00");
 		label_6.setHorizontalAlignment(SwingConstants.RIGHT);
-		label_6.setForeground(Color.BLUE); 
+		//label_6.setForeground(Color.BLUE); 
 		label_6.setFont(new Font("Dialog", Font.PLAIN, 13)); 
 		label_6.setBounds(306, 11, 99, 14); 
 		panel_1.add(label_6);
@@ -888,7 +888,7 @@ public class KERESTE_CIKIS extends JInternalFrame {
 
 		label_3 = new JLabel("0.00");
 		label_3.setHorizontalAlignment(SwingConstants.RIGHT);
-		label_3.setForeground(Color.BLUE); 
+		//label_3.setForeground(Color.BLUE); 
 		label_3.setFont(new Font("Dialog", Font.PLAIN, 13)); 
 		label_3.setBounds(480, 11, 99, 14);
 		panel_1.add(label_3);
@@ -900,7 +900,7 @@ public class KERESTE_CIKIS extends JInternalFrame {
 
 		label_7 = new JLabel("0.00");
 		label_7.setHorizontalAlignment(SwingConstants.RIGHT);
-		label_7.setForeground(Color.BLUE); 
+		//label_7.setForeground(Color.BLUE); 
 		label_7.setFont(new Font("Dialog",  Font.PLAIN, 13));
 		label_7.setBounds(306, 39, 99, 14); 
 		panel_1.add(label_7);
@@ -913,7 +913,7 @@ public class KERESTE_CIKIS extends JInternalFrame {
 		txttev = new JFormattedTextField(); txttev.setText("0");
 		txttev.setHorizontalAlignment(SwingConstants.RIGHT);
 		txttev.setFont(new  Font("Dialog", Font.BOLD, 13)); 
-		txttev.setBackground(Color.CYAN);
+		//txttev.setBackground(Color.CYAN);
 		txttev.setBounds(518, 35, 62, 20);
 		txttev.getDocument().addDocumentListener(new DocumentListener() { public void
 			changedUpdate(DocumentEvent e) { 
@@ -940,14 +940,14 @@ public class KERESTE_CIKIS extends JInternalFrame {
 
 		label_2 = new JLabel("0.00");
 		label_2.setHorizontalAlignment(SwingConstants.RIGHT);
-		label_2.setForeground(Color.BLUE); 
+		//label_2.setForeground(Color.BLUE); 
 		label_2.setFont(new Font("Dialog",Font.PLAIN, 13)); 
 		label_2.setBounds(705, 39, 99, 14); 
 		panel_1.add(label_2);
 
 		label_1 = new JLabel("0.00");
 		label_1.setHorizontalAlignment(SwingConstants.RIGHT);
-		label_1.setForeground(Color.BLUE); 
+		//label_1.setForeground(Color.BLUE); 
 		label_1.setFont(new Font("Dialog", Font.PLAIN, 13)); 
 		label_1.setBounds(705, 11, 99, 14); 
 		panel_1.add(label_1);
@@ -959,7 +959,7 @@ public class KERESTE_CIKIS extends JInternalFrame {
 
 		lblNewLabel_20 = new JLabel("0.00");
 		lblNewLabel_20.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblNewLabel_20.setForeground(Color.BLUE); 
+		//lblNewLabel_20.setForeground(Color.BLUE); 
 		lblNewLabel_20.setFont(new  Font("Dialog", Font.PLAIN, 13)); 
 		lblNewLabel_20.setBounds(927, 11, 109, 14);
 		panel_1.add(lblNewLabel_20);
@@ -971,24 +971,24 @@ public class KERESTE_CIKIS extends JInternalFrame {
 
 		label = new JLabel("0.00");
 		label.setHorizontalAlignment(SwingConstants.RIGHT); 
-		label.setForeground(new  Color(0, 0, 128)); 
+		//label.setForeground(new  Color(0, 0, 128)); 
 		label.setFont(new Font("Dialog", Font.BOLD, 13));
 		label.setBounds(927, 39, 109, 14); 
 		panel_1.add(label);
 
 		lblkONSIMENTO = new JLabel(); 
-		lblkONSIMENTO.setForeground(new Color(0, 0, 128)); 
+		//lblkONSIMENTO.setForeground(new Color(0, 0, 128)); 
 		lblkONSIMENTO.setFont(new Font("Dialog", Font.BOLD, 12));
 		lblkONSIMENTO.setBounds(10, 35, 50, 14); 
 		panel_1.add(lblkONSIMENTO);
 
 		lblkODU = new JLabel(); 
-		lblkODU.setForeground(new Color(0, 0, 128));
+		//lblkODU.setForeground(new Color(0, 0, 128));
 		lblkODU.setFont(new Font("Tahoma", Font.BOLD, 11)); 
 		lblkODU.setBounds(10, 11,  170, 14); panel_1.add(lblkODU);
 
 		JLabel lblNewLabel_8 = new JLabel("Paket");
-		lblNewLabel_8.setForeground(new Color(0, 0, 128));
+		//lblNewLabel_8.setForeground(new Color(0, 0, 128));
 		lblNewLabel_8.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblNewLabel_8.setBounds(607, 5, 85, 14);
 		panel_71.add(lblNewLabel_8);

@@ -1,9 +1,7 @@
 package OBS_2025;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Font;
-import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.ResultSet;
@@ -12,7 +10,6 @@ import javax.swing.JComboBox;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 
 import OBS_C_2025.BAGLAN_LOG;
@@ -44,14 +41,15 @@ public class KER_DEGISKEN_DEGIS extends JInternalFrame {
 		panel.setLayout(null);
 		
 		JPanel panel_1 = new JPanel();
-		panel_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Aranacak", TitledBorder.LEADING, TitledBorder.TOP, null, SystemColor.textHighlight));
+		panel_1.setBorder(new TitledBorder(null,"Aranacak", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		//panel_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Aranacak", TitledBorder.LEADING, TitledBorder.TOP, null, SystemColor.textHighlight));
 		panel_1.setBounds(35, 20, 340, 84);
 		panel.add(panel_1);
 		panel_1.setLayout(null);
 		
 		cmbAna = new JComboBox<String>();
 		cmbAna.setFont(new Font("Tahoma", Font.BOLD, 12));
-		cmbAna.setForeground(new Color(0, 0, 128));
+		//cmbAna.setForeground(new Color(0, 0, 128));
 		cmbAna.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				alt_grup_doldur(cmbAna,cmbAlt);
@@ -62,7 +60,7 @@ public class KER_DEGISKEN_DEGIS extends JInternalFrame {
 		
 		cmbAlt = new JComboBox<String>();
 		cmbAlt.setFont(new Font("Tahoma", Font.BOLD, 12));
-		cmbAlt.setForeground(new Color(0, 0, 128));
+		//cmbAlt.setForeground(new Color(0, 0, 128));
 		cmbAlt.setEnabled(false);
 		cmbAlt.setBounds(110, 51, 203, 22);
 		panel_1.add(cmbAlt);
@@ -79,13 +77,14 @@ public class KER_DEGISKEN_DEGIS extends JInternalFrame {
 		
 		JPanel panel_1_1 = new JPanel();
 		panel_1_1.setLayout(null);
-		panel_1_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Yazilacak", TitledBorder.LEADING, TitledBorder.TOP, null, SystemColor.textHighlight));
+		panel_1_1.setBorder(new TitledBorder(null,"Yazilacak", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		//panel_1_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Yazilacak", TitledBorder.LEADING, TitledBorder.TOP, null, SystemColor.textHighlight));
 		panel_1_1.setBounds(35, 115, 340, 84);
 		panel.add(panel_1_1);
 		
 		cmbyAna = new JComboBox<String>();
 		cmbyAna.setFont(new Font("Tahoma", Font.BOLD, 12));
-		cmbyAna.setForeground(new Color(0, 0, 128));
+		//cmbyAna.setForeground(new Color(0, 0, 128));
 		cmbyAna.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				alt_grup_doldur(cmbyAna,cmbyAlt);
@@ -96,7 +95,7 @@ public class KER_DEGISKEN_DEGIS extends JInternalFrame {
 		
 		cmbyAlt = new JComboBox<String>();
 		cmbyAlt.setFont(new Font("Tahoma", Font.BOLD, 12));
-		cmbyAlt.setForeground(new Color(0, 0, 128));
+		//cmbyAlt.setForeground(new Color(0, 0, 128));
 		cmbyAlt.setEnabled(false);
 		cmbyAlt.setBounds(110, 51, 203, 22);
 		panel_1_1.add(cmbyAlt);

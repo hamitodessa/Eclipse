@@ -1,7 +1,6 @@
 package OBS_2025;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Dimension;
 import java.sql.ResultSet;
 
@@ -51,7 +50,7 @@ public class KER_BOS_KUR extends JInternalFrame {
 		JPanel panel = new JPanel();
 		panel.setMinimumSize(new Dimension(0, 65));
 		panel.setMaximumSize(new Dimension(0, 65));
-		panel.setBorder(new LineBorder(new Color(0, 191, 255)));
+		panel.setBorder(new LineBorder(null));
 		splitPane.setLeftComponent(panel);
 		panel.setLayout(null);
 		

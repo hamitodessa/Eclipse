@@ -1,7 +1,6 @@
 package OBS_2025;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -178,14 +177,14 @@ public class PAKET_ARA extends JDialog {
 		table.setShowVerticalLines(true);
 		scrollPane.setViewportView(table);
 		JPanel panel1 = new JPanel();
-		panel1.setBorder(new LineBorder(new Color(0, 191, 255)));
+		panel1.setBorder(new LineBorder(null));
 		panel1.setMinimumSize(new Dimension(0, 25));
 		panel1.setMaximumSize(new Dimension(0, 25));
 		splitPane1.setRightComponent(panel1);
 		panel1.setLayout(null);
 		
 		lblNewLabel_2 = new JLabel("0");
-		lblNewLabel_2.setForeground(new Color(0, 0, 139));
+		//lblNewLabel_2.setForeground(new Color(0, 0, 139));
 		lblNewLabel_2.setFont(new Font("Tahoma", Font.BOLD, 12));
 		lblNewLabel_2.setBounds(100, 5, 118, 14);
 		panel1.add(lblNewLabel_2);

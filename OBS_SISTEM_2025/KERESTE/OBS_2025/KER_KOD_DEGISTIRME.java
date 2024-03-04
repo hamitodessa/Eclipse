@@ -234,7 +234,7 @@ public class KER_KOD_DEGISTIRME extends JInternalFrame {
 		
 		JPanel panel_1_1 = new JPanel();
 		panel_1_1.setLayout(null);
-		panel_1_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Yeni Konsimento", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
+		panel_1_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Yeni Konsimento", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panel_1_1.setBounds(678, 14, 224, 65);
 		panel.add(panel_1_1);
 		
@@ -348,14 +348,14 @@ public class KER_KOD_DEGISTIRME extends JInternalFrame {
 		table.setShowVerticalLines(true);
 		scrollPane.setViewportView(table);
 		JPanel panel1 = new JPanel();
-		panel1.setBorder(new LineBorder(new Color(0, 191, 255)));
+		panel1.setBorder(new LineBorder(null));
 		panel1.setMinimumSize(new Dimension(0, 25));
 		panel1.setMaximumSize(new Dimension(0, 25));
 		splitPane1.setRightComponent(panel1);
 		panel1.setLayout(null);
 		
 		lblNewLabel_2 = new JLabel("0");
-		lblNewLabel_2.setForeground(new Color(0, 0, 139));
+		//lblNewLabel_2.setForeground(new Color(0, 0, 139));
 		lblNewLabel_2.setFont(new Font("Tahoma", Font.BOLD, 12));
 		lblNewLabel_2.setBounds(155, 5, 63, 14);
 		panel1.add(lblNewLabel_2);

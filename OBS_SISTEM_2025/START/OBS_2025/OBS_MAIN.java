@@ -2515,12 +2515,9 @@ public class OBS_MAIN extends JFrame  {
 		btnNewButton_87.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(GLOBAL.KULL_ADI.equals("Admin") || GLOBAL.KULL_ADI.equals("hamit"))
-				{
-				form_ac("KULLANICI EKLEME","");
-				}
-				else {
+					form_ac("KULLANICI EKLEME","");
+				else
 					Notifications.getInstance().show(Notifications.Type.ERROR,Notifications.Location.BOTTOM_RIGHT ,5000,"Sadece Admin Islem Yapabilir......");
-				}
 			}
 		});
 		btnNewButton_87.setIcon(new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/hsp-30.png")));
@@ -2531,12 +2528,9 @@ public class OBS_MAIN extends JFrame  {
 		btnNewButton_88.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(GLOBAL.KULL_ADI.equals("Admin") || GLOBAL.KULL_ADI.equals("hamit"))
-				{
-				form_ac("KULLANICI DETAY EKLEME","");
-				}
-				else {
+					form_ac("KULLANICI DETAY EKLEME","");
+				else
 					Notifications.getInstance().show(Notifications.Type.ERROR,Notifications.Location.BOTTOM_RIGHT ,5000,"Sadece Admin Islem Yapabilir......");
-				}
 			}
 		});
 
@@ -2548,12 +2542,9 @@ public class OBS_MAIN extends JFrame  {
 		btnNewButton_89.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(GLOBAL.KULL_ADI.equals("Admin") || GLOBAL.KULL_ADI.equals("hamit"))
-				{
-				form_ac("KULLANICI KOPYALA","");
-				}
-				else {
+					form_ac("KULLANICI KOPYALA","");
+				else
 					Notifications.getInstance().show(Notifications.Type.ERROR,Notifications.Location.BOTTOM_RIGHT ,5000,"Sadece Admin Islem Yapabilir......");
-				}
 			}
 		});
 		btnNewButton_89.setIcon(new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/icons8-identification-documents-30.png")));
@@ -2895,7 +2886,6 @@ public class OBS_MAIN extends JFrame  {
 					ft.comboBox_80_4.setEnabled(true);
 					ft.comboBox_84.setVisible(true);
 					ft.lblGrup.setVisible(true);
-					
 					ft.setVisible(true);
 				}
 				else if (sonuc == "KERESTE DETAY RAPOR")
@@ -2918,7 +2908,6 @@ public class OBS_MAIN extends JFrame  {
 					ft.comboBox_78_2.setEnabled(true);
 					ft.comboBox_79_2.setEnabled(true);
 					ft.comboBox_80_2.setEnabled(true);
-					
 					ft.setVisible(true);
 				}
 				else if (sonuc == "KERESTE FATURA RAPORLAMA")
@@ -2941,7 +2930,6 @@ public class OBS_MAIN extends JFrame  {
 					ft.comboBox_80_4.setEnabled(false);
 					ft.comboBox_84.setVisible(false);
 					ft.lblGrup.setVisible(false);
-					
 					ft.setVisible(true);
 				}
 				else if (sonuc == "KERESTE ORTALAMA FIAT")
@@ -3269,73 +3257,39 @@ public class OBS_MAIN extends JFrame  {
 				GuiUtil.setWaitCursor(toolBar,true);
 				String sonuc = pencere_activmi();
 				if (sonuc == "IMALAT GRUP RAPOR")
-				{
 					IMALAT_GRUP_RAPOR.excell_aktar() ;
-				}
 				else if (sonuc == "GRUP RAPOR")
-				{
 					GRUP_RAPOR.excell_aktar() ;
-				}
 				else if (sonuc == "STOK DETAY")
-				{
 					STOK_DETAY.excell_aktar() ;
-				}
 				else if (sonuc == "FATURA RAPORLAMA")
-				{
 					FATURA_RAPOR.excell_aktar() ;
-				}
 				else if (sonuc == "ENVANTER DOKUM")
-				{
 					ENVANTER.excell_aktar() ;
-				}
 				else if (sonuc == "IMALAT RAPORLAMA")
-				{
 					IMALAT_RAPORLAMA.excell_aktar() ;
-				}
 				else if (sonuc == "STOK_RAPOR")
-				{
 					STOK_RAPOR.excell_aktar() ;
-				}
 				else if (sonuc == "CARI OZEL MIZAN")
-				{
 					OZEL_MIZAN.excell_aktar() ;
-				}
 				else if (sonuc == "ORTALAMA SATIS")
-				{
 					ORTALAMA_FIAT.excell_aktar() ;
-				}
 				else if (sonuc == "KERESTE GRUP RAPOR")
-				{
 					KER_GRUP_RAPOR.excell_aktar() ;
-				}
 				else if (sonuc == "KERESTE DETAY RAPOR")
-				{
 					KER_DETAY.excell_aktar() ;
-				}
 				else if (sonuc == "KERESTE ORTALAMA FIAT")
-				{
 					KER_ORT_FIAT.excell_aktar() ;
-				}
 				else if (sonuc == "KERESTE ENVANTER")
-				{
 					KER_ENVANTER.excell_aktar() ;
-				}
 				else if (sonuc == "KERESTE CIKIS")
-				{
 					KERESTE_CIKIS.excell_aktar();
-				}
 				else if (sonuc == "KERESTE GIRIS")
-				{
 					KERESTE_GIRIS.excell_aktar();
-				}
 				else if (sonuc == "KERESTE FATURA RAPORLAMA")
-				{
 					KER_FAT_RAPOR.excell_aktar();
-				}
 				else if (sonuc == "LOG RAPORLAMA")
-				{
 					LOGLAMA_RAPOR.excell_aktar();
-				}
 				GuiUtil.setWaitCursor(toolBar,false);//
 			}
 		});
@@ -3348,30 +3302,20 @@ public class OBS_MAIN extends JFrame  {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					boolean varmi = pencere_bak("GRAFIK");
-					if (varmi ) 
-					{
+					if (varmi )
 						pencere_aktiv_yap("GRAFIK");
-					}
 					else
 					{
 						GuiUtil.setWaitCursor(toolBar,true);
 						String sonuc = pencere_activmi();
 						if (sonuc == "GRUP RAPOR")
-						{
 							GRUP_RAPOR.grafik();
-						}
 						else if (sonuc == "IMALAT GRUP RAPOR")
-						{
 							IMALAT_GRUP_RAPOR.grafik();
-						}
 						else if (sonuc == "KUR GRAFIK")
-						{
 							KUR_GRAFIK.grafik_kur();
-						}
 						else if (sonuc == "KERESTE GRUP RAPOR")
-						{
 							KER_GRUP_RAPOR.grafik();
-						}
 						else 
 						{
 							GuiUtil.setWaitCursor(toolBar,false);
@@ -3807,9 +3751,7 @@ public class OBS_MAIN extends JFrame  {
 			JInternalFrame frame=(JInternalFrame) desktopPane.getComponent(i);
 			String tit=frame.getTitle();
 			if (tit.equals(formADI) )
-			{
 				desktopPane.remove(i);
-			}
 		}
 	}
 	private static void gorev_kontrol() 
@@ -3869,12 +3811,9 @@ public class OBS_MAIN extends JFrame  {
 			deg = deg -1;
 	
 			if (deg <10 )
-			{
 				deger = "0" +  String.valueOf(deg) ;
-			}
-			else {
+			else
 				deger =  String.valueOf(deg);
-			}
 			deger = gbilgi.saat1.substring(0,2) + ":" + deger ;
 			gbilgi.saat2 = deger;
 			ResultSet rs;
@@ -3888,9 +3827,8 @@ public class OBS_MAIN extends JFrame  {
 					return; // Kayit Yok
 				}
 			} 
-			else {
+			else
 				btnNewButton_72.setVisible(true);
-			}
 			while (rs.next()) 
 			{
 				String mESAJ = TARIH_CEVIR.tarih_ters(rs.getString("TARIH")) + "  " + rs.getString("SAAT")  + "  "

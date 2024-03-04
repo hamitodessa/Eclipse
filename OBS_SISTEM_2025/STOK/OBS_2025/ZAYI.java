@@ -1,7 +1,6 @@
 package OBS_2025;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -666,7 +665,7 @@ public class ZAYI extends JInternalFrame {
         	        super.getTableCellRendererComponent(table, value, isSelected, hasFocus,
         	                row, column);
         	        setFont(font);
-        	        setForeground(Color.BLUE);
+        	        //setForeground(Color.BLUE);
         	        return this;
         	    }
         	};

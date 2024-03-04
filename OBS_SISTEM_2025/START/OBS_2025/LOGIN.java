@@ -216,63 +216,36 @@ public class LOGIN extends JDialog {
 			FlatLaf.registerCustomDefaultsSource("OBS_2025");
 			LOGIN.setDefaultLookAndFeelDecorated(true);
 
-			if ( GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("TextureLookAndFeel")) 
-			{
+			if ( GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("TextureLookAndFeel"))
 				UIManager.setLookAndFeel("com.jtattoo.plaf.texture.TextureLookAndFeel"); 
-			}
-			else if (GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("SmartLookAndFeel")) 
-			{
+			else if (GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("SmartLookAndFeel"))
 				UIManager.setLookAndFeel("com.jtattoo.plaf.smart.SmartLookAndFeel"); 
-			} 
 			else if ( GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("NoireLookAndFeel"))
-			{ 
 				UIManager.setLookAndFeel("com.jtattoo.plaf.noire.NoireLookAndFeel");
-			} 
 			else if ( GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("AcrylLookAndFeel"))
-			{ 
 				UIManager.setLookAndFeel("com.jtattoo.plaf.acryl.AcrylLookAndFeel");
-			} 
 			else if ( GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("AeroLookAndFeel"))
-			{ 
 				UIManager.setLookAndFeel("com.jtattoo.plaf.aero.AeroLookAndFeel"); 
-			} 
 			else  if ( GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("AluminiumLookAndFeel"))
-			{
 				UIManager.setLookAndFeel("com.jtattoo.plaf.aluminium.AluminiumLookAndFeel");
-			} 
 			else if (  GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("BernsteinLookAndFeel"))
-			{
 				UIManager.setLookAndFeel("com.jtattoo.plaf.bernstein.BernsteinLookAndFeel");
-			} 
-			else if (GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("FastLookAndFeel")) 
-			{
+			else if (GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("FastLookAndFeel"))
 				UIManager.setLookAndFeel("com.jtattoo.plaf.fast.FastLookAndFeel"); 
-			} 
-			else if( GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("GraphiteLookAndFeel")) 
-			{
+			else if( GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("GraphiteLookAndFeel"))
 				UIManager.setLookAndFeel("com.jtattoo.plaf.graphite.GraphiteLookAndFeel");
-			}
-			else if (GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("HiFiLookAndFeel")) 
-			{
+			else if (GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("HiFiLookAndFeel"))
 				UIManager.setLookAndFeel("com.jtattoo.plaf.hifi.HiFiLookAndFeel"); 
-			} 
 			else if ( GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("LunaLookAndFeel"))
-			{
 				UIManager.setLookAndFeel("com.jtattoo.plaf.luna.LunaLookAndFeel"); 
-			} 
 			else if  ( GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("McWinLookAndFeel"))
-			{
 				UIManager.setLookAndFeel("com.jtattoo.plaf.mcwin.McWinLookAndFeel"); 
-			} 
 			else if ( GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("MintLookAndFeel"))
-			{ 
 				UIManager.setLookAndFeel("com.jtattoo.plaf.mint.MintLookAndFeel"); 
-			} 
-			else if ( GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("Windows")) 
-			{
+			else if ( GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("Windows"))
 				UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel" );
-			} 
-			else if ( GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("FlatSolarizedLightIJTheme")) 
+			else if ( GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("FlatSolarizedLightIJTheme"))
+				
 			{
 				FlatSolarizedLightIJTheme.setup();
 				FlatLaf.updateUI();
@@ -367,9 +340,7 @@ public class LOGIN extends JDialog {
 			@Override
 			public void keyPressed(KeyEvent e) {
 				if (KeyEvent.getKeyText(e.getKeyCode()) == "Enter" )
-				{	
 					btngiris.doClick();
-				}
 			}
 		});
 		txtUser.setBounds(310, 11, 151, 20);
@@ -397,9 +368,7 @@ public class LOGIN extends JDialog {
 			@Override
 			public void keyPressed(KeyEvent e) {
 				if (KeyEvent.getKeyText(e.getKeyCode()) == "Enter" )
-				{	
 					btngiris.doClick();
-				}
 			}
 		});
 		panel.add(txtpwd);
@@ -472,9 +441,7 @@ public class LOGIN extends JDialog {
 							GLOBAL.setting_yaz("SIFRE", response);
 						}
 						else
-						{
 							GLOBAL.setting_yaz("BENI_HATIRLA", "");	
-						}
 						btndevam.requestFocusInWindow();
 						txtpwd.putClientProperty("JComponent.outline","clear");
 						contentPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
@@ -597,57 +564,39 @@ public class LOGIN extends JDialog {
 						//CARI LOG KONTROL
 						String dsy =  GLOBAL.LOG_SURUCU + GLOBAL.char_degis(BAGLAN_LOG.cariLogDizin.mODUL) ;
 						if (! glb.dos_kontrol(dsy))
-						{   
 							GLOBAL.create_table_log(dsy,oac._ICar.cari_firma_adi(),BAGLAN_LOG.cariLogDizin);
-						}
 						//KUR LOG KONTROL
 						dsy =  GLOBAL.LOG_SURUCU + GLOBAL.char_degis(BAGLAN_LOG.kurLogDizin.mODUL) ;
 						if (! glb.dos_kontrol(dsy))
-						{   
 							GLOBAL.create_table_log(dsy,"",BAGLAN_LOG.kurLogDizin);
-						}
 						//SMS LOG KONTROL
 						dsy =  GLOBAL.LOG_SURUCU + GLOBAL.char_degis(BAGLAN_LOG.smsLogDizin.mODUL) ;
 						if (! glb.dos_kontrol(dsy))
-						{   
 							GLOBAL.create_table_log(dsy,"",BAGLAN_LOG.smsLogDizin);
-						}
 						//ADRES LOG KONTROL
 						dsy =  GLOBAL.LOG_SURUCU + GLOBAL.char_degis(BAGLAN_LOG.adrLogDizin.mODUL) ;
 						if (! glb.dos_kontrol(dsy))
-						{   
 							GLOBAL.create_table_log(dsy,oac._IAdres.adr_firma_adi(),BAGLAN_LOG.adrLogDizin);
-						}
 						//STOK LOG KONTROL
 						dsy =  GLOBAL.LOG_SURUCU + GLOBAL.char_degis(BAGLAN_LOG.fatLogDizin.mODUL) ;
 						if (! glb.dos_kontrol(dsy))
-						{   
 							GLOBAL.create_table_log(dsy,oac._IStok.fat_firma_adi(),BAGLAN_LOG.fatLogDizin);
-						}
 						//KAMBIYO LOG KONTROL
 						dsy =  GLOBAL.LOG_SURUCU + GLOBAL.char_degis(BAGLAN_LOG.kamLogDizin.mODUL) ;
 						if (! glb.dos_kontrol(dsy))
-						{   
 							GLOBAL.create_table_log(dsy,oac._IKambiyo.kam_firma_adi(),BAGLAN_LOG.kamLogDizin);
-						}
 						//GUNLUK LOG KONTROL
 						dsy =  GLOBAL.LOG_SURUCU + GLOBAL.char_degis(BAGLAN_LOG.gunLogDizin.mODUL) ;
 						if (! glb.dos_kontrol(dsy))
-						{   
 							GLOBAL.create_table_log(dsy,oac._IGunluk.gun_firma_adi(),BAGLAN_LOG.gunLogDizin);
-						}
 						//KERESTE LOG KONTROL
 						dsy =  GLOBAL.LOG_SURUCU + GLOBAL.char_degis(BAGLAN_LOG.kerLogDizin.mODUL) ;
 						if (! glb.dos_kontrol(dsy))
-						{   
 							GLOBAL.create_table_log(dsy,oac._IKereste.ker_firma_adi(),BAGLAN_LOG.kerLogDizin);
-						}
 						//CARI EKSTRE SQL
 						dsy =  GLOBAL.SURUCU +  GLOBAL.EKSTRE_DOSYA ;
 						if (! glb.dos_kontrol(dsy))
-						{   
 							GLOBAL.ekstre_dosya_olustur();
-						}
 						dispose();
 						obmain.setExtendedState(JFrame.MAXIMIZED_BOTH);
 						obmain.setFont(new Font("Tahoma", Font.BOLD, 11));
@@ -876,7 +825,6 @@ public class LOGIN extends JDialog {
 				//OBS_MAIN.lblStokBilgi.setForeground(new Color(0, 0, 128));
 				OBS_MAIN.lblStokBilgi.setFont(new Font("Tahoma", Font.BOLD, 11));
 				OBS_MAIN.tabbedPane.setEnabledAt(3, true);
-				
 			}
 		}
 		else
@@ -1078,9 +1026,7 @@ public class LOGIN extends JDialog {
 			if (s_CONN.Server_kontrol_L(sBilgi) == true)   
 			{
 				if (s_CONN.Dosya_kontrol_L( sBilgi) == false)
-				{
 					CAR_DOS_VAR = false;
-				}
 				else
 				{
 					lOGG_AKTAR("Cari Hesap",BAGLAN.cariDizin.hAN_SQL,BAGLAN.cariDizin.lOG,BAGLAN.cariDizin.lOGLAMA_YERI);
@@ -1089,16 +1035,12 @@ public class LOGIN extends JDialog {
 				}
 			}
 			else
-			{
 				OBS_SIS_2025_ANA_CLASS.CARI_CONN = false;
-			}
 		}
 		else if (s_CONN.Server_kontrol_S(sBilgi) == true )
 		{
 			if (s_CONN.Dosya_kontrol_S(sBilgi) == false)
-			{
 				CAR_DOS_VAR = false;
-			}
 			else
 			{
 			lOGG_AKTAR("Cari Hesap",BAGLAN.cariDizin.hAN_SQL,BAGLAN.cariDizin.lOG,BAGLAN.cariDizin.lOGLAMA_YERI);
@@ -1107,9 +1049,7 @@ public class LOGIN extends JDialog {
 			}
 		}
 		else
-		{
 			OBS_SIS_2025_ANA_CLASS.CARI_CONN = false;
-		}
 	}
 	void kur_calisma_dizini_oku() throws ClassNotFoundException, SQLException
 	{
@@ -1132,9 +1072,7 @@ public class LOGIN extends JDialog {
 			if (s_CONN.Server_kontrol_L(sBilgi) == true)   
 			{
 				if (s_CONN.Dosya_kontrol_L(sBilgi) == false)
-				{
 					KUR_DOS_VAR = false;
-				}
 				else
 				{
 					lOGG_AKTAR("Kur",BAGLAN.kurDizin.hAN_SQL,BAGLAN.kurDizin.lOG,BAGLAN.kurDizin.lOGLAMA_YERI);
@@ -1143,16 +1081,12 @@ public class LOGIN extends JDialog {
 				}
 			}
 			else
-			{
 				OBS_SIS_2025_ANA_CLASS.KUR_CONN = false;
-			}
 		}
 		else if (s_CONN.Server_kontrol_S(sBilgi) == true )
 		{
 			if (s_CONN.Dosya_kontrol_S(sBilgi) == false)
-			{
 				KUR_DOS_VAR = false;
-			}
 			else
 			{
 				lOGG_AKTAR("Kur",BAGLAN.kurDizin.hAN_SQL,BAGLAN.kurDizin.lOG,BAGLAN.kurDizin.lOGLAMA_YERI);
@@ -1161,9 +1095,7 @@ public class LOGIN extends JDialog {
 			}
 		}
 		else
-		{
 			OBS_SIS_2025_ANA_CLASS.KUR_CONN = false;
-		}
 	}
 	void sms_calisma_dizini_oku() throws ClassNotFoundException, SQLException
 	{
@@ -1186,9 +1118,7 @@ public class LOGIN extends JDialog {
 			if (s_CONN.Server_kontrol_L(sBilgi) == true)   
 			{
 				if (s_CONN.Dosya_kontrol_L(sBilgi) == false)
-				{
 					SMS_DOS_VAR = false;
-				}
 				else
 				{
 					lOGG_AKTAR("Sms",BAGLAN.smsDizin.hAN_SQL,BAGLAN.smsDizin.lOG,BAGLAN.smsDizin.lOGLAMA_YERI);
@@ -1197,16 +1127,12 @@ public class LOGIN extends JDialog {
 				}
 			}
 			else
-			{
 				OBS_SIS_2025_ANA_CLASS.SMS_CONN = false;
-			}
 		}
 		else if (s_CONN.Server_kontrol_S(sBilgi) == true )
 		{
 			if (s_CONN.Dosya_kontrol_S(sBilgi) == false)
-			{
 				SMS_DOS_VAR = false;
-			}
 			else
 			{
 				lOGG_AKTAR("Sms",BAGLAN.smsDizin.hAN_SQL,BAGLAN.smsDizin.lOG,BAGLAN.smsDizin.lOGLAMA_YERI);
@@ -1215,9 +1141,7 @@ public class LOGIN extends JDialog {
 			}
 		}
 		else
-		{
 			OBS_SIS_2025_ANA_CLASS.SMS_CONN = false;
-		}
 	}
 	void adr_calisma_dizini_oku() throws ClassNotFoundException, SQLException
 	{
@@ -1240,9 +1164,7 @@ public class LOGIN extends JDialog {
 			if (s_CONN.Server_kontrol_L(sBilgi) == true)   
 			{
 				if (s_CONN.Dosya_kontrol_L(sBilgi) == false)
-				{
 					ADR_DOS_VAR = false;
-				}
 				else
 				{
 					lOGG_AKTAR("Adres",BAGLAN.adrDizin.hAN_SQL,BAGLAN.adrDizin.lOG,BAGLAN.adrDizin.lOGLAMA_YERI);
@@ -1256,9 +1178,7 @@ public class LOGIN extends JDialog {
 		else if (s_CONN.Server_kontrol_S(sBilgi) == true )
 		{
 			if (s_CONN.Dosya_kontrol_S(sBilgi) == false)
-			{
 				ADR_DOS_VAR = false;
-			}
 			else
 			{
 			lOGG_AKTAR("Adres",BAGLAN.adrDizin.hAN_SQL,BAGLAN.adrDizin.lOG,BAGLAN.adrDizin.lOGLAMA_YERI);
@@ -1290,9 +1210,7 @@ public class LOGIN extends JDialog {
 			if (s_CONN.Server_kontrol_L(sBilgi) == true)   
 			{
 				if (s_CONN.Dosya_kontrol_L(sBilgi) == false)
-				{
 					FAT_DOS_VAR = false;
-				}
 				else
 				{
 					lOGG_AKTAR("Fatura",BAGLAN.fatDizin.hAN_SQL,BAGLAN.fatDizin.lOG,BAGLAN.fatDizin.lOGLAMA_YERI);
@@ -1306,9 +1224,7 @@ public class LOGIN extends JDialog {
 		else if (s_CONN.Server_kontrol_S(sBilgi) == true )
 		{
 			if (s_CONN.Dosya_kontrol_S(sBilgi) == false)
-			{
 				FAT_DOS_VAR = false;
-			}
 			else
 			{
 			lOGG_AKTAR("Fatura",BAGLAN.fatDizin.hAN_SQL,BAGLAN.fatDizin.lOG,BAGLAN.fatDizin.lOGLAMA_YERI);
@@ -1317,9 +1233,7 @@ public class LOGIN extends JDialog {
 			}
 		}
 		else
-		{
 			OBS_SIS_2025_ANA_CLASS.FAT_CONN = false;
-		}
 	}
 	void kam_calisma_dizini_oku() throws ClassNotFoundException, SQLException
 	{
@@ -1342,9 +1256,7 @@ public class LOGIN extends JDialog {
 			if (s_CONN.Server_kontrol_L(sBilgi) == true)   
 			{
 				if (s_CONN.Dosya_kontrol_L(sBilgi) == false)
-				{
 					KAM_DOS_VAR = false;
-				}
 				else
 				{
 					lOGG_AKTAR("Kambiyo",BAGLAN.kamDizin.hAN_SQL,BAGLAN.kamDizin.lOG,BAGLAN.kamDizin.lOGLAMA_YERI);
@@ -1353,16 +1265,12 @@ public class LOGIN extends JDialog {
 				}
 			}
 			else
-			{
 				OBS_SIS_2025_ANA_CLASS.KAM_CONN = false;
-			}
 		}
 		else if (s_CONN.Server_kontrol_S(sBilgi) == true )
 		{
 			if (s_CONN.Dosya_kontrol_S(sBilgi) == false)
-			{
 				KAM_DOS_VAR = false;
-			}
 			else
 			{
 			lOGG_AKTAR("Kambiyo",BAGLAN.kamDizin.hAN_SQL,BAGLAN.kamDizin.lOG,BAGLAN.kamDizin.lOGLAMA_YERI);
@@ -1371,9 +1279,7 @@ public class LOGIN extends JDialog {
 			}
 		}
 		else
-		{
 			OBS_SIS_2025_ANA_CLASS.KAM_CONN = false;
-		}
 	}
 	void gun_calisma_dizini_oku() throws ClassNotFoundException, SQLException
 	{
@@ -1396,9 +1302,7 @@ public class LOGIN extends JDialog {
 			if (s_CONN.Server_kontrol_L(sBilgi) == true)   
 			{
 				if (s_CONN.Dosya_kontrol_L(sBilgi) == false)
-				{
 					GUN_DOS_VAR = false;
-				}
 				else
 				{
 					lOGG_AKTAR("Gunluk",BAGLAN.gunDizin.hAN_SQL,BAGLAN.gunDizin.lOG,BAGLAN.gunDizin.lOGLAMA_YERI);
@@ -1423,9 +1327,7 @@ public class LOGIN extends JDialog {
 			}
 		}
 		else
-		{
 			OBS_SIS_2025_ANA_CLASS.GUN_CONN = false;
-		}
 	}
 	void ker_calisma_dizini_oku() throws ClassNotFoundException, SQLException
 	{
@@ -1448,9 +1350,7 @@ public class LOGIN extends JDialog {
 			if (s_CONN.Server_kontrol_L(sBilgi) == true)   
 			{
 				if (s_CONN.Dosya_kontrol_L(sBilgi) == false)
-				{
 					KER_DOS_VAR = false;
-				}
 				else
 				{
 					lOGG_AKTAR("Kereste",BAGLAN.kerDizin.hAN_SQL,BAGLAN.kerDizin.lOG,BAGLAN.kerDizin.lOGLAMA_YERI);
@@ -1459,16 +1359,12 @@ public class LOGIN extends JDialog {
 				}
 			}
 			else
-			{
 				OBS_SIS_2025_ANA_CLASS.KER_CONN = false;
-			}
 		}
 		else if (s_CONN.Server_kontrol_S(sBilgi) == true )
 		{
 			if (s_CONN.Dosya_kontrol_S(sBilgi) == false)
-			{
 				KER_DOS_VAR = false;
-			}
 			else
 			{
 			lOGG_AKTAR("Kereste",BAGLAN.kerDizin.hAN_SQL,BAGLAN.kerDizin.lOG,BAGLAN.kerDizin.lOGLAMA_YERI);
@@ -1477,9 +1373,7 @@ public class LOGIN extends JDialog {
 			}
 		}
 		else
-		{
 			OBS_SIS_2025_ANA_CLASS.KER_CONN = false;
-		}
 	}
 	void Lgn_Progres_Bar(int max, int deger) throws InterruptedException
 	{
@@ -1502,9 +1396,7 @@ public class LOGIN extends JDialog {
 			//System.out.println(ip);
 			if(ip.equals("78.189.76.247")) return;
 			if (oac.glb.internet_kontrol() == false)
-			{
 				return ;
-			}
 			String eskitar = "" ;
 			String eskiver = "";
 			String yeniver = "";
@@ -1517,13 +1409,9 @@ public class LOGIN extends JDialog {
 			while((line = bufferedReader.readLine()) != null) {
 				counter++;
 				if(counter == 1)
-				{
 					eskitar = line.toString();
-				}
 				else  if(counter == 2)
-				{
 					eskiver = line.toString();
-				}
 			}   
 			bufferedReader.close();
 			//
@@ -1597,13 +1485,9 @@ public class LOGIN extends JDialog {
 			while((line = bufferedReader.readLine()) != null) {
 				counter++;
 				if(counter == 1)
-				{
 					yenitar = line.toString();
-				}
 				else  if(counter == 2)
-				{
 					yeniver = line.toString();
-				}
 			}   
 			bufferedReader.close();
 			if (eskiver.equals(yeniver))

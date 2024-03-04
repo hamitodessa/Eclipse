@@ -340,7 +340,7 @@ public class COKLU_IMALAT extends JInternalFrame {
 				super.getTableCellRendererComponent(table, value, isSelected, hasFocus,
 						row, column);
 				Font font =new Font(table.getFont().getFontName(),Font.BOLD ,table.getFont().getSize());
-				setForeground(new Color(0, 0, 139));
+				//setForeground(new Color(0, 0, 139));
 				setFont(font);
 				return this;
 			}
@@ -383,7 +383,7 @@ public class COKLU_IMALAT extends JInternalFrame {
 			{
 				super.getTableCellRendererComponent(table, value, isSelected, hasFocus,  row, column);
 				setFont(font);
-				setForeground(Color.BLUE);
+				//setForeground(Color.BLUE);
 				return this;
 			}
 		};
@@ -403,9 +403,7 @@ public class COKLU_IMALAT extends JInternalFrame {
 				for (int  i = 0 ; i <= table.getRowCount() -1 ; i ++)
 				{
 					if (! model.getValueAt(i,1).toString().equals(""))
-					{
 						urunsayi += 1;
-					}
 				}
 				label_3.setText( FORMATLAMA.doub_0(urunsayi));
 				//**********

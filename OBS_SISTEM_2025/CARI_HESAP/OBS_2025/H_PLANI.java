@@ -609,7 +609,7 @@ public class H_PLANI extends JInternalFrame {
 		InputMap txtbhesMap = editorComponent.getInputMap(editorComponent.WHEN_FOCUSED);
 		txtbhesMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_H, KeyEvent.CTRL_DOWN_MASK), "none");
 		
-		cmbKodu.getEditor().getEditorComponent().setForeground(new Color(0, 0, 128));
+		//cmbKodu.getEditor().getEditorComponent().setForeground(new Color(0, 0, 128));
 		editorComponent.setFont(new Font("Tahoma", Font.BOLD, 12));
 		editorComponent.addKeyListener(new KeyAdapter() {
 			@Override
@@ -625,14 +625,10 @@ public class H_PLANI extends JInternalFrame {
 				{
 					String value =  list.getModel().getElementAt(i).toString();
 					if ( value.toString().startsWith(cmbKodu.getEditor().getItem().toString())  )
-					{
 						result = true;
-					}
 				}
 				if (result == false)
-				{
 					cmbKodu.getEditor().setItem( cmbKodu.getEditor().getItem().toString().substring(0, cmbKodu.getEditor().getItem().toString().length() - 1));
-				}
 				//***********************************
 				for (int i = 0; i < list.getModel().getSize(); i++)
 				{
@@ -657,7 +653,6 @@ public class H_PLANI extends JInternalFrame {
 				if(e.getKeyCode() == 27)
 				{
 					cmbKodu.getEditor().setItem("");
-					
 						try {
 							//KERESTE_CIKIS.kod_aciklama_bul(editorComponent.getText().toString());
 						} catch (Exception e1) {
@@ -668,7 +663,6 @@ public class H_PLANI extends JInternalFrame {
 			}
 		});
 		AUTO_HESAP_KODU.auto_doldur(cmbKodu);
-		
 		cmbKodu.setBounds(102, 88, 137, 22);
 		panel.add(cmbKodu);
 		

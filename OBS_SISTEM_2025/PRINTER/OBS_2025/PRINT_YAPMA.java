@@ -65,7 +65,6 @@ public class PRINT_YAPMA extends JInternalFrame {
 	private static ArrayList<Degisken>  students = new ArrayList<Degisken>();
 	
 	private static File file ;
-	private static File fileTahsilat ;
 
 	public PRINT_YAPMA() throws PropertyVetoException {
 		addInternalFrameListener(new InternalFrameAdapter() {
@@ -417,7 +416,6 @@ public class PRINT_YAPMA extends JInternalFrame {
 					GLOBAL.cek_print_dosya_olustur();
 				else
 					GLOBAL.cek_dos_kayit_sil();
-				fileTahsilat = new File(GLOBAL.SURUCU + GLOBAL.TAH_CEK_DOSYA);
 				c_Access.tah_cek_kayit_aktar(TAH_FISI.textEvrakNo.getText(),TAH_FISI.cmbCins.getSelectedIndex());
 				rs = GLOBAL.tah_cek_oku(TAH_FISI.textEvrakNo.getText(),TAH_FISI.cmbCins.getSelectedIndex());
 				clientDoc.getDatabaseController().setDataSource(rs);
@@ -2972,7 +2970,8 @@ public class PRINT_YAPMA extends JInternalFrame {
 			reportViewer.init();
 			reportViewer.start();
 			file.delete() ;
-			fileTahsilat.delete();
+			GLOBAL glb = new GLOBAL();
+			glb.dos_sil(GLOBAL.SURUCU + GLOBAL.TAH_CEK_DOSYA);
 			GuiUtil.setWaitCursor(reportViewer,false);
 		}
 		catch (Exception ex)

@@ -45,9 +45,7 @@ import java.text.DecimalFormat;
 import java.util.Date;
 import java.awt.event.ActionEvent;
 import javax.swing.JTable;
-import java.awt.Color;
 import javax.swing.ImageIcon;
-import javax.swing.border.EtchedBorder;
 import javax.swing.SwingConstants;
 
 @SuppressWarnings("serial")
@@ -158,7 +156,8 @@ public class URETIM_FIS_NO extends JInternalFrame {
 		panel.add(chckbxNewCheckBox);
 
 		panel_1 = new JPanel();
-		panel_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Degiskenler", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(65, 105, 225)));
+		panel_1.setBorder(new TitledBorder(null, "Degiskenler", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		//panel_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Degiskenler", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(65, 105, 225)));
 		panel_1.setBounds(336, 5, 517, 50);
 		panel_1.setVisible(false);
 		panel.add(panel_1);
@@ -217,7 +216,7 @@ public class URETIM_FIS_NO extends JInternalFrame {
 		splitPane_1.setRightComponent(panel_3);
 		panel_3.setMinimumSize(new Dimension(0, 25));
 		panel_3.setMaximumSize(new Dimension(0, 25));
-		panel_3.setBorder(new LineBorder(new Color(0, 191, 255)));
+		panel_3.setBorder(new LineBorder(null));
 		panel_3.setLayout(null);
 
 		JLabel lblNewLabel_1 = new JLabel("Kayit Sayisi  :");
@@ -226,7 +225,7 @@ public class URETIM_FIS_NO extends JInternalFrame {
 		panel_3.add(lblNewLabel_1);
 
 		lbladet = new JLabel("0");
-		lbladet.setForeground(Color.BLUE);
+		//lbladet.setForeground(Color.BLUE);
 		lbladet.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lbladet.setBounds(98, 5, 46, 14);
 		panel_3.add(lbladet);

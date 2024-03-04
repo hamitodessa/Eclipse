@@ -169,7 +169,7 @@ public class ORTALAMA_FIAT extends JInternalFrame {
 		scrollPane.setViewportView(table);
 		
 		JPanel panel = new JPanel();
-		panel.setBorder(new LineBorder(new Color(0, 191, 255)));
+		panel.setBorder(new LineBorder(null));
 		panel.setMinimumSize(new Dimension(0, 25));
 		panel.setMaximumSize(new Dimension(0, 25));
 		splitPane.setRightComponent(panel);
@@ -180,7 +180,7 @@ public class ORTALAMA_FIAT extends JInternalFrame {
 		panel.add(lblNewLabel);
 		
 		lbladet = new JLabel("0");
-		lbladet.setForeground(new Color(0, 0, 128));
+		//lbladet.setForeground(new Color(0, 0, 128));
 		lbladet.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lbladet.setHorizontalAlignment(SwingConstants.LEFT);
 		lbladet.setBounds(100, 7, 71, 14);

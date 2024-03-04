@@ -25,7 +25,6 @@ import OBS_C_2025.TABLO_RENDERER;
 import raven.toast.Notifications;
 
 import java.awt.Font;
-import java.awt.Color;
 
 @SuppressWarnings({"serial","static-access"})
 public class EVRAK_FORMAT extends JInternalFrame {
@@ -48,7 +47,7 @@ public class EVRAK_FORMAT extends JInternalFrame {
 		setBounds(0, 0,396, 600);
 		
 		MaterialTabbed tabbedPane = new MaterialTabbed();
-		tabbedPane.setForeground(new Color(0, 0, 128));
+		//tabbedPane.setForeground(new Color(0, 0, 128));
 		tabbedPane.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		getContentPane().add(tabbedPane, BorderLayout.CENTER);
 		

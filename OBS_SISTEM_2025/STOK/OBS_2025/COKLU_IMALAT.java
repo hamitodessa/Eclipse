@@ -116,7 +116,7 @@ public class COKLU_IMALAT extends JInternalFrame {
 		panel.add(tabbedPane_1, BorderLayout.CENTER);
 
 		JPanel panel_2 = new JPanel();
-		panel_2.setBorder(new LineBorder(new Color(0, 191, 255)));
+		panel_2.setBorder(new LineBorder(null));
 		tabbedPane_1.addTab("Imalat Bilgileri", null, panel_2, null);
 		tabbedPane_1.setEnabledAt(0, true);
 		panel_2.setLayout(null);
@@ -175,7 +175,7 @@ public class COKLU_IMALAT extends JInternalFrame {
 		panel_2.add(dtc);
 
 		cmbdepo = new JComboBox<String>();
-		cmbdepo.setForeground(new Color(0, 0, 128));
+		//cmbdepo.setForeground(new Color(0, 0, 128));
 		cmbdepo.setFont(new Font("Tahoma", Font.BOLD, 12));
 		cmbdepo.setBounds(201, 40, 153, 22);
 		panel_2.add(cmbdepo);
@@ -191,14 +191,14 @@ public class COKLU_IMALAT extends JInternalFrame {
 		panel_2.add(label_1);
 
 		cmbaltgrup = new JComboBox<String>();
-		cmbaltgrup.setForeground(new Color(0, 0, 128));
+		//cmbaltgrup.setForeground(new Color(0, 0, 128));
 		cmbaltgrup.setFont(new Font("Tahoma", Font.BOLD, 12));
 		cmbaltgrup.setEnabled(false);
 		cmbaltgrup.setBounds(451, 40, 162, 22);
 		panel_2.add(cmbaltgrup);
 
 		cmbanagrup = new JComboBox<String>();
-		cmbanagrup.setForeground(new Color(0, 0, 128));
+		//cmbanagrup.setForeground(new Color(0, 0, 128));
 		cmbanagrup.setFont(new Font("Tahoma", Font.BOLD, 12));
 		cmbanagrup.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -236,7 +236,7 @@ public class COKLU_IMALAT extends JInternalFrame {
 
 
 		JPanel panel_4 = new JPanel();
-		panel_4.setBorder(new LineBorder(new Color(0, 191, 255)));
+		panel_4.setBorder(new LineBorder(null));
 		tabbedPane_1.addTab("Aciklama", null, panel_4, null);
 		panel_4.setLayout(null);
 
@@ -418,7 +418,7 @@ public class COKLU_IMALAT extends JInternalFrame {
 		anaPane.setRightComponent(panel_1);
 		panel_1.setMinimumSize(new Dimension(0, 25));
 		panel_1.setMaximumSize(new Dimension(0, 25));
-		panel_1.setBorder(new LineBorder(new Color(0, 191, 255)));
+		panel_1.setBorder(new LineBorder(null));
 		panel_1.setLayout(null);
 
 		JLabel label_2 = new JLabel("Satir Sayisi :");
@@ -427,7 +427,7 @@ public class COKLU_IMALAT extends JInternalFrame {
 		panel_1.add(label_2);
 
 		label_3 = new JLabel("0");
-		label_3.setForeground(new Color(0, 0, 128));
+		//label_3.setForeground(new Color(0, 0, 128));
 		label_3.setFont(new Font("Tahoma", Font.BOLD, 11));
 		label_3.setBounds(100, 3, 46, 14);
 		panel_1.add(label_3);

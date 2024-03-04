@@ -112,7 +112,7 @@ public class STK_YIL_SONU extends JInternalFrame {
 		splitPaneana.setLeftComponent(splitPane);
 		
 		JPanel panel = new JPanel();
-		panel.setBorder(new LineBorder(new Color(0, 191, 255)));
+		panel.setBorder(new LineBorder(null));
 		panel.setMinimumSize(new Dimension(0, 70));
 		panel.setMaximumSize(new Dimension(0, 70));
 		splitPane.setLeftComponent(panel);
@@ -218,7 +218,8 @@ public class STK_YIL_SONU extends JInternalFrame {
 		panel.add(dtc);
 		
 		JPanel panel_1 = new JPanel();
-		panel_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Aktarilacak  Dosya Kodu", TitledBorder.LEADING, TitledBorder.TOP, null, SystemColor.textHighlight));
+		panel_1.setBorder(new TitledBorder(null,"Aktarilacak  Dosya Kodu", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		//panel_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Aktarilacak  Dosya Kodu", TitledBorder.LEADING, TitledBorder.TOP, null, SystemColor.textHighlight));
 		panel_1.setBounds(486, 8, 161, 51);
 		panel.add(panel_1);
 		panel_1.setLayout(null);
@@ -231,7 +232,8 @@ public class STK_YIL_SONU extends JInternalFrame {
 		
 		JPanel panel_2 = new JPanel();
 		panel_2.setLayout(null);
-		panel_2.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Karsi Hesap Kodu", TitledBorder.LEADING, TitledBorder.TOP, null, SystemColor.textHighlight));
+		panel_2.setBorder(new TitledBorder(null,"Karsi Hesap Kodu", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		//panel_2.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Karsi Hesap Kodu", TitledBorder.LEADING, TitledBorder.TOP, null, SystemColor.textHighlight));
 		panel_2.setBounds(655, 8, 416, 51);
 		panel.add(panel_2);
 		
@@ -275,7 +277,7 @@ public class STK_YIL_SONU extends JInternalFrame {
 		textField_1.setColumns(10);
 		
 		lblNewLabel_1 = new JLabel("...");
-		lblNewLabel_1.setForeground(new Color(0, 0, 139));
+		//lblNewLabel_1.setForeground(new Color(0, 0, 139));
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblNewLabel_1.setBounds(130, 23, 276, 14);
 		panel_2.add(lblNewLabel_1);
@@ -384,7 +386,7 @@ public class STK_YIL_SONU extends JInternalFrame {
 		GRID_TEMIZLE.grid_temizle(table);
 		
 		JPanel panel_3 = new JPanel();
-		panel_3.setBorder(new LineBorder(new Color(0, 191, 255)));
+		panel_3.setBorder(new LineBorder(null));
 		panel_3.setMinimumSize(new Dimension(0, 25));
 		panel_3.setMaximumSize(new Dimension(0, 25));
 		
@@ -400,7 +402,7 @@ public class STK_YIL_SONU extends JInternalFrame {
 		lblNewLabel_3 = new JLabel("0");
 		lblNewLabel_3.setBounds(148, 5, 46, 14);
 		panel_3.add(lblNewLabel_3);
-		lblNewLabel_3.setForeground(Color.BLUE);
+		//lblNewLabel_3.setForeground(Color.BLUE);
 		lblNewLabel_3.setFont(new Font("Tahoma", Font.BOLD, 11));
 	//***********
 				table.getModel().addTableModelListener(	(TableModelListener) new TableModelListener() 

@@ -353,7 +353,7 @@ public class ENVANTER extends JInternalFrame {
 		scrollPane_5.setViewportView(table_4);
 
 		JPanel panel = new JPanel();
-		panel.setBorder(new LineBorder(new Color(0, 191, 255)));
+		panel.setBorder(new LineBorder(null));
 		panel.setMinimumSize(new Dimension(0, 25));
 		panel.setMaximumSize(new Dimension(0, 25));
 		splitPane.setRightComponent(panel);
@@ -361,21 +361,21 @@ public class ENVANTER extends JInternalFrame {
 
 		lbl3 = new JLabel("0.000");
 		lbl3.setHorizontalAlignment(SwingConstants.RIGHT);
-		lbl3.setForeground(new Color(0, 0, 128));
+		//lbl3.setForeground(new Color(0, 0, 128));
 		lbl3.setFont(new Font("Arial Narrow", Font.BOLD, 12));
 		lbl3.setBounds(589, 5, 107, 14);
 		panel.add(lbl3);
 
 		lbl2 = new JLabel("0.00");
 		lbl2.setHorizontalAlignment(SwingConstants.RIGHT);
-		lbl2.setForeground(new Color(0, 0, 128));
+		//lbl2.setForeground(new Color(0, 0, 128));
 		lbl2.setFont(new Font("Arial Narrow", Font.BOLD, 12));
 		lbl2.setBounds(489, 5, 107, 14);
 		panel.add(lbl2);
 
 		lbl1 = new JLabel("0.000");
 		lbl1.setHorizontalAlignment(SwingConstants.RIGHT);
-		lbl1.setForeground(new Color(0, 0, 128));
+		//lbl1.setForeground(new Color(0, 0, 128));
 		lbl1.setFont(new Font("Arial Narrow", Font.BOLD, 12));
 		lbl1.setBounds(380, 5, 117, 14);
 		panel.add(lbl1);
@@ -385,7 +385,7 @@ public class ENVANTER extends JInternalFrame {
 		panel.add(lblNewLabel);
 
 		lbladet = new JLabel("0");
-		lbladet.setForeground(new Color(0, 0, 128));
+		//lbladet.setForeground(new Color(0, 0, 128));
 		lbladet.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lbladet.setHorizontalAlignment(SwingConstants.LEFT);
 		lbladet.setBounds(101, 5, 61, 14);
@@ -393,28 +393,28 @@ public class ENVANTER extends JInternalFrame {
 
 		lbl4 = new JLabel("0.00");
 		lbl4.setHorizontalAlignment(SwingConstants.RIGHT);
-		lbl4.setForeground(new Color(0, 0, 128));
+		//lbl4.setForeground(new Color(0, 0, 128));
 		lbl4.setFont(new Font("Arial Narrow", Font.BOLD, 12));
 		lbl4.setBounds(690, 5, 107, 14);
 		panel.add(lbl4);
 
 		lbl5 = new JLabel("0.00");
 		lbl5.setHorizontalAlignment(SwingConstants.RIGHT);
-		lbl5.setForeground(new Color(0, 0, 128));
+		//lbl5.setForeground(new Color(0, 0, 128));
 		lbl5.setFont(new Font("Arial Narrow", Font.BOLD, 12));
 		lbl5.setBounds(790, 5, 107, 14);
 		panel.add(lbl5);
 
 		lbl6 = new JLabel("0.000");
 		lbl6.setHorizontalAlignment(SwingConstants.RIGHT);
-		lbl6.setForeground(new Color(0, 0, 128));
+		//lbl6.setForeground(new Color(0, 0, 128));
 		lbl6.setFont(new Font("Arial Narrow", Font.BOLD, 12));
 		lbl6.setBounds(889, 5, 107, 14);
 		panel.add(lbl6);
 
 		lbl7 = new JLabel("0.00");
 		lbl7.setHorizontalAlignment(SwingConstants.RIGHT);
-		lbl7.setForeground(new Color(0, 0, 128));
+		//lbl7.setForeground(new Color(0, 0, 128));
 		lbl7.setFont(new Font("Arial Narrow", Font.BOLD, 16));
 		lbl7.setBounds(1050, 5, 145, 14);
 		panel.add(lbl7);

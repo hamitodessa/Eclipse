@@ -11,7 +11,6 @@ import javax.swing.JFileChooser;
 import javax.swing.JInternalFrame;
 import javax.swing.JSplitPane;
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Dimension;
 
 import javax.swing.JPanel;
@@ -166,7 +165,7 @@ public class IMALAT_RAPORLAMA extends JInternalFrame {
 		scrollPane.setViewportView(table);
 		
 		JPanel panel = new JPanel();
-		panel.setBorder(new LineBorder(new Color(0, 191, 255)));
+		panel.setBorder(new LineBorder(null));
 		panel.setMinimumSize(new Dimension(0, 25));
 		panel.setMaximumSize(new Dimension(0, 25));
 		splitPane.setRightComponent(panel);
@@ -178,21 +177,21 @@ public class IMALAT_RAPORLAMA extends JInternalFrame {
 		
 		lbladet = new JLabel("0");
 		lbladet.setHorizontalAlignment(SwingConstants.LEFT);
-		lbladet.setForeground(new Color(0, 0, 128));
+		//lbladet.setForeground(new Color(0, 0, 128));
 		lbladet.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lbladet.setBounds(100, 5, 71, 14);
 		panel.add(lbladet);
 		
 		lblagirlik = new JLabel("0.000");
 		lblagirlik.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblagirlik.setForeground(new Color(0, 0, 128));
+		//lblagirlik.setForeground(new Color(0, 0, 128));
 		lblagirlik.setFont(new Font("Tahoma", Font.BOLD, 12));
 		lblagirlik.setBounds(553, 5, 100, 14);
 		panel.add(lblagirlik);
 		
 		lblmiktar = new JLabel("0.000");
 		lblmiktar.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblmiktar.setForeground(new Color(0, 0, 128));
+		//lblmiktar.setForeground(new Color(0, 0, 128));
 		lblmiktar.setFont(new Font("Tahoma", Font.BOLD, 12));
 		lblmiktar.setBounds(405, 5, 95, 14);
 		panel.add(lblmiktar);

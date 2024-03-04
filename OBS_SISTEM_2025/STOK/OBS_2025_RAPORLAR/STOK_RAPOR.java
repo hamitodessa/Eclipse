@@ -1,7 +1,6 @@
 package OBS_2025_RAPORLAR;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.KeyAdapter;
@@ -167,7 +166,7 @@ public class STOK_RAPOR extends JInternalFrame {
 		scrollPane.setViewportView(table);
 		
 		JPanel panel = new JPanel();
-		panel.setBorder(new LineBorder(new Color(0, 191, 255)));
+		panel.setBorder(new LineBorder(null));
 		panel.setMinimumSize(new Dimension(0, 25));
 		panel.setMaximumSize(new Dimension(0, 25));
 		splitPane.setRightComponent(panel);
@@ -175,21 +174,21 @@ public class STOK_RAPOR extends JInternalFrame {
 		
 		lbl3 = new JLabel("0.000");
 		lbl3.setHorizontalAlignment(SwingConstants.RIGHT);
-		lbl3.setForeground(new Color(0, 0, 128));
+		//lbl3.setForeground(new Color(0, 0, 128));
 		lbl3.setFont(new Font("Tahoma", Font.BOLD, 12));
 		lbl3.setBounds(619, 5, 107, 14);
 		panel.add(lbl3);
 		
 		lbl2 = new JLabel("0.000");
 		lbl2.setHorizontalAlignment(SwingConstants.RIGHT);
-		lbl2.setForeground(new Color(0, 0, 128));
+		//lbl2.setForeground(new Color(0, 0, 128));
 		lbl2.setFont(new Font("Tahoma", Font.BOLD, 12));
 		lbl2.setBounds(509, 5, 107, 14);
 		panel.add(lbl2);
 		
 		lbl1 = new JLabel("0.000");
 		lbl1.setHorizontalAlignment(SwingConstants.RIGHT);
-		lbl1.setForeground(new Color(0, 0, 128));
+		//lbl1.setForeground(new Color(0, 0, 128));
 		lbl1.setFont(new Font("Tahoma", Font.BOLD, 12));
 		lbl1.setBounds(390, 5, 117, 14);
 		panel.add(lbl1);
@@ -199,7 +198,7 @@ public class STOK_RAPOR extends JInternalFrame {
 		panel.add(lblNewLabel);
 		
 		lbladet = new JLabel("0");
-		lbladet.setForeground(new Color(0, 0, 128));
+		//lbladet.setForeground(new Color(0, 0, 128));
 		lbladet.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lbladet.setHorizontalAlignment(SwingConstants.LEFT);
 		lbladet.setBounds(100, 5, 40, 14);
@@ -207,21 +206,21 @@ public class STOK_RAPOR extends JInternalFrame {
 		
 		lbl4 = new JLabel("0.000");
 		lbl4.setHorizontalAlignment(SwingConstants.RIGHT);
-		lbl4.setForeground(new Color(0, 0, 128));
+		//lbl4.setForeground(new Color(0, 0, 128));
 		lbl4.setFont(new Font("Tahoma", Font.BOLD, 12));
 		lbl4.setBounds(730, 5, 107, 14);
 		panel.add(lbl4);
 		
 		lbl5 = new JLabel("0.000");
 		lbl5.setHorizontalAlignment(SwingConstants.RIGHT);
-		lbl5.setForeground(new Color(0, 0, 128));
+		//lbl5.setForeground(new Color(0, 0, 128));
 		lbl5.setFont(new Font("Tahoma", Font.BOLD, 12));
 		lbl5.setBounds(840, 5, 107, 14);
 		panel.add(lbl5);
 		
 		lbl6 = new JLabel("0.000");
 		lbl6.setHorizontalAlignment(SwingConstants.RIGHT);
-		lbl6.setForeground(new Color(0, 0, 128));
+		//lbl6.setForeground(new Color(0, 0, 128));
 		lbl6.setFont(new Font("Tahoma", Font.BOLD, 12));
 		lbl6.setBounds(949, 5, 107, 14);
 		panel.add(lbl6);

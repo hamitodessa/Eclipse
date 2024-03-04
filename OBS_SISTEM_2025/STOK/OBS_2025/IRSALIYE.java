@@ -178,7 +178,7 @@ public class IRSALIYE extends JInternalFrame {
 		
 		
 		JPanel panel_2 = new JPanel();
-		panel_2.setBorder(new LineBorder(new Color(0, 191, 255)));
+		panel_2.setBorder(new LineBorder(null));
 		tabbedPane_1.addTab("Irsaliye Bilgileri", null, panel_2, null);
 		panel_2.setLayout(null);
 
@@ -315,7 +315,7 @@ public class IRSALIYE extends JInternalFrame {
 		
 		lblNewLabel_3 = new JLabel(".....");
 		lblNewLabel_3.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblNewLabel_3.setForeground(new Color(25, 25, 112));
+		//lblNewLabel_3.setForeground(new Color(25, 25, 112));
 		lblNewLabel_3.setBounds(89, 62, 284, 14);
 		panel_2.add(lblNewLabel_3);
 		
@@ -453,7 +453,7 @@ public class IRSALIYE extends JInternalFrame {
 		
 		lblNewLabel_6 = new JLabel(".....");
 		lblNewLabel_6.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblNewLabel_6.setForeground(new Color(139, 0, 0));
+		//lblNewLabel_6.setForeground(new Color(139, 0, 0));
 		lblNewLabel_6.setBounds(383, 62, 314, 14);
 		panel_2.add(lblNewLabel_6);
 		
@@ -475,7 +475,7 @@ public class IRSALIYE extends JInternalFrame {
 		panel_2.add(lblNewLabel_8);
 		
 		cmbfiat = new JComboBox<String>();
-		cmbfiat.setForeground(new Color(0, 0, 128));
+		//cmbfiat.setForeground(new Color(0, 0, 128));
 		cmbfiat.setFont(new Font("Tahoma", Font.BOLD, 12));
 		cmbfiat.setModel(new DefaultComboBoxModel<String>(new String[] {"", "Fiat_1", "Fiat_2", "Fiat_3", "Son Alis/Satis Fiati"}));
 		cmbfiat.setBounds(797, 58, 148, 22);
@@ -487,7 +487,7 @@ public class IRSALIYE extends JInternalFrame {
 		panel_2.add(lblAnaGrup);
 		
 		cmbanagrup = new JComboBox<String>();
-		cmbanagrup.setForeground(new Color(0, 0, 128));
+		//cmbanagrup.setForeground(new Color(0, 0, 128));
 		cmbanagrup.setFont(new Font("Tahoma", Font.BOLD, 12));
 		cmbanagrup.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -503,7 +503,7 @@ public class IRSALIYE extends JInternalFrame {
 		panel_2.add(lblAltGrup);
 		
 		cmbaltgrup = new JComboBox<String>();
-		cmbaltgrup.setForeground(new Color(0, 0, 128));
+		//cmbaltgrup.setForeground(new Color(0, 0, 128));
 		cmbaltgrup.setFont(new Font("Tahoma", Font.BOLD, 12));
 		cmbaltgrup.setBounds(797, 33, 148, 22);
 		panel_2.add(cmbaltgrup);
@@ -530,7 +530,7 @@ public class IRSALIYE extends JInternalFrame {
 		panel_2.add(txtkur);
 		
 		JPanel panel_9 = new JPanel();
-		panel_9.setBorder(new LineBorder(new Color(0, 191, 255)));
+		panel_9.setBorder(new LineBorder(null));
 		tabbedPane_1.addTab("Fatura Bilgileri", null, panel_9, null);
 		panel_9.setLayout(null);
 
@@ -562,7 +562,7 @@ public class IRSALIYE extends JInternalFrame {
 	
 		
 		JPanel panel_4 = new JPanel();
-		panel_4.setBorder(new LineBorder(new Color(0, 191, 255)));
+		panel_4.setBorder(new LineBorder(null));
 		tabbedPane_1.addTab("Yazici Bilgileri", null, panel_4, null);
 		panel_4.setLayout(null);
 		
@@ -682,7 +682,7 @@ public class IRSALIYE extends JInternalFrame {
 
 		
 		lblNewLabel_17 = new JLabel(".....");
-		lblNewLabel_17.setForeground(new Color(0, 0, 139));
+		//lblNewLabel_17.setForeground(new Color(0, 0, 139));
 		lblNewLabel_17.setBounds(10, 45, 237, 14);
 		panel_7.add(lblNewLabel_17);
 		
@@ -718,8 +718,8 @@ public class IRSALIYE extends JInternalFrame {
 		panel_7.add(btnNewButton_4);
 
 		//*********************************************************NORMAL *****************************************************
-		  JPanel panel_5 = new JPanel(); panel_5.setBorder(new LineBorder(new Color(0,
-		  191, 255))); tabbedPane_1.addTab("Ek Bilgi", null, panel_5, null);
+		  JPanel panel_5 = new JPanel(); panel_5.setBorder(new LineBorder(null)); 
+		  tabbedPane_1.addTab("Ek Bilgi", null, panel_5, null);
 		  panel_5.setLayout(null);
 		  
 		  JLabel lblNewLabel_18 = new JLabel("1 -"); lblNewLabel_18.setFont(new
@@ -758,7 +758,7 @@ public class IRSALIYE extends JInternalFrame {
 		panel_3.setLayout(null);
 		
 		JPanel panel_71 = new JPanel();
-		panel_71.setBorder(new LineBorder(new Color(0, 191, 255)));
+		panel_71.setBorder(new LineBorder(null));
 		panel_71.setBounds(2, 1, 1158, 21);
 		panel_71.setMinimumSize(new Dimension(0, 25));
 		panel_71.setMaximumSize(new Dimension(0,25));
@@ -770,21 +770,21 @@ public class IRSALIYE extends JInternalFrame {
 		panel_71.add(lblNewLabel);
 		
 		lblNewLabel_13 = new JLabel("0");
-		lblNewLabel_13.setForeground(new Color(139, 0, 0));
+		//lblNewLabel_13.setForeground(new Color(139, 0, 0));
 		lblNewLabel_13.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblNewLabel_13.setBounds(104, 3, 46, 14);
 		panel_71.add(lblNewLabel_13);
 		
 		lblmiktar = new JLabel("0.000");
 		lblmiktar.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblmiktar.setForeground(new Color(139, 0, 0));
+		//lblmiktar.setForeground(new Color(139, 0, 0));
 		lblmiktar.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblmiktar.setBounds(571, 3, 102, 14);
 		panel_71.add(lblmiktar);
 		
 		lbltutar = new JLabel("0.00");
 		lbltutar.setHorizontalAlignment(SwingConstants.RIGHT);
-		lbltutar.setForeground(new Color(139, 0, 0));
+		//lbltutar.setForeground(new Color(139, 0, 0));
 		lbltutar.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lbltutar.setBounds(809, 3, 125, 14);
 		panel_71.add(lbltutar);
@@ -794,7 +794,7 @@ public class IRSALIYE extends JInternalFrame {
 		panel_3.add(tabbedPane_2);
 		
 		JPanel panel_1 = new JPanel();
-		panel_1.setBorder(new LineBorder(new Color(0, 191, 255)));
+		panel_1.setBorder(new LineBorder(null));
 		tabbedPane_2.addTab("Toplamlar", null, panel_1, null);
 		panel_1.setLayout(null);
 		
@@ -814,14 +814,14 @@ public class IRSALIYE extends JInternalFrame {
 		panel_1.add(lblNewLabel_12);
 		
 		lblNewLabel_20 = new JLabel("0.00");
-		lblNewLabel_20.setForeground(new Color(0, 0, 255));
+		//lblNewLabel_20.setForeground(new Color(0, 0, 255));
 		lblNewLabel_20.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		lblNewLabel_20.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblNewLabel_20.setBounds(1019, 11, 109, 14);
 		panel_1.add(lblNewLabel_20);
 		
 		label = new JLabel("0.00");
-		label.setForeground(new Color(0, 0, 128));
+		//label.setForeground(new Color(0, 0, 128));
 		label.setFont(new Font("Tahoma", Font.BOLD, 12));
 		label.setHorizontalAlignment(SwingConstants.RIGHT);
 		label.setBounds(1019, 39, 109, 14);
@@ -838,14 +838,14 @@ public class IRSALIYE extends JInternalFrame {
 		panel_1.add(lblNewLabel_22);
 		
 		label_1 = new JLabel("0.00");
-		label_1.setForeground(new Color(0, 0, 255));
+		//label_1.setForeground(new Color(0, 0, 255));
 		label_1.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		label_1.setHorizontalAlignment(SwingConstants.RIGHT);
 		label_1.setBounds(810, 11, 99, 14);
 		panel_1.add(label_1);
 		
 		label_2 = new JLabel("0.00");
-		label_2.setForeground(new Color(0, 0, 255));
+		//label_2.setForeground(new Color(0, 0, 255));
 		label_2.setHorizontalAlignment(SwingConstants.RIGHT);
 		label_2.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		label_2.setBounds(810, 39, 99, 14);
@@ -862,14 +862,14 @@ public class IRSALIYE extends JInternalFrame {
 		panel_1.add(lblTevdahtoptutar);
 		
 		label_3 = new JLabel("0.00");
-		label_3.setForeground(new Color(0, 0, 255));
+		//label_3.setForeground(new Color(0, 0, 255));
 		label_3.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		label_3.setHorizontalAlignment(SwingConstants.RIGHT);
 		label_3.setBounds(585, 11, 99, 14);
 		panel_1.add(label_3);
 		
 		label_4 = new JLabel("0.00");
-		label_4.setForeground(new Color(0, 0, 255));
+		//label_4.setForeground(new Color(0, 0, 255));
 		label_4.setHorizontalAlignment(SwingConstants.RIGHT);
 		label_4.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		label_4.setBounds(585, 39, 99, 14);
@@ -888,14 +888,14 @@ public class IRSALIYE extends JInternalFrame {
 		panel_1.add(lblIskonto);
 		
 		label_6 = new JLabel("0.00");
-		label_6.setForeground(new Color(0, 0, 255));
+		//label_6.setForeground(new Color(0, 0, 255));
 		label_6.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		label_6.setHorizontalAlignment(SwingConstants.RIGHT);
 		label_6.setBounds(411, 11, 99, 14);
 		panel_1.add(label_6);
 		
 		label_7 = new JLabel("0.00");
-		label_7.setForeground(new Color(0, 0, 255));
+		//label_7.setForeground(new Color(0, 0, 255));
 		label_7.setHorizontalAlignment(SwingConstants.RIGHT);
 		label_7.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		label_7.setBounds(411, 39, 99, 14);
@@ -907,7 +907,7 @@ public class IRSALIYE extends JInternalFrame {
 		panel_1.add(lblBakiye);
 		
 		label_8 = new JLabel(".....");
-		label_8.setForeground(new Color(0, 0, 128));
+		//label_8.setForeground(new Color(0, 0, 128));
 		label_8.setBounds(66, 50, 254, 14);
 		panel_1.add(label_8);
 		

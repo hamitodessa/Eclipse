@@ -84,7 +84,7 @@ public class E_FATURA extends JInternalFrame {
 		
 		MaterialTabbed tabbedPane = new MaterialTabbed();
 		tabbedPane.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		tabbedPane.setForeground(new Color(0, 0, 128));
+		//tabbedPane.setForeground(new Color(0, 0, 128));
 		getContentPane().add(tabbedPane, BorderLayout.CENTER);
 		
 		JPanel panel_1 = new JPanel();
@@ -98,7 +98,7 @@ public class E_FATURA extends JInternalFrame {
 		panel_1.add(splitPane, BorderLayout.CENTER);
 		
 		JPanel panel = new JPanel();
-		panel.setBorder(new LineBorder(new Color(0, 191, 255)));
+		panel.setBorder(new LineBorder(null));
 		panel.setMinimumSize(new Dimension(0, 40));
 		panel.setMaximumSize(new Dimension(0, 40));
 		splitPane.setLeftComponent(panel);

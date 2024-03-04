@@ -131,7 +131,7 @@ public class ZAYI extends JInternalFrame {
 		panel.add(tabbedPane_1, BorderLayout.CENTER);
 		
 		JPanel panel_2 = new JPanel();
-		panel_2.setBorder(new LineBorder(new Color(0, 191, 255)));
+		panel_2.setBorder(new LineBorder(null));
 		tabbedPane_1.addTab("Evrak Bilgileri", null, panel_2, null);
 		panel_2.setLayout(null);
 		
@@ -271,7 +271,7 @@ public class ZAYI extends JInternalFrame {
 		panel_2.add(lblAnaGrup);
 		
 		cmbanagrup = new JComboBox<String>();
-		cmbanagrup.setForeground(new Color(0, 0, 128));
+		//cmbanagrup.setForeground(new Color(0, 0, 128));
 		cmbanagrup.setFont(new Font("Tahoma", Font.BOLD, 12));
 		cmbanagrup.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -287,7 +287,7 @@ public class ZAYI extends JInternalFrame {
 		panel_2.add(lblAltGrup);
 		
 		cmbaltgrup = new JComboBox<String>();
-		cmbaltgrup.setForeground(new Color(0, 0, 128));
+		//cmbaltgrup.setForeground(new Color(0, 0, 128));
 		cmbaltgrup.setFont(new Font("Tahoma", Font.BOLD, 12));
 		cmbaltgrup.setBounds(543, 37, 148, 22);
 		panel_2.add(cmbaltgrup);
@@ -335,14 +335,14 @@ public class ZAYI extends JInternalFrame {
 		panel_2.add(lblDepo);
 		
 		cmbdepo = new JComboBox<String>();
-		cmbdepo.setForeground(new Color(0, 0, 128));
+		//cmbdepo.setForeground(new Color(0, 0, 128));
 		cmbdepo.setFont(new Font("Tahoma", Font.BOLD, 12));
 		cmbdepo.setBounds(278, 37, 148, 22);
 		panel_2.add(cmbdepo);
 		
 	
 		JPanel panel_5 = new JPanel();
-		panel_5.setBorder(new LineBorder(new Color(0, 191, 255)));
+		panel_5.setBorder(new LineBorder(null));
 		tabbedPane_1.addTab("Ek Bilgi", null, panel_5, null);
 		panel_5.setLayout(null);
 		
@@ -389,7 +389,7 @@ public class ZAYI extends JInternalFrame {
 		//***
 		JPanel panel_71 = new JPanel();
 		splitPane_11.setLeftComponent(panel_71);
-		panel_71.setBorder(new LineBorder(new Color(0, 191, 255)));
+		panel_71.setBorder(new LineBorder(null));
 		panel_71.setMinimumSize(new Dimension(0, 25));
 		panel_71.setMaximumSize(new Dimension(0,25));
 		
@@ -400,28 +400,28 @@ public class ZAYI extends JInternalFrame {
 		panel_71.add(lblNewLabel);
 		
 		lblNewLabel_13 = new JLabel("0");
-		lblNewLabel_13.setForeground(new Color(0, 0, 128));
+		//lblNewLabel_13.setForeground(new Color(0, 0, 128));
 		lblNewLabel_13.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblNewLabel_13.setBounds(122, 3, 50, 14);
 		panel_71.add(lblNewLabel_13);
 		
 		label_8 = new JLabel("0.000");
 		label_8.setHorizontalAlignment(SwingConstants.RIGHT);
-		label_8.setForeground(new Color(139, 0, 0));
+		//label_8.setForeground(new Color(139, 0, 0));
 		label_8.setFont(new Font("Tahoma", Font.BOLD, 11));
 		label_8.setBounds(471, 3, 102, 14);
 		panel_71.add(label_8);
 		
 		label_9 = new JLabel("0.00");
 		label_9.setHorizontalAlignment(SwingConstants.RIGHT);
-		label_9.setForeground(new Color(139, 0, 0));
+		//label_9.setForeground(new Color(139, 0, 0));
 		label_9.setFont(new Font("Tahoma", Font.BOLD, 11));
 		label_9.setBounds(659, 3, 109, 14);
 		panel_71.add(label_9);
 		/////////////////////////////////////////////////////////////////
 		JPanel panel_711 = new JPanel();
 		
-		panel_711.setBorder(new LineBorder(new Color(0, 191, 255)));
+		panel_711.setBorder(new LineBorder(null));
 		panel_711.setMinimumSize(new Dimension(0, 95));
 		panel_711.setMaximumSize(new Dimension(0,95));
 		panel_711.setLayout(new BorderLayout(0, 0));
@@ -434,7 +434,7 @@ public class ZAYI extends JInternalFrame {
 		panel_711.add(tabbedPane_2,BorderLayout.CENTER);
 
 		JPanel panel_1 = new JPanel();
-		panel_1.setBorder(new LineBorder(new Color(0, 191, 255)));
+		panel_1.setBorder(new LineBorder(null));
 		tabbedPane_2.addTab("Toplamlar", null, panel_1, null);
 		panel_1.setLayout(null);
 		
@@ -448,12 +448,12 @@ public class ZAYI extends JInternalFrame {
 		textField_4.setColumns(10);
 		
 		lblNewLabel_12 = new JLabel(".....");
-		lblNewLabel_12.setForeground(new Color(139, 0, 0));
+		//lblNewLabel_12.setForeground(new Color(139, 0, 0));
 		lblNewLabel_12.setBounds(232, 11, 270, 14);
 		panel_1.add(lblNewLabel_12);
 		
 		label_5 = new JLabel(".....");
-		label_5.setForeground(new Color(0, 0, 128));
+		//label_5.setForeground(new Color(0, 0, 128));
 		label_5.setBounds(557, 11, 270, 14);
 		panel_1.add(label_5);
 		
@@ -511,7 +511,7 @@ public class ZAYI extends JInternalFrame {
 		tabbedPane = new MaterialTabbed();
 		tabbedPane.setFont(new Font("Tahoma", Font.PLAIN, 14));
 	
-		tabbedPane.setForeground(new Color(0, 0, 128));
+		//tabbedPane.setForeground(new Color(0, 0, 128));
 		splitPane_2.setRightComponent(tabbedPane);
 		
 		ScrollPaneWin11 scrollPane = new ScrollPaneWin11();

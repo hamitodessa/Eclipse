@@ -60,7 +60,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.ActionEvent;
-import javax.swing.border.EtchedBorder;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -101,7 +100,8 @@ public class RECETE extends JInternalFrame {
 		panel.setLayout(null);
 		
 		JPanel panel_1 = new JPanel();
-		panel_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(0, 191, 255), new Color(160, 160, 160)), "Uretim Recetesi", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 128, 128)));
+		panel_1.setBorder(new TitledBorder(null, "Uretim Recetesi", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		//panel_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(0, 191, 255), new Color(160, 160, 160)), "Uretim Recetesi", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 128, 128)));
 
 		panel_1.setBounds(5, 11, 604, 117);
 		panel.add(panel_1);
@@ -240,7 +240,7 @@ public class RECETE extends JInternalFrame {
 		panel_1.add(lblNewLabel_3);
 		
 		cmbanagrup = new JComboBox<String>();
-		cmbanagrup.setForeground(new Color(0, 0, 128));
+		//cmbanagrup.setForeground(new Color(0, 0, 128));
 		cmbanagrup.setFont(new Font("Tahoma", Font.BOLD, 12));
 		cmbanagrup.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -251,14 +251,14 @@ public class RECETE extends JInternalFrame {
 		panel_1.add(cmbanagrup);
 		
 		cmbaltgrup = new JComboBox<String>();
-		cmbaltgrup.setForeground(new Color(0, 0, 128));
+		//cmbaltgrup.setForeground(new Color(0, 0, 128));
 		cmbaltgrup.setFont(new Font("Tahoma", Font.BOLD, 12));
 		cmbaltgrup.setEnabled(false);
 		cmbaltgrup.setBounds(412, 46, 142, 22);
 		panel_1.add(cmbaltgrup);
 		
 		comboBox_2 = new JComboBox<String>();
-		comboBox_2.setForeground(new Color(0, 0, 128));
+		//comboBox_2.setForeground(new Color(0, 0, 128));
 		comboBox_2.setFont(new Font("Tahoma", Font.BOLD, 12));
 		comboBox_2.setModel(new DefaultComboBoxModel<String>(new String[] {"Aktiv", "Pasiv"}));
 		comboBox_2.setBounds(412, 79, 142, 22);
@@ -276,7 +276,8 @@ public class RECETE extends JInternalFrame {
 		
 		JPanel panel_2 = new JPanel();
 		panel_2.setLayout(null);
-		panel_2.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(0, 191, 255), new Color(160, 160, 160)), "Uretilecek (Yeni) Urun ", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 128, 128)));
+		panel_2.setBorder(new TitledBorder(null,  "Uretilecek (Yeni) Urun ", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		//panel_2.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(0, 191, 255), new Color(160, 160, 160)), "Uretilecek (Yeni) Urun ", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 128, 128)));
 		panel_2.setBounds(5, 401, 604, 110);
 		panel.add(panel_2);
 		
@@ -365,22 +366,22 @@ public class RECETE extends JInternalFrame {
 		panel_2.add(label_3);
 		
 		lblNewLabel_4 = new JLabel("...");
-		lblNewLabel_4.setForeground(Color.BLUE);
+		//lblNewLabel_4.setForeground(Color.BLUE);
 		lblNewLabel_4.setBounds(66, 56, 155, 14);
 		panel_2.add(lblNewLabel_4);
 		
 		lblNewLabel_5 = new JLabel("...");
-		lblNewLabel_5.setForeground(Color.BLUE);
+		//lblNewLabel_5.setForeground(Color.BLUE);
 		lblNewLabel_5.setBounds(66, 78, 311, 14);
 		panel_2.add(lblNewLabel_5);
 		
 		lblNewLabel_6 = new JLabel("...");
-		lblNewLabel_6.setForeground(new Color(128, 0, 0));
+		//lblNewLabel_6.setForeground(new Color(128, 0, 0));
 		lblNewLabel_6.setBounds(453, 28, 122, 14);
 		panel_2.add(lblNewLabel_6);
 		
 		lblNewLabel_7 = new JLabel("...");
-		lblNewLabel_7.setForeground(new Color(128, 0, 0));
+		//lblNewLabel_7.setForeground(new Color(128, 0, 0));
 		lblNewLabel_7.setBounds(453, 56, 141, 14);
 		panel_2.add(lblNewLabel_7);
 		
@@ -395,12 +396,12 @@ public class RECETE extends JInternalFrame {
 		panel_2.add(lblBirim);
 		
 		label_5 = new JLabel("...");
-		label_5.setForeground(new Color(128, 0, 0));
+		//label_5.setForeground(new Color(128, 0, 0));
 		label_5.setBounds(296, 57, 81, 14);
 		panel_2.add(label_5);
 		
 		label_6 = new JLabel("0.000");
-		label_6.setForeground(new Color(128, 0, 0));
+		//label_6.setForeground(new Color(128, 0, 0));
 		label_6.setBounds(296, 29, 81, 14);
 		panel_2.add(label_6);
 		

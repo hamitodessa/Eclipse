@@ -119,7 +119,7 @@ public class IRSALIYE_ARA extends JDialog {
 		JPanel panel = new JPanel();
 		panel.setMinimumSize(new Dimension(0, 81));
 		panel.setMaximumSize(new Dimension(0, 81));
-		panel.setBorder(new LineBorder(new Color(0, 191, 255)));
+		panel.setBorder(new LineBorder(null));
 		splitPane.setLeftComponent(panel);
 		panel.setLayout(null);
 		
@@ -209,7 +209,7 @@ public class IRSALIYE_ARA extends JDialog {
 		panel.add(lblAltGrup);
 		
 		cmbanagrup = new JComboBox<String>();
-		cmbanagrup.setForeground(new Color(0, 0, 128));
+		//cmbanagrup.setForeground(new Color(0, 0, 128));
 		cmbanagrup.setFont(new Font("Tahoma", Font.BOLD, 12));
 		cmbanagrup.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -221,14 +221,14 @@ public class IRSALIYE_ARA extends JDialog {
 		panel.add(cmbanagrup);
 		
 		cmbaltgrup = new JComboBox<String>();
-		cmbaltgrup.setForeground(new Color(0, 0, 128));
+		//cmbaltgrup.setForeground(new Color(0, 0, 128));
 		cmbaltgrup.setFont(new Font("Tahoma", Font.BOLD, 12));
 		cmbaltgrup.setEnabled(false);
 		cmbaltgrup.setBounds(395, 39, 147, 22);
 		panel.add(cmbaltgrup);
 		
 		lblNewLabel_1 = new JLabel("...");
-		lblNewLabel_1.setForeground(new Color(25, 25, 112));
+		//lblNewLabel_1.setForeground(new Color(25, 25, 112));
 		lblNewLabel_1.setBounds(88, 63, 232, 14);
 		panel.add(lblNewLabel_1);
 

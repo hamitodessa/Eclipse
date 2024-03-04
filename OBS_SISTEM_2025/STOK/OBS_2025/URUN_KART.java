@@ -11,9 +11,6 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
-import java.awt.SystemColor;
-
-
 import java.awt.Color;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
@@ -106,7 +103,7 @@ public class URUN_KART extends JInternalFrame {
 
 		JSeparator separator = new JSeparator();
 		separator.setBounds(10, 92, 864, 2);
-		separator.setForeground(new Color(0, 191, 255));
+		//separator.setForeground(new Color(0, 191, 255));
 		panel.add(separator);
 
 		JButton button = new JButton("|<<");
@@ -135,7 +132,7 @@ public class URUN_KART extends JInternalFrame {
 
 		txtkayit = new Obs_TextFIeld();
 		txtkayit.setHorizontalAlignment(SwingConstants.CENTER);
-		txtkayit.setForeground(new Color(0, 0, 205));
+		//txtkayit.setForeground(new Color(0, 0, 205));
 		txtkayit.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txtkayit.setEditable(false);
 		txtkayit.setColumns(10);
@@ -187,7 +184,7 @@ public class URUN_KART extends JInternalFrame {
 		textField_1.setColumns(10);
 
 		JPanel panel_1 = new JPanel();
-		panel_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Siralama", TitledBorder.LEADING, TitledBorder.TOP, null, SystemColor.textHighlight));
+		panel_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Siralama", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panel_1.setBounds(490, 11, 175, 70);
 		panel.add(panel_1);
 		panel_1.setLayout(null);
@@ -251,7 +248,7 @@ public class URUN_KART extends JInternalFrame {
 		panel_1.add(chckbxBarkod);
 
 		JPanel panel_2 = new JPanel();
-		panel_2.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Arama", TitledBorder.LEADING, TitledBorder.TOP, null, SystemColor.textHighlight));
+		panel_2.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Arama", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panel_2.setBounds(690, 11, 175, 70);
 		panel.add(panel_2);
 		panel_2.setLayout(null);
@@ -297,7 +294,7 @@ public class URUN_KART extends JInternalFrame {
 		panel.add(lblNewLabel);
 
 		lbluser = new JLabel("....");
-		lbluser.setForeground(new Color(165, 42, 42));
+		//lbluser.setForeground(new Color(165, 42, 42));
 		lbluser.setBounds(650, 523, 160, 14);
 		panel.add(lbluser);
 
@@ -443,7 +440,9 @@ public class URUN_KART extends JInternalFrame {
 		panel.add(btnNewButton);
 
 		JPanel panel_3 = new JPanel();
-		panel_3.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(0, 191, 255), new Color(160, 160, 160)), "Grup", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel_3.setBorder(new TitledBorder(null, "Grup", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+
+		//panel_3.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(0, 191, 255), new Color(160, 160, 160)), , TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panel_3.setBounds(10, 185, 624, 58);
 		panel.add(panel_3);
 		panel_3.setLayout(null);
@@ -493,7 +492,9 @@ public class URUN_KART extends JInternalFrame {
 
 		JPanel panel_4 = new JPanel();
 		panel_4.setLayout(null);
-		panel_4.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(0, 191, 255), new Color(160, 160, 160)), "Aciklama", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
+		panel_4.setBorder(new TitledBorder(null,"Aciklama", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+
+		//panel_4.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(0, 191, 255), new Color(160, 160, 160)), "Aciklama", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 		panel_4.setBounds(10, 254, 624, 81);
 		panel.add(panel_4);
 
@@ -521,7 +522,8 @@ public class URUN_KART extends JInternalFrame {
 
 		JPanel panel_5 = new JPanel();
 		panel_5.setLayout(null);
-		panel_5.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(0, 191, 255), new Color(160, 160, 160)), "Ozel Kod", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
+		panel_5.setBorder(new TitledBorder(null,"Ozel Kod", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		//panel_5.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(0, 191, 255), new Color(160, 160, 160)), "Ozel Kod", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 		panel_5.setBounds(10, 346, 624, 58);
 		panel.add(panel_5);
 
@@ -567,7 +569,8 @@ public class URUN_KART extends JInternalFrame {
 
 		JPanel panel_6 = new JPanel();
 		panel_6.setLayout(null);
-		panel_6.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(0, 191, 255), new Color(160, 160, 160)), "Fiat", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
+		panel_6.setBorder(new TitledBorder(null,"Fiat", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		//panel_6.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(0, 191, 255), new Color(160, 160, 160)), "Fiat", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 		panel_6.setBounds(10, 415, 624, 53);
 		panel.add(panel_6);
 
@@ -616,7 +619,8 @@ public class URUN_KART extends JInternalFrame {
 		panel_7.setBounds(650, 346, 221, 58);
 		panel.add(panel_7);
 		panel_7.setLayout(null);
-		panel_7.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(0, 191, 255), new Color(160, 160, 160)), "Recete", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
+		panel_7.setBorder(new TitledBorder(null,"Recete", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		//panel_7.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(0, 191, 255), new Color(160, 160, 160)), "Recete", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 
 		txtrecete = new Obs_TextFIeld(10);
 		txtrecete.setFont(new Font("Tahoma", Font.BOLD, 12));
@@ -680,7 +684,8 @@ public class URUN_KART extends JInternalFrame {
 
 		JPanel panel_8 = new JPanel();
 		panel_8.setLayout(null);
-		panel_8.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(0, 191, 255), new Color(160, 160, 160)), "Barkod", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
+		panel_8.setBorder(new TitledBorder(null, "Barkod", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		//panel_8.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(0, 191, 255), new Color(160, 160, 160)), "Barkod", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 		panel_8.setBounds(10, 481, 624, 58);
 		panel.add(panel_8);
 

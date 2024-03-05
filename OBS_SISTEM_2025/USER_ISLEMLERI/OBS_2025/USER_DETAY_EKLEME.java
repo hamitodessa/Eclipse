@@ -80,8 +80,6 @@ public class USER_DETAY_EKLEME extends JInternalFrame {
 	static JCheckBoxMenuItem cbMail;
 	private static JPasswordField passwordField;
 
-
-
 	public USER_DETAY_EKLEME() {
 
 		setResizable(true);
@@ -338,10 +336,8 @@ public class USER_DETAY_EKLEME extends JInternalFrame {
 			    }
 			});
 
-		if(! oac.gridcolor.toString().equals("java.awt.Color[r=255,g=255,b=255]")) 
-		{
+		if(! oac.gridcolor.toString().equals("java.awt.Color[r=255,g=255,b=255]"))
 			table_1.setGridColor(oac.gridcolor);
-		}
 		table_1.setShowHorizontalLines(true);
 		table_1.setShowVerticalLines(true);
 		table_1.setSurrendersFocusOnKeystroke(true);
@@ -437,10 +433,8 @@ public class USER_DETAY_EKLEME extends JInternalFrame {
 			table_1.setAutoResizeMode( JTable.AUTO_RESIZE_OFF );
 			kutu_temizle();
 			doldur();
-			if (table_1.getRowCount() != 0 ) {  
+			if (table_1.getRowCount() != 0 )
 				doldur_kutu(0);
-			}
-
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -487,34 +481,21 @@ public class USER_DETAY_EKLEME extends JInternalFrame {
 			return;
 		} 
 		if (table_1.getModel().getValueAt(satir, 0) == null)
-		{
 			txtkodu.setText("");
-		}
 		else
-		{
 			txtkodu.setText(table_1.getModel().getValueAt(satir, 0).toString());
-		}
-
 		if (table_1.getModel().getValueAt(satir, 1) == null)
 		{
 
 		}
 		else
-		{
 			comboBox.setSelectedItem(table_1.getModel().getValueAt(satir, 1).toString());
-		}
 		if (table_1.getModel().getValueAt(satir, 2) == null)
-		{
 			txtskull.setText("");
-		}
 		else
-		{
 			txtskull.setText(table_1.getModel().getValueAt(satir, 2).toString());
-		}
 		if (table_1.getModel().getValueAt(satir, 3) == null)
-		{
 			passwordField.setText("");
-		}
 		else
 		{
 			String decodedString = table_1.getModel().getValueAt(satir, 3).toString();
@@ -531,85 +512,49 @@ public class USER_DETAY_EKLEME extends JInternalFrame {
 			passwordField.setText(decodedString);
 		}
 		if (table_1.getModel().getValueAt(satir, 4) == null)
-		{
 			txtins.setText("");
-		}
 		else
-		{
 			txtins.setText(table_1.getModel().getValueAt(satir, 4).toString());
-		}
 		if (table_1.getModel().getValueAt(satir, 5) == null)
-		{
 			txtip.setText("");
-		}
 		else
-		{
 			txtip.setText(table_1.getModel().getValueAt(satir, 5).toString());
-		}
 		if (table_1.getModel().getValueAt(satir, 6) == null)
 		{
 			//comboBox_1.setSelectedItem(0);
 		}
 		else
-		{
 			comboBox_1.setSelectedItem(table_1.getModel().getValueAt(satir, 6).toString());
-		}
 		if (table_1.getModel().getValueAt(satir, 7) == null)
-		{
 			txtdiz.setText("");
-		}
 		else
-		{
 			txtdiz.setText(table_1.getModel().getValueAt(satir, 7).toString());
-		}
 		if (table_1.getModel().getValueAt(satir, 8) == null)
-		{
 			txtyer.setText("");
-		}
 		else
-		{
 			txtyer.setText(table_1.getModel().getValueAt(satir, 8).toString());
-		}
 		if (table_1.getModel().getValueAt(satir, 9) == null)
-		{
 			txtdcins.setText("");
-		}
 		else
-		{
 			txtdcins.setText(table_1.getModel().getValueAt(satir, 9).toString());
-		}
 		if ( table_1.getModel().getValueAt(satir, 10).toString().equals("E"))
-		{
 			chckbxNewCheckBox_1.setSelected((boolean) true);
-		}
 		else
-		{
 			chckbxNewCheckBox_1.setSelected((boolean) false);
-		}
 		if (  table_1.getModel().getValueAt(satir, 11).toString().equals("E"))
-		{
 			chckbxNewCheckBox.setSelected((boolean) true);
-		}
 		else
-		{
 			chckbxNewCheckBox.setSelected((boolean) false);
-		}
 		if (table_1.getModel().getValueAt(satir, 12) == null)
 		{
 
 		}
 		else
-		{
 			comboBox_2.setSelectedItem(table_1.getModel().getValueAt(satir, 12).toString());
-		}
 		if ( Integer.parseInt(  table_1.getModel().getValueAt(satir, 13).toString()) ==1)
-		{
 			chckbxLog.setSelected((boolean) true);
-		}
 		else
-		{
 			chckbxLog.setSelected((boolean) false);
-		}
 		//
 		if (table_1.getModel().getValueAt(satir, 14) == null)
 		{
@@ -624,13 +569,9 @@ public class USER_DETAY_EKLEME extends JInternalFrame {
 			cbMail.setSelected( (token[3].equals("true") ? true:false));
 		}
 		if (  table_1.getModel().getValueAt(satir, 15)== null)
-		{
 			lblcdid.setText("");
-		}
 		else
-		{
 			lblcdid.setText(table_1.getModel().getValueAt(satir, 15).toString());
-		}
 	}
 	private static void doldur() throws ClassNotFoundException, SQLException
 	{
@@ -639,9 +580,7 @@ public class USER_DETAY_EKLEME extends JInternalFrame {
 		if (!rs.isBeforeFirst() )  return;
 		comboBox.removeAllItems();
 		while(rs.next())
-		{
 			comboBox.addItem(rs.getString("USER_NAME"));
-		}  
 	}
 	private static void kutu_temizle() 
 	{

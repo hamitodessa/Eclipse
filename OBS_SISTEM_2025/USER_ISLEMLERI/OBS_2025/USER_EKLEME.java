@@ -55,7 +55,7 @@ public class USER_EKLEME extends JInternalFrame {
 	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
 	private static JPasswordField passwordField;
 
-	@SuppressWarnings({ "unchecked", "rawtypes" ,"static-access"})
+	@SuppressWarnings({ "static-access"})
 	public USER_EKLEME() {
 
 		setTitle("KULLANICI EKLEME");
@@ -70,38 +70,14 @@ public class USER_EKLEME extends JInternalFrame {
 		getContentPane().add(splitPane, BorderLayout.CENTER);
 		
 		ScrollPaneWin11 scrollPane = new ScrollPaneWin11();
-		Object[][] tabledata = {
-				{ "", ""  , "" ,"" ,"",false,false},    };
+		Object[][] tabledata = {{ "", ""  , "" ,"" ,"",false,false},    };
 		String columnheaders[] = { "KULLANICI", "SIFRE", "SEVIYE" ,"DB IZIN","MAIL", "LOKAL IZIN", "SERVER IZIN"};
 		DefaultTableModel model = new DefaultTableModel(tabledata,columnheaders);
 		table_1 = new JTable(model){
-			private static final long serialVersionUID = 1L;
-
-			@Override
-			public Class getColumnClass(int column) {
-				switch (column) {
-				case 0:
-					return String.class;
-				case 1:
-					return String.class;
-				case 2:
-					return String.class;
-				case 3:
-					return String.class;
-				case 4:
-					return String.class;
-
-				default:
-					return Boolean.class;
-				}
-			}
 			public boolean isCellEditable(int row, int column) {     return false;          }
-
 		};
-		if(! oac.gridcolor.toString().equals("java.awt.Color[r=255,g=255,b=255]")) 
-		{
+		if(! oac.gridcolor.toString().equals("java.awt.Color[r=255,g=255,b=255]"))
 			table_1.setGridColor(oac.gridcolor);
-		}
 		table_1.setShowHorizontalLines(true);
 		table_1.setShowVerticalLines(true);
 		table_1.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
@@ -255,9 +231,8 @@ public class USER_EKLEME extends JInternalFrame {
 		ResultSet	rs = null;
 		rs =  oac.uSER_ISL.user_ekleme_bak();
 
-		if (!rs.isBeforeFirst() ) {  
+		if (!rs.isBeforeFirst() )
 			return;
-		} 
 		DefaultTableModel defaultModel = (DefaultTableModel) table_1.getModel();
 		while(rs.next())
 		{
@@ -268,18 +243,14 @@ public class USER_EKLEME extends JInternalFrame {
 			String sev = rs.getString(3);
 			String dbiz = rs.getString(4);
 			String mail = rs.getString(5);
-			if (Integer.parseInt(rs.getString(6)) >=  1) { 
+			if (Integer.parseInt(rs.getString(6)) >=  1)
 				liz = true ;
-			} 
-			else { 
+			else
 				liz = false ;
-			} 
-			if (Integer.parseInt(rs.getString(7)) >=  1) { 
+			if (Integer.parseInt(rs.getString(7)) >=  1)
 				siz = true ;
-			} 
-			else { 
+			else
 				siz = false ;
-			} 
 			defaultModel.addRow(new Object[]{uname, sif  ,sev, dbiz ,mail,liz,siz});
 		}
 		table_1.setModel(defaultModel); 
@@ -302,17 +273,11 @@ public class USER_EKLEME extends JInternalFrame {
 			return;
 		} 
 		if (grd.getModel().getValueAt(satir, 0) == null)
-		{
 			txtkull.setText("");
-		}
 		else
-		{
 			txtkull.setText(grd.getModel().getValueAt(satir, 0).toString());
-		}
 		if (grd.getModel().getValueAt(satir, 1) == null)
-		{
 			passwordField.setText("");
-		}
 		else
 		{
 			String decodedString = grd.getModel().getValueAt(satir, 1).toString();
@@ -329,30 +294,17 @@ public class USER_EKLEME extends JInternalFrame {
 			passwordField.setText(decodedString);
 		}
 		if (grd.getModel().getValueAt(satir, 2) == null)
-		{
 			txtsev.setText("");
-		}
 		else
-		{
 			txtsev.setText(grd.getModel().getValueAt(satir, 2).toString());
-		}
-
 		if (grd.getModel().getValueAt(satir, 3) == null)
-		{
 			txtdb.setText("");
-		}
 		else
-		{
 			txtdb.setText(grd.getModel().getValueAt(satir, 3).toString());
-		}
 		if (grd.getModel().getValueAt(satir, 4) == null)
-		{
 			txtmail.setText("");
-		}
 		else
-		{
 			txtmail.setText(grd.getModel().getValueAt(satir, 4).toString());
-		}
 		chckbxl.setSelected((boolean) grd.getModel().getValueAt(satir, 5));
 		chckbxs.setSelected((boolean) grd.getModel().getValueAt(satir, 6));
 	}
@@ -368,8 +320,8 @@ public class USER_EKLEME extends JInternalFrame {
 	}
 	public static void kayit() 
 	{
-		if (txtkull.getText().equals("") ) 
-		{	return ;		}
+		if (txtkull.getText().equals("") )
+			return ;
 		if ( ! GLOBAL.KULL_ADI.equals("Admin") ) //txtkull.getText().equals("Admin")  &&  ! GLOBAL.KULL_ADI.equals("Admin")
 		{
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING,"Admin - Harici Degisiklik Yapamaz... ");
@@ -379,10 +331,8 @@ public class USER_EKLEME extends JInternalFrame {
 		{
 			splitPane.setCursor(WAIT_CURSOR);
 			boolean varmi =  oac.uSER_ISL.user_bak(txtkull.getText());
-			if ( varmi == true ) // ' USER VAR  
-			{
-				oac.uSER_ISL.user_sil(txtkull.getText());
-			}
+			if ( varmi == true )
+				oac.uSER_ISL.user_sil(txtkull.getText()); // ' USER VAR  
 			oac.uSER_ISL.user_ekle_degis(txtkull.getText(),oac.sDONDUR.sDONDUR(passwordField), txtsev.getText(), txtdb.getText(), txtmail.getText(),  chckbxl.isSelected()  ? true : false,  chckbxs.isSelected()  ? true :false);
 			//
 			if (txtkull.getText().equals(GLOBAL.KULL_ADI)) {

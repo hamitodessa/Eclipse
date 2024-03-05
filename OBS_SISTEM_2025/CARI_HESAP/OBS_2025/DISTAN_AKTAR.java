@@ -749,7 +749,7 @@ public class DISTAN_AKTAR extends JInternalFrame {
 		panel_2.add(comboBox);
 
 		lblNewLabel = new JLabel("...");
-		lblNewLabel.setForeground(Color.BLUE);
+		//lblNewLabel.setForeground(Color.BLUE);
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblNewLabel.setBounds(76, 147, 345, 14);
 		panel_2.add(lblNewLabel);

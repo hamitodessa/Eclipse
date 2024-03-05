@@ -18,6 +18,7 @@ import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 import raven.toast.Notifications;
 import javax.swing.border.EtchedBorder;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 
 import OBS_C_2025.ScrollBarWin11UI;

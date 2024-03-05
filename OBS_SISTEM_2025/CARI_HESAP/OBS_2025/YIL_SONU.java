@@ -163,13 +163,9 @@ public class YIL_SONU extends JInternalFrame {
 		chckbxNewCheckBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (chckbxNewCheckBox.isSelected())
-				{
 					panel_1.setVisible(true);
-				}
 				else
-				{
 					panel_1.setVisible(false);
-				}
 			}
 		});
 		chckbxNewCheckBox.setBounds(138, 10, 115, 23);
@@ -304,14 +300,12 @@ public class YIL_SONU extends JInternalFrame {
 			JCheckBox checkBox = new JCheckBox();
 			checkBox.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-
 					JTableHeader th = table.getTableHeader();
 					TableColumnModel tcm = th.getColumnModel();
 					TableColumn tc = tcm.getColumn(0);
 					tc.setHeaderRenderer(new CheckBoxHeader(new MyItemListener()));
 					th.repaint();
 					table.repaint();
-
 				}
 			});
 			checkBox.setHorizontalAlignment(JCheckBox.CENTER);
@@ -386,10 +380,8 @@ public class YIL_SONU extends JInternalFrame {
 		{
 			if ( modell.getValueAt(i,0) != null) 
 			{
-				if (  modell.getValueAt(i,0).toString().equals("true")   )
-				{
+				if (modell.getValueAt(i,0).toString().equals("true"))
 					satir += 1 ;
-				}	
 			};
 		}
 		return satir ;

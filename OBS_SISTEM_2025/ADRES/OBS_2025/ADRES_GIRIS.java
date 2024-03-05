@@ -90,7 +90,7 @@ public class ADRES_GIRIS extends JInternalFrame {
 	private static ImagePanel imagePanel ;
 	private static JComboBox<String> cmbKodKontrol;
 	private static Obs_TextFIeld textID;
-	
+
 	public ADRES_GIRIS() {
 		setTitle("ADRES GIRISI");
 		setIconifiable(true);
@@ -212,9 +212,7 @@ public class ADRES_GIRIS extends JInternalFrame {
 			@Override
 			public void keyPressed(KeyEvent e) {
 				if (KeyEvent.getKeyText(e.getKeyCode()) == "Enter" )
-				{	
 					txtadres1.requestFocus();
-				}
 			}
 		});
 
@@ -224,7 +222,7 @@ public class ADRES_GIRIS extends JInternalFrame {
 		txtyetkili = new Obs_TextFIeld(30,"");
 		txtyetkili.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txtyetkili.setBounds(102, 430, 313, 20);
-	
+
 		panel.add(txtyetkili);
 		txtyetkili.setColumns(10);
 
@@ -233,14 +231,12 @@ public class ADRES_GIRIS extends JInternalFrame {
 			@Override
 			public void keyPressed(KeyEvent e) {
 				if (KeyEvent.getKeyText(e.getKeyCode()) == "Enter" )
-				{	
 					txtadres2.requestFocus();
-				}
 			}
 		});
 		txtadres1.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txtadres1.setBounds(102, 160, 313, 20);
-		
+
 		panel.add(txtadres1);
 		txtadres1.setColumns(10);
 
@@ -249,9 +245,7 @@ public class ADRES_GIRIS extends JInternalFrame {
 			@Override
 			public void keyPressed(KeyEvent e) {
 				if (KeyEvent.getKeyText(e.getKeyCode()) == "Enter" )
-				{	
 					txtsemt.requestFocus();
-				}
 			}
 		});
 		txtadres2.setFont(new Font("Tahoma", Font.BOLD, 11));
@@ -266,9 +260,7 @@ public class ADRES_GIRIS extends JInternalFrame {
 			@Override
 			public void keyPressed(KeyEvent e) {
 				if (KeyEvent.getKeyText(e.getKeyCode()) == "Enter" )
-				{	
 					txtvn.requestFocus();
-				}
 			}
 		});
 
@@ -412,9 +404,7 @@ public class ADRES_GIRIS extends JInternalFrame {
 			@Override
 			public void keyPressed(KeyEvent e) {
 				if (KeyEvent.getKeyText(e.getKeyCode()) == "Enter" )
-				{	
 					txtsehir.requestFocus();
-				}
 			}
 		});
 		txtsemt.setFont(new Font("Tahoma", Font.BOLD, 11));
@@ -427,9 +417,7 @@ public class ADRES_GIRIS extends JInternalFrame {
 			@Override
 			public void keyPressed(KeyEvent e) {
 				if (KeyEvent.getKeyText(e.getKeyCode()) == "Enter" )
-				{	
 					txtvd.requestFocus();
-				}
 			}
 		});
 		txtsehir.setFont(new Font("Tahoma", Font.BOLD, 11));
@@ -587,7 +575,6 @@ public class ADRES_GIRIS extends JInternalFrame {
 				try {
 					arama();
 				} catch (Exception e1) {
-					
 					e1.printStackTrace();
 				}
 			}
@@ -595,7 +582,6 @@ public class ADRES_GIRIS extends JInternalFrame {
 				try {
 					arama();
 				} catch (Exception e1) {
-					
 					e1.printStackTrace();
 				}
 			}
@@ -603,7 +589,6 @@ public class ADRES_GIRIS extends JInternalFrame {
 				try {
 					arama();
 				} catch (Exception e1) {
-					
 					e1.printStackTrace();
 				}
 			}
@@ -625,7 +610,7 @@ public class ADRES_GIRIS extends JInternalFrame {
 				});
 			}
 		});
-		
+
 		panel.add(txtarama);
 		txtarama.setColumns(10);
 
@@ -639,13 +624,9 @@ public class ADRES_GIRIS extends JInternalFrame {
 		chcbas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (chcbas.isSelected())
-				{
 					chcici.setSelected(false);
-				}
 				else
-				{
 					chcici.setSelected(true);	
-				}
 			}
 		});
 		chcbas.setSelected(true);
@@ -657,13 +638,9 @@ public class ADRES_GIRIS extends JInternalFrame {
 		chcici.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (chcici.isSelected())
-				{
 					chcbas.setSelected(false);
-				}
 				else
-				{
 					chcbas.setSelected(true);	
-				}
 			}
 		});
 		chcici.setBounds(750, 26, 60, 23);
@@ -673,11 +650,11 @@ public class ADRES_GIRIS extends JInternalFrame {
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblNewLabel.setBounds(28, 31, 64, 14);
 		panel.add(lblNewLabel);
-		
+
 		cmbKodKontrol = new JComboBox<String>();
 		cmbKodKontrol.setBounds(320, 27, 300, 23);
 		panel.add(cmbKodKontrol);
-		
+
 		textID = new Obs_TextFIeld(30,"");
 		textID.setBounds(18, 71, 74, 20);
 		textID.setVisible(false);
@@ -727,23 +704,19 @@ public class ADRES_GIRIS extends JInternalFrame {
 			if (nereye.equals("I"))
 			{
 				if (rs.getRow() == kayit_sayi)
-				{ return ; }
+					return ; 
 				rs.next();
 			}
 			else if (nereye.equals("G"))
 			{
 				if (rs.getRow() == 1)
-				{ return ;}
+					return ;
 				rs.previous();
 			}
 			else if (nereye.equals("ILK"))
-			{
 				rs.first();
-			}
 			else if (nereye.equals("SON"))
-			{
 				rs.last();
-			}
 			textID.setText(String.valueOf(rs.getInt("ID")));
 			txtkayit.setText(rs.getRow() + "/" +   String.valueOf(kayit_sayi));
 			txtkodu.setText(rs.getString("M_Kodu"));
@@ -786,9 +759,7 @@ public class ADRES_GIRIS extends JInternalFrame {
 				imagePanel.setImage(bi);
 			}
 			else
-			{
 				imagePanel.setImage(null);
-			}
 			long endTime = System.currentTimeMillis();
 			long estimatedTime = endTime - startTime; 
 			double seconds = (double)estimatedTime/1000; 
@@ -841,13 +812,9 @@ public class ADRES_GIRIS extends JInternalFrame {
 	{
 		long startTime = System.currentTimeMillis(); 
 		if (chcbas.isSelected())
-		{
 			hisset("M_Kodu , Adi", "WHERE  M_Kodu like  '" + txtarama.getText() + "%' OR  Adi Like '" + txtarama.getText() + "%'");
-		}
 		else
-		{
 			hisset("M_Kodu , Adi ", "WHERE  M_Kodu like  '%" + txtarama.getText() + "%' OR  Adi Like '%" + txtarama.getText() + "%'");
-		}
 		//
 		rs = a_Access.kod_kontrol(txtarama.getText());
 		if (!rs.isBeforeFirst() ) {  
@@ -860,14 +827,11 @@ public class ADRES_GIRIS extends JInternalFrame {
 			cmbKodKontrol.removeAllItems();
 			cmbKodKontrol.addItem("");
 			while(rs.next())
-			{
 				cmbKodKontrol.addItem(rs.getString("M_Kodu") + " -"+rs.getString("Adi") );
-			}
 			rs.first();
 			cmbKodKontrol.setSelectedItem(rs.getString("M_Kodu") + " -"+rs.getString("Adi") );
 		}
-		//
-		
+
 		long endTime = System.currentTimeMillis();
 		long estimatedTime = endTime - startTime; 
 		double seconds = (double)estimatedTime/1000; 
@@ -875,7 +839,8 @@ public class ADRES_GIRIS extends JInternalFrame {
 	}
 	public static void kayit()
 	{
-		if (  txtkodu.getText().equals("") &&  txtunvan.getText().equals("") ) return ;
+		if (  txtkodu.getText().equals("") &&  txtunvan.getText().equals("") )
+			return ;
 		try
 		{
 			InputStream   fis =null;
@@ -928,10 +893,10 @@ public class ADRES_GIRIS extends JInternalFrame {
 			aDEG.web = txtweb.getText();
 			aDEG.usr = GLOBAL.KULL_ADI;
 			aDEG.resim = fis ;
-			
+
 			lBILGI.setmESAJ("Hesap Kodu:" + txtkodu.getText() + " Hesap Unvan:" + txtunvan.getText());
 			lBILGI.seteVRAK("");
-			
+
 			a_Access.adres_kayit(aDEG,	lBILGI, BAGLAN_LOG.adrLogDizin);
 			temizle();
 			txtarama.setText("");
@@ -959,13 +924,13 @@ public class ADRES_GIRIS extends JInternalFrame {
 			lOG_BILGI lBILGI = new lOG_BILGI();
 			lBILGI.setmESAJ("Hesap Kodu:" + txtkodu.getText() + " Hesap Silme");
 			lBILGI.seteVRAK("");
-			
+
 			a_Access.sil(textID.getText(),
 					lBILGI, BAGLAN_LOG.adrLogDizin);
 			temizle();
 			txtarama.setText("");
 			hisset("M_Kodu , Adi ", "");
-			
+
 		}
 		catch (Exception ex)
 		{

@@ -140,27 +140,20 @@ public class OZEL_MIZAN extends JInternalFrame {
 					if (getValueAt(row,7) != null)
 					{
 						c.setFont(new Font(table.getFont().getFontName(),1 ,table.getFont().getSize()));
-						if (status.length() == deger) 
-						{
+						if (status.length() == deger)
 							c.setForeground(oac.satForeColor);
-						}
 						else {
 							if ((double)getValueAt(row,7) < 0)
-							{
 								c.setForeground(new Color(128,0,0));
-							}
 						}
 					}
 				}
 				else 
 				{
-					if (status.length() == deger) 
-					{
+					if (status.length() == deger)
 						c.setForeground(oac.satForeColor);
-					}
-					else {
+					else
 						c.setForeground(super.getForeground());
-					}
 				}
 				if (isRowSelected(row)) {
 					c.setBackground(table.getSelectionBackground());
@@ -321,37 +314,25 @@ public class OZEL_MIZAN extends JInternalFrame {
 			if (BAGLAN.cariDizin.hAN_SQL.equals("MS SQL"))
 			{
 				if (hangi_tur.equals("Borclu Hesaplar") )
-				{ o1 = "HAVING  (ROUND(ISNULL( (SELECT SUM(SATIRLAR.ALACAK) - SUM(SATIRLAR.BORC)  FROM SATIRLAR     "
-						+ "WHERE   SATIRLAR.HESAP    = s.HESAP     			 ) ,0),2)  )  < 0 " ; }
-				else if (hangi_tur.equals("Alacakli Hesaplar"))  
-				{ o1 = "HAVING  (ROUND(ISNULL( (SELECT SUM(SATIRLAR.ALACAK) - SUM(SATIRLAR.BORC)  FROM SATIRLAR     "
-						+ "WHERE   SATIRLAR.HESAP    = s.HESAP     			 ) ,0),2)  )  > 0 " ; }
-				else if (hangi_tur.equals( "Bakiyesi 0 Olanlar" ))     
-				{ o1 = "HAVING  (ROUND(ISNULL( (SELECT SUM(SATIRLAR.ALACAK) - SUM(SATIRLAR.BORC)  FROM SATIRLAR     "
-						+ "WHERE   SATIRLAR.HESAP    = s.HESAP     			 ) ,0),2)  )  = 0 " ; }
+					o1 = "HAVING  (ROUND(ISNULL( (SELECT SUM(SATIRLAR.ALACAK) - SUM(SATIRLAR.BORC) FROM SATIRLAR WHERE SATIRLAR.HESAP= s.HESAP) ,0),2)) < 0 " ; 
+				else if (hangi_tur.equals("Alacakli Hesaplar"))
+					o1 = "HAVING  (ROUND(ISNULL( (SELECT SUM(SATIRLAR.ALACAK) - SUM(SATIRLAR.BORC) FROM SATIRLAR WHERE SATIRLAR.HESAP= s.HESAP) ,0),2)) > 0 " ; 
+				else if (hangi_tur.equals( "Bakiyesi 0 Olanlar" ))
+					o1 = "HAVING  (ROUND(ISNULL( (SELECT SUM(SATIRLAR.ALACAK) - SUM(SATIRLAR.BORC) FROM SATIRLAR WHERE SATIRLAR.HESAP= s.HESAP) ,0),2)) = 0 " ; 
 				else if (hangi_tur.equals( "Bakiyesi 0 Olmayanlar" ))
-				{ o1 ="HAVING  (ROUND(ISNULL( (SELECT SUM(SATIRLAR.ALACAK) - SUM(SATIRLAR.BORC)  FROM SATIRLAR    "
-						+ "WHERE   SATIRLAR.HESAP    = s.HESAP     			 ) ,0),2)  ) <> 0 " ; }
+					o1 ="HAVING  (ROUND(ISNULL( (SELECT SUM(SATIRLAR.ALACAK) - SUM(SATIRLAR.BORC) FROM SATIRLAR WHERE SATIRLAR.HESAP= s.HESAP) ,0),2)) <> 0 " ; 
 				o2 = " ORDER BY s.HESAP ASC " ;  
 			}			
 			else if (BAGLAN.cariDizin.hAN_SQL.equals("MY SQL"))
 			{
-				if (hangi_tur.equals("Borclu Hesaplar") )
-				{ 
+				if (hangi_tur.equals("Borclu Hesaplar"))
 					o1= " HAVING BAKIYE  < 0 " ;
-				}
-				else if (hangi_tur.equals("Alacakli Hesaplar"))  
-				{
+				else if (hangi_tur.equals("Alacakli Hesaplar"))
 					o1= " HAVING BAKIYE  > 0 " ;
-				}
-				else if (hangi_tur.equals( "Bakiyesi 0 Olanlar" ))     
-				{
+				else if (hangi_tur.equals( "Bakiyesi 0 Olanlar" ))
 					o1= " HAVING BAKIYE  =  0 " ;
-				}
 				else if (hangi_tur.equals( "Bakiyesi 0 Olmayanlar" ))
-				{ 
 					o1= " HAVING BAKIYE  <>  0 " ;
-				}
 				o2 = " ORDER BY s.HESAP  " ;  
 			}
 			//**************
@@ -361,11 +342,9 @@ public class OZEL_MIZAN extends JInternalFrame {
 					FILTRE.txtikarton.getText(),FILTRE.txtskarton.getText() ,
 					o1 , o2);
 			GRID_TEMIZLE.grid_temizle(table);
-			if (!rs.isBeforeFirst() ) {  
+			if (!rs.isBeforeFirst() )
 				return;
-			} 
 			table.setModel(DbUtils.resultSetToTableModel(rs));
-
 			lblNewLabel_1.setText(FORMATLAMA.doub_0(table.getRowCount()));
 			ara_ayir();
 			JTableHeader th = table.getTableHeader();
@@ -482,17 +461,12 @@ public class OZEL_MIZAN extends JInternalFrame {
 					onceki =  model.getValueAt((i) - 1 , 0).toString() + StringUtils.repeat(" ", kj);
 				}
 				else
-				{
 					onceki = model.getValueAt((i) - 1 , 0).toString().substring(0, deger   );
-
-				}
-
 				if (! model.getValueAt(i , 0).toString().substring(0, model.getValueAt(i  , 0).toString().length() < deger  ? model.getValueAt(i  , 0).toString().length()  : deger ).equals(onceki)) 
 				{
 					data = new Vector<Object>();
 					data.add(model.getValueAt(i , 0).toString().substring(0, model.getValueAt(i  , 0).toString().length() < deger  ? model.getValueAt(i  , 0).toString().length()  : deger ));
 					data.add(isimoku(model.getValueAt(i , 0).toString().substring(0, model.getValueAt(i  , 0).toString().length() < deger  ? model.getValueAt(i  , 0).toString().length()  : deger )));
-
 					data.add("---");
 					double doub = 0 ;
 					data.add(doub);
@@ -516,7 +490,6 @@ public class OZEL_MIZAN extends JInternalFrame {
 			{
 				data.add(model.getValueAt(0 , 0).toString().substring(0,deger));
 				data.add(isimoku(model.getValueAt(0 , 0).toString().substring(0,deger)));
-
 			}
 			data.add("---");
 			double doub = 0 ;
@@ -526,8 +499,6 @@ public class OZEL_MIZAN extends JInternalFrame {
 			data.add(doub);
 			data.add(doub);
 			model.addRow(data);
-
-
 			//*****
 			table.setAutoCreateRowSorter(true);
 			DefaultRowSorter<?, ?> sorter = ((DefaultRowSorter<?, ?>)table.getRowSorter()); 
@@ -545,15 +516,10 @@ public class OZEL_MIZAN extends JInternalFrame {
 	public static void excell_aktar()
 	{
 		DefaultTableModel mdl = (DefaultTableModel) table.getModel();
-
 		if (mdl.getRowCount() == 0 )
-		{
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR, "Aktarilacak Bilgi Yok....." );
-		}
 		else
-		{
 			write() ;	
-		}
 	}
 	public static void write()
 	{
@@ -580,9 +546,7 @@ public class OZEL_MIZAN extends JInternalFrame {
 			fileChooser.setSelectedFile(outputfile);
 			int returnVal = fileChooser.showSaveDialog(null);
 			if ( returnVal != JFileChooser.APPROVE_OPTION )
-			{
 				return;
-			}
 			GuiUtil.setWaitCursor(splitPane,true);
 			//
 			String uzanti ="";
@@ -676,7 +640,6 @@ public class OZEL_MIZAN extends JInternalFrame {
 						bname.setCellValue(mdl.getColumnName(q));
 						bname.setCellStyle(headerSolaStyle);
 					}
-
 				}
 				for (int i =0;i< mdl.getRowCount() ;i++)
 				{
@@ -686,7 +649,6 @@ public class OZEL_MIZAN extends JInternalFrame {
 						Cell hname = satirRow.createCell(s);
 						if ( mdl.getValueAt(i, s) != null)
 						{
-							////////////
 							if (s > sutun)
 							{
 								hname.setCellStyle(satirStyle2);
@@ -697,7 +659,6 @@ public class OZEL_MIZAN extends JInternalFrame {
 								hname.setCellValue( mdl.getValueAt(i,s).toString());
 								hname.setCellStyle(solaStyle); 
 							}
-							///////////
 						}
 						else
 						{

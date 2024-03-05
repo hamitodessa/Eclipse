@@ -130,7 +130,6 @@ public class KASA extends JInternalFrame {
 					e1.printStackTrace();
 				}
 			}
-
 			public void removeUpdate(DocumentEvent e) {
 				try {
 					getContentPane().setCursor(oac.WAIT_CURSOR);
@@ -142,7 +141,6 @@ public class KASA extends JInternalFrame {
 					e1.printStackTrace();
 				}
 			}
-
 			public void insertUpdate(DocumentEvent e) {
 				try {
 					getContentPane().setCursor(oac.WAIT_CURSOR);
@@ -255,14 +253,12 @@ public class KASA extends JInternalFrame {
 						Calendar cal = Calendar.getInstance();
 						cal.setTime(date);
 						cal.add(Calendar.DAY_OF_MONTH, 1); // Add 30 days
-
 						dateChooser.setDate(new Date(cal.getTimeInMillis()));
 					} catch (ParseException e1) {
 						e1.printStackTrace();
 					}
 				}
 			}
-
 			@Override
 			public void keyReleased(KeyEvent e) {
 			}
@@ -334,8 +330,8 @@ public class KASA extends JInternalFrame {
 		splitPane.setRightComponent(splitPane_1);
 		
 		ScrollPaneWin11 scrollPane_1 = new ScrollPaneWin11();
-		 scrollPane_1.setMinimumSize(new Dimension(0, 100));
-		 scrollPane_1.setMaximumSize(new Dimension(0, 100));
+		scrollPane_1.setMinimumSize(new Dimension(0, 100));
+		scrollPane_1.setMaximumSize(new Dimension(0, 100));
 		splitPane_1.setRightComponent(scrollPane_1);
 		
 		JPanel rightPanel = new JPanel();
@@ -440,11 +436,8 @@ public class KASA extends JInternalFrame {
 				return false;
 			}
 		};
-		if(! oac.gridcolor.toString().equals("java.awt.Color[r=255,g=255,b=255]")) 
-		{
+		if(! oac.gridcolor.toString().equals("java.awt.Color[r=255,g=255,b=255]"))
 			table_1.setGridColor(oac.gridcolor);
-		}
-
 		table_1.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {

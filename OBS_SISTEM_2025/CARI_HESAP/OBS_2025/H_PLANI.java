@@ -508,8 +508,7 @@ public class H_PLANI extends JInternalFrame {
 				}
 				catch (Exception ex)
 				{
-					 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage() );
-					
+					OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage() );
 					getContentPane().setCursor(oac.DEFAULT_CURSOR);
 				}
 
@@ -568,13 +567,9 @@ public class H_PLANI extends JInternalFrame {
 		chcbas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (chcbas.isSelected())
-				{
 					chcicin.setSelected(false);
-				}
 				else
-				{
 					chcicin.setSelected(true);	
-				}
 			}
 		});
 		chcbas.setSelected(true);
@@ -586,13 +581,9 @@ public class H_PLANI extends JInternalFrame {
 		chcicin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (chcicin.isSelected())
-				{
 					chcbas.setSelected(false);
-				}
 				else
-				{
 					chcbas.setSelected(true);	
-				}
 			}
 		});
 		chcicin.setBounds(595, 22, 97, 23);
@@ -618,13 +609,13 @@ public class H_PLANI extends JInternalFrame {
 				cmbKodu.showPopup();
 				Object child =  cmbKodu.getAccessibleContext().getAccessibleChild(0);
 				BasicComboPopup popup = (BasicComboPopup)child;
-				
+
 				JList<Object> list = popup.getList();
 				boolean result = false;
 				for (int i = 0; i < list.getModel().getSize(); i++)
 				{
 					String value =  list.getModel().getElementAt(i).toString();
-					if ( value.toString().startsWith(cmbKodu.getEditor().getItem().toString())  )
+					if (value.toString().startsWith(cmbKodu.getEditor().getItem().toString()))
 						result = true;
 				}
 				if (result == false)
@@ -635,30 +626,26 @@ public class H_PLANI extends JInternalFrame {
 					String value =  list.getModel().getElementAt(i).toString();
 					if(cmbKodu.getEditor().getItem() != null)
 					{
-					if (value.toString().startsWith(cmbKodu.getEditor().getItem().toString()))
-					{
-						list.setSelectedIndex(i);
-						list.scrollRectToVisible(list.getCellBounds(i, i+14));
-						
-						//	FATURA.bilgi_doldur( value);
-						//System.out.println(value);
-						return;
+						if (value.toString().startsWith(cmbKodu.getEditor().getItem().toString()))
+						{
+							list.setSelectedIndex(i);
+							list.scrollRectToVisible(list.getCellBounds(i, i+14));
+							//	FATURA.bilgi_doldur( value);
+							//System.out.println(value);
+							return;
+						}
 					}
-					///
-					}
-					//
 				}
 			}
 			public void keyPressed(KeyEvent e) {
 				if(e.getKeyCode() == 27)
 				{
 					cmbKodu.getEditor().setItem("");
-						try {
-							//KERESTE_CIKIS.kod_aciklama_bul(editorComponent.getText().toString());
-						} catch (Exception e1) {
-							e1.printStackTrace();
-						}
-					
+					try {
+						//KERESTE_CIKIS.kod_aciklama_bul(editorComponent.getText().toString());
+					} catch (Exception e1) {
+						e1.printStackTrace();
+					}
 				}
 			}
 		});
@@ -676,11 +663,8 @@ public class H_PLANI extends JInternalFrame {
 		btnNewButton_6_1.setToolTipText("Hesap Plani");
 		btnNewButton_6_1.setBounds(242, 87, 22, 23);
 		panel.add(btnNewButton_6_1);
-		
 		hisset("");
-
 	}
-
 	private static void hisset(String arama) 
 	{
 		try {
@@ -715,23 +699,19 @@ public class H_PLANI extends JInternalFrame {
 			if (nereye.equals("I"))
 			{
 				if (rs.getRow() == kayit_sayi)
-				{ return ; }
+					return ;
 				rs.next();
 			}
 			else if (nereye.equals("G"))
 			{
 				if (rs.getRow() == 1)
-				{ return ;}
+					return ;
 				rs.previous();
 			}
 			else if (nereye.equals("ILK"))
-			{
 				rs.first();
-			}
 			else if (nereye.equals("SON"))
-			{
 				rs.last();
-			}
 			txtkayit.setText(rs.getRow() + "/" +   String.valueOf(kayit_sayi));
 			txtkodu.setText(rs.getString("HESAP"));
 			txtunvan.setText(rs.getString("UNVAN"));
@@ -756,7 +736,7 @@ public class H_PLANI extends JInternalFrame {
 			txtkimlik.setText(rs.getString("TC_KIMLIK"));
 			txtaciklama.setText(rs.getString("ACIKLAMA"));
 			chcsms.setSelected(rs.getBoolean("SMS_GONDER"));
-			if (  rs.getBytes("RESIM") != null)
+			if (rs.getBytes("RESIM") != null)
 			{
 				byte[] img = rs.getBytes("RESIM");
 				ImageIcon image = new ImageIcon(img);
@@ -771,9 +751,7 @@ public class H_PLANI extends JInternalFrame {
 				imagePanel.setImage(bi);
 			}
 			else
-			{
 				imagePanel.setImage(null);
-			}
 		}
 		catch(Exception ex)
 		{
@@ -886,12 +864,8 @@ public class H_PLANI extends JInternalFrame {
 	private void arama()
 	{
 		if (chcbas.isSelected())
-		{
 			hisset( "WHERE  HESAP like  '" + txtarama.getText() + "%' OR  UNVAN Like '" + txtarama.getText() + "%'");
-		}
 		else
-		{
 			hisset( "WHERE  HESAP like  '%" + txtarama.getText() + "%' OR  UNVAN Like '%" + txtarama.getText() + "%'");
-		}
 	}
 }

@@ -63,45 +63,45 @@ import javax.swing.SpinnerNumberModel;
 
 @SuppressWarnings({"serial","unused","removal"})
 public class ETIKET extends JInternalFrame {
-static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
-static ADRES_ACCESS a_Access = new ADRES_ACCESS(OBS_SIS_2025_ANA_CLASS._IAdres , OBS_SIS_2025_ANA_CLASS._IAdres_Loger);
-static ResultSet rs = null ;
-//private static final Vector<?> Boolean = null;
-public static JTable table;
-private JLabel lbladet;
-private Obs_TextFIeld textField;
-public static Obs_TextFIeld textField_1;
-public static Obs_TextFIeld textField_2;
-public static Obs_TextFIeld textField_3;
-public static Obs_TextFIeld textField_4;
-public static Obs_TextFIeld textField_5;
-public static Obs_TextFIeld textField_6;
-public static JSpinner spinner;
-public static MaterialTabbed orTabbedPane;
-private boolean hEPSI = false;
+	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
+	static ADRES_ACCESS a_Access = new ADRES_ACCESS(OBS_SIS_2025_ANA_CLASS._IAdres , OBS_SIS_2025_ANA_CLASS._IAdres_Loger);
+	static ResultSet rs = null ;
+	//private static final Vector<?> Boolean = null;
+	public static JTable table;
+	private JLabel lbladet;
+	private Obs_TextFIeld textField;
+	public static Obs_TextFIeld textField_1;
+	public static Obs_TextFIeld textField_2;
+	public static Obs_TextFIeld textField_3;
+	public static Obs_TextFIeld textField_4;
+	public static Obs_TextFIeld textField_5;
+	public static Obs_TextFIeld textField_6;
+	public static JSpinner spinner;
+	public static MaterialTabbed orTabbedPane;
+	private boolean hEPSI = false;
 
 	public ETIKET() {
 		setMaximizable(true);
 		setTitle("ETIKET");
-	
+
 		setIconifiable(true);
 		setResizable(true);
-	
+
 		setClosable(true);
 		setBounds(0, 0, 1200, 600);
-		
+
 		JSplitPane splitPane = new JSplitPane();
 		splitPane.setDividerSize(0);
 		splitPane.setResizeWeight(0.0);
 		splitPane.setOrientation(JSplitPane.VERTICAL_SPLIT);
 		getContentPane().add(splitPane, BorderLayout.CENTER);
-		
+
 		JSplitPane splitPane_1 = new JSplitPane();
 		splitPane_1.setDividerSize(0);
 		splitPane_1.setResizeWeight(1.0);
 		splitPane_1.setOrientation(JSplitPane.VERTICAL_SPLIT);
 		splitPane.setRightComponent(splitPane_1);
-		
+
 		//
 		ScrollPaneWin11 scrollPane = new ScrollPaneWin11();
 		orTabbedPane = new MaterialTabbed();
@@ -111,139 +111,139 @@ private boolean hEPSI = false;
 		JPanel tekPanel = new JPanel();
 		tekPanel.setLayout(null);
 		orTabbedPane.addTab("Tek Etiket", null,tekPanel , null);  //
-		
+
 		JPanel panel_2 = new JPanel();
 		panel_2.setBorder(new TitledBorder(null, "Bilgiler", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panel_2.setBounds(43, 37, 431, 207);
 		tekPanel.add(panel_2);
 		panel_2.setLayout(null);
-		
+
 		JLabel lblNewLabel_3 = new JLabel("Unvan");
 		lblNewLabel_3.setBounds(10, 37, 91, 14);
 		panel_2.add(lblNewLabel_3);
-		
+
 		JLabel lblNewLabel_4 = new JLabel("Adres_1");
 		lblNewLabel_4.setBounds(10, 62, 91, 14);
 		panel_2.add(lblNewLabel_4);
-		
+
 		JLabel lblNewLabel_5 = new JLabel("Adres_2");
 		lblNewLabel_5.setBounds(10, 87, 91, 14);
 		panel_2.add(lblNewLabel_5);
-		
+
 		JLabel lblNewLabel_6 = new JLabel("Telefon");
 		lblNewLabel_6.setBounds(10, 112, 91, 14);
 		panel_2.add(lblNewLabel_6);
-		
+
 		JLabel lblNewLabel_7 = new JLabel("Semt");
 		lblNewLabel_7.setBounds(10, 137, 91, 14);
 		panel_2.add(lblNewLabel_7);
-		
+
 		JLabel lblNewLabel_8 = new JLabel("Sehir");
 		lblNewLabel_8.setBounds(10, 162, 91, 14);
 		panel_2.add(lblNewLabel_8);
-		
+
 		textField_1 = new Obs_TextFIeld(50,"");
 		textField_1.setBounds(111, 34, 267, 20);
 		panel_2.add(textField_1);
 		textField_1.setColumns(10);
-		
+
 		textField_2 = new Obs_TextFIeld(50,"");
 		textField_2.setBounds(111, 59, 267, 20);
 		panel_2.add(textField_2);
 		textField_2.setColumns(10);
-		
+
 		textField_3 = new Obs_TextFIeld(50,"");
 		textField_3.setBounds(111, 84, 267, 20);
 		panel_2.add(textField_3);
 		textField_3.setColumns(10);
-		
+
 		textField_4 = new Obs_TextFIeld(50,"");
 		textField_4.setBounds(111, 109, 267, 20);
 		panel_2.add(textField_4);
 		textField_4.setColumns(10);
-		
+
 		textField_5 = new Obs_TextFIeld(50,"");
 		textField_5.setBounds(111, 134, 267, 20);
 		panel_2.add(textField_5);
 		textField_5.setColumns(10);
-		
+
 		textField_6 = new Obs_TextFIeld(50,"");
 		textField_6.setBounds(111, 159, 267, 20);
 		panel_2.add(textField_6);
 		textField_6.setColumns(10);
-		
+
 		JLabel lblNewLabel_2 = new JLabel("Yazdirma Adedi");
 		lblNewLabel_2.setBounds(496, 47, 108, 14);
 		tekPanel.add(lblNewLabel_2);
-		
+
 		spinner = new JSpinner();
 		spinner.setModel(new SpinnerNumberModel(Integer.valueOf(1), Integer.valueOf(1), null, Integer.valueOf(1)));
 		spinner.setBounds(613, 44, 49, 20);
 		tekPanel.add(spinner);
-		
+
 		splitPane_1.setLeftComponent(orTabbedPane);
 		JPanel panel = new JPanel();
 		panel.setMinimumSize(new Dimension(0, 25));
 		panel.setMaximumSize(new Dimension(0, 25));
 		panel.setBorder(new LineBorder(null));
-		
+
 		splitPane_1.setRightComponent(panel);
 		panel.setLayout(null);
-		
+
 		JLabel lblNewLabel = new JLabel("Secilen Satir :");
 		lblNewLabel.setBounds(10, 5, 85, 14);
 		panel.add(lblNewLabel);
-		
+
 		lbladet = new JLabel("0");
 		lbladet.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lbladet.setBounds(100, 5, 57, 14);
 		//lbladet.setForeground(new Color(0, 0, 128));
 		panel.add(lbladet);
-		
+
 		JPanel panel_1 = new JPanel();
 		panel_1.setMinimumSize(new Dimension(0, 50));
 		panel_1.setMaximumSize(new Dimension(0, 50));
 		panel_1.setBorder(new LineBorder(null));
 		splitPane.setLeftComponent(panel_1);
 		panel_1.setLayout(null);
-		
+
 		JLabel lblNewLabel_1 = new JLabel("Arama");
 		lblNewLabel_1.setBounds(10, 14, 48, 14);
 		panel_1.add(lblNewLabel_1);
-		
+
 		textField = new Obs_TextFIeld(30,"");
 		textField.setBounds(87, 11, 259, 20);
 		textField.getDocument().addDocumentListener(new DocumentListener() 
 		{
-			  public void changedUpdate(DocumentEvent e) 
-			  {
-			    try {
+			public void changedUpdate(DocumentEvent e) 
+			{
+				try {
 					arama();
 				} catch (ClassNotFoundException | SQLException e1) {
 					e1.printStackTrace();
 				}
-			  }
-			  public void removeUpdate(DocumentEvent e) 
-			  {
-			    try {
+			}
+			public void removeUpdate(DocumentEvent e) 
+			{
+				try {
 					arama();
 				} catch (ClassNotFoundException | SQLException e1) {
 					e1.printStackTrace();
 				}
-			  }
-			  public void insertUpdate(DocumentEvent e) 
-			  {
-			    try {
+			}
+			public void insertUpdate(DocumentEvent e) 
+			{
+				try {
 					arama();
 				} catch (ClassNotFoundException | SQLException e1) {
 					e1.printStackTrace();
 				}
-			  }
+			}
 		});
 		panel_1.add(textField);
 		textField.setColumns(10);
 		//
-		
+
 		table = new JTable(){
 			@Override
 			public boolean isCellEditable(int row, int column) {  
@@ -290,7 +290,6 @@ private boolean hEPSI = false;
 				JCheckBox checkBox = new JCheckBox();
 				checkBox.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-
 						JTableHeader th = table.getTableHeader();
 						TableColumnModel tcm = th.getColumnModel();
 						TableColumn tc = tcm.getColumn(0);
@@ -336,7 +335,7 @@ private boolean hEPSI = false;
 				Dimension dd = table.getPreferredSize();
 				dd.height = 30;
 				th.setPreferredSize(dd); 
-				
+
 				table.setRowSelectionInterval(0, 0);
 				table.setRowHeight(21);
 
@@ -382,10 +381,8 @@ private boolean hEPSI = false;
 		{
 			if ( modell.getValueAt(i,0) != null) 
 			{
-				if (  modell.getValueAt(i,0).toString().equals("true")   )
-				{
+				if (  modell.getValueAt(i,0).toString().equals("true"))
 					satir += 1 ;
-				}	
 			};
 		}
 		return satir ;
@@ -395,9 +392,7 @@ private boolean hEPSI = false;
 		if(ETIKET.orTabbedPane.getSelectedIndex() == 0)
 		{
 			if (textField.getText().equals(""))
-			{
 				table.setRowSorter(null);
-			}
 			else
 			{
 				TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(((DefaultTableModel) table.getModel())); 
@@ -431,12 +426,12 @@ private boolean hEPSI = false;
 	}
 	private void temizle()
 	{
-	textField_1.setText("");
-	textField_2.setText("");
-	textField_3.setText("");
-	textField_4.setText("");
-	textField_5.setText("");
-	textField_6.setText("");
+		textField_1.setText("");
+		textField_2.setText("");
+		textField_3.setText("");
+		textField_4.setText("");
+		textField_5.setText("");
+		textField_6.setText("");
 	}
 	private void secilen_satir()
 	{
@@ -450,16 +445,16 @@ private boolean hEPSI = false;
 		{
 			//
 			//Runnable runner = new Runnable()
-		    //{ public void run() {
-		    //
+			//{ public void run() {
+			//
 			Object source = e.getSource();
 			if (source instanceof AbstractButton == false) return;
 			boolean checked = e.getStateChange() == ItemEvent.SELECTED;
 			setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));	
 			//Progres_Bar_Temizle();  
 			//OBS_MAIN.progressBar.setStringPainted(true);
-		    // OBS_MAIN.progressBar.setMaximum(table.getRowCount()-1); 
-		     hEPSI  = true ;
+			// OBS_MAIN.progressBar.setMaximum(table.getRowCount()-1); 
+			hEPSI  = true ;
 			for(int x = 0, y = table.getRowCount(); x < y; x++)
 			{
 				//Progres_Bar(table.getRowCount()-1, x);
@@ -469,23 +464,23 @@ private boolean hEPSI = false;
 			secilen_satir();
 			//Progres_Bar_Temizle();
 			setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	
-		//// Progress Bar
-	    //}
-	    //};
-	    //Thread t = new Thread(runner, "Code Executer");
-	    //t.start();
-	    //
+			//// Progress Bar
+			//}
+			//};
+			//Thread t = new Thread(runner, "Code Executer");
+			//t.start();
+			//
 		}
 		static void Progres_Bar(int max, int deger) throws InterruptedException
-	    {
-	 	    OBS_MAIN.progressBar.setValue(deger);
-	     }
-	    static void Progres_Bar_Temizle()
-	    {
-	    	OBS_MAIN.progressBar.setMaximum(0);
-	    	OBS_MAIN.progressBar.setValue(0);
-	    	OBS_MAIN.progressBar.setStringPainted(false);
-	    }
+		{
+			OBS_MAIN.progressBar.setValue(deger);
+		}
+		static void Progres_Bar_Temizle()
+		{
+			OBS_MAIN.progressBar.setMaximum(0);
+			OBS_MAIN.progressBar.setValue(0);
+			OBS_MAIN.progressBar.setStringPainted(false);
+		}
 	}
 }
 

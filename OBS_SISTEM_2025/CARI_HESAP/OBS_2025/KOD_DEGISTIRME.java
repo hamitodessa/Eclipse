@@ -186,9 +186,8 @@ public class KOD_DEGISTIRME extends JInternalFrame {
 			lBILGI.setmESAJ("Kod Degistirme   Eski Kod:" + textField_2.getText()+
 					" Yeni Kod:"+textField_1.getText());
 			lBILGI.seteVRAK("");
-
 			c_Access.cari_kod_degis_hesap(textField_2.getText(), textField_1.getText()
-					,lBILGI,		BAGLAN_LOG.cariLogDizin);
+					,lBILGI,BAGLAN_LOG.cariLogDizin);
 			c_Access.cari_kod_degis_satirlar(textField_2.getText(), textField_1.getText());
 			getContentPane().setCursor(oac.DEFAULT_CURSOR);
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.INFO,"Islem Basari ile tamamlandi...."  );

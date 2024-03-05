@@ -182,10 +182,8 @@ public class HESAP_BAK extends JInternalFrame {
 				}
 			}
 		});
-		if(! oac.gridcolor.toString().equals("java.awt.Color[r=255,g=255,b=255]")) 
-		{
+		if(! oac.gridcolor.toString().equals("java.awt.Color[r=255,g=255,b=255]"))
 			tblkarton.setGridColor(oac.gridcolor);
-		}
 
 		tblkarton.setShowHorizontalLines(true);
 		tblkarton.setShowVerticalLines(true);
@@ -218,18 +216,14 @@ public class HESAP_BAK extends JInternalFrame {
 							c.setFont(fnt);
 						}
 						else
-						{
 							c.setForeground(super.getForeground());
-						}
 					}
 				}
 				return c;
 			}
 		};
-		if(! oac.gridcolor.toString().equals("java.awt.Color[r=255,g=255,b=255]")) 
-		{
+		if(! oac.gridcolor.toString().equals("java.awt.Color[r=255,g=255,b=255]"))
 			tbldetay.setGridColor(oac.gridcolor);
-		}
 
 		tbldetay.addMouseListener(new MouseAdapter() {
 			@Override
@@ -260,7 +254,6 @@ public class HESAP_BAK extends JInternalFrame {
 					{
 						e1.printStackTrace();
 					}
-
 				}
 			}
 		});
@@ -364,8 +357,6 @@ public class HESAP_BAK extends JInternalFrame {
 			TableColumnModel tcm = th.getColumnModel();
 			TableColumn tc;
 
-
-
 			tc = tcm.getColumn(0);
 			tc.setHeaderRenderer(new SOLA());
 			tc.setMinWidth(80);
@@ -456,7 +447,6 @@ public class HESAP_BAK extends JInternalFrame {
 		{
 			 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage() );
 		}
-
 	}
 	private void  detay_doldur(String hesap)
 	{
@@ -469,7 +459,6 @@ public class HESAP_BAK extends JInternalFrame {
 			getContentPane().setCursor(oac.DEFAULT_CURSOR);
 			GRID_TEMIZLE.grid_temizle(tbldetay);
 			if (!rs.isBeforeFirst() ) {  
-
 				lblNewLabel_1.setText("0.00");
 				lblNewLabel_2_2.setText("0");
 				OBS_MAIN.lblNewLabel_9.setText("Son Raporlama Suresi : " + 0 + " saniye");
@@ -567,9 +556,7 @@ public class HESAP_BAK extends JInternalFrame {
 	public void arama()  
 	{
 		if (textField.getText().equals(""))
-		{
 			tblhesap.setRowSorter(null);
-		}
 		else
 		{
 			TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(((DefaultTableModel) tblhesap.getModel())); 

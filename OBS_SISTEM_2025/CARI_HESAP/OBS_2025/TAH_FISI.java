@@ -165,9 +165,7 @@ public class TAH_FISI extends JInternalFrame {
 					
 				}
 				else if(tabbedPane.getSelectedIndex() == 1)
-				{
 					ayar_doldur();
-				}
 			}
 		});
 		tabbedPane.setFont(new Font("Tahoma", Font.BOLD, 14));
@@ -182,8 +180,6 @@ public class TAH_FISI extends JInternalFrame {
 		DefaultFormatterFactory f_dob = new DefaultFormatterFactory(dnff); 
 		df.setMinimumFractionDigits(2);
 		df.setMaximumFractionDigits(2);
-		
-		
 		
 		JPanel panel_2 = new JPanel();
 		panel_2.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
@@ -231,10 +227,8 @@ public class TAH_FISI extends JInternalFrame {
 		dtc.getComponent(1).addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if (e.getClickCount() == 2) 
-				{
+				if (e.getClickCount() == 2)
 					dtc.setDate(new Date());
-				}
 			}
 		});
 		dtc.setDateFormatString("dd.MM.yyyy");
@@ -248,9 +242,7 @@ public class TAH_FISI extends JInternalFrame {
 			public void keyPressed(KeyEvent e) {
 				if(e.getKeyCode()==KeyEvent.VK_DOWN) {
 					if (TARIH_CEVIR.tarih_dt_ddMMyyyy(dtc) == null)
-					{
 						return;
-					}
 
 					final JTextComponent textComponent=((JTextComponent)e.getSource());
 					int currentCaretPosition = textComponent.getCaretPosition();
@@ -261,17 +253,11 @@ public class TAH_FISI extends JInternalFrame {
 						Calendar cal = Calendar.getInstance();
 						cal.setTime(date);
 						if (currentCaretPosition >=0 && currentCaretPosition <3)
-						{
 							cal.add(Calendar.DAY_OF_MONTH, -1); 
-						}
 						else if (currentCaretPosition >=3 && currentCaretPosition <=5)
-						{
 							cal.add(Calendar.MONTH,-1);
-						}
 						else if (currentCaretPosition >=6 )
-						{
 							cal.add(Calendar.YEAR, -1); 
-						}
 						dtc.setDate(new Date(cal.getTimeInMillis()));
 						textComponent.setCaretPosition(currentCaretPosition);
 					} catch (ParseException e1) {
@@ -280,9 +266,7 @@ public class TAH_FISI extends JInternalFrame {
 				}
 				else if(e.getKeyCode()==KeyEvent.VK_UP) {
 					if (TARIH_CEVIR.tarih_dt_ddMMyyyy(dtc) == null)
-					{
 						return;
-					}
 					final JTextComponent textComponent1=((JTextComponent)e.getSource());
 					int currentCaretPosition = textComponent1.getCaretPosition();
 					SimpleDateFormat datefmt = new SimpleDateFormat("dd.MM.yyyy"); // Or format you're using
@@ -292,17 +276,11 @@ public class TAH_FISI extends JInternalFrame {
 						Calendar cal = Calendar.getInstance();
 						cal.setTime(date);
 						if (currentCaretPosition >=0 && currentCaretPosition <3)
-						{
 							cal.add(Calendar.DAY_OF_MONTH, 1); 
-						}
 						else if (currentCaretPosition >=3 && currentCaretPosition <=5)
-						{
 							cal.add(Calendar.MONTH,1);
-						}
 						else if (currentCaretPosition >=6 )
-						{
 							cal.add(Calendar.YEAR, 1); 
-						}
 						dtc.setDate(new Date(cal.getTimeInMillis()));
 						textComponent1.setCaretPosition(currentCaretPosition);
 					} catch (ParseException e1) {
@@ -329,12 +307,9 @@ public class TAH_FISI extends JInternalFrame {
 					{
 						char c=parts[2].charAt(0);
 						if ((e.getKeyCode() == c) && ((e.getModifiersEx() & (parts[0].equals("E") ?  KeyEvent.CTRL_DOWN_MASK : KeyEvent.ALT_DOWN_MASK) ) != 0))
-						{
 							kaydet();
-						}
 					}
 				} catch (Exception e2) {
-					// TODO: handle exception
 				}
 			}
 		});
@@ -420,11 +395,8 @@ public class TAH_FISI extends JInternalFrame {
 					{
 						char c=parts[2].charAt(0);
 						if ((e.getKeyCode() == c) && ((e.getModifiersEx() & (parts[0].equals("E") ?  KeyEvent.CTRL_DOWN_MASK : KeyEvent.ALT_DOWN_MASK) ) != 0))
-						{
 							kaydet();
-						}
 					}
-					
 					deger = GLOBAL.setting_oku("CARI_HSPPLN_CAG").toString();
 					parts = deger.split(",");
 					if ( ! parts[2].equals(" ")) 

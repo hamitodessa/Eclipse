@@ -74,39 +74,30 @@ public class KARTON_MIZAN extends JInternalFrame {
 			public Component prepareRenderer(TableCellRenderer renderer, int row, int col) {
 				Component c = super.prepareRenderer(renderer, row, col);
 				String status = (String)getValueAt(row,0);
-				if (status == null) 
-				{
+				if (status == null)
 					c.setBackground(oac.satBackColor);
-				} else 
+				else 
 				{
 					c.setBackground(super.getBackground());
 					c.setForeground(super.getForeground());
 				}
 				if (col == 6)
 				{
-					if (status == null) 
-					{
+					if (status == null)
 						c.setForeground(oac.satForeColor);
-					}
 					else 
 					{
 						c.setFont(new Font(table.getFont().getFontName(),1 ,table.getFont().getSize()));
 						if ((double)getValueAt(row,6) < 0)
-						{
 							c.setForeground(new Color(128,0,0));
-						}
 					}
 				}
 				else 
 				{
-					if (status == null) 
-					{
+					if (status == null)
 						c.setForeground(oac.satForeColor);
-					}
-					else 
-					{
+					else
 						c.setForeground(super.getForeground());
-					}
 				}
 				if (isRowSelected(row)) {
 					c.setBackground(table.getSelectionBackground());
@@ -187,7 +178,6 @@ public class KARTON_MIZAN extends JInternalFrame {
 					{
 						e1.printStackTrace();
 					}
-
 				}
 			}
 		});
@@ -252,20 +242,17 @@ public class KARTON_MIZAN extends JInternalFrame {
 			String o2 = "" ;
 			String hangi_tur = "" ;
 			if(FILTRE.comboBox != null)
-			{
 				hangi_tur = FILTRE.comboBox.getItemAt(FILTRE.comboBox.getSelectedIndex());
-			}
-			else {
-				return;
-			}
-			if (hangi_tur.equals("Borclu Hesaplar") )
-			{ o1 = " HAVING ROUND(SUM(SATIRLAR.ALACAK - SATIRLAR.BORC),2) < 0 " ; }
-			else if (hangi_tur.equals("Alacakli Hesaplar")) 
-			{o1 = " HAVING ROUND(SUM(SATIRLAR.ALACAK - SATIRLAR.BORC),2) > 0 " ;}
-			else if (hangi_tur.equals( "Bakiyesi 0 Olanlar" )) 
-			{ o1 = " HAVING ROUND(SUM(SATIRLAR.ALACAK - SATIRLAR.BORC),2) = 0" ;}
+			else
+			return;
+			if (hangi_tur.equals("Borclu Hesaplar"))
+				o1 = " HAVING ROUND(SUM(SATIRLAR.ALACAK - SATIRLAR.BORC),2) < 0 " ;
+			else if (hangi_tur.equals("Alacakli Hesaplar"))
+				o1 = " HAVING ROUND(SUM(SATIRLAR.ALACAK - SATIRLAR.BORC),2) > 0 " ;
+			else if (hangi_tur.equals( "Bakiyesi 0 Olanlar" ))
+				o1 = " HAVING ROUND(SUM(SATIRLAR.ALACAK - SATIRLAR.BORC),2) = 0" ;
 			else if (hangi_tur.equals( "Bakiyesi 0 Olmayanlar" ))
-			{ o1 = " HAVING ROUND(SUM(SATIRLAR.ALACAK - SATIRLAR.BORC),2) <> 0" ;}
+				o1 = " HAVING ROUND(SUM(SATIRLAR.ALACAK - SATIRLAR.BORC),2) <> 0" ;
 			o2 = " ORDER BY HESAP.KARTON,SATIRLAR.HESAP ASC " ;
 			rs = c_Access.karton_mizan(FILTRE.txtilk.getText(),FILTRE.txtson.getText() ,
 					TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_2),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_2_1) ,
@@ -273,10 +260,8 @@ public class KARTON_MIZAN extends JInternalFrame {
 					FILTRE.txtikarton.getText(),FILTRE.txtskarton.getText() ,
 					o1 , o2);
 			GRID_TEMIZLE.grid_temizle(table);
-			if (!rs.isBeforeFirst() )
-			{  
+			if (!rs.isBeforeFirst())
 				return;
-			} 
 			table.setModel(DbUtils.resultSetToTableModel(rs));
 			lblNewLabel_3.setText(FORMATLAMA.doub_0(table.getRowCount()));
 			ara_ayir();
@@ -288,7 +273,6 @@ public class KARTON_MIZAN extends JInternalFrame {
 			tc.setHeaderRenderer(new SOLA());
 			tc.setMinWidth(50);
 
-			
 			tc = tcm.getColumn(1);
 			tc.setHeaderRenderer(new SOLA());
 			tc.setMinWidth(95);
@@ -364,9 +348,7 @@ public class KARTON_MIZAN extends JInternalFrame {
 		try
 		{
 			if(table.getRowCount()==2)
-			{
 				return;
-			}
 			DefaultTableModel mdll = (DefaultTableModel) table.getModel();
 			int satir = 0;
 			String ustsatString = "";

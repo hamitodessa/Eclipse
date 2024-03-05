@@ -91,10 +91,8 @@ public class ORN_HSP_PLN extends JInternalFrame {
 		public void run() {
 			try
 			{
-				if (! lblNewLabel.getText().equals("0")) 
-				{
+				if (! lblNewLabel.getText().equals("0"))
 					OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING,"Aktarilacak Dosya Bos Degil......." );
-				}
 				InputStream stream = ORN_HSP_PLN.class.getClassLoader().getResourceAsStream("DOSYA/Hesap_Plani_Ornek.txt");
 				InputStreamReader streamReader = new InputStreamReader(stream,StandardCharsets.UTF_16);
 				BufferedReader bReader = new BufferedReader(streamReader);

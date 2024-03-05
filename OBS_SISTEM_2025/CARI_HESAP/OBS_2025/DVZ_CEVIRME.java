@@ -180,43 +180,39 @@ public class DVZ_CEVIRME extends JInternalFrame {
 		table = new JTable(){
 			public boolean isCellEditable(int row, int column) {     return false;          }
 			public Component prepareRenderer(TableCellRenderer renderer, int row, int col) {
-                Component c = super.prepareRenderer(renderer, row, col);
-                if (col == 5)
-                {
-                	if (getValueAt(row,5) != null)
-                	{
-                	double tut = (double)getValueAt(row,5);
-                		if (tut < 0)
-                		{
-                		c.setForeground(new Color(128,0,0));
-                		 Font fnt = new Font(table.getFont().getFontName(),1 ,table.getFont().getSize());
-      		            c.setFont(fnt);
-                		}
-                		else
-                		{
-                          c.setForeground(super.getForeground());
-                		}
-                	}
-                }
-                if (col == 6)
-                {
-                	if (getValueAt(row,6) != null)
-                	{
-                	double tut = Double.parseDouble(getValueAt(row,6).toString());
-                		if (tut < 0)
-                		{
-                		c.setForeground(new Color(128,0,0));
-                		 Font fnt = new Font(table.getFont().getFontName(),1 ,table.getFont().getSize());
-      		            c.setFont(fnt);
-                		}
-                		else
-                		{
-                          c.setForeground(super.getForeground());
-                		}
-                	}
-                }
-                return c;
-            }
+				Component c = super.prepareRenderer(renderer, row, col);
+				if (col == 5)
+				{
+					if (getValueAt(row,5) != null)
+					{
+						double tut = (double)getValueAt(row,5);
+						if (tut < 0)
+						{
+							c.setForeground(new Color(128,0,0));
+							Font fnt = new Font(table.getFont().getFontName(),1 ,table.getFont().getSize());
+							c.setFont(fnt);
+						}
+						else
+							c.setForeground(super.getForeground());
+					}
+				}
+				if (col == 6)
+				{
+					if (getValueAt(row,6) != null)
+					{
+						double tut = Double.parseDouble(getValueAt(row,6).toString());
+						if (tut < 0)
+						{
+							c.setForeground(new Color(128,0,0));
+							Font fnt = new Font(table.getFont().getFontName(),1 ,table.getFont().getSize());
+							c.setFont(fnt);
+						}
+						else
+							c.setForeground(super.getForeground());
+					}
+				}
+				return c;
+			}
 		};
 		table.addAncestorListener(new AncestorListener() {
 			public void ancestorAdded(AncestorEvent event) {
@@ -234,11 +230,8 @@ public class DVZ_CEVIRME extends JInternalFrame {
 		});
 
 		table.getTableHeader().setReorderingAllowed(false);
-		if(! oac.gridcolor.toString().equals("java.awt.Color[r=255,g=255,b=255]")) 
-		{
+		if(! oac.gridcolor.toString().equals("java.awt.Color[r=255,g=255,b=255]"))
 			table.setGridColor(oac.gridcolor);
-		}
-
 		table.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
@@ -302,10 +295,7 @@ public class DVZ_CEVIRME extends JInternalFrame {
 		table.setAutoResizeMode( JTable.AUTO_RESIZE_OFF );
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		scrollPane.setViewportView(table);
-
 		table.requestFocus();
-
-
 	}
 	public static void hisset ()
 	{
@@ -326,15 +316,10 @@ public class DVZ_CEVIRME extends JInternalFrame {
 			else 
 			{
 				if (  GLOBAL.setting_oku("PRG_PARA").toString().equals(FILTRE.lblNewLabel_2_1.getText()))
-				{
 					islem = "/" ;
-				}
 				else
-				{
 					islem = "*" ;
-				}
 			}
-
 			rs = c_Access.dvz_cevirme(FILTRE.comboBox_2.getItemAt(FILTRE.comboBox_2.getSelectedIndex()),
 					FILTRE.txtdvz.getText(),
 					TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_3),
@@ -342,9 +327,7 @@ public class DVZ_CEVIRME extends JInternalFrame {
 					FILTRE.comboBox_1.getItemAt(FILTRE.comboBox_1.getSelectedIndex()), islem,hKURString);
 			GRID_TEMIZLE.grid_temizle(table);
 			if (rs == null)
-			{
 				return;
-			}
 			if (!rs.isBeforeFirst() ) {  
 				label_1.setText("0");
 				lblboskur.setText("...");
@@ -427,9 +410,7 @@ public class DVZ_CEVIRME extends JInternalFrame {
 			{
 				double kur = (double) model.getValueAt(i , 3);
 				if ( kur == 1 )
-				{
 					boskur += 1 ;
-				}
 			}
 			lblboskur.setText(FORMATLAMA.doub_0(boskur));
 			label_1.setText(FORMATLAMA.doub_0(model.getRowCount()));

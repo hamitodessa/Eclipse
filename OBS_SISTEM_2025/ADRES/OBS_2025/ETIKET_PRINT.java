@@ -76,9 +76,7 @@ public class ETIKET_PRINT extends JInternalFrame {
 		setTitle("ETIKET PRINT");
 		setBounds(100, 100, 800, 600);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		
 		doldur();
-		
 	}
 	private void doldur()
 	{
@@ -96,13 +94,9 @@ public class ETIKET_PRINT extends JInternalFrame {
 			jasper.setBottomMargin(Integer.valueOf( GLOBAL.setting_oku("ALT_BOSLUK")));
 			
 			if(GLOBAL.setting_oku("ETIKET_YAZIM").toString().equals("Yatay"))
-			{
 				jasper.setPrintOrder(PrintOrderEnum.HORIZONTAL);
-			}
-			else 
-			{
+			else
 				jasper.setPrintOrder(PrintOrderEnum.VERTICAL);
-			}
 			JRDesignSection designSection = (JRDesignSection) jasper.getDetailSection();
 			JRBand[] bands =  jasper.getDetailSection().getBands();
 			JRDesignBand qweBand = (JRDesignBand) bands[0].clone();
@@ -118,8 +112,6 @@ public class ETIKET_PRINT extends JInternalFrame {
 			//**************************SEMT************************************************
 			 
 			//**************************SEHIR***********************************************
-			
-			 
 			JRElement[] eleMENT = bands[0].getElements();
 			for(int i=0;i< eleMENT.length;i++)
 			{
@@ -127,9 +119,6 @@ public class ETIKET_PRINT extends JInternalFrame {
 			}
 			designSection.removeBand(bands[0]);
 			designSection.addBand(qweBand);
-			
-	          
-			
 			//System.out.println( jasper.getColumnWidth()+"=spacing=="+jasper.getColumnSpacing());
 			//System.out.println(jasper.getPageWidth() + "==" + jasper.getBottomMargin()+ "==" + jasper.getTopMargin());
 			
@@ -137,8 +126,7 @@ public class ETIKET_PRINT extends JInternalFrame {
 			JasperReport jr = JasperCompileManager.compileReport(jasper);
 			ResultSet rSet = a_Access.adr_etiket("Adi");
 			//
-			System.out.println("=="+etISIM.size());
-
+			//System.out.println("=="+etISIM.size());
 			if(ETIKET.orTabbedPane.getSelectedIndex() == 0)
 			{
 				etISIM.clear();
@@ -149,23 +137,17 @@ public class ETIKET_PRINT extends JInternalFrame {
 				etISIM.clear();
 				satir_kontrol_tek();
 			}
-			
 			JRBeanCollectionDataSource qazBe = new JRBeanCollectionDataSource(etISIM);
-			
-		
 			//Map parameters = new HashMap();
 		    //parameters.put("ReportTitle", "List of Contacts");
 		    //parameters.put("Author", "Prepared By Manisha");
 			//Map<String, Object> parameters = new HashMap<String, Object>();
 			//parameters.put("kOD", "120.01.0000");
 			//jp = JasperFillManager.fillReport(jr,parameters, qazBe);
-			
 			jp = JasperFillManager.fillReport(jr,null, qazBe);
-		
 			//
 			//JasperPrint jp = JasperFillManager.fillReport(jr,null, new JRResultSetDataSource(rSet));
 			getContentPane().add(new JRViewer(jp), BorderLayout.CENTER);
-			
 		} catch (Exception ex) 
 		{
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR, ex.getMessage());
@@ -191,31 +173,18 @@ public class ETIKET_PRINT extends JInternalFrame {
 					String tELEF = "" ;
 					String sEMT = "" ;
 					String sEHIR = "";
-					
 					if (modell.getValueAt(i, 0) != null)
-					{
 						iSIM = modell.getValueAt(i, 0).toString();
-					}
 					if (modell.getValueAt(i, 1) != null)
-					{
 						aDR1 = modell.getValueAt(i, 1).toString();
-					}
 					if (modell.getValueAt(i, 2) != null)
-					{
 						aDR2 = modell.getValueAt(i, 2).toString();
-					}
 					if (modell.getValueAt(i, 3) != null)
-					{
 						tELEF = modell.getValueAt(i, 3).toString();
-					}
 					if (modell.getValueAt(i, 4) != null)
-					{
 						sEMT = modell.getValueAt(i, 4).toString();
-					}
 					if (modell.getValueAt(i, 5) != null)
-					{
 						sEHIR = modell.getValueAt(i, 5).toString();
-					}
 					ETIKET_ISIM ets1  = new ETIKET_ISIM(iSIM,aDR1,aDR2 ,sEMT,sEHIR,tELEF);
 					etISIM.add(ets1);
 				}

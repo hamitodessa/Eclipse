@@ -154,10 +154,8 @@ public class GUNLUK_ISLEM extends JInternalFrame {
 			}
 		});
 
-		if(! oac.gridcolor.toString().equals("java.awt.Color[r=255,g=255,b=255]")) 
-		{
+		if(! oac.gridcolor.toString().equals("java.awt.Color[r=255,g=255,b=255]"))
 			table.setGridColor(oac.gridcolor);
-		}
 
 		table.addMouseListener(new MouseAdapter() {
 			@Override
@@ -308,9 +306,7 @@ public class GUNLUK_ISLEM extends JInternalFrame {
 	private void arama()
 	{
 		if (textField.getText().equals(""))
-		{
 			table.setRowSorter(null);
-		}
 		else
 		{
 		TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(((DefaultTableModel) table.getModel())); 

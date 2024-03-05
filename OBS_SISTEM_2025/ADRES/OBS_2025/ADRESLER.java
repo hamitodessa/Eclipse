@@ -74,39 +74,29 @@ public class ADRESLER extends JInternalFrame {
 
 	table = new JTable(){
 		public boolean isCellEditable(int row, int column) {     return false;
-		
+
 		}
 		public Component prepareRenderer(TableCellRenderer renderer, int row, int col) {
 			Component c = super.prepareRenderer(renderer, row, col);
-				
-				if( table.getRowSorter() != null)
-				 {
-					if(table.getModel().getValueAt(table.getRowSorter().convertRowIndexToModel(row),25)== null)
-					{
-						 table.setRowHeight(row, 21);
-					}
-					else {
-						 table.setRowHeight(row, 100);
-					}
-				 }
-				else 
-				{
-					if(table.getModel().getValueAt(row,25)== null)
-					{
-						 table.setRowHeight(row, 21);
-					}
-					else {
-						
-						 table.setRowHeight(row, 100);
-					}
-				}
-				return c;
+			if( table.getRowSorter() != null)
+			{
+				if(table.getModel().getValueAt(table.getRowSorter().convertRowIndexToModel(row),25)== null)
+					table.setRowHeight(row, 21);
+				else
+					table.setRowHeight(row, 100);
+			}
+			else 
+			{
+				if(table.getModel().getValueAt(row,25)== null)
+					table.setRowHeight(row, 21);
+				else
+					table.setRowHeight(row, 100);
+			}
+			return c;
 		}
 	};
-	if(! oac.gridcolor.toString().equals("java.awt.Color[r=255,g=255,b=255]")) 
-	{
+	if(! oac.gridcolor.toString().equals("java.awt.Color[r=255,g=255,b=255]"))
 		table.setGridColor(oac.gridcolor);
-	}
 
 	table.setAutoResizeMode( JTable.AUTO_RESIZE_OFF );
 	table.setShowHorizontalLines(true);
@@ -208,11 +198,11 @@ public class ADRESLER extends JInternalFrame {
 
 			tc = tcm.getColumn(2);
 			tc.setHeaderRenderer(new SOLA());
-			tc.setMinWidth(90);
+			tc.setMinWidth(200);
 
 			tc = tcm.getColumn(3);
 			tc.setHeaderRenderer(new SOLA());
-			tc.setMinWidth(70);
+			tc.setMinWidth(200);
 
 			Dimension dd = th.getPreferredSize();
 			dd.height = 30;
@@ -266,22 +256,18 @@ public class ADRESLER extends JInternalFrame {
 	public void arama()  
 	{
 		try {
-			
-		
-		if (textField.getText().equals(""))
-		{
-			table.setRowSorter(null);
-		}
-		else
-		{
-			TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(((DefaultTableModel) table.getModel())); 
-			RowFilter<TableModel, Object> rf = null;
-			rf = RowFilter.regexFilter("(?iu)" +  textField.getText().toLowerCase() , 1);
-			sorter.setRowFilter(rf);
-		    table.setRowSorter(sorter);
-		    table.revalidate();
-		    table.repaint();		
-		 }
+			if (textField.getText().equals(""))
+				table.setRowSorter(null);
+			else
+			{
+				TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(((DefaultTableModel) table.getModel())); 
+				RowFilter<TableModel, Object> rf = null;
+				rf = RowFilter.regexFilter("(?iu)" +  textField.getText().toLowerCase() , 1);
+				sorter.setRowFilter(rf);
+				table.setRowSorter(sorter);
+				table.revalidate();
+				table.repaint();		
+			}
 		} catch (Exception e) {
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR, e.getMessage());
 		}

@@ -34,7 +34,6 @@ import javax.swing.ListSelectionModel;
 import javax.swing.RowFilter;
 
 import java.awt.Font;
-import javax.swing.border.LineBorder;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
@@ -132,7 +131,7 @@ public class HESAP_PLANI_DETAY extends JInternalFrame {
 		scrollPane.setViewportView(table);
 
 		JPanel panel = new JPanel();
-		panel.setBorder(new LineBorder(null));
+		//panel.setBorder(new LineBorder(null));
 		splitPane.setLeftComponent(panel);
 		panel.setMinimumSize(new Dimension(0, 30));
 		panel.setMaximumSize(new Dimension(0, 30));

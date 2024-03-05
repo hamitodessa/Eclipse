@@ -43,8 +43,6 @@ import java.util.Vector;
 
 import javax.swing.ListSelectionModel;
 import java.awt.Font;
-import javax.swing.border.LineBorder;
-
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.beans.PropertyVetoException;
@@ -101,7 +99,7 @@ public class EKSTRE extends JInternalFrame {
 
 		
 		jScrollPane1alt = new ScrollPaneWin11();
-		jScrollPane1alt.setBorder(new LineBorder(null));
+		//jScrollPane1alt.setBorder(new LineBorder(null));
 		jScrollPane1alt.getHorizontalScrollBar().addAdjustmentListener(new AdjustmentListener() {
 			@Override
 			public void adjustmentValueChanged(AdjustmentEvent e) {

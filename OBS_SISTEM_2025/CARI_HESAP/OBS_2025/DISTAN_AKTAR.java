@@ -1033,7 +1033,7 @@ public class DISTAN_AKTAR extends JInternalFrame {
 		toolBar.add(btnNewButton_5);
 
 		JPanel panel_3 = new JPanel();
-		panel_3.setBorder(new LineBorder(null));
+		//panel_3.setBorder(new LineBorder(null));
 		splitPane_1.setRightComponent(panel_3);
 		panel_3.setMinimumSize(new Dimension(0, 30));
 		panel_3.setMaximumSize(new Dimension(0, 30));

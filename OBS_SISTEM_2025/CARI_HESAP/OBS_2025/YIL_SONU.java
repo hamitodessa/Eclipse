@@ -101,7 +101,7 @@ public class YIL_SONU extends JInternalFrame {
 		splitPaneana.setLeftComponent(splitPane1);
 
 		JPanel panel_3 = new JPanel();
-		panel_3.setBorder(new LineBorder(null));
+		//panel_3.setBorder(new LineBorder(null));
 		panel_3.setMinimumSize(new Dimension(0, 25));
 		panel_3.setMaximumSize(new Dimension(0, 25));
 

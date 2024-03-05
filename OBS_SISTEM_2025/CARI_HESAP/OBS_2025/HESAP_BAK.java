@@ -16,7 +16,6 @@ import javax.swing.RowFilter;
 import java.awt.Font;
 import java.sql.ResultSet;
 import javax.swing.SwingConstants;
-import javax.swing.border.LineBorder;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.event.ListSelectionEvent;
@@ -269,7 +268,7 @@ public class HESAP_BAK extends JInternalFrame {
 		
 		JPanel panel = new JPanel();
 		jScrollPane1alt.setViewportView(panel);
-		panel.setBorder(new LineBorder(null));
+		//panel.setBorder(new LineBorder(null));
 		//panel.setMinimumSize(new Dimension(0,35));
 		panel.setPreferredSize(new Dimension(1060,35));
 		panel.setLayout(null);

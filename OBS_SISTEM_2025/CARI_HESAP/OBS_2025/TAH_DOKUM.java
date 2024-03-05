@@ -157,7 +157,7 @@ public class TAH_DOKUM extends JInternalFrame {
 		table.setShowVerticalLines(true);
 		
 		ScrollPaneWin11 scrollPane_1 = new ScrollPaneWin11();
-		scrollPane_1.setBorder(new LineBorder(null));
+		//scrollPane_1.setBorder(new LineBorder(null));
 		scrollPane_1.setMinimumSize(new Dimension(0, 100));
 		scrollPane_1.setMaximumSize(new Dimension(0, 100));
 		

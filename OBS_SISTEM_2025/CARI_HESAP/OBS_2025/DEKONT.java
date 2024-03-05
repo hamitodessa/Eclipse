@@ -588,6 +588,9 @@ public class DEKONT extends JInternalFrame {
 			public void focusGained(FocusEvent e) {
 						txtbtutar.selectAll();
 			}
+			@Override
+			public void focusLost(FocusEvent e) {
+			}
 		});
 
 		txtbtutar.addMouseListener(new MouseAdapter() {
@@ -606,13 +609,11 @@ public class DEKONT extends JInternalFrame {
 							if (kusur2 != 1 ) // ' capraz kur
 							{
 								double	db1 = (kusur2 * dbal) / kusur;
-								//txtbtutar.setText(Double.toString(db1));
 								txtbtutar.setText(FORMATLAMA.doub_2(db1));
 							}
 							else  //' carpraz kur degil 
 							{
 								double d1 =  dbal  / kusur ;
-								//txtbtutar.setText(Double.toString(d1));
 								txtbtutar.setText(FORMATLAMA.doub_2(d1));
 							}
 						}
@@ -662,7 +663,6 @@ public class DEKONT extends JInternalFrame {
 			@Override
 			public void keyTyped(KeyEvent e) {
 				char cc =  e.getKeyChar();
-				//System.out.println((int)e.getKeyChar());
 				if ( Character.isDigit(cc))
 					txtbtutar.setEditable(true);
 				else 
@@ -823,7 +823,6 @@ public class DEKONT extends JInternalFrame {
 						if (! oac.hsp_hsp_kodu.equals(""))
 						{
 							cmbbhes.setSelectedItem( oac.hsp_hsp_kodu);
-							//cmbbhes.getEditor().setItem(oac.hsp_hsp_kodu);
 						}
 					} catch (Exception e1) {
 						e1.printStackTrace();
@@ -871,7 +870,6 @@ public class DEKONT extends JInternalFrame {
 									hsp.setVisible(true);
 									if (! oac.hsp_hsp_kodu.equals(""))
 									{
-										//cmbbhes.getEditor().setItem(oac.hsp_hsp_kodu);
 										cmbbhes.setSelectedItem( oac.hsp_hsp_kodu);
 										cmbb.requestFocus();
 										
@@ -1110,20 +1108,17 @@ public class DEKONT extends JInternalFrame {
 							if (kusur2 != 1 ) // ' capraz kur
 							{
 								double	db1 = (kusur2 * dbborc) / kusur;
-								//txtatutar.setText(Double.toString(db1));
 								txtatutar.setText(FORMATLAMA.doub_2(db1));
 							}
 							else  //' carpraz kur degil 
 							{
 								double d1 =  dbborc  / kusur ;
-								//txtatutar.setText(Double.toString(d1));
 								txtatutar.setText(FORMATLAMA.doub_2(d1));
 							}
 						}
 						else
 						{
 							double d2 = kusur2 * dbborc;
-							//txtatutar.setText(Double.toString(d2));
 							txtatutar.setText(FORMATLAMA.doub_2(d2));
 						}
 					} catch (ParseException e1) {
@@ -1640,7 +1635,8 @@ public class DEKONT extends JInternalFrame {
 
 			if( lblb.getText().equals(lbla.getText()))
 			{
-				if ( ! txtbtutar.getText().equals(txtatutar.getText()))
+				
+				if (DecimalFormat.getNumberInstance().parse(txtbtutar.getText()).doubleValue() != DecimalFormat.getNumberInstance().parse(txtatutar.getText()).doubleValue())
 				{
 					OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING,  "Alacakli ve Borclu Tutar Esit Degil...." );
 					return ;

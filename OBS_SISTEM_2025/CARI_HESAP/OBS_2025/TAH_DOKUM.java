@@ -118,11 +118,8 @@ public class TAH_DOKUM extends JInternalFrame {
 			public void ancestorRemoved(AncestorEvent event) {
 			}
 		});
-		if(! oac.gridcolor.toString().equals("java.awt.Color[r=255,g=255,b=255]")) 
-		{
+		if(! oac.gridcolor.toString().equals("java.awt.Color[r=255,g=255,b=255]"))
 			table.setGridColor(oac.gridcolor);
-		}
-
 		table.addKeyListener(new KeyAdapter() {
 			
 			@Override

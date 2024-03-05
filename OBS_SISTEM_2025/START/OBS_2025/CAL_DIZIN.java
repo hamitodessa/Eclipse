@@ -1035,10 +1035,8 @@ public class CAL_DIZIN extends JDialog {
 			public boolean isCellEditable(int row, int column) {     return false;          }
 		};
 		table_1.getTableHeader().setReorderingAllowed(false);
-		if(! oac.gridcolor.toString().equals("java.awt.Color[r=255,g=255,b=255]")) 
-		{
+		if(! oac.gridcolor.toString().equals("java.awt.Color[r=255,g=255,b=255]"))
 			table_1.setGridColor(oac.gridcolor);
-		}
 		table_1.setShowHorizontalLines(true);
 		table_1.setShowVerticalLines(true);
 		ListSelectionModel selectionModel = table_1.getSelectionModel();
@@ -1102,13 +1100,10 @@ public class CAL_DIZIN extends JDialog {
 						ResultSet	rs = null;
 						oac.uSER_ISL.log_mail_kont_kayit(GLOBAL.KULL_ADI , oku);
 						rs = oac.uSER_ISL.log_mail_oku(GLOBAL.KULL_ADI);
-						if (!rs.isBeforeFirst() ) {  
+						if (!rs.isBeforeFirst() )
 							return;
-						} 
 						else
-						{
-							 mail_doldur();
-						}
+							mail_doldur();
 						txt_Lmaill.setText(oac.uSER_ISL.log_mail_aktiv_oku(GLOBAL.KULL_ADI));
 					}
 					contentPane.setCursor(DEFAULT_CURSOR);
@@ -1407,9 +1402,7 @@ public class CAL_DIZIN extends JDialog {
 		
 		contentPane.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 		try {
-
-		activ_sayfa =0;
-		
+			activ_sayfa =0;
 			grid_doldur();
 			doldur_kutu(tblCari,0);
 			tblCari.requestFocus();
@@ -1417,11 +1410,9 @@ public class CAL_DIZIN extends JDialog {
 				tblCari.setRowSelectionInterval(0, 0);
 			contentPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 		} catch (Exception e1) {
-	
+
 			e1.printStackTrace();
 		}
-		
-
 	}
 	private void grid_doldur() throws ClassNotFoundException, SQLException
 	{
@@ -1573,13 +1564,9 @@ public class CAL_DIZIN extends JDialog {
 		}
 		int say = Integer.parseInt( grd.getModel().getValueAt(satir,14).toString());
 		if (say == 1)
-		{
 			chckbxL_1.setSelected(true);
-		}
 		else
-		{
 			chckbxL_1.setSelected(false);
-		}
 		String[] token = grd.getModel().getValueAt(satir, 15).toString().split(",");
 		cbVeritabani.setSelected( (token[0].equals("true") ? true:false));	
 		cbDosya.setSelected( (token[1].equals("true") ? true:false));
@@ -1657,16 +1644,13 @@ public class CAL_DIZIN extends JDialog {
 		ResultSet	rs = null;
 		USER_ISLEMLERI usr = new USER_ISLEMLERI();
 		rs = usr.ipp(GLOBAL.KULL_ADI);
-		if (!rs.isBeforeFirst() ) {  
+		if (!rs.isBeforeFirst() )
 			return;
-		} 
 		else
 		{
 			cmbip.addItem("");
 			while (rs.next())
-			{
 				cmbip.addItem(rs.getString("IP"));
-			}
 		}
 	}
 	private  void server_control() throws HeadlessException, ClassNotFoundException
@@ -1758,13 +1742,9 @@ public class CAL_DIZIN extends JDialog {
 			break;
 		}
 		if (chckbxL.isSelected())
-		{
 			lokal_dosya(s_CONN,program,modul);//LOCAL DOSYA KONTROL \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-		}
-		else  // Server
-		{
+		else
 			server_dosya(s_CONN,program,modul);//SERVER DOSYA KONTROL \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-		}
 	}
 	private void lokal_dosya(CONNECT s_CONN,String program,String modul) throws HeadlessException, ClassNotFoundException, SQLException, IOException
 	{
@@ -1781,9 +1761,8 @@ public class CAL_DIZIN extends JDialog {
 			{
 				ResultSet	rs = null;
 				rs = oac.uSER_ISL.user_details_izinleri(GLOBAL.KULL_ADI, modul, "YER = 'L'");
-				if (!rs.isBeforeFirst() ) {  
+				if (!rs.isBeforeFirst() )
 					izinli = false;
-				} 
 			}
 			if (izinli == false)
 			{
@@ -1924,10 +1903,7 @@ public class CAL_DIZIN extends JDialog {
 		  case 7 -> mdb_yaz_2("Kereste");
 		}
 		if(! txtIp.getText().equals(""))
-		{
-		oac.uSER_ISL.ip_dos_kont(txtIp.getText());
-		}
-		
+			oac.uSER_ISL.ip_dos_kont(txtIp.getText());
 	}
 	private void mdb_yaz_2(String modul) throws ClassNotFoundException, SQLException
 	{
@@ -2308,9 +2284,7 @@ public class CAL_DIZIN extends JDialog {
 		sbilgi.setDizin_yeri("default");;
 		sbilgi.setDizin("");;
 		if (chckbxD.isSelected())
-		{
 			c_Access.cARI_SIFIR_S(sbilgi,lBILGI,BAGLAN_LOG.cariLogDizin);
-		}
 	}
 	void stok_s_olustur() throws ClassNotFoundException, SQLException
 	{
@@ -2343,9 +2317,7 @@ public class CAL_DIZIN extends JDialog {
 		sbilgi.setDizin_yeri("default");;
 		sbilgi.setDizin("");;
 		if (chckbxD.isSelected())
-		{
 			s_Access.fAT_SIFIR_S(sbilgi,lBILGI,BAGLAN_LOG.fatLogDizin);
-		}
 	}
 	void adr_s_olustur() throws ClassNotFoundException, SQLException
 	{
@@ -2376,11 +2348,8 @@ public class CAL_DIZIN extends JDialog {
 		sbilgi.setServer(txtIp.getText()); ;
 		sbilgi.setDizin_yeri("default");;
 		sbilgi.setDizin("");;
-		
 		if (chckbxD.isSelected())
-		{
 			a_Access.aDR_SIFIR_S(sbilgi,lBILGI,BAGLAN_LOG.adrLogDizin);
-		}
 	}
 	void kur_s_olustur() throws ClassNotFoundException, SQLException
 	{
@@ -2410,9 +2379,7 @@ public class CAL_DIZIN extends JDialog {
 		sbilgi.setDizin_yeri("default");;
 		sbilgi.setDizin("");;
 		if (chckbxD.isSelected())
-		{
 			k_Access.kUR_SIFIR_S(sbilgi,lBILGI,BAGLAN_LOG.kurLogDizin);
-		}
 	}
 	void kam_s_olustur() throws ClassNotFoundException, SQLException
 	{
@@ -2444,9 +2411,7 @@ public class CAL_DIZIN extends JDialog {
 		sbilgi.setDizin_yeri("default");;
 		sbilgi.setDizin("");;
 		if (chckbxD.isSelected())
-		{
 			ka_Access.kAM_SIFIR_S(sbilgi,lBILGI,BAGLAN_LOG.kamLogDizin);
-		}
 	}
 	void sms_s_olustur() throws ClassNotFoundException, SQLException
 	{
@@ -2476,9 +2441,7 @@ public class CAL_DIZIN extends JDialog {
 		sbilgi.setDizin_yeri("default");
 		sbilgi.setDizin("");;
 		if (chckbxD.isSelected())
-		{
 			sms_Access.sMS_SIFIR_S(sbilgi,lBILGI,BAGLAN_LOG.smsLogDizin);
-		}
 	}
 	void gun_s_olustur() throws ClassNotFoundException, SQLException
 	{
@@ -2510,9 +2473,7 @@ public class CAL_DIZIN extends JDialog {
 		sbilgi.setDizin_yeri("default");;
 		sbilgi.setDizin("");;
 		if (chckbxD.isSelected())
-		{
 			g_Access.gUN_SIFIR_S(sbilgi, lBILGI,BAGLAN_LOG.gunLogDizin);
-		}    
 	}
 	void ker_s_olustur() throws ClassNotFoundException, SQLException
 	{

@@ -493,7 +493,8 @@ public class TAH_FISI extends JInternalFrame {
 		textCKodu.setColumns(10);
 		
 		lblCAdi = new JLabel("...");
-		lblCAdi.setBounds(10, 64, 261, 14);
+		lblCAdi.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblCAdi.setBounds(10, 63, 261, 14);
 		panel_1.add(lblCAdi);
 		
 		
@@ -562,6 +563,7 @@ public class TAH_FISI extends JInternalFrame {
 		});
 		
 		lblAAdi = new JLabel("...");
+		lblAAdi.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblAAdi.setBounds(281, 63, 308, 14);
 		panel_1.add(lblAAdi);
 		
@@ -645,6 +647,7 @@ public class TAH_FISI extends JInternalFrame {
 		panel_4.add(lblNewLabel_5);
 		
 		lblCekSayi = new JLabel("0");
+		lblCekSayi.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblCekSayi.setBounds(122, 29, 46, 14);
 		panel_4.add(lblCekSayi);
 		
@@ -906,8 +909,8 @@ public class TAH_FISI extends JInternalFrame {
 	         {
 	        	 if(tableCek.getSelectedColumn() == -1)
 	        	 {
-	        	 if (tableCek.isEditing())
-				     tableCek.getCellEditor().stopCellEditing();
+	        		 if (tableCek.isEditing())
+	        			 tableCek.getCellEditor().stopCellEditing();
 	        	 }
 	         }
 	      });

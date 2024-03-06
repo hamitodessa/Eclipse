@@ -525,7 +525,7 @@ public class CARI_HESAP_MSSQL implements ICARI_HESAP {
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		rss.next();
-		int count=0;
+		int count = 0;
 		count = rss.getRow();
 		//boolean result;
 		//result = count  != 0 ? true : false;
@@ -576,7 +576,6 @@ public class CARI_HESAP_MSSQL implements ICARI_HESAP {
 	}
 	public ResultSet hsp_pln(String arama) throws ClassNotFoundException, SQLException
 	{
-
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 		ResultSet rss = null;
 		String sql = "SELECT  [HESAP],[UNVAN],[HESAP_CINSI],[KARTON],[YETKILI],[ADRES_1],[ADRES_2],[SEMT],[SEHIR],[VERGI_DAIRESI]," + 
@@ -677,9 +676,7 @@ public class CARI_HESAP_MSSQL implements ICARI_HESAP {
 			stmt.setBytes(21,bytes);
 		}
 		else
-		{
 			stmt.setBytes(21,null);
-		}
 		stmt.executeUpdate();
 		stmt.close();
 	}
@@ -689,9 +686,7 @@ public class CARI_HESAP_MSSQL implements ICARI_HESAP {
 		str1 = "" ;
 		str2 = "" ;
 		if (BAGLAN.kurDizin.dIZIN_CINS.equals("L"))
-		{
 			str1 = "OK_Kur" + BAGLAN.kurDizin.kOD + ".dbo.kurlar  " ;
-		}
 		else
 		{
 			if ( BAGLAN.cariDizin.sERVER.equals(BAGLAN.kurDizin.sERVER))
@@ -768,30 +763,18 @@ public class CARI_HESAP_MSSQL implements ICARI_HESAP {
 		stb.append(" FROM   SATIRLAR   , HESAP   , IZAHAT  ") ; 
 		stb.append(" WHERE SATIRLAR.HESAP = HESAP.HESAP AND SATIRLAR.EVRAK = IZAHAT.EVRAK ") ;
 		if ( ! hes.equals("%") && ! hes.equals("%&"))
-		{
 			stb.append(" AND SATIRLAR.HESAP LIKE N'" + hes + "'") ;
-		}
 		stb.append(" AND IZAHAT.IZAHAT  LIKE N'" + acik + "'") ;
 		if ( ! yil.equals(""))
-		{
 			stb.append(" AND DATEPART(YEAR,TARIH) LIKE '" + yil + "'") ;
-		}
 		if ( ! ay.equals(""))
-		{
 			stb.append(" AND DATEPART(MONTH,TARIH) LIKE '" + ay + "'") ;
-		}
 		if ( ! gun.equals(""))
-		{
 			stb.append(" AND DATEPART(DAY,TARIH) LIKE '" + gun + "'") ;
-		}
-		if ( ! kod.equals("%") &&  ! kod.equals("%%")) 
-		{
+		if ( ! kod.equals("%") &&  ! kod.equals("%%"))
 			stb.append(" AND KOD LIKE '" + kod + "'");
-		}
-		if ( ! kullanici.equals("%") &&  ! kullanici.equals("%%")) 
-		{
+		if ( ! kullanici.equals("%") &&  ! kullanici.equals("%%"))
 			stb.append(" AND SATIRLAR.[USER] LIKE '" + kullanici + "'");
-		}
 		stb.append(" ORDER BY SATIRLAR.TARIH ,SATIRLAR.EVRAK ") ;
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 		ResultSet	rss = null;
@@ -921,6 +904,10 @@ public class CARI_HESAP_MSSQL implements ICARI_HESAP {
 		sql = "UPDATE HESAP_DETAY  SET D_HESAP = N'" + t2 + "'  WHERE D_HESAP = N'" + t1 + "'";
 		stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();
+		stmt.clearParameters();
+		sql = "UPDATE TAH_DETAY  SET C_HES = N'" + t2 + "'  WHERE C_HES = N'" + t1 + "'";
+		stmt = con.prepareStatement(sql);
+		stmt.executeUpdate();
 	}
 	public void cari_kod_degis_satirlar(String t1,String t2) throws ClassNotFoundException, SQLException
 	{
@@ -1002,7 +989,6 @@ public class CARI_HESAP_MSSQL implements ICARI_HESAP {
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;	
-
 	}
 	public int yilsonu_cari_fisno_al() throws ClassNotFoundException, SQLException
 	{
@@ -1088,7 +1074,6 @@ public class CARI_HESAP_MSSQL implements ICARI_HESAP {
 		stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();
 		stmt.close();
-
 	}
 	public ResultSet sms_cari_pln(String nerden) throws ClassNotFoundException, SQLException
 	{
@@ -1101,7 +1086,6 @@ public class CARI_HESAP_MSSQL implements ICARI_HESAP {
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;	
-
 	}
 	public ResultSet ozel_mizan(String h1 , String h2,String t1,String t2,String c1,String c2,String k1, String k2, String o1 , String o2) throws ClassNotFoundException, SQLException
 	{

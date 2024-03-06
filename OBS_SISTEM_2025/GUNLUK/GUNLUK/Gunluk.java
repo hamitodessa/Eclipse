@@ -523,7 +523,7 @@ public class Gunluk extends JInternalFrame {
 					if (e.getClickCount() == 2)
 					{
 						boolean varmi = OBS_MAIN.pencere_bak("GOREV GIRIS");
-						if (varmi  ) 
+						if (varmi) 
 						{
 							try {
 								OBS_MAIN.pencere_aktiv_yap("GOREV GIRIS");
@@ -566,27 +566,27 @@ public class Gunluk extends JInternalFrame {
 		table.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		table.setModel(new DefaultTableModel(	new Object[][] 
 				{
-					{"06:00", null, null, null, null, null, null, null},
-					{"07:00", null, null, null, null, null, null, null},
-					{"08:00", null, null, null, null, null, null, null},
-					{"09:00", null, null, null, null, null, null, null},
-					{"10:00", null, null, null, null, null, null, null},
-					{"11:00", null, null, null, null, null, null, null},
-					{"12:00", null, null, null, null, null, null, null},
-					{"13:00", null, null, null, null, null, null, null},
-					{"14:00", null, null, null, null, null, null, null},
-					{"15:00", null, null, null, null, null, null, null},
-					{"16:00", null, null, null, null, null, null, null},
-					{"17:00", null, null, null, null, null, null, null},
-					{"18:00", null, null, null, null, null, null, null},
-					{"19:00", null, null, null, null, null, null, null},
-					{"20:00", null, null, null, null, null, null, null},
-					{"21:00", null, null, null, null, null, null, null},
-					{"22:00", null, null, null, null, null, null, null},
-					{"23:00", null, null, null, null, null, null, null},
+					{"06:00", "", "", "", "", "", "", ""},
+					{"07:00", "", "", "", "", "", "", ""},
+					{"08:00", "", "", "", "", "", "", ""},
+					{"09:00", "", "", "", "", "", "", ""},
+					{"10:00", "", "", "", "", "", "", ""},
+					{"11:00", "", "", "", "", "", "", ""},
+					{"12:00", "", "", "", "", "", "", ""},
+					{"13:00", "", "", "", "", "", "", ""},
+					{"14:00", "", "", "", "", "", "", ""},
+					{"15:00", "", "", "", "", "", "", ""},
+					{"16:00", "", "", "", "", "", "", ""},
+					{"17:00", "", "", "", "", "", "", ""},
+					{"18:00", "", "", "", "", "", "", ""},
+					{"19:00", "", "", "", "", "", "", ""},
+					{"20:00", "", "", "", "", "", "", ""},
+					{"21:00", "", "", "", "", "", "", ""},
+					{"22:00", "", "", "", "", "", "", ""},
+					{"23:00", "", "", "", "", "", "", ""},
 				},
 				new String[] {
-						"New column", "New column", "New column", "New column", "New column", "New column", "New column", "New column"
+						"", "", "", "", "", "", "", ""
 				}
 				));
 		table.getColumnModel().getColumn(0).setMaxWidth(100);

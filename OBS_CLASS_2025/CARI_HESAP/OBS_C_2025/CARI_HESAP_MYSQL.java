@@ -857,6 +857,10 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 		sql = "UPDATE HESAP_DETAY  SET D_HESAP = N'" + t2 + "'  WHERE D_HESAP = N'" + t1 + "'";
 		stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();
+		stmt.clearParameters();
+		sql = "UPDATE TAH_DETAY  SET C_HES = N'" + t2 + "'  WHERE C_HES = N'" + t1 + "'";
+		stmt = con.prepareStatement(sql);
+		stmt.executeUpdate();
 	}
 	public void cari_kod_degis_satirlar(String t1,String t2) throws ClassNotFoundException, SQLException
 	{

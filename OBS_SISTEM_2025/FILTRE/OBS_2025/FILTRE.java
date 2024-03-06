@@ -6273,8 +6273,8 @@ public class FILTRE extends JDialog {
 		try {
 			comboBox_87.removeAllItems();
 			ResultSet	rs = null;
-			rs = c_Access.pos_banka_oku();
 			comboBox_87.addItem("Hepsi");
+			rs = c_Access.pos_banka_oku();
 			if (!rs.isBeforeFirst() )
 				return;
 			else

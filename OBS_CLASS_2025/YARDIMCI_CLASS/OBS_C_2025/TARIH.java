@@ -17,10 +17,8 @@ public class TARIH extends DefaultTableCellRenderer {
 	public Component getTableCellRendererComponent(JTable table,
 			Object value, boolean isSelected, boolean hasFocus,
 			int row, int column) {
-		if( value instanceof Date) 
-		{
+		if( value instanceof Date)
 			value = f.format(value);
-		}
 		else
 		{
 			try 
@@ -35,10 +33,6 @@ public class TARIH extends DefaultTableCellRenderer {
 					Date date = format.parse(value.toString());
 					SimpleDateFormat df = new SimpleDateFormat("dd.MM.yyyy");
 					value = df.format(date);
-					//
-					//Date date1 = new SimpleDateFormat("yyyy.MM.dd").parse(value.toString());
-					//SimpleDateFormat DateFor = new SimpleDateFormat("dd.MM.yyyy");
-					//value = DateFor.format(date1);
 				}
 			} catch (Exception e) 
 			{

@@ -1,24 +1,17 @@
 package OBS_C_2025;
 
-import java.io.UnsupportedEncodingException;
-import java.security.InvalidKeyException;
-import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Arrays;
-import javax.crypto.BadPaddingException;
-import javax.crypto.IllegalBlockSizeException;
-import javax.crypto.NoSuchPaddingException;
 
-@SuppressWarnings({"static-access","unused"})
+@SuppressWarnings({"static-access"})
 public class USER_ISLEMLERI {
 	static  Connection con ;
 
 	static boolean result = false;
-	private static  ResultSet	cloneRss = null;
 	private GLOBAL gLB = new GLOBAL();
 	String encodedString;
 	public  Boolean user_var(String usr,String pwd) throws ClassNotFoundException, SQLException {
@@ -335,10 +328,8 @@ public class USER_ISLEMLERI {
 		stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		String aktiv = "" ;
-		while (rss.next()) 
-		{
+		while (rss.next())
 			aktiv = rss.getString("E_MAIL");
-		}
 		con.close();
 		con = null;
 		return aktiv;
@@ -420,9 +411,9 @@ public class USER_ISLEMLERI {
 		}
 		else
 		{
-			MAIL_SETTINGS.HESAP= rss.getString("HESAP").toString();
-			MAIL_SETTINGS.HOST =rss.getString("HOST").toString() ;
-			MAIL_SETTINGS.PORT =rss.getString("PORT").toString() ;
+			MAIL_SETTINGS.HESAP = rss.getString("HESAP").toString();
+			MAIL_SETTINGS.HOST  =rss.getString("HOST").toString() ;
+			MAIL_SETTINGS.PORT  =rss.getString("PORT").toString() ;
 			
 			String decodedString = rss.getString("SIFR").toString();
 			String[] byteValues = decodedString.substring(1, decodedString.length() - 1).split(",");
@@ -544,7 +535,6 @@ public class USER_ISLEMLERI {
 	{
 		Class.forName("org.sqlite.JDBC");
 		if (con != null && ! con.isClosed()) con.close();
-		ResultSet	rss = null;
 		PreparedStatement stmt = null;
 		con =  gLB.myConnection();  //
 		String sql ="UPDATE USER_DETAILS  SET  LOG = " + log + "  , LOG_YERI = '" + logla + "'  WHERE CDID = " + cdid + " ";
@@ -554,7 +544,7 @@ public class USER_ISLEMLERI {
 		con.close();
 		con = null;
 	}
-	public static    String User_Level_Giris_Bak  (String kull ) throws ClassNotFoundException, SQLException 
+	public static String User_Level_Giris_Bak  (String kull ) throws ClassNotFoundException, SQLException 
 	{
 		Class.forName("org.sqlite.JDBC");
 		if (con != null && ! con.isClosed()) con.close();
@@ -566,10 +556,8 @@ public class USER_ISLEMLERI {
 		stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		String level = "" ;
-		while (rss.next()) 
-		{
+		while (rss.next())
 			level = rss.getString("USER_LEVEL");
-		}
 		con.close();
 		con = null;
 		return level;
@@ -626,5 +614,4 @@ public class USER_ISLEMLERI {
 		rss = stmt.executeQuery();
 		return rss;
 	}
-
 }

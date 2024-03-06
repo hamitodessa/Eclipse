@@ -20,9 +20,8 @@ public class Next_Cell_Kereste extends AbstractAction {
 		int colCount = table.getColumnCount();
 		int rowCount = table.getRowCount();
 		col++;
-		if (table.getCellEditor() != null) {
+		if (table.getCellEditor() != null)
 			table.getCellEditor().stopCellEditing();
-		}
 		if (nerden.equals("kereste_giris"))
 		{
 			if (col >= colCount) 
@@ -30,10 +29,8 @@ public class Next_Cell_Kereste extends AbstractAction {
 				col = 1;
 				row++;
 			}
-			if (row >= rowCount) 
-			{
+			if (row >= rowCount)
 				row = 0;
-			}
 			table.getSelectionModel().setSelectionInterval(row, row);
 			table.getColumnModel().getSelectionModel().setSelectionInterval(col, col);
 			if (col == 3 )
@@ -49,10 +46,8 @@ public class Next_Cell_Kereste extends AbstractAction {
 				col = 0;
 				row++;
 			}
-			if (row >= rowCount) 
-			{
+			if (row >= rowCount)
 				row = 0;
-			}
 			table.getSelectionModel().setSelectionInterval(row, row);
 			table.getColumnModel().getSelectionModel().setSelectionInterval(col, col);
 			if (col == 0 )
@@ -68,10 +63,8 @@ public class Next_Cell_Kereste extends AbstractAction {
 				col = 0;
 				row++;
 			}
-			if (row >= rowCount) 
-			{
+			if (row >= rowCount)
 				row = 0;
-			}
 			table.getSelectionModel().setSelectionInterval(row, row);
 			table.getColumnModel().getSelectionModel().setSelectionInterval(col, col);
 			if (col == 0 )
@@ -87,10 +80,8 @@ public class Next_Cell_Kereste extends AbstractAction {
 				col = 0;
 				row++;
 			}
-			if (row >= rowCount) 
-			{
+			if (row >= rowCount)
 				row = 0;
-			}
 			table.getSelectionModel().setSelectionInterval(row, row);
 			table.getColumnModel().getSelectionModel().setSelectionInterval(col, col);
 			if (col == 0 )

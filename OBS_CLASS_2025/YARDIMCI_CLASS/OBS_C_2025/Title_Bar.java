@@ -66,10 +66,11 @@ public class Title_Bar extends javax.swing.JPanel{
 			public void actionPerformed(ActionEvent e) {
 				if(frame. getExtendedState() == Frame.MAXIMIZED_BOTH){
 					btnMax.setIcon(iconRestore.toIcon() );
-				frame.setBounds(0, 0, gen, yuk);
+					frame.setBounds(0, 0, gen, yuk);
 				}
-				else {
-				frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+				else 
+				{
+					frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 					btnMax.setIcon(iconMax.toIcon() );
 				}
 			}

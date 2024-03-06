@@ -1,6 +1,5 @@
 package OBS_C_2025;
 
-import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
 
@@ -15,7 +14,8 @@ public class SOLA extends JLabel implements TableCellRenderer {
 	public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected,
 			boolean hasFocus, int rowIndex, int vColIndex) 
 	{
-		Border border = BorderFactory.createLineBorder(Color.LIGHT_GRAY);
+		//Border border = BorderFactory.createLineBorder(Color.LIGHT_GRAY);
+		Border border = BorderFactory.createLineBorder(null);
 		setText(value.toString());
 		setToolTipText((String) value);
 		setHorizontalAlignment(JLabel.LEFT);

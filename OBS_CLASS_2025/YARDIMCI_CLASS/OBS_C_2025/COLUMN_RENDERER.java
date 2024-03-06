@@ -31,13 +31,9 @@ public class COLUMN_RENDERER  extends DefaultTableCellRenderer
 			if( value.toString().length() != 0  )
 			{
 				if(nerden.equals("yillik"))
-				{
 					setHorizontalAlignment( JLabel.CENTER);
-				}
 				else
-				{
 					setHorizontalAlignment( JLabel.LEFT);
-				}
 				cell.setBackground(backgroundColor);
 				cell.setForeground(foregroundColor); 
 				Font fnt = new Font(table.getFont().getFontName(), 1 ,10);

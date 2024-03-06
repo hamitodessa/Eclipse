@@ -55,35 +55,23 @@ public class BILGI_OKU {
 				if (dIZIN.hAN_SQL.toString().equals("MS SQL") == true) 
 				{
 					String  port = dIZIN.sERVER ;
-					if ( ! port.toString().equals("") )
-					{
+					if ( ! port.toString().equals(""))
 						port =  ":" + port ;
-					}
 					dIZIN.cONN_STR =  "localhost "+ port +";instanceName=" + dIZIN.iNSTANCE + " ; database=" + dOSYA_BASLANGIC  + dIZIN.kOD ;
 				}
-				else   if (dIZIN.hAN_SQL.toString().equals("MY SQL") == true) 
-				{
+				else   if (dIZIN.hAN_SQL.toString().equals("MY SQL") == true)
 					dIZIN.cONN_STR =  "localhost:" + dIZIN.sERVER + "/" + dOSYA_BASLANGIC  + dIZIN.kOD ;
-				}
-				else   if (dIZIN.hAN_SQL.toString().equals("SQ LITE") == true) 
-				{
+				else   if (dIZIN.hAN_SQL.toString().equals("SQ LITE") == true)
 					dIZIN.cONN_STR = dIZIN.dIZIN + "\\" + dOSYA_BASLANGIC  + dIZIN.kOD + ".DB" ;   //SQLITE
-				}
-				else   if (dIZIN.hAN_SQL.toString().equals("MS ACCESS") == true) 
-				{
+				else   if (dIZIN.hAN_SQL.toString().equals("MS ACCESS") == true)
 					dIZIN.cONN_STR = dIZIN.dIZIN + "\\" + dOSYA_BASLANGIC  + dIZIN.kOD + ".accdb" ;   //ACCESS
-				}
 			}
 			else
 			{ 
-				if (dIZIN.hAN_SQL.toString().equals("MS SQL") == true) 
-				{
+				if (dIZIN.hAN_SQL.toString().equals("MS SQL") == true)
 					dIZIN.cONN_STR = dIZIN.sERVER + ";instanceName=" + dIZIN.iNSTANCE + " ; database=" +  dOSYA_BASLANGIC + dIZIN.kOD ;
-				}
-				else  if (dIZIN.hAN_SQL.toString().equals("MY SQL") == true) 
-				{
+				else  if (dIZIN.hAN_SQL.toString().equals("MY SQL") == true)
 					dIZIN.cONN_STR = dIZIN.sERVER + " /" +  dOSYA_BASLANGIC + dIZIN.kOD ;
-				}
 			}
 		}
 		else 

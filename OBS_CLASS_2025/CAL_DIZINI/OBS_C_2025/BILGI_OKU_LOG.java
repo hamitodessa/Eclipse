@@ -11,10 +11,8 @@ public class BILGI_OKU_LOG {
 				dIZIN.kULLANICI = oDIZIN.kULLANICI;
 				dIZIN.sIFRESI = oDIZIN.sIFRESI;
 				String port = "" ;
-				if ( ! oDIZIN.sERVER.toString().equals("") )
-				{
-				port =  ":" + oDIZIN.sERVER ;
-				}
+				if ( ! oDIZIN.sERVER.toString().equals(""))
+					port =  ":" + oDIZIN.sERVER ;
 				dIZIN.cONN_STR =  "localhost" + port + ";instanceName=" + oDIZIN.iNSTANCE + " ; database=" + dOSYA_BASLANGIC  + oDIZIN.kOD + "_LOG"; //VERITABANI
 				dIZIN.mODUL =    dOSYA_BASLANGIC  + oDIZIN.kOD + "_mSSQL" + ".DB" ;   //SQLITE
 				dIZIN.mODULADI =    dOSYA_BASLANGIC  + oDIZIN.kOD  + "_mSSQL" ;//TEXT DOSYA

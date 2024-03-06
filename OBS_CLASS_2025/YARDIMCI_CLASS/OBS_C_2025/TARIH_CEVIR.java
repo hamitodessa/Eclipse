@@ -77,59 +77,38 @@ public class TARIH_CEVIR {
 	}
 	public static String  tarih_geri(JDateChooser dc) {
 		DateFormat df = new SimpleDateFormat("yyyy.MM.dd");
-
-		if (dc.getDate() != null) {
+		if (dc.getDate() != null)
 			return	df.format(dc.getDate());
-		}
 		else
-		{
 			return null;
-		}
-
 	}
 	public static String  tarih_geri_kasa(JDateChooser dc) {
 		DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
-
-		if (dc.getDate() != null) {
+		if (dc.getDate() != null)
 			return	df.format(dc.getDate());
-		}
 		else
-		{
 			return null;
-		}
-
 	}
 	public static String  tarih_geri_SQL(JDateChooser dc) {
 		DateFormat df = new SimpleDateFormat("yyyy/MM/dd");
-
-		if (dc.getDate() != null) {
+		if (dc.getDate() != null)
 			return	df.format(dc.getDate());
-		}
 		else
-		{
 			return null;
-		}
-
 	}
 	public static String  tarih_dt_ddMMyyyy(JDateChooser dc) {
 		DateFormat df = new SimpleDateFormat("dd.MM.yyyy");
-		if (dc.getDate() != null) {
+		if (dc.getDate() != null)
 			return	df.format(dc.getDate());
-		}
 		else
-		{
 			return null;
-		}
 	}
 	public static String  gunluk_t_ffmmyyyy(JDateChooser dc) {
 		DateFormat df = new SimpleDateFormat("yyyy.MM.dd");
-		if (dc.getDate() != null) {
+		if (dc.getDate() != null)
 			return	df.format(dc.getDate());
-		}
 		else
-		{
 			return null;
-		}
 	}
 	public static String chooser_string_eksi1(JDateChooser dc)
 	{
@@ -140,9 +119,7 @@ public class TARIH_CEVIR {
 		try {
 			date = sdf.parse(myDate);
 			millis = date.getTime();
-
 		} catch (ParseException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		Calendar cal = Calendar.getInstance();
@@ -166,7 +143,6 @@ public class TARIH_CEVIR {
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
-
 		return millis ;
 	}
 	public static String milis_yyyymmss(long lg)
@@ -197,9 +173,7 @@ public class TARIH_CEVIR {
 			return	tarih_geri(dc)  + " "+ df.format(currentDate);
 		}
 		else
-		{
 			return null;
-		}
 	}
 	public static String dateFormater(String dateFromJSON, String expectedFormat, String oldFormat) {
 		SimpleDateFormat dateFormat = new SimpleDateFormat(oldFormat);
@@ -212,7 +186,6 @@ public class TARIH_CEVIR {
 			SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss.sss");
 			String str = sdf.format(new Date());
 			convertedDate = convertedDate.substring(0, 10) +  " " + str ;
-
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

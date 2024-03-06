@@ -29,32 +29,18 @@ public class TABLO_RENDERER extends DefaultTableCellRenderer {
 		if (value == null) value = 0 ;
 		
 		switch (kesir) {
-        case 0:
-        	value = formatter0.format((Number)value);
-        	break;
-        case 1:
-        	value = formatter1.format((Number)value);
-        	break;
-        case 2:
-        	value = formatter2.format((Number)value);
-        	break;
-        case 3:
-        	value = formatter3.format((Number)value);
-        	break;
-        case 4:
-        	value = formatter4.format((Number)value);
-        	break;
+        case 0 -> value = formatter0.format((Number)value);
+        case 1 -> value = formatter1.format((Number)value);
+        case 2 -> value = formatter2.format((Number)value);
+        case 3 -> value = formatter3.format((Number)value);
+        case 4 -> value = formatter4.format((Number)value);
  		}
 		super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
 
 		if (bold)
-		{
 			setFont (new Font(table.getFont().getFontName(),1 ,table.getFont().getSize())); //12
-		}
 		else
-		{
 			setFont (new Font(table.getFont().getFontName(),0 ,table.getFont().getSize()));
-		}
 		setHorizontalAlignment(JLabel.RIGHT);
 		setVerticalAlignment(JLabel.BOTTOM);
 		return this;

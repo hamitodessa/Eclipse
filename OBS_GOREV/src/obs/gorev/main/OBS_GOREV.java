@@ -323,9 +323,7 @@ public class OBS_GOREV extends JFrame  {
 					calisma_dizini_oku() ;
 					kur_doldur();
 					if(chckbxDurum.isSelected())
-					{
 						jobTimerBasla();
-					}
 				}
 			}
 			else {
@@ -395,9 +393,7 @@ public class OBS_GOREV extends JFrame  {
 		{
 			CheckListItem item = (CheckListItem) list.getModel().getElementAt(i);
 			if (item.isSelected)
-			{
 				grvglb.kur_kayit(item.toString());
-			}
 		}
 	}
 	void kur_doldur() throws ClassNotFoundException, SQLException
@@ -410,9 +406,7 @@ public class OBS_GOREV extends JFrame  {
 				for (int r = 0; r <= rSet.size()-1;r++) {
 					CheckListItem item = (CheckListItem) list.getModel().getElementAt(i);
 					if (item.toString().equals(rSet.get(r).getKur()))
-					{
 						item.setSelected(true);
-					}
 				}
 			}
 		}
@@ -470,18 +464,12 @@ public class OBS_GOREV extends JFrame  {
 			{
 				KUR_CONN = true ;
 				if (s_CONN.Dosya_kontrol_L( sBilgi) == false)
-				{
 					KUR_DOS_VAR = false;
-				}
 				else
-				{
 					KUR_DOS_VAR = true;
-				}
 			}
 			else
-			{
 				KUR_CONN = false;
-			}
 		}
 		else
 		{
@@ -489,18 +477,12 @@ public class OBS_GOREV extends JFrame  {
 			{
 				KUR_CONN = true ;
 				if (s_CONN.Dosya_kontrol_S( sBilgi) == false)
-				{
 					KUR_DOS_VAR = false;
-				}
 				else
-				{
 					KUR_DOS_VAR = true;
-				}
 			}
 			else
-			{
 				KUR_CONN = false;
-			}
 		}
 		k_Access = new KUR_ACCESS(_IKur , _IKur_Loger);
 		k_Access.baglan();
@@ -551,23 +533,15 @@ public class OBS_GOREV extends JFrame  {
 	private void cONN_AKTAR(String hangi)
 	{
 		switch(hangi) {
-		case "MS SQL":
-			_IKurCon = new OBS_ORTAK_MSSQL() ;
-			break;
-		case "MY SQL":
-			_IKurCon = new OBS_ORTAK_MYSQL() ;
-			break;	
+		case "MS SQL"-> _IKurCon = new OBS_ORTAK_MSSQL() ;
+		case "MY SQL"-> _IKurCon = new OBS_ORTAK_MYSQL() ;
 		}
 	}
 	private void mODUL_AKTAR(String hangi)
 	{
 		switch(hangi) {
-		case "MS SQL":
-			_IKur =  new KUR_MSSQL();
-			break;
-		case "MY SQL":
-			_IKur =  new KUR_MYSQL();
-			break;	
+		case "MS SQL" -> _IKur =  new KUR_MSSQL();
+		case "MY SQL" -> _IKur =  new KUR_MYSQL();
 		}
 	}
 	public static  void systemTRY()

@@ -337,9 +337,7 @@ public class GLOBAL {
 				//Prop var
 			}
 			else
-			{
 				set_ilk() ;//obs_set_olustur();
-			}
 		}
 		else
 		{
@@ -370,9 +368,7 @@ public class GLOBAL {
 	{
 		File tmpDir = new File(SURUCU);
 		if (! tmpDir.exists())
-		{
 			tmpDir.mkdirs();
-		}
 		if( ! dos_kontrol(SURUCU + GOREV_DOSYA))
 			gorev_dosya_olustur(); // OBS SISTEM BACKUP DOSYASI KONTROL
 	}
@@ -498,10 +494,8 @@ public class GLOBAL {
 					varmi = true;
 				}
 			}
-			for (int i = 0; i < ayarlar.length   ; i++) 
-			{
+			for (int i = 0; i < ayarlar.length   ; i++)
 				prop.setProperty(ayarlar[i][0], ayarlar[i][1]);
-			}
 			if (varmi == false) prop.setProperty(anahtar, deger);
 			prop.store(output, "OBS AYARLAR");
 			output.close();
@@ -534,9 +528,7 @@ public class GLOBAL {
 			//Prop var
 		}
 		else
-		{
 			set_ilk() ; //obs_set_olustur();
-		}
 		String donen="";
 		FileInputStream iss;
 		iss =  new FileInputStream( GLOBAL.SURUCU + "/"+ System.getProperty("user.name")+".properties");
@@ -686,9 +678,7 @@ public class GLOBAL {
 	}
 	public boolean dos_sil(String dosya) throws IOException
 	{
-        //Path path = Paths.get(dosya); 
-        //boolean result = Files.deleteIfExists(Paths.get(dosya)); 
-        return Files.deleteIfExists(Paths.get(dosya));
+         return Files.deleteIfExists(Paths.get(dosya));
 	}
 	public static String char_degis (String degisken)
 	{

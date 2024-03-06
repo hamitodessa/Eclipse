@@ -560,7 +560,7 @@ public class LOGIN extends JDialog {
 						lblModul.setText("");
 						Login_Progres_Bar_Temizle();
 
-						//LOGLAMA DOSYALARI KONTROL*************************************************************************
+						//*********************************LOGLAMA DOSYALARI KONTROL****************************************
 						//CARI LOG KONTROL
 						String dsy =  GLOBAL.LOG_SURUCU + GLOBAL.char_degis(BAGLAN_LOG.cariLogDizin.mODUL) ;
 						if (! glb.dos_kontrol(dsy))

@@ -108,7 +108,7 @@ public class PRINT_YAPMA extends JInternalFrame {
 				//System.out.println(is.available());
 				//**************************************************************************
 				//File file = new File("src/RPT/HSP_PLN.rpt");
-				file = new File(GLOBAL.SURUCU + "\\HSP_PLN.rpt");
+				file = new File(GLOBAL.SURUCU + File.separator + System.getProperty("user.name") + "_HSP_PLN.rpt");
 				clientDoc.open(file.getPath(), 0);
 				
 				//clientDoc.open(is, 0);
@@ -143,7 +143,7 @@ public class PRINT_YAPMA extends JInternalFrame {
 			else if (nerden.equals("tahsilat"))
 			{
 				//**************************************************************************
-				file = new File(GLOBAL.SURUCU + "\\TAHSILAT.rpt");
+				file = new File(GLOBAL.SURUCU + File.separator + System.getProperty("user.name") + "_TAHSILAT.rpt");
 				clientDoc.open(file.getPath(), 0);
 				clientDoc.getDatabaseController().logon(BAGLAN.cariDizin.kULLANICI, BAGLAN.cariDizin.sIFRESI);
 				rs = c_Access.tah_ayar_oku();
@@ -409,7 +409,7 @@ public class PRINT_YAPMA extends JInternalFrame {
 			else if (nerden.equals("tahsilat_cek"))
 			{
 				//**************************************************************************
-				file = new File(GLOBAL.SURUCU + "\\TAHSILAT_CEK.rpt");
+				file = new File(GLOBAL.SURUCU + File.separator + System.getProperty("user.name") + "_TAHSILAT_CEK.rpt");
 				clientDoc.open(file.getPath(), 0);
 				clientDoc.getDatabaseController().logon(BAGLAN.cariDizin.kULLANICI, BAGLAN.cariDizin.sIFRESI);
 				if (GLOBAL.dos_kontrol(GLOBAL.SURUCU + GLOBAL.TAH_CEK_DOSYA) == false)
@@ -663,7 +663,7 @@ public class PRINT_YAPMA extends JInternalFrame {
 			else if (nerden.equals("ekstre"))
 			{
 				//**************************************************************************
-				file = new File(GLOBAL.SURUCU + "\\EKSTRE.rpt");
+				file = new File(GLOBAL.SURUCU + File.separator + System.getProperty("user.name") + "_EKSTRE.rpt");
 				clientDoc.open(file.getPath(), 0);
 				clientDoc.getDatabaseController().logon(BAGLAN.cariDizin.kULLANICI, BAGLAN.cariDizin.sIFRESI);
 				//**************************************************************************
@@ -786,21 +786,21 @@ public class PRINT_YAPMA extends JInternalFrame {
 			else if (nerden.equals("mizan"))
 			{
 				//**************************************************************************
-				file = new File(GLOBAL.SURUCU + "\\MIZAN.rpt");
+				file = new File(GLOBAL.SURUCU + File.separator + System.getProperty("user.name") + "_MIZAN.rpt");
 				clientDoc.open(file.getPath(), 0);
 				//**************************************************************************
 				clientDoc.getDatabaseController().logon(BAGLAN.cariDizin.kULLANICI, BAGLAN.cariDizin.sIFRESI);
 				String hangi_tur = FILTRE.comboBox.getItemAt(FILTRE.comboBox.getSelectedIndex());
 				String o1 = "" ;
 				String o2 = "" ;
-				if (hangi_tur.equals("Borclu Hesaplar") )
-				{ o1 = " HAVING ROUND(SUM(SATIRLAR.ALACAK - SATIRLAR.BORC),2) < 0 " ; }
-				else if (hangi_tur.equals("Alacakli Hesaplar")) 
-				{o1 = " HAVING ROUND(SUM(SATIRLAR.ALACAK - SATIRLAR.BORC),2) > 0 " ;}
-				else if (hangi_tur.equals( "Bakiyesi 0 Olanlar" )) 
-				{ o1 = " HAVING ROUND(SUM(SATIRLAR.ALACAK - SATIRLAR.BORC),2) = 0" ;}
+				if (hangi_tur.equals("Borclu Hesaplar"))
+					o1 = " HAVING ROUND(SUM(SATIRLAR.ALACAK - SATIRLAR.BORC),2) < 0 " ;
+				else if (hangi_tur.equals("Alacakli Hesaplar"))
+					o1 = " HAVING ROUND(SUM(SATIRLAR.ALACAK - SATIRLAR.BORC),2) > 0 " ;
+				else if (hangi_tur.equals( "Bakiyesi 0 Olanlar" ))
+					o1 = " HAVING ROUND(SUM(SATIRLAR.ALACAK - SATIRLAR.BORC),2) = 0" ;
 				else if (hangi_tur.equals( "Bakiyesi 0 Olmayanlar" ))
-				{ o1 = " HAVING ROUND(SUM(SATIRLAR.ALACAK - SATIRLAR.BORC),2) <> 0" ;}
+					o1 = " HAVING ROUND(SUM(SATIRLAR.ALACAK - SATIRLAR.BORC),2) <> 0" ;
 				o2 = " ORDER BY SATIRLAR.HESAP ASC " ;
 				//**************
 				rs = c_Access.mizan(FILTRE.txtilk.getText(),FILTRE.txtson.getText() ,
@@ -857,21 +857,21 @@ public class PRINT_YAPMA extends JInternalFrame {
 			else if (nerden.equals("karton_mizan"))
 			{
 				//**************************************************************************
-				file = new File(GLOBAL.SURUCU + "\\KARTON_MIZAN.rpt");
+				file = new File(GLOBAL.SURUCU + File.separator + System.getProperty("user.name") + "_KARTON_MIZAN.rpt");
 				clientDoc.open(file.getPath(), 0);
 				//**************************************************************************
 				clientDoc.getDatabaseController().logon(BAGLAN.cariDizin.kULLANICI, BAGLAN.cariDizin.sIFRESI);
 				String hangi_tur = FILTRE.comboBox.getItemAt(FILTRE.comboBox.getSelectedIndex());
 				String o1 = "" ;
 				String o2 = "" ;
-				if (hangi_tur.equals("Borclu Hesaplar") )
-				{ o1 = " HAVING ROUND(SUM(SATIRLAR.ALACAK - SATIRLAR.BORC),2) < 0 " ; }
-				else if (hangi_tur.equals("Alacakli Hesaplar")) 
-				{o1 = " HAVING ROUND(SUM(SATIRLAR.ALACAK - SATIRLAR.BORC),2) > 0 " ;}
-				else if (hangi_tur.equals( "Bakiyesi 0 Olanlar" )) 
-				{ o1 = " HAVING ROUND(SUM(SATIRLAR.ALACAK - SATIRLAR.BORC),2) = 0" ;}
+				if (hangi_tur.equals("Borclu Hesaplar"))
+					o1 = " HAVING ROUND(SUM(SATIRLAR.ALACAK - SATIRLAR.BORC),2) < 0 " ;
+				else if (hangi_tur.equals("Alacakli Hesaplar"))
+					o1 = " HAVING ROUND(SUM(SATIRLAR.ALACAK - SATIRLAR.BORC),2) > 0 " ;
+				else if (hangi_tur.equals( "Bakiyesi 0 Olanlar" ))
+					o1 = " HAVING ROUND(SUM(SATIRLAR.ALACAK - SATIRLAR.BORC),2) = 0" ;
 				else if (hangi_tur.equals( "Bakiyesi 0 Olmayanlar" ))
-				{ o1 = " HAVING ROUND(SUM(SATIRLAR.ALACAK - SATIRLAR.BORC),2) <> 0" ;}
+					o1 = " HAVING ROUND(SUM(SATIRLAR.ALACAK - SATIRLAR.BORC),2) <> 0" ;
 				o2 = " ORDER BY HESAP.KARTON,SATIRLAR.HESAP ASC " ;
 				//**************
 				rs = c_Access.karton_mizan(FILTRE.txtilk.getText(),FILTRE.txtson.getText() ,
@@ -927,7 +927,7 @@ public class PRINT_YAPMA extends JInternalFrame {
 			else if (nerden.equals("ozel_mizan"))
 			{
 				//**************************************************************************
-				file = new File(GLOBAL.SURUCU + "\\OZEL_MIZAN.rpt");
+				file = new File(GLOBAL.SURUCU + File.separator + System.getProperty("user.name") + "_OZEL_MIZAN.rpt");
 				clientDoc.open(file.getPath(), 0);
 				//**************************************************************************
 				clientDoc.getDatabaseController().logon(BAGLAN.cariDizin.kULLANICI, BAGLAN.cariDizin.sIFRESI);
@@ -936,38 +936,26 @@ public class PRINT_YAPMA extends JInternalFrame {
 				String o2 = "" ;
 				if (BAGLAN.cariDizin.hAN_SQL.equals("MS SQL"))
 				{
-					if (hangi_tur.equals("Borclu Hesaplar") )
-					{ o1 = "HAVING  (ROUND(ISNULL( (SELECT SUM(SATIRLAR.ALACAK) - SUM(SATIRLAR.BORC)  FROM SATIRLAR     "
-							+ "WHERE   SATIRLAR.HESAP    = s.HESAP     			 ) ,0),2)  )  < 0 " ; }
-					else if (hangi_tur.equals("Alacakli Hesaplar")) 
-					{o1 =  "HAVING  (ROUND(ISNULL( (SELECT SUM(SATIRLAR.ALACAK) - SUM(SATIRLAR.BORC)  FROM SATIRLAR    "
-							+ "WHERE   SATIRLAR.HESAP    = s.HESAP     			 ) ,0),2)  )  > 0 " ;}
-					else if (hangi_tur.equals( "Bakiyesi 0 Olanlar" )) 
-					{ o1 =  "HAVING  (ROUND(ISNULL( (SELECT SUM(SATIRLAR.ALACAK) - SUM(SATIRLAR.BORC)  FROM SATIRLAR     "
-							+ "WHERE   SATIRLAR.HESAP    = s.HESAP     			 ) ,0),2)  )  = 0" ;}
+					if (hangi_tur.equals("Borclu Hesaplar"))
+						o1 = "HAVING  (ROUND(ISNULL( (SELECT SUM(SATIRLAR.ALACAK) - SUM(SATIRLAR.BORC)  FROM SATIRLAR WHERE   SATIRLAR.HESAP    = s.HESAP) ,0),2)  )  < 0 " ; 
+					else if (hangi_tur.equals("Alacakli Hesaplar"))
+						o1 =  "HAVING  (ROUND(ISNULL( (SELECT SUM(SATIRLAR.ALACAK) - SUM(SATIRLAR.BORC)  FROM SATIRLAR WHERE   SATIRLAR.HESAP    = s.HESAP) ,0),2)  )  > 0 " ;
+					else if (hangi_tur.equals( "Bakiyesi 0 Olanlar" ))
+						o1 =  "HAVING  (ROUND(ISNULL( (SELECT SUM(SATIRLAR.ALACAK) - SUM(SATIRLAR.BORC)  FROM SATIRLAR WHERE   SATIRLAR.HESAP    = s.HESAP) ,0),2)  )  = 0" ;
 					else if (hangi_tur.equals( "Bakiyesi 0 Olmayanlar" ))
-					{ o1 = "HAVING  (ROUND(ISNULL( (SELECT SUM(SATIRLAR.ALACAK) - SUM(SATIRLAR.BORC)  FROM SATIRLAR    "
-							+ "WHERE   SATIRLAR.HESAP    = s.HESAP     			 ) ,0),2)  )  <> 0" ;}
+						o1 = "HAVING  (ROUND(ISNULL( (SELECT SUM(SATIRLAR.ALACAK) - SUM(SATIRLAR.BORC)  FROM SATIRLAR WHERE   SATIRLAR.HESAP    = s.HESAP) ,0),2)  )  <> 0" ;
 					o2 = " ORDER BY s.HESAP ASC " ;
 				}
 				else 	if (BAGLAN.cariDizin.hAN_SQL.equals("MY SQL"))
 				{
-					if (hangi_tur.equals("Borclu Hesaplar") )
-					{ 
+					if (hangi_tur.equals("Borclu Hesaplar"))
 						o1= " HAVING BAKIYE  < 0 " ;
-					}
-					else if (hangi_tur.equals("Alacakli Hesaplar"))  
-					{
+					else if (hangi_tur.equals("Alacakli Hesaplar"))
 						o1= " HAVING BAKIYE  > 0 " ;
-					}
-					else if (hangi_tur.equals( "Bakiyesi 0 Olanlar" ))     
-					{
+					else if (hangi_tur.equals( "Bakiyesi 0 Olanlar" ))
 						o1= " HAVING BAKIYE  =  0 " ;
-					}
 					else if (hangi_tur.equals( "Bakiyesi 0 Olmayanlar" ))
-					{ 
 						o1= " HAVING BAKIYE  <>  0 " ;
-					}
 					o2 = " ORDER BY s.HESAP  " ;  
 				}
 				//**************
@@ -1026,19 +1014,15 @@ public class PRINT_YAPMA extends JInternalFrame {
 			else if (nerden.equals("dvzcev"))
 			{
 				//**************************************************************************
-				file = new File(GLOBAL.SURUCU + "\\DVZ_CEVIRME.rpt");
+				file = new File(GLOBAL.SURUCU + File.separator + System.getProperty("user.name") + "_DVZ_CEVIRME.rpt");
 				clientDoc.open(file.getPath(), 0);
 				clientDoc.getDatabaseController().logon(BAGLAN.cariDizin.kULLANICI, BAGLAN.cariDizin.sIFRESI);
 				//*******************
 				String islem  = "" ;
 				if (  GLOBAL.setting_oku("PRG_PARA").toString().equals(FILTRE.lblNewLabel_2_1.getText()))
-				{
 					islem = "/" ;
-				}
 				else
-				{
 					islem = "*" ;
-				}
 				ResultSet	rs = null;
 				String hKURString = "";
 		        if (FILTRE.chckbxNewCheckBox_4.isSelected())
@@ -1105,7 +1089,7 @@ public class PRINT_YAPMA extends JInternalFrame {
 			else if (nerden.equals("etiket"))
 			{
 				//**************************************************************************
-				file = new File(GLOBAL.SURUCU + "\\ETIKET.rpt");
+				file = new File(GLOBAL.SURUCU + File.separator + System.getProperty("user.name") + "_ETIKET.rpt");
 				clientDoc.open(file.getPath(), 0);
 				clientDoc.getDatabaseController().logon(BAGLAN.cariDizin.kULLANICI, BAGLAN.cariDizin.sIFRESI);
 				//*******************
@@ -1132,7 +1116,7 @@ public class PRINT_YAPMA extends JInternalFrame {
 					String detailBolumString = clientDoc.getReportDefController().getReportDefinition().getAreas().getArea(2).getName();
 					IArea areaqw =clientDoc.getReportDefController().getReportDefinition().getAreas().getArea(2);
 					IDetailAreaFormat kokAreaFormat = (IDetailAreaFormat) areaqw.getFormat();
-					System.out.println(detailBolumString + "===HorizontalGap===="+ kokAreaFormat.getHorizontalGap()+ "===VerticalGap==" + kokAreaFormat.getVerticalGap()+"  Detail Genislik ===="+ kokAreaFormat.getDetailWidth()  );
+				//	System.out.println(detailBolumString + "===HorizontalGap===="+ kokAreaFormat.getHorizontalGap()+ "===VerticalGap==" + kokAreaFormat.getVerticalGap()+"  Detail Genislik ===="+ kokAreaFormat.getDetailWidth()  );
 				 //
 					
 					
@@ -1170,7 +1154,7 @@ public class PRINT_YAPMA extends JInternalFrame {
 			else if (nerden.equals("cekg"))
 			{
 				//**************************************************************************
-				file = new File(GLOBAL.SURUCU + "\\BORDRO.rpt");
+				file = new File(GLOBAL.SURUCU + File.separator + System.getProperty("user.name") + "_BORDRO.rpt");
 				clientDoc.open(file.getPath(), 0);
 				clientDoc.getDatabaseController().logon(BAGLAN.cariDizin.kULLANICI, BAGLAN.cariDizin.sIFRESI);
 				//**************************************************************************
@@ -1316,13 +1300,9 @@ public class PRINT_YAPMA extends JInternalFrame {
 						String qwe = Double.toString(aqw);
 						String cnt  = "" ;
 						if ( CEK_GIRIS.textField_4.getText().equals(GLOBAL.setting_oku("PRG_PARA").toString()))
-						{
 							cnt = "KURUŞ" ;
-						}
 						else
-						{
 							cnt = "Cent" ;
-						}
 						String yaziyla= cevir.sayiyiYaziyaCevirr(qwe, 2, CEK_GIRIS.textField_4.getText(), cnt , "#", null, null, null);
 						oParagraphTextElement.setText(yaziyla );
 						oParagraphTextElement.setKind(ParagraphElementKind.text);
@@ -1337,7 +1317,7 @@ public class PRINT_YAPMA extends JInternalFrame {
 			else if (nerden.equals("cekc"))
 			{
 				//**************************************************************************
-				file = new File(GLOBAL.SURUCU + "\\BORDRO.rpt");
+				file = new File(GLOBAL.SURUCU + File.separator + System.getProperty("user.name") + "_BORDRO.rpt");
 				clientDoc.open(file.getPath(), 0);
 				clientDoc.getDatabaseController().logon(BAGLAN.cariDizin.kULLANICI, BAGLAN.cariDizin.sIFRESI);
 				//**************************************************************************
@@ -1483,13 +1463,9 @@ public class PRINT_YAPMA extends JInternalFrame {
 						String qwe = Double.toString(aqw);
 						String cnt  = "" ;
 						if ( CEK_CIKIS.textField_4.getText().equals(GLOBAL.setting_oku("PRG_PARA").toString()))
-						{
 							cnt = "KURUŞ" ;
-						}
 						else
-						{
 							cnt = "Cent" ;
-						}
 						String yaziyla= cevir.sayiyiYaziyaCevirr(qwe, 2, CEK_CIKIS.textField_4.getText() , cnt , "#", null, null, null);
 						oParagraphTextElement.setText(yaziyla );
 						oParagraphTextElement.setKind(ParagraphElementKind.text);
@@ -1504,7 +1480,7 @@ public class PRINT_YAPMA extends JInternalFrame {
 			else if (nerden.equals("stok"))
 			{
 				//**************************************************************************
-				file = new File(GLOBAL.SURUCU + "\\STOK.rpt");
+				file = new File(GLOBAL.SURUCU + File.separator + System.getProperty("user.name") + "_STOK.rpt");
 				clientDoc.open(file.getPath(), 0);
 				clientDoc.getDatabaseController().logon(BAGLAN.cariDizin.kULLANICI, BAGLAN.cariDizin.sIFRESI);
 				//**************************************************************************
@@ -1540,7 +1516,7 @@ public class PRINT_YAPMA extends JInternalFrame {
 			else if (nerden.equals("fatura"))
 			{
 				//**************************************************************************
-				file = new File(GLOBAL.SURUCU + "\\FATURA.rpt");
+				file = new File(GLOBAL.SURUCU + File.separator + System.getProperty("user.name") + "_FATURA.rpt");
 				clientDoc.open(file.getPath(),  OpenReportOptions._openAsReadOnly);
 				clientDoc.getDatabaseController().logon(BAGLAN.cariDizin.kULLANICI, BAGLAN.cariDizin.sIFRESI);
 				int gen = 0 ;
@@ -1571,9 +1547,7 @@ public class PRINT_YAPMA extends JInternalFrame {
 				}
 				//*******GIDECEGI YER ***********
 				if ( ! FATURA.textField_8.getText().equals(""))
-				{
 					gyer_bilgi = a_Access.adres_oku(FATURA.txtadres.getText());
-				}
 				else
 				{
 					boolean varmi = OBS_MAIN.pencere_bak("GIDECEGI_YER");
@@ -1657,9 +1631,7 @@ public class PRINT_YAPMA extends JInternalFrame {
 						else  if (reportObject.getName().equals("txtkodu"))
 						{
 							if (students.get(1).fat_sut == 0 && students.get(1).fat_sat == 0 )
-							{
 								clientDoc.getReportDefController().getReportObjectController().remove( (ITextObject) reportObject);
-							}
 							else
 							{
 								ITextObject oTextObject =  (ITextObject) reportObject.clone(true);
@@ -1686,9 +1658,7 @@ public class PRINT_YAPMA extends JInternalFrame {
 						else  if (reportObject.getName().equals("txtadi"))
 						{
 							if (students.get(2).fat_sut == 0 && students.get(2).fat_sat == 0 )
-							{
 								clientDoc.getReportDefController().getReportObjectController().remove( (ITextObject) reportObject);
-							}
 							else
 							{
 								ITextObject oTextObject =  (ITextObject) reportObject.clone(true);
@@ -1715,9 +1685,7 @@ public class PRINT_YAPMA extends JInternalFrame {
 						else  if (reportObject.getName().equals("txtadr1"))
 						{
 							if (students.get(2).fat_sut == 0 && students.get(2).fat_sat == 0 )
-							{
 								clientDoc.getReportDefController().getReportObjectController().remove( (ITextObject) reportObject);
-							}
 							else
 							{
 								ITextObject oTextObject =  (ITextObject) reportObject.clone(true);
@@ -1744,9 +1712,7 @@ public class PRINT_YAPMA extends JInternalFrame {
 						else  if (reportObject.getName().equals("txtadr2"))
 						{
 							if (students.get(2).fat_sut == 0 && students.get(2).fat_sat == 0 )
-							{
 								clientDoc.getReportDefController().getReportObjectController().remove( (ITextObject) reportObject);
-							}
 							else
 							{
 								ITextObject oTextObject =  (ITextObject) reportObject.clone(true);
@@ -1773,9 +1739,7 @@ public class PRINT_YAPMA extends JInternalFrame {
 						else  if (reportObject.getName().equals("txtsemt"))
 						{
 							if (students.get(2).fat_sut == 0 && students.get(2).fat_sat == 0 )
-							{
 								clientDoc.getReportDefController().getReportObjectController().remove( (ITextObject) reportObject);
-							}
 							else
 							{
 								ITextObject oTextObject =  (ITextObject) reportObject.clone(true);
@@ -1804,9 +1768,7 @@ public class PRINT_YAPMA extends JInternalFrame {
 						else  if (reportObject.getName().equals("txtsehir"))
 						{
 							if (students.get(2).fat_sut == 0 && students.get(2).fat_sat == 0 )
-							{
 								clientDoc.getReportDefController().getReportObjectController().remove( (ITextObject) reportObject);
-							}
 							else
 							{
 								ITextObject oTextObject =  (ITextObject) reportObject.clone(true);
@@ -1834,9 +1796,7 @@ public class PRINT_YAPMA extends JInternalFrame {
 						else  if (reportObject.getName().equals("txtvd"))
 						{
 							if (students.get(3).fat_sut == 0 && students.get(3).fat_sat == 0 )
-							{
 								clientDoc.getReportDefController().getReportObjectController().remove( (ITextObject) reportObject);
-							}
 							else
 							{
 								ITextObject oTextObject =  (ITextObject) reportObject.clone(true);
@@ -1863,9 +1823,7 @@ public class PRINT_YAPMA extends JInternalFrame {
 						else  if (reportObject.getName().equals("txtvn"))
 						{
 							if (students.get(4).fat_sut == 0 && students.get(4).fat_sat == 0 )
-							{
 								clientDoc.getReportDefController().getReportObjectController().remove( (ITextObject) reportObject);
-							}
 							else
 							{
 								ITextObject oTextObject =  (ITextObject) reportObject.clone(true);

@@ -100,7 +100,7 @@ public class PRINT_JASPER extends JInternalFrame {
 		{
 			if (nerden.equals("etiket"))
 			{
-				file = new File(GLOBAL.SURUCU + "\\ETIKET.jrxml");
+				file = new File(GLOBAL.SURUCU + File.separator + System.getProperty("user.name") + "_ETIKET.jrxml");
 				JasperDesign jasper = JRXmlLoader.load(file);
 				jasper.setColumnWidth(Integer.valueOf( GLOBAL.setting_oku("ETIKET_GEN")));
 				jasper.setColumnSpacing(Integer.valueOf( GLOBAL.setting_oku("ETIKET_ARA_BOSLUK")));
@@ -109,13 +109,9 @@ public class PRINT_JASPER extends JInternalFrame {
 				jasper.setTopMargin(Integer.valueOf( GLOBAL.setting_oku("UST_BOSLUK")));
 				jasper.setBottomMargin(Integer.valueOf( GLOBAL.setting_oku("ALT_BOSLUK")));
 				if(GLOBAL.setting_oku("ETIKET_YAZIM").toString().equals("Yatay"))
-				{
 					jasper.setPrintOrder(PrintOrderEnum.HORIZONTAL);
-				}
-				else 
-				{
+				else
 					jasper.setPrintOrder(PrintOrderEnum.VERTICAL);
-				}
 				JRDesignSection designSection = (JRDesignSection) jasper.getDetailSection();
 				JRBand[] bands =  jasper.getDetailSection().getBands();
 				JRDesignBand qweBand = (JRDesignBand) bands[0].clone();
@@ -128,13 +124,9 @@ public class PRINT_JASPER extends JInternalFrame {
 				//
 				etISIM.clear();
 				if(ETIKET.orTabbedPane.getSelectedIndex() == 0)
-				{
 					satir_kontrol();	
-				}
 				else
-				{
 					satir_kontrol_tek();
-				}
 				JRBeanCollectionDataSource qazBe = new JRBeanCollectionDataSource(etISIM);
 				jp = new JasperPrint();
 				jp = JasperFillManager.fillReport(jr,null, qazBe);
@@ -142,7 +134,7 @@ public class PRINT_JASPER extends JInternalFrame {
 			else if (nerden.equals("ekstre"))
 			{
 				
-				file = new File(GLOBAL.SURUCU + "\\Ekstre.jrxml");
+				file = new File(GLOBAL.SURUCU + File.separator + System.getProperty("user.name") + "_Ekstre.jrxml");
 				JasperDesign jasper = JRXmlLoader.load(file);
 				JasperReport jr = JasperCompileManager.compileReport(jasper);
 				Map<String, Object> parameters = new HashMap<String, Object>();
@@ -158,7 +150,7 @@ public class PRINT_JASPER extends JInternalFrame {
 			}
 			else if (nerden.equals("ekstre_kisa"))
 			{
-				file = new File(GLOBAL.SURUCU + "\\Ekstre_Kisa.jrxml");
+				file = new File(GLOBAL.SURUCU + File.separator + System.getProperty("user.name") + "_Ekstre_Kisa.jrxml");
 				JasperDesign jasper = JRXmlLoader.load(file);
 				JasperReport jr = JasperCompileManager.compileReport(jasper);
 				ekstre_kisa();

@@ -897,7 +897,7 @@ public class FATURA extends JInternalFrame {
 		panel_1.add(txttev);
 
 		JPanel panel_6 = new JPanel();
-		panel_6.setBorder(new LineBorder(new Color(0, 191, 255)));
+		panel_6.setBorder(new LineBorder(null));
 		tabbedPane_2.addTab("Yazici Tevkifat Kasesi", null, panel_6, null);
 		panel_6.setLayout(null);
 

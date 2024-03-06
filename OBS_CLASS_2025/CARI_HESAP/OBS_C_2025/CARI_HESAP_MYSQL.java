@@ -255,7 +255,8 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 				" `TUTAR` double NULL," +
 				" `TUR` int NOT NULL," +
 				" `ACIKLAMA` nvarchar(50) NULL," +
-				" `DVZ_CINS` nvarchar(3) NULL);";
+				" `DVZ_CINS` nvarchar(3) NULL)," +
+				" `POS_BANKA` nvarchar(40) NULL);";
 		stmt = con.createStatement();  
 		stmt.executeUpdate(sql);
 		sql = "CREATE TABLE `TAH_CEK` (`EVRAK` nvarchar(15),`CINS` int, `BANKA` nvarchar(40), " + 
@@ -1330,14 +1331,14 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 	}
 	@Override
 	public void tah_kayit(int cins, int tur, String evrak, String tarih, String ckodu, String akodu,
-			String aciklama, double tutar ,String dvzcins) throws ClassNotFoundException, SQLException, IOException {
+			String aciklama, double tutar ,String dvzcins,String posbanka) throws ClassNotFoundException, SQLException, IOException {
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		String sql = "DELETE FROM TAH_DETAY WHERE evrak = '"+ evrak + "' AND CINS = '" + cins + "' " ;
 		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();
-		sql  = "INSERT INTO TAH_DETAY (EVRAK,TARIH,C_HES,A_HES,CINS,TUTAR,TUR,ACIKLAMA,DVZ_CINS)" +
-				" VALUES (?,?,?,?,?,?,?,?,?)" ;
+		sql  = "INSERT INTO TAH_DETAY (EVRAK,TARIH,C_HES,A_HES,CINS,TUTAR,TUR,ACIKLAMA,DVZ_CINS,POS_BANKA)" +
+				" VALUES (?,?,?,?,?,?,?,?,?,?)" ;
 		stmt = null;
 		kONTROL();
 		stmt = con.prepareStatement(sql);
@@ -1350,6 +1351,7 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 		stmt.setInt(7, tur);
 		stmt.setString(8, aciklama);
 		stmt.setString(9, dvzcins);
+		stmt.setString(10, posbanka);
 		stmt.executeUpdate();
 		stmt.close();
 	}
@@ -1358,14 +1360,14 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		ResultSet	rss = null;
 		kONTROL();
-		PreparedStatement stmt = con.prepareStatement("SELECT * FROM TAH_DETAY  WHERE EVRAK = '" + no +"' AND CINS = '" + cins + "'");
+		PreparedStatement stmt = con.prepareStatement("SELECT * FROM TAH_DETAY  WHERE EVRAK = '" + no + "' AND CINS = '" + cins + "'");
 		rss = stmt.executeQuery();
 		return rss;	
 	}
 	@Override
 	public void tah_sil(String no, int cins) throws ClassNotFoundException, SQLException {
 		Class.forName("com.mysql.cj.jdbc.Driver");
-		String sql = "DELETE FROM TAH_DETAY WHERE evrak = '"+ no + "' AND CINS = '" + cins + "' " ;
+		String sql = "DELETE FROM TAH_DETAY WHERE evrak = '" + no + "' AND CINS = '" + cins + "' " ;
 		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();
@@ -1398,7 +1400,7 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		ResultSet	rss = null;
 		kONTROL();
-		String sql = "SELECT * FROM TAH_CEK WHERE EVRAK = '"+ no +"' AND CINS = '" + cins + "'";
+		String sql = "SELECT * FROM TAH_CEK WHERE EVRAK = '" + no + "' AND CINS = '" + cins + "'";
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;	
@@ -1406,7 +1408,7 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 	@Override
 	public void tah_cek_sil(String no, int cins) throws ClassNotFoundException, SQLException {
 		Class.forName("com.mysql.cj.jdbc.Driver");
-		String sql = "DELETE FROM TAH_CEK WHERE EVRAK = '"+ no + "' AND CINS = '" + cins + "' " ;
+		String sql = "DELETE FROM TAH_CEK WHERE EVRAK = '" + no + "' AND CINS = '" + cins + "' " ;
 		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();
@@ -1418,7 +1420,7 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 		kONTROL();
 		PreparedStatement stmt = con.prepareStatement("SELECT * FROM TAH_AYARLAR ");
 		ResultSet rsAyar = stmt.executeQuery();
-		String sql = "SELECT * FROM TAH_CEK WHERE EVRAK = '"+ no +"' AND CINS = '" + cins + "'";
+		String sql = "SELECT * FROM TAH_CEK WHERE EVRAK = '" + no + "' AND CINS = '" + cins + "'";
 		stmt = con.prepareStatement(sql);
 		ResultSet rsCekler = stmt.executeQuery();
 		rsAyar.next();
@@ -1452,24 +1454,27 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 		
 	}
 	@Override
-	public ResultSet tah_listele(int cins, int tur, String ilktarih, String sontarih, String ilkevr, String sonevr,String ilkck,String sonck)
+	public ResultSet tah_listele(int cins, int tur, String ilktarih, String sontarih, String ilkevr, String sonevr,String ilkck,String sonck,String pos)
 			throws ClassNotFoundException, SQLException {
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		ResultSet	rss = null;
-		String cinString = "" , turString=""  ;
+		String cinString = "" , turString="" ,posString = "" ;
 		if(cins !=0)
 			cinString = " CINS = '" + cins + "' AND";
 		if(tur != 0)
 			turString = " TUR = '" + tur + "' AND";
+		if(! pos.equals("Hepsi"))
+			posString = " POS_BANKA = '" + pos + "' AND";
 		String sql = " SELECT EVRAK,TARIH ,C_HES ,A_HES ,CASE CINS  WHEN '0' THEN 'Tahsilat'  WHEN '1' THEN 'Tediye' END as CINS ," +
-				 " CASE TUR  WHEN '0' THEN 'Nakit'  WHEN '1' THEN 'Cek' WHEN '2' THEN 'Kredi Karti' END as TUR, " +
+				 " CASE TUR  WHEN '0' THEN 'Nakit'  WHEN '1' THEN 'Cek' WHEN '2' THEN 'Kredi Karti' END as TUR,POS_BANKA , " +
 				 " DVZ_CINS, TUTAR  " +
 				" FROM TAH_DETAY " +
-				" WHERE  " + cinString  + turString  +
+				" WHERE  " + cinString  + turString  + posString +
 				" TARIH >= '" + ilktarih + "' AND TARIH < '" + sontarih + "' " + 
 				" AND EVRAK >= '" + ilkevr + "' AND EVRAK < '" + sonevr + "' " + 
 				" AND C_HES >= '" + ilkck + "' AND C_HES < '" + sonck + "' " + 
 				" ORDER BY TARIH " ;
+
 		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
@@ -1496,5 +1501,14 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 		stmt.executeUpdate();
 		stmt.close();
 
+	}
+	@Override
+	public ResultSet pos_banka_oku() throws ClassNotFoundException, SQLException {
+		Class.forName("com.mysql.cj.jdbc.Driver");
+		ResultSet	rss = null;
+		kONTROL();
+		PreparedStatement stmt = con.prepareStatement("SELECT DISTINCT POS_BANKA FROM TAH_DETAY WHERE TUR = '2'");
+		rss = stmt.executeQuery();
+		return rss;	
 	}
 }

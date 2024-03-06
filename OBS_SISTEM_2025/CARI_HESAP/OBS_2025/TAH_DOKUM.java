@@ -181,7 +181,7 @@ public class TAH_DOKUM extends JInternalFrame {
 				FILTRE.comboBox_86.getSelectedIndex(),
 				TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_35),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_36),
 				FILTRE.textTaheno1.getText(),FILTRE.textTaheno2.getText(),
-				FILTRE.textTahck1.getText(),FILTRE.textTahck2.getText()	);
+				FILTRE.textTahck1.getText(),FILTRE.textTahck2.getText(),FILTRE.comboBox_87.getSelectedItem().toString()	);
 		
 		if (!rs.isBeforeFirst() ) {  
 			return;
@@ -226,10 +226,15 @@ public class TAH_DOKUM extends JInternalFrame {
 		
 		tc = tcm.getColumn(6);
 		tc.setHeaderRenderer(new SOLA());
+		tc.setMinWidth(150);
+		tc.setMaxWidth(150);
+		
+		tc = tcm.getColumn(7);
+		tc.setHeaderRenderer(new SOLA());
 		tc.setMinWidth(70);
 		tc.setMaxWidth(70);
 		
-		tc = tcm.getColumn(7);
+		tc = tcm.getColumn(8);
 		tc.setHeaderRenderer(new SAGA());
 		tc.setCellRenderer(new TABLO_RENDERER(2,true));
 		tc.setMinWidth(120);

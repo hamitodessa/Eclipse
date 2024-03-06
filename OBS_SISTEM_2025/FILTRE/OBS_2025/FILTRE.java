@@ -132,6 +132,7 @@ public class FILTRE extends JDialog {
 	//***** TAHSILAT
 	public static JComboBox<String> comboBox_85 ;
 	public static JComboBox<String> comboBox_86 ;
+	public static JComboBox<String> comboBox_87;
 	public static JDateChooser dateChooser_35;
 	public static JDateChooser dateChooser_36;
 	public static Obs_TextFIeld textTaheno1;
@@ -450,6 +451,8 @@ public class FILTRE extends JDialog {
 	public static JDateChooser dateChooser_21_1_2 ;
 	public static JComboBox<String> comboBox_83;
 	public static JCheckBox chckbxNewCheckBox_5 ;
+
+	
 	
 	public FILTRE() {
 
@@ -5359,18 +5362,18 @@ public class FILTRE extends JDialog {
 		dateChooser_35.setFont(new Font("Tahoma", Font.BOLD, 11));
 		dateChooser_35.setDateFormatString("dd.MM.yyyy");
 		dateChooser_35.setDate(TARIH_CEVIR.tarih("01.01.1900"));
-		dateChooser_35.setBounds(70, 115, 120, 20);
+		dateChooser_35.setBounds(70, 133, 120, 20);
 		panel_24.add(dateChooser_35);
 		
 		dateChooser_36 = new JDateChooser();
 		dateChooser_36.setFont(new Font("Tahoma", Font.BOLD, 11));
 		dateChooser_36.setDateFormatString("dd.MM.yyyy");
 		dateChooser_36.setDate(TARIH_CEVIR.tarih("31.12.2100"));
-		dateChooser_36.setBounds(234, 115, 120, 20);
+		dateChooser_36.setBounds(234, 133, 120, 20);
 		panel_24.add(dateChooser_36);
 		
 		textTaheno1 = new Obs_TextFIeld(15);
-		textTaheno1.setBounds(70, 148, 135, 20);
+		textTaheno1.setBounds(70, 166, 135, 20);
 		textTaheno1.setFont(new Font("Tahoma", Font.BOLD, 11));
 		panel_24.add(textTaheno1);
 		textTaheno1.setColumns(10);
@@ -5378,12 +5381,12 @@ public class FILTRE extends JDialog {
 		textTaheno2 = new Obs_TextFIeld(15);
 		textTaheno2.setFont(new Font("Tahoma", Font.BOLD, 11));
 		textTaheno2.setText("ZZZZZZZZZZZZZZZ");
-		textTaheno2.setBounds(234, 148, 135, 20);
+		textTaheno2.setBounds(234, 166, 135, 20);
 		panel_24.add(textTaheno2);
 		textTaheno2.setColumns(10);
 		
 		textTahck1 = new Obs_TextFIeld(12);
-		textTahck1.setBounds(70, 174, 120, 20);
+		textTahck1.setBounds(70, 192, 120, 20);
 		textTahck1.setFont(new Font("Tahoma", Font.BOLD, 11));
 		textTahck1.addMouseListener(new MouseAdapter() {
 			@Override
@@ -5407,7 +5410,7 @@ public class FILTRE extends JDialog {
 		textTahck2 = new Obs_TextFIeld(12);
 		textTahck2.setFont(new Font("Tahoma", Font.BOLD, 11));
 		textTahck2.setText("ZZZZZZZZZZZZ");
-		textTahck2.setBounds(234, 174, 120, 20);
+		textTahck2.setBounds(234, 192, 120, 20);
 		textTahck2.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -5436,16 +5439,24 @@ public class FILTRE extends JDialog {
 		panel_24.add(lblNewLabel_47);
 		
 		JLabel lblNewLabel_48 = new JLabel("Tarih");
-		lblNewLabel_48.setBounds(10, 115, 46, 14);
+		lblNewLabel_48.setBounds(10, 133, 46, 14);
 		panel_24.add(lblNewLabel_48);
 		
 		JLabel lblNewLabel_49 = new JLabel("Evrak No");
-		lblNewLabel_49.setBounds(10, 151, 61, 14);
+		lblNewLabel_49.setBounds(10, 169, 61, 14);
 		panel_24.add(lblNewLabel_49);
 		
 		JLabel lblNewLabel_50 = new JLabel("Cari Kod");
-		lblNewLabel_50.setBounds(10, 177, 61, 14);
+		lblNewLabel_50.setBounds(10, 195, 61, 14);
 		panel_24.add(lblNewLabel_50);
+		
+		JLabel lblNewLabel_51 = new JLabel("Pos");
+		lblNewLabel_51.setBounds(10, 93, 61, 14);
+		panel_24.add(lblNewLabel_51);
+		
+		comboBox_87 = new JComboBox<String>();
+		comboBox_87.setBounds(70, 89, 200, 22);
+		panel_24.add(comboBox_87);
 
 		//**********************************************************************OK BUTTON **********************************
 		okButton = new JButton("Yenile");
@@ -5748,13 +5759,9 @@ public class FILTRE extends JDialog {
 		buttonPane.add(cancelButton);
 		sayfa_ac(GLOBAL.filtre_sayfa );
 		if (GLOBAL.filtre_sayfa == 0)
-		{
 			txtkodu.requestFocus();
-		}
 		for(int i = 0;i <= tabbedPane.getTabCount() - 1;i++)
-		{
 			tabbedPane.setEnabledAt(i, false);
-		}
 	}
 	public void isimoku_ekstre()  {
 		try
@@ -5895,6 +5902,11 @@ public class FILTRE extends JDialog {
 			ker_oz1_doldur(comboBox_80_5);
 
 		}
+		else if (syfa == 24)
+		{
+			pos_doldur();
+		}
+		
 		
 	}
 	public static void kapat ()
@@ -6254,6 +6266,24 @@ public class FILTRE extends JDialog {
 		{
 			getContentPane().setCursor(oac.DEFAULT_CURSOR);
 			OBS_MAIN.mesaj_goster(10000,Notifications.Type.ERROR,ex.getMessage() );
+		}
+	}
+	private void pos_doldur() 
+	{
+		try {
+			comboBox_87.removeAllItems();
+			ResultSet	rs = null;
+			rs = c_Access.pos_banka_oku();
+			comboBox_87.addItem("Hepsi");
+			if (!rs.isBeforeFirst() )
+				return;
+			else
+			{
+				while (rs.next())
+					comboBox_87.addItem(rs.getString("POS_BANKA"));
+			}
+		} catch (Exception e) {
+
 		}
 	}
 	private static String[] isim(String kod)  {

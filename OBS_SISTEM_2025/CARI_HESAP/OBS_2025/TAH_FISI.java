@@ -50,6 +50,8 @@ import javax.swing.text.DefaultFormatterFactory;
 import javax.swing.text.JTextComponent;
 import javax.swing.text.NumberFormatter;
 
+import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
+
 import java.awt.Color;
 import java.awt.Dimension;
 
@@ -88,7 +90,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-
 import javax.swing.JComboBox;
 import com.toedter.calendar.JDateChooser;
 import javax.swing.SwingConstants;
@@ -104,6 +105,7 @@ import java.awt.event.ItemEvent;
 import javax.swing.KeyStroke;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.JTextField;
 
 @SuppressWarnings({ "unchecked", "rawtypes" ,"static-access","removal"})
 public class TAH_FISI extends JInternalFrame {
@@ -125,6 +127,8 @@ public class TAH_FISI extends JInternalFrame {
 	
 	private static JLabel lblCAdi ;
 	public static JLabel lblCekSayi;
+	private JLabel lblPos ;
+	private static JComboBox comboBanka;
 
 	private static JLabel lblAAdi ;
 	public static JFormattedTextField formattedTutar ;
@@ -140,6 +144,8 @@ public class TAH_FISI extends JInternalFrame {
 	private JPanel panel_5;
 	private JScrollPane scrollPane;
 	private static JTable tableCek;
+	
+
 	/**
 	 * Launch the application.
 	 */
@@ -156,6 +162,17 @@ public class TAH_FISI extends JInternalFrame {
 		setTitle("TAHSILAT");
 		setClosable(true);
 		setBounds(100, 100, 800, 460);
+		
+		//****************************
+//		String[] data = {"Akbank", "Alternatifbank", "Anadolubank", "Arap Türk Bankası",
+//				"Bank Ekspress","Bayındır Bank","Citibank","Credit Suisse FB.","Denizbank",
+//				"Diler Yatırım Bankası","Dışbank","Finans Bank","Takas ve Saklama Bankası",
+//				"İnterbank","Kentbank","Koçbank","MNG Bank","Nurol Yatırım Bankası","Oyak Bank","Pamukbank","Park Yatırım Bankası","Sınai Yatırım Bankası",
+//				"Şekerbank","Tekfen Bank","ICBC Turkey Bank A.Ş.","The Chase Manhattan Bank","Turkish Bank","Türk Dışbank",
+//				"Türk Ekonomi Bankası","Türk Eximbank","Türkbank","Türk Ticaret Bankası","TC Ziraat Bankası","Türkiye Emlak Bankası",
+//				"Türkiye Garanti Bankası","Türkiye Halk Bankası","Türkiye İş Bankası","Türkiye Kalkınma Bankası","Türkiye Sınai Kalkınma Bankası",
+//				"Yaşarbank","Vakıflar Bankası","Yapı ve Kredi Bankası"};
+		
 		
 		tabbedPane = new MaterialTabbed();
 		tabbedPane.addChangeListener(new ChangeListener() {
@@ -195,16 +212,27 @@ public class TAH_FISI extends JInternalFrame {
 		cmbTur = new JComboBox<String>();
 		cmbTur.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent e) {
-				if(cmbTur.getSelectedIndex()==1)
+				if(cmbTur.getSelectedIndex()==0)
+				{
+					panel_4.setVisible(false);
+					tabbedPane.setEnabledAt(2, false);
+					lblPos.setVisible(false);
+					comboBanka.setVisible(false);
+				}
+				else if(cmbTur.getSelectedIndex()==1)
 				{
 					panel_4.setVisible(true);
 					tabbedPane.setEnabledAt(2, true);
+					lblPos.setVisible(false);
+					comboBanka.setVisible(false);
 				}
-				else {
+				else if(cmbTur.getSelectedIndex()==2)
+				{
 					panel_4.setVisible(false);
 					tabbedPane.setEnabledAt(2, false);
+					lblPos.setVisible(true);
+					comboBanka.setVisible(true);
 				}
-				
 			}
 		});
 		cmbTur.setBounds(10, 44, 149, 22);
@@ -355,6 +383,7 @@ public class TAH_FISI extends JInternalFrame {
 		JButton btnNewButton = new JButton("");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				fis_temizle_yeni();
 				yeni();
 			}
 		});
@@ -585,6 +614,23 @@ public class TAH_FISI extends JInternalFrame {
 		combCins.setBounds(50, 25, 77, 22);
 		panel_3.add(combCins);
 		combCins.setModel(new DefaultComboBoxModel(new String[] {"TL", "USD", "EUR"}));
+		
+		lblPos = new JLabel("Pos Banka");
+		lblPos.setVisible(false);
+		lblPos.setBounds(184, 29, 87, 14);
+		panel_3.add(lblPos);
+
+		//		comboBanka = new JComboBox(new DefaultComboBoxModel(new String[] {"Akbank", "Alternatifbank", "Anadolubank", "Arap Türk Bankası", "Bank Ekspress", "Bayındır Bank", "Citibank", "Credit Suisse FB.", "Denizbank", "Diler Yatırım Bankası", "Dışbank", "Finans Bank", "Takas ve Saklama Bankası", "İnterbank", "Kentbank", "Koçbank", "MNG Bank", "Nurol Yatırım Bankası", "Oyak Bank", "Pamukbank", "Park Yatırım Bankası", "Sınai Yatırım Bankası", "Şekerbank", "Tekfen Bank", "ICBC Turkey Bank A.Ş.", "The Chase Manhattan Bank", "Turkish Bank", "Türk Dışbank", "Türk Ekonomi Bankası", "Türk Eximbank", "Türkbank", "Türk Ticaret Bankası", "TC Ziraat Bankası", "Türkiye Emlak Bankası", "Türkiye Garanti Bankası", "Türkiye Halk Bankası", "Türkiye İş Bankası", "Türkiye Kalkınma Bankası", "Türkiye Sınai Kalkınma Bankası", "Yaşarbank", "Vakıflar Bankası", "Yapı ve Kredi Bankası"}));
+
+		comboBanka = new JComboBox();
+		comboBanka.setEditable(true);
+		comboBanka.setVisible(false);
+		comboBanka.setBounds(281, 25, 227, 22);
+		JTextField editorComponent = (JTextField)  comboBanka.getEditor().getEditorComponent();
+		InputMap txtbhesMap = editorComponent.getInputMap(editorComponent.WHEN_FOCUSED);
+		txtbhesMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_H, KeyEvent.CTRL_DOWN_MASK), "none");
+		AutoCompleteDecorator.decorate(comboBanka);
+		panel_3.add(comboBanka);
 		
 		panel_4 = new JPanel();
 		panel_4.setVisible(false);
@@ -872,6 +918,14 @@ public class TAH_FISI extends JInternalFrame {
 		});
 		scrollPane.setViewportView(tableCek);
 		tabbedPane.setEnabledAt(2, false);
+		
+		//POS BANKA OKU
+		try {
+			pos_doldur();
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
+		//****************************
 		fis_temizle();
 	}
 	public static void kaydet()
@@ -892,83 +946,86 @@ public class TAH_FISI extends JInternalFrame {
 		if (textEvrakNo.getText().equals("")  ) return ;
 		try 
 		{
-		c_Access.tah_kayit(cmbCins.getSelectedIndex(), cmbTur.getSelectedIndex(),textEvrakNo.getText(), 
-				TARIH_CEVIR.tarih_geri_saatli(dtc) ,textCKodu.getText(), textAKodu.getText(), "", 
-				DecimalFormat.getNumberInstance().parse(formattedTutar.getText()).doubleValue(),combCins.getSelectedItem().toString());
-		c_Access.tah_cek_sil(textEvrakNo.getText(), cmbCins.getSelectedIndex());
-		if(cmbTur.getSelectedIndex() == 1)
-		{
-			DefaultTableModel model = (DefaultTableModel)tableCek.getModel();
-			for (int i = 0; i <= tableCek.getRowCount() - 1 ; i ++)
+			String poString = "" ;
+			if(cmbTur.getSelectedIndex() == 2)
+				poString = comboBanka.getSelectedItem().toString();
+			c_Access.tah_kayit(cmbCins.getSelectedIndex(), cmbTur.getSelectedIndex(),textEvrakNo.getText(), 
+					TARIH_CEVIR.tarih_geri_saatli(dtc) ,textCKodu.getText(), textAKodu.getText(), "", 
+					DecimalFormat.getNumberInstance().parse(formattedTutar.getText()).doubleValue(),combCins.getSelectedItem().toString(),poString);
+			c_Access.tah_cek_sil(textEvrakNo.getText(), cmbCins.getSelectedIndex());
+			if(cmbTur.getSelectedIndex() == 1)
 			{
-				if ( model.getValueAt(i,0).toString() != null )
+				DefaultTableModel model = (DefaultTableModel)tableCek.getModel();
+				for (int i = 0; i <= tableCek.getRowCount() - 1 ; i ++)
 				{
-					if ( ! model.getValueAt(i,0).toString().equals(""))
+					if ( model.getValueAt(i,0).toString() != null )
 					{
-						if ( model.getValueAt(i,6).toString() != null )
+						if ( ! model.getValueAt(i,0).toString().equals(""))
 						{
-							String vade = "";
-							if (model.getValueAt(i , 5).toString().length() >  10)
-								vade = dateFormater(model.getValueAt(i , 5).toString() , "yyyy.MM.dd", "EEE MMM dd kk:mm:ss zzzz yyyy" ) ;
-							else
+							if ( model.getValueAt(i,6).toString() != null )
 							{
-								String qwe =dateFormater(model.getValueAt(i , 5).toString() , "yyyy.MM.dd", "dd.MM.yyyy" ) ;
-								vade  = qwe;
+								String vade = "";
+								if (model.getValueAt(i , 5).toString().length() >  10)
+									vade = dateFormater(model.getValueAt(i , 5).toString() , "yyyy.MM.dd", "EEE MMM dd kk:mm:ss zzzz yyyy" ) ;
+								else
+								{
+									String qwe =dateFormater(model.getValueAt(i , 5).toString() , "yyyy.MM.dd", "dd.MM.yyyy" ) ;
+									vade  = qwe;
+								}
+								c_Access.tah_cek_kayit(textEvrakNo.getText(), cmbCins.getSelectedIndex(),
+										tableCek.getValueAt(i , 0).toString(), tableCek.getValueAt(i , 1).toString(), 
+										tableCek.getValueAt(i , 2).toString(),tableCek.getValueAt(i , 3).toString(), 
+										tableCek.getValueAt(i , 4).toString(),
+										vade,
+										(double) tableCek.getValueAt(i , 6));
 							}
-							c_Access.tah_cek_kayit(textEvrakNo.getText(), cmbCins.getSelectedIndex(),
-									tableCek.getValueAt(i , 0).toString(), tableCek.getValueAt(i , 1).toString(), 
-									tableCek.getValueAt(i , 2).toString(),tableCek.getValueAt(i , 3).toString(), 
-									tableCek.getValueAt(i , 4).toString(),
-									vade,
-									(double) tableCek.getValueAt(i , 6));
 						}
 					}
 				}
 			}
-		}
-		
+
 		} catch (Exception ex) {
-			 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage() );
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage() );
 		}
 	}
 	private static void ayar_kayit()
 	{
-		try {
-		InputStream fis = null;
-		if ( imagePanel.getImage()) 
+		try 
 		{
-			BufferedImage bi = new BufferedImage( imagePanel.getWidth(), imagePanel.getHeight(), BufferedImage.TYPE_INT_RGB);
-			Graphics g = bi.createGraphics();
-			imagePanel.paintComponent(g);
-			g.drawImage(bi, 0, 0, null);
-			g.setColor(Color.WHITE);
-			g.dispose();
-			ByteArrayOutputStream os = new ByteArrayOutputStream();
-			ImageIO.write(bi, "jpg", os);
-			fis = new ByteArrayInputStream(os.toByteArray());
-			os.flush();
-			os.close();
-		}
-		InputStream fis1 = null;
-		if ( imageKase.getImage()) 
-		{
-			BufferedImage bi = new BufferedImage( imageKase.getWidth(), imageKase.getHeight(), BufferedImage.TYPE_INT_RGB);
-			Graphics g = bi.createGraphics();
-			imageKase.paintComponent(g);
-			g.drawImage(bi, 0, 0, null);
-			g.setColor(Color.WHITE);
-			g.dispose();
-			ByteArrayOutputStream os = new ByteArrayOutputStream();
-			ImageIO.write(bi, "jpg", os);
-			fis1 = new ByteArrayInputStream(os.toByteArray());
-			os.flush();
-			os.close();
-		}
-		c_Access.tah_ayar_sil();
-		c_Access.tah_ayar_kayit(textAdi.getText(), textAdres1.getText(), textAdres2.getText(),textVdVn.getText(), textMail.getText(), textDiger.getText(), fis,fis1);
-
+			InputStream fis = null;
+			if ( imagePanel.getImage()) 
+			{
+				BufferedImage bi = new BufferedImage( imagePanel.getWidth(), imagePanel.getHeight(), BufferedImage.TYPE_INT_RGB);
+				Graphics g = bi.createGraphics();
+				imagePanel.paintComponent(g);
+				g.drawImage(bi, 0, 0, null);
+				g.setColor(Color.WHITE);
+				g.dispose();
+				ByteArrayOutputStream os = new ByteArrayOutputStream();
+				ImageIO.write(bi, "jpg", os);
+				fis = new ByteArrayInputStream(os.toByteArray());
+				os.flush();
+				os.close();
+			}
+			InputStream fis1 = null;
+			if ( imageKase.getImage()) 
+			{
+				BufferedImage bi = new BufferedImage( imageKase.getWidth(), imageKase.getHeight(), BufferedImage.TYPE_INT_RGB);
+				Graphics g = bi.createGraphics();
+				imageKase.paintComponent(g);
+				g.drawImage(bi, 0, 0, null);
+				g.setColor(Color.WHITE);
+				g.dispose();
+				ByteArrayOutputStream os = new ByteArrayOutputStream();
+				ImageIO.write(bi, "jpg", os);
+				fis1 = new ByteArrayInputStream(os.toByteArray());
+				os.flush();
+				os.close();
+			}
+			c_Access.tah_ayar_sil();
+			c_Access.tah_ayar_kayit(textAdi.getText(), textAdres1.getText(), textAdres2.getText(),textVdVn.getText(), textMail.getText(), textDiger.getText(), fis,fis1);
 		} catch (Exception ex) {
-			 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage() );
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage() );
 		}
 	}
 	private void ayar_doldur()
@@ -980,7 +1037,7 @@ public class TAH_FISI extends JInternalFrame {
 			return;
 		} 
 	 	rs.next();
-		if (  rs.getBytes("LOGO") != null)
+		if (rs.getBytes("LOGO") != null)
 		{
 			byte[] img = rs.getBytes("LOGO");
 			ImageIcon image = new ImageIcon(img);
@@ -993,7 +1050,7 @@ public class TAH_FISI extends JInternalFrame {
 			g.dispose();
 			imagePanel.setImage(bi);
 		}
-		if (  rs.getBytes("KASE") != null)
+		if (rs.getBytes("KASE") != null)
 		{
 			byte[] img = rs.getBytes("KASE");
 			ImageIcon image = new ImageIcon(img);
@@ -1032,7 +1089,8 @@ public class TAH_FISI extends JInternalFrame {
 		ResultSet rs =null;
 		rs = c_Access.tah_oku(textEvrakNo.getText(),cmbCins.getSelectedIndex());
 		fis_temizle();
-		if (!rs.isBeforeFirst() ) { 
+		if (!rs.isBeforeFirst() ) 
+		{ 
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING,"Bu Numarada Kayitli Fis Yok......" );
 			return; // Kayit Yok
 		} 
@@ -1044,6 +1102,7 @@ public class TAH_FISI extends JInternalFrame {
 		textAKodu.setText(rs.getString("A_HES"));
 		formattedTutar.setText(FORMATLAMA.doub_2(rs.getDouble("TUTAR")));
 		dtc.setDate(rs.getDate("TARIH"));
+		comboBanka.setSelectedItem(rs.getString("POS_BANKA"));
 		if(cmbTur.getSelectedIndex() == 1 )
 			cek_doldur();
 		} catch (Exception ex) {
@@ -1171,7 +1230,6 @@ public class TAH_FISI extends JInternalFrame {
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR, ex.getMessage() );
 		}
 	}
-
 	private void ayar_temizle()
 	{
 		textAdi.setText("");
@@ -1194,6 +1252,21 @@ public class TAH_FISI extends JInternalFrame {
 		lblCAdi.setText("");
 		lblAAdi.setText("");
 		combCins.setSelectedIndex(0);
+		pos_doldur();
+		dtc.setDate(new Date());
+		GRID_TEMIZLE.grid_temizle(tableCek);
+		for (int i = 0; i <= 15; i ++)
+			satir_ilave();
+	}
+	private static void fis_temizle_yeni()
+	{
+		textCKodu.setText("");
+		textAKodu.setText("");
+		formattedTutar.setText("0.00");
+		lblCAdi.setText("");
+		lblAAdi.setText("");
+		combCins.setSelectedIndex(0);
+		pos_doldur();
 		dtc.setDate(new Date());
 		GRID_TEMIZLE.grid_temizle(tableCek);
 		for (int i = 0; i <= 15; i ++)
@@ -1251,27 +1324,44 @@ public class TAH_FISI extends JInternalFrame {
 	private void cek_doldur()
 	{
 		try {
-		ResultSet rs = c_Access.tah_cek_doldur(textEvrakNo.getText(),cmbCins.getSelectedIndex());
-		if (!rs.isBeforeFirst() )
-			return;
-		DefaultTableModel mdll = (DefaultTableModel) tableCek.getModel();
-		int satir =0 ;
-		while (rs.next()) 
-		{
-			SimpleDateFormat format1 = new SimpleDateFormat("dd.MM.yyyy");
-			String vade1 =  format1.format(rs.getDate("TARIH"));
-			mdll.insertRow(satir,new Object[]{rs.getString("BANKA"),
-					rs.getString("SUBE"),rs.getString("SERI"),rs.getString("HESAP"),
-					rs.getString("BORCLU"), vade1,	rs.getDouble("TUTAR")});
-			satir +=1 ;
-			if (satir == mdll.getRowCount())
-				mdll.addRow(new Object[]{"", "","","","",new Date(),0.00});
-			else
-				mdll.removeRow(mdll.getRowCount() -1);	
-		}
+			ResultSet rs = c_Access.tah_cek_doldur(textEvrakNo.getText(),cmbCins.getSelectedIndex());
+			if (!rs.isBeforeFirst() )
+				return;
+			DefaultTableModel mdll = (DefaultTableModel) tableCek.getModel();
+			int satir =0 ;
+			while (rs.next()) 
+			{
+				SimpleDateFormat format1 = new SimpleDateFormat("dd.MM.yyyy");
+				String vade1 =  format1.format(rs.getDate("TARIH"));
+				mdll.insertRow(satir,new Object[]{rs.getString("BANKA"),
+						rs.getString("SUBE"),rs.getString("SERI"),rs.getString("HESAP"),
+						rs.getString("BORCLU"), vade1,	rs.getDouble("TUTAR")});
+				satir += 1 ;
+				if (satir == mdll.getRowCount())
+					mdll.addRow(new Object[]{"", "","","","",new Date(),0.00});
+				else
+					mdll.removeRow(mdll.getRowCount() -1);	
+			}
 		} catch (Exception ex) 
 		{
-			 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
+		}
+	}
+	private static void pos_doldur() 
+	{
+		try {
+			comboBanka.removeAllItems();
+			ResultSet rs = null;
+			rs = c_Access.pos_banka_oku();
+			if (!rs.isBeforeFirst() )
+				return;
+			else
+			{
+				while (rs.next())
+					comboBanka.addItem(rs.getString("POS_BANKA"));
+			}
+		} catch (Exception e) {
+
 		}
 	}
 }

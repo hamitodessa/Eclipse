@@ -294,9 +294,9 @@ public class CARI_ACCESS {
 	{
 		return _ICari.tah_ayar_oku();
 	}
-	public void tah_kayit(int cins ,Integer tur , String evrak , String tarih ,String ckodu ,String akodu ,String aciklama,double tutar ,String dvzcins ) throws ClassNotFoundException, SQLException, IOException
+	public void tah_kayit(int cins ,Integer tur , String evrak , String tarih ,String ckodu ,String akodu ,String aciklama,double tutar ,String dvzcins,String posbanka ) throws ClassNotFoundException, SQLException, IOException
 	{
-		_ICari.tah_kayit(cins, tur, evrak, tarih, ckodu, akodu, aciklama, tutar,dvzcins);
+		_ICari.tah_kayit(cins, tur, evrak, tarih, ckodu, akodu, aciklama, tutar,dvzcins,posbanka);
 	}
 	public ResultSet tah_oku (String no , int cins) throws ClassNotFoundException, SQLException
 	{
@@ -322,12 +322,16 @@ public class CARI_ACCESS {
 	{
 		_ICari.tah_cek_kayit_aktar(no, cins);
 	}
-	public ResultSet tah_listele ( int cins,int tur,String ilktarih,String sontarih,String ilkevr,String sonevr,String ilkck,String sonck) throws ClassNotFoundException, SQLException
+	public ResultSet tah_listele ( int cins,int tur,String ilktarih,String sontarih,String ilkevr,String sonevr,String ilkck,String sonck,String pos) throws ClassNotFoundException, SQLException
 	{
-		return _ICari.tah_listele(cins, tur, ilktarih, sontarih, ilkevr, sonevr, ilkck, sonck);
+		return _ICari.tah_listele(cins, tur, ilktarih, sontarih, ilkevr, sonevr, ilkck, sonck,pos);
 	}
 	public void yilsonu_tahsilat_bilgi_kayit() throws ClassNotFoundException, SQLException
 	{
 		_ICari.yilsonu_tahsilat_bilgi_kayit();
+	}
+	public ResultSet pos_banka_oku () throws ClassNotFoundException, SQLException
+	{
+		return _ICari.pos_banka_oku();
 	}
 }

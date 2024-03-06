@@ -822,9 +822,7 @@ public class DEKONT extends JInternalFrame {
 						hsp = new HESAP_PLN();
 						hsp.setVisible(true);
 						if (! oac.hsp_hsp_kodu.equals(""))
-						{
 							cmbbhes.setSelectedItem( oac.hsp_hsp_kodu);
-						}
 					} catch (Exception e1) {
 						e1.printStackTrace();
 					}
@@ -873,7 +871,6 @@ public class DEKONT extends JInternalFrame {
 									{
 										cmbbhes.setSelectedItem( oac.hsp_hsp_kodu);
 										cmbb.requestFocus();
-										
 									}
 									getContentPane().setCursor(oac.DEFAULT_CURSOR);
 								} catch (Exception e1) {
@@ -892,7 +889,7 @@ public class DEKONT extends JInternalFrame {
 		InputMap txtbhesMap = editorComponent.getInputMap(editorComponent.WHEN_FOCUSED);
 		txtbhesMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_H, KeyEvent.CTRL_DOWN_MASK), "none");
 		
-		cmbbhes.getEditor().getEditorComponent().setForeground(new Color(0, 0, 128));
+		//cmbbhes.getEditor().getEditorComponent().setForeground(new Color(0, 0, 128));
 		cmbbhes.setBounds(10, 45, 147, 25);
 		AutoCompleteDecorator.decorate(cmbbhes);
 		panel_1.add(cmbbhes);
@@ -1313,7 +1310,7 @@ public class DEKONT extends JInternalFrame {
 		pnla.add(lblaba);
 
 		cmbahes = new JComboBox<String>();
-		cmbahes.getEditor().getEditorComponent().setForeground(new Color(0, 0, 128));
+		//cmbahes.getEditor().getEditorComponent().setForeground(new Color(0, 0, 128));
 		cmbahes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				getContentPane().setCursor(oac.WAIT_CURSOR);

@@ -592,7 +592,7 @@ public class KERESTE_CIKIS extends JInternalFrame {
 
 		lblNewLabel_6 = new JLabel(".....");
 		lblNewLabel_6.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblNewLabel_6.setForeground(new Color(139, 0, 0));
+		//lblNewLabel_6.setForeground(new Color(139, 0, 0));
 		lblNewLabel_6.setBounds(353, 62, 237, 14);
 		panel_2.add(lblNewLabel_6);
 

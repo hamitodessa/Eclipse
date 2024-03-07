@@ -251,7 +251,7 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 				" `TUTAR` double NULL," +
 				" `TUR` int NOT NULL," +
 				" `ACIKLAMA` nvarchar(50) NULL," +
-				" `DVZ_CINS` nvarchar(3) NULL)," +
+				" `DVZ_CINS` nvarchar(3) NULL," +
 				" `POS_BANKA` nvarchar(40) NULL);";
 		stmt = con.createStatement();  
 		stmt.executeUpdate(sql);

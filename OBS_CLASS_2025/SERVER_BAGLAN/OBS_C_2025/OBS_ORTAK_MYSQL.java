@@ -55,6 +55,7 @@ public class OBS_ORTAK_MYSQL implements IConnection {
 		rss.next();
 		int count=0;
 		count = rss.getRow();
+		result = false;
 		if (count  > 0)
 			result = true;
 		stmt.close();
@@ -73,6 +74,7 @@ public class OBS_ORTAK_MYSQL implements IConnection {
 		rss.next();
 		int count=0;
 		count = rss.getRow();
+		result = false;
 		if (count  > 0)
 			result = true;
 		stmt.close();

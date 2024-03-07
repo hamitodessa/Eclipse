@@ -144,7 +144,7 @@ public class TAH_FISI extends JInternalFrame {
 	private JPanel panel_5;
 	private JScrollPane scrollPane;
 	private static JTable tableCek;
-	
+	public static JCheckBox chckbxFisno ;
 
 	/**
 	 * Launch the application.
@@ -161,19 +161,7 @@ public class TAH_FISI extends JInternalFrame {
 
 		setTitle("TAHSILAT");
 		setClosable(true);
-		setBounds(100, 100, 800, 460);
-		
-		//****************************
-//		String[] data = {"Akbank", "Alternatifbank", "Anadolubank", "Arap Türk Bankası",
-//				"Bank Ekspress","Bayındır Bank","Citibank","Credit Suisse FB.","Denizbank",
-//				"Diler Yatırım Bankası","Dışbank","Finans Bank","Takas ve Saklama Bankası",
-//				"İnterbank","Kentbank","Koçbank","MNG Bank","Nurol Yatırım Bankası","Oyak Bank","Pamukbank","Park Yatırım Bankası","Sınai Yatırım Bankası",
-//				"Şekerbank","Tekfen Bank","ICBC Turkey Bank A.Ş.","The Chase Manhattan Bank","Turkish Bank","Türk Dışbank",
-//				"Türk Ekonomi Bankası","Türk Eximbank","Türkbank","Türk Ticaret Bankası","TC Ziraat Bankası","Türkiye Emlak Bankası",
-//				"Türkiye Garanti Bankası","Türkiye Halk Bankası","Türkiye İş Bankası","Türkiye Kalkınma Bankası","Türkiye Sınai Kalkınma Bankası",
-//				"Yaşarbank","Vakıflar Bankası","Yapı ve Kredi Bankası"};
-		
-		
+		setBounds(100, 100, 800, 485);
 		tabbedPane = new MaterialTabbed();
 		tabbedPane.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent e) {
@@ -650,6 +638,10 @@ public class TAH_FISI extends JInternalFrame {
 		lblCekSayi.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblCekSayi.setBounds(122, 29, 46, 14);
 		panel_4.add(lblCekSayi);
+		
+		chckbxFisno = new JCheckBox("Yazicida Fis No Yazdir");
+		chckbxFisno.setBounds(29, 377, 170, 23);
+		panel.add(chckbxFisno);
 		
 		JPanel panel_Ayarlar = new JPanel();
 		tabbedPane.addTab("Ayarlar", null, panel_Ayarlar, null);

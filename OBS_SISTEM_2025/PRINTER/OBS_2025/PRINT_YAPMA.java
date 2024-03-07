@@ -231,8 +231,11 @@ public class PRINT_YAPMA extends JInternalFrame {
 						oParagraphElements.add(oParagraphTextElement);
 						oTextObject.setParagraphs(oParagraphs);
 						clientDoc.getReportDefController().getReportObjectController().modify(textObject, oTextObject);
-						clientDoc.getReportDefController().getReportObjectController().remove(clientDoc.getReportDefController().findObjectByName("Fis_No"));
-						clientDoc.getReportDefController().getReportObjectController().remove(clientDoc.getReportDefController().findObjectByName("Text4"));
+						if(! TAH_FISI.chckbxFisno.isSelected())
+						{
+							clientDoc.getReportDefController().getReportObjectController().remove(clientDoc.getReportDefController().findObjectByName("Fis_No"));
+							clientDoc.getReportDefController().getReportObjectController().remove(clientDoc.getReportDefController().findObjectByName("Text4"));
+						}
 					}
 					else if (textObject.getName().equals("Unvan"))
 					{
@@ -348,23 +351,13 @@ public class PRINT_YAPMA extends JInternalFrame {
 						ParagraphTextElement oParagraphTextElement = new ParagraphTextElement();
 						double aqw = DecimalFormat.getNumberInstance().parse(TAH_FISI.formattedTutar.getText()).doubleValue();
 						if(TAH_FISI.cmbTur.getSelectedIndex() == 0)
-						{
-							oParagraphTextElement.setText("Nakit yapilan " + FORMATLAMA.doub_2(aqw) + " " + TAH_FISI.combCins.getSelectedItem().toString() + 
-									" Tutarindaki tahsilat  ");
-						}
+							oParagraphTextElement.setText("Nakit yapilan " + FORMATLAMA.doub_2(aqw) + " " + TAH_FISI.combCins.getSelectedItem().toString() + " Tutarindaki tahsilat  ");
 						else if(TAH_FISI.cmbTur.getSelectedIndex() == 1)
-						{
-							oParagraphTextElement.setText("Verilen Cek " + FORMATLAMA.doub_2(aqw) + " " + TAH_FISI.combCins.getSelectedItem().toString() + 
-									" Tutarindaki tahsilat  ");
-						}
+							oParagraphTextElement.setText("Verilen Cek " + FORMATLAMA.doub_2(aqw) + " " + TAH_FISI.combCins.getSelectedItem().toString() + 	" Tutarindaki tahsilat  ");
 						else if(TAH_FISI.cmbTur.getSelectedIndex() == 2)
-						{
-							oParagraphTextElement.setText("Kredi Kartinizdan yapilan " + FORMATLAMA.doub_2(aqw) + " " + TAH_FISI.combCins.getSelectedItem().toString() + 
-									" Tutarindaki tahsilat  ");
-						}
+							oParagraphTextElement.setText("Kredi Kartinizdan yapilan " + FORMATLAMA.doub_2(aqw) + " " + TAH_FISI.combCins.getSelectedItem().toString() + " Tutarindaki tahsilat  ");
 						
 						oParagraphTextElement.setKind(ParagraphElementKind.text);
-						
 						IFontColor newFontColor = oTextObject.getFontColor();
 						Font fnt = new Font("Verdana", Font.PLAIN, 10);
 						newFontColor.setFont(fnt);
@@ -504,9 +497,11 @@ public class PRINT_YAPMA extends JInternalFrame {
 						oParagraphElements.add(oParagraphTextElement);
 						oTextObject.setParagraphs(oParagraphs);
 						clientDoc.getReportDefController().getReportObjectController().modify(textObject, oTextObject);
-						clientDoc.getReportDefController().getReportObjectController().remove(clientDoc.getReportDefController().findObjectByName("Fis_No"));
-						clientDoc.getReportDefController().getReportObjectController().remove(clientDoc.getReportDefController().findObjectByName("Text9"));
-
+						if(! TAH_FISI.chckbxFisno.isSelected())
+						{
+							clientDoc.getReportDefController().getReportObjectController().remove(clientDoc.getReportDefController().findObjectByName("Fis_No"));
+							clientDoc.getReportDefController().getReportObjectController().remove(clientDoc.getReportDefController().findObjectByName("Text9"));
+						}
 					}
 					else if (textObject.getName().equals("Unvan"))
 					{

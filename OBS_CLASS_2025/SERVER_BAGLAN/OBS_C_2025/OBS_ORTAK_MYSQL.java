@@ -49,27 +49,17 @@ public class OBS_ORTAK_MYSQL implements IConnection {
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		Connection conn = null;  
 		Statement stmt = null;
-		ResultSet resultset = null;
+		ResultSet rss = null;
 		String url = "jdbc:mysql://localhost:" + sbilgi.getPort() ; //pointing to no database.
-		try 
-		{
-			conn = DriverManager.getConnection(url, sbilgi.getKull(), sbilgi.getSifre());
-			stmt = conn.createStatement();
-			resultset = stmt.executeQuery("SHOW DATABASES;");
-			result =false;
-			while (resultset.next()) 
-			{
-				if(resultset.getString("Database").equals(sbilgi.getDb().toLowerCase()))
-				{
-					result = true;
-				}
-			}
-		} catch (SQLException e)
-		{
-			result =false;
-		}
+		conn = DriverManager.getConnection(url, sbilgi.getKull(), sbilgi.getSifre());
+		stmt = conn.createStatement();
+		rss = stmt.executeQuery("SHOW DATABASES  LIKE '" + sbilgi.getDb().toLowerCase() + "';");
+		rss.next();
+		int count=0;
+		count = rss.getRow();
+		if (count  > 0)
+			result = true;
 		stmt.close();
-		conn.close();
 		return result;
 	}
 	public boolean Dosyakontrol_S(Server_Bilgi sbilgi) throws ClassNotFoundException, SQLException
@@ -77,27 +67,17 @@ public class OBS_ORTAK_MYSQL implements IConnection {
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		Connection conn = null;  
 		Statement stmt = null;
-		ResultSet resultset = null;
+		ResultSet rss = null;
 		String url = "jdbc:mysql://" + sbilgi.getServer() ; //pointing to no database.
-		try 
-		{
-			conn = DriverManager.getConnection(url, sbilgi.getKull(), sbilgi.getSifre());
-			stmt = conn.createStatement();
-			resultset = stmt.executeQuery("SHOW DATABASES;");
-			result =false;
-			while (resultset.next()) 
-			{
-				if(resultset.getString("Database").equals(sbilgi.getDb().toLowerCase()))
-				{
-					result = true;
-				}
-			}
-		} catch (SQLException e)
-		{
-			result =false;
-		}
+		conn = DriverManager.getConnection(url, sbilgi.getKull(), sbilgi.getSifre());
+		stmt = conn.createStatement();
+		rss = stmt.executeQuery("SHOW DATABASES  LIKE '" + sbilgi.getDb().toLowerCase() + "';");
+		rss.next();
+		int count=0;
+		count = rss.getRow();
+		if (count  > 0)
+			result = true;
 		stmt.close();
-		conn.close();
 		return result;
 	}
 	@Override

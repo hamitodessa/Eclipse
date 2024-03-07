@@ -166,12 +166,12 @@ public class BACKUP_GLOBAL {
 		ResultSet rss = null;
 		boolean result = false;
 		stmt = MY_CONN.createStatement();
-		rss = stmt.executeQuery("SHOW DATABASES;");
-		while (rss.next()) 
-		{
-			if(rss.getString("Database").equals(dosADI.toLowerCase()))
-				result = true;
-		}
+		rss = stmt.executeQuery("SHOW DATABASES  LIKE '" + dosADI.toLowerCase() + "';");
+		rss.next();
+		int count=0;
+		count = rss.getRow();
+		if (count  > 0)
+			result = true;
 		stmt.close();
 		return result;
 	}
@@ -235,7 +235,7 @@ public class BACKUP_GLOBAL {
 		stmt.setString(1, eismi);
 		stmt.setString(2, str);
 		if (msj.length() > 150)
-			msj = msj.substring(0, 150).toString();
+			msj = msj.substring(0, 149).toString();
 		stmt.setString(3, msj);
 		stmt.executeUpdate();
 		stmt.close();

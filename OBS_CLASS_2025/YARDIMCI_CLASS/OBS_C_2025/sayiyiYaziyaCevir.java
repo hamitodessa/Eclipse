@@ -59,14 +59,10 @@ public class sayiyiYaziyaCevir {
 		int uclubasamak = 0; // hangi basamakta (birler onlar yüzler gibi)
 		int artan = 0; // binler milyonlar milyarlar gibi artışları yapar
 		String gecici;
-
 		if (kac > 0) { // virgül öncesinde rakam var mı?
-
 			for (int i = 0; i < kac; i++) {
-
 				son = String.valueOf(rk[kac - 1 - i]); // son karakterden başlayarak çözümleme yapılır.
 				sonint = Integer.parseInt(son); // işlenen rakam
-
 				if (w == 1)
 					sonuc = b1[sonint] + sonuc;// birinci basamak bulunuyor
 				else if (w == 2)
@@ -121,7 +117,6 @@ public class sayiyiYaziyaCevir {
 		} // if(kac>0)
 		if ("".equals(sonuc))
 			parabirimi = "";// virgül öncesi sayı yoksa para birimi yazma
-
 		say2 = say2.replace(".", "");
 		String kurus = "";
 		if (!"".equals(say2)) { // kuruş hanesi varsa
@@ -155,7 +150,7 @@ public class sayiyiYaziyaCevir {
 				parakurus = "";// virgül öncesi sayı yoksa para birimi yazma
 			else
 				kurus = kurus + " "; // + "'DİR.";
-			kurus = kurus + parakurus + "'DİR."; // kuruş hanesine 'kuruş' kelimesi ekler
+			kurus = kurus + parakurus + ( kurus.equals("") ? "'DİR." : "'DUR." ) ; // kuruş hanesine 'kuruş' kelimesi ekler
 		}
 		sonuc = diyez + sonuc + " " + parabirimi + " " + kurus + diyez;
 		return sonuc;

@@ -276,6 +276,8 @@ public class TAH_DOKUM extends JInternalFrame {
 			bigFont = new Font(parts[0], Integer.parseInt(parts[1].trim()), Integer.parseInt(parts[2].trim()));
 			table.setFont(bigFont);
 			table.repaint();
+			
+			detay_doldur(table.getValueAt(0 , 0).toString(),table.getValueAt(0 , 4).toString());
 		} catch (Exception ex) {
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
 		}

@@ -167,7 +167,6 @@ public class PRINT_YAPMA extends JInternalFrame {
 						cinString = "TAHSILAT";
 					else
 						cinString = "TEDIYE";
-					
 					if (textObject.getName().equals("Cins"))
 					{
 						ITextObject oTextObject =  (ITextObject) textObject.clone(true);
@@ -322,13 +321,9 @@ public class PRINT_YAPMA extends JInternalFrame {
 						String qwe = Double.toString(aqw);
 						String cnt  = "" ;
 						if ( TAH_FISI.combCins.getSelectedItem().toString().equals("TL"))
-						{
 							cnt = "KURUŞ" ;
-						}
 						else
-						{
 							cnt = "Cent" ;
-						}
 						sayiyiYaziyaCevir cevir = new sayiyiYaziyaCevir();
 						String yaziylat = cevir.sayiyiYaziyaCevirr(qwe, 2, TAH_FISI.combCins.getSelectedItem().toString(), cnt , "#", null, null, null);
 						oParagraphTextElement.setText(yaziylat );

@@ -164,12 +164,9 @@ public class PRINT_YAPMA extends JInternalFrame {
 					ITextObject textObject = (ITextObject)reportObjects.get(i);
 					String cinString = "" ;
 					if(TAH_FISI.cmbCins.getSelectedIndex() == 0)
-					{
 						cinString = "TAHSILAT";
-					}
-					else {
+					else
 						cinString = "TEDIYE";
-					}
 					
 					if (textObject.getName().equals("Cins"))
 					{
@@ -235,6 +232,8 @@ public class PRINT_YAPMA extends JInternalFrame {
 						oParagraphElements.add(oParagraphTextElement);
 						oTextObject.setParagraphs(oParagraphs);
 						clientDoc.getReportDefController().getReportObjectController().modify(textObject, oTextObject);
+						clientDoc.getReportDefController().getReportObjectController().remove(clientDoc.getReportDefController().findObjectByName("Fis_No"));
+						clientDoc.getReportDefController().getReportObjectController().remove(clientDoc.getReportDefController().findObjectByName("Text4"));
 					}
 					else if (textObject.getName().equals("Unvan"))
 					{
@@ -510,6 +509,9 @@ public class PRINT_YAPMA extends JInternalFrame {
 						oParagraphElements.add(oParagraphTextElement);
 						oTextObject.setParagraphs(oParagraphs);
 						clientDoc.getReportDefController().getReportObjectController().modify(textObject, oTextObject);
+						clientDoc.getReportDefController().getReportObjectController().remove(clientDoc.getReportDefController().findObjectByName("Fis_No"));
+						clientDoc.getReportDefController().getReportObjectController().remove(clientDoc.getReportDefController().findObjectByName("Text9"));
+
 					}
 					else if (textObject.getName().equals("Unvan"))
 					{

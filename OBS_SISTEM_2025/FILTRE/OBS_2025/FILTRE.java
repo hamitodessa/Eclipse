@@ -527,10 +527,8 @@ public class FILTRE extends JDialog {
 		dateChooser.getComponent(1).addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if (e.getClickCount() == 2) 
-				{
+				if (e.getClickCount() == 2)
 					dateChooser.setDate(new Date());
-				}
 			}
 		});
 		dateChooser.setBounds(139, 108, 120, 20);
@@ -544,9 +542,7 @@ public class FILTRE extends JDialog {
 			@Override
 			public void keyPressed(KeyEvent e) {
 				if(e.getKeyCode()==KeyEvent.VK_ENTER)
-				{
 					okButton.doClick();
-				}
 				if(e.getKeyCode()==KeyEvent.VK_DOWN) {
 					SimpleDateFormat datefmt = new SimpleDateFormat("dd.MM.yyyy"); // Or format you're using
 					Date date;
@@ -587,10 +583,8 @@ public class FILTRE extends JDialog {
 		dateChooser_1.getComponent(1).addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if (e.getClickCount() == 2) 
-				{
+				if (e.getClickCount() == 2)
 					dateChooser_1.setDate(new Date());
-				}
 			}
 		});
 		dateChooser_1.getComponent(1).addKeyListener(new KeyListener() {
@@ -600,9 +594,7 @@ public class FILTRE extends JDialog {
 			@Override
 			public void keyPressed(KeyEvent e) {
 				if(e.getKeyCode()==KeyEvent.VK_ENTER)
-				{
 					okButton.doClick();
-				}
 				if(e.getKeyCode()==KeyEvent.VK_DOWN) {
 					SimpleDateFormat datefmt = new SimpleDateFormat("dd.MM.yyyy"); // Or format you're using
 					Date date;
@@ -687,9 +679,7 @@ public class FILTRE extends JDialog {
 			public void keyPressed(KeyEvent e) {
 				try {
 					if(e.getKeyCode()==KeyEvent.VK_ENTER)
-					{
 						okButton.doClick();
-					}
 					String[] parts;
 					String deger ;
 					deger = GLOBAL.setting_oku("CARI_HSPPLN_CAG").toString();
@@ -751,7 +741,6 @@ public class FILTRE extends JDialog {
 						txtilk.setText( oac.hsp_hsp_kodu);
 					} catch (Exception ex) {
 					}
-
 				}
 			}
 		});
@@ -760,9 +749,7 @@ public class FILTRE extends JDialog {
 			public void keyPressed(KeyEvent e) {
 				try {
 					if(e.getKeyCode()==KeyEvent.VK_ENTER)
-					{
 						okButton.doClick();
-					}
 					String[] parts;
 					String deger ;
 					deger = GLOBAL.setting_oku("CARI_HSPPLN_CAG").toString();
@@ -842,9 +829,7 @@ public class FILTRE extends JDialog {
 			public void keyPressed(KeyEvent e) {
 				try {
 					if (KeyEvent.getKeyText(e.getKeyCode()) == "Enter" )
-					{	
 						okButton.doClick();
-					}
 					String[] parts;
 					String deger ;
 					deger = GLOBAL.setting_oku("CARI_HSPPLN_CAG").toString();
@@ -958,10 +943,8 @@ public class FILTRE extends JDialog {
 		dateChooser_2.getComponent(1).addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if (e.getClickCount() == 2) 
-				{
+				if (e.getClickCount() == 2)
 					dateChooser_2.setDate(new Date());
-				}
 			}
 		});
 		dateChooser_2.setBounds(96, 107, 141, 20);
@@ -975,9 +958,7 @@ public class FILTRE extends JDialog {
 			@Override
 			public void keyPressed(KeyEvent e) {
 				if(e.getKeyCode()==KeyEvent.VK_ENTER)
-				{
 					okButton.doClick();
-				}
 				if(e.getKeyCode()==KeyEvent.VK_DOWN) {
 					SimpleDateFormat datefmt = new SimpleDateFormat("dd.MM.yyyy"); // Or format you're using
 					Date date;
@@ -999,7 +980,6 @@ public class FILTRE extends JDialog {
 						Calendar cal = Calendar.getInstance();
 						cal.setTime(date);
 						cal.add(Calendar.DAY_OF_MONTH, 1); // Add 30 days
-
 						dateChooser_2.setDate(new Date(cal.getTimeInMillis()));
 					} catch (ParseException e1) {
 						e1.printStackTrace();
@@ -1016,10 +996,8 @@ public class FILTRE extends JDialog {
 		dateChooser_2_1.getComponent(1).addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if (e.getClickCount() == 2) 
-				{
+				if (e.getClickCount() == 2)
 					dateChooser_2_1.setDate(new Date());
-				}
 			}
 		});
 		dateChooser_2_1.setDate(TARIH_CEVIR.tarih("31.12.2100"));
@@ -1033,9 +1011,7 @@ public class FILTRE extends JDialog {
 			@Override
 			public void keyPressed(KeyEvent e) {
 				if(e.getKeyCode()==KeyEvent.VK_ENTER)
-				{
 					okButton.doClick();
-				}
 				if(e.getKeyCode()==KeyEvent.VK_DOWN) {
 					SimpleDateFormat datefmt = new SimpleDateFormat("dd.MM.yyyy"); // Or format you're using
 					Date date;
@@ -1143,9 +1119,7 @@ public class FILTRE extends JDialog {
 			public void keyPressed(KeyEvent e) {
 				try {
 					if (KeyEvent.getKeyText(e.getKeyCode()) == "Enter" )
-					{	
 						okButton.doClick();
-					}
 					String[] parts;
 					String deger ;
 					deger = GLOBAL.setting_oku("CARI_HSPPLN_CAG").toString();
@@ -1190,10 +1164,8 @@ public class FILTRE extends JDialog {
 		dateChooser_3.getComponent(1).addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if (e.getClickCount() == 2) 
-				{
+				if (e.getClickCount() == 2)
 					dateChooser_3.setDate(new Date());
-				}
 			}
 		});
 		dateChooser_3.setBounds(123, 113, 120, 20);
@@ -1207,9 +1179,7 @@ public class FILTRE extends JDialog {
 			@Override
 			public void keyPressed(KeyEvent e) {
 				if(e.getKeyCode()==KeyEvent.VK_ENTER)
-				{
 					okButton.doClick();
-				}
 				if(e.getKeyCode()==KeyEvent.VK_DOWN) {
 					SimpleDateFormat datefmt = new SimpleDateFormat("dd.MM.yyyy"); // Or format you're using
 					Date date;
@@ -1247,10 +1217,8 @@ public class FILTRE extends JDialog {
 		dateChooser_4.getComponent(1).addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if (e.getClickCount() == 2) 
-				{
+				if (e.getClickCount() == 2)
 					dateChooser_4.setDate(new Date());
-				}
 			}
 		});
 		dateChooser_4.setBounds(301, 113, 120, 20);
@@ -1264,9 +1232,7 @@ public class FILTRE extends JDialog {
 			@Override
 			public void keyPressed(KeyEvent e) {
 				if(e.getKeyCode()==KeyEvent.VK_ENTER)
-				{
 					okButton.doClick();
-				}
 				if(e.getKeyCode()==KeyEvent.VK_DOWN) {
 					SimpleDateFormat datefmt = new SimpleDateFormat("dd.MM.yyyy"); // Or format you're using
 					Date date;
@@ -1486,13 +1452,9 @@ public class FILTRE extends JDialog {
 		chcbaslayan.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (chcbaslayan.isSelected())
-				{
 					chcile.setSelected(false);
-				}
 				else
-				{
 					chcile.setSelected(true);
-				}
 			}
 		});
 		chcbaslayan.setSelected(true);
@@ -1504,13 +1466,9 @@ public class FILTRE extends JDialog {
 		chcile.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (chcile.isSelected())
-				{
 					chcbaslayan.setSelected(false);
-				}
 				else
-				{
 					chcbaslayan.setSelected(true);
-				}
 			}
 		});
 		chcile.setBounds(51, 53, 97, 23);
@@ -1541,10 +1499,8 @@ public class FILTRE extends JDialog {
 		dateChooser_5.getComponent(1).addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if (e.getClickCount() == 2) 
-				{
+				if (e.getClickCount() == 2)
 					dateChooser_5.setDate(new Date());
-				}
 			}
 		});
 		dateChooser_5.setBounds(98, 26, 127, 20);
@@ -1558,9 +1514,7 @@ public class FILTRE extends JDialog {
 			@Override
 			public void keyPressed(KeyEvent e) {
 				if(e.getKeyCode()==KeyEvent.VK_ENTER)
-				{
 					okButton.doClick();
-				}
 				if(e.getKeyCode()==KeyEvent.VK_DOWN) {
 					SimpleDateFormat datefmt = new SimpleDateFormat("dd.MM.yyyy"); // Or format you're using
 					Date date;
@@ -1603,10 +1557,8 @@ public class FILTRE extends JDialog {
 		dateChooser_5_1.getComponent(1).addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if (e.getClickCount() == 2) 
-				{
+				if (e.getClickCount() == 2)
 					dateChooser_5_1.setDate(new Date());
-				}
 			}
 		});
 		dateChooser_5_1.setBounds(98, 65, 127, 20);
@@ -1621,9 +1573,7 @@ public class FILTRE extends JDialog {
 			@Override
 			public void keyPressed(KeyEvent e) {
 				if(e.getKeyCode()==KeyEvent.VK_ENTER)
-				{
 					okButton.doClick();
-				}
 				if(e.getKeyCode()==KeyEvent.VK_DOWN) {
 					SimpleDateFormat datefmt = new SimpleDateFormat("dd.MM.yyyy"); // Or format you're using
 					Date date;
@@ -1715,10 +1665,8 @@ public class FILTRE extends JDialog {
 		dateChooser_6.getComponent(1).addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if (e.getClickCount() == 2) 
-				{
+				if (e.getClickCount() == 2)
 					dateChooser_6.setDate(new Date());
-				}
 			}
 		});
 		dateChooser_6.setBounds(85, 34, 114, 20);
@@ -1731,10 +1679,8 @@ public class FILTRE extends JDialog {
 		dateChooser_6_1.getComponent(1).addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if (e.getClickCount() == 2) 
-				{
+				if (e.getClickCount() == 2)
 					dateChooser_6_1.setDate(new Date());
-				}
 			}
 		});
 		dateChooser_6_1.setBounds(219, 34, 114, 20);
@@ -1760,10 +1706,8 @@ public class FILTRE extends JDialog {
 		dateChooser_7.getComponent(1).addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if (e.getClickCount() == 2) 
-				{
+				if (e.getClickCount() == 2)
 					dateChooser_7.setDate(new Date());
-				}
 			}
 		});
 		dateChooser_7.setBounds(85, 82, 114, 20);
@@ -1776,10 +1720,8 @@ public class FILTRE extends JDialog {
 		dateChooser_8.getComponent(1).addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if (e.getClickCount() == 2) 
-				{
+				if (e.getClickCount() == 2)
 					dateChooser_8.setDate(new Date());
-				}
 			}
 		});
 		dateChooser_8.setBounds(219, 82, 114, 20);
@@ -1805,10 +1747,8 @@ public class FILTRE extends JDialog {
 		dateChooser_9.getComponent(1).addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if (e.getClickCount() == 2) 
-				{
+				if (e.getClickCount() == 2)
 					dateChooser_9.setDate(new Date());
-				}
 			}
 		});
 		dateChooser_9.setBounds(85, 132, 114, 20);
@@ -1821,10 +1761,8 @@ public class FILTRE extends JDialog {
 		dateChooser_10.getComponent(1).addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if (e.getClickCount() == 2) 
-				{
+				if (e.getClickCount() == 2)
 					dateChooser_10.setDate(new Date());
-				}
 			}
 		});
 		dateChooser_10.setBounds(219, 132, 114, 20);
@@ -1895,10 +1833,8 @@ public class FILTRE extends JDialog {
 		dateChooser_6_2.getComponent(1).addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if (e.getClickCount() == 2) 
-				{
+				if (e.getClickCount() == 2)
 					dateChooser_6_2.setDate(new Date());
-				}
 			}
 		});
 		dateChooser_6_2.setBounds(444, 34, 114, 20);
@@ -1918,10 +1854,8 @@ public class FILTRE extends JDialog {
 		dateChooser_6_2_1.getComponent(1).addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if (e.getClickCount() == 2) 
-				{
+				if (e.getClickCount() == 2)
 					dateChooser_6_2_1.setDate(new Date());
-				}
 			}
 		});
 		dateChooser_6_2_1.setBounds(585, 34, 114, 20);
@@ -2036,10 +1970,8 @@ public class FILTRE extends JDialog {
 		dateChooser_11.getComponent(1).addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if (e.getClickCount() == 2) 
-				{
+				if (e.getClickCount() == 2)
 					dateChooser_11.setDate(new Date());
-				}
 			}
 		});
 		dateChooser_11.setBounds(76, 20, 120, 20);
@@ -2052,10 +1984,8 @@ public class FILTRE extends JDialog {
 		dateChooser_11_1.getComponent(1).addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if (e.getClickCount() == 2) 
-				{
+				if (e.getClickCount() == 2)
 					dateChooser_11_1.setDate(new Date());
-				}
 			}
 		});
 		dateChooser_11_1.setBounds(235, 20, 120, 20);
@@ -2125,10 +2055,8 @@ public class FILTRE extends JDialog {
 		dateChooser_12.getComponent(1).addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if (e.getClickCount() == 2) 
-				{
+				if (e.getClickCount() == 2)
 					dateChooser_12.setDate(new Date());
-				}
 			}
 		});
 		dateChooser_12.setBounds(79, 33, 125, 20);
@@ -2233,10 +2161,8 @@ public class FILTRE extends JDialog {
 		dateChooser_13.getComponent(1).addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if (e.getClickCount() == 2) 
-				{
+				if (e.getClickCount() == 2)
 					dateChooser_13.setDate(new Date());
-				}
 			}
 		});
 		dateChooser_13.setBounds(248, 33, 125, 20);
@@ -2454,10 +2380,8 @@ public class FILTRE extends JDialog {
 		dateChooser_14.getComponent(1).addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if (e.getClickCount() == 2) 
-				{
+				if (e.getClickCount() == 2)
 					dateChooser_14.setDate(new Date());
-				}
 			}
 		});
 		dateChooser_14.setBounds(90, 33, 125, 20);
@@ -2499,10 +2423,8 @@ public class FILTRE extends JDialog {
 		dateChooser_15.getComponent(1).addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if (e.getClickCount() == 2) 
-				{
+				if (e.getClickCount() == 2)
 					dateChooser_15.setDate(new Date());
-				}
 			}
 		});
 		dateChooser_15.setBounds(248, 33, 125, 20);
@@ -2624,10 +2546,8 @@ public class FILTRE extends JDialog {
 		dateChooser_16.getComponent(1).addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if (e.getClickCount() == 2) 
-				{
+				if (e.getClickCount() == 2)
 					dateChooser_16.setDate(new Date());
-				}
 			}
 		});
 		dateChooser_16.setBounds(79, 11, 125, 20);
@@ -2640,10 +2560,8 @@ public class FILTRE extends JDialog {
 		dateChooser_17.getComponent(1).addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if (e.getClickCount() == 2) 
-				{
+				if (e.getClickCount() == 2)
 					dateChooser_17.setDate(new Date());
-				}
 			}
 		});
 		dateChooser_17.setBounds(248, 11, 125, 20);
@@ -2765,9 +2683,7 @@ public class FILTRE extends JDialog {
 		comboBox_19.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(	comboBox_19.getItemAt(comboBox_19.getSelectedIndex()).toString().equals("Urun Kodu"))
-				{
 					chckbxNewCheckBox_2.setEnabled(true);
-				}
 				else
 				{
 					chckbxNewCheckBox_2.setEnabled(false);
@@ -2811,10 +2727,8 @@ public class FILTRE extends JDialog {
 		dateChooser_18.getComponent(1).addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if (e.getClickCount() == 2) 
-				{
+				if (e.getClickCount() == 2)
 					dateChooser_18.setDate(new Date());
-				}
 			}
 		});
 		dateChooser_18.setBounds(79, 11, 125, 20);
@@ -2827,10 +2741,8 @@ public class FILTRE extends JDialog {
 		dateChooser_19.getComponent(1).addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if (e.getClickCount() == 2) 
-				{
+				if (e.getClickCount() == 2)
 					dateChooser_19.setDate(new Date());
-				}
 			}
 		});
 		dateChooser_19.setBounds(248, 11, 125, 20);
@@ -2997,10 +2909,8 @@ public class FILTRE extends JDialog {
 		dateChooser_20.getComponent(1).addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if (e.getClickCount() == 2) 
-				{
+				if (e.getClickCount() == 2)
 					dateChooser_20.setDate(new Date());
-				}
 			}
 		});
 		dateChooser_20.setBounds(90, 11, 125, 20);
@@ -3013,10 +2923,8 @@ public class FILTRE extends JDialog {
 		dateChooser_21.getComponent(1).addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if (e.getClickCount() == 2) 
-				{
+				if (e.getClickCount() == 2)
 					dateChooser_21.setDate(new Date());
-				}
 			}
 		});
 		dateChooser_21.setBounds(248, 11, 125, 20);
@@ -3453,10 +3361,8 @@ public class FILTRE extends JDialog {
 		dateChooser_24.getComponent(1).addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if (e.getClickCount() == 2) 
-				{
+				if (e.getClickCount() == 2)
 					dateChooser_24.setDate(new Date());
-				}
 			}
 		});
 		dateChooser_24.setBounds(90, 33, 125, 20);
@@ -3536,10 +3442,8 @@ public class FILTRE extends JDialog {
 		dateChooser_25.getComponent(1).addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if (e.getClickCount() == 2) 
-				{
+				if (e.getClickCount() == 2)
 					dateChooser_25.setDate(new Date());
-				}
 			}
 		});
 		dateChooser_25.setBounds(248, 33, 125, 20);
@@ -3781,10 +3685,8 @@ public class FILTRE extends JDialog {
 		dateChooser_26.getComponent(1).addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if (e.getClickCount() == 2) 
-				{
+				if (e.getClickCount() == 2)
 					dateChooser_26.setDate(new Date());
-				}
 			}
 		});
 		dateChooser_26.setBounds(90, 38, 125, 20);
@@ -3797,10 +3699,8 @@ public class FILTRE extends JDialog {
 		dateChooser_27.getComponent(1).addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if (e.getClickCount() == 2) 
-				{
+				if (e.getClickCount() == 2)
 					dateChooser_27.setDate(new Date());
-				}
 			}
 		});
 		dateChooser_27.setBounds(248, 38, 125, 20);
@@ -4090,10 +3990,8 @@ public class FILTRE extends JDialog {
 		dateChooser_28.getComponent(1).addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if (e.getClickCount() == 2) 
-				{
+				if (e.getClickCount() == 2)
 					dateChooser_28.setDate(new Date());
-				}
 			}
 		});
 
@@ -4108,10 +4006,8 @@ public class FILTRE extends JDialog {
 		dateChooser_29.getComponent(1).addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if (e.getClickCount() == 2) 
-				{
+				if (e.getClickCount() == 2)
 					dateChooser_29.setDate(new Date());
-				}
 			}
 		});
 		dateChooser_29.setDateFormatString("dd.MM.yyyy");
@@ -4288,10 +4184,8 @@ public class FILTRE extends JDialog {
 		dateChooser_30.getComponent(1).addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if (e.getClickCount() == 2) 
-				{
+				if (e.getClickCount() == 2)
 					dateChooser_30.setDate(new Date());
-				}
 			}
 		});
 		dateChooser_30.setDateFormatString("dd.MM.yyyy");
@@ -4304,10 +4198,8 @@ public class FILTRE extends JDialog {
 		dateChooser_31.getComponent(1).addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if (e.getClickCount() == 2) 
-				{
+				if (e.getClickCount() == 2)
 					dateChooser_31.setDate(new Date());
-				}
 			}
 		});
 		dateChooser_31.setDateFormatString("dd.MM.yyyy");
@@ -4433,10 +4325,8 @@ public class FILTRE extends JDialog {
 		dateChooser_32.getComponent(1).addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if (e.getClickCount() == 2) 
-				{
+				if (e.getClickCount() == 2)
 					dateChooser_32.setDate(new Date());
-				}
 			}
 		});
 		dateChooser_32.setDateFormatString("dd.MM.yyyy");
@@ -4449,15 +4339,14 @@ public class FILTRE extends JDialog {
 		dateChooser_32_1.getComponent(1).addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if (e.getClickCount() == 2) 
-				{
+				if (e.getClickCount() == 2)
 					dateChooser_32_1.setDate(new Date());
-				}
 			}
 		});
 		dateChooser_32_1.setDateFormatString("dd.MM.yyyy");
 		dateChooser_32_1.setFont(new Font("Tahoma", Font.BOLD, 11));
 		dateChooser_32_1.setDate(TARIH_CEVIR.tarih("31.12.2100"));
+		
 		panel_23.add(dateChooser_32_1);
 
 		JLabel lblNewLabel_35_1 = new JLabel("Cins");
@@ -4510,6 +4399,14 @@ public class FILTRE extends JDialog {
 		dateChooser_33.setDateFormatString("dd.MM.yyyy");
 		dateChooser_33.setDate(TARIH_CEVIR.tarih("01.01.1900"));
 		dateChooser_33.setBounds(100, 60, 150, 20);
+		dateChooser_33.getComponent(1).addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if (e.getClickCount() == 2)
+					dateChooser_33.setDate(new Date());
+			}
+		});
+		
 		panel_GUNLUK.add(dateChooser_33);
 
 		JLabel lblNewLabel_38 = new JLabel("Son Tarih");
@@ -4521,6 +4418,13 @@ public class FILTRE extends JDialog {
 		dateChooser_34.setFont(new Font("Tahoma", Font.BOLD, 11));
 		dateChooser_34.setDateFormatString("dd.MM.yyyy");
 		dateChooser_34.setDate(TARIH_CEVIR.tarih("31.12.2100"));
+		dateChooser_34.getComponent(1).addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if (e.getClickCount() == 2)
+					dateChooser_34.setDate(new Date());
+			}
+		});
 		panel_GUNLUK.add(dateChooser_34);
 
 		JLabel lblNewLabel_39 = new JLabel("Ilk Saat");
@@ -4592,6 +4496,14 @@ public class FILTRE extends JDialog {
 		dateChooser_20_1.setDateFormatString("dd.MM.yyyy");
 		dateChooser_20_1.setDate(TARIH_CEVIR.tarih("01.01.1900"));
 		dateChooser_20_1.setBounds(90, 11, 125, 20);
+		dateChooser_20_1.getComponent(1).addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if (e.getClickCount() == 2)
+					dateChooser_20_1.setDate(new Date());
+			}
+		});
+		
 		panel_KERESTE.add(dateChooser_20_1);
 
 		dateChooser_21_1 = new JDateChooser();
@@ -4599,6 +4511,14 @@ public class FILTRE extends JDialog {
 		dateChooser_21_1.setDateFormatString("dd.MM.yyyy");
 		dateChooser_21_1.setDate(TARIH_CEVIR.tarih("31.12.2100"));
 		dateChooser_21_1.setBounds(248, 11, 125, 20);
+		dateChooser_21_1.getComponent(1).addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if (e.getClickCount() == 2)
+					dateChooser_21_1.setDate(new Date());
+			}
+		});
+		
 		panel_KERESTE.add(dateChooser_21_1);
 
 		textField_82 = new Obs_TextFIeld();
@@ -4623,13 +4543,9 @@ public class FILTRE extends JDialog {
 			public void actionPerformed(ActionEvent e) {
 				String hangi = comboBox_26_1.getItemAt(comboBox_26_1.getSelectedIndex())  ;
 				if (hangi == "Tutar")
-				{
 					chckbxDovizeCevirme_1.setVisible(true);
-				}
 				else
-				{
 					chckbxDovizeCevirme_1.setVisible(false);
-				}
 			}
 		});
 		panel_KERESTE.add(comboBox_26_1);
@@ -4643,13 +4559,9 @@ public class FILTRE extends JDialog {
 			public void actionPerformed(ActionEvent e) {
 				String hangi = comboBox_27_1.getItemAt(comboBox_27_1.getSelectedIndex())  ;
 				if (hangi == "Sinif-Kal" || hangi == "Sinif-Kal-Boy" || hangi == "Sinif-Kal-Gen" || hangi == "Paket-Sinif-Kal-Gen" || hangi == "Paket-Sinif-Kal-Boy" || hangi == "Kons-Paket-Sinif-Kal-Gen")
-				{
 					chckbxNewCheckBox_3.setVisible(true);
-				}
 				else
-				{
 					chckbxNewCheckBox_3.setVisible(false);
-				}
 			}
 		});
 		panel_KERESTE.add(comboBox_27_1);
@@ -4856,6 +4768,14 @@ public class FILTRE extends JDialog {
 		dateChooser_20_1_1.setDateFormatString("dd.MM.yyyy");
 		dateChooser_20_1_1.setDate(TARIH_CEVIR.tarih("01.01.1900"));
 		dateChooser_20_1_1.setBounds(100, 11, 125, 20);
+		dateChooser_20_1_1.getComponent(1).addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if (e.getClickCount() == 2)
+					dateChooser_20_1_1.setDate(new Date());
+			}
+		});
+		
 		panel_KERESTE_DETAY.add(dateChooser_20_1_1);
 
 		dateChooser_21_1_1 = new JDateChooser();
@@ -4863,6 +4783,14 @@ public class FILTRE extends JDialog {
 		dateChooser_21_1_1.setDateFormatString("dd.MM.yyyy");
 		dateChooser_21_1_1.setDate(TARIH_CEVIR.tarih("31.12.2100"));
 		dateChooser_21_1_1.setBounds(258, 11, 125, 20);
+		dateChooser_21_1_1.getComponent(1).addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if (e.getClickCount() == 2)
+					dateChooser_21_1_1.setDate(new Date());
+			}
+		});
+		
 		panel_KERESTE_DETAY.add(dateChooser_21_1_1);
 
 		formattedTextField_2 = new JFormattedTextField();
@@ -4907,6 +4835,14 @@ public class FILTRE extends JDialog {
 		dateChooser_20_1_1_1.setDateFormatString("dd.MM.yyyy");
 		dateChooser_20_1_1_1.setDate(TARIH_CEVIR.tarih("01.01.1900"));
 		dateChooser_20_1_1_1.setBounds(480, 11, 125, 20);
+		dateChooser_20_1_1_1.getComponent(1).addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if (e.getClickCount() == 2)
+					dateChooser_20_1_1_1.setDate(new Date());
+			}
+		});
+		
 		panel_KERESTE_DETAY.add(dateChooser_20_1_1_1);
 
 		textField_86 = new Obs_TextFIeld();
@@ -4927,6 +4863,14 @@ public class FILTRE extends JDialog {
 		dateChooser_21_1_1_1.setDateFormatString("dd.MM.yyyy");
 		dateChooser_21_1_1_1.setDate(TARIH_CEVIR.tarih("31.12.2100"));
 		dateChooser_21_1_1_1.setBounds(638, 11, 125, 20);
+		dateChooser_21_1_1_1.getComponent(1).addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if (e.getClickCount() == 2)
+					dateChooser_21_1_1_1.setDate(new Date());
+			}
+		});
+		
 		panel_KERESTE_DETAY.add(dateChooser_21_1_1_1);
 
 		JLabel lblCtarih = new JLabel("C_Tarih");
@@ -5181,6 +5125,14 @@ public class FILTRE extends JDialog {
 		dateChooser_20_1_2.setFont(new Font("Tahoma", Font.BOLD, 11));
 		dateChooser_20_1_2.setDateFormatString("dd.MM.yyyy");
 		dateChooser_20_1_2.setBounds(90, 20, 125, 20);
+		dateChooser_20_1_2.getComponent(1).addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if (e.getClickCount() == 2)
+					dateChooser_20_1_2.setDate(new Date());
+			}
+		});
+		
 		panel_KERESTE_ORTFIAT.add(dateChooser_20_1_2);
 
 		dateChooser_21_1_2 = new JDateChooser();
@@ -5188,6 +5140,14 @@ public class FILTRE extends JDialog {
 		dateChooser_21_1_2.setDateFormatString("dd.MM.yyyy");
 		dateChooser_21_1_2.setDate(TARIH_CEVIR.tarih("31.12.2100"));
 		dateChooser_21_1_2.setBounds(248, 20, 125, 20);
+		dateChooser_21_1_2.getComponent(1).addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if (e.getClickCount() == 2)
+					dateChooser_21_1_2.setDate(new Date());
+			}
+		});
+		
 		panel_KERESTE_ORTFIAT.add(dateChooser_21_1_2);
 
 		JLabel label_19_1_2 = new JLabel("Urun Kodu");
@@ -5331,13 +5291,9 @@ public class FILTRE extends JDialog {
 		chckbxNewCheckBox_5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(chckbxNewCheckBox_5.isSelected())
-				{
 					comboBox_82.setVisible(true) ;
-				}
 				else
-				{
 					comboBox_82.setVisible(false) ;
-				}
 			}
 		});
 		chckbxNewCheckBox_5.setBounds(534, 139, 110, 23);
@@ -5355,14 +5311,38 @@ public class FILTRE extends JDialog {
 		
 		comboBox_86 = new JComboBox<String>();
 		comboBox_86.setModel(new DefaultComboBoxModel<String>(new String[] {"Hepsi", "Nakit", "Cek", "Kredi Karti"}));
+		comboBox_86.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent e) {
+				if(comboBox_86.getSelectedIndex() == 0 || comboBox_86.getSelectedIndex() == 3)
+					comboBox_87.setEnabled(true);
+				else
+				{
+					comboBox_87.setEnabled(false);
+					comboBox_87.setSelectedIndex(0);
+				}
+			}
+		});
 		comboBox_86.setBounds(70, 56, 103, 22);
 		panel_24.add(comboBox_86);
+		
+		
+		comboBox_87 = new JComboBox<String>();
+		comboBox_87.setBounds(70, 89, 200, 22);
+		panel_24.add(comboBox_87);
 		
 		dateChooser_35 = new JDateChooser();
 		dateChooser_35.setFont(new Font("Tahoma", Font.BOLD, 11));
 		dateChooser_35.setDateFormatString("dd.MM.yyyy");
 		dateChooser_35.setDate(TARIH_CEVIR.tarih("01.01.1900"));
 		dateChooser_35.setBounds(70, 133, 120, 20);
+		dateChooser_35.getComponent(1).addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if (e.getClickCount() == 2)
+					dateChooser_35.setDate(new Date());
+			}
+		});
+		
 		panel_24.add(dateChooser_35);
 		
 		dateChooser_36 = new JDateChooser();
@@ -5370,6 +5350,14 @@ public class FILTRE extends JDialog {
 		dateChooser_36.setDateFormatString("dd.MM.yyyy");
 		dateChooser_36.setDate(TARIH_CEVIR.tarih("31.12.2100"));
 		dateChooser_36.setBounds(234, 133, 120, 20);
+		dateChooser_36.getComponent(1).addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if (e.getClickCount() == 2)
+					dateChooser_36.setDate(new Date());
+			}
+		});
+
 		panel_24.add(dateChooser_36);
 		
 		textTaheno1 = new Obs_TextFIeld(15);
@@ -5454,9 +5442,7 @@ public class FILTRE extends JDialog {
 		lblNewLabel_51.setBounds(10, 93, 61, 14);
 		panel_24.add(lblNewLabel_51);
 		
-		comboBox_87 = new JComboBox<String>();
-		comboBox_87.setBounds(70, 89, 200, 22);
-		panel_24.add(comboBox_87);
+		
 
 		//**********************************************************************OK BUTTON **********************************
 		okButton = new JButton("Yenile");
@@ -5473,6 +5459,8 @@ public class FILTRE extends JDialog {
 				if(dateChooser_4.getDate() == null) return;
 				if(dateChooser_5.getDate() == null) return;
 				if(dateChooser_5_1.getDate() == null) return;
+				if(dateChooser_35.getDate() == null) return;//TAHSILAT
+				if(dateChooser_36.getDate() == null) return;
 
 				if(dateChooser_6.getDate() == null) return; // Cek Rapor
 				if(dateChooser_6_1.getDate() == null) return;
@@ -5508,7 +5496,6 @@ public class FILTRE extends JDialog {
 				if(dateChooser_29.getDate() == null) return;
 				if(dateChooser_30.getDate() == null) return;
 				if(dateChooser_31.getDate() == null) return;
-
 				if(dateChooser_33.getDate() == null) return;//GUNLUK
 				if(dateChooser_34.getDate() == null) return;
 
@@ -5520,7 +5507,6 @@ public class FILTRE extends JDialog {
 				if(dateChooser_21_1_1_1.getDate() == null) return;
 				if(dateChooser_20_1_2.getDate() == null) return;
 				if(dateChooser_21_1_2.getDate() == null) return;
-
 				int sayfa = tabbedPane.getSelectedIndex();
 				GuiUtil.setWaitCursor(getContentPane(),true);
 				if (sayfa == 0) 
@@ -5647,17 +5633,11 @@ public class FILTRE extends JDialog {
 				{
 					GuiUtil.setWaitCursor(ENVANTER.splitPane,true);
 					if (comboBox_66.getItemAt(comboBox_66.getSelectedIndex()).equals("Agirlikli Ortalama"))
-					{
 						ENVANTER.hisset();   // ORT FIAT
-					}
 					else if (comboBox_66.getItemAt(comboBox_66.getSelectedIndex()).equals("FIFO"))
-					{
 						ENVANTER.fifo();   // ORT FIAT
-					}
 					else if (comboBox_66.getItemAt(comboBox_66.getSelectedIndex()).equals("LIFO"))
-					{
 						ENVANTER.lifo();   // ORT FIAT
-					}
 					GuiUtil.setWaitCursor(ENVANTER.splitPane,false);
 				}
 				else if (sayfa == 18) 
@@ -5727,16 +5707,12 @@ public class FILTRE extends JDialog {
 			@Override
 			public void keyPressed(KeyEvent e) {
 				if (KeyEvent.getKeyText(e.getKeyCode()) == "Escape" )
-				{	
 					dispose();
-				}
 			}
 		});
 
 		buttonPane.add(okButton);
 		//getRootPane().setDefaultButton(okButton);
-
-
 		JButton cancelButton = new JButton("Vazgec");
 		cancelButton.setFont(new Font("Tahoma", Font.BOLD, 11));
 		cancelButton.setIcon(new ImageIcon(FILTRE.class.getResource("/ICONLAR/exit.png")));
@@ -5749,9 +5725,7 @@ public class FILTRE extends JDialog {
 			@Override
 			public void keyPressed(KeyEvent e) {
 				if (KeyEvent.getKeyText(e.getKeyCode()) == "Escape" )
-				{	
 					dispose();
-				}
 			}
 		});
 
@@ -5791,13 +5765,9 @@ public class FILTRE extends JDialog {
 			DVZ_CEVIRME.lblunvan.setText(hpl[0].toString());
 			DVZ_CEVIRME.lblcins.setText(hpl[1].toString());
 			if (chckbxNewCheckBox_4.isSelected())
-			{
 				DVZ_CEVIRME.lblcevrilen.setText("");
-			}
-			else 
-			{
+			else
 				DVZ_CEVIRME.lblcevrilen.setText(comboBox_1.getItemAt(comboBox_1.getSelectedIndex()) + " / " + comboBox_2.getItemAt(comboBox_2.getSelectedIndex()));
-			}
 		}
 		catch (Exception ex)
 		{
@@ -5842,18 +5812,14 @@ public class FILTRE extends JDialog {
 			ana_grup_doldur(comboBox_40);
 		}
 		else if (syfa == 13)
-		{
 			ana_grup_doldur(comboBox_42);
-		}
 		else if (syfa == 14)
 		{
 			ana_grup_doldur(comboBox_44);
 			ana_grup_doldur(comboBox_48);
 		}
 		else if (syfa == 15)
-		{
 			ana_grup_doldur(comboBox_56);
-		}
 		else if (syfa == 16)
 		{
 			ana_grup_doldur(comboBox_55);
@@ -5875,16 +5841,12 @@ public class FILTRE extends JDialog {
 			depo_doldur(comboBox_69);
 		}
 		else if (syfa == 20)
-		{
 			gun_isim_doldur();
-
-		}
 		else if (syfa == 21)
 		{
 			ker_ana_grup_doldur(comboBox_78);
 			ker_oz1_doldur(comboBox_80);
 			ker_depo_doldur(comboBox_80_6);
-
 		}
 		else if (syfa == 22)
 		{
@@ -5894,19 +5856,14 @@ public class FILTRE extends JDialog {
 			ker_oz1_doldur(comboBox_80_2);
 			ker_depo_doldur(comboBox_80_3);
 			ker_depo_doldur(comboBox_80_4);
-
 		}
 		else if (syfa == 23)
 		{
 			ker_ana_grup_doldur(comboBox_78_3);
 			ker_oz1_doldur(comboBox_80_5);
-
 		}
 		else if (syfa == 24)
-		{
 			pos_doldur();
-		}
-		
 		
 	}
 	public static void kapat ()
@@ -5930,9 +5887,7 @@ public class FILTRE extends JDialog {
 			box .addItem("");
 			box.addItem("Bos Olanlar");
 			while (rs.next())
-			{
 				box .addItem(rs.getString("ANA_GRUP"));
-			}
 			getContentPane().setCursor(oac.DEFAULT_CURSOR);
 		}
 		catch (Exception ex)
@@ -5966,9 +5921,7 @@ public class FILTRE extends JDialog {
 			else
 			{
 				while (rs.next())
-				{
 					box .addItem(rs.getString("ALT_GRUP"));
-				}
 				box.setSelectedItem(0);
 				box.setEnabled(true);
 			}
@@ -5986,12 +5939,9 @@ public class FILTRE extends JDialog {
 			getContentPane().setCursor(oac.WAIT_CURSOR);
 			box .removeAllItems();
 			ResultSet rs=null;
-
 			rs = ker_Access.ker_kod_degisken_oku("ANA_GRUP", "AGID_Y", "ANA_GRUP_DEGISKEN");
-
 			if (!rs.isBeforeFirst() ) {  
 				getContentPane().setCursor(oac.DEFAULT_CURSOR);
-
 				box .addItem("");
 				box.setSelectedItem("");
 				return;
@@ -5999,9 +5949,7 @@ public class FILTRE extends JDialog {
 			box .addItem("");
 			box.addItem("Bos Olanlar");
 			while (rs.next())
-			{
 				box .addItem(rs.getString("ANA_GRUP"));
-			}
 			getContentPane().setCursor(oac.DEFAULT_CURSOR);
 		}
 		catch (Exception ex)
@@ -6036,9 +5984,7 @@ public class FILTRE extends JDialog {
 			else
 			{
 				while (rs.next())
-				{
 					box .addItem(rs.getString("ALT_GRUP"));
-				}
 				box.setSelectedItem(0);
 				box.setEnabled(true);
 			}
@@ -6056,9 +6002,7 @@ public class FILTRE extends JDialog {
 			getContentPane().setCursor(oac.WAIT_CURSOR);
 			box.removeAllItems();
 			ResultSet rs = null;
-
 			rs = f_Access.stk_kod_degisken_oku("DEPO", "DPID_Y", "DEPO_DEGISKEN");
-
 			if (!rs.isBeforeFirst() ) {  
 				box.addItem("");
 				box.addItem("Bos Olanlar");
@@ -6069,9 +6013,7 @@ public class FILTRE extends JDialog {
 				box.addItem("");
 				box.addItem("Bos Olanlar");
 				while (rs.next())
-				{
 					box.addItem(rs.getString("DEPO"));
-				}
 			}
 			box.setSelectedItem("");
 			getContentPane().setCursor(oac.DEFAULT_CURSOR);
@@ -6088,9 +6030,7 @@ public class FILTRE extends JDialog {
 			getContentPane().setCursor(oac.WAIT_CURSOR);
 			box.removeAllItems();
 			ResultSet rs = null;
-
 			rs = ker_Access.ker_kod_degisken_oku("DEPO", "DPID_Y", "DEPO_DEGISKEN");
-
 			if (!rs.isBeforeFirst() ) {  
 				box.addItem("");
 				box.addItem("Bos Olanlar");
@@ -6101,9 +6041,7 @@ public class FILTRE extends JDialog {
 				box.addItem("");
 				box.addItem("Bos Olanlar");
 				while (rs.next())
-				{
 					box.addItem(rs.getString("DEPO"));
-				}
 			}
 			box.setSelectedItem("");
 			getContentPane().setCursor(oac.DEFAULT_CURSOR);
@@ -6120,9 +6058,7 @@ public class FILTRE extends JDialog {
 			getContentPane().setCursor(oac.WAIT_CURSOR);
 			box.removeAllItems();
 			ResultSet rs = null;
-
 			rs =f_Access.stk_kod_degisken_oku("OZEL_KOD_1", "OZ1ID_Y", "OZ_KOD_1_DEGISKEN");
-
 			if (!rs.isBeforeFirst() ) {  
 				box.addItem("");
 				box.setSelectedItem("");
@@ -6132,9 +6068,7 @@ public class FILTRE extends JDialog {
 				box.addItem("");
 				box.addItem("Bos Olanlar");
 				while (rs.next())
-				{
 					box.addItem(rs.getString("OZEL_KOD_1"));
-				}
 			}
 			box.setSelectedItem("");
 			getContentPane().setCursor(oac.DEFAULT_CURSOR);
@@ -6151,9 +6085,7 @@ public class FILTRE extends JDialog {
 			getContentPane().setCursor(oac.WAIT_CURSOR);
 			box.removeAllItems();
 			ResultSet rs = null;
-
 			rs = f_Access.stk_kod_degisken_oku("OZEL_KOD_2", "OZ2ID_Y", "OZ_KOD_2_DEGISKEN");
-
 			if (!rs.isBeforeFirst() ) {  
 				box.addItem("");
 				box.setSelectedItem("");
@@ -6163,9 +6095,7 @@ public class FILTRE extends JDialog {
 				box.addItem("");
 				box.addItem("Bos Olanlar");
 				while (rs.next())
-				{
 					box.addItem(rs.getString("OZEL_KOD_2"));
-				}
 			}
 			box.setSelectedItem("");
 			getContentPane().setCursor(oac.DEFAULT_CURSOR);
@@ -6182,9 +6112,7 @@ public class FILTRE extends JDialog {
 			getContentPane().setCursor(oac.WAIT_CURSOR);
 			box.removeAllItems();
 			ResultSet rs = null;
-
 			rs =ker_Access.ker_kod_degisken_oku("OZEL_KOD_1", "OZ1ID_Y", "OZ_KOD_1_DEGISKEN");
-
 			if (!rs.isBeforeFirst() ) {  
 				box.addItem("");
 				box.setSelectedItem("");
@@ -6194,9 +6122,7 @@ public class FILTRE extends JDialog {
 				box.addItem("");
 				box.addItem("Bos Olanlar");
 				while (rs.next())
-				{
 					box.addItem(rs.getString("OZEL_KOD_1"));
-				}
 			}
 			box.setSelectedItem("");
 			getContentPane().setCursor(oac.DEFAULT_CURSOR);
@@ -6213,9 +6139,7 @@ public class FILTRE extends JDialog {
 			getContentPane().setCursor(oac.WAIT_CURSOR);
 			cmbGrv_Isim.removeAllItems();
 			ResultSet rs = null;
-
 			rs =  g_Access.isim_oku();
-
 			if (!rs.isBeforeFirst() ) {  
 				cmbGrv_Isim.addItem("");
 				cmbGrv_Isim.setSelectedItem("");
@@ -6224,9 +6148,7 @@ public class FILTRE extends JDialog {
 			{
 				cmbGrv_Isim.addItem("");
 				while (rs.next())
-				{
 					cmbGrv_Isim.addItem(rs.getString("ISIM"));
-				}
 			}
 			cmbGrv_Isim.setSelectedItem("");
 			getContentPane().setCursor(oac.DEFAULT_CURSOR);
@@ -6243,9 +6165,7 @@ public class FILTRE extends JDialog {
 			getContentPane().setCursor(oac.WAIT_CURSOR);
 			box.removeAllItems();
 			ResultSet rs = null;
-
 			rs = f_Access.stk_kod_degisken_oku("MENSEI", "MEID_Y", "MENSEI_DEGISKEN");
-
 			if (!rs.isBeforeFirst() ) {  
 				box.addItem("");
 				box.setSelectedItem("");
@@ -6255,9 +6175,7 @@ public class FILTRE extends JDialog {
 				box.addItem("");
 				box.addItem("Bos Olanlar");
 				while (rs.next())
-				{
 					box.addItem(rs.getString("MENSEI"));
-				}
 			}
 			box.setSelectedItem("");
 			getContentPane().setCursor(oac.DEFAULT_CURSOR);
@@ -6322,7 +6240,6 @@ public class FILTRE extends JDialog {
 		GuiUtil.setWaitCursor( textField_4,true);
 		GuiUtil.setWaitCursor( textField_5,true);
 		GuiUtil.setWaitCursor( textField_79,true);
-
 	}
 	private void mDEFAULT()
 	{
@@ -6335,7 +6252,6 @@ public class FILTRE extends JDialog {
 		GuiUtil.setWaitCursor( textField_4,false);
 		GuiUtil.setWaitCursor( textField_5,false);
 		GuiUtil.setWaitCursor( textField_79,false);
-
 	}
 }
 //https://docs.oracle.com/javase%2F7%2Fdocs%2Fapi%2F%2F/javax/swing/text/MaskFormatter.html

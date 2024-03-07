@@ -615,7 +615,7 @@ public class TAH_FISI extends JInternalFrame {
 		combCins = new JComboBox();
 		combCins.setBounds(50, 25, 77, 22);
 		panel_3.add(combCins);
-		combCins.setModel(new DefaultComboBoxModel(new String[] {"TL", "USD", "EUR"}));
+		combCins.setModel(new DefaultComboBoxModel(new String[] {"TL", "USD", "EUR", "RUB"}));
 		
 		lblPos = new JLabel("Pos Banka");
 		lblPos.setVisible(false);

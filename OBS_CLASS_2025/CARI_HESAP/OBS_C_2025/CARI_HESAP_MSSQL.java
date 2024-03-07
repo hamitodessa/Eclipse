@@ -1507,9 +1507,9 @@ public class CARI_HESAP_MSSQL implements ICARI_HESAP {
 		ResultSet	rss = null;
 		String cinString = "" , turString="" ,posString = "" ;
 		if(cins !=0)
-			cinString = " CINS = '" + cins + "' AND";
+			cinString = " CINS = '" + (cins - 1) + "' AND";
 		if(tur != 0)
-			turString = " TUR = '" + tur + "' AND";
+			turString = " TUR = '" + (tur-1) + "' AND";
 		if(! pos.equals("Hepsi"))
 			posString = " POS_BANKA = '" + pos + "' AND";
 		String sql = " SELECT [EVRAK],[TARIH] ,[C_HES] ,[A_HES] ,CASE CINS  WHEN '0' THEN 'Tahsilat'  WHEN '1' THEN 'Tediye' END as CINS ," +

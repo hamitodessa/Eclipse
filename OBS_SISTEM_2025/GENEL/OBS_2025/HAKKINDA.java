@@ -11,7 +11,6 @@ import javax.swing.JPanel;
 
 import java.awt.BorderLayout;
 import javax.swing.JLabel;
-import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Desktop;
 import java.awt.Font;
@@ -47,7 +46,7 @@ public class HAKKINDA extends JInternalFrame {
 		panel.add(lblNewLabel);
 
 		lbljava = new JLabel("...");
-		lbljava.setForeground(new Color(0, 128, 128));
+		//lbljava.setForeground(new Color(0, 128, 128));
 		lbljava.setBounds(144, 11, 76, 14);
 		panel.add(lbljava);
 
@@ -57,14 +56,14 @@ public class HAKKINDA extends JInternalFrame {
 		panel.add(lblProgramVersion);
 
 		lblver = new JLabel("...");
-		lblver.setForeground(new Color(0, 0, 128));
+		//lblver.setForeground(new Color(0, 0, 128));
 		lblver.setBounds(144, 36, 44, 14);
 		panel.add(lblver);
 
 		lbljava.setText(Integer.toString(getVersion()));
 
 		lbltar = new JLabel("...");
-		lbltar.setForeground(new Color(0, 0, 128));
+		//lbltar.setForeground(new Color(0, 0, 128));
 		lbltar.setBounds(198, 36, 67, 14);
 		panel.add(lbltar);
 
@@ -72,9 +71,7 @@ public class HAKKINDA extends JInternalFrame {
 		lblNewLabel_1.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-
 				open("http://www.okumus.gen.tr");
-
 			}
 			@Override
 			public void mouseExited(MouseEvent e) {
@@ -86,14 +83,15 @@ public class HAKKINDA extends JInternalFrame {
 			}
 
 		});
-		lblNewLabel_1.setText("<html><font color=\"#0000CF\"><u>www.okumus.gen.tr</u></font></html>"); //$NON-NLS-1$ //$NON-NLS-2$
+		lblNewLabel_1.setText("<html><u>www.okumus.gen.tr</u></html>"); //$NON-NLS-1$ //$NON-NLS-2$
 		lblNewLabel_1.setCursor(new Cursor(Cursor.HAND_CURSOR));
 
 		lblNewLabel_1.setBounds(144, 75, 261, 14);
 		panel.add(lblNewLabel_1);
 
 		lblNewLabel_2 = new JLabel();
-		lblNewLabel_2.setText("<html><font color=\"#0000CF\"><u>info@okumus.gen.tr</u></font></html>");
+		//lblNewLabel_2.setText("<html><font color=\"#0000CF\"><u>info@okumus.gen.tr</u></font></html>");
+		lblNewLabel_2.setText("<html><u>info@okumus.gen.tr</u></html>");
 		lblNewLabel_2.setBounds(144, 101, 261, 14);
 		panel.add(lblNewLabel_2);
 
@@ -131,7 +129,7 @@ public class HAKKINDA extends JInternalFrame {
 			}
 
 		});
-		lblNewLabel_1_1.setText("<html><font color=\"#0000CF\"><u>www.obs-web.com</u></font></html>");
+		lblNewLabel_1_1.setText("<html><u>www.obs-web.com</u></html>");
 		lblNewLabel_1_1.setBounds(144, 126, 261, 14);
 		lblNewLabel_1_1.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		panel.add(lblNewLabel_1_1);
@@ -191,13 +189,9 @@ public class HAKKINDA extends JInternalFrame {
 			{
 				counter++;
 				if(counter == 1)
-				{
 					lbltar.setText( line.toString());
-				}
 				else if(counter == 2)
-				{
 					lblver.setText( line.toString());
-				}
 			}   
 			bufferedReader.close();
 			int dosyaPID = (int) ProcessHandle.current().pid();

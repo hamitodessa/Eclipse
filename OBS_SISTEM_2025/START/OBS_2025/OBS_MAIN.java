@@ -208,6 +208,7 @@ public class OBS_MAIN extends JFrame  {
 	private JButton btnNewButton_68 ; // SQL Sorgulama
 	public static JLabel lblKeresteBilgi ;
 	//
+	private JButton btnHakkinda ;
 	private JButton btnYenile ; // Yenile Tusu
 	private JButton btnExcell ; // Excell Aktarma
 	private JButton btnGrafik ; // Grafik
@@ -320,6 +321,16 @@ public class OBS_MAIN extends JFrame  {
 			}
 		});
 		mnCari.add(mntmDekont );
+		
+		JMenuItem mntmTah = new JMenuItem("Tahsilat Fisi");
+		mntmTah.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				btnNewButton_71.doClick();
+			}
+		});
+		mnCari.add(mntmTah );
+		
+		
 		JMenuItem mntmCgiris = new JMenuItem("Coklu Giris");
 		mntmCgiris.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -335,6 +346,7 @@ public class OBS_MAIN extends JFrame  {
 			}
 		});
 		mnCari.add(mntmEkstre);
+		
 		JMenuItem mntmMizan = new JMenuItem("Cari Mizan");
 		mntmMizan.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -342,13 +354,23 @@ public class OBS_MAIN extends JFrame  {
 			}
 		});
 		mnCari.add(mntmMizan);
+		
 		JMenuItem mntmOmizan = new JMenuItem("Cari Ozel Mizan");
 		mntmOmizan.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				button.doClick();
+				button.doClick();   
 			}
 		});
 		mnCari.add(mntmOmizan);
+
+		JMenuItem mntmKmizan = new JMenuItem("Cari Karton Mizan");
+		mntmKmizan.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				btnNewButton_2.doClick();
+			}
+		});
+		mnCari.add(mntmKmizan);
+		
 		JMenuItem mntmDcevir = new JMenuItem("Cari Dovize Cevirme");
 		mntmDcevir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -395,6 +417,14 @@ public class OBS_MAIN extends JFrame  {
 			}
 		});
 		mnCari.add(mntmGtakip);
+		
+		JMenuItem mntmTad = new JMenuItem("Tahsilat Fisi Dokum");
+		mntmTad.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				btnNewButton_79.doClick();
+			}
+		});
+		mnCari.add(mntmTad);
 
 		mnCari.addSeparator();
 
@@ -407,7 +437,11 @@ public class OBS_MAIN extends JFrame  {
 		mnCari.add(mntmSql);
 
 		mnCari.addSeparator();
+		
+		
 
+		
+		
 		JMenuItem mntmOrnek = new JMenuItem("Ornek Hesap Plani");
 		mntmOrnek.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -1210,8 +1244,12 @@ public class OBS_MAIN extends JFrame  {
 		menuBar.add(mnHakkinda);
 
 		JMenuItem mntmHakkinda = new JMenuItem("Hakkinda");
-		mnHakkinda.add(mntmHakkinda);
-
+		mntmHakkinda.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				btnHakkinda.doClick();
+			}
+		});
+		mnHakkinda.add(mntmHakkinda);//
 		//**********************************************************************************************************************************************
 		JPanel contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -1428,6 +1466,15 @@ public class OBS_MAIN extends JFrame  {
 		btnNewButton_15.setIcon(new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/icons8-check-book-30.png")));
 		toolBar_2.add(btnNewButton_15);
 		
+		btnNewButton_79 = new JButton("");
+		btnNewButton_79.setToolTipText("Tah.Fisi Dokum");
+		btnNewButton_79.setIcon(new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/tah_dokum-30.png")));
+		btnNewButton_79.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				form_ac("TAHSILAT DOKUM","");
+			}
+		});
+		toolBar_2.add(btnNewButton_79);
 
 		btnNewButton_16 = new JButton("");
 		btnNewButton_16.setToolTipText("Sql Sorgulama");
@@ -1439,15 +1486,7 @@ public class OBS_MAIN extends JFrame  {
 		btnNewButton_16.setIcon(new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/icons8-sql-30.png")));
 		toolBar_2.add(btnNewButton_16);
 		
-		btnNewButton_79 = new JButton("");
-		btnNewButton_79.setToolTipText("Tah.Fisi Dokum");
-		btnNewButton_79.setIcon(new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/tah_dokum-30.png")));
-		btnNewButton_79.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				form_ac("TAHSILAT DOKUM","");
-			}
-		});
-		toolBar_2.add(btnNewButton_79);
+		
 		
 
 		JLabel label = new JLabel("         ");
@@ -2582,14 +2621,14 @@ public class OBS_MAIN extends JFrame  {
 		toolBar_11.setFloatable(false);
 		tabbedPane.addTab("Hakkinda", null, toolBar_11, null);
 
-		JButton btnNewButton_92 = new JButton("");
-		btnNewButton_92.addActionListener(new ActionListener() {
+		btnHakkinda = new JButton("");
+		btnHakkinda.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				form_ac("HAKKINDA","");
 			}
 		});
-		btnNewButton_92.setIcon(new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/icons8-about-30.png")));
-		toolBar_11.add(btnNewButton_92);
+		btnHakkinda.setIcon(new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/icons8-about-30.png")));
+		toolBar_11.add(btnHakkinda);
 
 		toolBar = new JToolBar();
 		toolBar.setBorder(new LineBorder(null));

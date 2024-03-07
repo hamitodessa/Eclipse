@@ -467,7 +467,7 @@ public class KASA extends JInternalFrame {
 		});
 		table_1.setShowHorizontalLines(true);
 		table_1.setShowVerticalLines(true);
-		table_1.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+		//table_1.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 		table_1.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
 		ScrollPaneWin11 scrollPane_2 = new ScrollPaneWin11();
@@ -515,7 +515,7 @@ public class KASA extends JInternalFrame {
 
 				tc = tcm.getColumn(1);
 				tc.setHeaderRenderer(new SOLA());
-				tc.setMinWidth(412);
+				//tc.setMinWidth(412);
 
 				tc = tcm.getColumn(2);
 				tc.setHeaderRenderer(new SOLA());
@@ -526,11 +526,13 @@ public class KASA extends JInternalFrame {
 				tc.setHeaderRenderer(new SAGA());
 				tc.setCellRenderer(new TABLO_RENDERER(2, false));
 				tc.setMinWidth(100);
+				tc.setMaxWidth(100);
 
 				tc = tcm.getColumn(4);
 				tc.setHeaderRenderer(new SAGA());
 				tc.setCellRenderer(new TABLO_RENDERER(2, false));
 				tc.setMinWidth(100);
+				tc.setMaxWidth(100);
 
 				tc = tcm.getColumn(5);
 				tc.setHeaderRenderer(new SOLA());

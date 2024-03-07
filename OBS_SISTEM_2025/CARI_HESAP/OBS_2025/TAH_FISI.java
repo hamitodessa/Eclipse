@@ -439,7 +439,7 @@ public class TAH_FISI extends JInternalFrame {
 							hsp.setVisible(true);
 							textCKodu.setText(oac.hsp_hsp_kodu);
 							String[] bilgiStrings = CARI_ISIM_OKU.isim(textCKodu.getText());
-							lblCAdi.setText(bilgiStrings[0]);
+							lblCAdi.setText(bilgiStrings[0] + " / " + bilgiStrings[1]);
 							getContentPane().setCursor(oac.DEFAULT_CURSOR);
 						}
 					}
@@ -462,7 +462,7 @@ public class TAH_FISI extends JInternalFrame {
 						textCKodu.setText( oac.hsp_hsp_kodu);
 						getContentPane().setCursor(oac.WAIT_CURSOR);
 						String[] bilgiStrings = CARI_ISIM_OKU.isim(textCKodu.getText());
-						lblCAdi.setText(bilgiStrings[0]);
+						lblCAdi.setText(bilgiStrings[0] + " / " + bilgiStrings[1]);
 						getContentPane().setCursor(oac.DEFAULT_CURSOR);
 					} catch (Exception e1) {
 						e1.printStackTrace();
@@ -474,19 +474,19 @@ public class TAH_FISI extends JInternalFrame {
 			public void changedUpdate(DocumentEvent e) {
 				getContentPane().setCursor(oac.WAIT_CURSOR);
 				String[] bilgiStrings = CARI_ISIM_OKU.isim(textCKodu.getText());
-				lblCAdi.setText(bilgiStrings[0]);
+				lblCAdi.setText(bilgiStrings[0] + " / " + bilgiStrings[1]);
 				getContentPane().setCursor(oac.DEFAULT_CURSOR);
 			}
 			public void removeUpdate(DocumentEvent e) {
 				getContentPane().setCursor(oac.WAIT_CURSOR);
 				String[] bilgiStrings = CARI_ISIM_OKU.isim(textCKodu.getText());
-				lblCAdi.setText(bilgiStrings[0]);
+				lblCAdi.setText(bilgiStrings[0] + " / " + bilgiStrings[1]);
 				getContentPane().setCursor(oac.DEFAULT_CURSOR);
 			}
 			public void insertUpdate(DocumentEvent e) {
 				getContentPane().setCursor(oac.WAIT_CURSOR);
 				String[] bilgiStrings = CARI_ISIM_OKU.isim(textCKodu.getText());
-				lblCAdi.setText(bilgiStrings[0]);
+				lblCAdi.setText(bilgiStrings[0] + " / " + bilgiStrings[1]);
 				getContentPane().setCursor(oac.DEFAULT_CURSOR);
 			}
 		});
@@ -938,7 +938,7 @@ public class TAH_FISI extends JInternalFrame {
 		else 
 		{
 			fis_kayit();
-			fis_temizle();
+			
 		}
 		tabbedPane.setSelectedIndex(0);
 	}
@@ -950,6 +950,14 @@ public class TAH_FISI extends JInternalFrame {
 		try 
 		{
 			String poString = "" ;
+			String cinString[] = CARI_ISIM_OKU.isim(textCKodu.getText());
+			if(! cinString[1].equals(combCins.getSelectedItem().toString()))
+			{
+				int g =  JOptionPane.showOptionDialog( null,  "Cari Hesap Cinsi [" + cinString[1] + "] ile Secilen Doviz Cinsi [" +
+						combCins.getSelectedItem().toString() + "] ayni degil , yine de kayit yapilsin mi  ?", "Tahsilat Fisi Kayit",   JOptionPane.YES_NO_OPTION,
+						JOptionPane.QUESTION_MESSAGE,	   			 	null,   	oac.options,   	oac.options[1]); 
+				if(g != 0 ) { return;	}
+			}
 			if(cmbTur.getSelectedIndex() == 2)
 				poString = comboBanka.getSelectedItem().toString();
 			c_Access.tah_kayit(cmbCins.getSelectedIndex(), cmbTur.getSelectedIndex(),textEvrakNo.getText(), 
@@ -986,6 +994,7 @@ public class TAH_FISI extends JInternalFrame {
 					}
 				}
 			}
+			fis_temizle();
 
 		} catch (Exception ex) {
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage() );

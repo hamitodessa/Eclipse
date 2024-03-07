@@ -32,18 +32,12 @@ public class CARI_HESAP_MSSQL implements ICARI_HESAP {
 	public void akt_baglan(String kod, String port) throws SQLException
 	{
 		String cnnstr = "" ;
-		if ( ! port.toString().equals("") )
-		{
+		if ( ! port.toString().equals(""))
 			port =  ":" + port ;
-		}
-		if (new String( BAGLAN.cariDizin.yER.toString()).equals("L") == true) 
-		{ 
+		if (new String( BAGLAN.cariDizin.yER.toString()).equals("L") == true)
 			cnnstr = "localhost" + port +";instanceName=" + BAGLAN.cariDizin.iNSTANCE + " ; database=OK_Car" + kod ;
-		}
 		else
-		{ 
 			cnnstr = BAGLAN.cariDizin.sERVER + ";instanceName=" +BAGLAN.cariDizin.iNSTANCE + " ; database=OK_Car" + kod ;
-		}
 		String cumle = "jdbc:sqlserver://" + cnnstr + ";";
 		akt_con = DriverManager.getConnection(cumle,BAGLAN.cariDizin.kULLANICI,BAGLAN.cariDizin.sIFRESI);
 	}
@@ -52,9 +46,7 @@ public class CARI_HESAP_MSSQL implements ICARI_HESAP {
 		con = null;  
 		String cumle = "";
 		if ( ! sbilgi.getPort().toString().equals("") )
-		{
 			sbilgi.setPort(  ":" + sbilgi.getPort() );
-		}
 		cumle = "jdbc:sqlserver://localhost" + sbilgi.getPort() + ";instanceName=" + sbilgi.getIns() + ";";
 		con = DriverManager.getConnection(cumle,sbilgi.getKull(),sbilgi.getSifre());   // SERVER BAGLANDI
 		String VERITABANI = "OK_Car" +  sbilgi.getKod();

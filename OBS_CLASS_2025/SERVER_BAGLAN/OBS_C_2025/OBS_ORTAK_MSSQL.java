@@ -6,8 +6,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import javax.swing.JOptionPane;
-
 
 
 public class OBS_ORTAK_MSSQL implements IConnection {
@@ -17,10 +15,8 @@ public class OBS_ORTAK_MSSQL implements IConnection {
 	{
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 		Connection conn = null; 
-		if ( ! sbilgi.getPort().equals("") )
-		{
+		if ( ! sbilgi.getPort().equals(""))
 			sbilgi.setPort(":" + sbilgi.getPort());
-		}
 		try
 		{
 			String cumle = "";
@@ -31,7 +27,7 @@ public class OBS_ORTAK_MSSQL implements IConnection {
 		} 
 		catch (SQLException e)
 		{  
-			JOptionPane.showMessageDialog(null, e.getMessage(),  "Server Baglanti", JOptionPane.ERROR_MESSAGE);      
+			//JOptionPane.showMessageDialog(null, e.getMessage(),  "Server Baglanti", JOptionPane.ERROR_MESSAGE);      
 			result = false;  
 		}  
 		return result;
@@ -50,7 +46,7 @@ public class OBS_ORTAK_MSSQL implements IConnection {
 		} 
 		catch (SQLException e)
 		{  
-			JOptionPane.showMessageDialog(null, e.getMessage(),  "Server Baglanti_S", JOptionPane.ERROR_MESSAGE);     
+			//JOptionPane.showMessageDialog(null, e.getMessage(),  "Server Baglanti_S", JOptionPane.ERROR_MESSAGE);     
 			result =  false;  
 		}  
 		return result;

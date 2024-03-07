@@ -6,8 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import javax.swing.JOptionPane;
-
 public class OBS_ORTAK_MYSQL implements IConnection {
 	private static boolean result;
 	public boolean Server_kontrol_L(Server_Bilgi sbilgi) throws ClassNotFoundException
@@ -22,7 +20,7 @@ public class OBS_ORTAK_MYSQL implements IConnection {
 			result = true;
 		} catch (SQLException e)
 		{
-			JOptionPane.showMessageDialog(null, e.getMessage(),  "Server Baglanti", JOptionPane.ERROR_MESSAGE);     
+			//JOptionPane.showMessageDialog(null, e.getMessage(),  "Server Baglanti", JOptionPane.ERROR_MESSAGE);     
 			result =false;
 		}
 		return result;
@@ -39,7 +37,7 @@ public class OBS_ORTAK_MYSQL implements IConnection {
 			result = true;
 		} catch (SQLException e)
 		{
-			JOptionPane.showMessageDialog(null, e.getMessage(),  "Server Baglanti", JOptionPane.ERROR_MESSAGE);     
+			//JOptionPane.showMessageDialog(null, e.getMessage(),  "Server Baglanti", JOptionPane.ERROR_MESSAGE);     
 			result =false;
 		}
 		return result;

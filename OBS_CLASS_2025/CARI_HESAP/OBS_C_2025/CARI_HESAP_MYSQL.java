@@ -34,13 +34,9 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 	{
 		String cnnstr = "" ;
 		if (BAGLAN.cariDizin.yER.equals("L"))
-		{
 			cnnstr = "jdbc:mysql://localhost:" + BAGLAN.cariDizin.sERVER +"/ok_car" + kod ;
-		}
 		else
-		{ 
 			cnnstr =  "jdbc:mysql://" + BAGLAN.cariDizin.sERVER + "/ok_car" + kod ;
-		}
 		akt_con = DriverManager.getConnection(cnnstr,BAGLAN.cariDizin.kULLANICI,BAGLAN.cariDizin.sIFRESI);
 	}
 	public void cari_sifirdan_L(Server_Bilgi sbilgi) throws ClassNotFoundException, SQLException {
@@ -455,18 +451,9 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		rss.next();
-		int count=0;
+		int count = 0;
 		count = rss.getRow();
-		boolean result;
-		if (count  != 0) 
-		{
-			result = true ;
-		}
-		else
-		{
-			result = false;
-		}
-		return result;	
+		return count  != 0;
 	}
 	public void cari_dekont_kaydet(dEKONT_BILGI dBilgi)
 					throws SQLException, ClassNotFoundException {
@@ -546,14 +533,10 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 		int count=0;
 		count = rss.getRow();
 		String result;
-		if (count  != 0) 
-		{
+		if (count  != 0)
 			result = rss.getString("UNVAN") ;
-		}
 		else
-		{
 			result = "";
-		}
 		return result;	
 	}
 	public void hpln_kayit(String kodu,String adi,String karton,String hcins,String usr) throws ClassNotFoundException, SQLException
@@ -614,9 +597,7 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 			stmt.setBytes(21,bytes);
 		}
 		else
-		{
 			stmt.setBytes(21,null);
-		}
 		stmt.executeUpdate();
 		stmt.close();
 	}
@@ -628,20 +609,13 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 		if (! hKUR.equals("Kayitli"))
 		{
 			if (BAGLAN.kurDizin.dIZIN_CINS.equals("L"))
-			{
 				str1 = "ok_kur" + BAGLAN.kurDizin.kOD + ".dbo.kurlar  " ;
-			}
 			else
 			{
 				if ( BAGLAN.cariDizin.sERVER.equals(BAGLAN.kurDizin.sERVER))
-				{
 					str1 = "ok_kur" + BAGLAN.kurDizin.kOD + ".kurlar  " ;
-					//str2 = "";
-				}
 				else
-				{
 					return rss;
-				}
 			}
 		}
 		Class.forName("com.mysql.cj.jdbc.Driver");
@@ -705,30 +679,18 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 		stb.append(" FROM   SATIRLAR USE INDEX (IX_SATIRLAR) , HESAP USE INDEX (IX_HESAP) , IZAHAT USE INDEX (IX_IZAHAT)") ; 
 		stb.append(" WHERE SATIRLAR.HESAP = HESAP.HESAP AND SATIRLAR.EVRAK = IZAHAT.EVRAK ") ;
 		if ( ! hes.equals("%") && ! hes.equals("%&"))
-		{
 			stb.append(" AND SATIRLAR.HESAP LIKE N'" + hes + "'") ;
-		}
 		stb.append(" AND IZAHAT.IZAHAT  LIKE N'" + acik + "'") ;
 		if ( ! yil.equals(""))
-		{
 			stb.append(" AND YEAR(TARIH) LIKE '" + yil + "'") ;
-		}
 		if ( ! ay.equals(""))
-		{
 			stb.append(" AND  MONT(TARIH) LIKE '" + ay + "'") ;
-		}
 		if ( ! gun.equals(""))
-		{
 			stb.append(" AND DAY(TARIH) LIKE '" + gun + "'") ;
-		}
-		if ( ! kod.equals("%") &&  ! kod.equals("%%")) 
-		{
+		if ( ! kod.equals("%") &&  ! kod.equals("%%"))
 			stb.append(" AND KOD LIKE '" + kod + "'");
-		}
-		if ( ! kullanici.equals("%") &&  ! kullanici.equals("%%")) 
-		{
+		if ( ! kullanici.equals("%") &&  ! kullanici.equals("%%"))
 			stb.append(" AND SATIRLAR.USER LIKE '" + kullanici + "'");
-		}
 		stb.append(" ORDER BY DATE(SATIRLAR.TARIH) ,SATIRLAR.EVRAK ") ;
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		ResultSet	rss = null;

@@ -248,9 +248,7 @@ public class CEK_GIRIS extends JInternalFrame {
 		col.setMinWidth(115);
 
 		for (int i=0 ; i< 6;i++)
-		{
 			table.removeColumn(table.getColumnModel().getColumn(9));
-		}
 		JTableHeader th = table.getTableHeader();
 		Dimension dd = table.getPreferredSize();
 		dd.height = 30;
@@ -449,10 +447,8 @@ public class CEK_GIRIS extends JInternalFrame {
 		dateChooser.getComponent(1).addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if (e.getClickCount() == 2) 
-				{
+				if (e.getClickCount() == 2)
 					dateChooser.setDate(new Date());
-				}
 			}
 		});
 		dateChooser.setBounds(312, 8, 129, 22);
@@ -569,9 +565,6 @@ public class CEK_GIRIS extends JInternalFrame {
 		panel_2.add(textField_4);
 		textField_4.setColumns(10);
 
-
-
-
 		JPanel panel_1 = new JPanel();
 		panel_1.setBorder(new LineBorder(new Color(0, 191, 255)));
 		tabbedPane.addTab("Aciklama", null, panel_1, null);
@@ -607,9 +600,7 @@ public class CEK_GIRIS extends JInternalFrame {
 			deger = GLOBAL.setting_oku("KAM_CEK_GIR").toString();
 			sat_sayi =Integer.parseInt(deger);
 			for (int i = 0; i <= sat_sayi; i ++)
-			{
 				satir_ilave();
-			}
 			textField_4.setText(GLOBAL.setting_oku("PRG_PARA").toString());
 			textField.requestFocus();
 		} catch (Exception ex) {
@@ -628,9 +619,7 @@ public class CEK_GIRIS extends JInternalFrame {
 			satir = 0 ;
 		}
 		else
-		{
 			mdl.insertRow(satir, new Object[]{"",  new Date(),"","","","","","",0.00,"",TARIH_CEVIR.tarih("01.01.1900"),"","",TARIH_CEVIR.tarih("01.01.1900"),""});
-		}
 		table.isRowSelected(satir);
 		table.repaint();
 	}
@@ -665,9 +654,7 @@ public class CEK_GIRIS extends JInternalFrame {
 		for (int i = 0 ; i < mdll.getRowCount() ; i ++)
 		{
 			if (! mdll.getValueAt(i,0).toString().equals(""))
-			{
 				satir_yaz_2(i) ;
-			}
 		}
 	}
 	private static void satir_yaz_2(int i) 
@@ -687,23 +674,15 @@ public class CEK_GIRIS extends JInternalFrame {
 				cozk =  mdll.getValueAt(i,14).toString(); // Cikis Ozel Kod
 			}
 			else
-			{
 				asd = dateFormater(mdll.getValueAt(i , 10).toString() , "yyyy.MM.dd", "EEE MMM dd kk:mm:ss zzzz yyyy" ) ;        		// Cikis Tarihi
-			}
-			if (mdll.getValueAt(i,12) !=null)  //Durum
-			{
+			if (mdll.getValueAt(i,12) !=null)
 				drm =  mdll.getValueAt(i,12).toString();
-			}
 			else
-			{
 				drm = "" ;
-			}
 			String ttarr = dateFormater(mdll.getValueAt(i , 13).toString() , "yyyy.MM.dd", "EEE MMM dd kk:mm:ss zzzz yyyy" ) ;
 			String vade = "";
 			if (mdll.getValueAt(i , 1).toString().length() >  10)
-			{
 				vade = dateFormater(mdll.getValueAt(i , 1).toString() , "yyyy.MM.dd", "EEE MMM dd kk:mm:ss zzzz yyyy" ) ;
-			}
 			else
 			{
 				String qwe =dateFormater(mdll.getValueAt(i , 1).toString() , "yyyy.MM.dd", "dd.MM.yyyy" ) ;
@@ -711,9 +690,8 @@ public class CEK_GIRIS extends JInternalFrame {
 			}
 			String gtt = TARIH_CEVIR.tarih_geri(dateChooser);
 			String cMB ="";
-			if( comboBox.getSelectedItem() != null ) {
+			if( comboBox.getSelectedItem() != null )
 				cMB = comboBox.getSelectedItem().toString();
-			}
 			
 			lOG_BILGI lBILGI = new lOG_BILGI();
 			lBILGI.setmESAJ(textField.getText() + " Nolu Giris Bordro  " + mdll.getValueAt(i,0).toString() + "Nolu Cek " + " Tutar:" + (double) mdll.getValueAt(i,8));
@@ -727,7 +705,6 @@ public class CEK_GIRIS extends JInternalFrame {
 					mdll.getValueAt(i,7).toString(),mdll.getValueAt(i,4).toString(), mdll.getValueAt(i,5).toString()
 					, mdll.getValueAt(i,6).toString(), drm, ttarr, GLOBAL.KULL_ADI,
 					lBILGI , BAGLAN_LOG.kamLogDizin);
-
 		}
 		catch (Exception ex)
 		{
@@ -781,9 +758,7 @@ public class CEK_GIRIS extends JInternalFrame {
 				deger = GLOBAL.setting_oku("KAM_CEK_GIR").toString();
 				sat_sayi =Integer.parseInt(deger);
 				for (int i = 0; i <= sat_sayi; i ++)
-				{
 					satir_ilave();
-				}
 				textField.requestFocus();
 			} catch (Exception ex) {
 				OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,  ex.getMessage());
@@ -806,7 +781,6 @@ public class CEK_GIRIS extends JInternalFrame {
 			} 
 			else
 			{
-
 				DefaultTableModel mdll = (DefaultTableModel) table.getModel();
 				int ozk = 0 ;
 				while (rs.next()) 
@@ -850,9 +824,7 @@ public class CEK_GIRIS extends JInternalFrame {
 	{
 		DefaultTableModel mdll = (DefaultTableModel) table.getModel();
 		for (int i = 0; i <= satir; i ++)
-		{
 			mdll.addRow(new Object[]{"", new Date(),"","","","","","",0.00,"",TARIH_CEVIR.tarih("01.01.1900"),"","",TARIH_CEVIR.tarih("01.01.1900"),""});
-		}
 	}
 	private static void topla()
 	{
@@ -880,10 +852,8 @@ public class CEK_GIRIS extends JInternalFrame {
 			{
 				lblNewLabel_7.setText(FORMATLAMA.doub_2(0.00));
 				lblOrtgun.setText("");
-
 				return;
-				}
-
+			}
 			getContentPane().setCursor(oac.WAIT_CURSOR);
 			double tfaiz ,gun,faiz,orgun,toppara,double_0 ;
 			tfaiz = 0;
@@ -900,9 +870,7 @@ public class CEK_GIRIS extends JInternalFrame {
 				{
 					String vade = "";
 					if (model.getValueAt(i , 1).toString().length() >  10)
-					{
 						vade = dateFormater(model.getValueAt(i , 1).toString() , "yyyy.MM.dd", "EEE MMM dd kk:mm:ss zzzz yyyy" ) ;
-					}
 					else
 					{
 						String qwe =dateFormater(model.getValueAt(i , 1).toString() , "yyyy.MM.dd", "dd.MM.yyyy" ) ;
@@ -966,7 +934,6 @@ public class CEK_GIRIS extends JInternalFrame {
 					OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING,  "Bu numarada hesaba rastlanmadi!!!!");
 					return;
 				} 
-
 				if (bh.equals(textField_1.getText().toString()))
 				{
 					OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING, "Borclu ve Alacakli Hesap Ayni...");
@@ -985,9 +952,7 @@ public class CEK_GIRIS extends JInternalFrame {
 						eno = c_Access.cari_fisno_al();
 						String vade = "";
 						if (model.getValueAt(i , 1).toString().length() >  10)
-						{
 							vade = dateFormater(model.getValueAt(i , 1).toString() , "dd.MM.yyyy", "EEE MMM dd kk:mm:ss zzzz yyyy" ) ;
-						}
 						else
 						{
 							String qwe =model.getValueAt(i , 1).toString()  ;
@@ -1037,10 +1002,8 @@ public class CEK_GIRIS extends JInternalFrame {
 			ResultSet rs = null ;
 
 			rs= ka_Access.cek_kontrol(cekno);
-			if (!rs.isBeforeFirst() ) {  
-
+			if (!rs.isBeforeFirst() )
 				result = false;
-			} 
 			else
 			{
 				rs.next();

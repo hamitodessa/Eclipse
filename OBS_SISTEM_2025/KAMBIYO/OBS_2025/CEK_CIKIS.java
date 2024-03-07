@@ -67,7 +67,7 @@ import OBS_C_2025.dEKONT_BILGI;
 import OBS_C_2025.lOG_BILGI;
 import raven.toast.Notifications;
 
-@SuppressWarnings({"serial","static-access"})
+@SuppressWarnings({"serial","static-access","removal"})
 public class CEK_CIKIS extends JInternalFrame {
 
 	public static JTable table;
@@ -89,7 +89,6 @@ public class CEK_CIKIS extends JInternalFrame {
 	static KAMBIYO_ACCESS ka_Access = new KAMBIYO_ACCESS(OBS_SIS_2025_ANA_CLASS._IKambiyo , OBS_SIS_2025_ANA_CLASS._IKambiyo_Loger);
 	static CARI_ACCESS c_Access = new CARI_ACCESS(OBS_SIS_2025_ANA_CLASS._ICar ,OBS_SIS_2025_ANA_CLASS._ICari_Loger);
 	private ArrayList<String> listCek = new ArrayList<String>();
-	@SuppressWarnings({"removal"})
 	public CEK_CIKIS() {
 
 		setTitle("CEK CIKIS");
@@ -130,7 +129,6 @@ public class CEK_CIKIS extends JInternalFrame {
 			public Component prepareRenderer(TableCellRenderer renderer, int row, int col) {
 				Component c = super.prepareRenderer(renderer, row, col);
 				String status = (String)table.getModel().getValueAt(row,0);
-				 
 					if (col == 1)
 					{
 						if(status=="")
@@ -142,13 +140,8 @@ public class CEK_CIKIS extends JInternalFrame {
 				return c;
 			}
 		};
-
-		
-		
-		if(! oac.gridcolor.toString().equals("java.awt.Color[r=255,g=255,b=255]")) 
-		{
+		if(! oac.gridcolor.toString().equals("java.awt.Color[r=255,g=255,b=255]"))
 			table.setGridColor(oac.gridcolor);
-		}
 		model.addColumn("Cek No", new String []{""});
 		model.addColumn("Vade", new Date []{ new Date() });
 		model.addColumn("Banka", new String []{""});
@@ -220,11 +213,7 @@ public class CEK_CIKIS extends JInternalFrame {
 		col.setMinWidth(115);
 
 		for (int i=0 ; i< 6;i++)
-		{
 			table.removeColumn(table.getColumnModel().getColumn(9));
-		}
-		
-		
 		
 		JTableHeader th = table.getTableHeader();
 		Dimension dd = table.getPreferredSize();
@@ -421,10 +410,8 @@ public class CEK_CIKIS extends JInternalFrame {
 		dateChooser.getComponent(1).addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if (e.getClickCount() == 2) 
-				{
+				if (e.getClickCount() == 2)
 					dateChooser.setDate(new Date());
-				}
 			}
 		});
 		dateChooser.setBounds(312, 8, 129, 22);
@@ -545,9 +532,6 @@ public class CEK_CIKIS extends JInternalFrame {
 		panel_2.add(textField_4);
 		textField_4.setColumns(10);
 
-
-
-
 		JPanel panel_1 = new JPanel();
 		panel_1.setBorder(new LineBorder(new Color(0, 191, 255)));
 		tabbedPane.addTab("Aciklama", null, panel_1, null);
@@ -576,7 +560,6 @@ public class CEK_CIKIS extends JInternalFrame {
 		textField_6.setColumns(10);
 
 		GRID_TEMIZLE.grid_temizle(table);
-
 		//***********
 		String deger;
 		Integer sat_sayi;
@@ -586,9 +569,7 @@ public class CEK_CIKIS extends JInternalFrame {
 			deger = GLOBAL.setting_oku("KAM_CEK_CIK").toString();
 			sat_sayi =Integer.parseInt(deger);
 			for (int i = 0; i <= sat_sayi; i ++)
-			{
 				satir_ilave();
-			}
 			textField.requestFocus();
 		} catch (IOException e1) {
 			e1.printStackTrace();
@@ -614,11 +595,8 @@ public class CEK_CIKIS extends JInternalFrame {
 				textField_4.setText(GLOBAL.setting_oku("PRG_PARA").toString());
 				deger = GLOBAL.setting_oku("KAM_CEK_CIK").toString();
 				sat_sayi =Integer.parseInt(deger);
-
 				for (int i = 0; i <= sat_sayi; i ++)
-				{
 					satir_ilave();
-				}
 				textField.requestFocus();
 			} catch (IOException e1) {
 				e1.printStackTrace();
@@ -769,9 +747,7 @@ public class CEK_CIKIS extends JInternalFrame {
 						eno = c_Access.cari_fisno_al();
 						String vade = "";
 						if (model.getValueAt(i , 1).toString().length() >  10)
-						{
 							vade = dateFormater(model.getValueAt(i , 1).toString() , "dd.MM.yyyy", "EEE MMM dd kk:mm:ss zzzz yyyy" ) ;
-						}
 						else
 						{
 							String qwe =model.getValueAt(i , 1).toString()  ;
@@ -851,13 +827,10 @@ public class CEK_CIKIS extends JInternalFrame {
 			if(cekno.equals(""))
 			{
 				DefaultTableModel mdll = (DefaultTableModel) table.getModel();
-				if (table.getCellEditor() != null) {
+				if (table.getCellEditor() != null)
 					table.getCellEditor().stopCellEditing();
-				}
-				
 				mdll.removeRow(table.getSelectedRow());
-			
-			satir_ilave();
+				satir_ilave();
 				table.repaint();
 			}
 			ResultSet rs = null ;
@@ -900,9 +873,7 @@ public class CEK_CIKIS extends JInternalFrame {
 	{
 		DefaultTableModel mdll = (DefaultTableModel) table.getModel();
 		for (int i = 0; i <= satir; i ++)
-		{
 			mdll.addRow(new Object[]{"", new Date(),"","","","","","",0.00,"",TARIH_CEVIR.tarih("01.01.1900"),"","",TARIH_CEVIR.tarih("01.01.1900"),""});
-		}
 	}
 	public static void satir_ilave()
 	{
@@ -914,9 +885,7 @@ public class CEK_CIKIS extends JInternalFrame {
 			satir = 0 ;
 		}
 		else
-		{
 			mdl.insertRow(satir, new Object[]{"",  new Date(),"","","","","","",0.00,"",TARIH_CEVIR.tarih("01.01.1900"),"","",TARIH_CEVIR.tarih("01.01.1900"),""});
-		}
 		table.isRowSelected(satir);
 		table.repaint();
 	}
@@ -973,9 +942,7 @@ public class CEK_CIKIS extends JInternalFrame {
 				{
 					String vade = "";
 					if (model.getValueAt(i , 1).toString().length() >  10)
-					{
 						vade = dateFormater(model.getValueAt(i , 1).toString() , "yyyy.MM.dd", "EEE MMM dd kk:mm:ss zzzz yyyy" ) ;
-					}
 					else
 					{
 						String qwe =dateFormater(model.getValueAt(i , 1).toString() , "yyyy.MM.dd", "dd.MM.yyyy" ) ;
@@ -1034,17 +1001,14 @@ public class CEK_CIKIS extends JInternalFrame {
 		try {
 			ResultSet rs = null;
 			rs = ka_Access.kalan_cek_liste();
-			if (!rs.isBeforeFirst() ) {  
+			if (!rs.isBeforeFirst() )
 				listCek.add("");
-			}
 			else
 			{
 				listCek.clear();
 				listCek.add("");
 				while (rs.next())
-				{
 					listCek.add(rs.getString("Cek_No").toString() );
-				}
 			}
 		}
 		catch (Exception ex)

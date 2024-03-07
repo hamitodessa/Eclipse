@@ -143,6 +143,7 @@ public class CEK_TAKIP extends JInternalFrame {
 		dateChooser.setBounds(131, 138, 130, 22);
 		dateChooser.setDateFormatString("dd.MM.yyyy");
 		dateChooser.setEnabled(false);
+		
 		dateChooser.setFont(new Font("Tahoma", Font.BOLD, 14));
 		panel.add(dateChooser);
 
@@ -183,10 +184,8 @@ public class CEK_TAKIP extends JInternalFrame {
 		dateChooser_3.getComponent(1).addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if (e.getClickCount() == 2) 
-				{
+				if (e.getClickCount() == 2)
 					dateChooser_3.setDate(new Date());
-				}
 			}
 		});
 		dateChooser_3.setBounds(88, 20, 127, 25);
@@ -342,41 +341,25 @@ public class CEK_TAKIP extends JInternalFrame {
 				dateChooser_1.setDate(rs.getDate("Giris_Tarihi")); // Giris tarihi
 
 				if (! rs.getDate("T_Tarih").toString().equals("1900-01-01"))
-				{
 					dateChooser_3.setDate(rs.getDate("T_Tarih")); // T tarihi
-				}
 				else
-				{
 					dateChooser_3.setDate(null); // T tarihi
-				}
-
 				label.setText(rs.getString("Giris_Ozel_Kod").toString() );
 				lblNewLabel_25.setText(rs.getString("Cikis_Ozel_Kod").toString() );
 				if (rs.getString("Durum").equals("1"))
-				{
 					comboBox.setSelectedItem("1-Iade");
-				}
 				else if (rs.getString("Durum").equals("2"))
-				{
 					comboBox.setSelectedItem("2-Protesto");
-				}
 				else if (rs.getString("Durum").equals("3"))
-				{
 					comboBox.setSelectedItem("3-Tahsil");
-				}
-				else  
-				{
+				else
 					comboBox.setSelectedItem("");
-				}
-
-
 			}
 		}
 		catch (Exception ex)
 		{
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR, ex.getMessage());
 		}
-
 	}
 	public static void kaydet()
 	{
@@ -385,21 +368,13 @@ public class CEK_TAKIP extends JInternalFrame {
 			String durum = "" ;
 			if(dateChooser_3.getDate() == null) return;
 			if (comboBox.getSelectedIndex() == 1)
-			{
 				durum= "1";
-			}
 			else if (comboBox.getSelectedIndex() == 2)
-			{
 				durum= "2";
-			}
 			else if (comboBox.getSelectedIndex() == 3)
-			{
 				durum= "3";
-			}
-			else  
-			{
+			else
 				durum= "";
-			}
 			GuiUtil.setWaitCursor(panel,true);
 			ka_Access.kam_durum_yaz(textField.getText(), "CEK", "Cek_No", durum,  TARIH_CEVIR.tarih_geri(dateChooser_3));
 			textField.setText("");
@@ -436,7 +411,6 @@ public class CEK_TAKIP extends JInternalFrame {
 	public static void cari_kaydet()
 	{
 		if(lblNewLabel_10.getText().equals("")) return;
-		
 		//***************** hsp cinsleri ogren***********************BORCLU HESAP
 		BORC_ALACAK hsp ;
 		hsp = new BORC_ALACAK();
@@ -474,18 +448,12 @@ public class CEK_TAKIP extends JInternalFrame {
 		String str_1 = "";
 		String str_4  = "";
 		try {
-			if(textDurum.getText().equals("1") )
-			{
+			if(textDurum.getText().equals("1"))
 				str_1 = "Iade";
-			}
-			else if(textDurum.getText().equals("2") )
-			{
+			else if(textDurum.getText().equals("2"))
 				str_1 = "Protesto";
-			}
-			else if(textDurum.getText().equals("3") )
-			{
+			else if(textDurum.getText().equals("3"))
 				str_1 = "Tahsil";
-			}
 			int eno =0;
 			eno = c_Access.cari_fisno_al();
 			str_4 = lblNewLabel_10.getText() + " Nolu Çek " + str_1;
@@ -495,13 +463,9 @@ public class CEK_TAKIP extends JInternalFrame {
 					" B. Hes:"+ bh + " Tut:" + lblNewLabel_22.getText() + " Çek " + str_1;
 			String mesaj1 = mesaj;
 			if( mesaj.length() + mesaj1.length() <= 95)
-			{
 				mesaj = mesaj + " Msj:" + mesaj1 ;
-			}
 			else
-			{
 				mesaj = mesaj + " Msj:" + mesaj1.substring(0, 95  -(mesaj.length())) ;
-			}
 			lOG_BILGI lBILGI = new lOG_BILGI();
 			lBILGI.setmESAJ(mesaj);
 			lBILGI.seteVRAK("");
@@ -530,6 +494,5 @@ public class CEK_TAKIP extends JInternalFrame {
 			GuiUtil.setWaitCursor(panel,false);
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR, ex.getMessage());
 		}
-
 	}
 }

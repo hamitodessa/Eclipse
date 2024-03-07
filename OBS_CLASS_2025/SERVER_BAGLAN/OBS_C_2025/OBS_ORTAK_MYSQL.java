@@ -53,7 +53,7 @@ public class OBS_ORTAK_MYSQL implements IConnection {
 		String url = "jdbc:mysql://localhost:" + sbilgi.getPort() ; //pointing to no database.
 		conn = DriverManager.getConnection(url, sbilgi.getKull(), sbilgi.getSifre());
 		stmt = conn.createStatement();
-		rss = stmt.executeQuery("SHOW DATABASES  LIKE '" + sbilgi.getDb().toLowerCase() + "';");
+		rss = stmt.executeQuery("SHOW DATABASES  WHERE `Database` = '" + sbilgi.getDb().toLowerCase() + "';");
 		rss.next();
 		int count=0;
 		count = rss.getRow();
@@ -71,7 +71,7 @@ public class OBS_ORTAK_MYSQL implements IConnection {
 		String url = "jdbc:mysql://" + sbilgi.getServer() ; //pointing to no database.
 		conn = DriverManager.getConnection(url, sbilgi.getKull(), sbilgi.getSifre());
 		stmt = conn.createStatement();
-		rss = stmt.executeQuery("SHOW DATABASES  LIKE '" + sbilgi.getDb().toLowerCase() + "';");
+		rss = stmt.executeQuery("SHOW DATABASES WHERE `Database` = '" + sbilgi.getDb().toLowerCase() + "';");
 		rss.next();
 		int count=0;
 		count = rss.getRow();

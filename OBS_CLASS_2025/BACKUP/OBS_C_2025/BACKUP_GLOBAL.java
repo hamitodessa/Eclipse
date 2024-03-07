@@ -166,7 +166,7 @@ public class BACKUP_GLOBAL {
 		ResultSet rss = null;
 		boolean result = false;
 		stmt = MY_CONN.createStatement();
-		rss = stmt.executeQuery("SHOW DATABASES  LIKE '" + dosADI.toLowerCase() + "';");
+		rss = stmt.executeQuery("SHOW DATABASES WHERE `Database` = '" + dosADI.toLowerCase() + "';");
 		rss.next();
 		int count=0;
 		count = rss.getRow();

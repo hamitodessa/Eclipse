@@ -74,7 +74,6 @@ public class CEK_CIKIS extends JInternalFrame {
 	public static Obs_TextFIeld textField;
 	public static Obs_TextFIeld textField_1;
 	private static Obs_TextFIeld textField_2;
-	private static Obs_TextFIeld textField_3;
 	public static Obs_TextFIeld textField_4;
 	private static Obs_TextFIeld textField_5;
 	private static Obs_TextFIeld textField_6;
@@ -83,6 +82,7 @@ public class CEK_CIKIS extends JInternalFrame {
 	private static JComboBox<String> comboBox  ;
 	public static JLabel label;
 	public static JLabel lblNewLabel_12;
+	private static JLabel lblOrtGun ;
 	private JLabel lblNewLabel_7;
 
 	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
@@ -297,7 +297,7 @@ public class CEK_CIKIS extends JInternalFrame {
 			}
 		});
 		textField.setFont(new Font("Tahoma", Font.BOLD, 12));
-		textField.setBounds(87, 8, 108, 20);
+		textField.setBounds(87, 8, 120, 20);
 		textField.getDocument().addDocumentListener(new DocumentListener() {
 			public void changedUpdate(DocumentEvent e) {
 				getContentPane().setCursor(oac.WAIT_CURSOR);
@@ -337,7 +337,7 @@ public class CEK_CIKIS extends JInternalFrame {
 			}
 		});
 		textField_1.setFont(new Font("Tahoma", Font.BOLD, 12));
-		textField_1.setBounds(87, 35, 108, 20);
+		textField_1.setBounds(87, 35, 120, 20);
 		textField_1.getDocument().addDocumentListener(new DocumentListener() {
 			public void changedUpdate(DocumentEvent e) {
 				getContentPane().setCursor(oac.WAIT_CURSOR);
@@ -399,7 +399,7 @@ public class CEK_CIKIS extends JInternalFrame {
 
 		});
 		btnNewButton.setIcon(new ImageIcon(CEK_GIRIS.class.getResource("/ICONLAR/icons8-view-16.png")));
-		btnNewButton.setBounds(204, 7, 25, 22);
+		btnNewButton.setBounds(220, 7, 25, 22);
 		panel_2.add(btnNewButton);
 
 		JLabel lblNewLabel_3 = new JLabel("Tarih");
@@ -471,7 +471,7 @@ public class CEK_CIKIS extends JInternalFrame {
 
 		textField_2 = new Obs_TextFIeld();
 		textField_2.setFont(new Font("Tahoma", Font.BOLD, 12));
-		textField_2.setBounds(39, 24, 44, 20);
+		textField_2.setBounds(39, 24, 50, 20);
 		textField_2.getDocument().addDocumentListener(new DocumentListener() {
 			public void changedUpdate(DocumentEvent e) {
 				getContentPane().setCursor(oac.WAIT_CURSOR);
@@ -494,15 +494,9 @@ public class CEK_CIKIS extends JInternalFrame {
 		textField_2.setColumns(10);
 
 		JLabel lblNewLabel_5 = new JLabel("Ort.Gun");
-		lblNewLabel_5.setBounds(91, 27, 54, 14);
+		lblNewLabel_5.setBounds(99, 27, 54, 14);
 		panel_3.add(lblNewLabel_5);
 
-		textField_3 = new Obs_TextFIeld();
-		textField_3.setHorizontalAlignment(SwingConstants.RIGHT);
-		textField_3.setFont(new Font("Tahoma", Font.BOLD, 12));
-		textField_3.setBounds(141, 24, 66, 20);
-		panel_3.add(textField_3);
-		textField_3.setColumns(10);
 
 		lblNewLabel_7 = new JLabel("0.00");
 		//lblNewLabel_7.setForeground(Color.RED);
@@ -510,6 +504,10 @@ public class CEK_CIKIS extends JInternalFrame {
 		lblNewLabel_7.setFont(new Font("Tahoma", Font.BOLD, 12));
 		lblNewLabel_7.setBounds(228, 26, 101, 14);
 		panel_3.add(lblNewLabel_7);
+		
+		lblOrtGun = new JLabel("0");
+		lblOrtGun.setBounds(163, 27, 44, 14);
+		panel_3.add(lblOrtGun);
 
 		JLabel lblNewLabel_8 = new JLabel("Ozel Kod");
 		lblNewLabel_8.setBounds(826, 12, 67, 14);
@@ -533,7 +531,7 @@ public class CEK_CIKIS extends JInternalFrame {
 		textField_4.setColumns(10);
 
 		JPanel panel_1 = new JPanel();
-		panel_1.setBorder(new LineBorder(new Color(0, 191, 255)));
+		panel_1.setBorder(new LineBorder(null));
 		tabbedPane.addTab("Aciklama", null, panel_1, null);
 		panel_1.setLayout(null);
 
@@ -585,7 +583,7 @@ public class CEK_CIKIS extends JInternalFrame {
 			textField_1.setText("");
 			dateChooser.setDate(new Date());
 			textField_2.setText("");
-			textField_3.setText("");
+			lblOrtGun.setText("");
 			comboBox.removeAllItems();
 			comboBox.addItem("");
 			topla();
@@ -613,7 +611,7 @@ public class CEK_CIKIS extends JInternalFrame {
 				textField_1.setText("");
 				dateChooser.setDate(new Date());
 				textField_2.setText("");
-				textField_3.setText("");
+				lblOrtGun.setText("");
 				comboBox.removeAllItems();
 				comboBox.addItem("");
 				topla();
@@ -925,7 +923,7 @@ public class CEK_CIKIS extends JInternalFrame {
 			if (model.getRowCount()  == 0 ) return ;
 			if (textField_2.getText().equals("")) {
 				lblNewLabel_7.setText(FORMATLAMA.doub_2(0.00));
-				textField_3.setText("");
+				lblOrtGun.setText("0");
 				return;}
 			getContentPane().setCursor(oac.WAIT_CURSOR);
 			double tfaiz ,gun,faiz,orgun,toppara,double_0 ;
@@ -958,7 +956,7 @@ public class CEK_CIKIS extends JInternalFrame {
 					toppara = toppara + (double) model.getValueAt(i , 8);
 					tfaiz = tfaiz + faiz ;
 					orgun = ((toppara * double_0) / 365) / 100 ;
-					textField_3.setText(FORMATLAMA.doub_2(tfaiz / orgun));
+					lblOrtGun.setText(FORMATLAMA.doub_2(tfaiz / orgun));
 					lblNewLabel_7.setText(FORMATLAMA.doub_2(tfaiz));
 				}
 			}
@@ -1016,5 +1014,4 @@ public class CEK_CIKIS extends JInternalFrame {
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage() );
 		}
 	}
-
 }

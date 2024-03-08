@@ -334,7 +334,7 @@ public class CEK_GIRIS extends JInternalFrame {
 			}
 		});
 		textField.setFont(new Font("Tahoma", Font.BOLD, 12));
-		textField.setBounds(87, 8, 108, 20);
+		textField.setBounds(87, 8, 120, 20);
 		textField.getDocument().addDocumentListener(new DocumentListener() {
 			public void changedUpdate(DocumentEvent e) {
 				getContentPane().setCursor(oac.WAIT_CURSOR);
@@ -374,7 +374,7 @@ public class CEK_GIRIS extends JInternalFrame {
 			}
 		});
 		textField_1.setFont(new Font("Tahoma", Font.BOLD, 12));
-		textField_1.setBounds(87, 35, 108, 20);
+		textField_1.setBounds(87, 35, 120, 20);
 		textField_1.getDocument().addDocumentListener(new DocumentListener() {
 			public void changedUpdate(DocumentEvent e) {
 				getContentPane().setCursor(oac.WAIT_CURSOR);
@@ -436,7 +436,7 @@ public class CEK_GIRIS extends JInternalFrame {
 
 		});
 		btnNewButton.setIcon(new ImageIcon(CEK_GIRIS.class.getResource("/ICONLAR/icons8-view-16.png")));
-		btnNewButton.setBounds(204, 7, 25, 22);
+		btnNewButton.setBounds(215, 7, 25, 22);
 		panel_2.add(btnNewButton);
 
 		JLabel lblNewLabel_3 = new JLabel("Tarih");
@@ -507,7 +507,7 @@ public class CEK_GIRIS extends JInternalFrame {
 
 		textField_2 = new Obs_TextFIeld();
 		textField_2.setFont(new Font("Tahoma", Font.BOLD, 12));
-		textField_2.setBounds(39, 24, 44, 20);
+		textField_2.setBounds(39, 24, 50, 20);
 		textField_2.getDocument().addDocumentListener(new DocumentListener() {
 			public void changedUpdate(DocumentEvent e) {
 			}
@@ -527,7 +527,7 @@ public class CEK_GIRIS extends JInternalFrame {
 		textField_2.setColumns(10);
 
 		JLabel lblNewLabel_5 = new JLabel("Ort.Gun");
-		lblNewLabel_5.setBounds(91, 27, 54, 14);
+		lblNewLabel_5.setBounds(93, 27, 59, 14);
 		panel_3.add(lblNewLabel_5);
 
 		lblNewLabel_7 = new JLabel("0.00");
@@ -541,7 +541,7 @@ public class CEK_GIRIS extends JInternalFrame {
 		lblOrtgun.setHorizontalAlignment(SwingConstants.RIGHT);
 		//lblOrtgun.setForeground(new Color(0, 0, 205));
 		lblOrtgun.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblOrtgun.setBounds(148, 27, 48, 14);
+		lblOrtgun.setBounds(152, 27, 44, 14);
 		panel_3.add(lblOrtgun);
 
 		JLabel lblNewLabel_8 = new JLabel("Ozel Kod");
@@ -566,7 +566,7 @@ public class CEK_GIRIS extends JInternalFrame {
 		textField_4.setColumns(10);
 
 		JPanel panel_1 = new JPanel();
-		panel_1.setBorder(new LineBorder(new Color(0, 191, 255)));
+		panel_1.setBorder(new LineBorder(null));
 		tabbedPane.addTab("Aciklama", null, panel_1, null);
 		panel_1.setLayout(null);
 

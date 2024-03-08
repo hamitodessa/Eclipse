@@ -121,8 +121,6 @@ public class KERESTE_MYSQL implements IKERESTE {
 		//
 		stmt.close();
 		con.close();
-
-		
 	}
 
 	@Override
@@ -396,7 +394,6 @@ public class KERESTE_MYSQL implements IKERESTE {
 				+ "  INDEX `IX_LOGLAMA` (`TARIH` ASC, `USER_NAME` ASC) VISIBLE);";
 		stmt = con.createStatement();  
 		stmt.executeUpdate(sql);		
-		
 	}
 	@Override
 	public void kER_firma_adi_kayit(String fadi) throws ClassNotFoundException, SQLException {
@@ -442,7 +439,6 @@ public class KERESTE_MYSQL implements IKERESTE {
 		stmt.setString(2, aciklama);
 		stmt.executeUpdate();
 		stmt.close();
-		
 	}
 
 	@Override
@@ -472,8 +468,6 @@ public class KERESTE_MYSQL implements IKERESTE {
 		stmt.setString(1, kons);
 		stmt.setString(2, aciklama);
 		stmt.executeUpdate();
-		
-		
 		sql  = "INSERT INTO PAKET_NO (Pak_No,Konsimento) " +
 				" VALUES (?,?)" ;
 		stmt = null;
@@ -483,7 +477,6 @@ public class KERESTE_MYSQL implements IKERESTE {
 		stmt.setString(2, kons);
 		stmt.executeUpdate();
 		stmt.close();
-		
 	}
 
 	@Override
@@ -493,53 +486,43 @@ public class KERESTE_MYSQL implements IKERESTE {
 		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();
-		///
 		ResultSet	rss = null;
 		stmt = con.prepareStatement("SELECT Pak_No FROM PAKET_NO  WHERE Konsimento =N'" + kons + "' ");
 		rss = stmt.executeQuery();
 		int result ;
-		if (!rss.isBeforeFirst() ) {  
+		if (!rss.isBeforeFirst() )
 			result = 0 ;
-		}
 		else
 		{
 			rss.next();
 			result = rss.getInt("Evrak_No");
 		}
-		///
 		sql = "DELETE FROM PAKET_NO WHERE Konsimento =N'" + kons + "'" ;
 		stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();
-		
 		return  result  ;	
-
 	}
 
 	@Override
 	public String kod_adi(String kod) throws ClassNotFoundException, SQLException {
-		
-		 
 		ResultSet	rss = null;
 		kONTROL();
 		PreparedStatement stmt = con.prepareStatement("SELECT ACIKLAMA FROM KOD_ACIKLAMA  WHERE KOD =N'" + kod+ "' ");
 		rss = stmt.executeQuery();
 		String result ;
-		if (!rss.isBeforeFirst() ) {  
+		if (!rss.isBeforeFirst() )
 			result = "" ;
-		}
 		else
 		{
 			rss.next();
 			result = rss.getString("ACIKLAMA");
 		}
 		return result;	
-		
 	}
 
 	@Override
 	public ResultSet ker_kod_degisken_oku(String fieldd, String sno, String nerden)
 			throws ClassNotFoundException, SQLException {
-		 
 		ResultSet	rss = null;
 		String sql =  "SELECT " + sno + "  AS KOD , " + fieldd + " FROM " + nerden + "" +
 				" ORDER BY " + fieldd + "";
@@ -552,7 +535,6 @@ public class KERESTE_MYSQL implements IKERESTE {
 	@Override
 	public ResultSet ker_kod_degisken_ara(String fieldd, String sno, String nerden, String arama)
 			throws ClassNotFoundException, SQLException {
-		 
 		ResultSet	rss = null;
 		String sql =   "SELECT  " + fieldd + " FROM " + nerden + " WHERE " + sno + " = N'" + arama + "'";
 		kONTROL();
@@ -563,7 +545,6 @@ public class KERESTE_MYSQL implements IKERESTE {
 
 	@Override
 	public ResultSet ker_kod_alt_grup_degisken_oku(int sno) throws ClassNotFoundException, SQLException {
-		 
 		ResultSet	rss = null;
 		String sql =   "SELECT ALID_Y , ALT_GRUP FROM ALT_GRUP_DEGISKEN   " +
 				" WHERE ANA_GRUP = N'" + sno + "' ORDER BY ALT_GRUP";
@@ -590,40 +571,33 @@ public class KERESTE_MYSQL implements IKERESTE {
 
 	@Override
 	public void ker_degisken_alt_grup_sil(int ID) throws ClassNotFoundException, SQLException {
-		  
 		String sql = "DELETE ALT_GRUP_DEGISKEN    WHERE ALID_Y = '" + ID + "'";
 		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();
-		
 	}
 
 	@Override
 	public void ker_kod_degisken_sil(String nerden, String hangi_Y, int sira)
 			throws ClassNotFoundException, SQLException {
-		  
 		String sql = "DELETE " + nerden  + "    WHERE "+ hangi_Y +" = '" + sira + "'";
 		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();
-		
 	}
 
 	@Override
 	public void ker_degisken_eski(String fieldd, String degisken_adi, String nerden, String sno, int ID)
 			throws ClassNotFoundException, SQLException {
-		  
 		String sql =  "UPDATE " + nerden + "  SET " + fieldd + "  = N'" + degisken_adi + "'  WHERE " + sno + "  = '" + ID + "'";
 		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();
-		
 	}
 
 	@Override
 	public void ker_degisken_kayit(String fieldd, String nerden, String degisken_adi, String sira)
 			throws ClassNotFoundException, SQLException {
-		 
 		ResultSet	rss = null;
 		int maks = 0 ;
 		String sql =   "SELECT max(" +fieldd +")  as maks  FROM "+ nerden+ "" ; 
@@ -633,14 +607,10 @@ public class KERESTE_MYSQL implements IKERESTE {
 		rss.next();
 		int count=0;
 		count = rss.getRow();
-		if (count  != 0)  
-		{
+		if (count  != 0)
 			maks  = rss.getInt("maks");
-		}
 		else
-		{
 			maks  = 0 ;
-		}
 		sql  =  "INSERT INTO " + nerden + " (" + fieldd + "," + degisken_adi + ",USER) " +
 				" VALUES (?,?,?)" ;
 		stmt = null;
@@ -650,7 +620,6 @@ public class KERESTE_MYSQL implements IKERESTE {
 		stmt.setString(3, GLOBAL.KULL_ADI);
 		stmt.executeUpdate();
 		stmt.close();
-		
 	}
 
 	@Override
@@ -659,21 +628,16 @@ public class KERESTE_MYSQL implements IKERESTE {
 		ResultSet	rss = null;
 		int maks =0 ;
 		String sql =   "SELECT max(ALID_Y)  AS ALID_Y  FROM ALT_GRUP_DEGISKEN   " ;// +
-		//	" WHERE ALT_GRUP = N'" + alt_grup + "'";
 		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		rss.next();
 		int count=0;
 		count = rss.getRow();
-		if (count  != 0) 
-		{ 
+		if (count  != 0)
 			maks  = rss.getInt("ALID_Y");
-		}
 		else
-		{
 			maks  = 0 ;
-		}
 		sql  = "INSERT INTO ALT_GRUP_DEGISKEN (ALID_Y,ALT_GRUP,ANA_GRUP,USER) " +
 				" VALUES (?,?,?,?)" ;
 		stmt = null;
@@ -684,39 +648,31 @@ public class KERESTE_MYSQL implements IKERESTE {
 		stmt.setString(4, GLOBAL.KULL_ADI);
 		stmt.executeUpdate();
 		stmt.close(); 
-		
 	}
 
 	@Override
 	public void ker_degisken_alt_grup_eski(String alt_grup, int ana_grup, int ID)
 			throws ClassNotFoundException, SQLException {
-		  
 		String sql = "UPDATE ALT_GRUP_DEGISKEN  SET ALT_GRUP  = N'" + alt_grup + "' , ANA_GRUP  = N'" + ana_grup + "'  WHERE ALID_Y = '" + ID + "'";
 		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();
-		
 	}
-
 	
 	@Override
 	public String son_no_al(String cins) throws ClassNotFoundException, SQLException {
-		 
 		ResultSet	rss = null;
 		String result ;
 		String sql ;
-		if (cins.equals("G")) {
+		if (cins.equals("G"))
 			sql = "SELECT max(Evrak_No)  as NO FROM KERESTE  ";
-		}
-		else {
+		else
 			sql = "SELECT max(Cikis_Evrak)  as NO FROM KERESTE  ";
-		}
 		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
-		if (!rss.isBeforeFirst() ) {  
+		if (!rss.isBeforeFirst() )
 			result = ""  ;
-		}
 		else
 		{
 			rss.next();
@@ -727,7 +683,6 @@ public class KERESTE_MYSQL implements IKERESTE {
 
 	@Override
 	public void ker_giris_sil(String eno) throws ClassNotFoundException, SQLException {
-		 
 		String sql =  " DELETE " +
 				" FROM KERESTE " +
 				" WHERE Evrak_No  ='" + eno + "'" ;
@@ -743,7 +698,6 @@ public class KERESTE_MYSQL implements IKERESTE {
 				" ,Tevkifat,Ana_Grup,Alt_Grup,Depo,Ozel_Kod,Izahat,Nakliyeci,USER,Cikis_Evrak,CTarih,CKdv,CDoviz,CFiat,CTutar,Ckur,CCari_Firma,CAdres_Firma " + //17
 				" ,CIskonto,CTevkifat,CAna_Grup,CAlt_Grup,CDepo,COzel_Kod,CIzahat,CNakliyeci,CUSER,Mensei,Satir,CSatir) " + //9
 				" VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)" ;
-		///////////////////
 		PreparedStatement stmt = null;
 		kONTROL();
 		stmt = con.prepareStatement(sql);
@@ -772,12 +726,9 @@ public class KERESTE_MYSQL implements IKERESTE {
 		stmt.setString(23,  user);
 		stmt.setString(24,kBILGI.getCikis_Evrak());
 		if(!kBILGI.getCTarih().equals(""))
-		{
 			stmt.setString(25,kBILGI.getCTarih());
-		}
-		else {
+		else
 			stmt.setString(25,"1900.01.01");
-		}
 		stmt.setDouble(26, kBILGI.getCKdv());
 		stmt.setString(27,kBILGI.getCDoviz());
 		stmt.setDouble(28, kBILGI.getCFiat());
@@ -799,12 +750,10 @@ public class KERESTE_MYSQL implements IKERESTE {
 		stmt.setInt(44, kBILGI.getCSatir());
 		stmt.executeUpdate();
 		stmt.close();
-		
 	}
 
 	@Override
 	public ResultSet ker_oku(String eno, String cins) throws ClassNotFoundException, SQLException {
-		 
 		ResultSet	rss = null;
 		String sql = "";
 		if (cins.equals("G")) 
@@ -845,7 +794,6 @@ public class KERESTE_MYSQL implements IKERESTE {
 	@Override
 	public void dipnot_yaz(String eno, String bir, String iki, String uc, String tip, String gircik, String usr)
 			throws ClassNotFoundException, SQLException {
-		 
 		String sql  ="INSERT INTO DPN (Evrak_No,Tip,Bir,Iki,Uc,Gir_Cik,USER) " +
 				" VALUES (?,?,?,?,?,?,?)" ;
 		PreparedStatement stmt = null;
@@ -879,7 +827,6 @@ public class KERESTE_MYSQL implements IKERESTE {
 
 	@Override
 	public void aciklama_sil(String evrcins, String evrno, String cins) throws ClassNotFoundException, SQLException {
-		 
 		String sql = " DELETE " +
 				" FROM ACIKLAMA " +
 				" WHERE EVRAK_CINS = N'" + evrcins + "'" +
@@ -888,13 +835,11 @@ public class KERESTE_MYSQL implements IKERESTE {
 		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();
-		
 	}
 
 	@Override
 	public void aciklama_yaz(String evrcins, int satir, String evrno, String aciklama, String gircik)
 			throws ClassNotFoundException, SQLException {
-		 
 		String sql  ="INSERT INTO ACIKLAMA (EVRAK_CINS,SATIR,EVRAK_NO,ACIKLAMA,Gir_Cik) " +
 				" VALUES (?,?,?,?,?)" ;
 		PreparedStatement stmt = null;
@@ -907,13 +852,11 @@ public class KERESTE_MYSQL implements IKERESTE {
 		stmt.setString(5, gircik);
 		stmt.executeUpdate();
 		stmt.close();
-		
 	}
 
 	@Override
 	public String aciklama_oku(String evrcins, int satir, String evrno, String gircik)
 			throws ClassNotFoundException, SQLException {
-		 
 		ResultSet	rss = null;
 		String result ;
 		String sql =     "SELECT * " +
@@ -925,9 +868,8 @@ public class KERESTE_MYSQL implements IKERESTE {
 		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
-		if (!rss.isBeforeFirst() ) {  
+		if (!rss.isBeforeFirst() )
 			result = "" ;
-		}
 		else
 		{
 			rss.next();
@@ -943,9 +885,7 @@ public class KERESTE_MYSQL implements IKERESTE {
 		ResultSet	rss = null;
 		String dURUMString= "";
 		if(nerden.equals("C"))
-		{
 			dURUMString= " AND Cikis_Evrak = ''";
-		}
 		String sql = "SELECT Evrak_No,Barkod,Kodu,Paket_No,Konsimento,Miktar,Cikis_Evrak,CTarih,CKdv,CDoviz,CFiat,CTutar,CKur , " 
 				+ " CCari_Firma,CAdres_Firma,CIskonto,CTevkifat , CAna_Grup,CAlt_Grup  , "
 				+ "	IFNULL((Select DEPO FROM DEPO_DEGISKEN WHERE DEPO_DEGISKEN.DPID_Y = KERESTE.CDepo ) , '') AS CDepo  , "
@@ -956,13 +896,11 @@ public class KERESTE_MYSQL implements IKERESTE {
 		kONTROL();
 		Statement stmt = con.createStatement( ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
 		rss = stmt.executeQuery(sql);
-
 		return rss;
 	}
 
 	@Override
 	public void ker_cikis_sil(String eno) throws ClassNotFoundException, SQLException {
-		 
 		String sql = "UPDATE KERESTE SET Cikis_Evrak = '', CTarih = '1900.01.01',CKdv = 0,CDoviz ='',CFiat=0,Ctutar=0,CKur=0,CCari_Firma='',CAdres_Firma='' ," 
 				+ " CIskonto=0,CTevkifat=0,CAna_Grup=0,CAlt_Grup=0,CDepo=0,COzel_Kod='',CIzahat='',CNakliyeci=0,CUSER='',CSatir=0"
 				+ " WHERE Cikis_Evrak  ='" + eno + "'" ;
@@ -973,7 +911,6 @@ public class KERESTE_MYSQL implements IKERESTE {
 
 	@Override
 	public void ker_cikis_kaydet(KER_BILGI kBILGI) throws ClassNotFoundException, SQLException {
-		 
 		String[] token = kBILGI.getPaket_No().toString().split("-");
 		String sql = "UPDATE KERESTE SET " 
 				+ " Cikis_Evrak = '"+ kBILGI.getCikis_Evrak() +"', CTarih = '" 
@@ -1001,18 +938,15 @@ public class KERESTE_MYSQL implements IKERESTE {
 		ResultSet	rss = null;
 		int E_NUMBER ;
 		String sql ="" ;
-		if (cins.equals("G")) {
+		if (cins.equals("G"))
 			sql = "SELECT max(Evrak_No + 1) AS NO  FROM KERESTE  ";
-		}
-		else {
+		else
 			sql = "SELECT max(Cikis_Evrak + 1) AS NO  FROM KERESTE  ";
-		}
 		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
-		if (!rss.isBeforeFirst() ) {  
+		if (!rss.isBeforeFirst() )
 			E_NUMBER = 0 ;
-		}
 		else
 		{
 			rss.next();
@@ -1040,12 +974,9 @@ public class KERESTE_MYSQL implements IKERESTE {
 		song = token[3];
 		String qweString = "";
 		if(dURUM.equals("C"))
-		{
 			qweString = " Cikis_Evrak " ;
-		}
-		else {
+		else
 			qweString = " Evrak_No " ;
-		}
 		String tARIH = "" ;
 		if(! t1.equals("1900.01.01") && ! t2.equals("2100.12.31"))
 			tARIH =" AND " + dURUM + "Tarih BETWEEN '" + t1 + "'  AND  '"  + t2 + " 23:59:59.998'"  ;
@@ -1074,85 +1005,51 @@ public class KERESTE_MYSQL implements IKERESTE {
 		ResultSet	rss = null;
 		String[] token = k1.toString().split("-");
 		StringBuilder kODU = new StringBuilder();
-		if (! token[0].equals("00")) 
-		{
+		if (! token[0].equals("00"))
 			kODU.append(" SUBSTRING(KERESTE.Kodu, 1, 2) >= '" + token[0] + "'  AND" );
-		}
 		if (! token[1].equals("000"))
-		{
 			kODU.append(" SUBSTRING(KERESTE.Kodu, 4, 3) >= '" + token[1] + "' AND"  ) ;
-		}
-		if (! token[2].equals("0000")) 
-		{
+		if (! token[2].equals("0000"))
 			kODU.append(" SUBSTRING(KERESTE.Kodu, 8, 4) >= '" + token[2] + "' AND" );
-		}
-		if (! token[3].equals("0000"))  {
+		if (! token[3].equals("0000"))
 			kODU.append( " SUBSTRING(KERESTE.Kodu, 13, 4) >= '" + token[3] + "'  AND"  );
-		}
 		token = k2.toString().split("-");
-		if (! token[0].equals("ZZ")) 
-		{
+		if (! token[0].equals("ZZ"))
 			kODU.append(" SUBSTRING(KERESTE.Kodu, 1, 2) <= '" + token[0] + "'  AND" );
-		}
 		if (! token[1].equals("999"))
-		{
 			kODU.append(" SUBSTRING(KERESTE.Kodu, 4, 3) <= '" + token[1] + "' AND"  ) ;
-		}
-		if (! token[2].equals("9999")) 
-		{
+		if (! token[2].equals("9999"))
 			kODU.append(" SUBSTRING(KERESTE.Kodu, 8, 4) <= '" + token[2] + "' AND" );
-		}
-		if (! token[3].equals("9999"))  {
+		if (! token[3].equals("9999"))
 			kODU.append( " SUBSTRING(KERESTE.Kodu, 13, 4) <= '" + token[3] + "'  AND"  );
-		}
 		if(qwq6.equals(" Like  '%' "))
-		{
 			qwq6 =  " " ;
-		}
-		else {
+		else
 			qwq6 = dURUM + "Ana_Grup " + qwq6 ;
-		}
 		if(qwq7.equals(" Like  '%' "))
-		{
 			qwq7 =  " " ;
-		}
-		else {
+		else
 			qwq7 = " AND "+ dURUM + "Alt_Grup " + qwq7 ;
-		}
 		if(qwq8.equals(" Like  '%' "))
-		{
 			qwq8 =  " " ;
-		}
-		else {
+		else
 			qwq8 = " AND "+ dURUM + "Ozel_Kod " + qwq8 ;
-		}
 		if(dpo.equals(" Like  '%' "))
-		{
 			dpo =  " " ;
-		}
-		else {
+		else
 			dpo = " AND "+ dURUM + "Depo " + dpo + " AND ";
-		}
-		
-		///
-		String replaceString=sstr_1.replace('[',' ');//replaces all occurrences of 'a' to 'e'  
-		String replaceString2=replaceString.replace(']',' ');//replaces all occurrences of 'a' to 'e'  
-		String[] tokens =replaceString2.split(",");
+		String replaceString = sstr_1.replace('[',' ');//replaces all occurrences of 'a' to 'e'  
+		String replaceString2 = replaceString.replace(']',' ');//replaces all occurrences of 'a' to 'e'  
+		String[] tokens = replaceString2.split(",");
 		String cASE = "" ;
 		for (String t : tokens)
-		{
 			cASE  = cASE + "Sum(CASE WHEN " + sstr_2 + "  = '" + t.trim() + "'  THEN " + sstr_4 + " ELSE 0 END) AS '"+ t.trim() + "',";
-		}
 		cASE = cASE.substring(0, cASE.length() - 1);
 		String qweString = "" ;
 		if(dURUM.equals("C"))
-		{
 			qweString = " Cikis_Evrak " ;
-		}
-		else {
+		else
 			qweString = " Evrak_No " ;
-		}
-		///
 		String sql =   "SELECT " + gruplama + " ," + cASE +
 				" FROM KERESTE   " + kur_dos + 
 				" WHERE   " + jkj + " " +
@@ -1175,37 +1072,23 @@ public class KERESTE_MYSQL implements IKERESTE {
 		ResultSet	rss = null;
 		String[] token = ker_rap_BILGI.getGKodu1().toString().split("-");
 		StringBuilder kODU = new StringBuilder();
-		if (! token[0].equals("00")) 
-		{
+		if (! token[0].equals("00"))
 			kODU.append(" SUBSTRING(KERESTE.Kodu, 1, 2) >= '" + token[0] + "'  AND" );
-		}
 		if (! token[1].equals("000"))
-		{
 			kODU.append(" SUBSTRING(KERESTE.Kodu, 4, 3) >= '" + token[1] + "' AND"  ) ;
-		}
-		if (! token[2].equals("0000")) 
-		{
+		if (! token[2].equals("0000"))
 			kODU.append(" SUBSTRING(KERESTE.Kodu, 8, 4) >= '" + token[2] + "' AND" );
-		}
-		if (! token[3].equals("0000"))  {
+		if (! token[3].equals("0000"))
 			kODU.append( " SUBSTRING(KERESTE.Kodu, 13, 4) >= '" + token[3] + "'  AND"  );
-		}
 		token = ker_rap_BILGI.getGKodu2().toString().split("-");
-		if (! token[0].equals("ZZ")) 
-		{
+		if (! token[0].equals("ZZ"))
 			kODU.append(" SUBSTRING(KERESTE.Kodu, 1, 2) <= '" + token[0] + "'  AND" );
-		}
 		if (! token[1].equals("999"))
-		{
 			kODU.append(" SUBSTRING(KERESTE.Kodu, 4, 3) <= '" + token[1] + "' AND"  ) ;
-		}
-		if (! token[2].equals("9999")) 
-		{
+		if (! token[2].equals("9999"))
 			kODU.append(" SUBSTRING(KERESTE.Kodu, 8, 4) <= '" + token[2] + "' AND" );
-		}
-		if (! token[3].equals("9999"))  {
+		if (! token[3].equals("9999"))
 			kODU.append( " SUBSTRING(KERESTE.Kodu, 13, 4) <= '" + token[3] + "'  AND"  );
-		}
 		String sql =  " SELECT  Evrak_No  "
 				+ " , Barkod  "
 				+ " , Kodu  "
@@ -1275,7 +1158,6 @@ public class KERESTE_MYSQL implements IKERESTE {
 
 	@Override
 	public ResultSet ker_barkod_kod_oku(String sira) throws ClassNotFoundException, SQLException {
-		 
 		ResultSet	rss = null;
 		String sql =   "SELECT  DISTINCT Paket_No , Konsimento FROM KERESTE   " +
 				" WHERE Cikis_Evrak = '' " +
@@ -1288,15 +1170,13 @@ public class KERESTE_MYSQL implements IKERESTE {
 
 	@Override
 	public String kons_adi(String kons) throws ClassNotFoundException, SQLException {
-		 
 		ResultSet	rss = null;
 		kONTROL();
 		PreparedStatement stmt = con.prepareStatement("SELECT ACIKLAMA FROM KONS_ACIKLAMA  WHERE KONS =N'" + kons + "' ");
 		rss = stmt.executeQuery();
 		String result ;
-		if (!rss.isBeforeFirst() ) {  
+		if (!rss.isBeforeFirst() )
 			result = "" ;
-		}
 		else
 		{
 			rss.next();
@@ -1307,7 +1187,6 @@ public class KERESTE_MYSQL implements IKERESTE {
 
 	@Override
 	public ResultSet fat_rapor(KER_RAPOR_BILGI ker_rap_BILGI) throws ClassNotFoundException, SQLException {
-		 
 		ResultSet	rss = null;
 		String[] token = ker_rap_BILGI.getGKodu1().toString().split("-");
 		String ilks ,ilkk,ilkb,ilkg;
@@ -1426,7 +1305,6 @@ public class KERESTE_MYSQL implements IKERESTE {
 	@Override
 	public ResultSet fat_rapor_fat_tar(KER_RAPOR_BILGI ker_rap_BILGI, String qw1, String qw2, String qw3)
 			throws ClassNotFoundException, SQLException {
-		 
 		ResultSet	rss = null;
 		String[] token = ker_rap_BILGI.getGKodu1().toString().split("-");
 		String ilks ,ilkk,ilkb,ilkg;
@@ -1498,7 +1376,6 @@ public class KERESTE_MYSQL implements IKERESTE {
 	@Override
 	public ResultSet fat_rapor_cari_kod(KER_RAPOR_BILGI ker_rap_BILGI, String qw1, String qw2, String qw3)
 			throws ClassNotFoundException, SQLException {
-		 
 		ResultSet	rss = null;
 		String[] token = ker_rap_BILGI.getGKodu1().toString().split("-");
 		String ilks ,ilkk,ilkb,ilkg;
@@ -1568,26 +1445,17 @@ public class KERESTE_MYSQL implements IKERESTE {
 		ResultSet	rss = null;
 		String[] token = ker_rap_BILGI.getGKodu1().toString().split("-");
 		StringBuilder kODU = new StringBuilder();
-		if (! token[0].equals("00")) 
-		{
+		if (! token[0].equals("00"))
 			kODU.append(" SUBSTRING(KERESTE.Kodu, 1, 2) = '" + token[0] + "'  AND" );
-		}
 		if (! token[1].equals("000"))
-		{
 			kODU.append(" SUBSTRING(KERESTE.Kodu, 4, 3) = '" + token[1] + "' AND"  ) ;
-		}
-		if (! token[2].equals("0000")) 
-		{
+		if (! token[2].equals("0000"))
 			kODU.append(" SUBSTRING(KERESTE.Kodu, 8, 4) = '" + token[2] + "' AND" );
-		}
-		if (! token[3].equals("0000"))  {
+		if (! token[3].equals("0000"))
 			kODU.append( " SUBSTRING(KERESTE.Kodu, 13, 4) = '" + token[3] + "'  AND"  );
-		}
 		String evrakString = "" ;
 		if (ker_rap_BILGI.getEvrak_No1().toString().equals(""))
-		{
 			evrakString = " AND Evrak_No like '" + ker_rap_BILGI.getEvrak_No1() + "%'" ;
-		}
 		String sql =  " SELECT CAST(0 AS UNSIGNED),Evrak_No  "
 				+ " ,Barkod  "
 				+ " ,Kodu  "
@@ -1645,7 +1513,6 @@ public class KERESTE_MYSQL implements IKERESTE {
 
 	@Override
 	public void ker_kod_degis(String paket_No, String kon, String yenikod,int satir) throws ClassNotFoundException, SQLException {
-		 
 		String sql = "UPDATE KERESTE  " 
 				+ " SET  Kodu = CONCAT(N'" + yenikod + "' , SUBSTRING (Kodu, 3,14))" 
 				+ " WHERE  Paket_No = N'" + paket_No + "' AND Konsimento = N'" + kon + "' AND " 
@@ -1653,7 +1520,6 @@ public class KERESTE_MYSQL implements IKERESTE {
 		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();
-		
 	}
 
 	@Override
@@ -1661,13 +1527,9 @@ public class KERESTE_MYSQL implements IKERESTE {
 			throws ClassNotFoundException, SQLException {
 		String sql = "" ;
 		if(durum.equals("G"))
-		{
 			sql = "UPDATE KERESTE  SET Ana_Grup = '" + anaygrp + "'  , Alt_Grup = '" + altygrp + "'  WHERE Ana_Grup = '" + anagrp + "'  AND  Alt_Grup = '" + altgrp + "' ";
-		}
 		else if(durum.equals("C"))
-		{
 			sql = "UPDATE KERESTE  SET CAna_Grup = '" + anaygrp + "'  , CAlt_Grup = '" + altygrp + "'  WHERE CAna_Grup = '" + anagrp + "'  AND  CAlt_Grup = '" + altgrp + "' ";
-		}
 		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();
@@ -1675,7 +1537,6 @@ public class KERESTE_MYSQL implements IKERESTE {
 
 	@Override
 	public String[] kod_aciklama_bul(String paket, String kons) throws ClassNotFoundException, SQLException {
-		 
 		ResultSet	rss = null;
 		kONTROL();
 		PreparedStatement stmt = con.prepareStatement("SELECT DISTINCT (SELECT ACIKLAMA FROM KOD_ACIKLAMA WHERE Kod = SUBSTRING(KERESTE.Kodu,0,3)) as ACIKLAMA ,"
@@ -1703,7 +1564,6 @@ public class KERESTE_MYSQL implements IKERESTE {
 	public ResultSet ort_diger_kodu(String yu, String qwq6, String qwq7, String m1, String m2, String s1, String s2,
 			String k1, String k2, String t1, String t2, String kurkod, String kurc, String iu,String hANGI,boolean kurlu)
 			throws ClassNotFoundException, SQLException {
-		 
 		ResultSet	rss = null;
 		String[] token = k1.toString().split("-");
 		String ilks ,ilkk,ilkb,ilkg;
@@ -1783,25 +1643,20 @@ public class KERESTE_MYSQL implements IKERESTE {
 
 	@Override
 	public boolean kons_kontrol(String kons) throws ClassNotFoundException, SQLException {
-		 
 		ResultSet	rss = null;
 		kONTROL();
 		PreparedStatement stmt = con.prepareStatement("SELECT count(KONS) as KONS  FROM KONS_ACIKLAMA  WHERE KONS =N'" + kons + "' ");
 		rss = stmt.executeQuery();
 		boolean result =false;
-		if (!rss.isBeforeFirst() ) {  
+		if (!rss.isBeforeFirst() )
 			result = false ;
-		}
 		else
 		{
 			rss.next();
 			if( rss.getInt("KONS") ==0 )
-			{
 				result = false ;
-			}
-			else {
+			else
 				result = true;
-			}
 		}
 		return result;	
 	}
@@ -1858,12 +1713,9 @@ public class KERESTE_MYSQL implements IKERESTE {
 				stmt.setString(23,  user);
 				stmt.setString(24, mdl.getValueAt(i,12).toString());
 				if(!mdl.getValueAt(i,13).toString().equals(""))
-				{
 					stmt.setString(25,mdl.getValueAt(i,13).toString());
-				}
-				else {
+				else
 					stmt.setString(25,"1900.01.01");
-				}
 				stmt.setDouble(26, Double.parseDouble( mdl.getValueAt(i,14).toString()));
 				stmt.setString(27, mdl.getValueAt(i,15).toString());
 				stmt.setDouble(28, Double.parseDouble( mdl.getValueAt(i,16).toString()));
@@ -1884,10 +1736,8 @@ public class KERESTE_MYSQL implements IKERESTE {
 				stmt.setInt(43, i);
 				stmt.setInt(44, Integer.parseInt(mdl.getValueAt(i,30).toString()));
 				stmt.addBatch();
-				if ((i ) % 500 == 0) 
-				{
+				if ((i ) % 500 == 0)
 					stmt.executeBatch();
-				}
 			}
 		}
 		stmt.executeBatch();
@@ -1901,21 +1751,17 @@ public class KERESTE_MYSQL implements IKERESTE {
 		String[] token = ker_rap_BILGI.getGKodu1().toString().split("-");
 		String ilks ,ilkk,ilkb,ilkg;
 		ilks = token[0];
-		if (ilks.equals("00")) {
+		if (ilks.equals("00"))
 			ilks = "";
-		}
 		ilkk = token[1];
-		if (ilkk.equals("000")) {
+		if (ilkk.equals("000"))
 			ilkk = "";
-		}
 		ilkb = token[2];
-		if (ilkb.equals("0000")) {
+		if (ilkb.equals("0000"))
 			ilkb = "";
-		}
 		ilkg = token[3];
-		if (ilkg.equals("0000")) {
+		if (ilkg.equals("0000"))
 			ilkg = "";
-		}
 		String sql =  " SELECT  Evrak_No  "
 				+ " , Barkod  "
 				+ " , Kodu  "
@@ -1967,14 +1813,11 @@ public class KERESTE_MYSQL implements IKERESTE {
 		rss.next();
 		E_NUMBER = rss.getInt("Pak_No");
 		E_NUMBER = E_NUMBER + 1 ;
-		//******** KAYIT
 		sql = "UPDATE PAKET_NO SET Pak_No =" + E_NUMBER + "  WHERE Konsimento = N'" + kons+ "'";
 		stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();
 		stmt.close();
-		//**************
 		return E_NUMBER;	
-
 	}
 
 	@Override
@@ -1996,53 +1839,33 @@ public class KERESTE_MYSQL implements IKERESTE {
 		sonb = token[2];
 		song = token[3];
 		if(qwq6.equals(" Like  '%' "))
-		{
 			qwq6 =  " " ;
-		}
-		else {
+		else
 			qwq6 = dURUM + "Ana_Grup " + qwq6 ;
-		}
 		if(qwq7.equals(" Like  '%' "))
-		{
 			qwq7 =  " " ;
-		}
-		else {
+		else
 			qwq7 = " AND "+ dURUM + "Alt_Grup " + qwq7 ;
-		}
 		if(qwq8.equals(" Like  '%' "))
-		{
 			qwq8 =  " " ;
-		}
-		else {
+		else
 			qwq8 = " AND "+ dURUM + "Ozel_Kod " + qwq8 ;
-		}
 		if(dpo.equals(" Like  '%' "))
-		{
 			dpo =  " " ;
-		}
-		else {
+		else
 			dpo = " AND "+ dURUM + "Depo " + dpo + " AND ";
-		}
-		
-		///
 		String replaceString=sstr_1.replace('[',' ');//replaces all occurrences of 'a' to 'e'  
 		String replaceString2=replaceString.replace(']',' ');//replaces all occurrences of 'a' to 'e'  
 		String[] tokens =replaceString2.split(",");
 		String cASE = "" ;
 		for (String t : tokens)
-		{
 			cASE  = cASE + "Sum(CASE WHEN " + sstr_2 + "  = '" + t.trim() + "'  THEN " + sstr_4 + " ELSE 0 END) AS '"+ t.trim() + "',";
-		}
 		cASE = cASE.substring(0, cASE.length() - 1);
 		String qweString = "" ;
 		if(dURUM.equals("C"))
-		{
 			qweString = " Cikis_Evrak " ;
-		}
-		else {
+		else
 			qweString = " Evrak_No " ;
-		}
-		///
 		String sql =   " SELECT Paket_No , Konsimento ,SUBSTRING(KERESTE.Kodu, 8, 4) as Boy ,SUBSTRING(KERESTE.Kodu, 4, 3) as Kal , " +
 				" Sum( ((CONVERT( SUBSTRING(KERESTE.Kodu, 4, 3),DECIMAL )  *  CONVERT( SUBSTRING(KERESTE.Kodu, 8, 4),DECIMAL) * CONVERT(SUBSTRING(KERESTE.Kodu, 13, 4),DECIMAL )  ) * Miktar)/1000000000) as m3 , " +
 				" ((Sum(((CONVERT(SUBSTRING(KERESTE.Kodu, 4, 3),DECIMAL )  *  CONVERT(SUBSTRING(KERESTE.Kodu, 8, 4),DECIMAL) * CONVERT(SUBSTRING(KERESTE.Kodu, 13, 4),DECIMAL )  ) * Miktar)) / sum(miktar)) " +
@@ -2100,47 +1923,32 @@ public class KERESTE_MYSQL implements IKERESTE {
 		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();
-		
 	}
 
 	@Override
 	public ResultSet envanter(KER_RAPOR_BILGI ker_rap_BILGI,String gruplama[]) throws ClassNotFoundException, SQLException {
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		ResultSet	rss = null;
-		
 		String[] token = ker_rap_BILGI.getGKodu1().toString().split("-");
 		StringBuilder kODU = new StringBuilder();
-		if (! token[0].equals("00")) 
-		{
+		if (! token[0].equals("00"))
 			kODU.append(" SUBSTRING(KERESTE.Kodu, 1, 2) >= '" + token[0] + "'  AND" );
-		}
 		if (! token[1].equals("000"))
-		{
 			kODU.append(" SUBSTRING(KERESTE.Kodu, 4, 3) >= '" + token[1] + "' AND"  ) ;
-		}
-		if (! token[2].equals("0000")) 
-		{
+		if (! token[2].equals("0000"))
 			kODU.append(" SUBSTRING(KERESTE.Kodu, 8, 4) >= '" + token[2] + "' AND" );
-		}
 		if (! token[3].equals("0000"))  {
 			kODU.append( " SUBSTRING(KERESTE.Kodu, 13, 4) >= '" + token[3] + "'  AND"  );
 		}
 		token = ker_rap_BILGI.getGKodu2().toString().split("-");
-		if (! token[0].equals("ZZ")) 
-		{
+		if (! token[0].equals("ZZ"))
 			kODU.append(" SUBSTRING(KERESTE.Kodu, 1, 2) <= '" + token[0] + "'  AND" );
-		}
 		if (! token[1].equals("999"))
-		{
 			kODU.append(" SUBSTRING(KERESTE.Kodu, 4, 3) <= '" + token[1] + "' AND"  ) ;
-		}
-		if (! token[2].equals("9999")) 
-		{
+		if (! token[2].equals("9999"))
 			kODU.append(" SUBSTRING(KERESTE.Kodu, 8, 4) <= '" + token[2] + "' AND" );
-		}
-		if (! token[3].equals("9999"))  {
+		if (! token[3].equals("9999"))
 			kODU.append( " SUBSTRING(KERESTE.Kodu, 13, 4) <= '" + token[3] + "'  AND"  );
-		}
 		String sql =  " SELECT  " + gruplama[0]
 				+ ",SUM( Miktar )   as Giris_Miktar "
 				+ ",sum(((CONVERT( SUBSTRING(KERESTE.Kodu, 4, 3),DECIMAL )  *  CONVERT( SUBSTRING(KERESTE.Kodu, 8, 4),DECIMAL) * CONVERT( SUBSTRING(KERESTE.Kodu, 13, 4),DECIMAL )  ) * Miktar)/1000000000) as Giris_m3 "

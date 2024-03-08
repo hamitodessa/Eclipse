@@ -30,10 +30,8 @@ public class FIHRIST_MSSQL implements I_Fihrist{
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 		con = null;  
 		String cumle = "";
-		if ( ! sbilgi.getPort().toString().equals("") )
-		{
+		if ( ! sbilgi.getPort().toString().equals(""))
 			sbilgi.setPort(  ":" + sbilgi.getPort() );
-		}
 		cumle = "jdbc:sqlserver://localhost" + sbilgi.getPort() + ";instanceName=" + sbilgi.getIns() + ";";
 		con = DriverManager.getConnection(cumle,sbilgi.getKull(),sbilgi.getSifre());   // SERVER BAGLANDI
 		String VERITABANI = "OK_Fih" +  sbilgi.getKod();

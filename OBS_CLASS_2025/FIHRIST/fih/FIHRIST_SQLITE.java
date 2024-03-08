@@ -44,7 +44,6 @@ public class FIHRIST_SQLITE implements I_Fihrist{
 		con.close();
 		con.close();
 		sql = "CREATE INDEX IX_FIHRIST ON FIHRIST (Adi);" ;
-		
 		con = DriverManager.getConnection("jdbc:sqlite:" +  sbilgi.getDizin() + "/" + "OK_Fih" + sbilgi.getKod() + ".DB"  ) ;
 		stmt = con.createStatement();  
 		stmt.execute(sql);  

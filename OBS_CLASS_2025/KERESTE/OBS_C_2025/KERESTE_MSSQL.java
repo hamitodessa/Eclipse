@@ -30,10 +30,8 @@ public class KERESTE_MSSQL implements IKERESTE {
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 		con = null;  
 		String cumle = "";
-		if ( ! sbilgi.getPort().toString().equals("") )
-		{
+		if ( ! sbilgi.getPort().toString().equals(""))
 			sbilgi.setPort(  ":" + sbilgi.getPort() );
-		}
 		cumle = "jdbc:sqlserver://localhost" + sbilgi.getPort() + ";instanceName=" + sbilgi.getIns() + ";";
 		con = DriverManager.getConnection(cumle,sbilgi.getKull(),sbilgi.getSifre());
 		String VERITABANI = "OK_Ker" + sbilgi.getKod();
@@ -524,7 +522,6 @@ public class KERESTE_MSSQL implements IKERESTE {
 		stmt.setString(2, aciklama);
 		stmt.executeUpdate();
 		stmt.close();
-		
 	}
 
 	@Override
@@ -557,7 +554,6 @@ public class KERESTE_MSSQL implements IKERESTE {
 		stmt.setString(1, kons);
 		stmt.setString(2, aciklama);
 		stmt.executeUpdate();
-		
 		sql  = "INSERT INTO PAKET_NO (Pak_No,Konsimento) " +
 				" VALUES (?,?)" ;
 		stmt = null;
@@ -580,9 +576,8 @@ public class KERESTE_MSSQL implements IKERESTE {
 		stmt = con.prepareStatement("SELECT Pak_No FROM PAKET_NO  WHERE Konsimento =N'" + kons + "' ");
 		rss = stmt.executeQuery();
 		int result ;
-		if (!rss.isBeforeFirst() ) {  
+		if (!rss.isBeforeFirst() )
 			result = 0 ;
-		}
 		else
 		{
 			rss.next();
@@ -597,23 +592,20 @@ public class KERESTE_MSSQL implements IKERESTE {
 
 	@Override
 	public String kod_adi(String kod) throws ClassNotFoundException, SQLException {
-		
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 		ResultSet	rss = null;
 		kONTROL();
 		PreparedStatement stmt = con.prepareStatement("SELECT ACIKLAMA FROM KOD_ACIKLAMA  WHERE KOD =N'" + kod+ "' ");
 		rss = stmt.executeQuery();
 		String result ;
-		if (!rss.isBeforeFirst() ) {  
+		if (!rss.isBeforeFirst() )
 			result = "" ;
-		}
 		else
 		{
 			rss.next();
 			result = rss.getString("ACIKLAMA");
 		}
 		return result;	
-		
 	}
 
 	@Override
@@ -675,7 +667,6 @@ public class KERESTE_MSSQL implements IKERESTE {
 		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();
-		
 	}
 
 	@Override
@@ -686,7 +677,6 @@ public class KERESTE_MSSQL implements IKERESTE {
 		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();
-		
 	}
 
 	@Override
@@ -697,7 +687,6 @@ public class KERESTE_MSSQL implements IKERESTE {
 		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();
-		
 	}
 
 	@Override
@@ -713,14 +702,10 @@ public class KERESTE_MSSQL implements IKERESTE {
 		rss.next();
 		int count=0;
 		count = rss.getRow();
-		if (count  != 0)  
-		{
+		if (count  != 0)
 			maks  = rss.getInt("maks");
-		}
 		else
-		{
 			maks  = 0 ;
-		}
 		sql  =  "INSERT INTO " + nerden + " (" + fieldd + "," + degisken_adi + ",[USER]) " +
 				" VALUES (?,?,?)" ;
 		stmt = null;
@@ -730,7 +715,6 @@ public class KERESTE_MSSQL implements IKERESTE {
 		stmt.setString(3, GLOBAL.KULL_ADI);
 		stmt.executeUpdate();
 		stmt.close();
-		
 	}
 
 	@Override
@@ -746,14 +730,10 @@ public class KERESTE_MSSQL implements IKERESTE {
 		rss.next();
 		int count=0;
 		count = rss.getRow();
-		if (count  != 0) 
-		{ 
+		if (count  != 0)
 			maks  = rss.getInt("ALID_Y");
-		}
 		else
-		{
 			maks  = 0 ;
-		}
 		sql  = "INSERT INTO ALT_GRUP_DEGISKEN (ALID_Y,ALT_GRUP,ANA_GRUP,[USER]) " +
 				" VALUES (?,?,?,?)" ;
 		stmt = null;
@@ -764,7 +744,6 @@ public class KERESTE_MSSQL implements IKERESTE {
 		stmt.setString(4, GLOBAL.KULL_ADI);
 		stmt.executeUpdate();
 		stmt.close(); 
-		
 	}
 
 	@Override
@@ -782,18 +761,15 @@ public class KERESTE_MSSQL implements IKERESTE {
 		ResultSet	rss = null;
 		String result ;
 		String sql ;
-		if (cins.equals("G")) {
+		if (cins.equals("G"))
 			sql = "SELECT max(Evrak_No)  as NO FROM KERESTE  ";
-		}
-		else {
+		else
 			sql = "SELECT max(Cikis_Evrak)  as NO FROM KERESTE  ";
-		}
 		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
-		if (!rss.isBeforeFirst() ) {  
+		if (!rss.isBeforeFirst() )
 			result = ""  ;
-		}
 		else
 		{
 			rss.next();
@@ -870,7 +846,6 @@ public class KERESTE_MSSQL implements IKERESTE {
 		stmt.setInt(44, kBILGI.getCSatir());
 		stmt.executeUpdate();
 		stmt.close();
-		
 	}
 
 	@Override
@@ -911,7 +886,6 @@ public class KERESTE_MSSQL implements IKERESTE {
 		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();
-		
 	}
 
 	@Override
@@ -932,7 +906,6 @@ public class KERESTE_MSSQL implements IKERESTE {
 		stmt.setString(7, usr);
 		stmt.executeUpdate();
 		stmt.close();
-		
 	}
 
 	@Override
@@ -961,7 +934,6 @@ public class KERESTE_MSSQL implements IKERESTE {
 		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();
-		
 	}
 
 	@Override
@@ -980,7 +952,6 @@ public class KERESTE_MSSQL implements IKERESTE {
 		stmt.setString(5, gircik);
 		stmt.executeUpdate();
 		stmt.close();
-		
 	}
 
 	@Override
@@ -998,9 +969,8 @@ public class KERESTE_MSSQL implements IKERESTE {
 		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
-		if (!rss.isBeforeFirst() ) {  
+		if (!rss.isBeforeFirst() )
 			result = "" ;
-		}
 		else
 		{
 			rss.next();
@@ -1016,9 +986,7 @@ public class KERESTE_MSSQL implements IKERESTE {
 		ResultSet	rss = null;
 		String dURUMString= "";
 		if(nerden.equals("C"))
-		{
 			dURUMString= " AND Cikis_Evrak = ''";
-		}
 		String sql = "SELECT   [Evrak_No] ,[Barkod] ,[Kodu],[Paket_No],[Konsimento] ,[Miktar],[Cikis_Evrak]  ,[CTarih]   ,"
 				+ " [CKdv] ,[CDoviz]  ,[CFiat] ,[CTutar] ,[CKur], " 
 				+ " [CCari_Firma] ,[CAdres_Firma] ,[CIskonto]  ,[CTevkifat],[CAna_Grup]    ,[CAlt_Grup] , "
@@ -1073,18 +1041,15 @@ public class KERESTE_MSSQL implements IKERESTE {
 		ResultSet	rss = null;
 		int E_NUMBER ;
 		String sql ="" ;
-		if (cins.equals("G")) {
+		if (cins.equals("G"))
 			sql = "SELECT max(Evrak_No + 1) AS NO  FROM KERESTE  ";
-		}
-		else {
+		else
 			sql = "SELECT max(Cikis_Evrak + 1) AS NO  FROM KERESTE  ";
-		}
 		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
-		if (!rss.isBeforeFirst() ) {  
+		if (!rss.isBeforeFirst() )
 			E_NUMBER = 0 ;
-		}
 		else
 		{
 			rss.next();
@@ -1112,12 +1077,9 @@ public class KERESTE_MSSQL implements IKERESTE {
 		song = token[3];
 		String qweString = "" ;
 		if(dURUM.equals("C"))
-		{
 			qweString = " Cikis_Evrak " ;
-		}
-		else {
+		else
 			qweString = " Evrak_No " ;
-		}
 		String tARIH = "" ;
 		if(! t1.equals("1900.01.01") && ! t2.equals("2100.12.31"))
 			tARIH = " AND " + dURUM + "Tarih BETWEEN '" + t1 + "'  AND  '"  + t2 + " 23:59:59.998'" ;
@@ -1146,73 +1108,44 @@ public class KERESTE_MSSQL implements IKERESTE {
 		ResultSet	rss = null;
 		String[] token = k1.toString().split("-");
 		StringBuilder kODU = new StringBuilder();
-		if (! token[0].equals("00")) 
-		{
+		if (! token[0].equals("00"))
 			kODU.append(" SUBSTRING(KERESTE.Kodu, 1, 2) >= '" + token[0] + "'  AND" );
-		}
 		if (! token[1].equals("000"))
-		{
 			kODU.append(" SUBSTRING(KERESTE.Kodu, 4, 3) >= '" + token[1] + "' AND"  ) ;
-		}
-		if (! token[2].equals("0000")) 
-		{
+		if (! token[2].equals("0000"))
 			kODU.append(" SUBSTRING(KERESTE.Kodu, 8, 4) >= '" + token[2] + "' AND" );
-		}
-		if (! token[3].equals("0000"))  {
+		if (! token[3].equals("0000"))
 			kODU.append( " SUBSTRING(KERESTE.Kodu, 13, 4) >= '" + token[3] + "'  AND"  );
-		}
 		token = k2.toString().split("-");
-		if (! token[0].equals("ZZ")) 
-		{
+		if (! token[0].equals("ZZ"))
 			kODU.append(" SUBSTRING(KERESTE.Kodu, 1, 2) <= '" + token[0] + "'  AND" );
-		}
 		if (! token[1].equals("999"))
-		{
 			kODU.append(" SUBSTRING(KERESTE.Kodu, 4, 3) <= '" + token[1] + "' AND"  ) ;
-		}
-		if (! token[2].equals("9999")) 
-		{
+		if (! token[2].equals("9999"))
 			kODU.append(" SUBSTRING(KERESTE.Kodu, 8, 4) <= '" + token[2] + "' AND" );
-		}
-		if (! token[3].equals("9999"))  {
+		if (! token[3].equals("9999"))
 			kODU.append( " SUBSTRING(KERESTE.Kodu, 13, 4) <= '" + token[3] + "'  AND"  );
-		}
 		if(qwq6.equals(" Like  '%' "))
-		{
 			qwq6 =  " " ;
-		}
-		else {
+		else
 			qwq6 = dURUM + "Ana_Grup " + qwq6 ;
-		}
 		if(qwq7.equals(" Like  '%' "))
-		{
 			qwq7 =  " " ;
-		}
-		else {
+		else
 			qwq7 = " AND "+ dURUM + "Alt_Grup " + qwq7 ;
-		}
 		if(qwq8.equals(" Like  '%' "))
-		{
 			qwq8 =  " " ;
-		}
-		else {
+		else
 			qwq8 = " AND "+ dURUM + "Ozel_Kod " + qwq8 ;
-		}
 		if(dpo.equals(" Like  '%' "))
-		{
 			dpo =  " " ;
-		}
-		else {
+		else
 			dpo = " AND "+ dURUM + "Depo " + dpo + " AND ";
-		}
 		String qweString = "" ;
 		if(dURUM.equals("C"))
-		{
 			qweString = " Cikis_Evrak " ;
-		}
-		else {
+		else
 			qweString = " Evrak_No " ;
-		}
 		String sql =   "SELECT * " +
 				" FROM  (SELECT "+ gruplama + " ," + sstr_2 + " as  degisken , " + sstr_4 +
 				" FROM KERESTE   " + kur_dos + 
@@ -1245,37 +1178,23 @@ public class KERESTE_MSSQL implements IKERESTE {
 		
 		String[] token = ker_rap_BILGI.getGKodu1().toString().split("-");
 		StringBuilder kODU = new StringBuilder();
-		if (! token[0].equals("00")) 
-		{
+		if (! token[0].equals("00"))
 			kODU.append(" SUBSTRING(KERESTE.Kodu, 1, 2) >= '" + token[0] + "'  AND" );
-		}
 		if (! token[1].equals("000"))
-		{
 			kODU.append(" SUBSTRING(KERESTE.Kodu, 4, 3) >= '" + token[1] + "' AND"  ) ;
-		}
-		if (! token[2].equals("0000")) 
-		{
+		if (! token[2].equals("0000"))
 			kODU.append(" SUBSTRING(KERESTE.Kodu, 8, 4) >= '" + token[2] + "' AND" );
-		}
-		if (! token[3].equals("0000"))  {
+		if (! token[3].equals("0000"))
 			kODU.append( " SUBSTRING(KERESTE.Kodu, 13, 4) >= '" + token[3] + "'  AND"  );
-		}
 		token = ker_rap_BILGI.getGKodu2().toString().split("-");
-		if (! token[0].equals("ZZ")) 
-		{
+		if (! token[0].equals("ZZ"))
 			kODU.append(" SUBSTRING(KERESTE.Kodu, 1, 2) <= '" + token[0] + "'  AND" );
-		}
 		if (! token[1].equals("999"))
-		{
 			kODU.append(" SUBSTRING(KERESTE.Kodu, 4, 3) <= '" + token[1] + "' AND"  ) ;
-		}
-		if (! token[2].equals("9999")) 
-		{
+		if (! token[2].equals("9999"))
 			kODU.append(" SUBSTRING(KERESTE.Kodu, 8, 4) <= '" + token[2] + "' AND" );
-		}
-		if (! token[3].equals("9999"))  {
+		if (! token[3].equals("9999"))
 			kODU.append( " SUBSTRING(KERESTE.Kodu, 13, 4) <= '" + token[3] + "'  AND"  );
-		}
 		String sql =  " SELECT [Evrak_No] "
 				+ " ,[Barkod] "
 				+ " ,[Kodu] "
@@ -1364,9 +1283,8 @@ public class KERESTE_MSSQL implements IKERESTE {
 		PreparedStatement stmt = con.prepareStatement("SELECT ACIKLAMA FROM KONS_ACIKLAMA  WHERE KONS =N'" + kons + "' ");
 		rss = stmt.executeQuery();
 		String result ;
-		if (!rss.isBeforeFirst() ) {  
+		if (!rss.isBeforeFirst() )
 			result = "" ;
-		}
 		else
 		{
 			rss.next();
@@ -1638,26 +1556,17 @@ public class KERESTE_MSSQL implements IKERESTE {
 		ResultSet	rss = null;
 		String[] token = ker_rap_BILGI.getGKodu1().toString().split("-");
 		StringBuilder kODU = new StringBuilder();
-		if (! token[0].equals("00")) 
-		{
+		if (! token[0].equals("00"))
 			kODU.append(" SUBSTRING(KERESTE.Kodu, 1, 2) = '" + token[0] + "'  AND" );
-		}
 		if (! token[1].equals("000"))
-		{
 			kODU.append(" SUBSTRING(KERESTE.Kodu, 4, 3) = '" + token[1] + "' AND"  ) ;
-		}
-		if (! token[2].equals("0000")) 
-		{
+		if (! token[2].equals("0000"))
 			kODU.append(" SUBSTRING(KERESTE.Kodu, 8, 4) = '" + token[2] + "' AND" );
-		}
-		if (! token[3].equals("0000"))  {
+		if (! token[3].equals("0000"))
 			kODU.append( " SUBSTRING(KERESTE.Kodu, 13, 4) = '" + token[3] + "'  AND"  );
-		}
 		String evrakString = "" ;
 		if (ker_rap_BILGI.getEvrak_No1().toString().equals(""))
-		{
 			evrakString = " AND Evrak_No like '" + ker_rap_BILGI.getEvrak_No1() + "%'" ;
-		}
 		String sql =  " SELECT CAST(0 as bit) ,[Evrak_No] "
 				+ " ,[Barkod] "
 				+ " ,[Kodu] "
@@ -1731,17 +1640,12 @@ public class KERESTE_MSSQL implements IKERESTE {
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver"); 
 		String sql = "" ;
 		if(durum.equals("G"))
-		{
 			sql = "UPDATE KERESTE  SET Ana_Grup = '" + anaygrp + "'  , Alt_Grup = '" + altygrp + "'  WHERE Ana_Grup = '" + anagrp + "'  AND  Alt_Grup = '" + altgrp + "' ";
-		}
 		else if(durum.equals("C"))
-		{
 			sql = "UPDATE KERESTE  SET CAna_Grup = '" + anaygrp + "'  , CAlt_Grup = '" + altygrp + "'  WHERE CAna_Grup = '" + anagrp + "'  AND  CAlt_Grup = '" + altgrp + "' ";
-		}
 		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();
-		
 	}
 
 	@Override
@@ -1755,7 +1659,8 @@ public class KERESTE_MSSQL implements IKERESTE {
 					+ " WHERE Paket_No ='" + paket + "' and  Konsimento = '" + kons + "' ");
 		rss = stmt.executeQuery();
 		String result[] = {"","",""} ;
-		if (!rss.isBeforeFirst() ) {  
+		if (!rss.isBeforeFirst() ) 
+		{  
 			result[0] = "" ;
 			result[1] = "" ;
 			result[2] = "" ;
@@ -1859,19 +1764,15 @@ public class KERESTE_MSSQL implements IKERESTE {
 		PreparedStatement stmt = con.prepareStatement("SELECT count(KONS) as KONS  FROM KONS_ACIKLAMA  WHERE KONS =N'" + kons + "' ");
 		rss = stmt.executeQuery();
 		boolean result =false;
-		if (!rss.isBeforeFirst() ) {  
+		if (!rss.isBeforeFirst() )
 			result = false ;
-		}
 		else
 		{
 			rss.next();
 			if( rss.getInt("KONS") ==0 )
-			{
 				result = false ;
-			}
-			else {
+			else
 				result = true;
-			}
 		}
 		return result;	
 	}
@@ -1944,16 +1845,12 @@ public class KERESTE_MSSQL implements IKERESTE {
 				stmt.setString(39, mdl.getValueAt(i,27).toString());
 				stmt.setInt(40, Integer.parseInt(mdl.getValueAt(i,28).toString()));
 				stmt.setString(41,  mdl.getValueAt(i,29).toString());
-				
 				stmt.setInt(42, degisken[5]);
 				stmt.setInt(43, i);
-				
 				stmt.setInt(44, Integer.parseInt(mdl.getValueAt(i,30).toString()));
 				stmt.addBatch();
-				if ((i ) % 500 == 0) 
-				{
+				if ((i ) % 500 == 0)
 					stmt.executeBatch();
-				}
 			}
 		}
 		stmt.executeBatch();
@@ -1967,21 +1864,17 @@ public class KERESTE_MSSQL implements IKERESTE {
 		String[] token = ker_rap_BILGI.getGKodu1().toString().split("-");
 		String ilks ,ilkk,ilkb,ilkg;
 		ilks = token[0];
-		if (ilks.equals("00")) {
+		if (ilks.equals("00"))
 			ilks = "";
-		}
 		ilkk = token[1];
-		if (ilkk.equals("000")) {
+		if (ilkk.equals("000"))
 			ilkk = "";
-		}
 		ilkb = token[2];
-		if (ilkb.equals("0000")) {
+		if (ilkb.equals("0000"))
 			ilkb = "";
-		}
 		ilkg = token[3];
-		if (ilkg.equals("0000")) {
+		if (ilkg.equals("0000"))
 			ilkg = "";
-		}
 		String sql =  " SELECT [Evrak_No] "
 				+ " ,[Barkod] "
 				+ " ,[Kodu] "
@@ -2063,41 +1956,26 @@ public class KERESTE_MSSQL implements IKERESTE {
 		sonb = token[2];
 		song = token[3];
 		if(qwq6.equals(" Like  '%' "))
-		{
 			qwq6 =  " " ;
-		}
-		else {
+		else
 			qwq6 = dURUM + "Ana_Grup " + qwq6 ;
-		}
 		if(qwq7.equals(" Like  '%' "))
-		{
 			qwq7 =  " " ;
-		}
-		else {
+		else
 			qwq7 = " AND "+ dURUM + "Alt_Grup " + qwq7 ;
-		}
 		if(qwq8.equals(" Like  '%' "))
-		{
 			qwq8 =  " " ;
-		}
-		else {
+		else
 			qwq8 = " AND "+ dURUM + "Ozel_Kod " + qwq8 ;
-		}
 		if(dpo.equals(" Like  '%' "))
-		{
 			dpo =  " " ;
-		}
-		else {
+		else
 			dpo = " AND "+ dURUM + "Depo " + dpo + " AND ";
-		}
 		String qweString = "" ;
 		if(dURUM.equals("C"))
-		{
 			qweString = " Cikis_Evrak " ;
-		}
-		else {
+		else
 			qweString = " Evrak_No " ;
-		}
 		String sql =   "SELECT [Paket_No] , Konsimento ,SUBSTRING(KERESTE.Kodu, 8, 4) as Boy ,SUBSTRING(KERESTE.Kodu, 4, 3) as Kal , " +
 				" Sum( ((CONVERT(INT, SUBSTRING(KERESTE.Kodu, 4, 3) )  *  CONVERT(INT, SUBSTRING(KERESTE.Kodu, 8, 4)) * CONVERT(INT, SUBSTRING(KERESTE.Kodu, 13, 4) )  ) * Miktar)/1000000000) as m3 , " +
 				" ((Sum(((CONVERT(INT, SUBSTRING(KERESTE.Kodu, 4, 3) )  *  CONVERT(INT, SUBSTRING(KERESTE.Kodu, 8, 4)) * CONVERT(INT, SUBSTRING(KERESTE.Kodu, 13, 4) )  ) * Miktar)) / sum(miktar)) " +
@@ -2157,7 +2035,6 @@ public class KERESTE_MSSQL implements IKERESTE {
 		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();
-		
 	}
 
 	@Override
@@ -2167,37 +2044,23 @@ public class KERESTE_MSSQL implements IKERESTE {
 		
 		String[] token = ker_rap_BILGI.getGKodu1().toString().split("-");
 		StringBuilder kODU = new StringBuilder();
-		if (! token[0].equals("00")) 
-		{
+		if (! token[0].equals("00"))
 			kODU.append(" SUBSTRING(KERESTE.Kodu, 1, 2) >= '" + token[0] + "'  AND" );
-		}
 		if (! token[1].equals("000"))
-		{
 			kODU.append(" SUBSTRING(KERESTE.Kodu, 4, 3) >= '" + token[1] + "' AND"  ) ;
-		}
-		if (! token[2].equals("0000")) 
-		{
+		if (! token[2].equals("0000"))
 			kODU.append(" SUBSTRING(KERESTE.Kodu, 8, 4) >= '" + token[2] + "' AND" );
-		}
-		if (! token[3].equals("0000"))  {
+		if (! token[3].equals("0000"))
 			kODU.append( " SUBSTRING(KERESTE.Kodu, 13, 4) >= '" + token[3] + "'  AND"  );
-		}
 		token = ker_rap_BILGI.getGKodu2().toString().split("-");
-		if (! token[0].equals("ZZ")) 
-		{
+		if (! token[0].equals("ZZ"))
 			kODU.append(" SUBSTRING(KERESTE.Kodu, 1, 2) <= '" + token[0] + "'  AND" );
-		}
 		if (! token[1].equals("999"))
-		{
 			kODU.append(" SUBSTRING(KERESTE.Kodu, 4, 3) <= '" + token[1] + "' AND"  ) ;
-		}
-		if (! token[2].equals("9999")) 
-		{
+		if (! token[2].equals("9999"))
 			kODU.append(" SUBSTRING(KERESTE.Kodu, 8, 4) <= '" + token[2] + "' AND" );
-		}
-		if (! token[3].equals("9999"))  {
+		if (! token[3].equals("9999"))
 			kODU.append( " SUBSTRING(KERESTE.Kodu, 13, 4) <= '" + token[3] + "'  AND"  );
-		}
 		String sql =  " SELECT  " + gruplama[0]
 				+ ",SUM( Miktar )   as Giris_Miktar "
 				+ ",sum(((CONVERT(INT, SUBSTRING(KERESTE.Kodu, 4, 3) )  *  CONVERT(INT, SUBSTRING(KERESTE.Kodu, 8, 4)) * CONVERT(INT, SUBSTRING(KERESTE.Kodu, 13, 4) )  ) * Miktar)/1000000000) as Giris_m3 "

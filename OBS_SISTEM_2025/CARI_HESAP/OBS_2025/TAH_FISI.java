@@ -229,6 +229,7 @@ public class TAH_FISI extends JInternalFrame {
 		cmbTur.setModel(new DefaultComboBoxModel<String>(new String[] {"Nakit", "Cek", "Kredi Karti"}));
 		
 		dtc = new JDateChooser();
+		//dtc.getComponent(1).setBackground(new Color(235, 235, 235));
 		dtc.setBounds(281, 11, 150, 24);
 		panel_2.add(dtc);
 		dtc.getDateEditor().getUiComponent().addFocusListener(new FocusAdapter()    {

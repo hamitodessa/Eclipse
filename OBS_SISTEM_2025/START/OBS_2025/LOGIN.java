@@ -84,6 +84,7 @@ import com.formdev.flatlaf.intellijthemes.FlatArcDarkIJTheme;
 import com.formdev.flatlaf.intellijthemes.FlatArcDarkOrangeIJTheme;
 import com.formdev.flatlaf.intellijthemes.FlatArcIJTheme;
 import com.formdev.flatlaf.intellijthemes.FlatArcOrangeIJTheme;
+import com.formdev.flatlaf.intellijthemes.FlatCarbonIJTheme;
 import com.formdev.flatlaf.intellijthemes.FlatCobalt2IJTheme;
 import com.formdev.flatlaf.intellijthemes.FlatCyanLightIJTheme;
 import com.formdev.flatlaf.intellijthemes.FlatDarkPurpleIJTheme;
@@ -299,8 +300,14 @@ public class LOGIN extends JDialog {
 				FlatMonocaiIJTheme.setup();
 				FlatLaf.updateUI();
 			}//
+			else if (GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("FlatCarbonIJ")) 
+			{
+				FlatCarbonIJTheme.setup();
+				FlatLaf.updateUI();
+			}//
 			SwingUtilities.updateComponentTreeUI(this); //UIManager.setLookAndFeel(new
 
+			
 		} catch (Exception ex) {
 			//Logger.getLogger(LOGIN.class.getName()).log(java.util. logging.Level.SEVERE, null, ex); 
 		}

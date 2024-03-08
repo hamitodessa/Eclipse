@@ -33,6 +33,7 @@ import OBS_C_2025.Obs_TextFIeld;
 import OBS_C_2025.TARIH_CEVIR;
 
 import javax.swing.border.LineBorder;
+
 import com.toedter.calendar.JDateChooser;
 
 
@@ -356,8 +357,7 @@ public class PARAMETRELER   extends JInternalFrame   {
 		//comboBox_2.setForeground(new Color(25, 25, 112));
 		comboBox_2.setFont(new Font("Tahoma", Font.BOLD, 14));
 
-
-		comboBox_2.setModel(new DefaultComboBoxModel<String>(new String[] {"Windows" ,"TextureLookAndFeel","FlatSolarizedLightIJTheme" ,"FlatArcOrangeIJTheme" ,
+		comboBox_2.setModel(new DefaultComboBoxModel<String>(new String[] {"Windows" ,"TextureLookAndFeel","FlatSolarizedLightIJTheme" ,"FlatCarbonIJ","FlatArcOrangeIJTheme" ,
 				"FlatSpacegrayIJTheme","FlatArcIJTheme","FlatCyanLightIJTheme","FlatHighContrastIJTheme","FlatGrayIJTheme","FlatNordIJTheme",
 				"FlatGradiantoNatureGreenIJTheme","FlatMaterial" ,"FlatMonocaiIJ" ,"SmartLookAndFeel","NoireLookAndFeel","AcrylLookAndFeel" ,
 				"AeroLookAndFeel","AluminiumLookAndFeel","BernsteinLookAndFeel","FastLookAndFeel","GraphiteLookAndFeel","HiFiLookAndFeel",

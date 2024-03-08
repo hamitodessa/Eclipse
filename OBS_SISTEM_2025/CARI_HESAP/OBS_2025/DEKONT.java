@@ -529,9 +529,9 @@ public class DEKONT extends JInternalFrame {
 		panel_1.add(btnbh);
 
 		lblb = new JLabel("...");
-		lblb.setForeground(new Color(128, 0, 0));
+		//lblb.setForeground(new Color(128, 0, 0));
 		lblb.setFont(new Font("Tahoma", Font.BOLD, 16));
-		lblb.setBounds(230, 50, 46, 20);
+		lblb.setBounds(230, 50, 59, 20);
 		panel_1.add(lblb);
 
 		cmbb = new JComboBox<String>();
@@ -685,7 +685,7 @@ public class DEKONT extends JInternalFrame {
 		df.setMinimumFractionDigits(2);
 		df.setMaximumFractionDigits(2);
 		txtbtutar.setFormatterFactory(f_dob);
-		txtbtutar.setBounds(512, 40, 190, 30);
+		txtbtutar.setBounds(496, 40, 206, 30);
 		panel_1.add(txtbtutar);
 
 		txtbkur = new JFormattedTextField();
@@ -1032,9 +1032,9 @@ public class DEKONT extends JInternalFrame {
 		panel_1_1.add(btnah);
 
 		lbla = new JLabel("...");
-		lbla.setForeground(new Color(0, 128, 128));
+		//lbla.setForeground(new Color(0, 128, 128));
 		lbla.setFont(new Font("Tahoma", Font.BOLD, 16));
-		lbla.setBounds(230, 50, 46, 20);
+		lbla.setBounds(230, 50, 59, 20);
 		panel_1_1.add(lbla);
 
 		cmba = new JComboBox<String>();
@@ -1207,7 +1207,7 @@ public class DEKONT extends JInternalFrame {
 		txtatutar.setHorizontalAlignment(SwingConstants.RIGHT);
 		//txtatutar.setForeground(new Color(0, 0, 139));
 		txtatutar.setFont(new Font("Tahoma", Font.BOLD, 22));
-		txtatutar.setBounds(512, 40, 190, 30);
+		txtatutar.setBounds(496, 40, 206, 30);
 		panel_1_1.add(txtatutar);
 
 		txtakur = new JFormattedTextField();

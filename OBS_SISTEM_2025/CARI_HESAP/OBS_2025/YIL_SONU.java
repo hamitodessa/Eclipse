@@ -548,7 +548,7 @@ public class YIL_SONU extends JInternalFrame {
 					OBS_MAIN.progressBar.setStringPainted(true);
 					OBS_MAIN.progressBar.setMaximum(table.getRowCount()-1); 
 					hEPSI = true;
-					for(int x = 0, y = table.getRowCount(); x < y; x++)
+					for(int x = 0; x < table.getRowCount(); x++)
 					{
 						Progres_Bar(table.getRowCount()-1, x);
 						table.setValueAt(checked,x,0);

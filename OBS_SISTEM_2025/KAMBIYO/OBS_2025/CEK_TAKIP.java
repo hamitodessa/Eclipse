@@ -89,7 +89,7 @@ public class CEK_TAKIP extends JInternalFrame {
 		panel_1.setLayout(null);
 
 		textField = new Obs_TextFIeld(10);
-		textField.setBounds(99, 20, 137, 20);
+		textField.setBounds(121, 20, 130, 20);
 		textField.setFont(new Font("Tahoma", Font.BOLD, 12));
 
 		textField.getDocument().addDocumentListener(new DocumentListener() {
@@ -177,7 +177,7 @@ public class CEK_TAKIP extends JInternalFrame {
 		JPanel panel_1_1 = new JPanel();
 		panel_1_1.setLayout(null);
 		panel_1_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Islem", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panel_1_1.setBounds(10, 301, 587, 59);
+		panel_1_1.setBounds(10, 310, 587, 59);
 		panel.add(panel_1_1);
 
 		dateChooser_3 = new JDateChooser();
@@ -251,7 +251,7 @@ public class CEK_TAKIP extends JInternalFrame {
 		panel.add(lblNewLabel_12);
 
 		lblNewLabel_13 = new JLabel("...");
-		lblNewLabel_13.setBounds(371, 91, 202, 14);
+		lblNewLabel_13.setBounds(371, 91, 217, 14);
 		panel.add(lblNewLabel_13);
 
 		lblNewLabel_14 = new JLabel("...");
@@ -271,7 +271,7 @@ public class CEK_TAKIP extends JInternalFrame {
 		panel.add(lblNewLabel_17);
 
 		lblNewLabel_18 = new JLabel("...");
-		lblNewLabel_18.setBounds(371, 204, 152, 14);
+		lblNewLabel_18.setBounds(371, 204, 217, 14);
 		panel.add(lblNewLabel_18);
 
 		JLabel lblNewLabel_19 = new JLabel("Ilk Borclu");
@@ -279,7 +279,7 @@ public class CEK_TAKIP extends JInternalFrame {
 		panel.add(lblNewLabel_19);
 
 		lblNewLabel_20 = new JLabel("...");
-		lblNewLabel_20.setBounds(371, 232, 152, 14);
+		lblNewLabel_20.setBounds(371, 232, 217, 14);
 		panel.add(lblNewLabel_20);
 
 		JLabel lblNewLabel_21 = new JLabel("Tutar");
@@ -343,7 +343,7 @@ public class CEK_TAKIP extends JInternalFrame {
 				if (! rs.getDate("T_Tarih").toString().equals("1900-01-01"))
 					dateChooser_3.setDate(rs.getDate("T_Tarih")); // T tarihi
 				else
-					dateChooser_3.setDate(null); // T tarihi
+					dateChooser_3.setDate(new Date()); // T tarihi
 				label.setText(rs.getString("Giris_Ozel_Kod").toString() );
 				lblNewLabel_25.setText(rs.getString("Cikis_Ozel_Kod").toString() );
 				if (rs.getString("Durum").equals("1"))
@@ -402,7 +402,7 @@ public class CEK_TAKIP extends JInternalFrame {
 		dateChooser.setDate(null);   // Cikis Tarihi
 		dateChooser_2.setDate(null); // Vade
 		dateChooser_1.setDate(null); // Giris tarihi
-		dateChooser_3.setDate(null); // Giris tarihi
+		dateChooser_3.setDate(new Date()); // T tarihi
 		label.setText("" );
 		lblNewLabel_25.setText("" );
 		comboBox.setSelectedItem("");

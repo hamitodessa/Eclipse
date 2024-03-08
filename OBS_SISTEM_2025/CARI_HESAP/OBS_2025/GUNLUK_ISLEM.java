@@ -187,7 +187,7 @@ public class GUNLUK_ISLEM extends JInternalFrame {
 				}
 			}
 		});
-		table.setAutoResizeMode( JTable.AUTO_RESIZE_OFF );
+		//table.setAutoResizeMode( JTable.AUTO_RESIZE_OFF );
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
 		table.setSurrendersFocusOnKeystroke(true);
@@ -237,41 +237,48 @@ public class GUNLUK_ISLEM extends JInternalFrame {
 			tc = tcm.getColumn(0);
 			tc.setHeaderRenderer(new SOLA());
 			tc.setMinWidth(90);
+			tc.setMaxWidth(90);
 
 			tc = tcm.getColumn(1);
 			tc.setHeaderRenderer(new SOLA());
 			tc.setCellRenderer(new TARIH());
 			tc.setMinWidth(80);
+			tc.setMaxWidth(80);
 
 			tc = tcm.getColumn(2);
 			tc.setHeaderRenderer(new SOLA());
 			tc.setMinWidth(50);
+			tc.setMaxWidth(50);
 
 			tc = tcm.getColumn(3);
 			tc.setHeaderRenderer(new SOLA());
-			tc.setMinWidth(400);
+			//tc.setMinWidth(400);
 
 			tc = tcm.getColumn(4);
 			tc.setHeaderRenderer(new SOLA());
 			tc.setMinWidth(60);
+			tc.setMaxWidth(60);
 
 			tc = tcm.getColumn(5);
 			tc.setHeaderRenderer(new SAGA());
 			tc.setCellRenderer(new TABLO_RENDERER(2,false));
 			tc.setMinWidth(100);
+			tc.setMaxWidth(100);
 
 			tc = tcm.getColumn(6);
 			tc.setHeaderRenderer(new SAGA());
 			tc.setCellRenderer(new TABLO_RENDERER(2,false));
 			tc.setMinWidth(100);
+			tc.setMaxWidth(100);
 
 			tc = tcm.getColumn(7);
 			tc.setHeaderRenderer(new SOLA());
 			//tc.setCellRenderer(new SAGA());
 			tc.setMinWidth(30);
+			tc.setMaxWidth(30);
 
 			Dimension dd = th.getPreferredSize();
-			dd.height = 30;
+			dd.height = 50;
 			th.setPreferredSize(dd); 
 			th.repaint();
 			table.setRowSelectionInterval(0, 0);

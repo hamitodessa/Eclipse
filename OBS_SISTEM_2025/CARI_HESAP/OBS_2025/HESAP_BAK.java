@@ -256,7 +256,7 @@ public class HESAP_BAK extends JInternalFrame {
 				}
 			}
 		});
-		tbldetay.setAutoResizeMode( JTable.AUTO_RESIZE_OFF );
+		//tbldetay.setAutoResizeMode( JTable.AUTO_RESIZE_OFF );
 		tbldetay.setShowHorizontalLines(true);
 		tbldetay.setShowVerticalLines(true);
 		tbldetay.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -359,18 +359,21 @@ public class HESAP_BAK extends JInternalFrame {
 			tc = tcm.getColumn(0);
 			tc.setHeaderRenderer(new SOLA());
 			tc.setMinWidth(80);
+			tc.setMaxWidth(80);
 
 			tc = tcm.getColumn(1);
 			tc.setHeaderRenderer(new SOLA());
-			tc.setMinWidth(295);
+			//tc.setMinWidth(295);
 
 			tc = tcm.getColumn(2);
 			tc.setHeaderRenderer(new SOLA());
 			tc.setMinWidth(70);
+			tc.setMaxWidth(70);
 
 			tc = tcm.getColumn(3);
 			tc.setHeaderRenderer(new SOLA());
-			tc.setMinWidth(66);
+			tc.setMinWidth(65);
+			tc.setMaxWidth(65);
 
 			tblhesap.removeColumn(tcm.getColumn(4));
 
@@ -416,15 +419,17 @@ public class HESAP_BAK extends JInternalFrame {
 
 			tc = tcm.getColumn(0);
 			tc.setHeaderRenderer(new SOLA());
-			tc.setMinWidth(90);
+			tc.setMinWidth(80);
+			tc.setMaxWidth(80);
 
 			tc = tcm.getColumn(1);
 			tc.setHeaderRenderer(new SOLA());
-			tc.setMinWidth(250);
+			//tc.setMinWidth(250);
 
 			tc = tcm.getColumn(2);
 			tc.setHeaderRenderer(new SOLA());
-			tc.setMinWidth(40);
+			tc.setMinWidth(60);
+			tc.setMaxWidth(60);
 
 			Dimension dd = th.getPreferredSize();
 			dd.height = 30;
@@ -471,43 +476,51 @@ public class HESAP_BAK extends JInternalFrame {
 			tc.setHeaderRenderer(new SOLA());
 			tc.setCellRenderer(new TARIH());
 			tc.setMinWidth(80);
+			tc.setMaxWidth(80);
 
 			tc = tcm.getColumn(1);
 			tc.setHeaderRenderer(new SOLA());
 			tc.setMinWidth(60);
+			tc.setMaxWidth(60);
 
 			tc = tcm.getColumn(2);
 			tc.setHeaderRenderer(new SOLA());
-			tc.setMinWidth(420);
+			//tc.setMinWidth(420);
 
 			tc = tcm.getColumn(3);
 			tc.setHeaderRenderer(new SOLA());
 			tc.setMinWidth(50);
+			tc.setMaxWidth(50);
 
 			tc = tcm.getColumn(4);
 			tc.setHeaderRenderer(new SAGA());
 			tc.setCellRenderer(new TABLO_RENDERER(4,false));
 			tc.setMinWidth(80);
+			tc.setMaxWidth(80);
 
 			tc = tcm.getColumn(5);
 			tc.setHeaderRenderer(new SAGA());
 			tc.setCellRenderer(new TABLO_RENDERER(2,false));
 			tc.setMinWidth(100);
+			tc.setMaxWidth(100);
 
 			tc = tcm.getColumn(6);
 			tc.setHeaderRenderer(new SAGA());
 			tc.setCellRenderer(new TABLO_RENDERER(2,false));
 			tc.setMinWidth(100);
+			tc.setMaxWidth(100);
 
 			tc = tcm.getColumn(7);
 			tc.setHeaderRenderer(new SAGA());
 			tc.setCellRenderer(new TABLO_RENDERER(2,false));
 			tc.setMinWidth(120);
+			tc.setMaxWidth(120);
 
 			tc = tcm.getColumn(8);
 			tc.setHeaderRenderer(new SOLA());
 			//tc.setCellRenderer(new SAGA());
 			tc.setMinWidth(50);
+			tc.setMaxWidth(50);
 
 			Dimension dd = th.getPreferredSize();
 			dd.height = 30;

@@ -314,7 +314,7 @@ public class DVZ_CEVIRME extends JInternalFrame {
 			}
 			else 
 			{
-				if (  GLOBAL.setting_oku("PRG_PARA").toString().equals(FILTRE.lblNewLabel_2_1.getText()))
+				if (GLOBAL.setting_oku("PRG_PARA").toString().equals(FILTRE.lblNewLabel_2_1.getText()))
 					islem = "/" ;
 				else
 					islem = "*" ;
@@ -413,8 +413,6 @@ public class DVZ_CEVIRME extends JInternalFrame {
 			}
 			lblboskur.setText(FORMATLAMA.doub_0(boskur));
 			label_1.setText(FORMATLAMA.doub_0(model.getRowCount()));
-			//table.setSelectionBackground(Color.PINK);
-			//table.setSelectionForeground(Color.BLUE);
 			long endTime = System.currentTimeMillis();
 			long estimatedTime = endTime - startTime; 
 			double seconds = (double)estimatedTime/1000; 

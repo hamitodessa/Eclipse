@@ -63,7 +63,7 @@ import OBS_C_2025.CheckBoxHeader;
 import net.proteanit.sql.DbUtils;
 import raven.toast.Notifications;
 
-@SuppressWarnings({"serial" , "static-access"  ,"unused","removal"})
+@SuppressWarnings({"serial" , "static-access" ,"unused" })
 public class YIL_SONU extends JInternalFrame {
 	private static final Vector<?> Boolean = null;
 	private static JTable table;
@@ -133,10 +133,8 @@ public class YIL_SONU extends JInternalFrame {
 			}
 		};
 		table.getTableHeader().setReorderingAllowed(false);
-		if(! oac.gridcolor.toString().equals("java.awt.Color[r=255,g=255,b=255]")) 
-		{
+		if(! oac.gridcolor.toString().equals("java.awt.Color[r=255,g=255,b=255]"))
 			table.setGridColor(oac.gridcolor);
-		}
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		table.setShowHorizontalLines(true);
 		table.setShowVerticalLines(true);
@@ -382,7 +380,7 @@ public class YIL_SONU extends JInternalFrame {
 			{
 				if (modell.getValueAt(i,0).toString().equals("true"))
 					satir += 1 ;
-			};
+			}
 		}
 		return satir ;
 	}
@@ -463,7 +461,7 @@ public class YIL_SONU extends JInternalFrame {
 			double  bir = 0 ;
 			double  iki = 0 ;
 			double  uc = 0 ;
-			int  say = 0 ;
+			int say = 0 ;
 			int enumara = 0 ;
 			ResultSet rs = null ;
 			DefaultTableModel model = (DefaultTableModel) table.getModel();
@@ -480,7 +478,7 @@ public class YIL_SONU extends JInternalFrame {
 					else
 					{
 						say += 1;
-						enumara=0;
+						enumara =0;
 						enumara = c_Access.yilsonu_cari_fisno_al();
 						rs.next();
 						bir = rs.getDouble("BORC");
@@ -553,7 +551,7 @@ public class YIL_SONU extends JInternalFrame {
 					for(int x = 0, y = table.getRowCount(); x < y; x++)
 					{
 						Progres_Bar(table.getRowCount()-1, x);
-						table.setValueAt(new Boolean(checked),x,0);
+						table.setValueAt(checked,x,0);
 					}
 					hEPSI = false;
 					secilen_satir();

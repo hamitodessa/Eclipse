@@ -30,17 +30,18 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.sql.ResultSet;
 
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.SwingUtilities;
-import javax.swing.border.LineBorder;
 import javax.swing.JScrollPane;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
-@SuppressWarnings({"serial", "static-access","unused" })
+@SuppressWarnings({"serial", "static-access" })
 public class TAH_DOKUM extends JInternalFrame {
 
 	private static final long serialVersionUID = 1L;
@@ -130,6 +131,41 @@ public class TAH_DOKUM extends JInternalFrame {
 				catch (Exception ex)
 				{
 
+				}
+			}
+		});
+		table.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if (e.getClickCount() == 2) {
+					getContentPane().setCursor(oac.WAIT_CURSOR);
+					boolean varmi = OBS_MAIN.pencere_bak("TAHSILAT");
+					if (varmi  ) 
+					{
+						try {
+							OBS_MAIN.pencere_aktiv_yap("TAHSILAT");
+						} catch (Exception e1) {
+							e1.printStackTrace();
+						}
+					}
+					else
+					{
+						getContentPane().setCursor(oac.WAIT_CURSOR);
+						JInternalFrame internalFrame;
+						internalFrame  = new TAH_FISI();
+						OBS_MAIN.desktopPane.add(internalFrame);
+						internalFrame.setVisible(true);
+					}
+					try 
+					{
+						TAH_FISI.textEvrakNo.setText(table.getValueAt(table.getSelectedRow(), 0).toString());
+						TAH_FISI.fiskont();
+						getContentPane().setCursor(oac.DEFAULT_CURSOR);
+					} 
+					catch (Exception e1) 
+					{
+						getContentPane().setCursor(oac.DEFAULT_CURSOR);
+					}
 				}
 			}
 		});
@@ -289,9 +325,7 @@ public class TAH_DOKUM extends JInternalFrame {
 			int cin = 0 ;
 			if(cins.equals("Tadilat"))
 				cin = 1 ;
-			long startTime = System.currentTimeMillis(); 
 			GRID_TEMIZLE.grid_temizle(table_1);
-
 			ResultSet	rs = null;
 			rs = c_Access.tah_cek_doldur(evrno,cin);
 			if (!rs.isBeforeFirst())

@@ -457,9 +457,6 @@ public class USER_DETAY_EKLEME extends JInternalFrame {
 					rs.getString(10) ,rs.getString(11) ,rs.getString(12),rs.getString(13),
 					rs.getString(14),rs.getInt(15),rs.getString(16),rs.getInt(1)});
 		}
-
-		//table_1.requestFocus();
-		//table_1.changeSelection(0,0,false,false); 
 		String deger;
 		String[] parts;
 		Font bigFont;
@@ -551,11 +548,10 @@ public class USER_DETAY_EKLEME extends JInternalFrame {
 		}
 		else
 			comboBox_2.setSelectedItem(table_1.getModel().getValueAt(satir, 12).toString());
-		if ( Integer.parseInt(  table_1.getModel().getValueAt(satir, 13).toString()) ==1)
+		if (Integer.parseInt(  table_1.getModel().getValueAt(satir, 13).toString()) ==1)
 			chckbxLog.setSelected((boolean) true);
 		else
 			chckbxLog.setSelected((boolean) false);
-		//
 		if (table_1.getModel().getValueAt(satir, 14) == null)
 		{
 
@@ -568,7 +564,7 @@ public class USER_DETAY_EKLEME extends JInternalFrame {
 			cbText.setSelected( (token[2].equals("true") ? true:false));
 			cbMail.setSelected( (token[3].equals("true") ? true:false));
 		}
-		if (  table_1.getModel().getValueAt(satir, 15)== null)
+		if (table_1.getModel().getValueAt(satir, 15)== null)
 			lblcdid.setText("");
 		else
 			lblcdid.setText(table_1.getModel().getValueAt(satir, 15).toString());

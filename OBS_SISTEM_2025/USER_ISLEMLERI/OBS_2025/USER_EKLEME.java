@@ -283,9 +283,8 @@ public class USER_EKLEME extends JInternalFrame {
 			String decodedString = grd.getModel().getValueAt(satir, 1).toString();
 			String[] byteValues = decodedString.substring(1, decodedString.length() - 1).split(",");
 			byte[] bytes = new byte[byteValues.length];
-			for (int i=0, len=bytes.length; i<len; i++) {
+			for (int i=0, len=bytes.length; i<len; i++)
 				bytes[i] = Byte.parseByte(byteValues[i].trim());     
-			}
 			try {
 				decodedString = ENCRYPT_DECRYPT_STRING.dCRYPT_manual(bytes);
 			} catch (Exception e) {

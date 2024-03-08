@@ -38,6 +38,7 @@ public class OBS_SIS_2025_ANA_CLASS
 	public static IGUNLUK _IGunluk;
 	public static ISMS _ISms;
 	public static IKERESTE _IKereste;
+	
 	public static ILOGGER[] _ICari_Loger = {};//new DOSYA_YAZ(new DOSYA_MSSQL()), new MAIL_AT()
 	public static ILOGGER[] _IKur_Loger = {};
 	public static ILOGGER[] _IAdres_Loger = {};
@@ -47,7 +48,7 @@ public class OBS_SIS_2025_ANA_CLASS
 	public static ILOGGER[] _IGunluk_Loger = {};
 	public static ILOGGER[] _IKereste_Loger = {};
 
-	public String[] options = {"Tamam......       		!	", "Vazgec......       		!	"}; 
+	
 	public IConnection _IConn ;
 	public IConnection _ICariCon ;
 	public IConnection _IStokCon ;
@@ -60,12 +61,10 @@ public class OBS_SIS_2025_ANA_CLASS
 
 	public static  ByteArrayDataSource ds = null ;
 	public int txt_yukseklik =20;
-	//public static Color gridcolor ; //=  new Color(0, 191, 255);      //   0,153,204   java.awt.Color[r=204,g=0,b=102]
 	public static Color gridcolor =  new Color(0, 191, 255);      //   0,153,204   java.awt.Color[r=204,g=0,b=102]
 	
 	public static Color satBackColor ;
 	public static Color satForeColor ;
-	
 	public static Cursor WAIT_CURSOR =  Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR);
 	public static Cursor DEFAULT_CURSOR =  Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR);
 	public GLOBAL glb  = new GLOBAL();
@@ -77,17 +76,14 @@ public class OBS_SIS_2025_ANA_CLASS
 	public BufferedImage kam_resmi ;
 	public static String irs_no =""; 
 	public static String nerden ="";
+	public String[] options = {"Tamam......       		!	", "Vazgec......       		!	"}; 
 	public int mesajDeger(String mesaj)
 	{
 		int result = 0;
 		if(mesaj.equals(options[0]))
-		{
 			result = 1;
-		}
 		else if(mesaj.equals(options[1]))
-		{
 			result = 0;
-		}
 		return result;
 	}
 }

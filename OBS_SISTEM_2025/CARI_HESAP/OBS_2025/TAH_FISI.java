@@ -107,7 +107,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 
-@SuppressWarnings({ "unchecked", "rawtypes" ,"static-access","removal"})
+@SuppressWarnings({ "static-access"})
 public class TAH_FISI extends JInternalFrame {
 
 	private static final long serialVersionUID = 1L;
@@ -128,17 +128,18 @@ public class TAH_FISI extends JInternalFrame {
 	private static JLabel lblCAdi ;
 	public static JLabel lblCekSayi;
 	private JLabel lblPos ;
-	private static JComboBox comboBanka;
-
-	private static JLabel lblAAdi ;
-	public static JFormattedTextField formattedTutar ;
+	private static JComboBox<String> comboBanka;
 	public static JComboBox<String> cmbCins ;
 	public static JComboBox<String> cmbTur ;
+	
+	private static JLabel lblAAdi ;
+	public static JFormattedTextField formattedTutar ;
+	
 	private static MaterialTabbed tabbedPane;
 	public static ImagePanel imagePanel;
 	private static ImagePanel imageKase;
 	public static JDateChooser dtc ;
-	public static JComboBox combCins ;
+	public static JComboBox<String> combCins ;
 	
 	private JPanel panel_4;
 	private JPanel panel_5;
@@ -195,7 +196,7 @@ public class TAH_FISI extends JInternalFrame {
 		cmbCins = new JComboBox<String>();
 		cmbCins.setBounds(10, 11, 149, 22);
 		panel_2.add(cmbCins);
-		cmbCins.setModel(new DefaultComboBoxModel(new String[] {"Tahsilat", "Tediye"}));
+		cmbCins.setModel(new DefaultComboBoxModel<String>(new String[] {"Tahsilat", "Tediye"}));
 		
 		cmbTur = new JComboBox<String>();
 		cmbTur.addItemListener(new ItemListener() {
@@ -225,7 +226,7 @@ public class TAH_FISI extends JInternalFrame {
 		});
 		cmbTur.setBounds(10, 44, 149, 22);
 		panel_2.add(cmbTur);
-		cmbTur.setModel(new DefaultComboBoxModel(new String[] {"Nakit", "Cek", "Kredi Karti"}));
+		cmbTur.setModel(new DefaultComboBoxModel<String>(new String[] {"Nakit", "Cek", "Kredi Karti"}));
 		
 		dtc = new JDateChooser();
 		dtc.setBounds(281, 11, 150, 24);
@@ -315,6 +316,8 @@ public class TAH_FISI extends JInternalFrame {
 			@Override
 			public void keyPressed(KeyEvent e) {
 				try {
+					getContentPane().setCursor(oac.WAIT_CURSOR);
+					GuiUtil.setWaitCursor(textEvrakNo,true);
 					String[] parts;
 					String deger ;
 					deger = oac.glb.setting_oku("PRG_KAYDET").toString();
@@ -325,7 +328,11 @@ public class TAH_FISI extends JInternalFrame {
 						if ((e.getKeyCode() == c) && ((e.getModifiersEx() & (parts[0].equals("E") ?  KeyEvent.CTRL_DOWN_MASK : KeyEvent.ALT_DOWN_MASK) ) != 0))
 							kaydet();
 					}
+					getContentPane().setCursor(oac.DEFAULT_CURSOR);
+					GuiUtil.setWaitCursor(textEvrakNo,false);
 				} catch (Exception e2) {
+					GuiUtil.setWaitCursor(textEvrakNo,false);
+					getContentPane().setCursor(oac.DEFAULT_CURSOR);
 				}
 			}
 		});
@@ -337,7 +344,9 @@ public class TAH_FISI extends JInternalFrame {
 		textEvrakNo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				getContentPane().setCursor(oac.WAIT_CURSOR);
+				GuiUtil.setWaitCursor(textEvrakNo,true);
 				fiskont();
+				GuiUtil.setWaitCursor(textEvrakNo,false);
 				getContentPane().setCursor(oac.DEFAULT_CURSOR);
 			}
 		});
@@ -405,7 +414,6 @@ public class TAH_FISI extends JInternalFrame {
 				try {
 					String[] parts;
 					String deger ;
-					
 					deger = oac.glb.setting_oku("PRG_KAYDET").toString();
 					parts = deger.split(",");
 					if ( ! parts[2].equals(" ")) 
@@ -600,10 +608,10 @@ public class TAH_FISI extends JInternalFrame {
 		panel.add(panel_3);
 		panel_3.setLayout(null);
 		
-		combCins = new JComboBox();
+		combCins = new JComboBox<String>();
 		combCins.setBounds(50, 25, 77, 22);
 		panel_3.add(combCins);
-		combCins.setModel(new DefaultComboBoxModel(new String[] {"TL", "USD", "EUR", "RUB"}));
+		combCins.setModel(new DefaultComboBoxModel<String>(new String[] {"TL", "USD", "EUR", "RUB"}));
 		
 		lblPos = new JLabel("Pos Banka");
 		lblPos.setVisible(false);
@@ -612,7 +620,7 @@ public class TAH_FISI extends JInternalFrame {
 
 		//		comboBanka = new JComboBox(new DefaultComboBoxModel(new String[] {"Akbank", "Alternatifbank", "Anadolubank", "Arap Türk Bankası", "Bank Ekspress", "Bayındır Bank", "Citibank", "Credit Suisse FB.", "Denizbank", "Diler Yatırım Bankası", "Dışbank", "Finans Bank", "Takas ve Saklama Bankası", "İnterbank", "Kentbank", "Koçbank", "MNG Bank", "Nurol Yatırım Bankası", "Oyak Bank", "Pamukbank", "Park Yatırım Bankası", "Sınai Yatırım Bankası", "Şekerbank", "Tekfen Bank", "ICBC Turkey Bank A.Ş.", "The Chase Manhattan Bank", "Turkish Bank", "Türk Dışbank", "Türk Ekonomi Bankası", "Türk Eximbank", "Türkbank", "Türk Ticaret Bankası", "TC Ziraat Bankası", "Türkiye Emlak Bankası", "Türkiye Garanti Bankası", "Türkiye Halk Bankası", "Türkiye İş Bankası", "Türkiye Kalkınma Bankası", "Türkiye Sınai Kalkınma Bankası", "Yaşarbank", "Vakıflar Bankası", "Yapı ve Kredi Bankası"}));
 
-		comboBanka = new JComboBox();
+		comboBanka = new JComboBox<String>();
 		comboBanka.setEditable(true);
 		comboBanka.setVisible(false);
 		comboBanka.setBounds(281, 25, 227, 22);
@@ -827,7 +835,7 @@ public class TAH_FISI extends JInternalFrame {
 		model.addColumn("Hesap", new String []{"" });
 		model.addColumn("Borclu", new String []{""});
 		model.addColumn("Vade", new Date []{ new Date() });
-		model.addColumn("Tutar",new Double [] {new Double( 0 )});
+		model.addColumn("Tutar",new Double [] {0.00});
 		
 		TableColumn col ;
 		col = tableCek.getColumnModel().getColumn(0);
@@ -1077,7 +1085,7 @@ public class TAH_FISI extends JInternalFrame {
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR, ex.getMessage() );
 		}
 	}
-	private void fiskont()
+	public static void fiskont()
 	{
 		try {
 		if (textEvrakNo.getText() == null) 
@@ -1086,6 +1094,11 @@ public class TAH_FISI extends JInternalFrame {
 			return;
 		}
 		if (Long.parseLong(textEvrakNo.getText())  > 2147483647 )
+		{
+			textEvrakNo.requestFocus();
+			return;
+		}
+		if (Long.parseLong(textEvrakNo.getText())  < 1 )
 		{
 			textEvrakNo.requestFocus();
 			return;
@@ -1325,7 +1338,7 @@ public class TAH_FISI extends JInternalFrame {
 		lblCekSayi.setText(FORMATLAMA.doub_0(evr_sayi));
 		formattedTutar.setText(FORMATLAMA.doub_2(tutar));
 	}
-	private void cek_doldur()
+	private static void cek_doldur()
 	{
 		try {
 			ResultSet rs = c_Access.tah_cek_doldur(textEvrakNo.getText(),cmbCins.getSelectedIndex());

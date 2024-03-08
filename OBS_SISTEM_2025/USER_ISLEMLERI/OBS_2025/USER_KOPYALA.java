@@ -179,23 +179,14 @@ public class USER_KOPYALA extends JInternalFrame {
 				OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING,"Bu Kullanici isminde Kereste Bilgiler Mevcut");
 				return ;
 			}
-			//*********CARI KOPYALA
 			bILGILER("Cari Hesap");
-			//*********Adres KOPYALA
 			bILGILER("Adres");
-			//*********KUR KOPYALA
 			bILGILER("Kur");
-			//*********Fatura KOPYALA
 			bILGILER("Fatura");    
-			//*********Sms KOPYALA
 			bILGILER("Sms");
-			//*********Gunluk KOPYALA
 			bILGILER("Gunluk");
-			//*********KAMBIYO KOPYALA
 			bILGILER("Kambiyo");
-			//*********KERESTE KOPYALA
 			bILGILER("Kereste");
-			//		            
 			panel.setCursor(oac.DEFAULT_CURSOR);   
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.INFO, "Kullanici Kopyalandi");
 		}

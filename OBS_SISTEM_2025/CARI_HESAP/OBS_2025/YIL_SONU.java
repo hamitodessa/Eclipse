@@ -23,6 +23,7 @@ import java.util.Vector;
 
 import javax.swing.AbstractButton;
 import javax.swing.DefaultCellEditor;
+import javax.swing.ImageIcon;
 import javax.swing.JCheckBox;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
@@ -52,6 +53,7 @@ import OBS_C_2025.BAGLAN;
 import OBS_C_2025.BAGLAN_LOG;
 import OBS_C_2025.CARI_ACCESS;
 import OBS_C_2025.CheckBoxRenderer;
+import OBS_C_2025.FIT_IMAGE;
 import OBS_C_2025.FORMATLAMA;
 import OBS_C_2025.GLOBAL;
 import OBS_C_2025.Obs_TextFIeld;
@@ -87,7 +89,7 @@ public class YIL_SONU extends JInternalFrame {
 		setIconifiable(true);
 		setTitle("YIL SONU AKTARMA");
 		setBounds(0, 0, 700, 600);
-
+		setFrameIcon(FIT_IMAGE.formIcon(new ImageIcon(YIL_SONU.class.getResource("/ICONLAR/icons8-related-companies-30.png")), 16, 16));//
 		splitPaneana = new JSplitPane();
 		splitPaneana.setDividerSize(0);
 		splitPaneana.setResizeWeight(1.0);

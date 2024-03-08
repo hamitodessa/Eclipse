@@ -1,5 +1,6 @@
 package OBS_2025;
 
+import javax.swing.ImageIcon;
 import javax.swing.JInternalFrame;
 import javax.swing.JPanel;
 import javax.swing.JSplitPane;
@@ -30,6 +31,7 @@ import javax.swing.table.TableRowSorter;
 import javax.swing.table.TableStringConverter;
 
 import OBS_C_2025.CARI_ACCESS;
+import OBS_C_2025.FIT_IMAGE;
 import OBS_C_2025.FORMATLAMA;
 import OBS_C_2025.GLOBAL;
 import OBS_C_2025.GRID_TEMIZLE;
@@ -64,7 +66,7 @@ public class HESAP_BAK extends JInternalFrame {
 		setClosable(true);
 		setTitle("HESAP BAK");
 		setBounds(0, 0, 1091, 600);
-
+		setFrameIcon(FIT_IMAGE.formIcon(new ImageIcon(HESAP_BAK.class.getResource("/ICONLAR/icons8-order-history-30.png")), 16, 16));//
 		JSplitPane splitPane = new JSplitPane();
 		splitPane.setDividerSize(10);
 		splitPane.setResizeWeight(0.0);

@@ -27,6 +27,7 @@ import java.util.Vector;
 
 import javax.mail.util.ByteArrayDataSource;
 import javax.swing.DefaultRowSorter;
+import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
@@ -68,6 +69,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import OBS_C_2025.BAGLAN;
 import OBS_C_2025.CARI_ACCESS;
 import OBS_C_2025.FILE_UZANTI;
+import OBS_C_2025.FIT_IMAGE;
 import OBS_C_2025.FORMATLAMA;
 import OBS_C_2025.GLOBAL;
 import OBS_C_2025.GRID_TEMIZLE;
@@ -106,7 +108,7 @@ public class OZEL_MIZAN extends JInternalFrame {
 		setIconifiable(true);
 		setClosable(true);
 		setBounds(0,0, 1150, 600);
-
+		setFrameIcon(FIT_IMAGE.formIcon(new ImageIcon(OZEL_MIZAN.class.getResource("/ICONLAR/icons8-open-view-30.png")), 16, 16));//
 		splitPane = new JSplitPane();
 		splitPane.setResizeWeight(1.0);
 		splitPane.setDividerSize(0);

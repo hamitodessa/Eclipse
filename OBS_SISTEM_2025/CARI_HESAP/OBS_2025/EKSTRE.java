@@ -1,5 +1,6 @@
 package OBS_2025;
 
+import javax.swing.ImageIcon;
 import javax.swing.JInternalFrame;
 import javax.swing.JSplitPane;
 import java.awt.BorderLayout;
@@ -16,6 +17,7 @@ import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
 
 import OBS_C_2025.CARI_ACCESS;
+import OBS_C_2025.FIT_IMAGE;
 import OBS_C_2025.FORMATLAMA;
 import OBS_C_2025.GLOBAL;
 import OBS_C_2025.GRID_TEMIZLE;
@@ -89,6 +91,7 @@ public class EKSTRE extends JInternalFrame {
 		setIconifiable(true);
 		setMaximizable(true);
 		setBounds(0, 0, 1150, 700);
+		setFrameIcon(FIT_IMAGE.formIcon(new ImageIcon(EKSTRE.class.getResource("/ICONLAR/icons8-search-property-30.png")), 16, 16));//
 		getContentPane().setLayout(new BorderLayout(0, 0));
 		setDefaultCloseOperation(EKSTRE.DISPOSE_ON_CLOSE);
 		pane= new JSplitPane() ;

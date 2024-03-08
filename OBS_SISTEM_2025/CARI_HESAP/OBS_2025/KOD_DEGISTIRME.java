@@ -10,6 +10,7 @@ import javax.swing.event.DocumentListener;
 
 import OBS_C_2025.BAGLAN_LOG;
 import OBS_C_2025.CARI_ACCESS;
+import OBS_C_2025.FIT_IMAGE;
 import OBS_C_2025.Obs_TextFIeld;
 import OBS_C_2025.lOG_BILGI;
 import raven.toast.Notifications;
@@ -41,7 +42,7 @@ public class KOD_DEGISTIRME extends JInternalFrame {
 		setTitle("KOD DEGISTIRME");
 		setClosable(true);
 		setBounds(5, 5, 606, 187);
-		
+		setFrameIcon(FIT_IMAGE.formIcon(new ImageIcon(KOD_DEGISTIRME.class.getResource("/ICONLAR/icons8-exchange-30.png")), 16, 16));//
 		JPanel panel = new JPanel();
 		getContentPane().add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);

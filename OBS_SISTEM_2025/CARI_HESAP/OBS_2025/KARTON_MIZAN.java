@@ -11,6 +11,8 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.beans.PropertyVetoException;
 import java.sql.ResultSet;
+
+import javax.swing.ImageIcon;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -28,6 +30,7 @@ import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
 
 import OBS_C_2025.CARI_ACCESS;
+import OBS_C_2025.FIT_IMAGE;
 import OBS_C_2025.FORMATLAMA;
 import OBS_C_2025.GLOBAL;
 import OBS_C_2025.GRID_TEMIZLE;
@@ -58,7 +61,7 @@ public class KARTON_MIZAN extends JInternalFrame {
 		setIconifiable(true);
 		setClosable(true);
 		setBounds(0,0, 1000, 600);
-
+		setFrameIcon(FIT_IMAGE.formIcon(new ImageIcon(KARTON_MIZAN.class.getResource("/ICONLAR/icons8-hashtag-activity-feed-30.png")), 16, 16));//
 		splitPane = new JSplitPane();
 		splitPane.setResizeWeight(1.0);
 		splitPane.setDividerSize(0);

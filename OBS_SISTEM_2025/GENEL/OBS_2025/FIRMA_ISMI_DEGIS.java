@@ -1,5 +1,6 @@
 package OBS_2025;
 
+import javax.swing.ImageIcon;
 import javax.swing.JInternalFrame;
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
@@ -12,6 +13,7 @@ import OBS_C_2025.ADRES_ACCESS;
 import OBS_C_2025.BAGLAN;
 import OBS_C_2025.BAGLAN_LOG;
 import OBS_C_2025.CARI_ACCESS;
+import OBS_C_2025.FIT_IMAGE;
 import OBS_C_2025.GUNLUK_ACCESS;
 import OBS_C_2025.KAMBIYO_ACCESS;
 import OBS_C_2025.KERESTE_ACCESS;
@@ -46,7 +48,7 @@ public class FIRMA_ISMI_DEGIS extends JInternalFrame {
 		setClosable(true);
 		setTitle("FIRMA ISMI DEGISTIRME");
 		setBounds(100, 100, 663, 118);
-
+		setFrameIcon(FIT_IMAGE.formIcon(new ImageIcon(FIRMA_ISMI_DEGIS.class.getResource("/ICONLAR/icons8-organization-30.png")), 16, 16));//
 		JPanel panel = new JPanel();
 		getContentPane().add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);

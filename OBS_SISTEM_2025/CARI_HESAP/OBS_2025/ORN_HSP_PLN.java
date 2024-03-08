@@ -11,6 +11,7 @@ import javax.swing.border.TitledBorder;
 
 import OBS_C_2025.BAGLAN_LOG;
 import OBS_C_2025.CARI_ACCESS;
+import OBS_C_2025.FIT_IMAGE;
 import OBS_C_2025.GLOBAL;
 import OBS_C_2025.lOG_BILGI;
 import raven.toast.Notifications;
@@ -43,7 +44,7 @@ public class ORN_HSP_PLN extends JInternalFrame {
 		setTitle("ORNEK HESAP PLANI");
 		setClosable(true);
 		setBounds(0,0, 422, 168);
-
+		setFrameIcon(FIT_IMAGE.formIcon(new ImageIcon(ORN_HSP_PLN.class.getResource("/ICONLAR/icons8-user-groups-30.png")), 16, 16));//
 		panel = new JPanel();
 		getContentPane().add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);

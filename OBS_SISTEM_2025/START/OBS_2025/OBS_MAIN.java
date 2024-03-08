@@ -1378,13 +1378,7 @@ public class OBS_MAIN extends JFrame  {
 		btnNewButton_8.setIcon(new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/icons8-check-30.png")));
 		toolBar_2.add(btnNewButton_8);
 
-		btnNewButton_9 = new JButton("");
-		btnNewButton_9.setToolTipText("Dovize Cevirme");
-		btnNewButton_9.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				form_ac("DOVIZE CEVIRME","");
-			}
-		});
+		
 
 		button = new JButton("");
 		button.addActionListener(new ActionListener() {
@@ -1409,6 +1403,14 @@ public class OBS_MAIN extends JFrame  {
 		
 		JLabel lblNewLabel_21 = new JLabel("     ");
 		toolBar_2.add(lblNewLabel_21);
+		
+		btnNewButton_9 = new JButton("");
+		btnNewButton_9.setToolTipText("Dovize Cevirme");
+		btnNewButton_9.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				form_ac("DOVIZE CEVIRME","");
+			}
+		});
 		btnNewButton_9.setIcon(new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/icons8-data-transfer-30.png")));
 		toolBar_2.add(btnNewButton_9);
 

@@ -75,6 +75,7 @@ import OBS_C_2025.BAGLAN_LOG;
 import OBS_C_2025.CARI_ACCESS;
 import OBS_C_2025.COKLU_GIRIS_TARIH;
 import OBS_C_2025.DoubleEditor;
+import OBS_C_2025.FIT_IMAGE;
 import OBS_C_2025.GLOBAL;
 import OBS_C_2025.GRID_TEMIZLE;
 import OBS_C_2025.JDateChooserEditor;
@@ -139,7 +140,7 @@ public class DISTAN_AKTAR extends JInternalFrame {
 		setIconifiable(true);
 		setClosable(true);
 		setBounds(0,0, 1190, 600);
-
+		setFrameIcon(FIT_IMAGE.formIcon(new ImageIcon(DISTAN_AKTAR.class.getResource("/ICONLAR/coklud-30.png")), 16, 16));//
 
 		splitPane = new JSplitPane();
 		splitPane.setDividerSize(0);

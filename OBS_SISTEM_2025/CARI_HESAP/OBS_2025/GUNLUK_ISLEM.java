@@ -29,6 +29,7 @@ import javax.swing.table.TableRowSorter;
 import javax.swing.table.TableStringConverter;
 
 import OBS_C_2025.CARI_ACCESS;
+import OBS_C_2025.FIT_IMAGE;
 import OBS_C_2025.FORMATLAMA;
 import OBS_C_2025.GLOBAL;
 import OBS_C_2025.GRID_TEMIZLE;
@@ -49,6 +50,8 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.Component;
 import javax.swing.Box;
+import javax.swing.ImageIcon;
+
 import net.miginfocom.swing.MigLayout;
 
 @SuppressWarnings({"serial" , "static-access" })
@@ -68,6 +71,7 @@ public class GUNLUK_ISLEM extends JInternalFrame {
 		setIconifiable(true);
 		setClosable(true);
 		setBounds(0,0, 1025, 600);
+		setFrameIcon(FIT_IMAGE.formIcon(new ImageIcon(GUNLUK_ISLEM.class.getResource("/ICONLAR/icons8-check-book-30.png")), 16, 16));//
 
 		JPanel pnlust = new JPanel();
 		pnlust.setMinimumSize(new Dimension(0, 30));

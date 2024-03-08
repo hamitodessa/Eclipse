@@ -6,6 +6,7 @@ import java.awt.event.KeyEvent;
 import java.sql.ResultSet;
 
 import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JInternalFrame;
 import javax.swing.JSplitPane;
 import java.awt.BorderLayout;
@@ -20,6 +21,7 @@ import javax.swing.table.TableColumnModel;
 
 import OBS_C_2025.BAGLAN_LOG;
 import OBS_C_2025.CARI_ACCESS;
+import OBS_C_2025.FIT_IMAGE;
 import OBS_C_2025.GRID_TEMIZLE;
 import OBS_C_2025.JTextFieldLimit;
 import OBS_C_2025.KERESTE_ACCESS;
@@ -50,7 +52,7 @@ public class SQL_SORGULAMA extends JInternalFrame {
 		setIconifiable(true);
 		setClosable(true);
 		setBounds(0,0, 900, 600);
-
+		setFrameIcon(FIT_IMAGE.formIcon(new ImageIcon(SQL_SORGULAMA.class.getResource("/ICONLAR/icons8-sql-30.png")), 16, 16));//
 		JSplitPane splitPane = new JSplitPane();
 		splitPane.setResizeWeight(0.0);
 		splitPane.setDividerSize(0);

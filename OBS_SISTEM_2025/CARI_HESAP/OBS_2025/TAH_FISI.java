@@ -147,19 +147,11 @@ public class TAH_FISI extends JInternalFrame {
 	private static JTable tableCek;
 	public static JCheckBox chckbxFisno ;
 
-	/**
-	 * Launch the application.
-	 */
-
-	/**
-	 * Create the frame.
-	 */
-	
 	
 	public TAH_FISI() {
 		FlatLaf.registerCustomDefaultsSource("OBS_2025");
 		setResizable(true);
-
+		setFrameIcon(FIT_IMAGE.formIcon(new ImageIcon(TAH_FISI.class.getResource("/ICONLAR/tah-30.png")), 16, 16));//
 		setTitle("TAHSILAT");
 		setClosable(true);
 		setBounds(100, 100, 800, 485);

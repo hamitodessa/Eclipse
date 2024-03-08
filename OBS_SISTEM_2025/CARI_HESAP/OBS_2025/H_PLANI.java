@@ -102,7 +102,7 @@ public class H_PLANI extends JInternalFrame {
 		setIconifiable(true);
 		setClosable(true);
 		setBounds(0, 0, 846, 488);
-
+		setFrameIcon(FIT_IMAGE.formIcon(new ImageIcon(H_PLANI.class.getResource("/ICONLAR/hsp-30.png")), 16, 16));//
 		
 		JPanel panel = new JPanel();
 		getContentPane().add(panel, BorderLayout.CENTER);

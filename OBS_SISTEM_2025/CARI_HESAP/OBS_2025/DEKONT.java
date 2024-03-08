@@ -32,6 +32,7 @@ import com.toedter.calendar.JDateChooser;
 
 import OBS_C_2025.BAGLAN_LOG;
 import OBS_C_2025.CARI_ACCESS;
+import OBS_C_2025.FIT_IMAGE;
 import OBS_C_2025.FORMATLAMA;
 import OBS_C_2025.GLOBAL;
 import OBS_C_2025.JTextFieldLimit;
@@ -55,6 +56,7 @@ import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 
 import java.awt.Font;
+import java.awt.Image;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.text.ParseException;
@@ -143,6 +145,8 @@ public class DEKONT extends JInternalFrame {
 		setTitle("DEKONT");
 		setClosable(true);
 		setBounds(0, 0, 740, 415);
+		
+		setFrameIcon(FIT_IMAGE.formIcon(new ImageIcon(DEKONT.class.getResource("/ICONLAR/dek-30.png")), 16, 16));
 		
 		ScrollPaneWin11 scrollPaneust = new ScrollPaneWin11();
 		getContentPane().add(scrollPaneust, BorderLayout.CENTER);

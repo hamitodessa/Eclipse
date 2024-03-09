@@ -22,7 +22,7 @@ import java.awt.Font;
 
 @SuppressWarnings({"serial","static-access"})
 public class DEGISKEN_DEGIS extends JInternalFrame {
-	
+
 	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
 	static STOK_ACCESS f_Access = new STOK_ACCESS(OBS_SIS_2025_ANA_CLASS._IStok , OBS_SIS_2025_ANA_CLASS._IFatura_Loger);
 
@@ -43,14 +43,14 @@ public class DEGISKEN_DEGIS extends JInternalFrame {
 		panel = new JPanel();
 		getContentPane().add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
-		
+
 		JPanel panel_1 = new JPanel();
 		panel_1.setBorder(new TitledBorder(null, "Aranacak", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		//panel_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Aranacak", TitledBorder.LEADING, TitledBorder.TOP, null, SystemColor.textHighlight));
 		panel_1.setBounds(35, 20, 340, 84);
 		panel.add(panel_1);
 		panel_1.setLayout(null);
-		
+
 		cmbAna = new JComboBox<String>();
 		cmbAna.setFont(new Font("Tahoma", Font.BOLD, 12));
 		//cmbAna.setForeground(new Color(0, 0, 128));
@@ -61,31 +61,31 @@ public class DEGISKEN_DEGIS extends JInternalFrame {
 		});
 		cmbAna.setBounds(110, 22, 203, 22);
 		panel_1.add(cmbAna);
-		
+
 		cmbAlt = new JComboBox<String>();
 		cmbAlt.setFont(new Font("Tahoma", Font.BOLD, 12));
 		//cmbAlt.setForeground(new Color(0, 0, 128));
 		cmbAlt.setEnabled(false);
 		cmbAlt.setBounds(110, 51, 203, 22);
 		panel_1.add(cmbAlt);
-		
+
 		JLabel lblNewLabel = new JLabel("Ana Grup");
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblNewLabel.setBounds(10, 26, 73, 14);
 		panel_1.add(lblNewLabel);
-		
+
 		JLabel lblAltGrup = new JLabel("Alt Grup");
 		lblAltGrup.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblAltGrup.setBounds(10, 55, 73, 14);
 		panel_1.add(lblAltGrup);
-		
+
 		JPanel panel_1_1 = new JPanel();
 		panel_1_1.setLayout(null);
 		panel_1_1.setBorder(new TitledBorder(null,"Yazilacak", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		//panel_1_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Yazilacak", TitledBorder.LEADING, TitledBorder.TOP, null, SystemColor.textHighlight));
 		panel_1_1.setBounds(35, 115, 340, 84);
 		panel.add(panel_1_1);
-		
+
 		cmbyAna = new JComboBox<String>();
 		cmbyAna.setFont(new Font("Tahoma", Font.BOLD, 12));
 		//cmbyAna.setForeground(new Color(0, 0, 128));
@@ -96,19 +96,19 @@ public class DEGISKEN_DEGIS extends JInternalFrame {
 		});
 		cmbyAna.setBounds(110, 22, 203, 22);
 		panel_1_1.add(cmbyAna);
-		
+
 		cmbyAlt = new JComboBox<String>();
 		cmbyAlt.setFont(new Font("Tahoma", Font.BOLD, 12));
 		//cmbyAlt.setForeground(new Color(0, 0, 128));
 		cmbyAlt.setEnabled(false);
 		cmbyAlt.setBounds(110, 51, 203, 22);
 		panel_1_1.add(cmbyAlt);
-		
+
 		JLabel lblNewLabel_1 = new JLabel("Ana Grup");
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblNewLabel_1.setBounds(10, 26, 73, 14);
 		panel_1_1.add(lblNewLabel_1);
-		
+
 		JLabel lblAltGrup_1 = new JLabel("Alt Grup");
 		lblAltGrup_1.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblAltGrup_1.setBounds(10, 55, 73, 14);
@@ -121,92 +121,91 @@ public class DEGISKEN_DEGIS extends JInternalFrame {
 	public static void kaydet()
 	{
 		try {
-		if (cmbAna.getSelectedItem().toString().equals("")) return;
-		if (cmbAlt.getSelectedItem().toString().equals("")) return;
-	
-		if (cmbAna.getSelectedItem().toString().equals(cmbyAna.getSelectedItem().toString()) &&  cmbAlt.getSelectedItem().toString().equals(cmbyAlt.getSelectedItem().toString()))
+			if (cmbAna.getSelectedItem().toString().equals("")) return;
+			if (cmbAlt.getSelectedItem().toString().equals("")) return;
+
+			if (cmbAna.getSelectedItem().toString().equals(cmbyAna.getSelectedItem().toString()) &&  cmbAlt.getSelectedItem().toString().equals(cmbyAlt.getSelectedItem().toString()))
 			{
-			
-			OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING,"Aranacak ve Yazilacak Degiskenler Ayni");
-			return;
+				OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING,"Aranacak ve Yazilacak Degiskenler Ayni");
+				return;
 			}
-		GuiUtil.setWaitCursor(DEGISKEN_DEGIS.panel,true);
-		//*************************
-        int anagrp =0,altgrp =0,yanagrp =0,yaltgrp = 0 ;
-    	ResultSet rs =null ;
-    	ResultSet yrs =null ;
-        			rs = f_Access.urun_kod_degisken_ara("AGID_Y", "ANA_GRUP", "ANA_GRUP_DEGISKEN", cmbAna.getItemAt(cmbAna.getSelectedIndex()).toString());
-        			yrs = f_Access.urun_kod_degisken_ara("AGID_Y", "ANA_GRUP", "ANA_GRUP_DEGISKEN", cmbyAna.getItemAt(cmbyAna.getSelectedIndex()).toString());
-        		if (!rs.isBeforeFirst() ) {      		
-    	    	}
-    	    	else
-    	    	{
-    	    		rs.next();
-	        		anagrp  = rs.getInt("AGID_Y");
-    	    	}
-        		if (!yrs.isBeforeFirst() ) {      		
-    	    	}
-    	    	else
-    	    	{
-    	    		yrs.next();
-	        		yanagrp  = yrs.getInt("AGID_Y");
-    	    	}
-     	    		rs = f_Access.urun_kod_degisken_ara("ALID_Y", "ALT_GRUP", "ALT_GRUP_DEGISKEN",  cmbAlt.getItemAt(cmbAlt.getSelectedIndex()).toString());
-     	    		yrs = f_Access.urun_kod_degisken_ara("ALID_Y", "ALT_GRUP", "ALT_GRUP_DEGISKEN",  cmbyAlt.getItemAt(cmbyAlt.getSelectedIndex()).toString());
-     	      	if (!rs.isBeforeFirst() ) {      		
-    	    	}
-    	    	else
-    	    	{
-    	    		rs.next();
-	     	      	altgrp  = rs.getInt("ALID_Y");
-    	    	}
-     	      	if (!yrs.isBeforeFirst() ) {      		
-    	    	}
-    	    	else
-    	    	{
-    	    		yrs.next();
-	     	      	yaltgrp  = yrs.getInt("ALID_Y");
-    	    	}
-     	      	lOG_BILGI lBILGI = new lOG_BILGI();
-    			lBILGI.setmESAJ("Eski Ana Grup:" + anagrp + " Eski Alt Grup:" + altgrp  + " Yeni Ana Grup:" + yanagrp + " Yeni Alt Grup:" + yaltgrp);
-    			lBILGI.seteVRAK("");
-    			
-    	    	f_Access.degisken_degistir(anagrp,altgrp,yanagrp,yaltgrp, lBILGI,BAGLAN_LOG.fatLogDizin );
-      	       GuiUtil.setWaitCursor(DEGISKEN_DEGIS.panel,false);
-      	     OBS_MAIN.mesaj_goster(5000,Notifications.Type.INFO,"Degisim Tamamlandi.................");
- 		}
+			GuiUtil.setWaitCursor(DEGISKEN_DEGIS.panel,true);
+			//*************************
+			int anagrp =0,altgrp =0,yanagrp =0,yaltgrp = 0 ;
+			ResultSet rs =null ;
+			ResultSet yrs =null ;
+			rs = f_Access.urun_kod_degisken_ara("AGID_Y", "ANA_GRUP", "ANA_GRUP_DEGISKEN", cmbAna.getItemAt(cmbAna.getSelectedIndex()).toString());
+			yrs = f_Access.urun_kod_degisken_ara("AGID_Y", "ANA_GRUP", "ANA_GRUP_DEGISKEN", cmbyAna.getItemAt(cmbyAna.getSelectedIndex()).toString());
+			if (!rs.isBeforeFirst() ) {      		
+			}
+			else
+			{
+				rs.next();
+				anagrp  = rs.getInt("AGID_Y");
+			}
+			if (!yrs.isBeforeFirst() ) {      		
+			}
+			else
+			{
+				yrs.next();
+				yanagrp  = yrs.getInt("AGID_Y");
+			}
+			rs = f_Access.urun_kod_degisken_ara("ALID_Y", "ALT_GRUP", "ALT_GRUP_DEGISKEN",  cmbAlt.getItemAt(cmbAlt.getSelectedIndex()).toString());
+			yrs = f_Access.urun_kod_degisken_ara("ALID_Y", "ALT_GRUP", "ALT_GRUP_DEGISKEN",  cmbyAlt.getItemAt(cmbyAlt.getSelectedIndex()).toString());
+			if (!rs.isBeforeFirst() ) {      		
+			}
+			else
+			{
+				rs.next();
+				altgrp  = rs.getInt("ALID_Y");
+			}
+			if (!yrs.isBeforeFirst() ) {      		
+			}
+			else
+			{
+				yrs.next();
+				yaltgrp  = yrs.getInt("ALID_Y");
+			}
+			lOG_BILGI lBILGI = new lOG_BILGI();
+			lBILGI.setmESAJ("Eski Ana Grup:" + anagrp + " Eski Alt Grup:" + altgrp  + " Yeni Ana Grup:" + yanagrp + " Yeni Alt Grup:" + yaltgrp);
+			lBILGI.seteVRAK("");
+
+			f_Access.degisken_degistir(anagrp,altgrp,yanagrp,yaltgrp, lBILGI,BAGLAN_LOG.fatLogDizin );
+			GuiUtil.setWaitCursor(DEGISKEN_DEGIS.panel,false);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.INFO,"Degisim Tamamlandi.................");
+		}
 		catch (Exception ex)
 		{
-		    GuiUtil.setWaitCursor(DEGISKEN_DEGIS.panel,false);
-		    OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
+			GuiUtil.setWaitCursor(DEGISKEN_DEGIS.panel,false);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
 		}
 	}
 	private void ana_grup_doldur()
 	{
 		try {
-		getContentPane().setCursor(oac.WAIT_CURSOR);
-		cmbAna .removeAllItems();
-		cmbyAna .removeAllItems();
-		ResultSet rs=null;
+			getContentPane().setCursor(oac.WAIT_CURSOR);
+			cmbAna .removeAllItems();
+			cmbyAna .removeAllItems();
+			ResultSet rs=null;
 			rs = f_Access.stk_kod_degisken_oku("ANA_GRUP", "AGID_Y", "ANA_GRUP_DEGISKEN");
-		if (!rs.isBeforeFirst() ) {  
-			getContentPane().setCursor(oac.DEFAULT_CURSOR);
-			cmbAlt.setEnabled(false);
-			cmbyAlt.setEnabled(false);
+			if (!rs.isBeforeFirst() ) {  
+				getContentPane().setCursor(oac.DEFAULT_CURSOR);
+				cmbAlt.setEnabled(false);
+				cmbyAlt.setEnabled(false);
+				cmbAna .addItem("");
+				cmbyAna .addItem("");
+				cmbAna.setSelectedItem("");
+				cmbyAna.setSelectedItem("");
+				return;
+			} 
 			cmbAna .addItem("");
 			cmbyAna .addItem("");
-			cmbAna.setSelectedItem("");
-			cmbyAna.setSelectedItem("");
-		    return;
-		} 
-		cmbAna .addItem("");
-		cmbyAna .addItem("");
-	    while (rs.next())
-	    {
-	    	cmbAna .addItem(rs.getString("ANA_GRUP"));
-	    	cmbyAna .addItem(rs.getString("ANA_GRUP"));
-	    }
-	    getContentPane().setCursor(oac.DEFAULT_CURSOR);
+			while (rs.next())
+			{
+				cmbAna .addItem(rs.getString("ANA_GRUP"));
+				cmbyAna .addItem(rs.getString("ANA_GRUP"));
+			}
+			getContentPane().setCursor(oac.DEFAULT_CURSOR);
 		}
 		catch (Exception ex)
 		{
@@ -217,11 +216,11 @@ public class DEGISKEN_DEGIS extends JInternalFrame {
 	private void alt_grup_doldur(JComboBox<String> anabox,JComboBox<String> altbox)
 	{
 		try {
-		getContentPane().setCursor(oac.WAIT_CURSOR);
-		altbox.removeAllItems();
+			getContentPane().setCursor(oac.WAIT_CURSOR);
+			altbox.removeAllItems();
 
-		altbox .addItem("");
-		ResultSet rs=null;
+			altbox .addItem("");
+			ResultSet rs=null;
 			rs = f_Access.urun_kod_degisken_ara("AGID_Y", "ANA_GRUP", "ANA_GRUP_DEGISKEN", anabox.getItemAt(anabox.getSelectedIndex()).toString());
 			if (!rs.isBeforeFirst() ) {
 			}
@@ -232,22 +231,20 @@ public class DEGISKEN_DEGIS extends JInternalFrame {
 				rs =null;
 				rs = f_Access.stk_kod_alt_grup_degisken_oku(in1);
 			}
-	
-		if (!rs.isBeforeFirst() ) {  
-			altbox.setSelectedItem("");
-			altbox.setEnabled(false);
+
+			if (!rs.isBeforeFirst() ) {  
+				altbox.setSelectedItem("");
+				altbox.setEnabled(false);
+				getContentPane().setCursor(oac.DEFAULT_CURSOR);
+			} 
+			else
+			{
+				while (rs.next())
+					altbox .addItem(rs.getString("ALT_GRUP"));
+				altbox.setSelectedItem(0);
+				altbox.setEnabled(true);
+			}
 			getContentPane().setCursor(oac.DEFAULT_CURSOR);
-		} 
-		else
-		{
-	    while (rs.next())
-	    {
-	    	altbox .addItem(rs.getString("ALT_GRUP"));
-	    }
-	    altbox.setSelectedItem(0);
-	    altbox.setEnabled(true);
-		}
-		getContentPane().setCursor(oac.DEFAULT_CURSOR);
 		}
 		catch (Exception ex)
 		{
@@ -255,5 +252,4 @@ public class DEGISKEN_DEGIS extends JInternalFrame {
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
 		}
 	}
-
 }

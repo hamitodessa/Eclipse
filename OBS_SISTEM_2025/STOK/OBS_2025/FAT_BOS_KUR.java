@@ -30,7 +30,7 @@ import raven.toast.Notifications;
 
 @SuppressWarnings({"serial","static-access"})
 public class FAT_BOS_KUR extends JInternalFrame {
-	
+
 	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
 	static STOK_ACCESS f_Access = new STOK_ACCESS(OBS_SIS_2025_ANA_CLASS._IStok , OBS_SIS_2025_ANA_CLASS._IFatura_Loger);
 
@@ -51,36 +51,33 @@ public class FAT_BOS_KUR extends JInternalFrame {
 		splitPane.setResizeWeight(0.0);
 		splitPane.setOrientation(JSplitPane.VERTICAL_SPLIT);
 		getContentPane().add(splitPane, BorderLayout.CENTER);
-		
+
 		JPanel panel = new JPanel();
 		panel.setMinimumSize(new Dimension(0, 40));
 		panel.setMaximumSize(new Dimension(0, 40));
 		panel.setBorder(new LineBorder(null));
 		splitPane.setLeftComponent(panel);
 		panel.setLayout(null);
-		
+
 		comboBox = new JComboBox<String>();
 		comboBox.setModel(new DefaultComboBoxModel<String>(new String[] {"USD", "EUR"}));
 		comboBox.setBounds(10, 10, 58, 22);
 		panel.add(comboBox);
-		
+
 		comboBox_1 = new JComboBox<String>();
 		comboBox_1.setModel(new DefaultComboBoxModel<String>(new String[] {"MA", "MS", "BA", "BS", "SA", "SS"}));
 		comboBox_1.setBounds(78, 10, 58, 22);
 		panel.add(comboBox_1);
-		
+
 		ScrollPaneWin11 scrollPane = new ScrollPaneWin11();
 		splitPane.setRightComponent(scrollPane);
-		
+
 		table = new JTable(){
 			public boolean isCellEditable(int row, int column) {     return false;          }
 		};
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		if(! oac.gridcolor.toString().equals("java.awt.Color[r=255,g=255,b=255]")) 
-		{
+		if(! oac.gridcolor.toString().equals("java.awt.Color[r=255,g=255,b=255]"))
 			table.setGridColor(oac.gridcolor);
-		}
-
 		table.setShowHorizontalLines(true);
 		table.setShowVerticalLines(true);
 		scrollPane.setViewportView(table);
@@ -88,15 +85,14 @@ public class FAT_BOS_KUR extends JInternalFrame {
 	}
 	public static void hisset() 
 	{
-        try 
-        {
-        	 ResultSet	rs = null;
-    			rs = f_Access.bos_kur(comboBox.getItemAt(comboBox.getSelectedIndex()).toString(),
-						comboBox_1.getItemAt(comboBox_1.getSelectedIndex()).toString());
-	    	GRID_TEMIZLE.grid_temizle(table);
-			if (!rs.isBeforeFirst() ) {  
-			    return;
-			} 
+		try 
+		{
+			ResultSet	rs = null;
+			rs = f_Access.bos_kur(comboBox.getItemAt(comboBox.getSelectedIndex()).toString(),
+					comboBox_1.getItemAt(comboBox_1.getSelectedIndex()).toString());
+			GRID_TEMIZLE.grid_temizle(table);
+			if (!rs.isBeforeFirst() )
+				return;
 			table.setModel(DbUtils.resultSetToTableModel(rs));
 			JTableHeader th = table.getTableHeader();
 			TableColumnModel tcm = th.getColumnModel();
@@ -105,16 +101,15 @@ public class FAT_BOS_KUR extends JInternalFrame {
 			tc.setHeaderRenderer(new SOLA());
 			tc.setCellRenderer(new TARIH ());
 			Dimension dd = th.getPreferredSize();
-		    dd.height = 30;
-		    th.setPreferredSize(dd); 
+			dd.height = 30;
+			th.setPreferredSize(dd); 
 			table.setRowSelectionInterval(0, 0);
 			table.setRowHeight(21);
-       }
-       catch (Exception ex)
-        {
-    	   OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
-          // JOptionPane.showMessageDialog(null,  ex.getMessage(),  "Eksik Kur Okuma", JOptionPane.ERROR_MESSAGE);
-          }
+		}
+		catch (Exception ex)
+		{
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
+		}
 	}
-	
+
 }

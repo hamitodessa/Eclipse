@@ -93,8 +93,6 @@ import java.awt.event.ActionEvent;
 public class IMALAT extends JInternalFrame {
 	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
 	static STOK_ACCESS f_Access = new STOK_ACCESS(OBS_SIS_2025_ANA_CLASS._IStok , OBS_SIS_2025_ANA_CLASS._IFatura_Loger);
-	//static ADRES_ACCESS a_Access = new ADRES_ACCESS(oac._IAdres , OBS_SIS_2025_ANA_CLASS._IAdres_Loger);
-
 
 	private static JTable table;
 	public static Obs_TextFIeld textField;
@@ -841,9 +839,6 @@ public class IMALAT extends JInternalFrame {
 		am.put("Action.NextCell", new NextCellActioin(table,"fatura"));
 		table.putClientProperty("terminateEditOnFocusLost", Boolean.TRUE);
 
-		//
-
-		//
 		DefaultTableCellRenderer r = new DefaultTableCellRenderer() {
 			Font font = new Font("Arial", 1, 12);
 			@Override
@@ -878,9 +873,7 @@ public class IMALAT extends JInternalFrame {
 					try {
 						setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 						int sno = 0 ;
-
 						sno  = f_Access.uretim_fisno_al() ;
-
 						int kj = 0 ;
 						kj = 10 - Integer.toString(sno).length() ;
 						String str_ = StringUtils.repeat("0", kj)   + Integer.toString(sno);
@@ -900,7 +893,6 @@ public class IMALAT extends JInternalFrame {
 		} catch (Exception ex) {
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
 		}
-		//***********
 		table.getModel().addTableModelListener(	(TableModelListener) new TableModelListener() 
 		{		@Override
 			public void tableChanged(TableModelEvent e) {
@@ -937,12 +929,10 @@ public class IMALAT extends JInternalFrame {
 						//model.setValueAt( 0,row, 7)  ;   
 					}
 				}
-
 			}
 			toplam();
 		}
 		});
-		//****
 		//ana_grup_doldur();
 		depo_doldur();
 		textField.requestFocus();
@@ -951,19 +941,14 @@ public class IMALAT extends JInternalFrame {
 	{
 		try {
 			ResultSet rs = null;
-
 			rs = f_Access.stk_barkod_kod_oku("Kodu");
-
-			if (!rs.isBeforeFirst() ) {  
+			if (!rs.isBeforeFirst() )
 				listkodlar.add("");
-			}
 			else
 			{
 				listkodlar.add("");
 				while (rs.next())
-				{
 					listkodlar.add(rs.getString("Kodu"));
-				}
 			}
 		}
 		catch (Exception ex)
@@ -976,9 +961,7 @@ public class IMALAT extends JInternalFrame {
 		try {
 			ResultSet rs = null;
 			cmbdepo.removeAllItems();
-
 			rs = f_Access.stk_kod_degisken_oku("DEPO", "DPID_Y", "DEPO_DEGISKEN");
-
 			if (!rs.isBeforeFirst() ) {  
 				cmbdepo.addItem("");
 				listdepo.add("");
@@ -1005,9 +988,7 @@ public class IMALAT extends JInternalFrame {
 			setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 			cmbanagrup .removeAllItems();
 			ResultSet rs=null;
-
 			rs = f_Access.stk_kod_degisken_oku("ANA_GRUP", "AGID_Y", "ANA_GRUP_DEGISKEN");
-
 			if (!rs.isBeforeFirst() ) {  
 				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 				cmbaltgrup.setEnabled(false);
@@ -1018,9 +999,7 @@ public class IMALAT extends JInternalFrame {
 			} 
 			cmbanagrup .addItem("");
 			while (rs.next())
-			{
 				cmbanagrup .addItem(rs.getString("ANA_GRUP"));
-			}
 			cmbanagrup.setSelectedItem("");
 			setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 		}
@@ -1048,8 +1027,6 @@ public class IMALAT extends JInternalFrame {
 				rs =null;
 				rs = f_Access.stk_kod_alt_grup_degisken_oku(in1);
 			}
-
-
 			if (!rs.isBeforeFirst() ) {  
 				cmbaltgrup.setSelectedItem("");
 				cmbaltgrup.setEnabled(false);
@@ -1058,9 +1035,7 @@ public class IMALAT extends JInternalFrame {
 			else
 			{
 				while (rs.next())
-				{
 					cmbaltgrup .addItem(rs.getString("ALT_GRUP"));
-				}
 				cmbaltgrup.setSelectedItem(0);
 				cmbaltgrup.setEnabled(true);
 			}
@@ -1082,9 +1057,7 @@ public class IMALAT extends JInternalFrame {
 			satir = 0 ;
 		}
 		else
-		{
 			mdl.insertRow(satir, new Object[]{"","","","","",0.000,"",0.00,0.00});
-		}
 		table.isRowSelected(satir);
 		table.repaint();
 	}
@@ -1100,14 +1073,10 @@ public class IMALAT extends JInternalFrame {
 	{
 		try {
 			double  dbl=0, dbl1=0;
-
 			if (   table == null) return ;
 			DefaultTableModel mdll = (DefaultTableModel) table.getModel();
 			for (int  i = 0 ; i < mdll.getRowCount()- 1;i++)
-			{
 				dbl += Double.parseDouble(table.getValueAt(i,8).toString()) ;
-			}
-
 			label_17.setText(FORMATLAMA.doub_2(dbl));
 			Double dbmik=0.00;
 			if (! txtmiktar.getText().equals(""))
@@ -1117,9 +1086,7 @@ public class IMALAT extends JInternalFrame {
 				lblNewLabel_6.setText(FORMATLAMA.doub_2(dbl1));
 			}
 			else
-			{
 				lblNewLabel_6.setText(FORMATLAMA.doub_2(dbl1));
-			}
 		}
 		catch (Exception ex)
 		{
@@ -1130,9 +1097,7 @@ public class IMALAT extends JInternalFrame {
 	{
 		try {
 			ResultSet rs = null;
-
 			rs = f_Access.urun_adi_oku(cins,"Kodu");
-
 			if (!rs.isBeforeFirst() ) {  
 				table.getModel().setValueAt("Cikan",table.getSelectedRow(), 0) ;
 				table.getModel().setValueAt("",table.getSelectedRow(), 2) ;
@@ -1146,53 +1111,30 @@ public class IMALAT extends JInternalFrame {
 				table.getModel().setValueAt("Cikan",table.getSelectedRow(), 0) ;
 				table.getModel().setValueAt(rs.getString("Adi"),table.getSelectedRow(), 2) ;
 				table.getModel().setValueAt(rs.getString("Birim"),table.getSelectedRow(), 6) ;
-				//***
 				//'******************Fiat Ekle
 				if (! cmbfiat.getItemAt(cmbfiat.getSelectedIndex()).toString().equals(""))
 				{
 					if ( cmbfiat.getItemAt(cmbfiat.getSelectedIndex()).toString().equals("Fiat_1"))
-					{
 						table.getModel().setValueAt(rs.getDouble("Fiat"),table.getSelectedRow(), 7) ;
-					}
 					else  if ( cmbfiat.getItemAt(cmbfiat.getSelectedIndex()).toString().equals("Fiat_2"))
-					{
 						table.getModel().setValueAt(rs.getDouble("Fiat_2"),table.getSelectedRow(), 7) ;
-					}
 					else  if ( cmbfiat.getItemAt(cmbfiat.getSelectedIndex()).toString().equals("Fiat_3"))
-					{
 						table.getModel().setValueAt(rs.getDouble("Fiat_3"),table.getSelectedRow(), 7) ;
-					}
 					else  if ( cmbfiat.getItemAt(cmbfiat.getSelectedIndex()).toString().equals("Son_Imalat"))
-					{
-
 						table.getModel().setValueAt(f_Access.son_imalat_fiati_oku(cins),table.getSelectedRow(), 7) ;
-
-					}
 					else  if ( cmbfiat.getItemAt(cmbfiat.getSelectedIndex()).toString().equals("Ortalama_Giris_Fiati"))
 					{
 						Date  i_tar ;
-
 						i_tar = ilk_tarih(cins, TARIH_CEVIR.tarih_geri(dtc));
-						//System.out.println(i_tar.toString());
-						//System.out.println( dateFormater(i_tar.toString(), "yyyy.MM.dd", "EEE MMM dd kk:mm:ss zzzz yyyy" ));
 						String qwe =  TARIH_CEVIR.dateFormater(i_tar.toString(), "yyyy.MM.dd", "EEE MMM dd kk:mm:ss zzzz yyyy" );
 						if (qwe.equals("1900.01.01"))
-						{
 							table.getModel().setValueAt(0.00,table.getSelectedRow(), 7) ;
-						}
 						else
-						{
-
 							table.getModel().setValueAt(f_Access.gir_ort_fiati_oku(cins,qwe,TARIH_CEVIR.tarih_geri(dtc)),table.getSelectedRow(), 7) ;
-
-						}
 					}
 				}
 				else
-				{
 					table.getModel().setValueAt(0.00,table.getSelectedRow(), 7) ;
-				}
-				//***
 				table.setCellSelectionEnabled(true);
 				int col = 5;
 				table.changeSelection(table.getSelectedRow(),col,false,false);
@@ -1210,10 +1152,7 @@ public class IMALAT extends JInternalFrame {
 			result_tar = TARIH_CEVIR.tarih("01.01.1900");
 			String deger = GLOBAL.setting_oku("STK_IMA_BAS_TAR").toString();
 			String tar =  TARIH_CEVIR.dateFormater(deger, "yyyy.MM.dd", "EEE MMM dd kk:mm:ss zzzz yyyy" );
-
 			rs = f_Access.uret_ilk_tarih(tar,tarq,kodu);
-
-
 			if (!rs.isBeforeFirst() ) {  
 				result_tar = TARIH_CEVIR.tarih("01.01.1900");
 			}
@@ -1244,9 +1183,7 @@ public class IMALAT extends JInternalFrame {
 	{
 		try {
 			ResultSet rs = null;
-
 			rs = f_Access.imalat_urun_ara(textField_1.getText());
-
 			if (!rs.isBeforeFirst() ) {  
 				label_6.setText("") ;
 				label_5.setText("") ;
@@ -1281,11 +1218,8 @@ public class IMALAT extends JInternalFrame {
 					rss.next();
 					label_16.setText(rss.getString("ANA_GRUP")) ;
 				}
-
-
 				//**Alt Grp
 				rss=null;
-
 				rss = f_Access.urun_kod_degisken_ara( "ALT_GRUP","ALID_Y", "ALT_GRUP_DEGISKEN",rs.getString("Alt_Grup"));
 				if (!rss.isBeforeFirst() ) {
 					label_15.setText("") ;
@@ -1295,12 +1229,8 @@ public class IMALAT extends JInternalFrame {
 					rss.next();
 					label_15.setText(rss.getString("ALT_GRUP")) ;
 				}
-
 				rs = null;
-
 				rs = f_Access.resim_oku(textField_1.getText());
-
-
 				if (!rs.isBeforeFirst() ) {
 				}
 				else
@@ -1330,7 +1260,6 @@ public class IMALAT extends JInternalFrame {
 		catch (Exception ex)
 		{
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
-		//	JOptionPane.showMessageDialog(null,  ex.getMessage(), "Urun Kodu Deger Okuma", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	private void hesapla() 
@@ -1348,13 +1277,9 @@ public class IMALAT extends JInternalFrame {
 				return;
 			}
 			ResultSet rs = null;
-
 			rs = f_Access.recete_oku(txtrecete.getText());
-
-			if (!rs.isBeforeFirst() ) {
-			
+			if (!rs.isBeforeFirst() )
 				OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING, "Bu Numarada Kayitli Recete Bilgisi Yok ");
-			}
 			else
 			{
 				GRID_TEMIZLE.grid_temizle(table);
@@ -1369,15 +1294,11 @@ public class IMALAT extends JInternalFrame {
 						satir +=1 ;
 					}
 					else
-					{
 						lblNewLabel_3.setText(rs.getString("Birim"));
-					}
 				}
 				table.changeSelection(satir,1,false,false);
 				for (int i = satir; i <= 12  ; i ++)
-				{
 					satir_ilave();
-				}
 			}
 		}
 		catch (Exception ex)
@@ -1413,7 +1334,6 @@ public class IMALAT extends JInternalFrame {
 	private static void stok_isle()
 	{
 		try {
-
 			lOG_BILGI lBILGI = new lOG_BILGI();
 			lBILGI.setmESAJ("Imalat Stok Silme");
 			lBILGI.seteVRAK(textField.getText());
@@ -1422,16 +1342,13 @@ public class IMALAT extends JInternalFrame {
 			for (int  i = 0 ; i <=  mdl.getRowCount() - 1 ; i++)
 			{
 				if (! mdl.getValueAt(i,1).toString().equals(""))
-				{
 					sat_yaz_2(i);
-				}
 			}
 			stk_gir_yaz();
 		}
 		catch (Exception ex)
 		{
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
-		//	JOptionPane.showMessageDialog(null, ex.getMessage(),  "Fatura Satyz1", JOptionPane.ERROR_MESSAGE);             
 		}
 	}
 	public static void sat_yaz_2(int i)
@@ -1444,14 +1361,10 @@ public class IMALAT extends JInternalFrame {
 			DefaultTableModel mdl = (DefaultTableModel) table.getModel();
 			ResultSet rs =null ;
 			if ( mdl.getValueAt(i,4) == null)
-			{
 				depo = 0 ;
-			}
 			else
 			{
-
 				rs = f_Access.urun_kod_degisken_ara("DPID_Y", "DEPO", "DEPO_DEGISKEN",  mdl.getValueAt(i,4).toString());
-
 				if (!rs.isBeforeFirst() ) {      		
 				}
 				else
@@ -1467,14 +1380,11 @@ public class IMALAT extends JInternalFrame {
 			tutar = tutar * -1 ;
 			izahat =  mdl.getValueAt(i,3).toString();
 			if (izahat.equals(""))
-			{
 				izahat =  textField.getText() + " Nolu Uretimde Cikan " ;
-			}
 			angrp = 0 ;
-			if ( ! cmbanagrup.getItemAt(cmbanagrup.getSelectedIndex()).toString().equals("") ) {
-
+			if ( ! cmbanagrup.getItemAt(cmbanagrup.getSelectedIndex()).toString().equals("") ) 
+			{
 				rs = f_Access.urun_kod_degisken_ara("AGID_Y", "ANA_GRUP", "ANA_GRUP_DEGISKEN",  cmbanagrup.getItemAt(cmbanagrup.getSelectedIndex()).toString());
-
 				if (!rs.isBeforeFirst() ) {      		
 				}
 				else
@@ -1484,10 +1394,9 @@ public class IMALAT extends JInternalFrame {
 				}
 			}
 			altgrp = 0;
-			if ( ! cmbaltgrup.getItemAt(cmbaltgrup.getSelectedIndex()).toString().equals("") ) {
-
+			if ( ! cmbaltgrup.getItemAt(cmbaltgrup.getSelectedIndex()).toString().equals("") ) 
+			{
 				rs = f_Access.urun_kod_degisken_ara("ALID_Y", "ALT_GRUP", "ALT_GRUP_DEGISKEN",  cmbaltgrup.getItemAt(cmbaltgrup.getSelectedIndex()).toString());
-
 				if (!rs.isBeforeFirst() ) {      		
 				}
 				else
@@ -1509,23 +1418,19 @@ public class IMALAT extends JInternalFrame {
 		catch (Exception ex)
 		{
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
-		//	JOptionPane.showMessageDialog(null, ex.getMessage(),  "Imalat Satyz2", JOptionPane.ERROR_MESSAGE);             
 		}
 	}
 	public static void stk_gir_yaz()
 	{
 		try {
-
 			lOG_BILGI lBILGI = new lOG_BILGI();
 			lBILGI.setmESAJ("Imalat Stok Silme");
 			lBILGI.seteVRAK(textField.getText());
 			
 			f_Access.stok_sil(textField.getText(), "URE", "G",lBILGI, BAGLAN_LOG.fatLogDizin);
-
 			double  miktar, tutar,fiat ;
 			int angrp, altgrp, depo;
 			depo = 0 ;
-			//DefaultTableModel mdl = (DefaultTableModel) table.getModel();
 			ResultSet rs =null ;
 			depo = 0 ;
 
@@ -1542,10 +1447,9 @@ public class IMALAT extends JInternalFrame {
 			tutar = DecimalFormat.getNumberInstance().parse(label_17.getText()).doubleValue()  ;
 			fiat =tutar  / (miktar == 0 ? 1 :miktar);
 			angrp = 0 ;
-			if ( ! cmbanagrup.getItemAt(cmbanagrup.getSelectedIndex()).toString().equals("") ) {
-
+			if ( ! cmbanagrup.getItemAt(cmbanagrup.getSelectedIndex()).toString().equals("") ) 
+			{
 				rs =f_Access.urun_kod_degisken_ara("AGID_Y", "ANA_GRUP", "ANA_GRUP_DEGISKEN",  cmbanagrup.getItemAt(cmbanagrup.getSelectedIndex()).toString());
-
 				if (!rs.isBeforeFirst() ) {      		
 				}
 				else
@@ -1555,10 +1459,9 @@ public class IMALAT extends JInternalFrame {
 				}
 			}
 			altgrp = 0;
-			if ( ! cmbaltgrup.getItemAt(cmbaltgrup.getSelectedIndex()).toString().equals("") ) {
-
+			if ( ! cmbaltgrup.getItemAt(cmbaltgrup.getSelectedIndex()).toString().equals("") ) 
+			{
 				rs = f_Access.urun_kod_degisken_ara("ALID_Y", "ALT_GRUP", "ALT_GRUP_DEGISKEN",  cmbaltgrup.getItemAt(cmbaltgrup.getSelectedIndex()).toString());
-
 				if (!rs.isBeforeFirst() ) {      		
 				}
 				else
@@ -1567,19 +1470,16 @@ public class IMALAT extends JInternalFrame {
 					altgrp  = rs.getInt("ALID_Y");
 				}
 			}
-
 			lBILGI.setmESAJ( "Imalat Stok Giren Kayit  Kod:" + textField_1.getText()  + " Miktar:" + miktar + " Fiat:" + fiat );
 			lBILGI.seteVRAK(textField.getText());
 			
 			f_Access.stk_kaydet(textField.getText(), "URE", tar, depo,textField_1.getText()  , miktar, fiat
 					, KUSUR_YUVARLA.round(tutar,2),KUSUR_YUVARLA.round(tutar,2), "G", textField.getText() + " Nolu Fis Ile Uretim ", angrp, altgrp,0, "", txtdoviz.getText(),"",GLOBAL.KULL_ADI,
 					lBILGI,BAGLAN_LOG.fatLogDizin);
-
 		}
 		catch (Exception ex)
 		{
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
-		//	JOptionPane.showMessageDialog(null, ex.getMessage(),  "Imalat Satgiryz", JOptionPane.ERROR_MESSAGE);             
 		}
 	}
 	public static void acik_yaz()
@@ -1602,14 +1502,11 @@ public class IMALAT extends JInternalFrame {
 	private static void acik_sil()
 	{
 		try {
-
 			lOG_BILGI lBILGI = new lOG_BILGI();
 			lBILGI.setmESAJ( "Imalat Acik Sil  G "   );
 			lBILGI.seteVRAK(textField.getText());
-			
 			f_Access.aciklama_sil("URE", textField.getText(), "G",
 					lBILGI  ,BAGLAN_LOG.fatLogDizin);
-
 		}
 		catch (Exception ex)
 		{
@@ -1621,9 +1518,7 @@ public class IMALAT extends JInternalFrame {
 		GRID_TEMIZLE.grid_temizle(table);
 		table.isRowSelected(0);
 		for (int i = 0; i <= 12; i ++)
-		{
 			satir_ilave();
-		}
 		label_6.setText("") ;
 		label_5.setText("") ;
 		label_9.setText("") ;
@@ -1670,7 +1565,6 @@ public class IMALAT extends JInternalFrame {
 			long estimatedTime = endTime - startTime;
 			double seconds = (double)estimatedTime/1000; 
 			OBS_MAIN.lblNewLabel_9.setText("Son Raporlama Suresi : " + FORMATLAMA.doub_4(seconds) +  " saniye");
-
 			textField.requestFocus();
 		}
 		catch (Exception ex)
@@ -1683,9 +1577,7 @@ public class IMALAT extends JInternalFrame {
 		try {
 			long startTime = System.currentTimeMillis();
 			ResultSet rss =null;
-
 			rss = f_Access.stok_oku(textField.getText(), "URE");
-
 			if (!rss.isBeforeFirst() ) 
 			{  
 				textField_1.setText("");
@@ -1742,9 +1634,7 @@ public class IMALAT extends JInternalFrame {
 			setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 			cmbdepo .removeAllItems();
 			ResultSet rs = null;
-
 			rs = f_Access.stk_kod_degisken_oku("DEPO", "DPID_Y", "DEPO_DEGISKEN");
-
 			if (!rs.isBeforeFirst() ) {  
 				cmbdepo.addItem("");
 				cmbdepo.setSelectedItem("");
@@ -1753,9 +1643,7 @@ public class IMALAT extends JInternalFrame {
 			{
 				cmbdepo.addItem("");
 				while (rs.next())
-				{
 					cmbdepo.addItem(rs.getString("DEPO"));
-				}
 			}
 			cmbdepo.setSelectedItem("");
 			setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));

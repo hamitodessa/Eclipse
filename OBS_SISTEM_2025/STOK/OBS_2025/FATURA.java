@@ -200,29 +200,18 @@ public class FATURA extends JInternalFrame {
 						setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));	
 						int sno = 0 ;
 						if (cmbcins.getItemAt(cmbcins.getSelectedIndex()).toString().equals("SATIS") )
-						{
-
 							sno  = f_Access.fatura_no_al("C") ;
-
-						}
 						else
-						{
-
 							sno  = f_Access.fatura_no_al("G") ;
-
-						}
-
 						int kj = 0 ;
 						kj = 10 - Integer.toString(sno).length() ;
 						String str_ = StringUtils.repeat("0", kj)   + Integer.toString(sno);
-
 						textField.setText(str_.equals("0000000000") ? "0000000001":str_);
 						setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	
 					}
 					catch (Exception ex)
 					{
 						setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-						
 						OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING, "Fatura Numaralarinda onceden harf ve rakkam kullanildigindan otomatik numara verilemez....");
 					}
 				}
@@ -324,10 +313,8 @@ public class FATURA extends JInternalFrame {
 		dtc.getComponent(1).addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if (e.getClickCount() == 2) 
-				{
+				if (e.getClickCount() == 2)
 					dtc.setDate(new Date());
-				}
 			}
 		});
 		dtc.getComponent(1).addKeyListener(new KeyListener() {
@@ -379,14 +366,14 @@ public class FATURA extends JInternalFrame {
 		panel_2.add(lblNewLabel_5);
 
 		txtadres = new Obs_TextFIeld(12);
-	
+
 		txtadres.getDocument().addDocumentListener(new DocumentListener() {
 			public void changedUpdate(DocumentEvent e) {
-					try {
-						lblNewLabel_6.setText(a_Access.kod_ismi(txtadres.getText()));
-					} catch (Exception e1) {
-						e1.printStackTrace();
-					}
+				try {
+					lblNewLabel_6.setText(a_Access.kod_ismi(txtadres.getText()));
+				} catch (Exception e1) {
+					e1.printStackTrace();
+				}
 			}
 			public void removeUpdate(DocumentEvent e) {
 				try {
@@ -419,7 +406,7 @@ public class FATURA extends JInternalFrame {
 		txtadres.setFont(new Font("Tahoma", Font.BOLD, 12));
 		txtadres.setBounds(353, 33, 125, 20);
 		panel_2.add(txtadres);
-		
+
 
 		lblNewLabel_6 = new JLabel(".....");
 		lblNewLabel_6.setFont(new Font("Tahoma", Font.BOLD, 11));
@@ -570,30 +557,19 @@ public class FATURA extends JInternalFrame {
 
 
 				if ( ! sonuc.equals("") )
-				{
 					lblNewLabel_17.setText(sonuc);
-				}
 				else
-				{
 					lblNewLabel_17.setText("");
-				}
 			}
 			public void removeUpdate(DocumentEvent e) {
 				String sonuc = "";
-
 				try {
 					sonuc = a_Access.kod_ismi(textField_8.getText());
 				} catch (Exception ex) {		}
-
-
 				if ( ! sonuc.equals("") )
-				{
 					lblNewLabel_17.setText(sonuc);
-				}
 				else
-				{
 					lblNewLabel_17.setText("");
-				}
 			}
 			public void insertUpdate(DocumentEvent e) {
 				String sonuc = "";
@@ -601,16 +577,10 @@ public class FATURA extends JInternalFrame {
 				try {
 					sonuc = a_Access.kod_ismi(textField_8.getText());
 				} catch (Exception ex) {		}
-
-
 				if ( ! sonuc.equals("") )
-				{
 					lblNewLabel_17.setText(sonuc);
-				}
 				else
-				{
 					lblNewLabel_17.setText("");
-				}
 			}
 		});
 		textField_8.addMouseListener(new MouseAdapter() {
@@ -704,11 +674,11 @@ public class FATURA extends JInternalFrame {
 		splitPane_11.setDividerSize(0);
 		splitPane_11.setResizeWeight(1.0);
 		splitPane_11.setOrientation(JSplitPane.VERTICAL_SPLIT);
-		
-		
+
+
 		splitPane_1.setRightComponent(splitPane_11);
-		
-	
+
+
 		//***
 		JPanel panel_71 = new JPanel();
 		panel_71.setBorder(new LineBorder(null));
@@ -742,14 +712,14 @@ public class FATURA extends JInternalFrame {
 		label_9.setBounds(800, 3, 125, 14);
 		panel_71.add(label_9);
 
-		
+
 		JPanel panell = new JPanel();
-	
+
 		panell.setMinimumSize(new Dimension(0, 120));
 		panell.setMaximumSize(new Dimension(0, 120));
 		panell.setLayout(new BorderLayout(0, 0));
-		
-		
+
+
 		MaterialTabbed tabbedPane_2 = new MaterialTabbed();
 		//tabbedPane_2.setForeground(new Color(0, 0, 128));
 		tabbedPane_2.setFont(new Font("Tahoma", Font.BOLD, 12));
@@ -906,13 +876,9 @@ public class FATURA extends JInternalFrame {
 		chckbxNewCheckBox_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (chckbxNewCheckBox_1.isSelected())
-				{
 					panel_8.setVisible(true);
-				}
 				else
-				{
 					panel_8.setVisible(false);
-				}
 			}
 		});
 		chckbxNewCheckBox_1.setBounds(6, 7, 155, 23);
@@ -972,10 +938,8 @@ public class FATURA extends JInternalFrame {
 			public void actionPerformed(ActionEvent e) {
 				boolean varmi = OBS_MAIN.pencere_bak("URUN KARTI");
 				try {
-					if (varmi  ) 
-					{
+					if (varmi  )
 						OBS_MAIN.pencere_aktiv_yap("URUN KARTI");
-					}
 					else
 					{
 						JInternalFrame internalFrame;
@@ -1213,7 +1177,7 @@ public class FATURA extends JInternalFrame {
 		col = table.getColumnModel().getColumn(9);
 		col.setMinWidth(200);
 		Obs_TextFIeld atf = new Obs_TextFIeld(40);
-		
+
 		col.setCellEditor(new DefaultCellEditor(atf));
 		col.setHeaderRenderer(new SOLA());
 
@@ -1267,11 +1231,8 @@ public class FATURA extends JInternalFrame {
 
 		DefaultTableModel model1 = new DefaultTableModel() ; 
 		table_1 = new JTable(model1);
-		if(! oac.gridcolor.toString().equals("java.awt.Color[r=255,g=255,b=255]")) 
-		{
+		if(! oac.gridcolor.toString().equals("java.awt.Color[r=255,g=255,b=255]"))
 			table_1.setGridColor(oac.gridcolor);
-		}
-
 		model1.addColumn("Irsaliye", new String []{""});
 		model1.addColumn("Hesap Kodu", new String []{""});
 		model1.addColumn("Unvan", new String []{""});
@@ -1327,8 +1288,6 @@ public class FATURA extends JInternalFrame {
 				}
 			}
 		});
-		//cmbcins.setBackground(Color.WHITE);
-		//cmbcins.setForeground(Color.RED);
 		cmbcins.setFont(new Font("Tahoma", Font.BOLD, 16));
 		cmbcins.setModel(new DefaultComboBoxModel<String>(new String[] {"SATIS", "ALIS"}));
 		cmbcins.setBounds(497, 78, 182, 22);
@@ -1344,11 +1303,8 @@ public class FATURA extends JInternalFrame {
 			deger = GLOBAL.setting_oku("STK_FAT_SATIR").toString();
 			sat_sayi =Integer.parseInt(deger);
 			for (int i = 0; i <= sat_sayi -1 ; i ++)
-			{
 				satir_ilave();
-			}
 			txtdoviz.setText(GLOBAL.setting_oku("PRG_PARA").toString());
-			
 			String[] parts;
 			Font bigFont;
 			deger = GLOBAL.setting_oku("STK_FAT_GIRIS").toString();
@@ -1360,44 +1316,42 @@ public class FATURA extends JInternalFrame {
 		} catch (Exception ex) {
 
 		}
-			JButton button = new JButton("");
-			button.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-					ana_grup_doldur();
-				}
-			});
-			button.setIcon(new ImageIcon(FATURA.class.getResource("/ICONLAR/icons8-repeat-16.png")));
-			button.setToolTipText("Yenile");
-			button.setBounds(955, 7, 26, 23);
-			panel_2.add(button);
+		JButton button = new JButton("");
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ana_grup_doldur();
+			}
+		});
+		button.setIcon(new ImageIcon(FATURA.class.getResource("/ICONLAR/icons8-repeat-16.png")));
+		button.setToolTipText("Yenile");
+		button.setBounds(955, 7, 26, 23);
+		panel_2.add(button);
 
-			JButton button_1 = new JButton("");
-			button_1.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-					setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-					//getContentPane().setCursor(oac.WAIT_CURSOR);
-					son_fisoku();
-					//getContentPane().setCursor(oac.DEFAULT_CURSOR);
-					setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-				}
-			});
-			button_1.setIcon(new ImageIcon(FATURA.class.getResource("/ICONLAR/icons8-view-16.png")));
-			button_1.setToolTipText("Son Fis");
-			button_1.setBounds(209, 7, 26, 23);
-			panel_2.add(button_1);
+		JButton button_1 = new JButton("");
+		button_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+				son_fisoku();
+				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+			}
+		});
+		button_1.setIcon(new ImageIcon(FATURA.class.getResource("/ICONLAR/icons8-view-16.png")));
+		button_1.setToolTipText("Son Fis");
+		button_1.setBounds(209, 7, 26, 23);
+		panel_2.add(button_1);
 
-		
+
 		//***********
 		table.getModel().addTableModelListener(	(TableModelListener) new TableModelListener() 
-		{		@SuppressWarnings("unused")
+		{		
+		@SuppressWarnings("unused")
 		@Override
-			public void tableChanged(TableModelEvent e) {
+		public void tableChanged(TableModelEvent e) {
 			TableModel model = (TableModel)e.getSource();
 			if (model.getRowCount() > 0) {
 				int row;
 				row = table.getSelectedRow();     //e.getFirstRow();
 				int column = e.getColumn();
-				//      Object data = model.getValueAt(row, column);
 				if (column == 3)  //FIAT
 				{
 					double fiat ,miktar = 0 ;
@@ -1424,18 +1378,14 @@ public class FATURA extends JInternalFrame {
 					if (! deger.equals("-1"))
 					{
 						if ( table.getValueAt(row,1).toString().equals(""))
-						{	 return ;		 }
+							return ;
 						boolean durum = false ;
-
 						try {
 							durum = f_Access.stok_bak_kontrol(table.getValueAt(row,1).toString());
 						} catch (Exception ex) {		} 
 
 						if (durum)
-						{
-						
 							OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING, "Bu Urun Bakiyesi Eksi Konumdadir....");
-						}
 						else
 						{
 							//  ' Stokta - Bakiye Degil
@@ -1446,7 +1396,6 @@ public class FATURA extends JInternalFrame {
 				//*** barkod
 				if (column == 0)
 				{
-
 					try {
 						deger = GLOBAL.setting_oku("STK_STOK_KONTROL").toString();
 						sat_sayi = Integer.parseInt(deger);
@@ -1454,28 +1403,20 @@ public class FATURA extends JInternalFrame {
 					if (! deger.equals("-1"))
 					{
 						if ( table.getValueAt(row,1).toString().equals(""))
-						{
 							return ;
-						}
 						boolean durum = false ;
-
 						try {
 							durum = f_Access.stok_bak_kontrol_barcode(table.getValueAt(row,0).toString());
 						} catch (Exception ex) {		} 
 
 						if (durum)
-						{
-						
 							OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING,"Bu Urun Bakiyesi Eksi Konumdadir....");
-						}
 						else
 						{
 							//  ' Stokta - Bakiye Degil
-							//Cursor = System.Windows.Forms.Cursors.Default
 						}
 					}
 				}			
-				//**
 			}
 			toplam();
 		}
@@ -1510,9 +1451,7 @@ public class FATURA extends JInternalFrame {
 			if ( yeni_fat == false ) // ' eski kayit
 			{
 				ResultSet rss = null;
-
 				rss = c_Access.evrak_ogren(textField.getText());
-
 				boolean result ;
 				if (!rss.isBeforeFirst() ) {
 					result = false;
@@ -1522,13 +1461,9 @@ public class FATURA extends JInternalFrame {
 					rss.next();
 					String sonuc = rss.getString("EVRAK");
 					if ( sonuc.equals(""))
-					{
 						result = false;
-					}
 					else
-					{
 						result = true;
-					}
 				}
 				if  (result)
 				{
@@ -1540,12 +1475,9 @@ public class FATURA extends JInternalFrame {
 						return;
 					}	
 					else
-					{
 						cari_kontrol() ;
-					}
 				}
 			}
-			//'************************************
 			textField.setText("");
 			textField.requestFocus();
 		}
@@ -1560,17 +1492,9 @@ public class FATURA extends JInternalFrame {
 			long startTime = System.currentTimeMillis();
 			ResultSet rss = null;
 			if (cmbcins.getItemAt(cmbcins.getSelectedIndex()).toString().equals("SATIS") )
-			{
-
 				rss = f_Access.fatura_oku(textField.getText(), "C");
-
-			}
 			else
-			{
-
 				rss = f_Access.fatura_oku(textField.getText(), "G");
-
-			}
 			if (!rss.isBeforeFirst() ) {  
 				txtadres.setText("");
 				yeni_fat = true;
@@ -1582,7 +1506,6 @@ public class FATURA extends JInternalFrame {
 			{
 				rss.next();
 				yeni_fat = false;
-				//txtadres.setText("");
 				GRID_TEMIZLE.grid_temizle(table);
 				GRID_TEMIZLE.grid_temizle(table_1);
 				sifirla();
@@ -1594,9 +1517,7 @@ public class FATURA extends JInternalFrame {
 				cmbozkod.setSelectedItem(rss.getString("Ozel_Kod"));
 				//  '***********GRUP DOLDUR
 				ResultSet rsa=null;
-
 				rsa = f_Access.urun_kod_degisken_ara("ANA_GRUP", "AGID_Y", "ANA_GRUP_DEGISKEN",String.valueOf(rss.getInt("Ana_Grup")));
-
 				if (!rsa.isBeforeFirst() ) {  
 					cmbaltgrup.setEnabled(false);
 					cmbanagrup.setSelectedItem("");
@@ -1609,9 +1530,7 @@ public class FATURA extends JInternalFrame {
 				}
 				//**Alt Grup
 				rsa = null;
-
 				rsa = f_Access.urun_kod_degisken_ara("ALT_GRUP", "ALID_Y", "ALT_GRUP_DEGISKEN",String.valueOf(rss.getInt("Alt_Grup")));
-
 				if (!rsa.isBeforeFirst() ) {  
 					cmbaltgrup.setSelectedItem("");
 				} 
@@ -1623,32 +1542,20 @@ public class FATURA extends JInternalFrame {
 				//  '************ACIKLAMA OKU ***********************************************************
 				if (cmbcins.getItemAt(cmbcins.getSelectedIndex()).toString().equals("SATIS") )
 				{
-
 					textField_9.setText( f_Access.aciklama_oku("FAT", 1, textField.getText(), "C"));
 					textField_10.setText(f_Access.aciklama_oku("FAT", 2, textField.getText(), "C"));
-
 				}
 				else
 				{
-
 					textField_9.setText(f_Access.aciklama_oku("FAT", 1, textField.getText(), "G"));
 					textField_10.setText(f_Access.aciklama_oku("FAT", 2, textField.getText(), "G"));
-
 				}
 				// '***************** IRSALIYE NOLARI DOLDUR ********************************************
 				rsa = null;
 				if (cmbcins.getItemAt(cmbcins.getSelectedIndex()).toString().equals("SATIS") )
-				{
-
 					rsa =   f_Access.irsaliye_no_doldur( textField.getText(), "C");
-
-				}
 				else
-				{
-
 					rsa =   f_Access.irsaliye_no_doldur( textField.getText(), "G");
-
-				}
 				if (!rsa.isBeforeFirst() ) 
 				{  
 					DefaultTableModel mdl1 = (DefaultTableModel) table_1.getModel();
@@ -1660,14 +1567,11 @@ public class FATURA extends JInternalFrame {
 					DefaultTableModel mdl2 = (DefaultTableModel) table_1.getModel();
 					while (rsa.next())
 					{
-
 						rsh = c_Access.hesap_adi_oku(rsa.getString("Cari_Hesap_Kodu"));
-
 						rsh.next();
 						mdl2.addRow(new Object [] {rsa.getString("Irsaliye_No"), rsa.getString("Cari_Hesap_Kodu"), rsh.getString("UNVAN") + " / " + rsh.getString("HESAP_CINSI"), rsh.getDate("Tarih")});
 					}
 				}
-				// '*************************************************************************************
 				rss.first();   
 				DefaultTableModel mdl = (DefaultTableModel) table.getModel();
 				int satir =0 ;
@@ -1703,9 +1607,7 @@ public class FATURA extends JInternalFrame {
 			deger = GLOBAL.setting_oku("STK_FAT_SATIR").toString();
 			sat_sayi =Integer.parseInt(deger);
 			for (int i = 0; i <= sat_sayi; i ++)
-			{
 				satir_ilave();
-			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -1745,10 +1647,8 @@ public class FATURA extends JInternalFrame {
 	{
 		try {
 			boolean varmi = OBS_MAIN.pencere_bak("DEKONT");
-			if (varmi  ) 
-			{
+			if (varmi  )
 				OBS_MAIN.pencere_aktiv_yap("DEKONT");
-			}
 			else
 			{
 				JInternalFrame internalFrame;
@@ -1778,13 +1678,10 @@ public class FATURA extends JInternalFrame {
 	{
 		try {
 			lOG_BILGI lBILGI = new lOG_BILGI();
-			
-			
 			if (cmbcins.getItemAt(cmbcins.getSelectedIndex()).toString().equals("SATIS") )
 			{
 				lBILGI.setmESAJ(textField.getText() + " Nolu Cikis Fatura Silindi");
 				lBILGI.seteVRAK(textField.getText());
-				
 				f_Access.fat_giris_sil(textField.getText(), "C" ,lBILGI,BAGLAN_LOG.fatLogDizin);
 			}
 			else
@@ -1796,13 +1693,9 @@ public class FATURA extends JInternalFrame {
 			DefaultTableModel mdl = (DefaultTableModel) table.getModel();
 			for (int  i = 0 ; i <=  mdl.getRowCount() - 1 ; i++)
 			{
-				//  Progres_Bar(RG1.Rows.Count - 1, i)
 				if (! mdl.getValueAt(i,1).toString().equals(""))
-				{
 					sat_yaz_2(i);
-				}
 			}
-			// Progres_Bar_Temizle()
 		}
 		catch (Exception ex)
 		{
@@ -1819,9 +1712,7 @@ public class FATURA extends JInternalFrame {
 			DefaultTableModel mdl = (DefaultTableModel) table.getModel();
 			ResultSet rs =null ;
 			if (mdl.getValueAt(i,2) == null)
-			{
 				depo = 0 ;
-			}
 			else
 			{
 				rs = f_Access.urun_kod_degisken_ara("DPID_Y", "DEPO", "DEPO_DEGISKEN",  mdl.getValueAt(i,2).toString());
@@ -1848,19 +1739,14 @@ public class FATURA extends JInternalFrame {
 			double tutar ;
 			tutar =Double.parseDouble(mdl.getValueAt(i,8).toString());
 			if ( mdl.getValueAt(i,9).toString().equals(""))
-			{
 				izahat = "" ;
-			}
 			else
-			{
 				izahat =  mdl.getValueAt(i,9) .toString();
-			}
 			kur = DecimalFormat.getNumberInstance().parse(txtkur.getText()).doubleValue();
 			angrp = 0 ;
-			if ( ! cmbanagrup.getItemAt(cmbanagrup.getSelectedIndex()).toString().equals("") ) {
-
+			if ( ! cmbanagrup.getItemAt(cmbanagrup.getSelectedIndex()).toString().equals("") ) 
+			{
 				rs = f_Access.urun_kod_degisken_ara("AGID_Y", "ANA_GRUP", "ANA_GRUP_DEGISKEN", cmbanagrup.getItemAt(cmbanagrup.getSelectedIndex()).toString());
-
 				if (!rs.isBeforeFirst() ) {      		
 				}
 				else
@@ -1871,9 +1757,7 @@ public class FATURA extends JInternalFrame {
 			}
 			altgrp = 0;
 			if ( ! cmbaltgrup.getItemAt(cmbaltgrup.getSelectedIndex()).toString().equals("") ) {
-
 				rs = f_Access.urun_kod_degisken_ara("ALID_Y", "ALT_GRUP", "ALT_GRUP_DEGISKEN",  cmbaltgrup.getItemAt(cmbaltgrup.getSelectedIndex()).toString());
-
 				if (!rs.isBeforeFirst() ) {      		
 				}
 				else
@@ -1894,7 +1778,7 @@ public class FATURA extends JInternalFrame {
 			lOG_BILGI lBILGI = new lOG_BILGI();
 			lBILGI.setmESAJ(gircik + " Fatura Kayit" +  mdl.getValueAt(i,1).toString() + " Mik=" + miktar + " Tut=" + tutar);
 			lBILGI.seteVRAK(textField.getText());
-			
+
 			f_Access.fat_kaydet(textField.getText(),  mdl.getValueAt(i,1).toString(), depo,fiat , tevk,
 					miktar, gircik, tutar ,isk,kdv,
 					tar, izahat, txtdoviz.getText(), txtadres.getText(), txtcari.getText(), 
@@ -1911,8 +1795,6 @@ public class FATURA extends JInternalFrame {
 	{
 		try {
 			lOG_BILGI lBILGI = new lOG_BILGI();
-			
-			
 			if (cmbcins.getItemAt(cmbcins.getSelectedIndex()).toString().equals("SATIS") )
 			{
 				lBILGI.setmESAJ("Fatura Stok Silme");
@@ -1928,9 +1810,7 @@ public class FATURA extends JInternalFrame {
 			DefaultTableModel mdl = (DefaultTableModel) table.getModel();
 			for (int  i = 0 ; i <=  mdl.getRowCount() - 1 ; i++)
 				if (! mdl.getValueAt(i,1).toString().equals(""))
-				{
 					stk_yaz_2(i);
-				}
 		}
 		catch (Exception ex)
 		{
@@ -1947,13 +1827,10 @@ public class FATURA extends JInternalFrame {
 			DefaultTableModel mdl = (DefaultTableModel) table.getModel();
 			ResultSet rs =null ;
 			if (mdl.getValueAt(sat,2).toString().equals(""))
-			{
 				depo = 0 ;
-			}
 			else
 			{
 				rs = f_Access.urun_kod_degisken_ara("DPID_Y", "DEPO", "DEPO_DEGISKEN",  mdl.getValueAt(sat,2).toString());
-
 				if (!rs.isBeforeFirst() ) {      		
 				}
 				else
@@ -1989,10 +1866,9 @@ public class FATURA extends JInternalFrame {
 				izah = textField.getText() + " Nolu Giris Faturasi...";
 			}
 			anagrp = 0 ;
-			if ( ! cmbanagrup.getItemAt(cmbanagrup.getSelectedIndex()).toString().equals("") ) {
-
+			if ( ! cmbanagrup.getItemAt(cmbanagrup.getSelectedIndex()).toString().equals("") ) 
+			{
 				rs = f_Access.urun_kod_degisken_ara("AGID_Y", "ANA_GRUP", "ANA_GRUP_DEGISKEN",  cmbanagrup.getItemAt(cmbanagrup.getSelectedIndex()).toString());
-
 				if (!rs.isBeforeFirst() ) {      		
 				}
 				else
@@ -2000,13 +1876,11 @@ public class FATURA extends JInternalFrame {
 					rs.next();
 					anagrp  = rs.getInt("AGID_Y");	
 				}
-
 			}
 			altgrp = 0;
-			if ( ! cmbaltgrup.getItemAt(cmbaltgrup.getSelectedIndex()).toString().equals("") ) {
-
+			if ( ! cmbaltgrup.getItemAt(cmbaltgrup.getSelectedIndex()).toString().equals("") ) 
+			{
 				rs = f_Access.urun_kod_degisken_ara("ALID_Y", "ALT_GRUP", "ALT_GRUP_DEGISKEN",  cmbaltgrup.getItemAt(cmbaltgrup.getSelectedIndex()).toString());
-
 				if (!rs.isBeforeFirst() ) {      		
 				}
 				else
@@ -2023,10 +1897,10 @@ public class FATURA extends JInternalFrame {
 			lOG_BILGI lBILGI = new lOG_BILGI();
 			lBILGI.setmESAJ( "Fatura Stok Kayit  H:"+ har + "   Kod:" + mdl.getValueAt(sat,1).toString() + " Miktar:" + miktar + " Fiat:" + fiat );
 			lBILGI.seteVRAK(textField.getText());
-			
+
 			f_Access.stk_kaydet(textField.getText(), "FAT", tar, depo,  mdl.getValueAt(sat,1).toString(), miktar, fiat
 					,(double) Math.round(tutar), kdvlitut, har, izah, anagrp, altgrp, kur, "", txtdoviz.getText(), txtcari.getText(),GLOBAL.KULL_ADI,
-				 lBILGI,BAGLAN_LOG.fatLogDizin);
+					lBILGI,BAGLAN_LOG.fatLogDizin);
 
 		}
 		catch (Exception ex)
@@ -2049,13 +1923,10 @@ public class FATURA extends JInternalFrame {
 		try {
 			dipnot_sil();
 			lOG_BILGI lBILGI = new lOG_BILGI();
-			
-			
 			if (cmbcins.getItemAt(cmbcins.getSelectedIndex()).toString().equals("SATIS") )
 			{
 				lBILGI.setmESAJ( "Fatura Dip Not Yaz : "  +textField_5.getText() );
 				lBILGI.seteVRAK(textField.getText());
-				
 				f_Access.dipnot_yaz(textField.getText(), textField_5.getText(),textField_6.getText(),textField_8.getText(), "F", "C",GLOBAL.KULL_ADI,
 						lBILGI,BAGLAN_LOG.fatLogDizin);
 			}
@@ -2080,7 +1951,6 @@ public class FATURA extends JInternalFrame {
 			{
 				lBILGI.setmESAJ("Fatura Dip Not Sil "  );
 				lBILGI.seteVRAK(textField.getText());
-				
 				f_Access.dipnot_sil(textField.getText(), "F", "C",
 						lBILGI,BAGLAN_LOG.fatLogDizin);
 			}
@@ -2089,7 +1959,7 @@ public class FATURA extends JInternalFrame {
 				lBILGI.setmESAJ("Fatura Dip Not Sil "  );
 				lBILGI.seteVRAK(textField.getText());
 				f_Access.dipnot_sil(textField.getText(), "F", "G",
-					lBILGI,BAGLAN_LOG.fatLogDizin);
+						lBILGI,BAGLAN_LOG.fatLogDizin);
 			}
 		}
 		catch (Exception ex)
@@ -2106,14 +1976,14 @@ public class FATURA extends JInternalFrame {
 			{
 				lBILGI.setmESAJ("Fatura Aciklama Yaz  C : "  +  textField_9.getText() );
 				lBILGI.seteVRAK(textField.getText());
-				
+
 				f_Access.aciklama_yaz("FAT", 1, textField.getText(),  textField_9.getText(), "C" ,
-						 lBILGI,BAGLAN_LOG.fatLogDizin);
-				
+						lBILGI,BAGLAN_LOG.fatLogDizin);
+
 				lBILGI.setmESAJ("Fatura Aciklama Yaz  C : "  +  textField_10.getText()  );
-				
+
 				f_Access.aciklama_yaz("FAT", 2, textField.getText(), textField_10.getText(), "C",
-						 lBILGI,BAGLAN_LOG.fatLogDizin);
+						lBILGI,BAGLAN_LOG.fatLogDizin);
 
 			}
 			else
@@ -2141,7 +2011,7 @@ public class FATURA extends JInternalFrame {
 			{
 				lBILGI.setmESAJ( "Fatura Aciklama Sil  Cikis " );
 				lBILGI.seteVRAK(textField.getText());
-				
+
 				f_Access.aciklama_sil("FAT", textField.getText(), "C",
 						lBILGI,BAGLAN_LOG.fatLogDizin);
 			}
@@ -2165,11 +2035,7 @@ public class FATURA extends JInternalFrame {
 			{
 				DefaultTableModel mdl = (DefaultTableModel) table_1.getModel();
 				if ( mdl.getValueAt(i,0) != null)
-				{
-
 					f_Access.fat_no_yaz( mdl.getValueAt(i,0).toString(), textField.getText());  // Irsaliyeye Fat No yazma
-
-				}
 			}
 		}
 		catch (Exception ex)
@@ -2187,10 +2053,7 @@ public class FATURA extends JInternalFrame {
 			satir = 0 ;
 		}
 		else
-		{
 			mdl.insertRow(satir, new Object[]{"","","",0.00,0,0.000,"",0,0.00,""});
-		}
-
 		table.isRowSelected(satir);
 		table.repaint();
 	}
@@ -2223,9 +2086,7 @@ public class FATURA extends JInternalFrame {
 					toplam();
 					return;
 				}
-
 				rs = f_Access.urun_adi_oku(cins,"Barkod");
-
 				if (!rs.isBeforeFirst() ) {  
 					lblNewLabel_12.setText("");
 					label_5.setText("");
@@ -2240,37 +2101,24 @@ public class FATURA extends JInternalFrame {
 				}
 				else
 				{
-					
 					rs.next();
 					lblNewLabel_12.setText(rs.getString("Adi"));
 					label_5.setText(rs.getString("Ana_Grup") + "  /  " + rs.getString("Alt_Grup") );
-
 					table.getModel().setValueAt(rs.getString("Kodu"),table.getSelectedRow(), 1) ;
 					table.getModel().setValueAt(rs.getString("Birim"),table.getSelectedRow(), 6) ;
-					//
 					resim_doldur( rs.getBytes("Resim"));
-					//
 					if (cmbfiat.getItemAt(cmbfiat.getSelectedIndex()).toString().equals("Fiat_1"))
-					{
 						table.getModel().setValueAt(rs.getDouble("Fiat"),table.getSelectedRow(), 3) ;
-					}
 					else if (cmbfiat.getItemAt(cmbfiat.getSelectedIndex()).toString().equals("Fiat_2"))
-					{
 						table.getModel().setValueAt(rs.getDouble("Fiat_2"),table.getSelectedRow(),3) ;
-					}
 					if (cmbfiat.getItemAt(cmbfiat.getSelectedIndex()).toString().equals("Fiat_3"))
-					{
 						table.getModel().setValueAt(rs.getDouble("Fiat_3"),table.getSelectedRow(),3) ;
-					}
 					if (cmbfiat.getItemAt(cmbfiat.getSelectedIndex()).toString().equals("Son Alis/Satis Fiati"))
 					{
 						ResultSet rss = null;
-
 						rss = f_Access.son_satis_fiati_oku(rs.getString("Kodu"),txtcari.getText(), cmbcins.getItemAt(cmbcins.getSelectedIndex()).toString().equals("SATIS") ? "C" : "G");
-
-						if (!rss.isBeforeFirst() ) {  
+						if (!rss.isBeforeFirst() )
 							table.getModel().setValueAt(0.00,table.getSelectedRow(),3) ;
-						}
 						else
 						{
 							rss.next();
@@ -2298,9 +2146,7 @@ public class FATURA extends JInternalFrame {
 					toplam();
 					return;
 				}
-
 				rs = f_Access.urun_adi_oku(cins,"Kodu");
-
 				if (!rs.isBeforeFirst() ) {  
 					lblNewLabel_12.setText("");
 					label_5.setText("");
@@ -2321,30 +2167,19 @@ public class FATURA extends JInternalFrame {
 							rs.getString("Alt_Grup") == null ? "":rs.getString("Alt_Grup"));
 					table.getModel().setValueAt(rs.getString("Barkod"),table.getSelectedRow(), 0) ;
 					table.getModel().setValueAt(rs.getString("Birim"),table.getSelectedRow(), 6) ;
-					//
 					resim_doldur( rs.getBytes("Resim"));
-					//
 					if (cmbfiat.getItemAt(cmbfiat.getSelectedIndex()).toString().equals("Fiat_1"))
-					{
 						table.getModel().setValueAt(rs.getDouble("Fiat"),table.getSelectedRow(), 3) ;
-					}
 					else if (cmbfiat.getItemAt(cmbfiat.getSelectedIndex()).toString().equals("Fiat_2"))
-					{
 						table.getModel().setValueAt(rs.getDouble("Fiat_2"),table.getSelectedRow(),3) ;
-					}
 					if (cmbfiat.getItemAt(cmbfiat.getSelectedIndex()).toString().equals("Fiat_3"))
-					{
 						table.getModel().setValueAt(rs.getDouble("Fiat_3"),table.getSelectedRow(),3) ;
-					}
 					if (cmbfiat.getItemAt(cmbfiat.getSelectedIndex()).toString().equals("Son Alis/Satis Fiati"))
 					{
 						ResultSet rss = null;
-
 						rss = f_Access.son_satis_fiati_oku(rs.getString("Kodu"),txtcari.getText(), cmbcins.getItemAt(cmbcins.getSelectedIndex()).toString().equals("SATIS") ? "C" : "G");
-
-						if (!rss.isBeforeFirst() ) {  
+						if (!rss.isBeforeFirst() )
 							table.getModel().setValueAt(0.00,table.getSelectedRow(),3) ;
-						}
 						else
 						{
 							rss.next();
@@ -2364,18 +2199,12 @@ public class FATURA extends JInternalFrame {
 	{
 		try {
 			ResultSet rs = null;
-
 			rs = f_Access.stk_barkod_kod_oku(field);
-
 			if (!rs.isBeforeFirst() ) {  
 				if (field.equals("Kodu"))
-				{
 					listSomeString.add("");
-				}
 				else
-				{
 					listBarkod.add("");
-				}
 			}
 			else
 			{
@@ -2384,18 +2213,14 @@ public class FATURA extends JInternalFrame {
 					listSomeString.clear();
 					listSomeString.add("");
 					while (rs.next())
-					{
 						listSomeString.add(rs.getString("Kodu").toString());
-					}
 				}
 				else
 				{
 					listBarkod.clear();
 					listBarkod.add("");
 					while (rs.next())
-					{
 						listBarkod.add(rs.getString("Barkod").toString());
-					}
 				}
 			}
 		}
@@ -2409,19 +2234,14 @@ public class FATURA extends JInternalFrame {
 	{
 		try {
 			ResultSet rs = null;
-
 			rs = f_Access.stk_kod_degisken_oku("DEPO", "DPID_Y", "DEPO_DEGISKEN");
-
-			if (!rs.isBeforeFirst() ) {  
+			if (!rs.isBeforeFirst() )
 				listdepo.add("");
-			}
 			else
 			{
 				listdepo.add("");
 				while (rs.next())
-				{
 					listdepo.add(rs.getString("DEPO"));
-				}
 			}
 		}
 		catch (Exception ex)
@@ -2436,9 +2256,7 @@ public class FATURA extends JInternalFrame {
 			setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));	
 			cmbanagrup .removeAllItems();
 			ResultSet rs=null;
-
 			rs = f_Access.stk_kod_degisken_oku("ANA_GRUP", "AGID_Y", "ANA_GRUP_DEGISKEN");
-
 			if (!rs.isBeforeFirst() ) {  
 				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	
 				cmbaltgrup.setEnabled(false);
@@ -2448,9 +2266,7 @@ public class FATURA extends JInternalFrame {
 			} 
 			cmbanagrup .addItem("");
 			while (rs.next())
-			{
 				cmbanagrup .addItem(rs.getString("ANA_GRUP"));
-			}
 			setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	
 		}
 		catch (Exception ex)
@@ -2466,7 +2282,6 @@ public class FATURA extends JInternalFrame {
 			cmbaltgrup.removeAllItems();
 			cmbaltgrup .addItem("");
 			ResultSet rs=null;
-
 			rs = f_Access.urun_kod_degisken_ara("AGID_Y", "ANA_GRUP", "ANA_GRUP_DEGISKEN", cmbanagrup.getItemAt(cmbanagrup.getSelectedIndex()));
 			if (!rs.isBeforeFirst() ) {
 			}
@@ -2477,8 +2292,6 @@ public class FATURA extends JInternalFrame {
 				rs =null;
 				rs = f_Access.stk_kod_alt_grup_degisken_oku(in1);
 			}
-
-
 			if (!rs.isBeforeFirst() ) {  
 				cmbaltgrup.setSelectedItem("");
 				cmbaltgrup.setEnabled(false);
@@ -2487,9 +2300,7 @@ public class FATURA extends JInternalFrame {
 			else
 			{
 				while (rs.next())
-				{
 					cmbaltgrup .addItem(rs.getString("ALT_GRUP"));
-				}
 				cmbaltgrup.setSelectedItem(0);
 				cmbaltgrup.setEnabled(true);
 			}
@@ -2507,9 +2318,7 @@ public class FATURA extends JInternalFrame {
 			setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));	
 			cmbozkod .removeAllItems();
 			ResultSet rs=null;
-
 			rs = f_Access.fat_oz_kod(cmbcins.getItemAt(cmbcins.getSelectedIndex()).toString().equals("SATIS") ? "C" : "G");
-
 			if (!rs.isBeforeFirst() ) {  
 				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	
 				cmbozkod .addItem("");
@@ -2517,9 +2326,7 @@ public class FATURA extends JInternalFrame {
 			} 
 			cmbozkod .addItem("");
 			while (rs.next())
-			{
 				cmbozkod .addItem(rs.getString("Ozel_Kod"));
-			}
 			setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	
 		}
 		catch (Exception ex)
@@ -2541,9 +2348,7 @@ public class FATURA extends JInternalFrame {
 				double_2 += (( Double.parseDouble(model.getValueAt(i, 8).toString()) - ( Double.parseDouble(model.getValueAt(i, 8).toString()) *  Double.parseDouble(model.getValueAt(i, 4).toString())) / 100) *  Double.parseDouble(model.getValueAt(i, 7).toString())) / 100 ; // kdv
 				double_3 +=  Double.parseDouble(model.getValueAt(i, 5).toString());
 				if (! model.getValueAt(i,1).toString().equals(""))
-				{
 					urunsayi += 1;
-				}
 			}
 			label_8.setText(FORMATLAMA.doub_3(double_3));
 			label_9.setText(FORMATLAMA.doub_2(double_5));
@@ -2574,17 +2379,9 @@ public class FATURA extends JInternalFrame {
 		try {
 			ResultSet rs =null ;
 			if (cmbcins.getItemAt(cmbcins.getSelectedIndex()).toString().equals("SATIS") )
-			{
-
-				rs =    f_Access.dipnot_oku(textField.getText(), "F", "C");
-
-			}
+				rs = f_Access.dipnot_oku(textField.getText(), "F", "C");
 			else
-			{
-
-				rs =    f_Access.dipnot_oku(textField.getText(), "F", "G");
-
-			}
+				rs = f_Access.dipnot_oku(textField.getText(), "F", "G");
 			if (!rs.isBeforeFirst() ) {  
 			} 
 			else
@@ -2614,25 +2411,18 @@ public class FATURA extends JInternalFrame {
 			if(g != 0 ) { return;	}
 			long startTime = System.currentTimeMillis();
 			lOG_BILGI lBILGI = new lOG_BILGI();
-			
-			
 			if (cmbcins.getItemAt(cmbcins.getSelectedIndex()).toString().equals("SATIS") )
 			{
-
 				lBILGI.setmESAJ(textField.getText() + " Nolu Cikis Fatura Silindi");
 				lBILGI.seteVRAK(textField.getText());
-				
 				f_Access.fat_giris_sil(textField.getText(), "C" ,lBILGI,BAGLAN_LOG.fatLogDizin);
-
 			}
 			else
 			{
 				lBILGI.setmESAJ(textField.getText() + " Nolu Giris Fatura Silindi");
 				lBILGI.seteVRAK(textField.getText());
 				f_Access.fat_giris_sil(textField.getText(), "G" ,lBILGI,BAGLAN_LOG.fatLogDizin);
-
 			}
-
 			dipnot_sil();
 			acik_sil();
 			long endTime = System.currentTimeMillis();
@@ -2643,9 +2433,7 @@ public class FATURA extends JInternalFrame {
 			if ( yeni_fat == false ) // ' eski kayit
 			{
 				ResultSet rss = null;
-
 				rss = c_Access.evrak_ogren(textField.getText());
-
 				boolean result ;
 				if (!rss.isBeforeFirst() ) {
 					result = false;
@@ -2655,13 +2443,9 @@ public class FATURA extends JInternalFrame {
 					rss.next();
 					String sonuc = rss.getString("EVRAK");
 					if ( sonuc.equals(""))
-					{
 						result = false;
-					}
 					else
-					{
 						result = true;
-					}
 				}
 				if  (result)
 				{
@@ -2673,12 +2457,9 @@ public class FATURA extends JInternalFrame {
 						return;
 					}	
 					else
-					{
 						cari_kontrol() ;
-					}
 				}
 			}
-			//  '************************************
 			textField.setText("");
 			textField.requestFocus();
 		}
@@ -2715,40 +2496,26 @@ public class FATURA extends JInternalFrame {
 			ResultSet rs ;
 			if (cmbcins.getItemAt(cmbcins.getSelectedIndex()).toString().equals("SATIS") )
 			{
-				//*******************************************************************************
-
 				rs = c_Access.hesap_adi_oku(alh);
-
 				if (!rs.isBeforeFirst() ) {  
 					OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING,"Girilen Alacakli Hesap Kodunda  bir  hesaba rastlanmadi!!!!");
 					return ;
 				} 
-				//********************************************************************************
 			}
 			else
 			{
-				//*******************************************************************************
-
 				rs = c_Access.hesap_adi_oku(bh);
-
 				if (!rs.isBeforeFirst() ) {  
-				
 					OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING, "Girilen Borclu Hesap Kodunda  bir  hesaba rastlanmadi!!!!");
 					return ;
 				} 
-				//********************************************************************************
 			}
-			//********************************************************************************
 			rs= null;
-
 			rs = c_Access.hesap_adi_oku(txtcari.getText());
-
 			if (!rs.isBeforeFirst() ) {  
-			
 				OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING,textField.getText() +  " Bu numarada hesaba rastlanmadi!!!!");
 				return;
 			} 
-			//*************************************
 			double sdf =  DecimalFormat.getNumberInstance().parse(label_8.getText()).doubleValue()  ;
 			String str_4  ="";
 			int e_number =0;
@@ -2773,11 +2540,9 @@ public class FATURA extends JInternalFrame {
 				dBilgi.setiZAHAT(str_4);
 				dBilgi.setkOD("Satış");
 				dBilgi.setuSER( GLOBAL.KULL_ADI);
-				
 				lBILGI.setmESAJ("Alacakli Hes:" +alh + " Tut:" +tutar+
 						" Borclu Hes:"+ bh  + " Evrak No:" + textField.getText());
 				lBILGI.seteVRAK(String.valueOf(e_number));
-				
 				c_Access.cari_dekont_kaydet(dBilgi,
 						lBILGI,
 						BAGLAN_LOG.cariLogDizin);
@@ -2799,15 +2564,12 @@ public class FATURA extends JInternalFrame {
 				dBilgi.setiZAHAT(str_4);
 				dBilgi.setkOD("Alış");
 				dBilgi.setuSER( GLOBAL.KULL_ADI);
-				
 				lBILGI.setmESAJ("Alacakli Hes:" +alh + " Tut:" +tutar+
 						" Borclu Hes:"+ bh );
 				lBILGI.seteVRAK(textField.getText());
-				
 				c_Access.cari_dekont_kaydet(dBilgi,
 						lBILGI ,
 						BAGLAN_LOG.cariLogDizin);
-
 			}
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.INFO, "Fatura Cari Hesaba Basari ile Kaydedilmistir....");
 		}
@@ -2820,9 +2582,7 @@ public class FATURA extends JInternalFrame {
 	{
 		try {
 			ResultSet rs = null;
-
 			rs = f_Access.urun_adi_oku(cins,"Kodu");
-
 			if (!rs.isBeforeFirst() ) {  
 				lblNewLabel_12.setText("");
 				label_5.setText("");
@@ -2832,7 +2592,7 @@ public class FATURA extends JInternalFrame {
 				rs.next();
 				lblNewLabel_12.setText(rs.getString("Adi"));
 				label_5.setText(rs.getString("Ana_Grup") == null ? "": rs.getString("Ana_Grup") + "  /  " +
-							rs.getString("Alt_Grup") == null ? "" : rs.getString("Alt_Grup"));
+						rs.getString("Alt_Grup") == null ? "" : rs.getString("Alt_Grup"));
 				resim_doldur( rs.getBytes("Resim"));
 			}
 		}
@@ -2857,17 +2617,13 @@ public class FATURA extends JInternalFrame {
 			imagePanel.setImage(bi);
 		}
 		else
-		{
 			imagePanel.setImage(null);
-		}
 	}
 	private void son_fisoku()
 	{
 		try
 		{
-			//setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));	
 			textField.setText( f_Access.son_no_al(cmbcins.getItemAt(cmbcins.getSelectedIndex()).toString().equals("SATIS") ? "C":"G"));
-			//setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	
 		}
 		catch (Exception ex)
 		{
@@ -2883,15 +2639,12 @@ public class FATURA extends JInternalFrame {
 			iara = new IRSALIYE_ARA();
 			iara.setVisible(true);
 			ResultSet rs=null;
-			//GRID_TEMIZLE.grid_temizle(table);
-			//GRID_TEMIZLE.grid_temizle(table_1);
-			if (oac.irs_no.equals("")) {	setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	  return;}
-			//
-
+			if (oac.irs_no.equals("")) {
+				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+				return;
+				}
 			rs = f_Access.irsaliye_oku(oac.irs_no,cmbcins.getItemAt(cmbcins.getSelectedIndex()).toString().equals("SATIS") ? "C":"G");
-
 			if (!rs.isBeforeFirst() ) {  
-				
 				OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING,"Bu Numarada Irsaliye Bulunamadi ");
 				return ;
 			} 
@@ -2902,7 +2655,6 @@ public class FATURA extends JInternalFrame {
 				{
 					if ( rs.getString("Fatura_No").toString() !=  textField.getText())
 					{
-						
 						OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING,"Bu Irsaliye Daha Onceden "  + rs.getString("Fatura_No").toString() + " Faturda Islem Gormus...!");
 						return ;
 					}
@@ -2922,33 +2674,23 @@ public class FATURA extends JInternalFrame {
 			}  while (rs.next()) ;
 			//'******************Irsaliye Numaralarini Yaz
 			rs.first();   
-			//GRID_TEMIZLE.grid_temizle(table_1);
 			DefaultTableModel mdll = (DefaultTableModel) table_1.getModel();
 			String tar = rs.getString("Tarih").toString().substring(8,10);
 			tar = tar + "." + rs.getString("Tarih").toString().substring(5,7);
 			tar = tar + "." + rs.getString("Tarih").toString().substring(0,4);
-			//
 			String unv = "" ;
 			ResultSet rss=null;
-
 			rss = c_Access.hesap_adi_oku(rs.getString("Cari_Hesap_Kodu"));
-
 			if (!rss.isBeforeFirst() ) {  
-
 			} 
 			else
 			{
-				while (rss.next()) 
-				{
+				while (rss.next())
 					unv = rss.getString("UNVAN");
-				}
 			}
-			//
 			mdll.insertRow(0,new Object[]{oac.irs_no,rs.getString("Cari_Hesap_Kodu"),unv,tar});
 			toplam()  ;
-			//
-
-		} catch (Exception ex) 
+			} catch (Exception ex) 
 		{
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
 		}

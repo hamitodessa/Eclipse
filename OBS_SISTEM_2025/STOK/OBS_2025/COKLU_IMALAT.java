@@ -76,12 +76,6 @@ public class COKLU_IMALAT extends JInternalFrame {
 	private JLabel label_3;
 	private static JSplitPane splitPane ;
 
-	/**
-	 * Launch the application.
-	 */
-	/**
-	 * Create the frame.
-	 */
 	public COKLU_IMALAT() {
 		setResizable(true);
 		setTitle("COKLU IMALAT");
@@ -127,10 +121,8 @@ public class COKLU_IMALAT extends JInternalFrame {
 		dtc.getComponent(1).addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if (e.getClickCount() == 2) 
-				{
+				if (e.getClickCount() == 2)
 					dtc.setDate(new Date());
-				}
 			}
 		});
 		dtc.getComponent(1).addKeyListener(new KeyListener() {
@@ -282,10 +274,8 @@ public class COKLU_IMALAT extends JInternalFrame {
 				}
 			}	
 		};
-		if(! oac.gridcolor.toString().equals("java.awt.Color[r=255,g=255,b=255]")) 
-		{
+		if(! oac.gridcolor.toString().equals("java.awt.Color[r=255,g=255,b=255]"))
 			table.setGridColor(oac.gridcolor);
-		}
 
 		table.setCellSelectionEnabled(true);
 		model.addColumn("Barkod", new String []{""});
@@ -400,7 +390,6 @@ public class COKLU_IMALAT extends JInternalFrame {
 				int row;
 				row = table.getSelectedRow();     //e.getFirstRow();
 				int column = e.getColumn();
-				//**********
 				int urunsayi = 0 ;
 				for (int  i = 0 ; i <= table.getRowCount() -1 ; i ++)
 				{
@@ -408,7 +397,6 @@ public class COKLU_IMALAT extends JInternalFrame {
 						urunsayi += 1;
 				}
 				label_3.setText( FORMATLAMA.doub_0(urunsayi));
-				//**********
 			}
 		}
 		});
@@ -433,10 +421,7 @@ public class COKLU_IMALAT extends JInternalFrame {
 		panel_1.add(label_3);
 
 		for (int i = 0; i <= 15 ; i ++)
-		{
 			satir_ilave();
-		}
-		// stk_kodu_auto();
 		ana_grup_doldur();
 		depo_doldur();
 	}
@@ -450,9 +435,7 @@ public class COKLU_IMALAT extends JInternalFrame {
 			satir = 0 ;
 		}
 		else
-		{
 			mdl.insertRow(satir, new Object[]{"","","",0.000,""});
-		}
 		table.isRowSelected(satir);
 		table.repaint();
 	}
@@ -491,13 +474,9 @@ public class COKLU_IMALAT extends JInternalFrame {
 			rs = f_Access.stk_barkod_kod_oku(field);
 			if (!rs.isBeforeFirst() ) {  
 				if (field.equals("Kodu"))
-				{
 					listSomeString.add("");
-				}
 				else
-				{
 					listBarkod.add("");
-				}
 			}
 			else
 			{
@@ -506,18 +485,14 @@ public class COKLU_IMALAT extends JInternalFrame {
 					listSomeString.clear();
 					listSomeString.add("");
 					while (rs.next())
-					{
 						listSomeString.add(rs.getString("Kodu").toString());
-					}
 				}
 				else
 				{
 					listBarkod.clear();
 					listBarkod.add("");
 					while (rs.next())
-					{
 						listBarkod.add(rs.getString("Barkod").toString());
-					}
 				}
 			}
 		}
@@ -534,9 +509,7 @@ public class COKLU_IMALAT extends JInternalFrame {
 		for (int  i = 0 ; i <= table.getRowCount() -1 ; i ++)
 		{
 			if (! table.getValueAt(i,1).toString().equals(""))
-			{
 				urunsayi += 1;
-			}
 		}
 		int g = JOptionPane.showOptionDialog( null,  "Kayit Baslamasi...Kayit Sayisi:" + urunsayi, "Coklu Imalat",   JOptionPane.YES_NO_OPTION,
 				JOptionPane.QUESTION_MESSAGE,null, oac.options, oac.options[1]); 
@@ -548,17 +521,13 @@ public class COKLU_IMALAT extends JInternalFrame {
 			/////  
 			try {
 				GuiUtil.setWaitCursor(splitPane,true);
-				//JInternalFrame internalFrame ;
-				//internalFrame  = new IMALAT();
 				DefaultTableModel mdl = (DefaultTableModel) table.getModel();
 
 				int urunsayi = 0 ;
 				for (int  i = 0 ; i <= table.getRowCount() -1 ; i ++)
 				{
 					if (! table.getValueAt(i,1).toString().equals(""))
-					{
 						urunsayi += 1;
-					}
 				}
 				Progres_Bar_Temizle();
 				OBS_MAIN.progressBar.setStringPainted(true);
@@ -609,9 +578,7 @@ public class COKLU_IMALAT extends JInternalFrame {
 	{
 		GRID_TEMIZLE.grid_temizle(table);
 		for (int i = 0; i <= 16; i ++)
-		{
 			satir_ilave();
-		}
 		dtc.setDate(new Date());
 		cmbanagrup.setSelectedItem("");
 		cmbaltgrup.setSelectedItem("");
@@ -645,9 +612,7 @@ public class COKLU_IMALAT extends JInternalFrame {
 			} 
 			cmbanagrup .addItem("");
 			while (rs.next())
-			{
 				cmbanagrup .addItem(rs.getString("ANA_GRUP"));
-			}
 			cmbanagrup.setSelectedItem("");
 			getContentPane().setCursor(oac.DEFAULT_CURSOR);
 		}
@@ -682,9 +647,7 @@ public class COKLU_IMALAT extends JInternalFrame {
 			else
 			{
 				while (rs.next())
-				{
 					cmbaltgrup .addItem(rs.getString("ALT_GRUP"));
-				}
 				cmbaltgrup.setSelectedItem(0);
 				cmbaltgrup.setEnabled(true);
 			}
@@ -698,7 +661,8 @@ public class COKLU_IMALAT extends JInternalFrame {
 	}
 	private void depo_doldur()
 	{
-		try {
+		try 
+		{
 			getContentPane().setCursor(oac.WAIT_CURSOR);
 			cmbdepo .removeAllItems();
 			ResultSet rs = null;
@@ -711,9 +675,7 @@ public class COKLU_IMALAT extends JInternalFrame {
 			{
 				cmbdepo.addItem("");
 				while (rs.next())
-				{
 					cmbdepo.addItem(rs.getString("DEPO"));
-				}
 			}
 			cmbdepo.setSelectedItem("");
 			getContentPane().setCursor(oac.DEFAULT_CURSOR);
@@ -737,7 +699,6 @@ public class COKLU_IMALAT extends JInternalFrame {
 				}
 				mdl.setValueAt(urun_bilgi_doldur(cins,"Barkod"),table.getSelectedRow() ==  -1 ? 0  : table.getSelectedRow(), 2)  ;
 			}
-			/////////////////////////////////////////////////////////
 			else if (table.getSelectedColumn() == 1)  // URUN KODU
 			{
 				if (cins.equals(""))
@@ -748,7 +709,6 @@ public class COKLU_IMALAT extends JInternalFrame {
 				}
 				mdl.setValueAt(urun_bilgi_doldur(cins,"Kodu"),table.getSelectedRow() ==  -1 ? 0  : table.getSelectedRow() , 2)  ;
 			}
-
 		}
 		catch (Exception ex)
 		{

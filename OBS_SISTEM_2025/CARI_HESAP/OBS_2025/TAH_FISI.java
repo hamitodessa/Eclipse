@@ -1363,15 +1363,19 @@ public class TAH_FISI extends JInternalFrame {
 			comboBanka.removeAllItems();
 			ResultSet rs = null;
 			rs = c_Access.pos_banka_oku();
+			comboBanka.addItem("");
 			if (!rs.isBeforeFirst() )
 				return;
 			else
 			{
 				while (rs.next())
-					comboBanka.addItem(rs.getString("POS_BANKA"));
+				{
+					if(! rs.getString("POS_BANKA").equals(""))
+						comboBanka.addItem(rs.getString("POS_BANKA"));
+				}
 			}
-		} catch (Exception e) {
-
+		} catch (Exception ex) {
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
 		}
 	}
 }

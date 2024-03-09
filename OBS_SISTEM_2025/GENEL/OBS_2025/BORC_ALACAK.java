@@ -1,9 +1,9 @@
 package OBS_2025;
 
 import java.awt.BorderLayout;
+
 import javax.swing.JDialog;
 import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
@@ -27,13 +27,18 @@ public class BORC_ALACAK extends JDialog {
 	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
 
 	public BORC_ALACAK() {
+		addWindowListener(new java.awt.event.WindowAdapter() {
+			@Override
+			public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+				oac.hsp_hsp_kodu = "";
+			}
+		});
 		setModal(true);
 		setResizable(false);
 		setTitle("HESAP");
-		setBounds(100, 100, 406, 104);
+		setBounds(100, 100, 406, 110);
 		getContentPane().setLayout(new BorderLayout());
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
 
@@ -95,7 +100,7 @@ public class BORC_ALACAK extends JDialog {
 		lblNewLabel_1 = new JLabel(".....");
 		//lblNewLabel_1.setForeground(new Color(25, 25, 112));
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblNewLabel_1.setBounds(100, 36, 290, 14);
+		lblNewLabel_1.setBounds(100, 40, 285, 14);
 		contentPanel.add(lblNewLabel_1);
 	}
 

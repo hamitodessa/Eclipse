@@ -69,6 +69,7 @@ import OBS_2025_RAPORLAR.IMALAT_RAPORLAMA;
 import OBS_2025_RAPORLAR.ORTALAMA_FIAT;
 import OBS_2025_RAPORLAR.STOK_DETAY;
 import OBS_2025_RAPORLAR.STOK_RAPOR;
+import OBS_C_2025.FIT_IMAGE;
 import OBS_C_2025.FORMATLAMA;
 import OBS_C_2025.GLOBAL;
 import OBS_C_2025.JTextFieldLimit;
@@ -101,7 +102,7 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 		setTitle("E MAIL GONDERME");
 		setClosable(true);
 		setBounds(100, 100, 598, 455);
-
+		setFrameIcon(FIT_IMAGE.formIcon(new ImageIcon(E_MAIL_GONDERME.class.getResource("/ICONLAR/mail-16.png")), 16, 16));//
 		panel = new JPanel();
 		getContentPane().add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);

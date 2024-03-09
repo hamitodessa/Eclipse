@@ -24,8 +24,14 @@ public class FIT_IMAGE {
 	{
 		ImageIcon formImage = img;
 		Image image = formImage.getImage();
-		Image newImage = image.getScaledInstance(16, 16, Image.SCALE_SMOOTH);//The error appears on this line
+		Image newImage = image.getScaledInstance(w, h, Image.SCALE_SMOOTH);
 		formImage = new ImageIcon(newImage);
 		return formImage;
+	}
+	public static  Image panelIcon(ImageIcon img, int w , int h)
+	{
+		Image image = img.getImage();
+		Image newImage = image.getScaledInstance(w, h, Image.SCALE_SMOOTH);
+		return newImage;
 	}
 }

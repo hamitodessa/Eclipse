@@ -248,9 +248,7 @@ public class OBS_MAIN extends JFrame  {
 		  public void windowStateChanged(WindowEvent ex)
 		  {
 			  if(ex.getNewState() == 0)
-			  {
 				  setBounds(0, 0, 1000, 800);
-			  }
 		  }
 		});
 		
@@ -2971,6 +2969,8 @@ public class OBS_MAIN extends JFrame  {
 		toolBar.add(btnFiltre);
 		JLabel lblNewLabel_4 = new JLabel("          ");
 		toolBar.add(lblNewLabel_4);
+		
+		
 		btnYazici = new JButton("");
 		btnYazici.setToolTipText("Yazici");
 		btnYazici.addActionListener(new ActionListener() {

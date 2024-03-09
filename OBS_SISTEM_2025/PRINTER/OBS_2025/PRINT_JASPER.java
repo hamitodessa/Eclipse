@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.nio.charset.StandardCharsets;
 import javax.mail.util.ByteArrayDataSource;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
@@ -25,6 +26,7 @@ import javax.swing.table.DefaultTableModel;
 import OBS_C_2025.ADRES_ACCESS;
 import OBS_C_2025.BAGLAN;
 import OBS_C_2025.CARI_ACCESS;
+import OBS_C_2025.FIT_IMAGE;
 import OBS_C_2025.GLOBAL;
 import OBS_C_2025.TARIH;
 import OBS_C_2025.TARIH_CEVIR;
@@ -88,7 +90,7 @@ public class PRINT_JASPER extends JInternalFrame {
 		setClosable(true);
 		setTitle("YAZDIRMA");
 		setBounds(100, 100, 800, 600);
-		
+		setFrameIcon(FIT_IMAGE.formIcon(new ImageIcon(PRINT_JASPER.class.getResource("/ICONLAR/icons8-send-to-printer-16.png")), 16, 16));//
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		scrollPane =  new JScrollPane();
 		getContentPane().add(scrollPane, BorderLayout.CENTER);

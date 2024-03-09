@@ -8,6 +8,7 @@ import java.sql.ResultSetMetaData;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
+import javax.swing.ImageIcon;
 import javax.swing.JInternalFrame;
 import com.crystaldecisions.ReportViewer.ReportViewerBean;
 import com.crystaldecisions.sdk.occa.report.application.OpenReportOptions;
@@ -41,6 +42,7 @@ import OBS_C_2025.BAGLAN;
 import OBS_C_2025.CARI_ACCESS;
 import OBS_C_2025.CRY_TEXT_WIDTH;
 import OBS_C_2025.Degisken;
+import OBS_C_2025.FIT_IMAGE;
 import OBS_C_2025.FORMATLAMA;
 import OBS_C_2025.GLOBAL;
 import OBS_C_2025.GUNLUK_ACCESS;
@@ -80,7 +82,7 @@ public class PRINT_YAPMA extends JInternalFrame {
 		setMaximizable(true);
 		setClosable(true);
 		setBounds(0, 0, 1075, 600);
-
+		setFrameIcon(FIT_IMAGE.formIcon(new ImageIcon(PRINT_YAPMA.class.getResource("/ICONLAR/icons8-send-to-printer-16.png")), 16, 16));//
 		reportViewer = new ReportViewerBean();	
 		reportViewer.setHasStatusBar(true);
 		reportViewer.setShowGroupTree(false);

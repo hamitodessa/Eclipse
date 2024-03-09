@@ -21,6 +21,7 @@ import org.apache.commons.lang.StringUtils;
 
 import OBS_C_2025.BAGLAN_LOG;
 import OBS_C_2025.DoubleEditor;
+import OBS_C_2025.FIT_IMAGE;
 import OBS_C_2025.FORMATLAMA;
 import OBS_C_2025.GLOBAL;
 import OBS_C_2025.GRID_TEMIZLE;
@@ -94,6 +95,7 @@ public class RECETE extends JInternalFrame {
 		setIconifiable(true);
 		setClosable(true);
 		setBounds(0, 0,625, 548);
+		setFrameIcon(FIT_IMAGE.formIcon(new ImageIcon(RECETE.class.getResource("/ICONLAR/icons8-prototype-30.png")), 16, 16));//
 		
 		JPanel panel = new JPanel();
 		getContentPane().add(panel, BorderLayout.CENTER);

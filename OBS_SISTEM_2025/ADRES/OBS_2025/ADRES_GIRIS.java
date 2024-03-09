@@ -96,7 +96,7 @@ public class ADRES_GIRIS extends JInternalFrame {
 		setIconifiable(true);
 		setClosable(true);
 		setBounds(0, 0, 846, 550);
-
+		setFrameIcon(FIT_IMAGE.formIcon(new ImageIcon(ADRES_GIRIS.class.getResource("/ICONLAR/icons8-post-office-30.png")), 16, 16));//
 
 		JPanel panel = new JPanel();
 		getContentPane().add(panel, BorderLayout.CENTER);

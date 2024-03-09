@@ -20,6 +20,7 @@ import java.util.regex.Pattern;
 
 import javax.swing.BorderFactory;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
@@ -40,6 +41,7 @@ import OBS_2025.GuiUtil;
 import OBS_2025.OBS_MAIN;
 import OBS_2025.OBS_SIS_2025_ANA_CLASS;
 import OBS_C_2025.BAGLAN_LOG;
+import OBS_C_2025.FIT_IMAGE;
 import OBS_C_2025.GLOBAL;
 import OBS_C_2025.GUNLUK_ACCESS;
 import OBS_C_2025.Gunluk_Bilgi;
@@ -74,7 +76,7 @@ public class GOREV_GIRIS extends JInternalFrame {
 		setClosable(true);
 		setBounds(100, 100, 483, 271);
 		setTitle("GOREV GIRIS");
-
+		setFrameIcon(FIT_IMAGE.formIcon(new ImageIcon(GOREV_GIRIS.class.getResource("/ICONLAR/icons8-active-directory-30.png")), 16, 16));//
 		panel = new JPanel();
 		panel.setLayout(null);
 		getContentPane().add(panel, BorderLayout.CENTER);

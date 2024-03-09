@@ -46,6 +46,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import OBS_C_2025.BAGLAN;
 import OBS_C_2025.BAGLAN_LOG;
 import OBS_C_2025.FILE_UZANTI;
+import OBS_C_2025.FIT_IMAGE;
 import OBS_C_2025.FORMATLAMA;
 import OBS_C_2025.GLOBAL;
 import OBS_C_2025.GRID_TEMIZLE;
@@ -60,6 +61,8 @@ import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
 import javax.mail.util.ByteArrayDataSource;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.ImageIcon;
+
 import com.toedter.calendar.JDateChooser;
 
 import LOGER_KAYIT.DOSYA_MSSQL;
@@ -102,7 +105,7 @@ public class LOGLAMA_RAPOR extends JInternalFrame {
 		setMaximizable(true);
 		setIconifiable(true);
 		setBounds(0, 0, 1063, 600);
-
+		setFrameIcon(FIT_IMAGE.formIcon(new ImageIcon(LOGLAMA_RAPOR.class.getResource("/ICONLAR/icons8-data-sheet-filled-30.png")), 16, 16));//
 		ScrollPaneWin11 scrollPaneust = new ScrollPaneWin11();
 		JPanel leftPanel = new JPanel();
 		leftPanel.setPreferredSize(new Dimension(1033,50));

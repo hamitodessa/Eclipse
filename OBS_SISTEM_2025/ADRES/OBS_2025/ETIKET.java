@@ -18,6 +18,7 @@ import java.util.Vector;
 
 import javax.swing.AbstractButton;
 import javax.swing.DefaultCellEditor;
+import javax.swing.ImageIcon;
 import javax.swing.JCheckBox;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
@@ -41,6 +42,7 @@ import javax.swing.table.TableRowSorter;
 import OBS_C_2025.ADRES_ACCESS;
 import OBS_C_2025.BAGLAN;
 import OBS_C_2025.CheckBoxRenderer;
+import OBS_C_2025.FIT_IMAGE;
 import OBS_C_2025.FORMATLAMA;
 import OBS_C_2025.GLOBAL;
 import OBS_C_2025.GRID_TEMIZLE;
@@ -89,7 +91,7 @@ public class ETIKET extends JInternalFrame {
 
 		setClosable(true);
 		setBounds(0, 0, 1200, 600);
-
+		setFrameIcon(FIT_IMAGE.formIcon(new ImageIcon(ETIKET.class.getResource("/ICONLAR/icons8-print-address-label-30.png")), 16, 16));//
 		JSplitPane splitPane = new JSplitPane();
 		splitPane.setDividerSize(0);
 		splitPane.setResizeWeight(0.0);

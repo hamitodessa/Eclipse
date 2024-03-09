@@ -5,6 +5,7 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.sql.ResultSet;
 
+import javax.swing.ImageIcon;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -20,6 +21,7 @@ import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
 
 import OBS_C_2025.BAGLAN_LOG;
+import OBS_C_2025.FIT_IMAGE;
 import OBS_C_2025.GLOBAL;
 import OBS_C_2025.KERESTE_ACCESS;
 import OBS_C_2025.Obs_TextFIeld;
@@ -43,7 +45,7 @@ public class KONS_ACIKLAMA extends JInternalFrame {
 		setResizable(true);
 		setClosable(true);
 		setBounds(0, 0,600,400);
-		
+		setFrameIcon(FIT_IMAGE.formIcon(new ImageIcon(KONS_ACIKLAMA.class.getResource("/ICONLAR/icons8-prototype-30.png")), 16, 16));//
 		JSplitPane splitPane = new JSplitPane();
 		splitPane.setDividerSize(0);
 		splitPane.setOrientation(JSplitPane.VERTICAL_SPLIT);

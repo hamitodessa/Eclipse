@@ -5,6 +5,7 @@ import java.awt.Dimension;
 import java.sql.ResultSet;
 
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
 import javax.swing.JInternalFrame;
 import javax.swing.JPanel;
@@ -17,6 +18,7 @@ import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
 
+import OBS_C_2025.FIT_IMAGE;
 import OBS_C_2025.GRID_TEMIZLE;
 import OBS_C_2025.KERESTE_ACCESS;
 import OBS_C_2025.SOLA;
@@ -40,7 +42,7 @@ public class KER_BOS_KUR extends JInternalFrame {
 		setIconifiable(true);
 		setClosable(true);
 		setBounds(0, 0, 191, 600);
-		
+		setFrameIcon(FIT_IMAGE.formIcon(new ImageIcon(KER_BOS_KUR.class.getResource("/ICONLAR/icons8-currency-exchange-30.png")), 16, 16));//
 		JSplitPane splitPane = new JSplitPane();
 		splitPane.setDividerSize(0);
 		splitPane.setResizeWeight(0.0);

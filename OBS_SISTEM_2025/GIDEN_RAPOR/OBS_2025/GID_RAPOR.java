@@ -2,6 +2,7 @@ package OBS_2025;
 
 import java.sql.ResultSet;
 
+import javax.swing.ImageIcon;
 import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JSplitPane;
@@ -18,6 +19,7 @@ import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
+import OBS_C_2025.FIT_IMAGE;
 import OBS_C_2025.FORMATLAMA;
 import OBS_C_2025.GLOBAL;
 import OBS_C_2025.GRID_TEMIZLE;
@@ -57,7 +59,7 @@ public class GID_RAPOR extends JInternalFrame {
 		setIconifiable(true);
 		setClosable(true);
 		setBounds(0, 0, 1000, 400);
-
+		setFrameIcon(FIT_IMAGE.formIcon(new ImageIcon(GID_RAPOR.class.getResource("/ICONLAR/icons8-mailbox-opened-flag-up-30.png")), 16, 16));//
 		splitPane = new JSplitPane();
 		splitPane.setDividerSize(0);
 		splitPane.setResizeWeight(0.0);

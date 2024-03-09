@@ -2,6 +2,7 @@ package OBS_2025;
 
 import java.sql.ResultSet;
 
+import javax.swing.ImageIcon;
 import javax.swing.JInternalFrame;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -12,6 +13,7 @@ import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
 
+import OBS_C_2025.FIT_IMAGE;
 import OBS_C_2025.FORMATLAMA;
 import OBS_C_2025.GLOBAL;
 import OBS_C_2025.GRID_TEMIZLE;
@@ -43,7 +45,7 @@ public class KUR_RAPORLAMA extends JInternalFrame {
 		setMaximizable(true);
 		setClosable(true);
 		setBounds(0, 0, 700, 600);
-
+		setFrameIcon(FIT_IMAGE.formIcon(new ImageIcon(KUR_RAPORLAMA.class.getResource("/ICONLAR/icons8-pincode-keyboard-30.png")), 16, 16));//
 		scrollPane = new ScrollPaneWin11();
 		getContentPane().add(scrollPane, BorderLayout.CENTER);
 

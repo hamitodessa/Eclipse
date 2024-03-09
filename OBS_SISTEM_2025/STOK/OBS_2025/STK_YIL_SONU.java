@@ -32,6 +32,7 @@ import javax.swing.ListSelectionModel;
 import javax.swing.border.LineBorder;
 import javax.swing.AbstractButton;
 import javax.swing.DefaultCellEditor;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
@@ -40,6 +41,7 @@ import javax.swing.JOptionPane;
 import com.toedter.calendar.JDateChooser;
 
 import OBS_C_2025.CheckBoxRenderer;
+import OBS_C_2025.FIT_IMAGE;
 import OBS_C_2025.FORMATLAMA;
 import OBS_C_2025.GLOBAL;
 import OBS_C_2025.GRID_TEMIZLE;
@@ -98,7 +100,7 @@ public class STK_YIL_SONU extends JInternalFrame {
 		setClosable(true);
 		setBounds(0, 0,1100, 600);
 		setTitle("STOK YIL SONU");
-		
+		setFrameIcon(FIT_IMAGE.formIcon(new ImageIcon(STK_YIL_SONU.class.getResource("/ICONLAR/icons8-static-view-level2-30.png")), 16, 16));//
 		JSplitPane splitPaneana = new JSplitPane();
 		splitPaneana.setResizeWeight(1.0);
 		splitPaneana.setDividerSize(0);

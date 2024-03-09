@@ -24,6 +24,7 @@ import OBS_2025.OBS_SIS_2025_ANA_CLASS;
 
 import OBS_C_2025.COLUMN_RENDERER;
 import OBS_C_2025.COLUMN_RENDERER_YILLIK;
+import OBS_C_2025.FIT_IMAGE;
 import OBS_C_2025.GLOBAL;
 import OBS_C_2025.GUNLUK_ACCESS;
 import OBS_C_2025.ROW_RENDERER;
@@ -101,6 +102,7 @@ public class Gunluk extends JInternalFrame {
 		setIconifiable(true);
 		setClosable(true);
 		setBounds(0,0, 1268, 675);
+		setFrameIcon(FIT_IMAGE.formIcon(new ImageIcon(Gunluk.class.getResource("/ICONLAR/icons8-schedule-30.png")), 16, 16));//
 		JSplitPane splitPane = new JSplitPane();
 		splitPane.setDividerSize(1);
 		getContentPane().add(splitPane, BorderLayout.CENTER);

@@ -22,6 +22,7 @@ import OBS_C_2025.BAGLAN_LOG;
 import OBS_C_2025.CARI_ACCESS;
 import OBS_C_2025.COKLU_GIRIS_TARIH;
 import OBS_C_2025.DoubleEditor;
+import OBS_C_2025.FIT_IMAGE;
 import OBS_C_2025.FORMATLAMA;
 import OBS_C_2025.GLOBAL;
 import OBS_C_2025.GRID_TEMIZLE;
@@ -106,7 +107,7 @@ public class CEK_GIRIS extends JInternalFrame {
 		setIconifiable(true);
 		setClosable(true);
 		setBounds(0, 0, 1250, 600);
-
+		setFrameIcon(FIT_IMAGE.formIcon(new ImageIcon(CEK_GIRIS.class.getResource("/ICONLAR/icons8-check-book-30.png")), 16, 16));//
 		JSplitPane splitPane = new JSplitPane();
 		splitPane.setDividerSize(0);
 		splitPane.setResizeWeight(0.0);

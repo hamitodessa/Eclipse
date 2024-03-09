@@ -18,6 +18,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 import javax.mail.util.ByteArrayDataSource;
+import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
@@ -59,6 +60,7 @@ import OBS_2025.OBS_MAIN;
 import OBS_2025.OBS_SIS_2025_ANA_CLASS;
 import OBS_C_2025.BAGLAN;
 import OBS_C_2025.FILE_UZANTI;
+import OBS_C_2025.FIT_IMAGE;
 import OBS_C_2025.FORMATLAMA;
 import OBS_C_2025.GLOBAL;
 import OBS_C_2025.GRID_TEMIZLE;
@@ -101,7 +103,7 @@ public class KER_ORT_FIAT extends JInternalFrame {
 		setIconifiable(true);
 		setClosable(true);
 		setBounds(0, 0,1100,600);
-
+		setFrameIcon(FIT_IMAGE.formIcon(new ImageIcon(KER_ORT_FIAT.class.getResource("/ICONLAR/icons8-approximately-not-equal-30.png")), 16, 16));//
 		splitPane = new JSplitPane();
 		splitPane.setResizeWeight(1.0);
 		splitPane.setDividerSize(0);

@@ -27,12 +27,14 @@ import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import OBS_C_2025.BACKUP_RESTORE;
 import OBS_C_2025.ENCRYPT_DECRYPT_STRING;
+import OBS_C_2025.FIT_IMAGE;
 
 import javax.crypto.BadPaddingException;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
 import javax.sql.rowset.CachedRowSet;
 import javax.sql.rowset.RowSetProvider;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -100,7 +102,7 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 		JPanel panel = new JPanel();
 		getContentPane().add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
-
+		setFrameIcon(FIT_IMAGE.formIcon(new ImageIcon(MSSQL_TO_MYSQL.class.getResource("/ICONLAR/icons8-data-transfer-30.png")), 16, 16));//
 		textField = new JTextField();
 		textField.setText("019");
 		textField.setBounds(274, 33, 96, 20);

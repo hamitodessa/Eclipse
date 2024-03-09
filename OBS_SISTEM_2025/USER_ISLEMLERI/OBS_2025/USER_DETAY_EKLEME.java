@@ -36,6 +36,7 @@ import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumn;
 
 import OBS_C_2025.ENCRYPT_DECRYPT_STRING;
+import OBS_C_2025.FIT_IMAGE;
 import OBS_C_2025.GLOBAL;
 import OBS_C_2025.GRID_TEMIZLE;
 import OBS_C_2025.Obs_TextFIeld;
@@ -86,7 +87,7 @@ public class USER_DETAY_EKLEME extends JInternalFrame {
 		setTitle("KULLANICI DETAY EKLEME");
 		setClosable(true);
 		setBounds(0, 0, 1170, 600);
-
+		setFrameIcon(FIT_IMAGE.formIcon(new ImageIcon(USER_DETAY_EKLEME.class.getResource("/ICONLAR/add-user30.png")), 16, 16));//
 		splitPane = new JSplitPane();
 		splitPane.setDividerSize(0);
 		splitPane.setResizeWeight(0.0);

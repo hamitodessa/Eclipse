@@ -2,6 +2,8 @@ package OBS_2025;
 
 import java.awt.Font;
 import java.sql.ResultSet;
+
+import javax.swing.ImageIcon;
 import javax.swing.JInternalFrame;
 import javax.swing.JSplitPane;
 import java.awt.BorderLayout;
@@ -19,6 +21,7 @@ import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
 
 import OBS_C_2025.BAGLAN_LOG;
+import OBS_C_2025.FIT_IMAGE;
 import OBS_C_2025.GLOBAL;
 import OBS_C_2025.KERESTE_ACCESS;
 import OBS_C_2025.Obs_TextFIeld;
@@ -42,7 +45,7 @@ public class KOD_ACIKLAMA extends JInternalFrame {
 		setResizable(true);
 		setClosable(true);
 		setBounds(0, 0,600,400);
-		
+		setFrameIcon(FIT_IMAGE.formIcon(new ImageIcon(KOD_ACIKLAMA.class.getResource("/ICONLAR/icons8-news-30.png")), 16, 16));//
 		JSplitPane splitPane = new JSplitPane();
 		splitPane.setOrientation(JSplitPane.VERTICAL_SPLIT);
 		splitPane.setDividerSize(0);

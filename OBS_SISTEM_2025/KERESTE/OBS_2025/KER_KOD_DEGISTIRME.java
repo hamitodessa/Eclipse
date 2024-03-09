@@ -31,6 +31,7 @@ import javax.swing.text.MaskFormatter;
 
 import OBS_C_2025.BAGLAN_LOG;
 import OBS_C_2025.CheckBoxRenderer;
+import OBS_C_2025.FIT_IMAGE;
 import OBS_C_2025.FORMATLAMA;
 import OBS_C_2025.GLOBAL;
 import OBS_C_2025.GRID_TEMIZLE;
@@ -86,7 +87,7 @@ public class KER_KOD_DEGISTIRME extends JInternalFrame {
 		setResizable(true);
 		setClosable(true);
 		setBounds(0, 0,1000,400);
-		
+		setFrameIcon(FIT_IMAGE.formIcon(new ImageIcon(KER_KOD_DEGISTIRME.class.getResource("/ICONLAR/icons8-video-editing-30.png")), 16, 16));//
 		splitPane = new JSplitPane();
 		splitPane.setOrientation(JSplitPane.VERTICAL_SPLIT);
 		splitPane.setDividerSize(0);

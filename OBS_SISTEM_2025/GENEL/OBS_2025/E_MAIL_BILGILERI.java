@@ -4,7 +4,10 @@ import javax.swing.JInternalFrame;
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
 import javax.swing.JLabel;
+import javax.swing.ImageIcon;
 import javax.swing.JCheckBox;
+
+import OBS_C_2025.FIT_IMAGE;
 import OBS_C_2025.MAIL_SETTINGS;
 import OBS_C_2025.Obs_TextFIeld;
 import raven.toast.Notifications;
@@ -30,7 +33,7 @@ public class E_MAIL_BILGILERI extends JInternalFrame {
 		setTitle("E MAIL BILGILERI");
 		setClosable(true);
 		setBounds(100, 100, 492, 249);
-
+		setFrameIcon(FIT_IMAGE.formIcon(new ImageIcon(E_MAIL_BILGILERI.class.getResource("/ICONLAR/icons8-mailbox-opened-flag-up-30.png")), 16, 16));//
 		panel = new JPanel();
 		getContentPane().add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);

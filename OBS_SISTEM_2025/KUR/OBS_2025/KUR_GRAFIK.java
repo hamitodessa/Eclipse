@@ -5,6 +5,8 @@ import java.awt.Dimension;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.Collections;
+
+import javax.swing.ImageIcon;
 import javax.swing.JInternalFrame;
 import net.proteanit.sql.DbUtils;
 import raven.toast.Notifications;
@@ -17,6 +19,8 @@ import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
 
 import org.jfree.data.category.DefaultCategoryDataset;
+
+import OBS_C_2025.FIT_IMAGE;
 import OBS_C_2025.GLOBAL;
 import OBS_C_2025.GRID_TEMIZLE;
 import OBS_C_2025.KUR_ACCESS;
@@ -40,14 +44,15 @@ public class KUR_GRAFIK extends JInternalFrame {
 		setTitle("KUR GRAFIK");
 		setClosable(true);
 		setBounds(0, 0, 275, 600);
+		setFrameIcon(FIT_IMAGE.formIcon(new ImageIcon(KUR_GRAFIK.class.getResource("/ICONLAR/grafik.png")), 16, 16));//
 		scrollPane = new ScrollPaneWin11();
-		getContentPane().add(scrollPane, BorderLayout.CENTER);
+		add(scrollPane, BorderLayout.CENTER);
+		
+		
 		table = new JTable();
 		table.getTableHeader().setReorderingAllowed(false);
-		if(! oac.gridcolor.toString().equals("java.awt.Color[r=255,g=255,b=255]")) 
-		{
+		if(! oac.gridcolor.toString().equals("java.awt.Color[r=255,g=255,b=255]"))
 			table.setGridColor(oac.gridcolor);
-		}
 
 		table.setAutoResizeMode( JTable.AUTO_RESIZE_OFF );
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);

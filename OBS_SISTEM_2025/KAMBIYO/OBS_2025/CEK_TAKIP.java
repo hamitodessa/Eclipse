@@ -20,6 +20,7 @@ import com.toedter.calendar.JDateChooser;
 
 import OBS_C_2025.BAGLAN_LOG;
 import OBS_C_2025.CARI_ACCESS;
+import OBS_C_2025.FIT_IMAGE;
 import OBS_C_2025.FORMATLAMA;
 import OBS_C_2025.GLOBAL;
 
@@ -38,6 +39,8 @@ import java.awt.Cursor;
 
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.ImageIcon;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -77,7 +80,7 @@ public class CEK_TAKIP extends JInternalFrame {
 		setTitle("CEK TAKIP");
 		setClosable(true);
 		setBounds(100, 100, 614, 410);
-
+		setFrameIcon(FIT_IMAGE.formIcon(new ImageIcon(CEK_TAKIP.class.getResource("/ICONLAR/icons8-services-30.png")), 16, 16));//
 		panel = new JPanel();
 		getContentPane().add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);

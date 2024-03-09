@@ -50,6 +50,7 @@ import javax.swing.table.TableColumnModel;
 import OBS_C_2025.ADRES_ACCESS;
 import OBS_C_2025.CARI_ACCESS;
 import OBS_C_2025.CheckBoxRenderer;
+import OBS_C_2025.FIT_IMAGE;
 import OBS_C_2025.FORMATLAMA;
 import OBS_C_2025.GLOBAL;
 import OBS_C_2025.GRID_TEMIZLE;
@@ -120,7 +121,7 @@ public class MAIL extends JInternalFrame {
 		setIconifiable(true);
 		setClosable(true);
 		setBounds(0, 0, 1000, 600);
-
+		setFrameIcon(FIT_IMAGE.formIcon(new ImageIcon(MAIL.class.getResource("/ICONLAR/icons8-post-30.png")), 16, 16));//
 		JSplitPane splitPane = new JSplitPane();
 		splitPane.setResizeWeight(1.0);
 		splitPane.setDividerSize(1);

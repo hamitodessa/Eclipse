@@ -17,6 +17,7 @@ import java.awt.Font;
 import javax.swing.ImageIcon;
 import javax.swing.JSeparator;
 
+import OBS_C_2025.FIT_IMAGE;
 import raven.toast.Notifications;
 
 import java.awt.event.MouseAdapter;
@@ -35,7 +36,7 @@ public class HAKKINDA extends JInternalFrame {
 		setTitle("HAKKINDA");
 		setClosable(true);
 		setBounds(100, 100, 450, 274);
-
+		setFrameIcon(FIT_IMAGE.formIcon(new ImageIcon(HAKKINDA.class.getResource("/ICONLAR/icons8-about-30.png")), 16, 16));//
 		JPanel panel = new JPanel();
 		getContentPane().add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);

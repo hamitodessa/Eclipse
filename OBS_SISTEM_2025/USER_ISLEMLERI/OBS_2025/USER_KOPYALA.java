@@ -8,11 +8,13 @@ import java.util.List;
 
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
+import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
 import java.awt.BorderLayout;
 import javax.swing.JPanel;
 
 import OBS_C_2025.ENCRYPT_DECRYPT_STRING;
+import OBS_C_2025.FIT_IMAGE;
 import raven.toast.Notifications;
 import OBS_C_2025.DIZIN_DETAY;
 import java.awt.Font;
@@ -34,7 +36,7 @@ public class USER_KOPYALA extends JInternalFrame {
 		setTitle("KULLANICI KOPYALA");
 		setClosable(true);
 		setBounds(0, 0, 321, 154);
-
+		setFrameIcon(FIT_IMAGE.formIcon(new ImageIcon(USER_KOPYALA.class.getResource("/ICONLAR/icons8-identification-documents-30.png")), 16, 16));//
 		getContentPane().setLayout(new BorderLayout(0, 0));
 		panel = new JPanel();
 		getContentPane().add(panel, BorderLayout.CENTER);

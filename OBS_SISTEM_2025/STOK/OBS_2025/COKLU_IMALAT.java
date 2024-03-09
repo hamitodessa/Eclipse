@@ -33,6 +33,7 @@ import javax.swing.table.TableModel;
 import com.toedter.calendar.JDateChooser;
 
 import OBS_C_2025.DoubleEditor;
+import OBS_C_2025.FIT_IMAGE;
 import OBS_C_2025.FORMATLAMA;
 import OBS_C_2025.GRID_TEMIZLE;
 import OBS_C_2025.JTextFieldLimit;
@@ -89,7 +90,8 @@ public class COKLU_IMALAT extends JInternalFrame {
 		setIconifiable(true);
 		setClosable(true);
 		setBounds(0, 0, 779, 600);
-
+		setFrameIcon(FIT_IMAGE.formIcon(new ImageIcon(COKLU_IMALAT.class.getResource("/ICONLAR/coklud-30.png")), 16, 16));//
+		
 		JSplitPane anaPane = new JSplitPane();
 		anaPane.setDividerSize(0);
 		anaPane.setResizeWeight(1.0);

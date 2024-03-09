@@ -3,6 +3,8 @@ package OBS_2025;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.util.ArrayList;
+
+import javax.swing.ImageIcon;
 import javax.swing.JInternalFrame;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -15,6 +17,7 @@ import javax.swing.table.TableModel;
 
 import OBS_C_2025.Degisken;
 import OBS_C_2025.DoubleEditor;
+import OBS_C_2025.FIT_IMAGE;
 import OBS_C_2025.GLOBAL;
 import OBS_C_2025.MaterialTabbed;
 import OBS_C_2025.SAGA;
@@ -45,7 +48,7 @@ public class EVRAK_FORMAT extends JInternalFrame {
 		setIconifiable(true);
 		setClosable(true);
 		setBounds(0, 0,396, 600);
-		
+		setFrameIcon(FIT_IMAGE.formIcon(new ImageIcon(EVRAK_FORMAT.class.getResource("/ICONLAR/icons8-descending-sorting-30.png")), 16, 16));//
 		MaterialTabbed tabbedPane = new MaterialTabbed();
 		//tabbedPane.setForeground(new Color(0, 0, 128));
 		tabbedPane.setFont(new Font("Tahoma", Font.PLAIN, 14));

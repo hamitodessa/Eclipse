@@ -21,10 +21,13 @@ import java.awt.event.ActionEvent;
 import javax.swing.JComboBox;
 import javax.swing.JSeparator;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.ImageIcon;
+
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
 import OBS_C_2025.ColorChooserButton;
+import OBS_C_2025.FIT_IMAGE;
 import OBS_C_2025.ColorChooserButton.ColorChangedListener;
 import raven.toast.Notifications;
 import OBS_C_2025.Font_Sec;
@@ -156,7 +159,7 @@ public class PARAMETRELER   extends JInternalFrame   {
 		setTitle("PARAMETRELER");
 		setClosable(true);
 		setBounds(0, 0, 540, 594);
-
+		setFrameIcon(FIT_IMAGE.formIcon(new ImageIcon(PARAMETRELER.class.getResource("/ICONLAR/icons8-settings-30.png")), 16, 16));//
 		MaterialTabbed tabbedPane = new MaterialTabbed();
 		//tabbedPane.setForeground(new Color(25, 25, 112));
 		tabbedPane.setFont(new Font("Tahoma", Font.BOLD, 14));

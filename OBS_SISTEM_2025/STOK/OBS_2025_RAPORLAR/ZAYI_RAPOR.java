@@ -7,6 +7,7 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.sql.ResultSet;
 
+import javax.swing.ImageIcon;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -27,6 +28,7 @@ import OBS_2025.OBS_SIS_2025_ANA_CLASS;
 import OBS_C_2025.STOK_ACCESS;
 import OBS_C_2025.ScrollPaneWin11;
 import OBS_2025.FILTRE;
+import OBS_C_2025.FIT_IMAGE;
 import OBS_C_2025.FORMATLAMA;
 import OBS_C_2025.GLOBAL;
 import OBS_C_2025.GRID_TEMIZLE;
@@ -71,7 +73,7 @@ public class ZAYI_RAPOR extends JInternalFrame {
 		setIconifiable(true);
 		setClosable(true);
 		setBounds(0, 0,1100, 600);
-		
+		setFrameIcon(FIT_IMAGE.formIcon(new ImageIcon(ORTALAMA_FIAT.class.getResource("/ICONLAR/icons8-order-history-30.png")), 16, 16));//
 		splitPane = new JSplitPane();
 		splitPane.setResizeWeight(1.0);
 		splitPane.setDividerSize(0);

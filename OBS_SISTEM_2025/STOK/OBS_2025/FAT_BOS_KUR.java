@@ -10,6 +10,7 @@ import java.awt.Dimension;
 import javax.swing.JPanel;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.ImageIcon;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.border.LineBorder;
@@ -17,6 +18,8 @@ import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
 
+import OBS_2025_RAPORLAR.ORTALAMA_FIAT;
+import OBS_C_2025.FIT_IMAGE;
 import OBS_C_2025.GRID_TEMIZLE;
 import OBS_C_2025.SOLA;
 import OBS_C_2025.STOK_ACCESS;
@@ -42,7 +45,7 @@ public class FAT_BOS_KUR extends JInternalFrame {
 		setIconifiable(true);
 		setClosable(true);
 		setBounds(0, 0, 178, 600);
-		
+		setFrameIcon(FIT_IMAGE.formIcon(new ImageIcon(ORTALAMA_FIAT.class.getResource("/ICONLAR/icons8-currency-exchange-30.png")), 16, 16));//
 		JSplitPane splitPane = new JSplitPane();
 		splitPane.setDividerSize(0);
 		splitPane.setResizeWeight(0.0);

@@ -96,7 +96,7 @@ public class URUN_KART extends JInternalFrame {
 		setTitle("URUN KARTI");
 		setClosable(true);
 		setBounds(0, 0,900, 580);
-
+		setFrameIcon(FIT_IMAGE.formIcon(new ImageIcon(URUN_KART.class.getResource("/ICONLAR/icons8-product-30.png")), 16, 16));//
 		JPanel panel = new JPanel();
 		getContentPane().add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);

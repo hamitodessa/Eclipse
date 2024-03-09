@@ -16,6 +16,7 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
@@ -54,6 +55,7 @@ import OBS_C_2025.ScrollPaneWin11;
 import OBS_C_2025.BAGLAN;
 //import OBS_PACKAGE.CONNECTION;
 import OBS_C_2025.FILE_UZANTI;
+import OBS_C_2025.FIT_IMAGE;
 import OBS_2025.FILTRE;
 import OBS_C_2025.FORMATLAMA;
 import OBS_C_2025.GLOBAL;
@@ -130,7 +132,7 @@ public class ENVANTER extends JInternalFrame {
 		setIconifiable(true);
 		setClosable(true);
 		setBounds(0, 0, 1228, 600);
-
+		setFrameIcon(FIT_IMAGE.formIcon(new ImageIcon(ENVANTER.class.getResource("/ICONLAR/icons8-hashtag-activity-feed-30.png")), 16, 16));//
 		splitPane = new JSplitPane();
 		splitPane.setResizeWeight(1.0);
 		splitPane.setDividerSize(0);

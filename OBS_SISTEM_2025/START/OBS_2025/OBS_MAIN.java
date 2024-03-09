@@ -1600,8 +1600,6 @@ public class OBS_MAIN extends JFrame  {
 		btnNewButton_92.setToolTipText("Eksik Kur");
 		btnNewButton_92.setIcon(new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/icons8-data-transfer-30.png")));
 		toolBar_3.add(btnNewButton_92);
-		
-		
 	
 		JLabel lblNewLabel_46 = new JLabel("          ");
 		toolBar_3.add(lblNewLabel_46);
@@ -1844,6 +1842,13 @@ public class OBS_MAIN extends JFrame  {
 		btnNewButton_52.setIcon(new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/icons8-module-30.png")));
 		toolBar_5.add(btnNewButton_52);
 
+		
+
+		JLabel lblNewLabel_34 = new JLabel("     ");
+		toolBar_5.add(lblNewLabel_34);
+		
+		
+		
 		btnNewButton_54 = new JButton("");
 		btnNewButton_54.setToolTipText("Imalat Fisleri");
 		btnNewButton_54.addActionListener(new ActionListener() {
@@ -1851,18 +1856,10 @@ public class OBS_MAIN extends JFrame  {
 				form_ac("IMALAT RAPORLAMA","");
 			}
 		});
-
-		JLabel lblNewLabel_34 = new JLabel("     ");
-		toolBar_5.add(lblNewLabel_34);
 		btnNewButton_54.setIcon(new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/icons8-robot-30.png")));
 		toolBar_5.add(btnNewButton_54);
 
-		btnNewButton_55 = new JButton("");
-		btnNewButton_55.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				form_ac("RECETE RAPORLAMA","");
-			}
-		});
+		
 
 		btnNewButton_57 = new JButton("");
 		btnNewButton_57.setToolTipText("Imalat Grup Raporlama");
@@ -1876,6 +1873,13 @@ public class OBS_MAIN extends JFrame  {
 
 		JLabel lblNewLabel_35 = new JLabel("  ");
 		toolBar_5.add(lblNewLabel_35);
+		
+		btnNewButton_55 = new JButton("");
+		btnNewButton_55.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				form_ac("RECETE RAPORLAMA","");
+			}
+		});
 		btnNewButton_55.setToolTipText("Recete Raporlama");
 		btnNewButton_55.setIcon(new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/mfis.png")));
 		toolBar_5.add(btnNewButton_55);
@@ -2011,34 +2015,20 @@ public class OBS_MAIN extends JFrame  {
 			public void itemStateChanged(ItemEvent e) {
 				String hangi = (String) comboDegisken.getItemAt(comboDegisken.getSelectedIndex())  ;
 				boolean varmi = pencere_bak("DEGISKENLER");
-				if (varmi) 
-				{
+				if (varmi)
 					pencere_kapat("DEGISKENLER");
-				}
 				if (hangi == "Ana Grup")
-				{
 					form_ac("DEGISKENLER","anagrup");
-				}
 				else if (hangi == "Alt Grup")
-				{
 					form_ac("DEGISKENLER","altgrup");
-				}
 				else if (hangi == "Mensei")
-				{
 					form_ac("DEGISKENLER","mensei");
-				}
 				else if (hangi == "Depo")
-				{
 					form_ac("DEGISKENLER","depo");
-				}
 				else if (hangi == "Ozel Kod 1")
-				{
 					form_ac("DEGISKENLER","oz1");
-				}
 				else if (hangi == "Ozel Kod 2")
-				{
 					form_ac("DEGISKENLER","oz2");
-				}
 			}
 		});
 		comboDegisken.setModel(new DefaultComboBoxModel<String>(new String[] {"Degiskenler    ","Ana Grup","Alt Grup","Mensei","Depo","Ozel Kod 1","Ozel Kod 2"}));
@@ -2247,8 +2237,6 @@ public class OBS_MAIN extends JFrame  {
 		qwercke.setLayout(new BorderLayout(0, 0));
 		qwercke.add(cscrolke);
 		
-
-		
 		JToolBar toolBar_Kereste = new JToolBar();
 		
 		toolBar_Kereste.setFloatable(false);
@@ -2292,12 +2280,7 @@ public class OBS_MAIN extends JFrame  {
 		toolBar_Kereste.add(lblNewLabel_42);
 
 		
-		btnNewButton_3 = new JButton("");
-		btnNewButton_3.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				form_ac("KOD ACIKLAMA","");
-			}
-		});
+		
 		
 		btnNewButton_25 = new JButton("");
 		btnNewButton_25.addActionListener(new ActionListener() {
@@ -2358,6 +2341,13 @@ public class OBS_MAIN extends JFrame  {
 		
 		JLabel lblNewLabel_41 = new JLabel("          ");
 		toolBar_Kereste.add(lblNewLabel_41);
+		
+		btnNewButton_3 = new JButton("");
+		btnNewButton_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				form_ac("KOD ACIKLAMA","");
+			}
+		});
 		btnNewButton_3.setToolTipText("Kod Aciklama Giris");
 		btnNewButton_3.setIcon(new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/icons8-news-30.png")));
 		toolBar_Kereste.add(btnNewButton_3);
@@ -2380,34 +2370,20 @@ public class OBS_MAIN extends JFrame  {
 			public void itemStateChanged(ItemEvent e) {
 				String hangi = (String) comboDegisken_1.getItemAt(comboDegisken_1.getSelectedIndex())  ;
 				boolean varmi = pencere_bak("KERESTE DEGISKENLER");
-				if (varmi) 
-				{
+				if (varmi)
 					pencere_kapat("KERESTE DEGISKENLER");
-				}
 				if (hangi == "Ana Grup")
-				{
 					form_ac("KERESTE DEGISKENLER","anagrup");
-				}
 				else if (hangi == "Alt Grup")
-				{
 					form_ac("KERESTE DEGISKENLER","altgrup");
-				}
 				else if (hangi == "Mensei")
-				{
 					form_ac("KERESTE DEGISKENLER","mensei");
-				}
 				else if (hangi == "Depo")
-				{
 					form_ac("KERESTE DEGISKENLER","depo");
-				}
 				else if (hangi == "Ozel Kod 1")
-				{
 					form_ac("KERESTE DEGISKENLER","oz1");
-				}
 				else if (hangi == "Nakliyeci")
-				{
 					form_ac("KERESTE DEGISKENLER","nak");
-				}
 			}
 		});
 		
@@ -2425,14 +2401,7 @@ public class OBS_MAIN extends JFrame  {
 		
 		toolBar_Kereste.add(btnNewButton_65);
 		
-		btnNewButton_35 = new JButton("");
-		btnNewButton_35.setToolTipText("Firma Ismi DEgistirme");
-		btnNewButton_35.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				form_ac("FIRMA ISMI DEGISTIRME","");
-				FIRMA_ISMI_DEGIS.modul("kereste");
-			}
-		});
+		
 		
 		btnNewButton = new JButton("");
 		btnNewButton.addActionListener(new ActionListener() {
@@ -2456,8 +2425,16 @@ public class OBS_MAIN extends JFrame  {
 		
 		JLabel lblNewLabel_3 = new JLabel("          ");
 		toolBar_Kereste.add(lblNewLabel_3);
-		btnNewButton_35.setIcon(new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/icons8-organization-30.png")));
 		
+		btnNewButton_35 = new JButton("");
+		btnNewButton_35.setToolTipText("Firma Ismi DEgistirme");
+		btnNewButton_35.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				form_ac("FIRMA ISMI DEGISTIRME","");
+				FIRMA_ISMI_DEGIS.modul("kereste");
+			}
+		});
+		btnNewButton_35.setIcon(new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/icons8-organization-30.png")));
 		toolBar_Kereste.add(btnNewButton_35);
 		
 		JLabel lblNewLabel_43 = new JLabel("                    ");

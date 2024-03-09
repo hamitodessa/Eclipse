@@ -6,6 +6,7 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.sql.ResultSet;
 
+import javax.swing.ImageIcon;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -29,6 +30,7 @@ import javax.swing.table.TableRowSorter;
 
 import OBS_C_2025.ADRES_ACCESS;
 import OBS_C_2025.CheckBoxRenderer;
+import OBS_C_2025.FIT_IMAGE;
 import OBS_C_2025.FORMATLAMA;
 import OBS_C_2025.GLOBAL;
 import OBS_C_2025.GRID_TEMIZLE;
@@ -55,7 +57,7 @@ public class ADRESLER extends JInternalFrame {
 	setIconifiable(true);
 	setClosable(true);
 	setBounds(0, 0, 1000, 600);
-
+	setFrameIcon(FIT_IMAGE.formIcon(new ImageIcon(ADRESLER.class.getResource("/ICONLAR/icons8-contact-us-30.png")), 16, 16));//
 	JSplitPane splitPane = new JSplitPane();
 	splitPane.setDividerSize(1);
 	splitPane.setResizeWeight(0.0);

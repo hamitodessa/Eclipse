@@ -1,6 +1,8 @@
 package OBS_2025;
 
 import java.awt.Color;
+
+import javax.swing.ImageIcon;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -9,6 +11,7 @@ import javax.swing.border.TitledBorder;
 import OBS_C_2025.ADRES_ACCESS;
 import OBS_C_2025.BAGLAN;
 import OBS_C_2025.CARI_ACCESS;
+import OBS_C_2025.FIT_IMAGE;
 import OBS_C_2025.GUNLUK_ACCESS;
 import OBS_C_2025.KAMBIYO_ACCESS;
 import OBS_C_2025.KERESTE_ACCESS;
@@ -98,6 +101,7 @@ public class MODUL_PARAMETRE extends JInternalFrame {
 		setClosable(true);
 		setBounds(100, 100, 854, 456);
 		getContentPane().setLayout(null);
+		setFrameIcon(FIT_IMAGE.formIcon(new ImageIcon(MODUL_PARAMETRE.class.getResource("/ICONLAR/icons8-database-administrator-30.png")), 16, 16));//
 		JPanel panel = new JPanel();
 		panel.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Cari Hesap", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 

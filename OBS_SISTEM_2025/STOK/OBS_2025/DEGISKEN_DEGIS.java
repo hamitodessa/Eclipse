@@ -8,10 +8,12 @@ import java.awt.BorderLayout;
 import javax.swing.border.TitledBorder;
 
 import OBS_C_2025.BAGLAN_LOG;
+import OBS_C_2025.FIT_IMAGE;
 import OBS_C_2025.STOK_ACCESS;
 import OBS_C_2025.lOG_BILGI;
 import raven.toast.Notifications;
 
+import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import java.awt.event.ActionListener;
@@ -37,7 +39,7 @@ public class DEGISKEN_DEGIS extends JInternalFrame {
 		setTitle("DEGISKEN YENILEME");
 		setClosable(true);
 		setBounds(0,0, 430, 249);
-		
+		setFrameIcon(FIT_IMAGE.formIcon(new ImageIcon(DEGISKEN_DEGIS.class.getResource("/ICONLAR/icons8-not-equal-30.png")), 16, 16));//
 		panel = new JPanel();
 		getContentPane().add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);

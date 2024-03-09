@@ -72,6 +72,7 @@ import OBS_C_2025.ADRES_ACCESS;
 import OBS_C_2025.BAGLAN_LOG;
 import OBS_C_2025.CARI_ACCESS;
 import OBS_C_2025.DoubleEditor;
+import OBS_C_2025.FIT_IMAGE;
 import OBS_C_2025.FORMATLAMA;
 import OBS_C_2025.GLOBAL;
 import OBS_C_2025.GRID_TEMIZLE;
@@ -158,7 +159,7 @@ public class IRSALIYE extends JInternalFrame {
 		setClosable(true);
 
 		setBounds(0, 0,1175,800);
-
+		setFrameIcon(FIT_IMAGE.formIcon(new ImageIcon(IRSALIYE.class.getResource("/ICONLAR/icons8-questionnaire-30.png")), 16, 16));//
 		splitPane = new JSplitPane();
 		splitPane.setDividerSize(0);
 		splitPane.setResizeWeight(0.0);

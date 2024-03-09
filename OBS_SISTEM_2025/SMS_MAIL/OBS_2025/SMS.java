@@ -48,6 +48,7 @@ import javax.swing.table.TableColumnModel;
 import OBS_C_2025.ADRES_ACCESS;
 import OBS_C_2025.CARI_ACCESS;
 import OBS_C_2025.CheckBoxRenderer;
+import OBS_C_2025.FIT_IMAGE;
 import OBS_C_2025.FORMATLAMA;
 import OBS_C_2025.GLOBAL;
 import OBS_C_2025.GRID_TEMIZLE;
@@ -107,7 +108,7 @@ public class SMS extends JInternalFrame {
 		setMaximizable(true);
 		setIconifiable(true);
 		setClosable(true);
-
+		setFrameIcon(FIT_IMAGE.formIcon(new ImageIcon(SMS.class.getResource("/ICONLAR/icons8-sms-30.png")), 16, 16));//
 
 		JSplitPane splitPane = new JSplitPane();
 		splitPane.setResizeWeight(1.0);

@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 import javax.mail.util.ByteArrayDataSource;
+import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
@@ -60,6 +61,7 @@ import OBS_C_2025.BAGLAN;
 import OBS_C_2025.CARI_ACCESS;
 //import OBS_PACKAGE.CONNECTION;
 import OBS_C_2025.FILE_UZANTI;
+import OBS_C_2025.FIT_IMAGE;
 import OBS_2025.FILTRE;
 import OBS_C_2025.FORMATLAMA;
 import OBS_C_2025.GLOBAL;
@@ -111,6 +113,7 @@ public class GRUP_RAPOR extends JInternalFrame {
 		setMaximizable(true);
 		setTitle("GRUP RAPOR");
 		setBounds(0, 0,1100, 600);
+		setFrameIcon(FIT_IMAGE.formIcon(new ImageIcon(GRUP_RAPOR.class.getResource("/ICONLAR/icons8-group-objects-30.png")), 16, 16));//
 		
 		splitPane = new JSplitPane();
 		splitPane.setResizeWeight(1.0);

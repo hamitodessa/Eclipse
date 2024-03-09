@@ -18,11 +18,13 @@ import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingUtilities;
 import javax.swing.text.JTextComponent;
 
+import OBS_C_2025.FIT_IMAGE;
 import OBS_C_2025.GLOBAL;
 import raven.toast.Notifications;
 
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.ImageIcon;
 
 @SuppressWarnings({"serial","unchecked"})
 public class ETIKET_AYAR extends JInternalFrame {
@@ -42,6 +44,8 @@ public class ETIKET_AYAR extends JInternalFrame {
 		setClosable(true);
 		setTitle("ETIKET AYAR");
 		setBounds(100, 100, 588, 190);
+		setFrameIcon(FIT_IMAGE.formIcon(new ImageIcon(ETIKET_AYAR.class.getResource("/ICONLAR/icons8-pincode-keyboard-30.png")), 16, 16));//
+		
 		JPanel panel = new JPanel();
 		getContentPane().add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);

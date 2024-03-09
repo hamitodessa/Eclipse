@@ -23,6 +23,7 @@ import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumn;
 
 import OBS_C_2025.ENCRYPT_DECRYPT_STRING;
+import OBS_C_2025.FIT_IMAGE;
 import OBS_C_2025.GLOBAL;
 import OBS_C_2025.GRID_TEMIZLE;
 import OBS_C_2025.ORTA;
@@ -62,7 +63,7 @@ public class USER_EKLEME extends JInternalFrame {
 		setResizable(true);
 		setClosable(true);
 		setBounds(0, 0, 750, 450);
-
+		setFrameIcon(FIT_IMAGE.formIcon(new ImageIcon(USER_EKLEME.class.getResource("/ICONLAR/hsp-30.png")), 16, 16));//
 		splitPane = new JSplitPane();
 		splitPane.setDividerSize(0);
 

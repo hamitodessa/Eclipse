@@ -30,6 +30,9 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.*;
+
+import OBS_2025_RAPORLAR.ORTALAMA_FIAT;
+import OBS_C_2025.FIT_IMAGE;
 import OBS_C_2025.GRID_TEMIZLE;
 import OBS_C_2025.MaterialTabbed;
 import OBS_C_2025.SOLA;
@@ -81,7 +84,7 @@ public class E_FATURA extends JInternalFrame {
 		setIconifiable(true);
 		setClosable(true);
 		setBounds(0, 0, 1000, 600);
-		
+		setFrameIcon(FIT_IMAGE.formIcon(new ImageIcon(E_FATURA.class.getResource("/ICONLAR/icons8-check-book-30.png")), 16, 16));//
 		MaterialTabbed tabbedPane = new MaterialTabbed();
 		tabbedPane.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		//tabbedPane.setForeground(new Color(0, 0, 128));

@@ -26,6 +26,7 @@ import javax.swing.table.TableRowSorter;
 import javax.swing.table.TableStringConverter;
 
 import OBS_C_2025.BAGLAN_LOG;
+import OBS_C_2025.FIT_IMAGE;
 import OBS_C_2025.GRID_TEMIZLE;
 import OBS_C_2025.Obs_TextFIeld;
 import OBS_C_2025.SOLA;
@@ -36,6 +37,8 @@ import raven.toast.Notifications;
 
 import javax.swing.border.EtchedBorder;
 import java.awt.Color;
+
+import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -71,6 +74,7 @@ public class DEGISKEN_GIRIS extends JInternalFrame {
 		setIconifiable(true);
 		setClosable(true);
 		setBounds(500, 100, 358, 563);
+		setFrameIcon(FIT_IMAGE.formIcon(new ImageIcon(DEGISKEN_GIRIS.class.getResource("/ICONLAR/degisken-16.png")), 16, 16));//
 		
 		JSplitPane splitPane = new JSplitPane();
 		splitPane.setResizeWeight(0.0);

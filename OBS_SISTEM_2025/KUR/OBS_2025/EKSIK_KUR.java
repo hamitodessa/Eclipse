@@ -24,6 +24,7 @@ import org.jsoup.select.Elements;
 
 import com.toedter.calendar.JDateChooser;
 import OBS_C_2025.DoubleEditor;
+import OBS_C_2025.FIT_IMAGE;
 import OBS_C_2025.FORMATLAMA;
 import OBS_C_2025.GRID_TEMIZLE;
 import OBS_C_2025.KUR_ACCESS;
@@ -35,6 +36,7 @@ import OBS_C_2025.TARIH_CEVIR;
 import raven.toast.Notifications;
 
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -66,7 +68,7 @@ public class EKSIK_KUR extends JInternalFrame
 		setTitle("EKSIK KUR");
 		setClosable(true);
 		setBounds(0, 0, 379, 538);
-
+		setFrameIcon(FIT_IMAGE.formIcon(new ImageIcon(EKSIK_KUR.class.getResource("/ICONLAR/icons8-data-transfer-30.png")), 16, 16));//
 		JSplitPane splitPane = new JSplitPane();
 		splitPane.setDividerSize(0);
 		splitPane.setResizeWeight(0.0);

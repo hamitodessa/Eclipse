@@ -13,11 +13,13 @@ import javax.swing.JPanel;
 import javax.swing.border.TitledBorder;
 
 import OBS_C_2025.BAGLAN_LOG;
+import OBS_C_2025.FIT_IMAGE;
 import OBS_C_2025.KERESTE_ACCESS;
 import OBS_C_2025.lOG_BILGI;
 import raven.toast.Notifications;
 
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.ImageIcon;
 
 @SuppressWarnings({"serial","static-access"})
 public class KER_DEGISKEN_DEGIS extends JInternalFrame {
@@ -35,7 +37,7 @@ public class KER_DEGISKEN_DEGIS extends JInternalFrame {
 		setTitle("KERESTE DEGISKEN YENILEME");
 		setClosable(true);
 		setBounds(0,0, 430, 297);
-		
+		setFrameIcon(FIT_IMAGE.formIcon(new ImageIcon(KER_DEGISKEN_DEGIS.class.getResource("/ICONLAR/icons8-not-equal-30.png")), 16, 16));//
 		panel = new JPanel();
 		getContentPane().add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);

@@ -30,7 +30,7 @@ import OBS_2025.OBS_MAIN;
 import OBS_2025.OBS_SIS_2025_ANA_CLASS;
 import OBS_C_2025.BAGLAN_LOG;
 import OBS_C_2025.ButtonColumn;
-
+import OBS_C_2025.FIT_IMAGE;
 import OBS_C_2025.FORMATLAMA;
 import OBS_C_2025.GRID_TEMIZLE;
 import OBS_C_2025.GUNLUK_ACCESS;
@@ -71,6 +71,7 @@ public class HAZIR_GOREVLER extends JInternalFrame {
 		setIconifiable(true);
 		setClosable(true);
 		setTitle("HAZIR GOREVLER");
+		setFrameIcon(FIT_IMAGE.formIcon(new ImageIcon(HAZIR_GOREVLER.class.getResource("/ICONLAR/icons8-news-30.png")), 16, 16));//
 		JSplitPane splitPane = new JSplitPane();
 		splitPane.setOrientation(JSplitPane.VERTICAL_SPLIT);
 		splitPane.setDividerSize(0);

@@ -13,6 +13,7 @@ import javax.swing.JComboBox;
 import com.formdev.flatlaf.FlatClientProperties;
 import com.toedter.calendar.JDateChooser;
 
+import OBS_C_2025.FIT_IMAGE;
 import OBS_C_2025.FORMATLAMA;
 import OBS_C_2025.GRID_TEMIZLE;
 import OBS_C_2025.JTextFieldRegularPopupMenu;
@@ -94,7 +95,7 @@ public class KUR_GIRIS extends JInternalFrame {
 		setTitle("KUR GIRIS");
 		setClosable(true);
 		setBounds(0, 0, 500, 438);
-
+		setFrameIcon(FIT_IMAGE.formIcon(new ImageIcon(KUR_GIRIS.class.getResource("/ICONLAR/icons8-currency-exchange-30.png")), 16, 16));//
 		JSplitPane splitPane = new JSplitPane();
 		splitPane.setDividerSize(0);
 		splitPane.setResizeWeight(0.0);

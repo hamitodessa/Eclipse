@@ -16,6 +16,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 import javax.mail.util.ByteArrayDataSource;
+import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
@@ -57,6 +58,7 @@ import OBS_2025.FILTRE;
 import OBS_2025.GuiUtil;
 import OBS_C_2025.BAGLAN;
 import OBS_C_2025.FILE_UZANTI;
+import OBS_C_2025.FIT_IMAGE;
 import OBS_C_2025.FORMATLAMA;
 import OBS_C_2025.GLOBAL;
 import OBS_C_2025.GRID_TEMIZLE;
@@ -101,7 +103,8 @@ public class STOK_RAPOR extends JInternalFrame {
 		setIconifiable(true);
 		setClosable(true);
 		setBounds(0, 0, 1100, 600);
-
+		setFrameIcon(FIT_IMAGE.formIcon(new ImageIcon(STOK_RAPOR.class.getResource("/ICONLAR/icons8-stocks-30.png")), 16, 16));//
+		
 		splitPane = new JSplitPane();
 		splitPane.setResizeWeight(1.0);
 		splitPane.setDividerSize(0);

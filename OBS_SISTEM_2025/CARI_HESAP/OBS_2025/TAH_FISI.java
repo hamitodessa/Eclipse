@@ -400,7 +400,7 @@ public class TAH_FISI extends JInternalFrame {
 		textCKodu = new Obs_TextFIeld(12);
 		textCKodu.setBounds(10, 33, 150, 22);
 		panel_1.add(textCKodu);
-		textCKodu.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		textCKodu.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		textCKodu.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
@@ -512,7 +512,7 @@ public class TAH_FISI extends JInternalFrame {
 		});
 		textAKodu.setBounds(281, 33, 150, 22);
 		panel_1.add(textAKodu);
-		textAKodu.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		textAKodu.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		textAKodu.setColumns(10);
 		textAKodu.getDocument().addDocumentListener(new DocumentListener() {
 			public void changedUpdate(DocumentEvent e) {
@@ -1204,13 +1204,13 @@ public class TAH_FISI extends JInternalFrame {
 			}
 			else if(cmbTur.getSelectedIndex()==1)
 			{
-				dBilgi.setiZAHAT(textEvrakNo.getText() + " Nolu Tah.Fisi ile Cek  ");
-				lBILGI.setmESAJ(textEvrakNo.getText() + " Nolu Tah.Fisi ile Cek  ");
+				dBilgi.setiZAHAT(textEvrakNo.getText() + " Nolu Tah.Fisi ile " + FORMATLAMA.doub_0(Integer.valueOf(lblCekSayi.getText())) + " Adet Cek");
+				lBILGI.setmESAJ(textEvrakNo.getText() + " Nolu Tah.Fisi ile "  + FORMATLAMA.doub_0(Integer.valueOf(lblCekSayi.getText())) + " Adet Cek");
 			}
 			else if(cmbTur.getSelectedIndex()==2)
 			{
-				dBilgi.setiZAHAT(textEvrakNo.getText() + " Nolu Tah.Fisi ile Kredi Karti ");
-				lBILGI.setmESAJ(textEvrakNo.getText() + " Nolu Tah.Fisi ile Kredi Karti ");
+				dBilgi.setiZAHAT(textEvrakNo.getText() + " Nolu Tah.Fisi ile Kredi Karti " + "Pos:" + comboBanka.getSelectedItem().toString() );
+				lBILGI.setmESAJ(textEvrakNo.getText() + " Nolu Tah.Fisi ile Kredi Karti  " + "Pos:" + comboBanka.getSelectedItem().toString() );
 			}
 			if(cmbCins.getSelectedIndex()==0)
 				dBilgi.setkOD("Tahs.");

@@ -425,7 +425,7 @@ public class ADRES_MYSQL implements IADRES {
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		ResultSet	rss = null;
 		String sql = "SELECT Adi , Adres_1 ,Adres_2 , Tel_1,Semt ,Sehir  FROM Adres "
-				+ " WHERE M_Kodu Like N'%" + arama + "%'";
+				+ " WHERE M_Kodu Like N'" + arama + "%'";
 		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();

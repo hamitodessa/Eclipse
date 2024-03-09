@@ -812,9 +812,9 @@ public class ADRES_GIRIS extends JInternalFrame {
 	{
 		long startTime = System.currentTimeMillis(); 
 		if (chcbas.isSelected())
-			hisset("M_Kodu , Adi", "WHERE  M_Kodu like  '" + txtarama.getText() + "%' OR  Adi Like '" + txtarama.getText() + "%'");
+			hisset("M_Kodu , Adi", "WHERE  M_Kodu like  N'" + txtarama.getText() + "%' OR  Adi Like N'" + txtarama.getText() + "%'");
 		else
-			hisset("M_Kodu , Adi ", "WHERE  M_Kodu like  '%" + txtarama.getText() + "%' OR  Adi Like '%" + txtarama.getText() + "%'");
+			hisset("M_Kodu , Adi ", "WHERE  M_Kodu like  N'%" + txtarama.getText() + "%' OR  Adi Like N'%" + txtarama.getText() + "%'");
 		//
 		rs = a_Access.kod_kontrol(txtarama.getText());
 		if (!rs.isBeforeFirst() ) {  

@@ -152,14 +152,20 @@ public class PRINT_YAPMA extends JInternalFrame {
 				clientDoc.getDatabaseController().setDataSource(rs);
 				//**************************************************************************
 				ResultSet rstResultSet = a_Access.adr_etiket_arama_kod(TAH_FISI.textAKodu.getText());
+				String Unvan = "*****";
+				String Adr1  = "*****";
+				String Adr2  = "*****";
+				String Semt  = "*****";
 				if (!rstResultSet.isBeforeFirst() ) { 
 					
 				} 
-				rstResultSet.next();
-				String Unvan= rstResultSet.getString("Adi");
-				String Adr1= rstResultSet.getString("Adres_1");
-				String Adr2 = rstResultSet.getString("Adres_2");
-				String Semt = rstResultSet.getString("Semt") + " / "+ rstResultSet.getString("Sehir");
+				else {
+					rstResultSet.next();
+					Unvan = rstResultSet.getString("Adi");
+					Adr1 = rstResultSet.getString("Adres_1");
+					Adr2 = rstResultSet.getString("Adres_2");
+					Semt = rstResultSet.getString("Semt") + " / "+ rstResultSet.getString("Sehir");
+				}
 				ReportObjects reportObjects = clientDoc.getReportDefController().getReportObjectController().getReportObjectsByKind(ReportObjectKind.text);
 				for(int i=0; i< reportObjects.size();i++)
 				{
@@ -354,8 +360,8 @@ public class PRINT_YAPMA extends JInternalFrame {
 						double aqw = DecimalFormat.getNumberInstance().parse(TAH_FISI.formattedTutar.getText()).doubleValue();
 						if(TAH_FISI.cmbTur.getSelectedIndex() == 0)
 							oParagraphTextElement.setText("Nakit yapilan " + FORMATLAMA.doub_2(aqw) + " " + TAH_FISI.combCins.getSelectedItem().toString() + " Tutarindaki tahsilat  ");
-						else if(TAH_FISI.cmbTur.getSelectedIndex() == 1)
-							oParagraphTextElement.setText("Verilen Cek " + FORMATLAMA.doub_2(aqw) + " " + TAH_FISI.combCins.getSelectedItem().toString() + 	" Tutarindaki tahsilat  ");
+						//else if(TAH_FISI.cmbTur.getSelectedIndex() == 1)
+						//	oParagraphTextElement.setText("Verilen Cek " + FORMATLAMA.doub_2(aqw) + " " + TAH_FISI.combCins.getSelectedItem().toString() + 	" Tutarindaki tahsilat  ");
 						else if(TAH_FISI.cmbTur.getSelectedIndex() == 2)
 							oParagraphTextElement.setText("Kredi Kartinizdan yapilan " + FORMATLAMA.doub_2(aqw) + " " + TAH_FISI.combCins.getSelectedItem().toString() + " Tutarindaki tahsilat  ");
 						

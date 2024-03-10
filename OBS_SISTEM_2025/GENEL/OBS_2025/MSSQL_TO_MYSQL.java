@@ -66,9 +66,6 @@ import com.healthmarketscience.jackcess.impl.PageChannel;
 import javax.swing.border.LineBorder;
 import java.awt.Color;
 
-
-
-
 @SuppressWarnings({"serial","unused"})
 public class MSSQL_TO_MYSQL extends JInternalFrame {
 	private JTextField textField;
@@ -93,7 +90,8 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 	private JTextField myServer;
 	private JCheckBox msLokal;
 	private JCheckBox myLokal ;
-	public MSSQL_TO_MYSQL() {
+	public MSSQL_TO_MYSQL() 
+	{
 		setTitle("MS SQL TO MY SQL");
 		setClosable(true);
 		setBounds(100, 100, 892, 529);
@@ -132,7 +130,6 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 				try {
 					baglan();
 				} catch (ClassNotFoundException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 			}
@@ -146,7 +143,6 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 				try {
 					kur_baglan();
 				} catch (ClassNotFoundException e1) {
-				
 					e1.printStackTrace();
 				}
 			}
@@ -194,7 +190,7 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 
 		RoundPanel panel_1_1 = new RoundPanel(new Color(0, 128, 128),15);
 		panel_1_1.setLayout(null);
-		panel_1_1.setBounds(222, 287, 143, 167);
+		panel_1_1.setBounds(222, 287, 143, 201);
 		panel.add(panel_1_1);
 
 		JButton btnNewButton_2 = new JButton("Kur");
@@ -211,7 +207,7 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					mal();
-				} catch (ClassNotFoundException | SQLException e1) {
+				} catch (Exception e1) {
 					e1.printStackTrace();
 				}
 			}
@@ -224,8 +220,7 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					diger();
-				} catch (ClassNotFoundException | SQLException e1) {
-					// TODO Auto-generated catch block
+				} catch (Exception e1) {
 					e1.printStackTrace();
 				}
 			}
@@ -238,8 +233,7 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					bozukmal();
-				} catch (ClassNotFoundException | SQLException e1) {
-					// TODO Auto-generated catch block
+				} catch (Exception e1) {
 					e1.printStackTrace();
 				}
 			}
@@ -252,8 +246,7 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					fatura();
-				} catch (ClassNotFoundException | SQLException e1) {
-					// TODO Auto-generated catch block
+				} catch (Exception e1) {
 					e1.printStackTrace();
 				}
 			}
@@ -266,8 +259,7 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					irsaliye();
-				} catch (ClassNotFoundException | SQLException e1) {
-					// TODO Auto-generated catch block
+				} catch (Exception e1) {
 					e1.printStackTrace();
 				}
 			}
@@ -280,8 +272,7 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					recete();
-				} catch (ClassNotFoundException | SQLException e1) {
-					// TODO Auto-generated catch block
+				} catch (Exception e1) {
 					e1.printStackTrace();
 				}
 			}
@@ -294,7 +285,7 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					stok();
-				} catch (ClassNotFoundException | SQLException e1) {
+				} catch (Exception e1) {
 					e1.printStackTrace();
 				}
 			}
@@ -307,19 +298,13 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					stk_baglan();
-				} catch (ClassNotFoundException e1) {
-					// TODO Auto-generated catch block
+				} catch (Exception e1) {
 					e1.printStackTrace();
 				}
 			}
 		});
 		btnNewButton_1_1_1.setBounds(375, 255, 143, 23);
 		panel.add(btnNewButton_1_1_1);
-		
-		
-		
-	
-		
 		
 		JPanel panel_2 = new JPanel();
 		panel_2.setLayout(null);
@@ -427,7 +412,7 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					kereste_baglan();
-				} catch (ClassNotFoundException e1) {
+				} catch (Exception e1) {
 					e1.printStackTrace();
 				}
 			}
@@ -445,8 +430,7 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					ker_aciklama() ;
-				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
+				} catch (Exception e1) {
 					e1.printStackTrace();
 				}
 			}
@@ -459,8 +443,7 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					kod_kons() ;
-				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
+				} catch (Exception e1) {
 					e1.printStackTrace();
 				}
 			}
@@ -473,8 +456,7 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					ker_degisken() ;
-				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
+				} catch (Exception e1) {
 					e1.printStackTrace();
 				}
 			}
@@ -487,8 +469,7 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					kereste() ;
-				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
+				} catch (Exception e1) {
 					e1.printStackTrace();
 				}
 			}
@@ -496,12 +477,11 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 		btnNewButton_2_1_1_1_1_2.setBounds(10, 85, 123, 23);
 		panel_1_1_1_1.add(btnNewButton_2_1_1_1_1_2);
 		
-		
 			btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					kur();
-				} catch (ClassNotFoundException | SQLException e1) {
+				} catch (Exception e1) {
 					e1.printStackTrace();
 				}
 			}
@@ -510,7 +490,7 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					ozel();
-				} catch (ClassNotFoundException | SQLException e1) {
+				} catch (Exception e1) {
 					e1.printStackTrace();
 				}
 			}
@@ -639,7 +619,8 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 		ResultSet	rss = null;
 		String sql = "SELECT * FROM HESAP WITH (INDEX (IX_HESAP))  ORDER BY HESAP ";
-		Statement stmt = MS_conn.createStatement( ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+		//Statement stmt = MS_conn.createStatement( ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+		Statement stmt = MS_conn.createStatement();
 		rss = stmt.executeQuery(sql);
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		ResultSet	rs = null;
@@ -670,19 +651,15 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 		ResultSet	rss = null;
 		String sql = "SELECT * FROM HESAP_DETAY  ORDER BY D_HESAP ";
-		Statement stmt = MS_conn.createStatement( ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+		Statement stmt = MS_conn.createStatement();
 		rss = stmt.executeQuery(sql);
-
-		///
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		ResultSet	rs = null;
-		
 		sql  = "INSERT INTO HESAP_DETAY (D_HESAP,YETKILI,ADRES_1,ADRES_2,SEMT,SEHIR,VERGI_DAIRESI,VERGI_NO,TEL_1,TEL_2, " + 
 				" TEL_3,FAX,OZEL_KOD_1,OZEL_KOD_2,OZEL_KOD_3,WEB,E_MAIL,TC_KIMLIK,ACIKLAMA,SMS_GONDER,RESIM)" +
 				" VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)" ;
 		PreparedStatement stmt2 = MY_conn.prepareStatement(sql);
 		int satir = 0 ;
-		
 		while(rss.next()){
 			stmt2.setString(1,rss.getString("D_HESAP"));
 			stmt2.setString(2,rss.getString("YETKILI"));
@@ -724,18 +701,14 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 		ResultSet	rs = null;
 		ResultSet	rss = null;
 		PreparedStatement stmt2;
-
 		String sql = "SELECT * FROM SATIRLAR    ORDER BY EVRAK ";
-		Statement stmt = MS_conn.createStatement( ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+		Statement stmt = MS_conn.createStatement();
 		rss = stmt.executeQuery(sql);
-		////
-		
 		int satir = 0 ;
 		sql  = "INSERT INTO SATIRLAR (HESAP,TARIH,H,EVRAK,CINS,KUR,BORC,ALACAK,KOD,USER) " +
 				" VALUES (?,?,?,?,?,?,?,?,?,?)" ;
 		stmt2 = null;
 		stmt2 = MY_conn.prepareStatement(sql);
-
 		while(rss.next()){
 			stmt2.setString(1, rss.getString("HESAP"));
 			Timestamp timestamp =rss.getTimestamp("TARIH");
@@ -757,13 +730,12 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 			stmt2.setString(9, rss.getString("KOD"));
 			stmt2.setString(10, rss.getString("USER"));
 			stmt2.addBatch();
-			satir +=1 ;
+			satir += 1 ;
 			if ((satir ) % 1000 == 0)
 				stmt2.executeBatch();
 		}
 		stmt2.executeBatch();
 		stmt2.close();
-
 		getContentPane().setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 	}
 	void izahat () throws ClassNotFoundException, SQLException
@@ -773,9 +745,8 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 		ResultSet	rs = null;
 		ResultSet	rss = null;
 		PreparedStatement stmt2;
-
 		String sql = "SELECT * FROM IZAHAT    ORDER BY  EVRAK ";
-		Statement stmt = MS_conn.createStatement( ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+		Statement stmt = MS_conn.createStatement();
 		rss = stmt.executeQuery(sql);
 		sql  = "INSERT INTO IZAHAT (EVRAK,IZAHAT) " +
 				" VALUES (?,?)" ;
@@ -803,7 +774,7 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 		PreparedStatement stmt2;
 
 		String sql = "SELECT * FROM TAH_AYARLAR ";
-		Statement stmt = MS_conn.createStatement( ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+		Statement stmt = MS_conn.createStatement();
 		rss = stmt.executeQuery(sql);
 		
 		sql  = "INSERT INTO TAH_AYARLAR (LOGO,FIR_ISMI,ADR_1,ADR_2,VD_VN,MAIL,DIGER,KASE) " +
@@ -823,7 +794,7 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 		stmt2.close();
 		//
 		sql = "SELECT * FROM TAH_DETAY ";
-		stmt = MS_conn.createStatement( ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+		stmt = MS_conn.createStatement();
 		rss = stmt.executeQuery(sql);
 		
 		sql  = "INSERT INTO TAH_DETAY (EVRAK,TARIH,C_HES,A_HES,CINS,TUTAR,TUR,ACIKLAMA,DVZ_CINS,POS_BANKA) " +
@@ -845,7 +816,7 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 		stmt2.close();
 		//
 		sql = "SELECT * FROM TAH_CEK ";
-		stmt = MS_conn.createStatement( ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+		stmt = MS_conn.createStatement();
 		rss = stmt.executeQuery(sql);
 		sql  = "INSERT INTO TAH_CEK (EVRAK,CINS,BANKA,SUBE,SERI,HESAP,BORCLU,TARIH,TUTAR)" +
 				" VALUES (?,?,?,?,?,?,?,?,?)" ;
@@ -891,14 +862,12 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 		ResultSet	rs = null;
 		ResultSet	rss = null;
 		PreparedStatement stmt2;
-
 		String sql = "SELECT * FROM OZEL    ";
-		Statement stmt = MS_conn.createStatement( ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+		Statement stmt = MS_conn.createStatement();
 		rss = stmt.executeQuery(sql);
 		while(rss.next()){
 			sql  = "INSERT INTO OZEL (YONETICI,YON_SIFRE,FIRMA_ADI) " +
 					" VALUES (?,?,?)" ;
-
 			stmt2 = null;
 			stmt2 = MY_conn.prepareStatement(sql);
 			stmt2.setString(1, rss.getString("YONETICI"));
@@ -906,10 +875,9 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 			stmt2.setString(3,  rss.getString("FIRMA_ADI"));
 			stmt2.executeUpdate();
 		}
-
 		// YETKILER
 		sql = "SELECT * FROM YETKILER    ";
-		stmt = MS_conn.createStatement( ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+		stmt = MS_conn.createStatement();
 		rss = stmt.executeQuery(sql);
 		while(rss.next()){
 			sql  = "INSERT INTO YETKILER (KULLANICI,KARTON,TAM_YETKI,GORUNTU) " +
@@ -924,7 +892,7 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 		}
 		// ana grp
 		sql = "SELECT * FROM ANA_GRUP_DEGISKEN    ";
-		stmt = MS_conn.createStatement( ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+		stmt = MS_conn.createStatement();
 		rss = stmt.executeQuery(sql);
 		while(rss.next()){
 			sql  = "INSERT INTO ANA_GRUP_DEGISKEN (ANA_GRUP,USER) " +
@@ -937,7 +905,7 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 		}
 		// ana grp
 		sql = "SELECT * FROM ALT_GRUP_DEGISKEN    ";
-		stmt = MS_conn.createStatement( ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+		stmt = MS_conn.createStatement();
 		rss = stmt.executeQuery(sql);
 		while(rss.next()){
 			sql  = "INSERT INTO ALT_GRUP_DEGISKEN (ANA_GRUP,ALT_GRUP,USER) " +
@@ -951,7 +919,7 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 		}
 		// evrak
 		sql = "SELECT * FROM EVRAK_NO    ";
-		stmt = MS_conn.createStatement( ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+		stmt = MS_conn.createStatement();
 		rss = stmt.executeQuery(sql);
 		while(rss.next()){
 			sql  = "UPDATE EVRAK_NO SET EVRAK =" +  rss.getInt("EVRAK") + "  WHERE EID = 1";;
@@ -968,7 +936,7 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 		ResultSet	rss = null;
 		PreparedStatement stmt2; 
 		String sql = "SELECT * FROM Kurlar    ORDER BY  Tarih ";
-		Statement stmt = MS_conn.createStatement( ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+		Statement stmt = MS_conn.createStatement();
 		rss = stmt.executeQuery(sql);
 		sql  ="INSERT INTO KURLAR (Tarih,Kur,MA,MS,SA,SS,BA,BS) " +
 				" VALUES (?,?,?,?,?,?,?,?)" ;
@@ -1001,7 +969,7 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 		ResultSet	rs = null;
 		ResultSet	rss = null;
 		String sql = "SELECT * FROM MAL Order by Kodu     ";
-		Statement stmt = MS_conn.createStatement( ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+		Statement stmt = MS_conn.createStatement();
 		rss = stmt.executeQuery(sql);
 		sql  = "INSERT INTO MAL (Kodu,Adi,Birim,Kusurat,Sinif,Ana_Grup,Alt_Grup,Aciklama_1,Aciklama_2,Ozel_Kod_1 " +
 				" ,Ozel_Kod_2,Barkod,Mensei,Agirlik,Fiat,Fiat_2,Fiat_3,Recete,Kdv,Resim,Depo , Ozel_Kod_3,USER) " +
@@ -1051,7 +1019,7 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 		getContentPane().setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 		ResultSet	rss = null;
 		String sql = "SELECT * FROM ACIKLAMA   ORDER BY  EVRAK_NO ";
-		Statement stmt = MS_conn.createStatement( ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+		Statement stmt = MS_conn.createStatement();
 		rss = stmt.executeQuery(sql);
 		sql  ="INSERT INTO ACIKLAMA (EVRAK_CINS,SATIR,EVRAK_NO,ACIKLAMA,Gir_Cik) " +
 				" VALUES (?,?,?,?,?)" ;
@@ -1146,10 +1114,7 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 			stmt2.setString(6,  rss.getString("Gir_Cik"));
 			stmt2.setString(7,  rss.getString("USER"));
 			stmt2.executeUpdate();
-
-
 		}
-
 		//GDY
 		sql = "SELECT * FROM GDY   ";
 		rss = null;
@@ -1177,7 +1142,6 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 					" VALUES (?,?,?)" ;
 			stmt2= null;
 			stmt2 = MY_conn.prepareStatement(sql);
-
 			stmt2.setString(1,  rss.getString("MENSEI"));
 			stmt2.setString(2,  rss.getString("USER"));
 			stmt2.setInt(3,  rss.getInt("MEID_Y"));
@@ -1213,14 +1177,12 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 			stmt2.setString(3,  rss.getString("USER"));
 			stmt2.executeUpdate();
 		}		
-
 		//OZEL
 		sql = "SELECT * FROM OZEL    ";
 		rss = stmt.executeQuery(sql);
 		while(rss.next()){
 			sql  = "INSERT INTO OZEL (YONETICI,YON_SIFRE,FIRMA_ADI,USER) " +
 					" VALUES (?,?,?,?)" ;
-
 			stmt2 = null;
 			stmt2 = MY_conn.prepareStatement(sql);
 			stmt2.setString(1, rss.getString("YONETICI"));
@@ -1241,7 +1203,7 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 		}						 
 		// YETKILER
 		sql = "SELECT * FROM YETKILER    ";
-		stmt = MS_conn.createStatement( ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+		stmt = MS_conn.createStatement();
 		rss = stmt.executeQuery(sql);
 		while(rss.next()){
 			sql  = "INSERT INTO YETKILER (KULLANICI,HESAP,TAM_YETKI,GORUNTU,LEVEL,USER) " +
@@ -1273,11 +1235,10 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 	void bozukmal () throws ClassNotFoundException, SQLException
 	{
 		getContentPane().setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-
 		ResultSet	rs = null;
 		ResultSet	rss = null;
 		String sql = "SELECT * FROM BOZUK_MAL    Order by Evrak_No ";
-		Statement stmt = MS_conn.createStatement( ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+		Statement stmt = MS_conn.createStatement();
 		rss = stmt.executeQuery(sql);
 		sql  = "INSERT INTO MAL (Evrak_No,Kodu,Tarih,Miktar,Fiat,Ana_Grup,Alt_Grup,Depo,Ozel_Kod " +
 				" ,Izahat,Cins,,USER) " +
@@ -1304,23 +1265,19 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 		}
 		stmt2.executeBatch();
 		stmt2.close();
-
 		getContentPane().setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 	}
 	void fatura () throws ClassNotFoundException, SQLException
 	{
 		getContentPane().setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-
 		ResultSet	rs = null;
 		ResultSet	rss = null;
-
 		String sql = "SELECT * FROM FATURA  Order by Fatura_No ";
-		Statement stmt = MS_conn.createStatement( ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+		Statement stmt = MS_conn.createStatement();
 		rss = stmt.executeQuery(sql);
 		sql  ="INSERT INTO FATURA (Fatura_No,Kodu,Depo,Fiat,Tevkifat,Miktar,Gir_Cik,Tutar,Iskonto,Kdv,Tarih,Izahat " +
 				" ,Doviz,Adres_Firma,Cari_Firma,Ozel_Kod,Kur,Cins,Ana_Grup,Alt_Grup, USER ) " +
 				" VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)" ;
-
 		PreparedStatement stmt2 = MY_conn.prepareStatement(sql);
 		int satir = 0 ;
 		while(rss.next()){
@@ -1362,7 +1319,7 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 		ResultSet	rss = null;
 	
 		String sql = "SELECT * FROM IRSALIYE  Order by Irsaliye_No  ";
-		Statement stmt = MS_conn.createStatement( ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+		Statement stmt = MS_conn.createStatement();
 		rss = stmt.executeQuery(sql);
 		sql  ="INSERT INTO IRSALIYE (Irsaliye_No,Kodu,Depo,Fiat,Iskonto,Miktar,Tutar,Kdv, Tarih,Doviz,Kur,Firma " +
 				",Cari_Hesap_Kodu,Sevk_Tarihi,Ozel_Kod,Ana_Grup,Alt_Grup,Fatura_No,Hareket,Cins, USER ,Izahat) " +
@@ -1411,7 +1368,7 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 		ResultSet	rss = null;
 		
 		String sql = "SELECT * FROM RECETE  Order by Recete_No  ";
-		Statement stmt = MS_conn.createStatement( ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+		Statement stmt = MS_conn.createStatement();
 		rss = stmt.executeQuery(sql);
 		sql  ="INSERT INTO RECETE (Recete_No,Durum,Tur,Kodu,Miktar,Ana_Grup,Alt_Grup, USER ) " +
 				" VALUES (?,?,?,?,?,?,?,?)" ;
@@ -1445,7 +1402,7 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 		ResultSet	rss = null;
 		
 		String sql = "SELECT * FROM STOK  ORDER BY Tarih ";
-		Statement stmt = MS_conn.createStatement( ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+		Statement stmt = MS_conn.createStatement();
 		rss = stmt.executeQuery(sql);
 		sql  ="INSERT INTO STOK (Evrak_No,Evrak_Cins,Tarih,Depo,Urun_Kodu,Miktar,Fiat,Tutar,Kdvli_Tutar,Hareket,Izahat " +
 				" ,Ana_Grup,Alt_Grup,Kur,B1,Doviz,Hesap_Kodu, USER ) " +
@@ -1487,7 +1444,7 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 		getContentPane().setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 		ResultSet	rss = null;
 		String sql = "SELECT * FROM ACIKLAMA   ORDER BY  EVRAK_NO ";
-		Statement stmt = MS_conn.createStatement( ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+		Statement stmt = MS_conn.createStatement();
 		rss = stmt.executeQuery(sql);
 		sql  ="INSERT INTO ACIKLAMA (EVRAK_CINS,SATIR,EVRAK_NO,ACIKLAMA,Gir_Cik) " +
 				" VALUES (?,?,?,?,?)" ;
@@ -1514,7 +1471,7 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 		getContentPane().setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 		ResultSet	rss = null;
 		String sql = "SELECT * FROM KOD_ACIKLAMA   ORDER BY  KOD ";
-		Statement stmt = MS_conn.createStatement( ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+		Statement stmt = MS_conn.createStatement();
 		rss = stmt.executeQuery(sql);
 		sql  ="INSERT INTO KOD_ACIKLAMA (KOD,ACIKLAMA) " +
 				" VALUES (?,?)" ;
@@ -1534,7 +1491,7 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 		// KONS
 		rss = null;
 		sql = "SELECT * FROM KONS_ACIKLAMA   ORDER BY  KONS ";
-		stmt = MS_conn.createStatement( ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+		stmt = MS_conn.createStatement();
 		rss = stmt.executeQuery(sql);
 		sql  ="INSERT INTO KONS_ACIKLAMA (KONS,ACIKLAMA) " +
 				" VALUES (?,?)" ;
@@ -1559,7 +1516,7 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 		ResultSet	rss = null;
 		//ALt GRUP
 		String sql = "SELECT * FROM ALT_GRUP_DEGISKEN    ";
-		Statement stmt = MS_conn.createStatement( ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+		Statement stmt = MS_conn.createStatement();
 		rss = null;
 		rss = stmt.executeQuery(sql);
 		PreparedStatement stmt2 = MY_conn.prepareStatement(sql);
@@ -1623,8 +1580,6 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 			stmt2.setString(6,  rss.getString("Gir_Cik"));
 			stmt2.setString(7,  rss.getString("USER"));
 			stmt2.executeUpdate();
-
-
 		}
 		//MENSEI
 		sql = "SELECT * FROM MENSEI_DEGISKEN    ";
@@ -1636,7 +1591,6 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 					" VALUES (?,?,?)" ;
 			stmt2= null;
 			stmt2 = MY_conn.prepareStatement(sql);
-
 			stmt2.setString(1,  rss.getString("MENSEI"));
 			stmt2.setString(2,  rss.getString("USER"));
 			stmt2.setInt(3,  rss.getInt("MEID_Y"));
@@ -1678,7 +1632,6 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 		while(rss.next()){
 			sql  = "INSERT INTO OZEL (YONETICI,YON_SIFRE,FIRMA_ADI,USER) " +
 					" VALUES (?,?,?,?)" ;
-
 			stmt2 = null;
 			stmt2 = MY_conn.prepareStatement(sql);
 			stmt2.setString(1, rss.getString("YONETICI"));
@@ -1703,7 +1656,7 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 		}						 
 		// YETKILER
 		sql = "SELECT * FROM YETKILER    ";
-		stmt = MS_conn.createStatement( ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+		stmt = MS_conn.createStatement();
 		rss = stmt.executeQuery(sql);
 		while(rss.next()){
 			sql  = "INSERT INTO YETKILER (KULLANICI,HESAP,TAM_YETKI,GORUNTU,LEVEL,USER) " +
@@ -1725,102 +1678,102 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 		Runnable runner = new Runnable()
 		{ public void run() {
 			try {
-		getContentPane().setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-		ResultSet	rss = null;
-		String sql = "SELECT * FROM KERESTE  ORDER BY  Evrak_No , Satir "; // 
-		Statement stmt = MS_conn.createStatement( ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-		rss = stmt.executeQuery(sql);
-		sql  ="INSERT INTO KERESTE (Evrak_No,Barkod,Kodu,Paket_No,Konsimento,Miktar,Tarih,Kdv,Doviz,Fiat,Tutar,Kur,Cari_Firma,Adres_Firma,Iskonto " + //15
-				" ,Tevkifat,Ana_Grup,Alt_Grup,Depo,Ozel_Kod,Izahat,Nakliyeci,USER,Cikis_Evrak,CTarih,CKdv,CDoviz,CFiat,CTutar,Ckur,CCari_Firma,CAdres_Firma " + //17
-				" ,CIskonto,CTevkifat,CAna_Grup,CAlt_Grup,CDepo,COzel_Kod,CIzahat,CNakliyeci,CUSER,Mensei,Satir,CSatir) " + //9
-				" VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)" ;
+				getContentPane().setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+				ResultSet	rss = null;
+				String sql = "SELECT * FROM KERESTE  ORDER BY  Evrak_No , Satir "; // 
+				Statement stmt = MS_conn.createStatement();
+				rss = stmt.executeQuery(sql);
+				sql  ="INSERT INTO KERESTE (Evrak_No,Barkod,Kodu,Paket_No,Konsimento,Miktar,Tarih,Kdv,Doviz,Fiat,Tutar,Kur,Cari_Firma,Adres_Firma,Iskonto " + //15
+						" ,Tevkifat,Ana_Grup,Alt_Grup,Depo,Ozel_Kod,Izahat,Nakliyeci,USER,Cikis_Evrak,CTarih,CKdv,CDoviz,CFiat,CTutar,Ckur,CCari_Firma,CAdres_Firma " + //17
+						" ,CIskonto,CTevkifat,CAna_Grup,CAlt_Grup,CDepo,COzel_Kod,CIzahat,CNakliyeci,CUSER,Mensei,Satir,CSatir) " + //9
+						" VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)" ;
 
-		PreparedStatement stmt2 = MY_conn.prepareStatement(sql);
-		int satir= 0 ;
-		stmt2 = MY_conn.prepareStatement(sql);
-		while(rss.next())
-		{
-			stmt2.setString(1,rss.getString("Evrak_No"));
-			stmt2.setString(2, rss.getString("Barkod"));
-			stmt2.setString(3,rss.getString("Kodu"));
-			stmt2.setString(4,rss.getString("Paket_No"));
-			stmt2.setString(5,rss.getString("Konsimento"));
-			stmt2.setDouble(6, rss.getDouble("Miktar"));
-			Timestamp timestamp =rss.getTimestamp("Tarih");
-			Date    date1 = null;
-			String formatli = "";
-			if (timestamp != null)
-			{
-				date1 = new java.util.Date(timestamp.getTime());
-				SimpleDateFormat formatter = new SimpleDateFormat("yyyy.MM.dd hh:mm:ss.ss");
-				formatli = formatter.format(date1);
-			}
-			stmt2.setString(7,formatli);
-			stmt2.setDouble(8, rss.getDouble("Kdv"));
-			stmt2.setString(9,rss.getString("Doviz"));
-			stmt2.setDouble(10,rss.getDouble("Fiat"));
-			stmt2.setDouble(11,rss.getDouble("Tutar"));
-			stmt2.setDouble(12, rss.getDouble("Kur"));
-			stmt2.setString(13,rss.getString("Cari_Firma"));
-			stmt2.setString(14,rss.getString("Adres_Firma"));
-			stmt2.setDouble(15, rss.getDouble("Iskonto"));
-			stmt2.setDouble(16, rss.getDouble("Tevkifat"));
-			stmt2.setInt(17, rss.getInt("Ana_Grup"));
-			stmt2.setInt(18,  rss.getInt("Alt_Grup"));
-			stmt2.setInt(19,  rss.getInt("Depo"));
-			stmt2.setInt(20, rss.getInt("Ozel_Kod"));
-			stmt2.setString(21,rss.getString("Izahat"));
-			stmt2.setInt(22,  rss.getInt("Nakliyeci"));
-			stmt2.setString(23,  rss.getString("USER"));
-			stmt2.setString(24,rss.getString("Cikis_Evrak"));
-			if(! rss.getTimestamp("CTarih").toString().equals("1900-01-01 00:00:00.0"))
-			{
-				timestamp =rss.getTimestamp("CTarih");
-				date1 = null;
-				formatli = "";
-				if (timestamp != null)
+				PreparedStatement stmt2 = MY_conn.prepareStatement(sql);
+				int satir= 0 ;
+				stmt2 = MY_conn.prepareStatement(sql);
+				while(rss.next())
 				{
-					date1 = new java.util.Date(timestamp.getTime());
-					SimpleDateFormat formatter = new SimpleDateFormat("yyyy.MM.dd hh:mm:ss.ss");
-					formatli = formatter.format(date1);
+					stmt2.setString(1,rss.getString("Evrak_No"));
+					stmt2.setString(2, rss.getString("Barkod"));
+					stmt2.setString(3,rss.getString("Kodu"));
+					stmt2.setString(4,rss.getString("Paket_No"));
+					stmt2.setString(5,rss.getString("Konsimento"));
+					stmt2.setDouble(6, rss.getDouble("Miktar"));
+					Timestamp timestamp =rss.getTimestamp("Tarih");
+					Date    date1 = null;
+					String formatli = "";
+					if (timestamp != null)
+					{
+						date1 = new java.util.Date(timestamp.getTime());
+						SimpleDateFormat formatter = new SimpleDateFormat("yyyy.MM.dd hh:mm:ss.ss");
+						formatli = formatter.format(date1);
+					}
+					stmt2.setString(7,formatli);
+					stmt2.setDouble(8, rss.getDouble("Kdv"));
+					stmt2.setString(9,rss.getString("Doviz"));
+					stmt2.setDouble(10,rss.getDouble("Fiat"));
+					stmt2.setDouble(11,rss.getDouble("Tutar"));
+					stmt2.setDouble(12, rss.getDouble("Kur"));
+					stmt2.setString(13,rss.getString("Cari_Firma"));
+					stmt2.setString(14,rss.getString("Adres_Firma"));
+					stmt2.setDouble(15, rss.getDouble("Iskonto"));
+					stmt2.setDouble(16, rss.getDouble("Tevkifat"));
+					stmt2.setInt(17, rss.getInt("Ana_Grup"));
+					stmt2.setInt(18,  rss.getInt("Alt_Grup"));
+					stmt2.setInt(19,  rss.getInt("Depo"));
+					stmt2.setInt(20, rss.getInt("Ozel_Kod"));
+					stmt2.setString(21,rss.getString("Izahat"));
+					stmt2.setInt(22,  rss.getInt("Nakliyeci"));
+					stmt2.setString(23,  rss.getString("USER"));
+					stmt2.setString(24,rss.getString("Cikis_Evrak"));
+					if(! rss.getTimestamp("CTarih").toString().equals("1900-01-01 00:00:00.0"))
+					{
+						timestamp =rss.getTimestamp("CTarih");
+						date1 = null;
+						formatli = "";
+						if (timestamp != null)
+						{
+							date1 = new java.util.Date(timestamp.getTime());
+							SimpleDateFormat formatter = new SimpleDateFormat("yyyy.MM.dd hh:mm:ss.ss");
+							formatli = formatter.format(date1);
+						}
+						stmt2.setString(25,formatli);
+					}
+					else
+						stmt2.setString(25,"1900-01-01");
+						stmt2.setDouble(26, rss.getDouble("CKdv"));
+						stmt2.setString(27, rss.getString("CDoviz"));
+						stmt2.setDouble(28, rss.getDouble("CFiat"));
+						stmt2.setDouble(29, rss.getDouble("CTutar"));
+						stmt2.setDouble(30, rss.getDouble("CKur"));
+						stmt2.setString(31, rss.getString("CCari_Firma"));
+						stmt2.setString(32, rss.getString("CAdres_Firma"));
+						stmt2.setDouble(33, rss.getDouble("CIskonto"));
+						stmt2.setDouble(34, rss.getInt("CTevkifat"));
+						stmt2.setInt(35, rss.getInt("CAna_Grup"));
+						stmt2.setInt(36, rss.getInt("CAlt_Grup"));
+						stmt2.setInt(37, rss.getInt("CDepo"));
+						stmt2.setInt(38, rss.getInt("COzel_Kod"));
+						stmt2.setString(39, rss.getString("CIzahat"));
+						stmt2.setInt(40, rss.getInt("CNakliyeci"));
+						stmt2.setString(41, rss.getString("CUSER"));
+						stmt2.setInt(42, rss.getInt("Mensei"));
+						stmt2.setInt(43, rss.getInt("Satir"));
+						stmt2.setInt(44, rss.getInt("CSatir"));
+						stmt2.addBatch();
+						satir +=1 ;
+						if ((satir ) % 200 == 0)
+							stmt2.executeBatch();
 				}
-				stmt2.setString(25,formatli);
-			}
-			else
-				stmt2.setString(25,"1900-01-01");
-			stmt2.setDouble(26,rss.getDouble("CKdv"));
-			stmt2.setString(27,rss.getString("CDoviz"));
-			stmt2.setDouble(28, rss.getDouble("CFiat"));
-			stmt2.setDouble(29, rss.getDouble("CTutar"));
-			stmt2.setDouble(30, rss.getDouble("CKur"));
-			stmt2.setString(31,rss.getString("CCari_Firma"));
-			stmt2.setString(32,rss.getString("CAdres_Firma"));
-			stmt2.setDouble(33, rss.getDouble("CIskonto"));
-			stmt2.setDouble(34,  rss.getInt("CTevkifat"));
-			stmt2.setInt(35, rss.getInt("CAna_Grup"));
-			stmt2.setInt(36, rss.getInt("CAlt_Grup"));
-			stmt2.setInt(37,  rss.getInt("CDepo"));
-			stmt2.setInt(38,rss.getInt("COzel_Kod"));
-			stmt2.setString(39,rss.getString("CIzahat"));
-			stmt2.setInt(40, rss.getInt("CNakliyeci"));
-			stmt2.setString(41,  rss.getString("CUSER"));
-			stmt2.setInt(42,  rss.getInt("Mensei"));
-			stmt2.setInt(43,  rss.getInt("Satir"));
-			stmt2.setInt(44,  rss.getInt("CSatir"));
-			stmt2.addBatch();
-			satir +=1 ;
-			if ((satir ) % 200 == 0)
 				stmt2.executeBatch();
-		}
-		stmt2.executeBatch();
-		stmt2.close();
-		getContentPane().setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-		}
-		catch (Exception ex)
-		{
-			getContentPane().setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Kereste Aktar", JOptionPane.ERROR_MESSAGE);   
-		}
+				stmt2.close();
+				getContentPane().setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+			}
+			catch (Exception ex)
+			{
+				getContentPane().setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+				JOptionPane.showMessageDialog(null, ex.getMessage(),  "Kereste Aktar", JOptionPane.ERROR_MESSAGE);   
+			}
 		}
 		};
 		Thread t = new Thread(runner, "Code Executer");

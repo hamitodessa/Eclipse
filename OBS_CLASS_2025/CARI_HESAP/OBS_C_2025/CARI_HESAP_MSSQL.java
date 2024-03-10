@@ -1123,16 +1123,12 @@ public class CARI_HESAP_MSSQL implements ICARI_HESAP {
 		str1 = "" ;
 		//str2 = "" ;
 		if (BAGLAN.kurDizin.dIZIN_CINS.equals("L"))
-		{
 			str1 = "OK_Kur" + BAGLAN.kurDizin.kOD + ".dbo.kurlar  " ;
-		}
 		else
 		{
 			if ( BAGLAN.cariDizin.sERVER.equals(BAGLAN.kurDizin.sERVER))
-			{
 				str1 = "OK_Kur" + BAGLAN.kurDizin.kOD + ".dbo.kurlar  " ;
 				//str2 = "";
-			}
 //			else
 //			{
 //				str2 = "EXEC sp_configure 'show advanced options', 1 " +

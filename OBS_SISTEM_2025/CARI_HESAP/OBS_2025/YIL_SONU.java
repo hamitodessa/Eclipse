@@ -522,7 +522,6 @@ public class YIL_SONU extends JInternalFrame {
 				{
 					// ' Hesaba iliskin kayit Yok 0 olarak islenecek
 				}
-
 			}  // ilk For INT
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.INFO, "Mizan Aktarma Islemi Basari ile Tamamlandi...." );
 		}

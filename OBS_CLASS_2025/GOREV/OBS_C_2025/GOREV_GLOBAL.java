@@ -22,7 +22,6 @@ public class GOREV_GLOBAL {
 	{
 		Class.forName("org.sqlite.JDBC");
 		if (con != null && ! con.isClosed()) con.close();
-
 		ResultSet	rss = null;
 		con = glb.myGorevConnection();
 		String sql = "SELECT * FROM BILGILER ";
@@ -83,7 +82,6 @@ public class GOREV_GLOBAL {
 			bilgi.add(list);
 		} 
 		else {
-
 			Date bas =	new SimpleDateFormat("HH:mm").parse(rss.getString("Zaman"));
 			g_bilgiler list = new g_bilgiler("", bas, "",false);
 			bilgi.add(list);
@@ -102,7 +100,6 @@ public class GOREV_GLOBAL {
 		sql = "DELETE FROM BILGILER ";
 		stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();
-
 		sql = "INSERT INTO BILGILER (OBS_KULLANICI,Durum) "
 				+ "VALUES (?,?)";
 		stmt = con.prepareStatement(sql);
@@ -120,7 +117,6 @@ public class GOREV_GLOBAL {
 		PreparedStatement stmt = null;
 		con = glb.myGorevConnection();
 		String sql = "";
-
 		sql = "DELETE FROM KUR_CINSI ";
 		stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();
@@ -139,7 +135,6 @@ public class GOREV_GLOBAL {
 				+ "VALUES (?)";
 		stmt = con.prepareStatement(sql);
 		stmt.setString(1, kur);
-
 		stmt.executeUpdate();
 		stmt.close();
 		con.close();
@@ -197,10 +192,8 @@ public class GOREV_GLOBAL {
 		PreparedStatement stmt = null;
 		if (con != null && ! con.isClosed()) con.close();
 		con = glb.myGorevConnection();
-
 		stmt = con.prepareStatement("DELETE FROM GOREV_ZAMANI ");
 		stmt.executeUpdate();
-
 		String sql ="INSERT INTO  GOREV_ZAMANI  (Zaman) "
 				+ "VALUES (?)";
 		stmt = con.prepareStatement(sql);

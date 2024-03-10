@@ -38,20 +38,13 @@ public class DOSYA_MSSQL implements ILOGER_KAYIT{
 		StringBuilder stb = new StringBuilder();
 		stb.append(" SELECT  FORMAT (TARIH, 'dd.MM.yyyy HH:mm:ss fff') AS TARIH ,MESAJ,EVRAK,[USER_NAME] " ); 
 		stb.append(" FROM   loglama  WITH (INDEX (IX_LOGLAMA) )") ; 
-
 		stb.append(" WHERE  loglama.mesaj  LIKE N'" + aciklama + "'") ;
 		if ( ! t1.equals(""))
-		{
 			stb.append(" AND TARIH BETWEEN  '" + t1 + "' AND '" + t2 + " 23:59:59.998' ") ;
-		}
-		if ( ! evrak.equals("%") &&  ! evrak.equals("%%")) 
-		{
+		if ( ! evrak.equals("%") &&  ! evrak.equals("%%"))
 			stb.append(" AND EVRAK  LIKE '" + evrak + "'");
-		}
-		if ( ! user.equals("%") &&  ! user.equals("%%")) 
-		{
+		if ( ! user.equals("%") &&  ! user.equals("%%"))
 			stb.append(" AND USER_NAME  LIKE '" + user + "'");
-		}
 		stb.append(" ORDER BY TARIH ") ;
 		String cumle = "jdbc:sqlserver://" + dBILGI.cONN_STR + ";";
 		con = DriverManager.getConnection(cumle,dBILGI.kULLANICI,dBILGI.sIFRESI);

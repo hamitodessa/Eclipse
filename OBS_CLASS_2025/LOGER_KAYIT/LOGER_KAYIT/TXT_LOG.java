@@ -28,9 +28,8 @@ public class TXT_LOG  implements ILOGER_KAYIT {
 		try
 		{
 			File file = new File(GLOBAL.LOG_SURUCU  + dBILGI.mODULADI  + ".txt");
-			if (!file.exists()) {
+			if (!file.exists())
 				file.createNewFile();
-			}
 			Writer bWriter = new BufferedWriter(new OutputStreamWriter( new FileOutputStream(file, true), StandardCharsets.UTF_8));
 			SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss sss");
 			String formatli = formatter.format(new Date());

@@ -78,6 +78,7 @@ public class GLOBAL {
 	public static final String GOREV_DOSYA = System.getProperty("user.name") + "_OBS_GOREV.DB";
 	public static final String BACKUP_DOSYA = System.getProperty("user.name") + "_SQL_BACKUP.DB";
 	public static final String BACKUP_LOG_DOSYA = System.getProperty("user.name") + "_SQL_LOG.DB";
+	public static final String TEMA_DOSYA = System.getProperty("user.name") + "_OBS_TEMA.DB";
 	public static final String BACKUP_PID = "BACKUP_PID.txt";
 	public static final String SURUCU = "C:" + File.separator + "OBS_SISTEM" + File.separator;
 	public static final String LOG_SURUCU =  "C:" + File.separator + "OBS_SISTEM" + File.separator + "LOGLAMA" + File.separator + "";

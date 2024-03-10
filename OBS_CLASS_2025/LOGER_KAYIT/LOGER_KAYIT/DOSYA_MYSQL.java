@@ -40,17 +40,11 @@ public class DOSYA_MYSQL implements ILOGER_KAYIT{
 		stb.append(" FROM   loglama  USE INDEX (IX_LOGLAMA) ") ; 
 		stb.append(" WHERE  loglama.mesaj  LIKE N'" + aciklama + "'") ;
 		if ( ! t1.equals(""))
-		{
 			stb.append(" AND TARIH BETWEEN  '" + t1 + "' AND '" + t2 + " 23:59:59.998' ") ;
-		}
-		if ( ! evrak.equals("%") &&  ! evrak.equals("%%")) 
-		{
+		if ( ! evrak.equals("%") &&  ! evrak.equals("%%"))
 			stb.append(" AND EVRAK  LIKE '" + evrak + "'");
-		}
-		if ( ! user.equals("%") &&  ! user.equals("%%")) 
-		{
+		if ( ! user.equals("%") &&  ! user.equals("%%"))
 			stb.append(" AND USER_NAME  LIKE '" + user + "'");
-		}
 		stb.append(" ORDER BY DATE(TARIH) ") ;
 		String cumle = "jdbc:mysql://" + dBILGI.cONN_STR ;
 		con = DriverManager.getConnection(cumle,dBILGI.kULLANICI,dBILGI.sIFRESI);

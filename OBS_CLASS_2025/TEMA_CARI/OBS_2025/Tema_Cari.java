@@ -7,18 +7,18 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
+import OBS_C_2025.GLOBAL;
+
 public class Tema_Cari {
 
 	static Connection conn ;
-	static String TEMA_DOSYA = System.getProperty("user.name") + "_OBS_TEMA.DB";
-	static String SURUCU = "C:\\OBS_SISTEM\\";
 
 	public static  Connection myTemaConnection() throws SQLException
 	{  
 		Connection conn = null;  
 		try {  
 			DriverManager.setLoginTimeout(0);
-			conn = DriverManager.getConnection("jdbc:sqlite:" + SURUCU + TEMA_DOSYA );  
+			conn = DriverManager.getConnection("jdbc:sqlite:" + GLOBAL.SURUCU + GLOBAL.TEMA_DOSYA );  
 		} 
 		catch (Exception e) 
 		{
@@ -85,11 +85,9 @@ public class Tema_Cari {
 		rss = stmt.executeQuery();
 		String hesap = "" ;
 		rss.next();
-		int 	count = rss.getRow();
-		if (count  != 0) 
-		{
+		int	count = rss.getRow();
+		if (count  != 0)
 			hesap = rss.getString("ANA_HESAP");	
-		}
 		rss.close();
 		conn.close();
 		return hesap ;
@@ -132,12 +130,10 @@ public class Tema_Cari {
 		stmt = conn.prepareStatement(sql);
 		stmt.executeUpdate();
 		stmt = null;
-
 		sql = "DELETE    FROM ANA_HESAP WHERE TEMA = '" + tema + "'";
 		stmt = conn.prepareStatement(sql);
 		stmt.executeUpdate();
 		stmt = null;
-
 		sql = "DELETE    FROM HESAPLAR WHERE TEMA = '" + tema + "'";
 		stmt = conn.prepareStatement(sql);
 		stmt.executeUpdate();

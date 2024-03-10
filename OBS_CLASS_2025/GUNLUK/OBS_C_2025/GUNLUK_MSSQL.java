@@ -32,9 +32,7 @@ public class GUNLUK_MSSQL implements IGUNLUK {
 		con = null;  
 		String cumle = "";
 		if ( ! sbilgi.getPort().toString().equals("") )
-		{
 			sbilgi.setPort(":" + sbilgi.getPort())    ;
-		}
 		cumle = "jdbc:sqlserver://localhost"+ sbilgi.getPort() +";instanceName=" + sbilgi.getIns() + ";";
 		con = DriverManager.getConnection(cumle,sbilgi.getKull(),sbilgi.getSifre());
 		String VERITABANI = "OK_Gun" + sbilgi.getKod();
@@ -249,10 +247,8 @@ public class GUNLUK_MSSQL implements IGUNLUK {
 		rss.next();
 		int count=0;
 		count = rss.getRow();
-		if (count  != 0) 
-		{
+		if (count  != 0)
 			gid =  rss.getInt("GID");
-		}
 		return gid;	
 	}
 	@Override
@@ -296,7 +292,6 @@ public class GUNLUK_MSSQL implements IGUNLUK {
 	}
 	@Override
 	public int gorev_bul(Gunluk_Bilgi gbilgi) throws ClassNotFoundException, SQLException {
-		
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 		int gid = 0;
 		ResultSet	rss = null;
@@ -310,10 +305,8 @@ public class GUNLUK_MSSQL implements IGUNLUK {
 		rss.next();
 		int count=0;
 		count = rss.getRow();
-		if (count  != 0) 
-		{
+		if (count  != 0)
 			gid =  rss.getInt("GID");
-		}
 		stmt.close();
 		return gid;	
 	}

@@ -57,17 +57,11 @@ public class SQLITE_LOG implements ILOGER_KAYIT{
 			stb.append(" FROM   loglama  ") ; 
 			stb.append(" WHERE  loglama.mesaj  LIKE '" + aciklama + "'") ;
 			if ( ! t1.equals(""))
-			{
 				stb.append(" AND TARIH BETWEEN  '" + tt1 + "' AND '" + tt2 + "' ") ;
-			}
-			if ( ! evrak.equals("%") &&  ! evrak.equals("%%")) 
-			{
+			if ( ! evrak.equals("%") &&  ! evrak.equals("%%"))
 				stb.append(" AND EVRAK  LIKE '" + evrak + "'");
-			}
-			if ( ! user.equals("%") &&  ! user.equals("%%")) 
-			{
+			if ( ! user.equals("%") &&  ! user.equals("%%"))
 				stb.append(" AND USER_NAME  LIKE '" + user + "'");
-			}
 			stb.append(" ORDER BY datetime((TARIH/1000),'unixepoch','localtime') ") ;
 			String sql = stb.toString() ;
 			PreparedStatement stmt =  sQLITEconn.prepareStatement(sql);

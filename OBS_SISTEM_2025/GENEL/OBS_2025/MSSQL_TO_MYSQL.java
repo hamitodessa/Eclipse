@@ -51,6 +51,8 @@ import java.awt.event.ActionEvent;
 import javax.swing.JCheckBox;
 import javax.swing.border.TitledBorder;
 
+import org.apache.commons.compress.harmony.pack200.NewAttribute;
+
 import com.healthmarketscience.jackcess.ColumnBuilder;
 import com.healthmarketscience.jackcess.CursorBuilder;
 import com.healthmarketscience.jackcess.DataType;
@@ -711,7 +713,7 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 		stmt2 = MY_conn.prepareStatement(sql);
 		while(rss.next()){
 			stmt2.setString(1, rss.getString("HESAP"));
-			Timestamp timestamp =rss.getTimestamp("TARIH");
+			Timestamp timestamp = rss.getTimestamp("TARIH");
 			Date    date1 = null;
 			String formatli = "";
 			if (timestamp != null)
@@ -720,13 +722,17 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 				SimpleDateFormat formatter = new SimpleDateFormat("yyyy.MM.dd hh:mm:ss.ss");
 				formatli = formatter.format(date1);
 			}
+			else {
+				SimpleDateFormat formatter = new SimpleDateFormat("yyyy.MM.dd hh:mm:ss.ss");
+				formatli = formatter.format(new Date());
+			}
 			stmt2.setString(2, formatli);
-			stmt2.setString(3,  rss.getString("H"));
+			stmt2.setString(3, rss.getString("H"));
 			stmt2.setInt(4, rss.getInt("EVRAK"));
-			stmt2.setString(5,  rss.getString("CINS"));
-			stmt2.setDouble(6,  rss.getDouble("KUR"));
-			stmt2.setDouble(7,  rss.getDouble("BORC"));
-			stmt2.setDouble(8,  rss.getDouble("ALACAK"));
+			stmt2.setString(5, rss.getString("CINS"));
+			stmt2.setDouble(6, rss.getDouble("KUR"));
+			stmt2.setDouble(7, rss.getDouble("BORC"));
+			stmt2.setDouble(8, rss.getDouble("ALACAK"));
 			stmt2.setString(9, rss.getString("KOD"));
 			stmt2.setString(10, rss.getString("USER"));
 			stmt2.addBatch();
@@ -762,7 +768,6 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 		}
 		stmt2.executeBatch();
 		stmt2.close();
-
 		getContentPane().setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 	}
 	void tahsilat() throws ClassNotFoundException, SQLException
@@ -781,13 +786,13 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 				" VALUES (?,?,?,?,?,?,?,?)" ;
 		stmt2 = MY_conn.prepareStatement(sql);
 		while(rss.next()){
-			stmt2.setBytes(1,rss.getBytes("LOGO"));
-			stmt2.setString(2,  rss.getString("FIR_ISMI"));
-			stmt2.setString(3,  rss.getString("ADR_1"));
-			stmt2.setString(4,  rss.getString("ADR_2"));
-			stmt2.setString(5,  rss.getString("VD_VN"));
-			stmt2.setString(6,  rss.getString("MAIL"));
-			stmt2.setString(7,  rss.getString("DIGER"));
+			stmt2.setBytes(1, rss.getBytes("LOGO"));
+			stmt2.setString(2, rss.getString("FIR_ISMI"));
+			stmt2.setString(3, rss.getString("ADR_1"));
+			stmt2.setString(4, rss.getString("ADR_2"));
+			stmt2.setString(5, rss.getString("VD_VN"));
+			stmt2.setString(6, rss.getString("MAIL"));
+			stmt2.setString(7, rss.getString("DIGER"));
 			stmt2.setBytes(8,rss.getBytes("KASE"));
 			stmt2.executeUpdate();
 		}
@@ -796,21 +801,20 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 		sql = "SELECT * FROM TAH_DETAY ";
 		stmt = MS_conn.createStatement();
 		rss = stmt.executeQuery(sql);
-		
 		sql  = "INSERT INTO TAH_DETAY (EVRAK,TARIH,C_HES,A_HES,CINS,TUTAR,TUR,ACIKLAMA,DVZ_CINS,POS_BANKA) " +
 					" VALUES (?,?,?,?,?,?,?,?,?,?)" ;
 		stmt2 = MY_conn.prepareStatement(sql);
 		while(rss.next()){
-			stmt2.setString(1,rss.getString("EVRAK"));
-			stmt2.setString(2,  rss.getString("TARIH"));
-			stmt2.setString(3,  rss.getString("C_HES"));
-			stmt2.setString(4,  rss.getString("A_HES"));
-			stmt2.setInt(5,  rss.getInt("CINS"));
-			stmt2.setDouble(6,  rss.getDouble("TUTAR"));
-			stmt2.setInt(7,  rss.getInt("TUR"));
-			stmt2.setString(8,rss.getString("ACIKLAMA"));
-			stmt2.setString(9,rss.getString("DVZ_CINS"));
-			stmt2.setString(10,rss.getString("POS_BANKA"));
+			stmt2.setString(1, rss.getString("EVRAK"));
+			stmt2.setString(2, rss.getString("TARIH"));
+			stmt2.setString(3, rss.getString("C_HES"));
+			stmt2.setString(4, rss.getString("A_HES"));
+			stmt2.setInt(5, rss.getInt("CINS"));
+			stmt2.setDouble(6, rss.getDouble("TUTAR"));
+			stmt2.setInt(7, rss.getInt("TUR"));
+			stmt2.setString(8, rss.getString("ACIKLAMA"));
+			stmt2.setString(9, rss.getString("DVZ_CINS"));
+			stmt2.setString(10, rss.getString("POS_BANKA"));
 			stmt2.executeUpdate();
 		}
 		stmt2.close();

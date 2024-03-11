@@ -3385,6 +3385,7 @@ public class OBS_MAIN extends JFrame  {
 				else if (sonuc == "URUN KARTI")	URUN_KART.yeni();
 				else if (sonuc == "GIDECEGI YER")	GIDECEGI_YER.yeni();
 				else if (sonuc == "COKLU IMALAT")	COKLU_IMALAT.satir_ilave();
+				else if (sonuc == "TAHSILAT")	TAH_FISI.satir_ilave();
 				GuiUtil.setWaitCursor(toolBar,false);
 			}
 		});
@@ -3403,6 +3404,7 @@ public class OBS_MAIN extends JFrame  {
 				else if (sonuc == "MAIL")	MAIL.satir_sil();
 				else if (sonuc == "SMS")	SMS.satir_sil();
 				else if (sonuc == "COKLU IMALAT")	COKLU_IMALAT.satir_sil();
+				else if (sonuc == "TAHSILAT")	TAH_FISI.satir_sil();
 				GuiUtil.setWaitCursor(toolBar,false);
 			}
 		});

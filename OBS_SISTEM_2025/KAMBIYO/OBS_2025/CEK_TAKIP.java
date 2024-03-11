@@ -483,13 +483,11 @@ public class CEK_TAKIP extends JInternalFrame {
 			dBilgi.setaCINS("");
 			dBilgi.setaKUR(1);
 			dBilgi.setaLACAK(tutar);
-
 			str_4 = lblNewLabel_10.getText() + " Nolu Çek " + str_1;
 			dBilgi.setiZAHAT(str_4);
 			dBilgi.setkOD("");
 			dBilgi.setuSER( GLOBAL.KULL_ADI);
 			lBILGI.setmESAJ(mesaj);
-
 			c_Access.cari_dekont_kaydet(dBilgi,	lBILGI ,BAGLAN_LOG.cariLogDizin	);
 			GuiUtil.setWaitCursor(panel,false);
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.INFO, "Cari Hesaba Basari ile Kaydedilmistir....");

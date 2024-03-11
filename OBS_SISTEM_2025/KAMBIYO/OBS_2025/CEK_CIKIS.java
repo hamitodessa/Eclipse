@@ -558,10 +558,8 @@ public class CEK_CIKIS extends JInternalFrame {
 		textField_6.setColumns(10);
 
 		GRID_TEMIZLE.grid_temizle(table);
-		//***********
 		String deger;
 		Integer sat_sayi;
-
 		try {
 			textField_4.setText(GLOBAL.setting_oku("PRG_PARA").toString());
 			deger = GLOBAL.setting_oku("KAM_CEK_CIK").toString();
@@ -572,7 +570,6 @@ public class CEK_CIKIS extends JInternalFrame {
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
-		//***********
 	}
 
 	private void kontrol()
@@ -781,7 +778,6 @@ public class CEK_CIKIS extends JInternalFrame {
 				long estimatedTime = endTime - startTime; 
 				double seconds = (double)estimatedTime/1000; 
 				OBS_MAIN.lblNewLabel_9.setText("Son Raporlama Suresi : " + FORMATLAMA.doub_4(seconds) +  " saniye");
-				
 				OBS_MAIN.mesaj_goster(5000,Notifications.Type.INFO, "Cikislar Cari Hesaba Basari ile Kaydedilmistir....");
 			}
 			catch (Exception ex)

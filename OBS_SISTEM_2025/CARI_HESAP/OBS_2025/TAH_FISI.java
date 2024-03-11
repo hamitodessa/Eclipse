@@ -11,6 +11,7 @@ import OBS_C_2025.Obs_TextFIeld;
 
 import OBS_C_2025.SAGA;
 import OBS_C_2025.SOLA;
+import OBS_C_2025.ScrollPaneWin11;
 import OBS_C_2025.TABLO_RENDERER;
 import OBS_C_2025.TARIH_CEVIR;
 import OBS_C_2025.dEKONT_BILGI;
@@ -103,7 +104,6 @@ import javax.swing.border.TitledBorder;
 import java.awt.event.ItemListener;
 import java.awt.event.ItemEvent;
 import javax.swing.KeyStroke;
-import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 
@@ -127,6 +127,8 @@ public class TAH_FISI extends JInternalFrame {
 	
 	private static JLabel lblCAdi ;
 	public static JLabel lblCekSayi;
+	private static JLabel lblTableTutar ;
+	private static JLabel lblSatirSayi; 
 	private JLabel lblPos ;
 	private static JComboBox<String> comboBanka;
 	public static JComboBox<String> cmbCins ;
@@ -143,7 +145,7 @@ public class TAH_FISI extends JInternalFrame {
 	
 	private JPanel panel_4;
 	private JPanel panel_5;
-	private JScrollPane scrollPane;
+	private ScrollPaneWin11 scrollPane;
 	private static JTable tableCek;
 	public static JCheckBox chckbxFisno ;
 
@@ -812,10 +814,33 @@ public class TAH_FISI extends JInternalFrame {
 		
 		panel_5 = new JPanel();
 		tabbedPane.addTab("Cek Dokumu", null, panel_5, null);
+		
 		panel_5.setLayout(new BorderLayout(0, 0));
 		
-		scrollPane = new JScrollPane();
+		scrollPane = new ScrollPaneWin11();
+		
+		
 		panel_5.add(scrollPane, BorderLayout.CENTER);
+		
+		JPanel pnlalt = new JPanel();
+		pnlalt.setPreferredSize(new Dimension(0,25));
+		panel_5.add(pnlalt, BorderLayout.SOUTH);
+		pnlalt.setLayout(null);
+		
+		JLabel lblNewLabel_6 = new JLabel("Satir Sayisi");
+		lblNewLabel_6.setBounds(10, 5, 72, 14);
+		pnlalt.add(lblNewLabel_6);
+		
+		lblSatirSayi = new JLabel("0");
+		lblSatirSayi.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblSatirSayi.setBounds(92, 5, 48, 14);
+		pnlalt.add(lblSatirSayi);
+		
+		lblTableTutar = new JLabel("0.00");
+		lblTableTutar.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblTableTutar.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblTableTutar.setBounds(620, 5, 150, 14);
+		pnlalt.add(lblTableTutar);
 		DefaultTableModel model = new DefaultTableModel() ; 
 		
 		tableCek = new JTable(model);
@@ -1262,6 +1287,8 @@ public class TAH_FISI extends JInternalFrame {
 		lblCAdi.setText("");
 		lblAAdi.setText("");
 		combCins.setSelectedIndex(0);
+		lblSatirSayi.setText("0");
+		lblTableTutar.setText("0.00");
 		pos_doldur();
 		dtc.setDate(new Date());
 		GRID_TEMIZLE.grid_temizle(tableCek);
@@ -1276,6 +1303,8 @@ public class TAH_FISI extends JInternalFrame {
 		lblCAdi.setText("");
 		lblAAdi.setText("");
 		combCins.setSelectedIndex(0);
+		lblSatirSayi.setText("0");
+		lblTableTutar.setText("0.00");
 		pos_doldur();
 		dtc.setDate(new Date());
 		GRID_TEMIZLE.grid_temizle(tableCek);
@@ -1294,6 +1323,13 @@ public class TAH_FISI extends JInternalFrame {
 		else if ( satir  >= 0 )
 			mdl.insertRow(satir, new Object[]{"", "","","","",new Date(),0.00});
 		tableCek.isRowSelected(satir);
+		tableCek.repaint();
+	}
+	public static void satir_sil()
+	{
+		if (tableCek.getSelectedRow() < 0 ) return ;
+		DefaultTableModel mdll = (DefaultTableModel) tableCek.getModel();
+		mdll.removeRow(tableCek.getSelectedRow());
 		tableCek.repaint();
 	}
 	private static String dateFormater(String dateFromJSON, String expectedFormat, String oldFormat) {
@@ -1330,6 +1366,8 @@ public class TAH_FISI extends JInternalFrame {
 		}
 		lblCekSayi.setText(FORMATLAMA.doub_0(evr_sayi));
 		formattedTutar.setText(FORMATLAMA.doub_2(tutar));
+		lblSatirSayi.setText(FORMATLAMA.doub_0(evr_sayi));
+		lblTableTutar.setText(FORMATLAMA.doub_2(tutar));
 	}
 	private static void cek_doldur()
 	{

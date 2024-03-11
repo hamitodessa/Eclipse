@@ -36,7 +36,6 @@ import OBS_C_2025.SAGA;
 import OBS_C_2025.SOLA;
 import OBS_C_2025.ScrollPaneWin11;
 import OBS_C_2025.TABLO_RENDERER;
-import OBS_C_2025.TABLO_TEXTBOX;
 import OBS_C_2025.TARIH_CEVIR;
 import OBS_C_2025.dEKONT_BILGI;
 import OBS_C_2025.lOG_BILGI;
@@ -69,6 +68,7 @@ import java.util.Calendar;
 import java.util.Date;
 import javax.swing.SwingConstants;
 import javax.swing.ActionMap;
+import javax.swing.DefaultCellEditor;
 import javax.swing.ImageIcon;
 import javax.swing.InputMap;
 
@@ -135,7 +135,6 @@ public class CEK_GIRIS extends JInternalFrame {
 			public Component prepareRenderer(TableCellRenderer renderer, int row, int col) {
 				Component c = super.prepareRenderer(renderer, row, col);
 				String status = (String)table.getModel().getValueAt(row,0);
-				 
 					if (col == 1)
 					{
 						if(status=="")
@@ -146,20 +145,13 @@ public class CEK_GIRIS extends JInternalFrame {
 					} 
 				return c;
 			}
-
 		};
 
-		if(! oac.gridcolor.toString().equals("java.awt.Color[r=255,g=255,b=255]")) 
-		{
+		if(! oac.gridcolor.toString().equals("java.awt.Color[r=255,g=255,b=255]"))
 			table.setGridColor(oac.gridcolor);
-		}
 
-		InputMap im = table.getInputMap(JTable.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
-		im.put(KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, 0), "Action.NextCell");
-		im.put(KeyStroke.getKeyStroke(KeyEvent.VK_TAB, 0), "Action.NextCell");
-		ActionMap am = table.getActionMap();
-		am.put("Action.NextCell", new Next_Cell_Kereste(table,"cek_gir"));
-		//table.putClientProperty("terminateEditOnFocusLost", Boolean.TRUE);
+		
+		
 		table.addFocusListener(new FocusListener()
 	      {
 	         @Override
@@ -171,15 +163,13 @@ public class CEK_GIRIS extends JInternalFrame {
 	         @Override
 	         public void focusLost(FocusEvent e)
 	         {
-	        	 if(table.getSelectedColumn() !=1)
+	        	 if(table.getSelectedColumn() == - 1)
 	        	 {
 	        	 if (table.isEditing())
 				     table.getCellEditor().stopCellEditing();
 	        	 }
 	         }
 	      });
-
-
 		model.addColumn("Cek No", new String []{"0"});
 		model.addColumn("Vade", new Date []{ new Date() });
 		model.addColumn("Banka", new String []{""});
@@ -213,33 +203,40 @@ public class CEK_GIRIS extends JInternalFrame {
 
 		col = table.getColumnModel().getColumn(2);
 		col.setMinWidth(250);
-		col.setCellEditor(new TABLO_TEXTBOX(new JTextField() ,25,new Font("Tahoma", Font.PLAIN, 12),JTextField.LEFT));
+		Obs_TextFIeld bnk = new Obs_TextFIeld(25);
+		col.setCellEditor(new DefaultCellEditor(bnk));
+		//col.setCellEditor(new TABLO_TEXTBOX(new JTextField() ,25,new Font("Tahoma", Font.PLAIN, 12),JTextField.LEFT));
 		col.setHeaderRenderer(new SOLA());
 
 		col = table.getColumnModel().getColumn(3);
 		col.setMinWidth(150);
-		col.setCellEditor(new TABLO_TEXTBOX(new JTextField() ,25,new Font("Tahoma", Font.PLAIN, 12),JTextField.LEFT));
+		Obs_TextFIeld sube = new Obs_TextFIeld(25);
+		col.setCellEditor(new DefaultCellEditor(sube));
 		col.setHeaderRenderer(new SOLA());
 
 		col = table.getColumnModel().getColumn(4);
 		col.setMinWidth(150);
-		col.setCellEditor(new TABLO_TEXTBOX(new JTextField() ,15,new Font("Tahoma", Font.PLAIN, 12),JTextField.LEFT));
+		Obs_TextFIeld seri = new Obs_TextFIeld(15);
+		col.setCellEditor(new DefaultCellEditor(seri));
 		col.setHeaderRenderer(new SOLA());
 
 		col = table.getColumnModel().getColumn(5);
 		col.setMinWidth(150);
-		col.setCellEditor(new TABLO_TEXTBOX(new JTextField() ,30,new Font("Tahoma", Font.PLAIN, 12),JTextField.LEFT));
+		Obs_TextFIeld ilkb = new Obs_TextFIeld(30);
+		col.setCellEditor(new DefaultCellEditor(ilkb));
 		col.setHeaderRenderer(new SOLA());
 
 		col = table.getColumnModel().getColumn(6);
 		col.setMinWidth(150);
-		col.setCellEditor(new TABLO_TEXTBOX(new JTextField() ,15,new Font("Tahoma", Font.PLAIN, 12),JTextField.LEFT));
+		Obs_TextFIeld hsp = new Obs_TextFIeld(15);
+		col.setCellEditor(new DefaultCellEditor(hsp));
 		col.setHeaderRenderer(new SOLA());
 
 		col = table.getColumnModel().getColumn(7);
 		col.setMinWidth(50);
 		col.setMaxWidth(50);
-		col.setCellEditor(new TABLO_TEXTBOX(new JTextField() ,3,new Font("Tahoma", Font.PLAIN, 12),JTextField.LEFT));
+		Obs_TextFIeld cins = new Obs_TextFIeld(3);
+		col.setCellEditor(new DefaultCellEditor(cins));
 		col.setHeaderRenderer(new SOLA());
 
 		col = table.getColumnModel().getColumn(8);
@@ -266,6 +263,14 @@ public class CEK_GIRIS extends JInternalFrame {
 		table.setRowSelectionAllowed(false);
 		table.setShowHorizontalLines(true);
 		table.setShowVerticalLines(true);
+		InputMap im = table.getInputMap(JTable.WHEN_FOCUSED);
+		im.put(KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, 0), "Action.NextCell");
+		im.put(KeyStroke.getKeyStroke(KeyEvent.VK_TAB, 0), "Action.NextCell");
+		ActionMap am = table.getActionMap();
+		am.put("Action.NextCell", new Next_Cell_Kereste(table,"cek_gir"));
+		//table.putClientProperty("terminateEditOnFocusLost", Boolean.TRUE);
+
+		
 		th.repaint();
 		scrollPane.setViewportView(table);
 

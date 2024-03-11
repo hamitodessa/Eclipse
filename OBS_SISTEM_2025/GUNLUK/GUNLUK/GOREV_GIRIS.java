@@ -188,17 +188,11 @@ public class GOREV_GIRIS extends JInternalFrame {
 						Calendar cal = Calendar.getInstance();
 						cal.setTime(date);
 						if (currentCaretPosition >=0 && currentCaretPosition <3)
-						{
 							cal.add(Calendar.DAY_OF_MONTH, -1); 
-						}
 						else if (currentCaretPosition >=3 && currentCaretPosition <=5)
-						{
 							cal.add(Calendar.MONTH,-1);
-						}
 						else if (currentCaretPosition >=6 )
-						{
 							cal.add(Calendar.YEAR, -1); 
-						}
 						dtcBaslama.setDate(new Date(cal.getTimeInMillis()));
 						textComponent.setCaretPosition(currentCaretPosition);
 					} catch (ParseException e1) {
@@ -207,9 +201,7 @@ public class GOREV_GIRIS extends JInternalFrame {
 				}
 				else if(e.getKeyCode()==KeyEvent.VK_UP) {
 					if (TARIH_CEVIR.tarih_dt_ddMMyyyy(dtcBaslama) == null)
-					{
 						return;
-					}
 					final JTextComponent textComponent1=((JTextComponent)e.getSource());
 					int currentCaretPosition = textComponent1.getCaretPosition();
 
@@ -220,17 +212,11 @@ public class GOREV_GIRIS extends JInternalFrame {
 						Calendar cal = Calendar.getInstance();
 						cal.setTime(date);
 						if (currentCaretPosition >=0 && currentCaretPosition <3)
-						{
 							cal.add(Calendar.DAY_OF_MONTH, 1); 
-						}
 						else if (currentCaretPosition >=3 && currentCaretPosition <=5)
-						{
 							cal.add(Calendar.MONTH,1);
-						}
 						else if (currentCaretPosition >=6 )
-						{
 							cal.add(Calendar.YEAR, 1); 
-						}
 						dtcBaslama.setDate(new Date(cal.getTimeInMillis()));
 						textComponent1.setCaretPosition(currentCaretPosition);
 					} catch (ParseException e1) {
@@ -300,9 +286,7 @@ public class GOREV_GIRIS extends JInternalFrame {
 			public void keyPressed(KeyEvent e) {
 				if(e.getKeyCode()==KeyEvent.VK_DOWN) {
 					if (TARIH_CEVIR.tarih_dt_ddMMyyyy(dtcBitis) == null)
-					{
 						return;
-					}
 					final JTextComponent textComponent=((JTextComponent)e.getSource());
 					int currentCaretPosition = textComponent.getCaretPosition();
 					SimpleDateFormat datefmt = new SimpleDateFormat("dd.MM.yyyy"); // Or format you're using
@@ -312,17 +296,11 @@ public class GOREV_GIRIS extends JInternalFrame {
 						Calendar cal = Calendar.getInstance();
 						cal.setTime(date);
 						if (currentCaretPosition >=0 && currentCaretPosition <3)
-						{
 							cal.add(Calendar.DAY_OF_MONTH, -1); 
-						}
 						else if (currentCaretPosition >=3 && currentCaretPosition <=5)
-						{
 							cal.add(Calendar.MONTH,-1);
-						}
 						else if (currentCaretPosition >=6 )
-						{
 							cal.add(Calendar.YEAR, -1); 
-						}
 						dtcBitis.setDate(new Date(cal.getTimeInMillis()));
 						textComponent.setCaretPosition(currentCaretPosition);
 					} catch (ParseException e1) {
@@ -331,9 +309,7 @@ public class GOREV_GIRIS extends JInternalFrame {
 				}
 				else if(e.getKeyCode()==KeyEvent.VK_UP) {
 					if (TARIH_CEVIR.tarih_dt_ddMMyyyy(dtcBitis) == null)
-					{
 						return;
-					}
 					final JTextComponent textComponent1=((JTextComponent)e.getSource());
 					int currentCaretPosition = textComponent1.getCaretPosition();
 
@@ -344,17 +320,11 @@ public class GOREV_GIRIS extends JInternalFrame {
 						Calendar cal = Calendar.getInstance();
 						cal.setTime(date);
 						if (currentCaretPosition >=0 && currentCaretPosition <3)
-						{
 							cal.add(Calendar.DAY_OF_MONTH, 1); 
-						}
 						else if (currentCaretPosition >=3 && currentCaretPosition <=5)
-						{
 							cal.add(Calendar.MONTH,1);
-						}
 						else if (currentCaretPosition >=6 )
-						{
 							cal.add(Calendar.YEAR, 1); 
-						}
 						dtcBitis.setDate(new Date(cal.getTimeInMillis()));
 						textComponent1.setCaretPosition(currentCaretPosition);
 					} catch (ParseException e1) {
@@ -402,13 +372,7 @@ public class GOREV_GIRIS extends JInternalFrame {
 		JLabel lblNewLabel_5 = new JLabel("Deger");
 		lblNewLabel_5.setBounds(355, 205, 50, 14);
 		panel.add(lblNewLabel_5);
-
-
-
-
 		sifirla();
-
-
 	}
 	public static  void kaydet()
 	{
@@ -441,13 +405,9 @@ public class GOREV_GIRIS extends JInternalFrame {
 				mesaj = "Isim="+ txtIsim.getText() + " Gorev="+ txtGorev.getText() + 
 						" Mesaj="  ;
 				if( mesaj.length() +  txtMesaj.getText().length() <= 95)
-				{
 					mesaj = mesaj + " Msj:" + txtMesaj.getText().toString() + " Silme " ;
-				}
 				else
-				{
 					mesaj = mesaj + " Msj:" + txtMesaj.getText().toString().substring(0, 89  -(mesaj.length()) ) + "Silme" ;
-				}
 				if (! txtGID.getText().toString().equals(""))
 				{
 					int g =  JOptionPane.showOptionDialog( null,  "Gorev Onceden Kayitli Guncellenecek  ..?", "Bilgi Guncelleme",   JOptionPane.YES_NO_OPTION,
@@ -483,13 +443,9 @@ public class GOREV_GIRIS extends JInternalFrame {
 				mesaj = "Isim="+ txtIsim.getText() + " Gorev="+ txtGorev.getText() + 
 						" Mesaj="  ;
 				if( mesaj.length() +  txtMesaj.getText().length() <= 95)
-				{
 					mesaj = mesaj + " Msj:" + txtMesaj.getText().toString()  ;
-				}
 				else
-				{
 					mesaj = mesaj + " Msj:" + txtMesaj.getText().toString().substring(0, 89  -(mesaj.length()) ) + " Kayit" ;
-				}
 
 				lOG_BILGI lBILGI = new lOG_BILGI();
 				lBILGI.setmESAJ(mesaj);
@@ -517,9 +473,7 @@ public class GOREV_GIRIS extends JInternalFrame {
 	public static void sil() 
 	{
 		if ( txtGID.getText().toString().equals(""))
-		{
 			return ;
-		}
 		try
 		{
 			int g =  JOptionPane.showOptionDialog( null,  "Islem Dosyadan Silinecek ..?", "Gunluk Dosyasindan Gorev Silme",   JOptionPane.YES_NO_OPTION,
@@ -529,7 +483,6 @@ public class GOREV_GIRIS extends JInternalFrame {
 			lOG_BILGI lBILGI = new lOG_BILGI();
 			lBILGI.setmESAJ("Isim="+ txtIsim.getText() + " Gorev="+ txtGorev.getText() + " Mesaj="+ txtMesaj.getText() + " Silme ");
 			lBILGI.seteVRAK(txtGID.getText());
-
 			g_Access.gorev_sil(Integer.parseInt(txtGID.getText())  ,lBILGI, BAGLAN_LOG.gunLogDizin  );
 			sifirla();
 		}
@@ -543,9 +496,8 @@ public class GOREV_GIRIS extends JInternalFrame {
 		Gunluk_Bilgi gbilgi = new Gunluk_Bilgi();
 		gbilgi.gid = Integer.parseInt(txtGID.getText());
 		ResultSet rSet = g_Access.gID_OKU(gbilgi);
-		if (!rSet.isBeforeFirst() ) {  
+		if (!rSet.isBeforeFirst() )
 			sifirla();
-		} 
 		else
 		{
 			rSet.next();

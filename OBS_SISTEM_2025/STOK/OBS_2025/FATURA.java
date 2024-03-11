@@ -17,7 +17,7 @@ import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 import javax.swing.JTable;
 import javax.swing.JButton;
-import javax.swing.JTextField;
+
 import com.toedter.calendar.JDateChooser;
 
 import OBS_C_2025.ADRES_ACCESS;
@@ -38,7 +38,6 @@ import OBS_C_2025.SOLA;
 import OBS_C_2025.STOK_ACCESS;
 import OBS_C_2025.ScrollPaneWin11;
 import OBS_C_2025.TABLO_RENDERER;
-import OBS_C_2025.TABLO_TEXTBOX;
 import OBS_C_2025.TARIH_CEVIR;
 import OBS_C_2025.dEKONT_BILGI;
 import OBS_C_2025.lOG_BILGI;
@@ -1240,22 +1239,30 @@ public class FATURA extends JInternalFrame {
 
 		col = table_1.getColumnModel().getColumn(0);
 		col.setMinWidth(100);
-		col.setCellEditor(new TABLO_TEXTBOX(new JTextField() ,10,new Font("Tahoma", Font.PLAIN, 12),JTextField.LEFT));
+		Obs_TextFIeld irs = new Obs_TextFIeld(10);
+		col.setCellEditor(new DefaultCellEditor(irs));
+		//col.setCellEditor(new TABLO_TEXTBOX(new JTextField() ,10,new Font("Tahoma", Font.PLAIN, 12),JTextField.LEFT));
 		col.setHeaderRenderer(new SOLA());
 
 		col = table_1.getColumnModel().getColumn(1);
 		col.setMinWidth(100);
-		col.setCellEditor(new TABLO_TEXTBOX(new JTextField() ,12,new Font("Tahoma", Font.PLAIN, 12),JTextField.LEFT));
+		Obs_TextFIeld hsp = new Obs_TextFIeld(12);
+		col.setCellEditor(new DefaultCellEditor(hsp));
+		//col.setCellEditor(new TABLO_TEXTBOX(new JTextField() ,12,new Font("Tahoma", Font.PLAIN, 12),JTextField.LEFT));
 		col.setHeaderRenderer(new SOLA());
 
 		col = table_1.getColumnModel().getColumn(2);
-		col.setCellEditor(new TABLO_TEXTBOX(new JTextField() ,50,new Font("Tahoma", Font.PLAIN, 12),JTextField.LEFT));
+		Obs_TextFIeld unv = new Obs_TextFIeld(50);
+		col.setCellEditor(new DefaultCellEditor(unv));
+		//col.setCellEditor(new TABLO_TEXTBOX(new JTextField() ,50,new Font("Tahoma", Font.PLAIN, 12),JTextField.LEFT));
 		col.setMinWidth(300);
 		col.setHeaderRenderer(new SOLA());
 
 		col = table_1.getColumnModel().getColumn(3);
 		col.setMinWidth(100);
-		col.setCellEditor(new TABLO_TEXTBOX(new JTextField() ,10,new Font("Tahoma", Font.PLAIN, 12),JTextField.LEFT));
+		Obs_TextFIeld clm3 = new Obs_TextFIeld(10);
+		col.setCellEditor(new DefaultCellEditor(clm3));
+		//col.setCellEditor(new TABLO_TEXTBOX(new JTextField() ,10,new Font("Tahoma", Font.PLAIN, 12),JTextField.LEFT));
 		col.setHeaderRenderer(new SOLA());
 
 		table_1.setAutoResizeMode( JTable.AUTO_RESIZE_OFF );

@@ -30,5 +30,16 @@ public class Obs_TextFIeld  extends JTextField{
 		JTextFieldRegularPopupMenu.addTo(this);
 		setDocument(new JTextFieldLimit(limit));
 		UIManager.put( "TextComponent.arc", 5 );
+		
+//		addFocusListener(new FocusListener() {
+//			@Override
+//			public void focusGained(FocusEvent e) {
+//			select(0,getText().length());
+//			}
+//			@Override
+//			public void focusLost(FocusEvent e) {
+//			select(0, 0);
+//			}
+//	    });
 	}
 }

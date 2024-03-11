@@ -41,7 +41,6 @@ import OBS_C_2025.SOLA;
 import OBS_C_2025.STOK_ACCESS;
 import OBS_C_2025.ScrollPaneWin11;
 import OBS_C_2025.TABLO_RENDERER;
-import OBS_C_2025.TABLO_TEXTBOX;
 import OBS_C_2025.TARIH_CEVIR;
 import OBS_C_2025.lOG_BILGI;
 import raven.toast.Notifications;
@@ -787,7 +786,9 @@ public class IMALAT extends JInternalFrame {
 		col.setHeaderRenderer(new SOLA());
 
 		col = table.getColumnModel().getColumn(3);  //Izahat
-		col.setCellEditor(new TABLO_TEXTBOX(new Obs_TextFIeld() ,40,table.getFont(),Obs_TextFIeld.LEFT));
+		Obs_TextFIeld izh = new Obs_TextFIeld(40);
+		col.setCellEditor(new DefaultCellEditor(izh));
+		//col.setCellEditor(new TABLO_TEXTBOX(new Obs_TextFIeld() ,40,table.getFont(),Obs_TextFIeld.LEFT));
 		col.setMinWidth(200);
 		col.setHeaderRenderer(new SOLA());
 

@@ -5,6 +5,8 @@ import java.awt.Component;
 import java.awt.Font;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.DefaultCellEditor;
@@ -12,6 +14,9 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
+
+import com.healthmarketscience.jackcess.Column;
+
 import OBS_C_2025.JTextFieldLimit;
 
 @SuppressWarnings({"serial","unused"})
@@ -23,6 +28,7 @@ public class KAM_CEKNO extends DefaultCellEditor {
 	private String turu= "" ;
 	boolean varmi = false;
 	public int satir ;
+	public int sutun ;
 
 	public KAM_CEKNO(JTextField textField,String tur) {
 		super(textField);
@@ -55,23 +61,33 @@ public class KAM_CEKNO extends DefaultCellEditor {
 		//this.textField.getDocument().addDocumentListener(new DocumentListener() 
 
 		this.textField.setFont(new Font("Tahoma", Font.BOLD, 12));
-		this.textField.setForeground( Color.BLUE);
+		//this.textField.setForeground( Color.BLUE);
+		this.textField.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if (KeyEvent.getKeyText(e.getKeyCode()) == "Enter" )
+				{
+					try {
+						if (turu.equals("CG")) { 
+							varmi =  CEK_GIRIS.cek_kontrol(textField.getText(),turu);
+							if (varmi) textField.setText("");
+						}
+						else if (turu.equals("CC")) { 
+							//varmi =  CEK_CIKIS.cek_kontrol(textField.getText(),turu,satir);
+							//if (varmi) textField.setText(""); 
+						}
+					} catch (Exception ex) {
+
+					}
+				}
+			}
+		});
+
 	}
 
 	@Override
 	public boolean stopCellEditing() {
-		try {
-			if (turu.equals("CG")) { 
-				varmi =  CEK_GIRIS.cek_kontrol(textField.getText(),turu);
-				if (varmi) textField.setText(""); 
-			}
-			else if (turu.equals("CC")) { 
-				//varmi =  CEK_CIKIS.cek_kontrol(textField.getText(),turu,satir);
-				if (varmi) textField.setText(""); 
-			}
-		} catch (NumberFormatException e) {
-			return false;
-		}
+		
 		return super.stopCellEditing();
 	}
 	@Override
@@ -79,6 +95,7 @@ public class KAM_CEKNO extends DefaultCellEditor {
 			Object value, boolean isSelected, int row, int column) {
 		textField.setBorder(black);
 		satir = row ;
+		sutun = column;
 		return super.getTableCellEditorComponent(
 				table, value, isSelected, row, column);
 	}

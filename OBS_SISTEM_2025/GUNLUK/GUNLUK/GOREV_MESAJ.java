@@ -48,12 +48,9 @@ public class GOREV_MESAJ extends JInternalFrame {
 
 		DefaultTableModel model = new DefaultTableModel() ; 
 		table = new JTable(new DefaultTableModel(
-			new Object[][] {
-			},
-			new String[] {
-				"Tarih", "Saat", "Isim", "Gorev", "Mesaj"
-			}
-		)){
+			new Object[][] {},
+			new String[] {"Tarih", "Saat", "Isim", "Gorev", "Mesaj"}))
+		{
 			public boolean isCellEditable(int row, int column) {     return false;          }
 			
 		};
@@ -89,11 +86,8 @@ public class GOREV_MESAJ extends JInternalFrame {
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		table.setShowHorizontalLines(true);
 		table.setShowVerticalLines(true);
-		if(! oac.gridcolor.toString().equals("java.awt.Color[r=255,g=255,b=255]")) 
-		{
+		if(! oac.gridcolor.toString().equals("java.awt.Color[r=255,g=255,b=255]"))
 			table.setGridColor(oac.gridcolor);
-		}
-		
 		
 		jScrollPane1.setViewportView(table);
 		table.addAncestorListener(new AncestorListener() {
@@ -113,14 +107,13 @@ public class GOREV_MESAJ extends JInternalFrame {
 				});
 			}
 		});
-
-		doldur( gBILGI);
+		doldur(gBILGI);
 	}
 	private void doldur(java.util.List<GOREV_BILGI> gBILGI)
 	{
 		DefaultTableModel mdl = (DefaultTableModel) table.getModel();
-		for (int i = 0; i < gBILGI.size(); i++) {
-			
+		for (int i = 0; i < gBILGI.size(); i++) 
+		{
 			mdl.addRow(new Object[]{
 					gBILGI.get(i).gettARIH(),
 					gBILGI.get(i).getsAAT(),
@@ -128,7 +121,7 @@ public class GOREV_MESAJ extends JInternalFrame {
 					gBILGI.get(i).getgOREV(),gBILGI.get(i).getmESAS()});
 
 		}
-		if(table.getRowCount() >0) 		table.setRowSelectionInterval(0, 0);
-
+		if(table.getRowCount() >0)
+			table.setRowSelectionInterval(0, 0);
 	}
 }

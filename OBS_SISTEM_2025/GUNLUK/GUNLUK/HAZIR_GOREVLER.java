@@ -118,7 +118,6 @@ public class HAZIR_GOREVLER extends JInternalFrame {
 				switch (column) {
 				case 0:
 					return true;
-
 				default:
 					return false;
 				}
@@ -127,7 +126,6 @@ public class HAZIR_GOREVLER extends JInternalFrame {
 		table.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
-
 				if( e.getKeyCode() ==127)
 				{
 					try {
@@ -153,19 +151,17 @@ public class HAZIR_GOREVLER extends JInternalFrame {
 			public void mouseReleased(MouseEvent e) 
 			{
 				int r = table.rowAtPoint(e.getPoint());
-				if (r >= 0 && r < table.getRowCount()) {
+				if (r >= 0 && r < table.getRowCount())
 					table.setRowSelectionInterval(r, r);
-				} else {
+				else
 					table.clearSelection();
-				}
 				int rowindex = table.getSelectedRow();
 				if (rowindex < 0)
 					return;
 				if (table.getSelectedColumn() < 1)
 					popup.show(e.getComponent(), 50, e.getY());
-				if (e.isPopupTrigger() && e.getComponent() instanceof JTable ) {
+				if (e.isPopupTrigger() && e.getComponent() instanceof JTable )
 					popup.show(e.getComponent(), e.getX(), e.getY());
-				}
 			}
 		});
 		table.setShowHorizontalLines(true);
@@ -198,13 +194,9 @@ public class HAZIR_GOREVLER extends JInternalFrame {
 			ResultSet	rs = null;
 			Gunluk_Bilgi gbilgi = new Gunluk_Bilgi();
 			if (FILTRE.cmbGrv_Isim.getSelectedItem().toString().equals(""))
-			{
 				gbilgi.isim = " Like N'%' ";
-			}
 			else
-			{
 				gbilgi.isim = " = N'" + FILTRE.cmbGrv_Isim.getSelectedItem().toString() + "'";
-			}
 			gbilgi.saat1 = FILTRE.comboBox_75.getSelectedItem().toString();
 			gbilgi.saat2 = FILTRE.comboBox_76.getSelectedItem().toString();
 			gbilgi.tarih1 = TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_33);
@@ -298,10 +290,8 @@ public class HAZIR_GOREVLER extends JInternalFrame {
 	private void grv_degis_sil() throws PropertyVetoException, ClassNotFoundException, SQLException
 	{
 		boolean varmi = OBS_MAIN.pencere_bak("GOREV GIRIS");
-		if (varmi  ) 
-		{
+		if (varmi)
 			OBS_MAIN.pencere_aktiv_yap("GOREV GIRIS");
-		}
 		else
 		{
 			JInternalFrame internalFrame;
@@ -325,17 +315,12 @@ public class HAZIR_GOREVLER extends JInternalFrame {
 			mesaj = "Isim="+ table.getModel().getValueAt(table.getSelectedRow(), 4).toString() + " Gorev="+ table.getModel().getValueAt(table.getSelectedRow(), 5).toString() + 
 					" Mesaj="  ;
 			if( mesaj.length() +  (table.getModel().getValueAt(table.getSelectedRow(), 7).toString() + " Silme ").length() <= 95)
-			{
 				mesaj = mesaj + " Msj:" + table.getModel().getValueAt(table.getSelectedRow(), 7).toString() + " Silme " ;
-			}
 			else
-			{
 				mesaj = mesaj + " Msj:" + table.getModel().getValueAt(table.getSelectedRow(), 7).toString().substring(0, 89  -(mesaj.length()) ) + "Silme" ;
-			}
 			lOG_BILGI lBILGI = new lOG_BILGI();
 			lBILGI.setmESAJ(mesaj);
 			lBILGI.seteVRAK("");
-
 			g_Access.gorev_tek_sil(Integer.parseInt(table.getModel().getValueAt(table.getSelectedRow(), 0).toString()),
 					lBILGI, BAGLAN_LOG.gunLogDizin );
 			hisset();

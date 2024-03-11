@@ -99,13 +99,10 @@ public class GRAFIK extends JInternalFrame {
 			e.printStackTrace();
 		}
 		if (! deger.equals("-1"))
-		{
-			 renderer.setItemLabelsVisible(true);
-		}
+			renderer.setItemLabelsVisible(true);
 	    renderer.setItemLabelPaint(new Color(0, 0, 128));
 	    renderer.setSeriesVisible(true);
 	    chart.setBackgroundPaint(new Color(189, 209, 219));//
-	    
        
 		ChartPanel panel = new ChartPanel(chart);  
 		setContentPane(panel);  

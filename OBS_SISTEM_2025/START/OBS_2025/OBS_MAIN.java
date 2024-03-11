@@ -2608,7 +2608,8 @@ public class OBS_MAIN extends JFrame  {
 		toolBar_11.add(btnHakkinda);
 
 		toolBar = new JToolBar();
-		toolBar.setBorder(new LineBorder(null));
+		
+		//toolBar.setBorder(new LineBorder(null));
 		toolBar.setFloatable(false);
 		splitPane.setRightComponent(toolBar);
 
@@ -3507,7 +3508,7 @@ public class OBS_MAIN extends JFrame  {
 		//******************************************************** TOOLBAR !*******************************************
 
 		toolBar_1 = new JToolBar();
-		toolBar_1.setBorder(new LineBorder(null));
+		//toolBar_1.setBorder(new LineBorder(null));
 		toolBar_1.setFloatable(false);
 		progressBar = new JProgressBar();
 		progressBar.setFont(new Font("Tahoma", Font.BOLD, 11));

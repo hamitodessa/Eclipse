@@ -717,18 +717,27 @@ public class FATURA extends JInternalFrame {
 		panel_71.add(label_9);
 
 
+		ScrollPaneWin11 scrollPanelalt = new ScrollPaneWin11();
+		scrollPanelalt.setMinimumSize(new Dimension(0, 120));
+		scrollPanelalt.setMaximumSize(new Dimension(0, 120));
+		splitPane_11.setRightComponent(scrollPanelalt);
+		
+		
 		JPanel panell = new JPanel();
-
-		panell.setMinimumSize(new Dimension(0, 120));
-		panell.setMaximumSize(new Dimension(0, 120));
+		//panell.setMinimumSize(new Dimension(0, 120));
+		//panell.setMaximumSize(new Dimension(0, 120));
+		panell.setPreferredSize(new Dimension(1145,110));
 		panell.setLayout(new BorderLayout(0, 0));
 
-
+		scrollPanelalt.setViewportView( panell);
+		
+		
 		MaterialTabbed tabbedPane_2 = new MaterialTabbed();
 		//tabbedPane_2.setForeground(new Color(0, 0, 128));
 		tabbedPane_2.setFont(new Font("Tahoma", Font.BOLD, 12));
-		splitPane_11.setRightComponent(panell);
+		//splitPane_11.setRightComponent(panell);
 		panell.add(tabbedPane_2, BorderLayout.CENTER);
+		
 		JPanel panel_1 = new JPanel();
 		//panel_1.setBorder(new LineBorder(null));
 		tabbedPane_2.addTab("Toplamlar", null, panel_1, null);
@@ -872,7 +881,7 @@ public class FATURA extends JInternalFrame {
 		panel_1.add(txttev);
 
 		JPanel panel_6 = new JPanel();
-		panel_6.setBorder(new LineBorder(null));
+		//panel_6.setBorder(new LineBorder(null));
 		tabbedPane_2.addTab("Yazici Tevkifat Kasesi", null, panel_6, null);
 		panel_6.setLayout(null);
 

@@ -148,10 +148,19 @@ public class IMALAT extends JInternalFrame {
 		splitPane.setOrientation(JSplitPane.VERTICAL_SPLIT);
 		getContentPane().add(splitPane, BorderLayout.CENTER);
 
+		
+		ScrollPaneWin11 scrollPaneust = new ScrollPaneWin11();
+		scrollPaneust.setMinimumSize(new Dimension(0, 210));
+		scrollPaneust.setMaximumSize(new Dimension(0, 210));
+		splitPane.setLeftComponent(scrollPaneust);
+		
+		
 		JPanel panel = new JPanel();
-		splitPane.setLeftComponent(panel);
-		panel.setMinimumSize(new Dimension(0, 200));
-		panel.setMaximumSize(new Dimension(0, 200));
+		//splitPane.setLeftComponent(panel);
+		scrollPaneust.setViewportView( panel);
+		panel.setPreferredSize(new Dimension(1100,200));
+		//panel.setMinimumSize(new Dimension(0, 200));
+		//panel.setMaximumSize(new Dimension(0, 200));
 		panel.setLayout(new BorderLayout(0, 0));
 
 		MaterialTabbed tabbedPane_1 = new MaterialTabbed();

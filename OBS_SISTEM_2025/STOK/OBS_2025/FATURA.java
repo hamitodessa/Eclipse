@@ -168,10 +168,15 @@ public class FATURA extends JInternalFrame {
 		splitPane.setOrientation(JSplitPane.VERTICAL_SPLIT);
 		getContentPane().add(splitPane, BorderLayout.CENTER);
 
+
+		ScrollPaneWin11 scrollPaneust = new ScrollPaneWin11();
+		scrollPaneust.setMinimumSize(new Dimension(0, 160));
+		scrollPaneust.setMaximumSize(new Dimension(0, 160));
+		splitPane.setLeftComponent(scrollPaneust);
+		
 		JPanel panel = new JPanel();
-		splitPane.setLeftComponent(panel);
-		panel.setMinimumSize(new Dimension(0, 160));
-		panel.setMaximumSize(new Dimension(0, 160));
+		scrollPaneust.setViewportView( panel);
+		panel.setPreferredSize(new Dimension(1145,150));
 		panel.setLayout(new BorderLayout(0, 0));
 
 		MaterialTabbed tabbedPane_1 = new MaterialTabbed();

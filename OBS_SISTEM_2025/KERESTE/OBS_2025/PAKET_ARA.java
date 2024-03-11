@@ -19,7 +19,6 @@ import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
-import javax.swing.border.LineBorder;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
@@ -177,7 +176,7 @@ public class PAKET_ARA extends JDialog {
 		table.setShowVerticalLines(true);
 		scrollPane.setViewportView(table);
 		JPanel panel1 = new JPanel();
-		panel1.setBorder(new LineBorder(null));
+		//panel1.setBorder(new LineBorder(null));
 		panel1.setMinimumSize(new Dimension(0, 25));
 		panel1.setMaximumSize(new Dimension(0, 25));
 		splitPane1.setRightComponent(panel1);

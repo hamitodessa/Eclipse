@@ -21,7 +21,6 @@ import javax.swing.JInternalFrame;
 import javax.swing.JPanel;
 import javax.swing.JSplitPane;
 import javax.swing.JTable;
-import javax.swing.border.LineBorder;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
@@ -111,12 +110,12 @@ public class LOGLAMA_RAPOR extends JInternalFrame {
 		leftPanel.setPreferredSize(new Dimension(1033,50));
 		scrollPaneust.setViewportView(leftPanel);
 
-		leftPanel.setBorder(new LineBorder(null));
+		//leftPanel.setBorder(new LineBorder(null));
 		leftPanel.setMinimumSize(new Dimension(0, 50));
 		leftPanel.setMaximumSize(new Dimension(0, 50));
 		ScrollPaneWin11 centerPanel = new ScrollPaneWin11();
 		JPanel rightPanel = new JPanel();
-		rightPanel.setBorder(new LineBorder(null));
+		//rightPanel.setBorder(new LineBorder(null));
 		rightPanel.setMinimumSize(new Dimension(0, 30));
 		rightPanel.setMaximumSize(new Dimension(0, 30));
 		JSplitPane sp = new JSplitPane(JSplitPane.VERTICAL_SPLIT, scrollPaneust, centerPanel);

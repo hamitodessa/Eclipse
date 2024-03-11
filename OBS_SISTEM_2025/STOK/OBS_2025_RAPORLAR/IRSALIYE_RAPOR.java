@@ -16,7 +16,6 @@ import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
-import javax.swing.border.LineBorder;
 import javax.swing.event.AncestorEvent;
 import javax.swing.event.AncestorListener;
 import javax.swing.event.ListSelectionEvent;
@@ -169,7 +168,7 @@ public class IRSALIYE_RAPOR extends JInternalFrame {
 		scrollPane_1.setViewportView(table_1);
 		
 		JPanel panel_1 = new JPanel();
-		panel_1.setBorder(new LineBorder(null));
+		//panel_1.setBorder(new LineBorder(null));
 		panel_1.setMinimumSize(new Dimension(0, 25));
 		panel_1.setMaximumSize(new Dimension(0, 25));
 		splitPane_1.setRightComponent(panel_1);

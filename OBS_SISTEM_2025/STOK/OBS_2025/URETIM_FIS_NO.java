@@ -12,7 +12,6 @@ import javax.swing.JSplitPane;
 import javax.swing.JToolBar;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
-import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
@@ -217,7 +216,7 @@ public class URETIM_FIS_NO extends JInternalFrame {
 		splitPane_1.setRightComponent(panel_3);
 		panel_3.setMinimumSize(new Dimension(0, 25));
 		panel_3.setMaximumSize(new Dimension(0, 25));
-		panel_3.setBorder(new LineBorder(null));
+		//panel_3.setBorder(new LineBorder(null));
 		panel_3.setLayout(null);
 
 		JLabel lblNewLabel_1 = new JLabel("Kayit Sayisi  :");

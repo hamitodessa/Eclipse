@@ -27,7 +27,6 @@ import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
-import javax.swing.border.LineBorder;
 import javax.swing.event.AncestorEvent;
 import javax.swing.event.AncestorListener;
 import javax.swing.filechooser.FileFilter;
@@ -169,7 +168,7 @@ public class STOK_RAPOR extends JInternalFrame {
 		scrollPane.setViewportView(table);
 		
 		JPanel panel = new JPanel();
-		panel.setBorder(new LineBorder(null));
+		//panel.setBorder(new LineBorder(null));
 		panel.setMinimumSize(new Dimension(0, 25));
 		panel.setMaximumSize(new Dimension(0, 25));
 		splitPane.setRightComponent(panel);

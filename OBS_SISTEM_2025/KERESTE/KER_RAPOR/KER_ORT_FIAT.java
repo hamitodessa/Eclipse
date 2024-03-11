@@ -170,7 +170,7 @@ public class KER_ORT_FIAT extends JInternalFrame {
 		scrollPane.setViewportView(table);
 
 		JPanel panel = new JPanel();
-		panel.setBorder(new LineBorder(null));
+		//panel.setBorder(new LineBorder(null));
 		panel.setMinimumSize(new Dimension(0, 25));
 		panel.setMaximumSize(new Dimension(0, 25));
 		splitPane.setRightComponent(panel);

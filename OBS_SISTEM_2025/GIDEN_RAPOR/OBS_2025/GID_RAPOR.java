@@ -35,7 +35,6 @@ import javax.swing.JLabel;
 
 import javax.swing.RowFilter;
 import javax.swing.SwingUtilities;
-import javax.swing.border.LineBorder;
 import javax.swing.event.AncestorEvent;
 import javax.swing.event.AncestorListener;
 import javax.swing.event.DocumentEvent;
@@ -68,7 +67,7 @@ public class GID_RAPOR extends JInternalFrame {
 
 		JPanel panel = new JPanel();
 		splitPane.setLeftComponent(panel);
-		panel.setBorder(new LineBorder(null));
+		//panel.setBorder(new LineBorder(null));
 		panel.setMinimumSize(new Dimension(0, 30));
 		panel.setMaximumSize(new Dimension(0, 30));
 		panel.setLayout(null);

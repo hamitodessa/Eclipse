@@ -1,7 +1,6 @@
 package OBS_2025;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -17,7 +16,6 @@ import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
-import javax.swing.border.LineBorder;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.event.TableModelEvent;
@@ -60,7 +58,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import javax.swing.border.EtchedBorder;
 
 @SuppressWarnings({"serial","static-access","removal"})
 public class KER_KOD_DEGISTIRME extends JInternalFrame {
@@ -235,7 +232,8 @@ public class KER_KOD_DEGISTIRME extends JInternalFrame {
 		
 		JPanel panel_1_1 = new JPanel();
 		panel_1_1.setLayout(null);
-		panel_1_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Yeni Konsimento", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel_1_1.setBorder(new TitledBorder(null, "Yeni Konsimento", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		//panel_1_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Yeni Konsimento", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panel_1_1.setBounds(678, 14, 224, 65);
 		panel.add(panel_1_1);
 		
@@ -349,7 +347,7 @@ public class KER_KOD_DEGISTIRME extends JInternalFrame {
 		table.setShowVerticalLines(true);
 		scrollPane.setViewportView(table);
 		JPanel panel1 = new JPanel();
-		panel1.setBorder(new LineBorder(null));
+		//panel1.setBorder(new LineBorder(null));
 		panel1.setMinimumSize(new Dimension(0, 25));
 		panel1.setMaximumSize(new Dimension(0, 25));
 		splitPane1.setRightComponent(panel1);

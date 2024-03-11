@@ -67,9 +67,7 @@ public class COKLU_GIRIS_HSP extends DefaultCellEditor {
 			if (turu.equals("C")) {
 			}
 			else
-			{
 				DISTAN_AKTAR.doldur(textField.getText(),turu);
-			}
 		} catch (NumberFormatException e) {
 			return false;
 		}

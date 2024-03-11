@@ -119,7 +119,7 @@ public class IRSALIYE_ARA extends JDialog {
 		JPanel panel = new JPanel();
 		panel.setMinimumSize(new Dimension(0, 81));
 		panel.setMaximumSize(new Dimension(0, 81));
-		panel.setBorder(new LineBorder(null));
+		//panel.setBorder(new LineBorder(null));
 		splitPane.setLeftComponent(panel);
 		panel.setLayout(null);
 		

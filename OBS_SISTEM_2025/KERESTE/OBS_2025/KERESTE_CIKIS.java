@@ -231,7 +231,7 @@ public class KERESTE_CIKIS extends JInternalFrame {
 				     table.getCellEditor().stopCellEditing();
 			}
 		});
-		panel_2.setBorder(new LineBorder(null));
+		//panel_2.setBorder(new LineBorder(null));
 		tabbedPane_1.addTab("Urun Cikis", null, panel_2, null);
 		panel_2.setLayout(null);
 
@@ -704,7 +704,7 @@ public class KERESTE_CIKIS extends JInternalFrame {
 
 
 		JPanel panel_4 = new JPanel();
-		panel_4.setBorder(new LineBorder(null));
+		//panel_4.setBorder(new LineBorder(null));
 		tabbedPane_1.addTab("Notlar", null, panel_4, null);
 		panel_4.setLayout(null);
 
@@ -743,7 +743,7 @@ public class KERESTE_CIKIS extends JInternalFrame {
 
 
 		JPanel panel_5 = new JPanel();
-		panel_5.setBorder(new LineBorder(null));
+		//panel_5.setBorder(new LineBorder(null));
 		tabbedPane_1.addTab("Ek Bilgi", null, panel_5, null);
 		panel_5.setLayout(null);
 
@@ -792,7 +792,7 @@ public class KERESTE_CIKIS extends JInternalFrame {
 		splitPane_3.setLeftComponent(scrollPanetoplam);
 		
 		JPanel panel_71 = new JPanel();
-		panel_71.setBorder(new LineBorder(null));
+		//panel_71.setBorder(new LineBorder(null));
 		panel_71.setPreferredSize(new Dimension(1128,30));
 		scrollPanetoplam.setViewportView(panel_71);
 		
@@ -858,7 +858,7 @@ public class KERESTE_CIKIS extends JInternalFrame {
 
 
 		JPanel panel_1 = new JPanel(); 
-		panel_1.setBorder(new LineBorder(null)); 
+		//panel_1.setBorder(new LineBorder(null)); 
 
 		panel_1.setLayout(null);
 		tabbedPane_2.addTab("Toplamlar", null, panel_1, null);

@@ -21,7 +21,6 @@ import javax.swing.JTextArea;
 import javax.swing.KeyStroke;
 import javax.swing.ListSelectionModel;
 import javax.swing.border.Border;
-import javax.swing.border.LineBorder;
 import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -112,7 +111,7 @@ public class COKLU_IMALAT extends JInternalFrame {
 		panel.add(tabbedPane_1, BorderLayout.CENTER);
 
 		JPanel panel_2 = new JPanel();
-		panel_2.setBorder(new LineBorder(null));
+		//panel_2.setBorder(new LineBorder(null));
 		tabbedPane_1.addTab("Imalat Bilgileri", null, panel_2, null);
 		tabbedPane_1.setEnabledAt(0, true);
 		panel_2.setLayout(null);
@@ -230,7 +229,7 @@ public class COKLU_IMALAT extends JInternalFrame {
 
 
 		JPanel panel_4 = new JPanel();
-		panel_4.setBorder(new LineBorder(null));
+		//panel_4.setBorder(new LineBorder(null));
 		tabbedPane_1.addTab("Aciklama", null, panel_4, null);
 		panel_4.setLayout(null);
 
@@ -406,7 +405,7 @@ public class COKLU_IMALAT extends JInternalFrame {
 		anaPane.setRightComponent(panel_1);
 		panel_1.setMinimumSize(new Dimension(0, 25));
 		panel_1.setMaximumSize(new Dimension(0, 25));
-		panel_1.setBorder(new LineBorder(null));
+		//panel_1.setBorder(new LineBorder(null));
 		panel_1.setLayout(null);
 
 		JLabel label_2 = new JLabel("Satir Sayisi :");

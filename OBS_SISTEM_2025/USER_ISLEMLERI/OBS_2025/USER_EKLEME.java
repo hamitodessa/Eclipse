@@ -33,7 +33,6 @@ import OBS_C_2025.ScrollPaneWin11;
 import raven.toast.Notifications;
 
 import javax.swing.ListSelectionModel;
-import javax.swing.border.LineBorder;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
@@ -153,7 +152,7 @@ public class USER_EKLEME extends JInternalFrame {
 		JPanel panel = new JPanel();
 		panel.setPreferredSize(new Dimension(730,100));
 		scrollPaneust.setViewportView(panel);
-		panel.setBorder(new LineBorder(null));
+		//panel.setBorder(new LineBorder(null));
 		splitPane.setLeftComponent(scrollPaneust);
 		panel.setLayout(null);
 

@@ -14,7 +14,6 @@ import javax.swing.JPanel;
 import javax.swing.JSplitPane;
 import javax.swing.JTable;
 import javax.swing.RowFilter;
-import javax.swing.border.LineBorder;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.table.DefaultTableModel;
@@ -62,7 +61,7 @@ public class RECETE_BUL extends JDialog {
 		getContentPane().add(splitPane, BorderLayout.CENTER);
 		
 		JPanel panel = new JPanel();
-		panel.setBorder(new LineBorder(null));
+		//panel.setBorder(new LineBorder(null));
 		panel.setMinimumSize(new Dimension(0, 40));
 		panel.setMaximumSize(new Dimension(0, 40));
 		splitPane.setLeftComponent(panel);

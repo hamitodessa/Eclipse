@@ -11,7 +11,6 @@ import javax.swing.JTable;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JTextField;
 import javax.swing.KeyStroke;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -42,7 +41,6 @@ import OBS_C_2025.lOG_BILGI;
 import raven.toast.Notifications;
 
 import javax.swing.border.EtchedBorder;
-import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
@@ -190,7 +188,7 @@ public class CEK_GIRIS extends JInternalFrame {
 		TableColumn col ;
 
 		col = table.getColumnModel().getColumn(0);
-		col.setCellEditor(new KAM_CEKNO(new JTextField(),"CG"));
+		col.setCellEditor(new KAM_CEKNO(new Obs_TextFIeld(),"CG"));
 		col.setCellRenderer(new KAM_CEKNO_REN());
 		col.setMinWidth(100);
 		col.setHeaderRenderer(new SOLA());
@@ -275,7 +273,7 @@ public class CEK_GIRIS extends JInternalFrame {
 		scrollPane.setViewportView(table);
 
 		JPanel panel = new JPanel();
-		panel.setBorder(new LineBorder(null));
+		//panel.setBorder(new LineBorder(null));
 		splitPane_1.setRightComponent(panel);
 		panel.setMinimumSize(new Dimension(0, 30));
 		panel.setMaximumSize(new Dimension(0, 30));
@@ -305,7 +303,7 @@ public class CEK_GIRIS extends JInternalFrame {
 		splitPane.setLeftComponent(tabbedPane);
 
 		JPanel panel_2 = new JPanel();
-		panel_2.setBorder(new LineBorder(null));
+		//panel_2.setBorder(new LineBorder(null));
 		tabbedPane.addTab("Cek Giris", null, panel_2, null);
 		panel_2.setLayout(null);
 
@@ -572,7 +570,7 @@ public class CEK_GIRIS extends JInternalFrame {
 		textField_4.setColumns(10);
 
 		JPanel panel_1 = new JPanel();
-		panel_1.setBorder(new LineBorder(null));
+		//panel_1.setBorder(new LineBorder(null));
 		tabbedPane.addTab("Aciklama", null, panel_1, null);
 		panel_1.setLayout(null);
 

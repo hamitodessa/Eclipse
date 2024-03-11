@@ -96,7 +96,6 @@ import javax.swing.RowFilter.ComparisonType;
 import javax.swing.RowSorter;
 import javax.swing.SortOrder;
 import javax.swing.JSeparator;
-import javax.swing.border.LineBorder;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import javax.swing.event.ChangeListener;
@@ -154,7 +153,7 @@ public class DISTAN_AKTAR extends JInternalFrame {
 		scrollPaneust.setMaximumSize(new Dimension(1160, 105));
 
 		JPanel panel = new JPanel();
-		panel.setBorder(new LineBorder(null));
+		//panel.setBorder(new LineBorder(null));
 
 		panel.setPreferredSize(new Dimension(1160,100));
 		scrollPaneust.setViewportView(panel);
@@ -934,7 +933,7 @@ public class DISTAN_AKTAR extends JInternalFrame {
 		scrollPane_2.setViewportView(table_1);
 
 		JPanel panel_5 = new JPanel();
-		panel_5.setBorder(new LineBorder(new Color(0, 191, 255)));
+		//panel_5.setBorder(new LineBorder(new Color(0, 191, 255)));
 		panel_5.setMinimumSize(new Dimension(0, 30));
 		panel_5.setMaximumSize(new Dimension(0, 30));
 		splitPane_5.setLeftComponent(panel_5);
@@ -1004,7 +1003,7 @@ public class DISTAN_AKTAR extends JInternalFrame {
 		scrollPane_1.setViewportView(table);
 
 		JPanel panel_4 = new JPanel();
-		panel_4.setBorder(new LineBorder(null));
+		//panel_4.setBorder(new LineBorder(null));
 		panel_4.setMinimumSize(new Dimension(0, 30));
 		panel_4.setMaximumSize(new Dimension(0, 30));
 		panel_4.setLayout(null);

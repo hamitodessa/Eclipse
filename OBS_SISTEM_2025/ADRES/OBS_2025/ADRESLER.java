@@ -15,7 +15,6 @@ import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.RowFilter;
 import javax.swing.SwingUtilities;
-import javax.swing.border.LineBorder;
 import javax.swing.event.AncestorEvent;
 import javax.swing.event.AncestorListener;
 import javax.swing.event.DocumentEvent;
@@ -111,7 +110,7 @@ public class ADRESLER extends JInternalFrame {
 	splitPane.setLeftComponent(panel);
 	panel.setMinimumSize(new Dimension(0, 30));
 	panel.setMaximumSize(new Dimension(0, 30));
-	panel.setBorder(new LineBorder(null));
+	//panel.setBorder(new LineBorder(null));
 	panel.setLayout(null);
 
 	JLabel lblNewLabel = new JLabel("Arama");
@@ -156,7 +155,7 @@ public class ADRESLER extends JInternalFrame {
 	JPanel panelalt = new JPanel();
 	panelalt.setMinimumSize(new Dimension(0, 25));
 	panelalt.setMaximumSize(new Dimension(0, 25));
-	panelalt.setBorder(new LineBorder(null));
+	//panelalt.setBorder(new LineBorder(null));
 	splitPane_1.setRightComponent(panelalt);
 	panelalt.setLayout(null);
 	

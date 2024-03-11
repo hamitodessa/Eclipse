@@ -114,7 +114,7 @@ public class STK_YIL_SONU extends JInternalFrame {
 		splitPaneana.setLeftComponent(splitPane);
 		
 		JPanel panel = new JPanel();
-		panel.setBorder(new LineBorder(null));
+		//panel.setBorder(new LineBorder(null));
 		panel.setMinimumSize(new Dimension(0, 70));
 		panel.setMaximumSize(new Dimension(0, 70));
 		splitPane.setLeftComponent(panel);
@@ -388,7 +388,7 @@ public class STK_YIL_SONU extends JInternalFrame {
 		GRID_TEMIZLE.grid_temizle(table);
 		
 		JPanel panel_3 = new JPanel();
-		panel_3.setBorder(new LineBorder(null));
+		//panel_3.setBorder(new LineBorder(null));
 		panel_3.setMinimumSize(new Dimension(0, 25));
 		panel_3.setMaximumSize(new Dimension(0, 25));
 		

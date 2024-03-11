@@ -13,7 +13,6 @@ import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
-import javax.swing.border.LineBorder;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
@@ -52,7 +51,7 @@ public class KER_BOS_KUR extends JInternalFrame {
 		JPanel panel = new JPanel();
 		panel.setMinimumSize(new Dimension(0, 65));
 		panel.setMaximumSize(new Dimension(0, 65));
-		panel.setBorder(new LineBorder(null));
+		//panel.setBorder(new LineBorder(null));
 		splitPane.setLeftComponent(panel);
 		panel.setLayout(null);
 		

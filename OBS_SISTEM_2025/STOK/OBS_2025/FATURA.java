@@ -180,7 +180,7 @@ public class FATURA extends JInternalFrame {
 		panel.add(tabbedPane_1, BorderLayout.CENTER);
 
 		JPanel panel_2 = new JPanel();
-		panel_2.setBorder(new LineBorder(null));
+		//panel_2.setBorder(new LineBorder(null));
 		tabbedPane_1.addTab("Fatura Bilgileri", null, panel_2, null);
 		panel_2.setLayout(null);
 
@@ -495,7 +495,7 @@ public class FATURA extends JInternalFrame {
 
 
 		JPanel panel_4 = new JPanel();
-		panel_4.setBorder(new LineBorder(null));
+		//panel_4.setBorder(new LineBorder(null));
 		tabbedPane_1.addTab("Yazici Bilgileri", null, panel_4, null);
 		panel_4.setLayout(null);
 
@@ -635,7 +635,7 @@ public class FATURA extends JInternalFrame {
 		panel_7.add(btnNewButton_4);
 
 		JPanel panel_5 = new JPanel();
-		panel_5.setBorder(new LineBorder(null));
+		//panel_5.setBorder(new LineBorder(null));
 		tabbedPane_1.addTab("Ek Bilgi", null, panel_5, null);
 		panel_5.setLayout(null);
 
@@ -680,7 +680,7 @@ public class FATURA extends JInternalFrame {
 
 		//***
 		JPanel panel_71 = new JPanel();
-		panel_71.setBorder(new LineBorder(null));
+		//panel_71.setBorder(new LineBorder(null));
 		panel_71.setMinimumSize(new Dimension(0, 25));
 		panel_71.setMaximumSize(new Dimension(0,25));
 
@@ -725,7 +725,7 @@ public class FATURA extends JInternalFrame {
 		splitPane_11.setRightComponent(panell);
 		panell.add(tabbedPane_2, BorderLayout.CENTER);
 		JPanel panel_1 = new JPanel();
-		panel_1.setBorder(new LineBorder(null));
+		//panel_1.setBorder(new LineBorder(null));
 		tabbedPane_2.addTab("Toplamlar", null, panel_1, null);
 		panel_1.setLayout(null);
 

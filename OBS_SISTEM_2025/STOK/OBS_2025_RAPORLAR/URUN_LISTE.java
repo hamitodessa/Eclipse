@@ -17,7 +17,6 @@ import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
-import javax.swing.border.LineBorder;
 import javax.swing.event.AncestorEvent;
 import javax.swing.event.AncestorListener;
 import javax.swing.table.JTableHeader;
@@ -153,7 +152,7 @@ public class URUN_LISTE extends JInternalFrame {
 		
 		
 		JPanel panel_1 = new JPanel();
-		panel_1.setBorder(new LineBorder(null));
+		//panel_1.setBorder(new LineBorder(null));
 		panel_1.setMinimumSize(new Dimension(0, 25));
 		panel_1.setMaximumSize(new Dimension(0, 25));
 		splitPane.setRightComponent(panel_1);

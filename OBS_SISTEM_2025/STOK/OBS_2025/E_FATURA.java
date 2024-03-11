@@ -101,7 +101,7 @@ public class E_FATURA extends JInternalFrame {
 		panel_1.add(splitPane, BorderLayout.CENTER);
 		
 		JPanel panel = new JPanel();
-		panel.setBorder(new LineBorder(null));
+		//panel.setBorder(new LineBorder(null));
 		panel.setMinimumSize(new Dimension(0, 40));
 		panel.setMaximumSize(new Dimension(0, 40));
 		splitPane.setLeftComponent(panel);
@@ -223,7 +223,7 @@ public class E_FATURA extends JInternalFrame {
 	     panel_2.add(splitPane_1, BorderLayout.CENTER);
 	     
 	     JPanel panel2 = new JPanel();
-			panel2.setBorder(new LineBorder(new Color(0, 191, 255)));
+			//panel2.setBorder(new LineBorder(new Color(0, 191, 255)));
 			panel2.setMinimumSize(new Dimension(0, 40));
 			panel2.setMaximumSize(new Dimension(0, 40));
 			splitPane_1.setLeftComponent(panel2);

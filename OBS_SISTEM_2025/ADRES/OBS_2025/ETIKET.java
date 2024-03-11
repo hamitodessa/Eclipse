@@ -187,7 +187,7 @@ public class ETIKET extends JInternalFrame {
 		JPanel panel = new JPanel();
 		panel.setMinimumSize(new Dimension(0, 25));
 		panel.setMaximumSize(new Dimension(0, 25));
-		panel.setBorder(new LineBorder(null));
+		//panel.setBorder(new LineBorder(null));
 
 		splitPane_1.setRightComponent(panel);
 		panel.setLayout(null);
@@ -205,7 +205,7 @@ public class ETIKET extends JInternalFrame {
 		JPanel panel_1 = new JPanel();
 		panel_1.setMinimumSize(new Dimension(0, 50));
 		panel_1.setMaximumSize(new Dimension(0, 50));
-		panel_1.setBorder(new LineBorder(null));
+		//panel_1.setBorder(new LineBorder(null));
 		splitPane.setLeftComponent(panel_1);
 		panel_1.setLayout(null);
 

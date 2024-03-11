@@ -25,7 +25,6 @@ import javax.swing.JCheckBoxMenuItem;
 import javax.swing.JComboBox;
 
 import javax.swing.ListSelectionModel;
-import javax.swing.border.LineBorder;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.ImageIcon;
@@ -100,7 +99,7 @@ public class USER_DETAY_EKLEME extends JInternalFrame {
 		
 		
 		JPanel panel = new JPanel();
-		panel.setBorder(new LineBorder(null));
+		//panel.setBorder(new LineBorder(null));
 		panel.setPreferredSize(new Dimension(1130,120));
 		scrollPaneust.setViewportView(panel);
 		splitPane.setLeftComponent(scrollPaneust);

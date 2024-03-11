@@ -32,7 +32,6 @@ import javax.swing.JTable;
 
 import javax.swing.SwingConstants;
 import javax.swing.border.EtchedBorder;
-import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
@@ -235,7 +234,7 @@ public class CEK_CIKIS extends JInternalFrame {
 
 		JPanel panel = new JPanel();
 		splitPane_1.setRightComponent(panel);
-		panel.setBorder(new LineBorder(null));
+		//panel.setBorder(new LineBorder(null));
 		panel.setMinimumSize(new Dimension(0, 30));
 		panel.setMaximumSize(new Dimension(0, 30));
 		panel.setLayout(null);
@@ -264,7 +263,7 @@ public class CEK_CIKIS extends JInternalFrame {
 		splitPane.setLeftComponent(tabbedPane);
 
 		JPanel panel_2 = new JPanel();
-		panel_2.setBorder(new LineBorder(null));
+		//panel_2.setBorder(new LineBorder(null));
 		tabbedPane.addTab("Cek Cikis", null, panel_2, null);
 		panel_2.setLayout(null);
 
@@ -532,7 +531,7 @@ public class CEK_CIKIS extends JInternalFrame {
 		textField_4.setColumns(10);
 
 		JPanel panel_1 = new JPanel();
-		panel_1.setBorder(new LineBorder(null));
+		//panel_1.setBorder(new LineBorder(null));
 		tabbedPane.addTab("Aciklama", null, panel_1, null);
 		panel_1.setLayout(null);
 

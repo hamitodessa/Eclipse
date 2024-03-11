@@ -131,7 +131,7 @@ public class ZAYI extends JInternalFrame {
 		panel.add(tabbedPane_1, BorderLayout.CENTER);
 		
 		JPanel panel_2 = new JPanel();
-		panel_2.setBorder(new LineBorder(null));
+		//panel_2.setBorder(new LineBorder(null));
 		tabbedPane_1.addTab("Evrak Bilgileri", null, panel_2, null);
 		panel_2.setLayout(null);
 		
@@ -342,7 +342,7 @@ public class ZAYI extends JInternalFrame {
 		
 	
 		JPanel panel_5 = new JPanel();
-		panel_5.setBorder(new LineBorder(null));
+		//panel_5.setBorder(new LineBorder(null));
 		tabbedPane_1.addTab("Ek Bilgi", null, panel_5, null);
 		panel_5.setLayout(null);
 		
@@ -389,7 +389,7 @@ public class ZAYI extends JInternalFrame {
 		//***
 		JPanel panel_71 = new JPanel();
 		splitPane_11.setLeftComponent(panel_71);
-		panel_71.setBorder(new LineBorder(null));
+		//panel_71.setBorder(new LineBorder(null));
 		panel_71.setMinimumSize(new Dimension(0, 25));
 		panel_71.setMaximumSize(new Dimension(0,25));
 		
@@ -434,7 +434,7 @@ public class ZAYI extends JInternalFrame {
 		panel_711.add(tabbedPane_2,BorderLayout.CENTER);
 
 		JPanel panel_1 = new JPanel();
-		panel_1.setBorder(new LineBorder(null));
+		//panel_1.setBorder(new LineBorder(null));
 		tabbedPane_2.addTab("Toplamlar", null, panel_1, null);
 		panel_1.setLayout(null);
 		

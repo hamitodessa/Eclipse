@@ -78,8 +78,6 @@ import java.io.IOException;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 import javax.swing.border.Border;
-import javax.swing.border.LineBorder;
-
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.FocusAdapter;
@@ -130,7 +128,7 @@ public class MAIL extends JInternalFrame {
 		getContentPane().add(splitPane, BorderLayout.CENTER);
 
 		JPanel panel = new JPanel();
-		panel.setBorder(new LineBorder(new Color(0, 191, 255)));
+		//panel.setBorder(new LineBorder(null));
 		panel.setMinimumSize(new Dimension(0, 30));
 		panel.setMaximumSize(new Dimension(0, 30));
 		splitPane.setRightComponent(panel);
@@ -171,7 +169,7 @@ public class MAIL extends JInternalFrame {
 		tabbedPane.addTab("Mail Gonder", null, splitPane_1, null);
 
 		JPanel panel_1 = new JPanel();
-		panel_1.setBorder(new LineBorder(null));
+		//panel_1.setBorder(new LineBorder(null));
 		panel_1.setMinimumSize(new Dimension(0, 160));
 		panel_1.setMaximumSize(new Dimension(0, 160));
 		splitPane_1.setLeftComponent(panel_1);
@@ -394,7 +392,7 @@ public class MAIL extends JInternalFrame {
 		tabbedPane.addTab("Gonderilmis Mail", null, splitPane_2, null);
 
 		JPanel panel_2 = new JPanel();
-		panel_2.setBorder(new LineBorder(null));
+		//panel_2.setBorder(new LineBorder(null));
 		panel_2.setMinimumSize(new Dimension(0, 30));
 		panel_2.setMaximumSize(new Dimension(0, 30));
 		splitPane_2.setLeftComponent(panel_2);
@@ -421,7 +419,7 @@ public class MAIL extends JInternalFrame {
 		tabbedPane.addTab("Bilgi Girisi", null, splitPane_3, null);
 
 		JPanel panel_3 = new JPanel();
-		panel_3.setBorder(new LineBorder(null));
+		//panel_3.setBorder(new LineBorder(null));
 		panel_3.setMinimumSize(new Dimension(0, 100));
 		panel_3.setMaximumSize(new Dimension(0, 100));
 		splitPane_3.setLeftComponent(panel_3);

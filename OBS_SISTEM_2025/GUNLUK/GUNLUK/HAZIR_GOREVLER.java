@@ -52,7 +52,6 @@ import java.awt.Font;
 import java.awt.Rectangle;
 
 import javax.swing.SwingConstants;
-import javax.swing.border.LineBorder;
 
 @SuppressWarnings("serial")
 public class HAZIR_GOREVLER extends JInternalFrame {
@@ -170,7 +169,7 @@ public class HAZIR_GOREVLER extends JInternalFrame {
 		panel = new JPanel();
 		panel.setMinimumSize(new Dimension(0, 25));
 		panel.setMaximumSize(new Dimension(0, 25));
-		panel.setBorder(new LineBorder(null));
+		//panel.setBorder(new LineBorder(null));
 		panel.setLayout(null);
 		splitPane.setRightComponent(panel);
 

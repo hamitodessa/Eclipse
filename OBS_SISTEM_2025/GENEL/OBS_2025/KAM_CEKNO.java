@@ -18,19 +18,20 @@ import javax.swing.border.LineBorder;
 import com.healthmarketscience.jackcess.Column;
 
 import OBS_C_2025.JTextFieldLimit;
+import OBS_C_2025.Obs_TextFIeld;
 
 @SuppressWarnings({"serial","unused"})
 public class KAM_CEKNO extends DefaultCellEditor {
 
 	private static final Border red = new LineBorder(Color.red);
 	private static final Border black = new LineBorder(Color.black);
-	private JTextField textField;
+	private Obs_TextFIeld textField;
 	private String turu= "" ;
 	boolean varmi = false;
 	public int satir ;
 	public int sutun ;
 
-	public KAM_CEKNO(JTextField textField,String tur) {
+	public KAM_CEKNO(Obs_TextFIeld textField,String tur) {
 		super(textField);
 		turu = tur ;
 

@@ -179,7 +179,7 @@ public class IRSALIYE extends JInternalFrame {
 		
 		
 		JPanel panel_2 = new JPanel();
-		panel_2.setBorder(new LineBorder(null));
+		//panel_2.setBorder(new LineBorder(null));
 		tabbedPane_1.addTab("Irsaliye Bilgileri", null, panel_2, null);
 		panel_2.setLayout(null);
 
@@ -531,7 +531,7 @@ public class IRSALIYE extends JInternalFrame {
 		panel_2.add(txtkur);
 		
 		JPanel panel_9 = new JPanel();
-		panel_9.setBorder(new LineBorder(null));
+		//panel_9.setBorder(new LineBorder(null));
 		tabbedPane_1.addTab("Fatura Bilgileri", null, panel_9, null);
 		panel_9.setLayout(null);
 
@@ -563,7 +563,7 @@ public class IRSALIYE extends JInternalFrame {
 	
 		
 		JPanel panel_4 = new JPanel();
-		panel_4.setBorder(new LineBorder(null));
+		//panel_4.setBorder(new LineBorder(null));
 		tabbedPane_1.addTab("Yazici Bilgileri", null, panel_4, null);
 		panel_4.setLayout(null);
 		
@@ -719,7 +719,8 @@ public class IRSALIYE extends JInternalFrame {
 		panel_7.add(btnNewButton_4);
 
 		//*********************************************************NORMAL *****************************************************
-		  JPanel panel_5 = new JPanel(); panel_5.setBorder(new LineBorder(null)); 
+		  JPanel panel_5 = new JPanel(); 
+		  //panel_5.setBorder(new LineBorder(null)); 
 		  tabbedPane_1.addTab("Ek Bilgi", null, panel_5, null);
 		  panel_5.setLayout(null);
 		  
@@ -759,7 +760,7 @@ public class IRSALIYE extends JInternalFrame {
 		panel_3.setLayout(null);
 		
 		JPanel panel_71 = new JPanel();
-		panel_71.setBorder(new LineBorder(null));
+		//panel_71.setBorder(new LineBorder(null));
 		panel_71.setBounds(2, 1, 1158, 21);
 		panel_71.setMinimumSize(new Dimension(0, 25));
 		panel_71.setMaximumSize(new Dimension(0,25));
@@ -795,7 +796,7 @@ public class IRSALIYE extends JInternalFrame {
 		panel_3.add(tabbedPane_2);
 		
 		JPanel panel_1 = new JPanel();
-		panel_1.setBorder(new LineBorder(null));
+		//panel_1.setBorder(new LineBorder(null));
 		tabbedPane_2.addTab("Toplamlar", null, panel_1, null);
 		panel_1.setLayout(null);
 		

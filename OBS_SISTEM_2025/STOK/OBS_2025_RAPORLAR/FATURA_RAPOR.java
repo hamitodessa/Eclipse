@@ -69,7 +69,6 @@ import java.io.FileOutputStream;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
-import javax.swing.border.LineBorder;
 import javax.swing.event.AncestorEvent;
 import javax.swing.event.AncestorListener;
 import javax.swing.event.ListSelectionEvent;
@@ -208,7 +207,7 @@ public class FATURA_RAPOR extends JInternalFrame {
 		scrollPane_1.setViewportView(table_1);
 		
 		JPanel panel_1 = new JPanel();
-		panel_1.setBorder(new LineBorder(null));
+		//panel_1.setBorder(new LineBorder(null));
 		panel_1.setMinimumSize(new Dimension(0, 25));
 		panel_1.setMaximumSize(new Dimension(0, 25));
 		splitPane_1.setRightComponent(panel_1);

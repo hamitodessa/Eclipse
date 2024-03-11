@@ -161,7 +161,7 @@ public class IMALAT extends JInternalFrame {
 		panel.add(tabbedPane_1, BorderLayout.CENTER);
 
 		JPanel panel_2 = new JPanel();
-		panel_2.setBorder(new LineBorder(null));
+		//panel_2.setBorder(new LineBorder(null));
 		tabbedPane_1.addTab("Imalat Bilgileri", null, panel_2, null);
 		tabbedPane_1.setEnabledAt(0, true);
 		panel_2.setLayout(null);
@@ -539,7 +539,7 @@ public class IMALAT extends JInternalFrame {
 		panel_2.add(lblNewLabel);
 
 		JPanel panel_4 = new JPanel();
-		panel_4.setBorder(new LineBorder(new Color(0, 191, 255)));
+		//panel_4.setBorder(new LineBorder(new Color(0, 191, 255)));
 		tabbedPane_1.addTab("Aciklama", null, panel_4, null);
 		panel_4.setLayout(null);
 

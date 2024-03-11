@@ -118,7 +118,7 @@ public class SMS extends JInternalFrame {
 		getContentPane().add(splitPane, BorderLayout.CENTER);
 
 		JPanel panel = new JPanel();
-		panel.setBorder(new LineBorder(null));
+		//panel.setBorder(new LineBorder(null));
 		panel.setMinimumSize(new Dimension(0, 30));
 		panel.setMaximumSize(new Dimension(0, 30));
 		splitPane.setRightComponent(panel);
@@ -159,7 +159,7 @@ public class SMS extends JInternalFrame {
 		tabbedPane.addTab("Sms Gonder", null, splitPane_1, null);
 
 		JPanel panel_1 = new JPanel();
-		panel_1.setBorder(new LineBorder(null));
+		//panel_1.setBorder(new LineBorder(null));
 		panel_1.setMinimumSize(new Dimension(0, 130));
 		panel_1.setMaximumSize(new Dimension(0, 130));
 		splitPane_1.setLeftComponent(panel_1);
@@ -292,7 +292,7 @@ public class SMS extends JInternalFrame {
 		tabbedPane.addTab("Gonderilmis  Sms", null, splitPane_2, null);
 
 		JPanel panel_2 = new JPanel();
-		panel_2.setBorder(new LineBorder(null));
+		//panel_2.setBorder(new LineBorder(null));
 		panel_2.setMinimumSize(new Dimension(0, 30));
 		panel_2.setMaximumSize(new Dimension(0, 30));
 		splitPane_2.setLeftComponent(panel_2);
@@ -313,7 +313,7 @@ public class SMS extends JInternalFrame {
 		scrollPane_1.setViewportView(table_1);
 
 		JPanel panel_4 = new JPanel();
-		panel_4.setBorder(new LineBorder(new Color(0, 191, 255)));
+		panel_4.setBorder(new LineBorder(null));
 		tabbedPane.addTab("Modem Baglanti", null, panel_4, null);
 		panel_4.setLayout(null);
 
@@ -470,7 +470,7 @@ public class SMS extends JInternalFrame {
 		tabbedPane.addTab("Bilgi Girisi", null, splitPane_3, null);
 
 		JPanel panel_3 = new JPanel();
-		panel_3.setBorder(new LineBorder(null));
+		//panel_3.setBorder(new LineBorder(null));
 		panel_3.setMinimumSize(new Dimension(0, 100));
 		panel_3.setMaximumSize(new Dimension(0, 100));
 		splitPane_3.setLeftComponent(panel_3);

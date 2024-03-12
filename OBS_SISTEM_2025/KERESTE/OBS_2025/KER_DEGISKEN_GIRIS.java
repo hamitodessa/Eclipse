@@ -1,10 +1,8 @@
 package OBS_2025;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.ResultSet;
@@ -18,7 +16,6 @@ import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
 import javax.swing.JTable;
 import javax.swing.RowFilter;
-import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
@@ -84,7 +81,8 @@ public class KER_DEGISKEN_GIRIS extends JInternalFrame {
 		panel.setLayout(null);
 		
 		JPanel panel_1 = new JPanel();
-		panel_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Arama", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel_1.setBorder(new TitledBorder(null, "Arama", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		//panel_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Arama", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panel_1.setBounds(10, 11, 320, 50);
 		panel.add(panel_1);
 		panel_1.setLayout(null);
@@ -108,7 +106,8 @@ public class KER_DEGISKEN_GIRIS extends JInternalFrame {
 		
 		JPanel panel_2 = new JPanel();
 		panel_2.setLayout(null);
-		panel_2.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Kullanici", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel_2.setBorder(new TitledBorder(null, "Kullanici", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		//panel_2.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Kullanici", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panel_2.setBounds(10, 72, 320, 50);
 		panel.add(panel_2);
 		
@@ -126,7 +125,8 @@ public class KER_DEGISKEN_GIRIS extends JInternalFrame {
 		
 		JPanel panel_3 = new JPanel();
 		panel_3.setLayout(null);
-		panel_3.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Ana Grup", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel_3.setBorder(new TitledBorder(null, "Ana Grup", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		//panel_3.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Ana Grup", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panel_3.setBounds(10, 133, 320, 50);
 		panel.add(panel_3);
 		
@@ -152,11 +152,8 @@ public class KER_DEGISKEN_GIRIS extends JInternalFrame {
 		table = new JTable(){
 			public boolean isCellEditable(int row, int column) {     return false;          }
 		};
-		if(! oac.gridcolor.toString().equals("java.awt.Color[r=255,g=255,b=255]")) 
-		{
+		if(! oac.gridcolor.toString().equals("java.awt.Color[r=255,g=255,b=255]"))
 			table.setGridColor(oac.gridcolor);
-		}
-
 		table.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
 			public void valueChanged(ListSelectionEvent lse) {
 				if (!lse.getValueIsAdjusting()) {
@@ -183,37 +180,43 @@ public class KER_DEGISKEN_GIRIS extends JInternalFrame {
 		{
 			panel.setMinimumSize(new Dimension(0, 200));
 			panel.setMaximumSize(new Dimension(0, 200));
-			panel_2.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Alt Grup", TitledBorder.LEADING, TitledBorder.TOP, null, SystemColor.textHighlight));
+			panel_2.setBorder(new TitledBorder(null, "Alt Grup", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+			//panel_2.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Alt Grup", TitledBorder.LEADING, TitledBorder.TOP, null, SystemColor.textHighlight));
 		}
 		else if (nerden.equals("anagrup"))
 		{
 			panel.setMinimumSize(new Dimension(0,135));
 			panel.setMaximumSize(new Dimension(0, 135));
-			panel_2.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Ana Grup", TitledBorder.LEADING, TitledBorder.TOP, null, SystemColor.textHighlight));
+			panel_2.setBorder(new TitledBorder(null, "Ana Grup", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+			//panel_2.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Ana Grup", TitledBorder.LEADING, TitledBorder.TOP, null, SystemColor.textHighlight));
 		}
 		else if (nerden.equals("mensei"))
 		{
 			panel.setMinimumSize(new Dimension(0,135));
 			panel.setMaximumSize(new Dimension(0, 135));
-			panel_2.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Mensei", TitledBorder.LEADING, TitledBorder.TOP, null, SystemColor.textHighlight));
+			panel_2.setBorder(new TitledBorder(null, "Mensei", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+			//panel_2.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Mensei", TitledBorder.LEADING, TitledBorder.TOP, null, SystemColor.textHighlight));
 		}
 		else if (nerden.equals("depo"))
 		{
 			panel.setMinimumSize(new Dimension(0,135));
 			panel.setMaximumSize(new Dimension(0, 135));
-			panel_2.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Depo", TitledBorder.LEADING, TitledBorder.TOP, null, SystemColor.textHighlight));
+			panel_2.setBorder(new TitledBorder(null, "Depo", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+			//panel_2.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Depo", TitledBorder.LEADING, TitledBorder.TOP, null, SystemColor.textHighlight));
 		}
 		else if (nerden.equals("oz1"))
 		{
 			panel.setMinimumSize(new Dimension(0,135));
 			panel.setMaximumSize(new Dimension(0, 135));
-			panel_2.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Ozel Kod 1", TitledBorder.LEADING, TitledBorder.TOP, null, SystemColor.textHighlight));
+			panel_2.setBorder(new TitledBorder(null, "Ozel Kod 1", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+			//panel_2.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Ozel Kod 1", TitledBorder.LEADING, TitledBorder.TOP, null, SystemColor.textHighlight));
 		}
 		else if (nerden.equals("nak"))
 		{
 			panel.setMinimumSize(new Dimension(0,135));
 			panel.setMaximumSize(new Dimension(0, 135));
-			panel_2.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Nakliyeci", TitledBorder.LEADING, TitledBorder.TOP, null, SystemColor.textHighlight));
+			panel_2.setBorder(new TitledBorder(null, "Ozel Kod 2", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+			//panel_2.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Nakliyeci", TitledBorder.LEADING, TitledBorder.TOP, null, SystemColor.textHighlight));
 		}
 		yenile();
 	}
@@ -222,36 +225,22 @@ public class KER_DEGISKEN_GIRIS extends JInternalFrame {
 		try {
 
 			if (hangi.equals("mensei"))
-			{
-				rs =	ker_Access.ker_kod_degisken_oku("MENSEI", "MEID_Y", "MENSEI_DEGISKEN");
-			}
+				rs = ker_Access.ker_kod_degisken_oku("MENSEI", "MEID_Y", "MENSEI_DEGISKEN");
 			else if (hangi.equals("anagrup"))
-			{
-				rs =	ker_Access.ker_kod_degisken_oku("ANA_GRUP", "AGID_Y", "ANA_GRUP_DEGISKEN");
-			}
+				rs = ker_Access.ker_kod_degisken_oku("ANA_GRUP", "AGID_Y", "ANA_GRUP_DEGISKEN");
 			else if (hangi.equals("altgrup"))
-			{
 				ana_grup_doldur();
-			}
 			else if (hangi.equals("depo"))
-			{
-				rs =	ker_Access.ker_kod_degisken_oku("DEPO", "DPID_Y", "DEPO_DEGISKEN");
-			}
+				rs = ker_Access.ker_kod_degisken_oku("DEPO", "DPID_Y", "DEPO_DEGISKEN");
 			else if (hangi.equals("oz1"))
-			{
-				rs =	ker_Access.ker_kod_degisken_oku("OZEL_KOD_1", "OZ1ID_Y", "OZ_KOD_1_DEGISKEN");
-			}
+				rs = ker_Access.ker_kod_degisken_oku("OZEL_KOD_1", "OZ1ID_Y", "OZ_KOD_1_DEGISKEN");
 			else if (hangi.equals("nak"))
-			{
 				rs = ker_Access.ker_kod_degisken_oku("UNVAN", "NAKID_Y", "NAKLIYECI");
-			}
 			//***********TABLO DOLDUR
 			if (!rs.isBeforeFirst() ) { 
 			} 
 			else
-			{
 				grid_doldur();
-			}
 			//*************************
 		}
 		catch (Exception ex)
@@ -319,7 +308,7 @@ public class KER_DEGISKEN_GIRIS extends JInternalFrame {
 					altG  = rss.getInt("ALID_Y");
 				}
 
-				if (ker_Access.alt_grup_kontrol(anaG,altG) )
+				if (ker_Access.alt_grup_kontrol(anaG,altG))
 				{
 					OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING, "Ilk once Degisken Yenileme Bolumunden degistirip sonra siliniz...."   );
 					return;
@@ -327,7 +316,6 @@ public class KER_DEGISKEN_GIRIS extends JInternalFrame {
 				//*********************
 				lBILGI.setmESAJ("Alt Grup Silme:" + Integer.parseInt(textField_2.getText()));
 				lBILGI.seteVRAK("");
-
 				ker_Access.ker_degisken_alt_grup_sil(Integer.parseInt(textField_2.getText()),
 						lBILGI,BAGLAN_LOG.kerLogDizin);
 				sifirla();
@@ -344,7 +332,6 @@ public class KER_DEGISKEN_GIRIS extends JInternalFrame {
 						oac.options,  //button titles
 						oac.options[1]); //default button
 				if(g != 0 ) { return;	}
-
 				lBILGI.setmESAJ(" Mensei Sil:" + Integer.parseInt(textField_2.getText()));
 				lBILGI.seteVRAK("");
 				ker_Access.ker_kod_degisken_sil( "MEID_Y", "MENSEI_DEGISKEN", Integer.parseInt(textField_2.getText()),
@@ -359,10 +346,8 @@ public class KER_DEGISKEN_GIRIS extends JInternalFrame {
 						"Degisken  Silme",   JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE,
 						null,  oac.options, 	oac.options[1]);
 				if(g != 0 ) { return;	}
-
 				lBILGI.setmESAJ( "Depo Sil:" + Integer.parseInt(textField_2.getText()) );
 				lBILGI.seteVRAK("");
-
 				ker_Access.ker_kod_degisken_sil( "DPID_Y", "DEPO_DEGISKEN", Integer.parseInt(textField_2.getText()),
 						lBILGI,BAGLAN_LOG.kerLogDizin);
 				sifirla();
@@ -376,10 +361,8 @@ public class KER_DEGISKEN_GIRIS extends JInternalFrame {
 						"Degisken  Silme",   JOptionPane.YES_NO_OPTION,
 						JOptionPane.QUESTION_MESSAGE,null, oac.options, oac.options[1]); //default button
 				if(g != 0 ) { return;	}
-
 				lBILGI.setmESAJ("Ozel Kod1 :" + Integer.parseInt(textField_2.getText()) );
 				lBILGI.seteVRAK("");
-
 				ker_Access.ker_kod_degisken_sil( "OZ1ID_Y", "OZ_KOD_1_DEGISKEN", Integer.parseInt(textField_2.getText()),
 						lBILGI,BAGLAN_LOG.kerLogDizin);
 				sifirla();
@@ -412,7 +395,6 @@ public class KER_DEGISKEN_GIRIS extends JInternalFrame {
 				if(g != 0 ) { return;	}
 				lBILGI.setmESAJ("Ana Grup :" + Integer.parseInt(textField_2.getText()) );
 				lBILGI.seteVRAK("");
-
 				ker_Access.ker_kod_degisken_sil( "AGID_Y", "ANA_GRUP_DEGISKEN", Integer.parseInt(textField_2.getText()),
 						lBILGI,BAGLAN_LOG.kerLogDizin);
 				sifirla();
@@ -431,16 +413,14 @@ public class KER_DEGISKEN_GIRIS extends JInternalFrame {
 		try 
 		{
 		cmbanagrup .removeAllItems();
-			rs=null;
+			rs = null;
 			rs = ker_Access.ker_kod_degisken_oku("ANA_GRUP", "AGID_Y", "ANA_GRUP_DEGISKEN");
 			if (!rs.isBeforeFirst() ) {      		
 	    	}
 	    	else
 	    	{
 	    		while (rs.next())
-			    {
-			    	cmbanagrup .addItem(rs.getString("ANA_GRUP"));
-			    }
+	    			cmbanagrup .addItem(rs.getString("ANA_GRUP"));
 	    	}
 		int in1= 0 ;
 		rs = null ;
@@ -455,7 +435,7 @@ public class KER_DEGISKEN_GIRIS extends JInternalFrame {
 				rs = null ;
 				rs  = ker_Access.ker_kod_alt_grup_degisken_oku(in1);
 	    	}
-		ilkmi=false;
+		ilkmi = false;
 		}
 		catch (Exception ex)
 		{
@@ -505,9 +485,7 @@ public class KER_DEGISKEN_GIRIS extends JInternalFrame {
 	public void arama()  
 	{
 		if (textField.getText().equals(""))
-		{
 			table.setRowSorter(null);
-		}
 		else
 		{
 		TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(((DefaultTableModel) table.getModel())); 

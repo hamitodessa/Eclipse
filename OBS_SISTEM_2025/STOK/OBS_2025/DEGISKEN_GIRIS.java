@@ -35,15 +35,11 @@ import OBS_C_2025.lOG_BILGI;
 import net.proteanit.sql.DbUtils;
 import raven.toast.Notifications;
 
-import javax.swing.border.EtchedBorder;
-import java.awt.Color;
-
 import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
-import java.awt.SystemColor;
 
 @SuppressWarnings({"serial","static-access"})
 public class DEGISKEN_GIRIS extends JInternalFrame {
@@ -188,37 +184,43 @@ public class DEGISKEN_GIRIS extends JInternalFrame {
 		{
 			panel.setMinimumSize(new Dimension(0, 200));
 			panel.setMaximumSize(new Dimension(0, 200));
-			panel_2.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Alt Grup", TitledBorder.LEADING, TitledBorder.TOP, null, SystemColor.textHighlight));
+			panel_2.setBorder(new TitledBorder(null, "Alt Grup", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+			//panel_2.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Alt Grup", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		}
 		else if (nerden.equals("anagrup"))
 		{
 			panel.setMinimumSize(new Dimension(0,135));
 			panel.setMaximumSize(new Dimension(0, 135));
-			panel_2.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Ana Grup", TitledBorder.LEADING, TitledBorder.TOP, null, SystemColor.textHighlight));
+			panel_2.setBorder(new TitledBorder(null, "Ana Grup", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+			//panel_2.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Ana Grup", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		}
 		else if (nerden.equals("mensei"))
 		{
 			panel.setMinimumSize(new Dimension(0,135));
 			panel.setMaximumSize(new Dimension(0, 135));
-			panel_2.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Mensei", TitledBorder.LEADING, TitledBorder.TOP, null, SystemColor.textHighlight));
+			panel_2.setBorder(new TitledBorder(null, "Mensei", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+			//panel_2.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Mensei", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		}
 		else if (nerden.equals("depo"))
 		{
 			panel.setMinimumSize(new Dimension(0,135));
 			panel.setMaximumSize(new Dimension(0, 135));
-			panel_2.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Depo", TitledBorder.LEADING, TitledBorder.TOP, null, SystemColor.textHighlight));
+			panel_2.setBorder(new TitledBorder(null, "Depo", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+			//panel_2.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Depo", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		}
 		else if (nerden.equals("oz1"))
 		{
 			panel.setMinimumSize(new Dimension(0,135));
 			panel.setMaximumSize(new Dimension(0, 135));
-			panel_2.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Ozel Kod 1", TitledBorder.LEADING, TitledBorder.TOP, null, SystemColor.textHighlight));
+			panel_2.setBorder(new TitledBorder(null, "Ozel Kod 1", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+			//panel_2.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Ozel Kod 1", TitledBorder.LEADING, TitledBorder.TOP, null,null));
 		}
 		else if (nerden.equals("oz2"))
 		{
 			panel.setMinimumSize(new Dimension(0,135));
 			panel.setMaximumSize(new Dimension(0, 135));
-			panel_2.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Ozel Kod 2", TitledBorder.LEADING, TitledBorder.TOP, null, SystemColor.textHighlight));
+			panel_2.setBorder(new TitledBorder(null, "Ozel Kod 2", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+			//panel_2.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Ozel Kod 2", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		}
 		yenile();
 	}
@@ -353,7 +355,6 @@ public class DEGISKEN_GIRIS extends JInternalFrame {
 
 				lBILGI.setmESAJ( "Depo Sil:" + Integer.parseInt(textField_2.getText()) );
 				lBILGI.seteVRAK("");
-
 				f_Access.urun_kod_degisken_sil( "DPID_Y", "DEPO_DEGISKEN", Integer.parseInt(textField_2.getText()),
 						lBILGI,BAGLAN_LOG.fatLogDizin);
 				sifirla();
@@ -370,10 +371,8 @@ public class DEGISKEN_GIRIS extends JInternalFrame {
 						oac.options,  //button titles
 						oac.options[1]); //default button
 				if(g != 0 ) { return;	}
-
 				lBILGI.setmESAJ("Ozel Kod1 :" + Integer.parseInt(textField_2.getText()) );
 				lBILGI.seteVRAK("");
-
 				f_Access.urun_kod_degisken_sil( "OZ1ID_Y", "OZ_KOD_1_DEGISKEN", Integer.parseInt(textField_2.getText()),
 						lBILGI,BAGLAN_LOG.fatLogDizin);
 				sifirla();
@@ -390,10 +389,8 @@ public class DEGISKEN_GIRIS extends JInternalFrame {
 						oac.options,  //button titles
 						oac.options[1]); //default button
 				if(g != 0 ) { return;	}
-
 				lBILGI.setmESAJ("Ozel Kod2 :" + Integer.parseInt(textField_2.getText()) );
 				lBILGI.seteVRAK("");
-
 				f_Access.urun_kod_degisken_sil( "OZ2ID_Y", "OZ_KOD_2_DEGISKEN", Integer.parseInt(textField_2.getText()),
 						lBILGI,BAGLAN_LOG.fatLogDizin);
 				sifirla();
@@ -409,11 +406,10 @@ public class DEGISKEN_GIRIS extends JInternalFrame {
 						null,     //no custom icon
 						oac.options,  //button titles
 						oac.options[1]); //default button
-				if(g != 0 ) { return;	}
-
+				if(g != 0 )
+					return;
 				lBILGI.setmESAJ("Ana Grup :" + Integer.parseInt(textField_2.getText()) );
 				lBILGI.seteVRAK("");
-
 				f_Access.urun_kod_degisken_sil( "AGID_Y", "ANA_GRUP_DEGISKEN", Integer.parseInt(textField_2.getText()),
 						lBILGI,BAGLAN_LOG.fatLogDizin);
 				sifirla();

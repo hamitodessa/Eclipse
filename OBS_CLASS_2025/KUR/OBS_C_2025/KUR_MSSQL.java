@@ -27,10 +27,8 @@ public class KUR_MSSQL implements IKUR{
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 		con = null;  
 		String cumle = "";
-		if ( ! sbilgi.getPort().toString().equals("") )
-		{
+		if ( ! sbilgi.getPort().toString().equals(""))
 			sbilgi.setPort(  ":" + sbilgi.getPort() );
-		}
 		cumle = "jdbc:sqlserver://localhost"+ sbilgi.getPort() + ";instanceName=" + sbilgi.getIns() + ";";
 		con = DriverManager.getConnection(cumle,sbilgi.getKull(),sbilgi.getSifre());
 		String VERITABANI = "OK_Kur" + sbilgi.getKod();
@@ -115,7 +113,7 @@ public class KUR_MSSQL implements IKUR{
 		}
 		//  TEXT DOSYASI ILK ACILIS
 		ILOGER_KAYIT  tEXLOG = new TXT_LOG();
-		 tEXLOG.Logla(lBILGI, BAGLAN_LOG.kurLogDizin);
+		tEXLOG.Logla(lBILGI, BAGLAN_LOG.kurLogDizin);
 		//
 		stmt.close();
 		con.close();
@@ -135,7 +133,6 @@ public class KUR_MSSQL implements IKUR{
 				+ " INDEX IX_KUR NONCLUSTERED (Kur,Tarih ASC) INCLUDE([MA],[MS]) )";
 		stmt = con.createStatement();  
 		stmt.executeUpdate(sql);
-
 	}
 	public ResultSet  kur_liste(String tar) throws ClassNotFoundException, SQLException
 	{

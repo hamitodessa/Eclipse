@@ -123,7 +123,6 @@ public class KUR_MYSQL implements IKUR {
 		stmt = con.createStatement();  
 		stmt.executeUpdate(sql);
 	}
-
 	@Override
 	public ResultSet kur_liste(String tar) throws ClassNotFoundException, SQLException {
 		Class.forName("com.mysql.cj.jdbc.Driver");
@@ -136,7 +135,6 @@ public class KUR_MYSQL implements IKUR {
 		rss = stmt.executeQuery(sql);
 		return rss;	
 	}
-
 	@Override
 	public ResultSet kur_oku(String tar, String kur) throws ClassNotFoundException, SQLException {
 		Class.forName("com.mysql.cj.jdbc.Driver");
@@ -149,7 +147,6 @@ public class KUR_MYSQL implements IKUR {
 		rss = stmt.executeQuery(sql);
 		return rss;	
 	}
-
 	@Override
 	public void kur_sil(String tar, String kur) throws ClassNotFoundException, SQLException {
 		Class.forName("com.mysql.cj.jdbc.Driver");
@@ -161,7 +158,6 @@ public class KUR_MYSQL implements IKUR {
 		stmt.executeUpdate();
 
 	}
-
 	@Override
 	public void kur_kayit(String tar, String kur, double ma, double ms, double sa, double ss, double ba, double bs) throws ClassNotFoundException, SQLException {
 		Class.forName("com.mysql.cj.jdbc.Driver");

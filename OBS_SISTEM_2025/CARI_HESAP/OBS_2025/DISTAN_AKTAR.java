@@ -167,6 +167,7 @@ public class DISTAN_AKTAR extends JInternalFrame {
 		panel.add(toolBar_1);
 
 		JButton btnNewButton = new JButton("");
+		btnNewButton.setToolTipText("Excell Dosya ");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
@@ -181,6 +182,7 @@ public class DISTAN_AKTAR extends JInternalFrame {
 		toolBar_1.add(btnNewButton);
 
 		JButton btnNewButton_1 = new JButton("");
+		btnNewButton_1.setToolTipText("Aciklama Duzelt");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//**********************
@@ -188,10 +190,11 @@ public class DISTAN_AKTAR extends JInternalFrame {
 				//**********************
 			}
 		});
-		btnNewButton_1.setIcon(new ImageIcon(DISTAN_AKTAR.class.getResource("/ICONLAR/Windows-Table-icon.png")));
+		btnNewButton_1.setIcon(new ImageIcon(DISTAN_AKTAR.class.getResource("/ICONLAR/description-16.png")));
 		toolBar_1.add(btnNewButton_1);
 
 		JButton btnNewButton_2 = new JButton("");
+		btnNewButton_2.setToolTipText("Hesap No Uygula");
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				hesap_uygula();
@@ -610,13 +613,13 @@ public class DISTAN_AKTAR extends JInternalFrame {
 		sut= 1;
 		col = tblexcell.getColumnModel().getColumn(sut);
 		col.setHeaderRenderer(new SOLA());
-		col.setMinWidth(500);
+		col.setMinWidth(480);
 
 		sut= 2;
 		col = tblexcell.getColumnModel().getColumn(sut);
 		col.setHeaderRenderer(new SOLA());
 		col.setCellEditor(new COKLU_GIRIS_HSP(new Obs_TextFIeld(12),"B"));
-		col.setMinWidth(100);
+		col.setMinWidth(110);
 		//***************
 		DefaultTableCellRenderer r = new DefaultTableCellRenderer() {
 			Font font =new Font("Tahoma", Font.BOLD, 11);
@@ -667,7 +670,7 @@ public class DISTAN_AKTAR extends JInternalFrame {
 
 		};
 		col.setCellRenderer(rr);
-		col.setMinWidth(100);
+		col.setMinWidth(110);
 
 		sut= 6;
 		col = tblexcell.getColumnModel().getColumn(sut);
@@ -1035,31 +1038,31 @@ public class DISTAN_AKTAR extends JInternalFrame {
 		JPanel panel_3 = new JPanel();
 		//panel_3.setBorder(new LineBorder(null));
 		splitPane_1.setRightComponent(panel_3);
-		panel_3.setMinimumSize(new Dimension(0, 30));
-		panel_3.setMaximumSize(new Dimension(0, 30));
+		panel_3.setMinimumSize(new Dimension(0, 25));
+		panel_3.setMaximumSize(new Dimension(0, 25));
 		panel_3.setLayout(null);
 
 		lblborc = new JLabel("...");
 		//lblborc.setForeground(new Color(178, 34, 34));
 		lblborc.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblborc.setBounds(606, 11, 284, 14);
+		lblborc.setBounds(586, 5, 284, 14);
 		panel_3.add(lblborc);
 
 		lblalacak = new JLabel("...");
 		//lblalacak.setForeground(new Color(0, 128, 128));
 		lblalacak.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblalacak.setBounds(943, 11, 262, 14);
+		lblalacak.setBounds(935, 5, 262, 14);
 		panel_3.add(lblalacak);
 
 		JLabel lblNewLabel_3 = new JLabel("Satir Sayisi:");
 		lblNewLabel_3.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblNewLabel_3.setBounds(10, 11, 85, 14);
+		lblNewLabel_3.setBounds(10, 5, 85, 14);
 		panel_3.add(lblNewLabel_3);
 
 		lblsatir = new JLabel("0");
 		//lblsatir.setForeground(new Color(0, 0, 128));
 		lblsatir.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblsatir.setBounds(100, 11, 56, 14);
+		lblsatir.setBounds(100, 5, 56, 14);
 		panel_3.add(lblsatir);
 		GRID_TEMIZLE.grid_temizle(tblexcell);
 

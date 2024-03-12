@@ -317,10 +317,10 @@ public class CARI_HESAP_MSSQL implements ICARI_HESAP {
 				" TUTAR float) "  ;
 		stmt = con.createStatement();  
 		stmt.executeUpdate(sql); 
-		sql = "INSERT INTO  TAH_EVRAK(CINS,NO) VALUES ('GIR','0')";
+		sql = "INSERT INTO TAH_EVRAK(CINS,NO) VALUES ('GIR','0')";
 		stmt = con.createStatement();  
 		stmt.executeUpdate(sql);
-		sql = "INSERT INTO  TAH_EVRAK(CINS,NO) VALUES ('CIK','0')";
+		sql = "INSERT INTO TAH_EVRAK(CINS,NO) VALUES ('CIK','0')";
 		stmt = con.createStatement();  
 		stmt.executeUpdate(sql);
 		// ***************EVRAK NO YAZ ************
@@ -419,7 +419,6 @@ public class CARI_HESAP_MSSQL implements ICARI_HESAP {
 	public void sqlite_sil() throws ClassNotFoundException, SQLException
 	{
 	}
-
 	public ResultSet ekstre_sqlite() throws ClassNotFoundException, SQLException
 	{
 		Class.forName("org.sqlite.JDBC");

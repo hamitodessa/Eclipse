@@ -319,7 +319,7 @@ public class USER_EKLEME extends JInternalFrame {
 	}
 	public static void kayit() 
 	{
-		if (txtkull.getText().equals("") )
+		if (txtkull.getText().equals(""))
 			return ;
 		if ( ! GLOBAL.KULL_ADI.equals("Admin") ) //txtkull.getText().equals("Admin")  &&  ! GLOBAL.KULL_ADI.equals("Admin")
 		{
@@ -333,7 +333,6 @@ public class USER_EKLEME extends JInternalFrame {
 			if ( varmi == true )
 				oac.uSER_ISL.user_sil(txtkull.getText()); // ' USER VAR  
 			oac.uSER_ISL.user_ekle_degis(txtkull.getText(),oac.sDONDUR.sDONDUR(passwordField), txtsev.getText(), txtdb.getText(), txtmail.getText(),  chckbxl.isSelected()  ? true : false,  chckbxs.isSelected()  ? true :false);
-			//
 			if (txtkull.getText().equals(GLOBAL.KULL_ADI)) {
 				byte[]  qaz =	ENCRYPT_DECRYPT_STRING.eNCRYPT_manual(oac.sDONDUR.sDONDUR(passwordField)) ;
 				String response = Arrays.toString(qaz);

@@ -29,7 +29,6 @@ public class USER_ISLEMLERI {
 		con.close();
 		return count  != 0;
 	}
-	
 	public void user_sil(String usr) throws SQLException, ClassNotFoundException
 	{
 		Class.forName("org.sqlite.JDBC");
@@ -118,12 +117,13 @@ public class USER_ISLEMLERI {
 		String sql ="UPDATE  USERS  SET USER_PWD=?  WHERE USER_NAME=?";
 		stmt = con.prepareStatement(sql);
 		byte[] qaz;
-			try {
-				qaz = ENCRYPT_DECRYPT_STRING.eNCRYPT_manual(sifre);
-				encodedString = Arrays.toString(qaz);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
+		try 
+		{
+			qaz = ENCRYPT_DECRYPT_STRING.eNCRYPT_manual(sifre);
+			encodedString = Arrays.toString(qaz);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		stmt.setString(1, encodedString);
 		stmt.setString(2, user.toString());
 		stmt.executeUpdate();
@@ -182,7 +182,8 @@ public class USER_ISLEMLERI {
 		stmt.setString(2, usn);
 		stmt.setString(3, usserver);
 		byte[] qaz;
-		try {
+		try 
+		{
 			qaz = ENCRYPT_DECRYPT_STRING.eNCRYPT_manual(sifre);
 			encodedString = Arrays.toString(qaz);
 		} catch (Exception e) {
@@ -216,7 +217,8 @@ public class USER_ISLEMLERI {
 		stmt = con.prepareStatement(sql);
 		stmt.setString(1, user);
 		byte[] qaz;
-		try {
+		try 
+		{
 			qaz = ENCRYPT_DECRYPT_STRING.eNCRYPT_manual(pwd);
 			encodedString = Arrays.toString(qaz);
 		} catch (Exception e) {
@@ -414,15 +416,13 @@ public class USER_ISLEMLERI {
 			MAIL_SETTINGS.HESAP = rss.getString("HESAP").toString();
 			MAIL_SETTINGS.HOST  =rss.getString("HOST").toString() ;
 			MAIL_SETTINGS.PORT  =rss.getString("PORT").toString() ;
-			
 			String decodedString = rss.getString("SIFR").toString();
 			String[] byteValues = decodedString.substring(1, decodedString.length() - 1).split(",");
 			byte[] bytes = new byte[byteValues.length];
-			for (int i=0, len=bytes.length; i<len; i++) {
-			   bytes[i] = Byte.parseByte(byteValues[i].trim());     
-			}
-			
-			try {
+			for (int i=0, len=bytes.length; i<len; i++)
+				bytes[i] = Byte.parseByte(byteValues[i].trim());     
+			try 
+			{
 				decodedString =  ENCRYPT_DECRYPT_STRING.dCRYPT_manual(bytes);
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -455,7 +455,8 @@ public class USER_ISLEMLERI {
 		stmt.setString(3, host);
 		stmt.setString(4, port);
 		byte[] qaz;
-		try {
+		try 
+		{
 			qaz = ENCRYPT_DECRYPT_STRING.eNCRYPT_manual(sifre);
 			encodedString = Arrays.toString(qaz);
 		} catch (Exception e) {
@@ -577,7 +578,8 @@ public class USER_ISLEMLERI {
 		stmt.setString(2, usn);
 		stmt.setString(3, usserver);
 		byte[] qaz;
-		try {
+		try 
+		{
 			qaz = ENCRYPT_DECRYPT_STRING.eNCRYPT_manual(sifre);
 			encodedString = Arrays.toString(qaz);
 		} catch (Exception e) {

@@ -1393,7 +1393,6 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 		String sqll = "INSERT INTO CEK (LOGO,FIR_ISMI,ADR_1,ADR_2,VD_VN,MAIL,DIGER,KASE ," +
 				 " BANKA,SUBE,SERI,HESAP,BORCLU,TARIH,TUTAR	) ";
 		sqll += "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-		
 		GLOBAL.CekPrintcon = GLOBAL.myCekPrintConnection();
 		PreparedStatement stmtcek = GLOBAL.CekPrintcon.prepareStatement(sqll);
 		while(rsCekler.next())
@@ -1417,7 +1416,6 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 			stmtcek.executeUpdate();
 		}
 		stmtcek.close();
-		
 	}
 	@Override
 	public ResultSet tah_listele(int cins, int tur, String ilktarih, String sontarih, String ilkevr, String sonevr,String ilkck,String sonck,String pos)
@@ -1440,7 +1438,6 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 				" AND EVRAK >= '" + ilkevr + "' AND EVRAK < '" + sonevr + "' " + 
 				" AND C_HES >= '" + ilkck + "' AND C_HES < '" + sonck + "' " + 
 				" ORDER BY TARIH " ;
-
 		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
@@ -1466,7 +1463,6 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 		stmt.setBytes(8,ayar.getBytes("KASE"));
 		stmt.executeUpdate();
 		stmt.close();
-
 	}
 	@Override
 	public ResultSet pos_banka_oku() throws ClassNotFoundException, SQLException {

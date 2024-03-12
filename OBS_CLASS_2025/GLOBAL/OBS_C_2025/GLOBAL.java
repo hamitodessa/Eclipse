@@ -719,9 +719,8 @@ public class GLOBAL {
 			MimeMessage message = new MimeMessage(session);
 			message.setFrom(new InternetAddress("info@okumus.gen.tr" ,"Java Yukleme"));
 			InternetAddress[] toAddress = new InternetAddress[to.length];
-			for (int i = 0; i < to.length; i++) {
+			for (int i = 0; i < to.length; i++)
 				toAddress[i] = new InternetAddress(to[i]);
-			}
 			for (int i = 0; i < toAddress.length; i++)
 				message.setRecipient(RecipientType.TO,  toAddress[i]);
 			messagePart = new MimeBodyPart();

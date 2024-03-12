@@ -102,7 +102,7 @@ public class DENEMELER extends JInternalFrame {
 	OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
 	BadgeButton badgeButton1 ;
 	private JTextField textField;
-	private JTextField textField_1;
+	
 	
 	@SuppressWarnings("rawtypes")
 	public DENEMELER() {
@@ -375,34 +375,7 @@ public class DENEMELER extends JInternalFrame {
 		panel.add(panel_1);
 		panel_1.setLayout(new BorderLayout(0, 0));
 		
-		JButton btnNewButton_10 = new JButton("Confirm dialog");
-		btnNewButton_10.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			JOptionPane optionPane = new JOptionPane("Eminmisin", JOptionPane.QUESTION_MESSAGE,
-		    		JOptionPane.YES_NO_OPTION, null,
-		    		oac.options,  oac.options[1]);
-			
-			JDialog	dialog = optionPane.createDialog("Confirm Dialog");
-			Set focusTraversalKeys = new HashSet(dialog.getFocusTraversalKeys(0));
-			focusTraversalKeys.add(AWTKeyStroke.getAWTKeyStroke(KeyEvent.VK_RIGHT, KeyEvent.VK_UNDEFINED));
-			focusTraversalKeys.add(AWTKeyStroke.getAWTKeyStroke(KeyEvent.VK_LEFT, KeyEvent.VK_UNDEFINED));
-			dialog.setFocusTraversalKeys(0, focusTraversalKeys);
-			dialog.setVisible(true);
-		    dialog.dispose();
-			    if(optionPane.getValue() == null)
-			    {
-			    	
-			    }
-			    else {
-			    //	int option = Integer.valueOf(optionPane.getValue());
-				    System.out.println( oac.mesajDeger(optionPane.getValue().toString()));
-				}
-			    
-			    //////////////////////////////////////////////
-			}
-		});
-		btnNewButton_10.setBounds(54, 359, 175, 23);
-		panel.add(btnNewButton_10);
+
 		
 		JButton btnNewButton_8 = new JButton("File Sifrele");
 		btnNewButton_8.addActionListener(new ActionListener() {
@@ -443,38 +416,7 @@ public class DENEMELER extends JInternalFrame {
 		btnNewButton_12.setBounds(620, 346, 103, 23);
 		panel.add(btnNewButton_12);
 		
-		
-		textField_1 = new JTextField();
-		textField_1.setBounds(54, 417, 190, 20);
-		panel.add(textField_1);
-		textField_1.setColumns(10);
-		
-		
-		JButton btnNewButton_13 = new JButton("char to bit");
-		btnNewButton_13.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-			
-			    String result = "";
-			    char[] messChar = textField_1.getText() .toCharArray();
 
-			    for (int i = 0; i < messChar.length; i++) {
-			        result += Integer.toBinaryString(messChar[i]) + " ";
-			    }
-
-			    System.out.println(result);
-			    
-//			    String[] singleBinaryArray = result.toString().split("\\s");
-//			    String finalResult = "";
-//			    for (String string : singleBinaryArray) {
-//			    Character c = (char) Integer.parseInt(string, 2);
-//			        finalResult += c.toString();
-//			    }
-//			    System.out.println("String " + finalResult);
-			}
-		});
-		btnNewButton_13.setBounds(54, 393, 89, 23);
-		panel.add(btnNewButton_13);
 		
 		
 		

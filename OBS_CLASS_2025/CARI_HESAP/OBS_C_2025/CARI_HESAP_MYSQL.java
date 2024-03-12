@@ -356,10 +356,6 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 		rss = stmt.executeQuery();
 		return rss;	 
 	}
-	public void sqlite_sil() throws ClassNotFoundException, SQLException {
-		
-	}
-	
 	public ResultSet ekstre_sqlite() throws ClassNotFoundException, SQLException {
 		Class.forName("org.sqlite.JDBC");
 		SQLitecon = null;

@@ -57,9 +57,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.ActionEvent;
-import javax.swing.border.EtchedBorder;
-import java.awt.Color;
-
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -185,7 +182,7 @@ public class KUR_GIRIS extends JInternalFrame {
 		dateChooser.setDateFormatString("dd.MM.yyyy");
 		dateChooser.setFont(new Font("Tahoma", Font.BOLD, 16));
 		dateChooser.setDate(new Date());
-		dateChooser.setBounds(200, 9, 140, 30);
+		dateChooser.setBounds(185, 9, 140, 30);
 		dateChooser.getDateEditor().addPropertyChangeListener(
 				new PropertyChangeListener() {
 					@Override
@@ -214,11 +211,12 @@ public class KUR_GIRIS extends JInternalFrame {
 			}
 		});
 		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 11));
-		btnNewButton.setBounds(380, 9, 92, 30);
+		btnNewButton.setBounds(369, 9, 86, 30);
 		panel.add(btnNewButton);
 
 		JPanel panel_1 = new JPanel();
-		panel_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Merkez", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel_1.setBorder(new TitledBorder(null,"Merkez", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		//panel_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Merkez", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panel_1.setBounds(75, 51, 120, 79);
 		panel.add(panel_1);
 		panel_1.setLayout(null);
@@ -262,8 +260,9 @@ public class KUR_GIRIS extends JInternalFrame {
 
 		JPanel panel_1_1 = new JPanel();
 		panel_1_1.setLayout(null);
-		panel_1_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Serbest", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panel_1_1.setBounds(200, 51, 120, 79);
+		panel_1_1.setBorder(new TitledBorder(null,"Serbest", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		//panel_1_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Serbest", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel_1_1.setBounds(205, 51, 120, 79);
 		panel.add(panel_1_1);
 
 		formattedTextField_2 = new JFormattedTextField();
@@ -303,7 +302,8 @@ public class KUR_GIRIS extends JInternalFrame {
 
 		JPanel panel_1_2 = new JPanel();
 		panel_1_2.setLayout(null);
-		panel_1_2.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Bankalar Arasi", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel_1_2.setBorder(new TitledBorder(null,"Bankalar Arasi", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		//panel_1_2.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Bankalar Arasi", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panel_1_2.setBounds(335, 51, 120, 79);
 		panel.add(panel_1_2);
 
@@ -353,7 +353,7 @@ public class KUR_GIRIS extends JInternalFrame {
 		panel.add(lblSatis);
 
 		JSeparator separator = new JSeparator();
-		separator.setBounds(10, 45, 445, 2);
+		separator.setBounds(10, 48, 442, 2);
 		panel.add(separator);
 		
 		JButton btnNewButton_1_2 = new JButton("");
@@ -375,7 +375,7 @@ public class KUR_GIRIS extends JInternalFrame {
 		btnNewButton_1_2.setToolTipText("Geri");
 		btnNewButton_1_2.setFont(new Font("Tahoma", Font.BOLD, 10));
 		btnNewButton_1_2.setIcon(new ImageIcon(KUR_GIRIS.class.getResource("/ICONLAR/undo-20.png")));
-		btnNewButton_1_2.setBounds(167, 9, 30, 30);
+		btnNewButton_1_2.setBounds(152, 9, 30, 30);
 		panel.add(btnNewButton_1_2);
 		
 		JButton btnNewButton_1 = new JButton("");
@@ -397,7 +397,7 @@ public class KUR_GIRIS extends JInternalFrame {
 		btnNewButton_1.setToolTipText("Ileri");
 		btnNewButton_1.setIcon(new ImageIcon(KUR_GIRIS.class.getResource("/ICONLAR/redo-20.png")));
 		btnNewButton_1.setFont(new Font("Tahoma", Font.BOLD, 10));
-		btnNewButton_1.setBounds(344, 9, 30, 30);
+		btnNewButton_1.setBounds(329, 9, 30, 30);
 		panel.add(btnNewButton_1);
 		kur_liste();
 		kutu_doldur(0);

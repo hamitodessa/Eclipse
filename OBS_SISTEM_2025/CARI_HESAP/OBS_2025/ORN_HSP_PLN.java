@@ -3,10 +3,8 @@ package OBS_2025;
 import javax.swing.JInternalFrame;
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Cursor;
 
-import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 
 import OBS_C_2025.BAGLAN_LOG;
@@ -50,7 +48,7 @@ public class ORN_HSP_PLN extends JInternalFrame {
 		panel.setLayout(null);
 
 		JPanel panel_1 = new JPanel();
-		panel_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Dosyadaki Kayit Sayisi", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel_1.setBorder(new TitledBorder(null,"Dosyadaki Kayit Sayisi", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panel_1.setBounds(71, 11, 274, 63);
 		panel.add(panel_1);
 

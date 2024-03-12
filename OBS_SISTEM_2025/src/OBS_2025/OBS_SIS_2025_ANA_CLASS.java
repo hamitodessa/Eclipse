@@ -59,8 +59,7 @@ public class OBS_SIS_2025_ANA_CLASS
 	public IConnection _ISmsCon ;
 	public IConnection _IKeresteCon ;
 
-	public static  ByteArrayDataSource ds = null ;
-	public int txt_yukseklik =20;
+	public static ByteArrayDataSource ds = null ;
 	public static Color gridcolor =  new Color(0, 191, 255);      //   0,153,204   java.awt.Color[r=204,g=0,b=102]
 	
 	public static Color satBackColor ;
@@ -71,11 +70,11 @@ public class OBS_SIS_2025_ANA_CLASS
 	public USER_ISLEMLERI uSER_ISL = new USER_ISLEMLERI();
 	public Tema_Cari tCR = new Tema_Cari();
 	public SIFRE_DONDUR sDONDUR = new     SIFRE_DONDUR();
-	public static String hsp_hsp_kodu =""; 
-	public static String stk_kodu =""; 
+	public static String hsp_hsp_kodu = ""; 
+	public static String stk_kodu = ""; 
 	public BufferedImage kam_resmi ;
-	public static String irs_no =""; 
-	public static String nerden ="";
+	public static String irs_no = ""; 
+	public static String nerden = "";
 	public String[] options = {"Tamam......       		!	", "Vazgec......       		!	"}; 
 	public int mesajDeger(String mesaj)
 	{

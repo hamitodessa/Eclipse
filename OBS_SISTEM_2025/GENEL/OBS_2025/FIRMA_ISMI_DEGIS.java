@@ -47,7 +47,7 @@ public class FIRMA_ISMI_DEGIS extends JInternalFrame {
 	public FIRMA_ISMI_DEGIS() {
 		setClosable(true);
 		setTitle("FIRMA ISMI DEGISTIRME");
-		setBounds(100, 100, 663, 118);
+		setBounds(100, 100, 663, 126);
 		setFrameIcon(FIT_IMAGE.formIcon(new ImageIcon(FIRMA_ISMI_DEGIS.class.getResource("/ICONLAR/icons8-organization-30.png")), 16, 16));//
 		JPanel panel = new JPanel();
 		getContentPane().add(panel, BorderLayout.CENTER);
@@ -61,7 +61,7 @@ public class FIRMA_ISMI_DEGIS extends JInternalFrame {
 
 		textField = new Obs_TextFIeld(50);
 		//textField.setForeground(new Color(0, 0, 128));
-		textField.setFont(new Font("Tahoma", Font.BOLD, 12));
+		textField.setFont(new Font("Tahoma", Font.BOLD, 11));
 		textField.setBounds(53, 25, 423, 20);
 		panel_1.add(textField);
 		textField.setColumns(10);

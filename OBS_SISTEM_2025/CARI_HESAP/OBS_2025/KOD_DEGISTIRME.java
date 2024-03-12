@@ -16,8 +16,6 @@ import OBS_C_2025.lOG_BILGI;
 import raven.toast.Notifications;
 
 
-import javax.swing.border.EtchedBorder;
-import java.awt.Color;
 import java.awt.Font;
 import javax.swing.JButton;
 import javax.swing.ImageIcon;
@@ -48,16 +46,13 @@ public class KOD_DEGISTIRME extends JInternalFrame {
 		panel.setLayout(null);
 		
 		JPanel panel_1 = new JPanel();
-		panel_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Aranacak", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel_1.setBorder(new TitledBorder(null,"Aranacak", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 
 		panel_1.setBounds(34, 21, 250, 74);
 		panel.add(panel_1);
 		panel_1.setLayout(null);
 		
-		
-		
 		lblNewLabel = new JLabel("...");
-		//lblNewLabel.setForeground(new Color(0, 0, 128));
 		lblNewLabel.setBounds(28, 49, 212, 14);
 		panel_1.add(lblNewLabel);
 		
@@ -106,7 +101,7 @@ public class KOD_DEGISTIRME extends JInternalFrame {
 		
 		JPanel panel_1_1 = new JPanel();
 		panel_1_1.setLayout(null);
-		panel_1_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Yazilacak", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel_1_1.setBorder(new TitledBorder(null,"Yazilacak", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panel_1_1.setBounds(313, 21, 250, 74);
 		panel.add(panel_1_1);
 		
@@ -154,7 +149,6 @@ public class KOD_DEGISTIRME extends JInternalFrame {
 		panel_1_1.add(textField_1);
 		
 		lblNewLabel_1 = new JLabel("...");
-		//lblNewLabel_1.setForeground(new Color(0, 0, 128));
 		lblNewLabel_1.setBounds(28, 49, 212, 14);
 		panel_1_1.add(lblNewLabel_1);
 		

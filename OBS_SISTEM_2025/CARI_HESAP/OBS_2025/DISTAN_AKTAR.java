@@ -149,8 +149,8 @@ public class DISTAN_AKTAR extends JInternalFrame {
 
 
 		ScrollPaneWin11 scrollPaneust = new ScrollPaneWin11();
-		scrollPaneust.setMinimumSize(new Dimension(1160, 105));
-		scrollPaneust.setMaximumSize(new Dimension(1160, 105));
+		scrollPaneust.setMinimumSize(new Dimension(1160, 110));
+		scrollPaneust.setMaximumSize(new Dimension(1160, 110));
 
 		JPanel panel = new JPanel();
 		//panel.setBorder(new LineBorder(null));

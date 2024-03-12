@@ -123,7 +123,6 @@ public class PRINT_JASPER extends JInternalFrame {
 				designSection.addBand(qweBand);
 				JasperReport jr = JasperCompileManager.compileReport(jasper);
 				ResultSet rSet = a_Access.adr_etiket("Adi");
-				//
 				etISIM.clear();
 				if(ETIKET.orTabbedPane.getSelectedIndex() == 0)
 					satir_kontrol();	
@@ -135,7 +134,6 @@ public class PRINT_JASPER extends JInternalFrame {
 			}
 			else if (nerden.equals("ekstre"))
 			{
-				
 				file = new File(GLOBAL.SURUCU + File.separator + System.getProperty("user.name") + "_Ekstre.jrxml");
 				JasperDesign jasper = JRXmlLoader.load(file);
 				JasperReport jr = JasperCompileManager.compileReport(jasper);
@@ -147,7 +145,6 @@ public class PRINT_JASPER extends JInternalFrame {
 				rs = c_Access.ekstre(FILTRE.txtkodu.getText(), TARIH_CEVIR.tarih_geri(FILTRE.dateChooser),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_1));
 				jp = new JasperPrint();
 				jp = JasperFillManager.fillReport(jr,parameters,new JRResultSetDataSource(rs));
-			
 				jp.setLocaleCode("UTF-8");
 			}
 			else if (nerden.equals("ekstre_kisa"))
@@ -225,31 +222,18 @@ public class PRINT_JASPER extends JInternalFrame {
 						String tELEF = "" ;
 						String sEMT = "" ;
 						String sEHIR = "";
-
 						if (modell.getValueAt(i, 1) != null)
-						{
 							iSIM = modell.getValueAt(i, 1).toString();
-						}
 						if (modell.getValueAt(i, 2) != null)
-						{
 							aDR1 = modell.getValueAt(i, 2).toString();
-						}
 						if (modell.getValueAt(i, 3) != null)
-						{
 							aDR2 = modell.getValueAt(i, 3).toString();
-						}
 						if (modell.getValueAt(i, 4) != null)
-						{
 							tELEF = modell.getValueAt(i, 4).toString();
-						}
 						if (modell.getValueAt(i, 5) != null)
-						{
 							sEMT = modell.getValueAt(i, 5).toString();
-						}
 						if (modell.getValueAt(i, 6) != null)
-						{
 							sEHIR = modell.getValueAt(i, 6).toString();
-						}
 						ETIKET_ISIM ets1  = new ETIKET_ISIM(iSIM,aDR1,aDR2 ,sEMT,sEHIR,tELEF);
 						etISIM.add(ets1);
 					}
@@ -299,7 +283,6 @@ public class PRINT_JASPER extends JInternalFrame {
 		///
 		jp.setLocaleCode("UTF-8");
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
-		
 		JasperExportManager.exportReportToPdfStream(jp, baos);
 		ByteArrayDataSource ds =  new ByteArrayDataSource(baos.toByteArray(), "application/pdf");
 		//JasperExportManager.exportReportToPdfFile(jp, "C:\\OBS_SISTEM\\invoice.pdf");

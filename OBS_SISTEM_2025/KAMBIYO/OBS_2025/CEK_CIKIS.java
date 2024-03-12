@@ -630,7 +630,6 @@ public class CEK_CIKIS extends JInternalFrame {
 					Date ct= new SimpleDateFormat("yyyy-MM-dd").parse(sDate1); 
 					sDate1= rs.getDate("T_Tarih").toString(); 
 					Date tt= new SimpleDateFormat("yyyy-MM-dd").parse(sDate1); 
-
 					mdll.addRow(new Object[]{rs.getString("Cek_No"), vade,
 							rs.getString("Banka"),rs.getString("Sube"),rs.getString("Seri_No"),
 							rs.getString("Ilk_Borclu"),rs.getString("Cek_Hesap_No"),rs.getString("Cins"),
@@ -723,7 +722,6 @@ public class CEK_CIKIS extends JInternalFrame {
 					OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING,   "Bu numarada hesaba rastlanmadi!!!!");
 					return;
 				} 
-
 				if (alh.equals(textField_1.getText().toString()))
 				{
 					OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING, "Borclu ve Alacakli Hesap Ayni...");
@@ -748,7 +746,6 @@ public class CEK_CIKIS extends JInternalFrame {
 							String qwe =model.getValueAt(i , 1).toString()  ;
 							vade  = qwe;
 						}
-
 						str_4 = textField.getText()+  "'Bordro ile " + model.getValueAt(i , 0).toString() + " Nolu " + vade + " Vadeli Çek" ;
 						dEKONT_BILGI dBilgi = new dEKONT_BILGI();
 						dBilgi.setbHES(textField_1.getText());
@@ -837,25 +834,25 @@ public class CEK_CIKIS extends JInternalFrame {
 				rs.next();
 				DefaultTableModel model = (DefaultTableModel) table.getModel();
 				String sDate1 = rs.getDate("Vade").toString(); 
-					Date vade= new SimpleDateFormat("yyyy-MM-dd").parse(sDate1);  
-					model.setValueAt(vade,satir, 1);
-					model.setValueAt(rs.getString("Banka"),satir, 2);
-					model.setValueAt(rs.getString("Sube"),satir, 3);
-					model.setValueAt(rs.getString("Seri_No"),satir, 4);
-					model.setValueAt(rs.getString("Ilk_Borclu"),satir, 5);
-					model.setValueAt(rs.getString("Cek_Hesap_No"),satir, 6);
-					model.setValueAt(rs.getString("Cins"),satir, 7);
-					model.setValueAt(rs.getDouble("Tutar"),satir, 8);
-					model.setValueAt(rs.getString("Cikis_Bordro"),satir, 9);
-					sDate1= rs.getDate("Cikis_Tarihi").toString(); 
-					Date ct= new SimpleDateFormat("yyyy-MM-dd").parse(sDate1); 
-					model.setValueAt(ct,satir, 10);
-					model.setValueAt(rs.getString("Cikis_Musteri"),satir, 11);
-					model.setValueAt(rs.getString("Durum"),satir, 12);
-					sDate1= rs.getDate("T_Tarih").toString(); 
-					Date tt= new SimpleDateFormat("yyyy-MM-dd").parse(sDate1); 
-					model.setValueAt(tt,satir, 13);
-					model.setValueAt(rs.getString("Cikis_Ozel_Kod"),satir, 14);
+				Date vade= new SimpleDateFormat("yyyy-MM-dd").parse(sDate1);  
+				model.setValueAt(vade,satir, 1);
+				model.setValueAt(rs.getString("Banka"),satir, 2);
+				model.setValueAt(rs.getString("Sube"),satir, 3);
+				model.setValueAt(rs.getString("Seri_No"),satir, 4);
+				model.setValueAt(rs.getString("Ilk_Borclu"),satir, 5);
+				model.setValueAt(rs.getString("Cek_Hesap_No"),satir, 6);
+				model.setValueAt(rs.getString("Cins"),satir, 7);
+				model.setValueAt(rs.getDouble("Tutar"),satir, 8);
+				model.setValueAt(rs.getString("Cikis_Bordro"),satir, 9);
+				sDate1= rs.getDate("Cikis_Tarihi").toString(); 
+				Date ct= new SimpleDateFormat("yyyy-MM-dd").parse(sDate1); 
+				model.setValueAt(ct,satir, 10);
+				model.setValueAt(rs.getString("Cikis_Musteri"),satir, 11);
+				model.setValueAt(rs.getString("Durum"),satir, 12);
+				sDate1= rs.getDate("T_Tarih").toString(); 
+				Date tt= new SimpleDateFormat("yyyy-MM-dd").parse(sDate1); 
+				model.setValueAt(tt,satir, 13);
+				model.setValueAt(rs.getString("Cikis_Ozel_Kod"),satir, 14);
 			}
 		}
 		catch (Exception ex)
@@ -906,7 +903,6 @@ public class CEK_CIKIS extends JInternalFrame {
 					evr_sayi += 1 ;
 				}
 			}
-			
 		}
 		label.setText(FORMATLAMA.doub_2(tutar));
 		lblNewLabel_12.setText(FORMATLAMA.doub_0(evr_sayi));
@@ -943,7 +939,6 @@ public class CEK_CIKIS extends JInternalFrame {
 						vade  = qwe;
 					}
 					String gtt = TARIH_CEVIR.tarih_geri(dateChooser);
-
 					Date vadee =new SimpleDateFormat("yyyy.MM.dd").parse(vade); 
 					Date bugun =new SimpleDateFormat("yyyy.MM.dd").parse(gtt);  
 					gun  = daysBetween(bugun,vadee);

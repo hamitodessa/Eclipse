@@ -338,11 +338,9 @@ public class CEK_TAKIP extends JInternalFrame {
 				lblNewLabel_20.setText(rs.getString("Ilk_Borclu").toString() );
 				lblNewLabel_22.setText(FORMATLAMA.doub_2(rs.getDouble("Tutar")) );
 				tutar = rs.getDouble("Tutar");
-
 				dateChooser.setDate(rs.getDate("Cikis_Tarihi"));   // Cikis Tarihi
 				dateChooser_2.setDate(rs.getDate("Vade")); // Vade
 				dateChooser_1.setDate(rs.getDate("Giris_Tarihi")); // Giris tarihi
-
 				if (! rs.getDate("T_Tarih").toString().equals("1900-01-01"))
 					dateChooser_3.setDate(rs.getDate("T_Tarih")); // T tarihi
 				else
@@ -460,7 +458,6 @@ public class CEK_TAKIP extends JInternalFrame {
 			int eno =0;
 			eno = c_Access.cari_fisno_al();
 			str_4 = lblNewLabel_10.getText() + " Nolu Çek " + str_1;
-			///
 			String str = TARIH_CEVIR.tarih_geri_saatli(dateChooser_3) ;
 			String mesaj = "Çek no :" +lblNewLabel_10.getText()  + " A. Hes:" + alh + " Tut:" + lblNewLabel_22.getText() +
 					" B. Hes:"+ bh + " Tut:" + lblNewLabel_22.getText() + " Çek " + str_1;

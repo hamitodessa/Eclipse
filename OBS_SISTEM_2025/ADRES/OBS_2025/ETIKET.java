@@ -103,7 +103,6 @@ public class ETIKET extends JInternalFrame {
 		splitPane_1.setResizeWeight(1.0);
 		splitPane_1.setOrientation(JSplitPane.VERTICAL_SPLIT);
 		splitPane.setRightComponent(splitPane_1);
-
 		//
 		ScrollPaneWin11 scrollPane = new ScrollPaneWin11();
 		orTabbedPane = new MaterialTabbed();
@@ -368,7 +367,6 @@ public class ETIKET extends JInternalFrame {
 				parts = deger.split(",");
 				bigFont = new Font(parts[0], Integer.parseInt(parts[1].trim()), Integer.parseInt(parts[2].trim()));
 				table.setFont(bigFont);
-
 			}
 		} 
 		catch (Exception ex) {

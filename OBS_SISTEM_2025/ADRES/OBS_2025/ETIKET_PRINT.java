@@ -82,7 +82,7 @@ public class ETIKET_PRINT extends JInternalFrame {
 	{
 		try {
 			//JasperDesign jasper = JRXmlLoader.load(this.getClass().getClassLoader().getResourceAsStream("RPT\\ADRES_RPT\\Etiket2.jrxml"));
-			File file = new File("C:\\OBS_SISTEM\\ETIKET.jrxml");
+			File file = new File(GLOBAL.SURUCU + File.separator + System.getProperty("user.name") + "_ETIKET.jrxml");
 			JasperDesign jasper = JRXmlLoader.load(file);
 			//
 			//jasper.setPageHeight(842);

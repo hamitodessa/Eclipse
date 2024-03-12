@@ -3215,7 +3215,6 @@ public class OBS_MAIN extends JFrame  {
 							oac.nerden = "ekstre";
 							PRINT_JASPER.hisset("ekstre","normal");
 						}
-						
 					}
 					else if (sonuc == "STOK_RAPOR")
 					{

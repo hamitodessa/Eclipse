@@ -125,8 +125,6 @@ public class CEK_GIRIS extends JInternalFrame {
 		ScrollPaneWin11 scrollPane = new ScrollPaneWin11();
 		splitPane_1.setLeftComponent(scrollPane);
 
-
-
 		DefaultTableModel model = new DefaultTableModel() ; 
 		table = new JTable(model) {
 			
@@ -144,12 +142,8 @@ public class CEK_GIRIS extends JInternalFrame {
 				return c;
 			}
 		};
-
 		if(! oac.gridcolor.toString().equals("java.awt.Color[r=255,g=255,b=255]"))
 			table.setGridColor(oac.gridcolor);
-
-		
-		
 		table.addFocusListener(new FocusListener()
 	      {
 	         @Override
@@ -157,7 +151,6 @@ public class CEK_GIRIS extends JInternalFrame {
 	         {
 	           
 	         }
-	 
 	         @Override
 	         public void focusLost(FocusEvent e)
 	         {
@@ -267,7 +260,6 @@ public class CEK_GIRIS extends JInternalFrame {
 		ActionMap am = table.getActionMap();
 		am.put("Action.NextCell", new Next_Cell_Kereste(table,"cek_gir"));
 		//table.putClientProperty("terminateEditOnFocusLost", Boolean.TRUE);
-
 		
 		th.repaint();
 		scrollPane.setViewportView(table);
@@ -437,7 +429,6 @@ public class CEK_GIRIS extends JInternalFrame {
 					OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,  ex.getMessage());
 				}
 			}
-
 		});
 		btnNewButton.setIcon(new ImageIcon(CEK_GIRIS.class.getResource("/ICONLAR/icons8-view-16.png")));
 		btnNewButton.setBounds(215, 7, 25, 22);
@@ -469,7 +460,8 @@ public class CEK_GIRIS extends JInternalFrame {
 				if(e.getKeyCode()==KeyEvent.VK_DOWN) {
 					SimpleDateFormat datefmt = new SimpleDateFormat("dd.MM.yyyy"); // Or format you're using
 					Date date;
-					try {
+					try 
+					{
 						date = datefmt.parse(TARIH_CEVIR.tarih_dt_ddMMyyyy(dateChooser));
 						Calendar cal = Calendar.getInstance();
 						cal.setTime(date);
@@ -593,14 +585,11 @@ public class CEK_GIRIS extends JInternalFrame {
 		textField_6.setBounds(92, 33, 563, 20);
 		panel_1.add(textField_6);
 		textField_6.setColumns(10);
-
 		GRID_TEMIZLE.grid_temizle(table);
-
-		//***********
 		String deger;
 		Integer sat_sayi;
-
-		try {
+		try 
+		{
 			deger = GLOBAL.setting_oku("KAM_CEK_GIR").toString();
 			sat_sayi =Integer.parseInt(deger);
 			for (int i = 0; i <= sat_sayi; i ++)
@@ -610,7 +599,6 @@ public class CEK_GIRIS extends JInternalFrame {
 		} catch (Exception ex) {
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,  ex.getMessage());
 		}
-		//***********
 	}
 
 	public static void satir_ilave()
@@ -696,11 +684,9 @@ public class CEK_GIRIS extends JInternalFrame {
 			String cMB ="";
 			if( comboBox.getSelectedItem() != null )
 				cMB = comboBox.getSelectedItem().toString();
-			
 			lOG_BILGI lBILGI = new lOG_BILGI();
 			lBILGI.setmESAJ(textField.getText() + " Nolu Giris Bordro  " + mdll.getValueAt(i,0).toString() + "Nolu Cek " + " Tutar:" + (double) mdll.getValueAt(i,8));
 			lBILGI.seteVRAK(textField.getText());
-			
 			ka_Access.cek_kayit(mdll.getValueAt(i,0).toString(), vade,
 					textField.getText(), textField_1.getText(),
 					gtt,    cMB,
@@ -800,7 +786,6 @@ public class CEK_GIRIS extends JInternalFrame {
 					Date ct= new SimpleDateFormat("yyyy-MM-dd").parse(sDate1); 
 					sDate1= rs.getDate("T_Tarih").toString(); 
 					Date tt= new SimpleDateFormat("yyyy-MM-dd").parse(sDate1); 
-					
 					mdll.addRow(new Object[]{rs.getString("Cek_No"), vade1,
 							rs.getString("Banka"),rs.getString("Sube"),rs.getString("Seri_No"),
 							rs.getString("Ilk_Borclu"),rs.getString("Cek_Hesap_No"),rs.getString("Cins"),
@@ -863,7 +848,6 @@ public class CEK_GIRIS extends JInternalFrame {
 			tfaiz = 0;
 			gun = 0;
 			faiz = 0;
-
 			orgun = 0;
 			toppara = 0;
 			for (int i =0 ; i<= model.getRowCount() -1 ; i ++) {
@@ -881,12 +865,9 @@ public class CEK_GIRIS extends JInternalFrame {
 						vade  = qwe;
 					}
 					String gtt = TARIH_CEVIR.tarih_geri(dateChooser);
-
 					Date vadee =new SimpleDateFormat("yyyy.MM.dd").parse(vade); 
 					Date bugun =new SimpleDateFormat("yyyy.MM.dd").parse(gtt);  
-
 					gun  = daysBetween(bugun,vadee);
-
 					double_0 = Double.parseDouble(textField_2.getText());
 					faiz = ((((double) model.getValueAt(i , 8) * double_0) / 365) * gun) / 100;
 					toppara = toppara + (double) model.getValueAt(i , 8);
@@ -898,7 +879,6 @@ public class CEK_GIRIS extends JInternalFrame {
 			}
 			getContentPane().setCursor(oac.DEFAULT_CURSOR);
 		}
-
 		catch (Exception ex)
 		{
 			getContentPane().setCursor(oac.DEFAULT_CURSOR);
@@ -924,16 +904,13 @@ public class CEK_GIRIS extends JInternalFrame {
 				bh = oac.hsp_hsp_kodu;
 				if (bh.equals("")) return ;
 				ResultSet rs ;
-				//*******************************************************************************
 				rs = c_Access.hesap_adi_oku(bh);
 				if (!rs.isBeforeFirst() ) {  
 					OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING, "Bu numarada hesaba rastlanmadi!!!!");
 					return ;
 				} 
-				//********************************************************************************
 				rs= null;
 				rs = c_Access.hesap_adi_oku(textField_1.getText());
-
 				if (!rs.isBeforeFirst() ) {  
 					OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING,  "Bu numarada hesaba rastlanmadi!!!!");
 					return;
@@ -943,7 +920,6 @@ public class CEK_GIRIS extends JInternalFrame {
 					OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING, "Borclu ve Alacakli Hesap Ayni...");
 					return;
 				}
-				//********************************************************************************
 				String  str_4  = "" ;
 				DefaultTableModel model = (DefaultTableModel)table.getModel();
 				OBS_MAIN.progressBar.setMaximum(model.getRowCount() - 1);
@@ -1004,7 +980,6 @@ public class CEK_GIRIS extends JInternalFrame {
 		try
 		{
 			ResultSet rs = null ;
-
 			rs= ka_Access.cek_kontrol(cekno);
 			if (!rs.isBeforeFirst() )
 				result = false;
@@ -1012,16 +987,11 @@ public class CEK_GIRIS extends JInternalFrame {
 			{
 				rs.next();
 				String bno = rs.getString("Giris_Bordro").toString() ;
+				result = true;
 				if (textField.getText().toString().equals(bno))
-				{
 					OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING,  "Bu Cek bu Bordroda Giris Yapilmis..");
-					result = true;
-				}
 				else if (! textField.getText().toString().equals(bno))
-				{
 					OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING,   "Bu Cek " + bno + " 'nolu Bordroda Giris Yapilmis..");
-					result = true ;
-				}
 			}
 		}
 		catch (Exception ex)

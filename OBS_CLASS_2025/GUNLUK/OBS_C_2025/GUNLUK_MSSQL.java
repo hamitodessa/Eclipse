@@ -15,6 +15,7 @@ import LOGER_KAYIT.DOSYA_MSSQL;
 import LOGER_KAYIT.ILOGER_KAYIT;
 import LOGER_KAYIT.TXT_LOG;
 
+@SuppressWarnings("deprecation")
 public class GUNLUK_MSSQL implements IGUNLUK {
 
 	static Connection con = null;
@@ -345,7 +346,7 @@ public class GUNLUK_MSSQL implements IGUNLUK {
 		stmt.executeUpdate();
 		stmt.close();
 	}
-	@SuppressWarnings( "deprecation" )
+	
 	@Override
 	public void gunluk_farkli_kayit(Gunluk_Bilgi gbilgi) throws ClassNotFoundException, SQLException, ParseException {
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");

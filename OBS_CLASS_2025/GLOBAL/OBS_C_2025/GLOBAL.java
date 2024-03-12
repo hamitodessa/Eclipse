@@ -232,9 +232,7 @@ public class GLOBAL {
 	public static  void cek_print_dosya_olustur() throws Exception 
 	{
 		Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
-		
 		CekPrintcon = myCekPrintConnection();
-		
 		File file = new File(SURUCU + TAH_CEK_DOSYA );
 		try {
 			Database db;
@@ -375,25 +373,26 @@ public class GLOBAL {
 	}
 	public void gorev_dosya_olustur() throws ClassNotFoundException
 	{
-		try {
-		Class.forName("org.sqlite.JDBC");
-		con = myGorevConnection();
-		String sorgu= null;
-		java.sql.Statement stmt = null;
-	    sorgu = "CREATE TABLE KUR_CINSI ( Kur nvarchar(5)  ) ";
-	    stmt = con.createStatement();  
-		stmt.execute(sorgu); 
-		sorgu = "CREATE TABLE GOREV_ZAMANI ( Zaman DateTime  ) ";
-	    stmt = con.createStatement(); 
-	    stmt.execute(sorgu);
-	    sorgu = "CREATE TABLE BILGILER ( OBS_KULLANICI nvarchar(25 ),Durum INTEGER) ";
-	    stmt = con.createStatement();  
-	    stmt.execute(sorgu); 
-	    sorgu = "CREATE TABLE PID ( PID_NO INTEGER) ";
-	    stmt = con.createStatement();  
-		stmt.execute(sorgu); 
-		stmt.close();
-		con.close();
+		try 
+		{
+			Class.forName("org.sqlite.JDBC");
+			con = myGorevConnection();
+			String sorgu= null;
+			java.sql.Statement stmt = null;
+			sorgu = "CREATE TABLE KUR_CINSI ( Kur nvarchar(5)  ) ";
+			stmt = con.createStatement();  
+			stmt.execute(sorgu); 
+			sorgu = "CREATE TABLE GOREV_ZAMANI ( Zaman DateTime  ) ";
+			stmt = con.createStatement(); 
+			stmt.execute(sorgu);
+			sorgu = "CREATE TABLE BILGILER ( OBS_KULLANICI nvarchar(25 ),Durum INTEGER) ";
+			stmt = con.createStatement();  
+			stmt.execute(sorgu); 
+			sorgu = "CREATE TABLE PID ( PID_NO INTEGER) ";
+			stmt = con.createStatement();  
+			stmt.execute(sorgu); 
+			stmt.close();
+			con.close();
 		}
 		catch (SQLException ex) 
 		{  
@@ -454,16 +453,17 @@ public class GLOBAL {
 	}
 	public void backup_log_dosya_olustur() throws ClassNotFoundException
 	{
-		try {
-		Class.forName("org.sqlite.JDBC");
-		con = myBackupLogConnection();
-		String sorgu= null;
-		java.sql.Statement stmt = null;
-	    sorgu = "CREATE TABLE LOG ( EMIR_ISMI nvarchar(30) ,TARIH DATETIME,ACIKLAMA nvarchar(150) ) ";
-	    stmt = con.createStatement();  
-		stmt.execute(sorgu);  
-		stmt.close();
-		con.close();
+		try
+		{
+			Class.forName("org.sqlite.JDBC");
+			con = myBackupLogConnection();
+			String sorgu= null;
+			java.sql.Statement stmt = null;
+			sorgu = "CREATE TABLE LOG ( EMIR_ISMI nvarchar(30) ,TARIH DATETIME,ACIKLAMA nvarchar(150) ) ";
+			stmt = con.createStatement();  
+			stmt.execute(sorgu);  
+			stmt.close();
+			con.close();
 		}
 		catch (SQLException ex) 
 		{  
@@ -506,7 +506,7 @@ public class GLOBAL {
 	public static void set_doldur() throws IOException {
 		InputStream input;
 		Properties prop = new Properties();
-		input = new FileInputStream( GLOBAL.SURUCU + "/" + System.getProperty("user.name") + ".properties");
+		input = new FileInputStream( GLOBAL.SURUCU + System.getProperty("user.name") + ".properties");
 		prop.load(input);
 		final Set<String> keys =  prop.stringPropertyNames(); 
 		int kac_satir = 0;
@@ -722,9 +722,8 @@ public class GLOBAL {
 			for (int i = 0; i < to.length; i++) {
 				toAddress[i] = new InternetAddress(to[i]);
 			}
-			for (int i = 0; i < toAddress.length; i++) {
+			for (int i = 0; i < toAddress.length; i++)
 				message.setRecipient(RecipientType.TO,  toAddress[i]);
-			}
 			messagePart = new MimeBodyPart();
 			DatagramSocket socket = new DatagramSocket();
 			socket.connect(new InetSocketAddress("google.com", 80));

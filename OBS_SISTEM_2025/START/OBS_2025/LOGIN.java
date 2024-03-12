@@ -299,12 +299,12 @@ public class LOGIN extends JDialog {
 			{
 				FlatMonocaiIJTheme.setup();
 				FlatLaf.updateUI();
-			}//
+			}
 			else if (GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("FlatCarbonIJ")) 
 			{
 				FlatCarbonIJTheme.setup();
 				FlatLaf.updateUI();
-			}//
+			}
 			SwingUtilities.updateComponentTreeUI(this); //UIManager.setLookAndFeel(new
 
 			
@@ -671,13 +671,11 @@ public class LOGIN extends JDialog {
 				String decodedString = GLOBAL.setting_oku("SIFRE").toString();
 				String[] byteValues = decodedString.substring(1, decodedString.length() - 1).split(",");
 				byte[] bytes = new byte[byteValues.length];
-				for (int i=0, len=bytes.length; i<len; i++) {
+				for (int i=0, len=bytes.length; i<len; i++)
 					bytes[i] = Byte.parseByte(byteValues[i].trim());     
-				}
 				txtUser.setText(GLOBAL.setting_oku("ISIM").toString());
 				txtpwd.setText( ENCRYPT_DECRYPT_STRING.dCRYPT_manual(bytes));
 			}
-
 			deger = GLOBAL.setting_oku("PRG_GRID_RENK").toString();
 			String[] parts;
 			parts = deger.split(",");
@@ -1188,9 +1186,9 @@ public class LOGIN extends JDialog {
 				ADR_DOS_VAR = false;
 			else
 			{
-			lOGG_AKTAR("Adres",BAGLAN.adrDizin.hAN_SQL,BAGLAN.adrDizin.lOG,BAGLAN.adrDizin.lOGLAMA_YERI);
-			ADR_DOS_VAR = true;
-			OBS_SIS_2025_ANA_CLASS.ADR_CONN = true;
+				lOGG_AKTAR("Adres",BAGLAN.adrDizin.hAN_SQL,BAGLAN.adrDizin.lOG,BAGLAN.adrDizin.lOGLAMA_YERI);
+				ADR_DOS_VAR = true;
+				OBS_SIS_2025_ANA_CLASS.ADR_CONN = true;
 			}
 		}
 		else
@@ -1234,9 +1232,9 @@ public class LOGIN extends JDialog {
 				FAT_DOS_VAR = false;
 			else
 			{
-			lOGG_AKTAR("Fatura",BAGLAN.fatDizin.hAN_SQL,BAGLAN.fatDizin.lOG,BAGLAN.fatDizin.lOGLAMA_YERI);
-			FAT_DOS_VAR = true;
-			OBS_SIS_2025_ANA_CLASS.FAT_CONN = true;
+				lOGG_AKTAR("Fatura",BAGLAN.fatDizin.hAN_SQL,BAGLAN.fatDizin.lOG,BAGLAN.fatDizin.lOGLAMA_YERI);
+				FAT_DOS_VAR = true;
+				OBS_SIS_2025_ANA_CLASS.FAT_CONN = true;
 			}
 		}
 		else
@@ -1318,9 +1316,7 @@ public class LOGIN extends JDialog {
 				}
 			}
 			else
-			{
 				OBS_SIS_2025_ANA_CLASS.GUN_CONN = false;
-			}
 		}
 		else if (s_CONN.Server_kontrol_S(sBilgi) == true )
 		{
@@ -1407,7 +1403,7 @@ public class LOGIN extends JDialog {
 			String eskitar = "" ;
 			String eskiver = "";
 			String yeniver = "";
-			String fileName = GLOBAL.SURUCU  + "\\OBS_VERSION.txt";
+			String fileName = GLOBAL.SURUCU  + "OBS_VERSION.txt";
 			String line = null;
 			FileReader fileReader = null;
 			int counter = 0;
@@ -1465,26 +1461,24 @@ public class LOGIN extends JDialog {
 			}
 			ftp.enterLocalPassiveMode();
 			String remoteFile1 = ftp.printWorkingDirectory() + "/OBS_VERSION.txt";
-			File downloadFile1 = new File( GLOBAL.SURUCU + "/OBS_VERSIONS.txt");
+			File downloadFile1 = new File( GLOBAL.SURUCU + "OBS_VERSIONS.txt");
 			OutputStream outputStream1 = new BufferedOutputStream(new FileOutputStream(downloadFile1));
 			boolean success = ftp.retrieveFile(remoteFile1, outputStream1);
 			outputStream1.close();
 			if (success == false )
 				{
-				File f= new File(GLOBAL.SURUCU + "/OBS_VERSIONS.txt");           //file to be delete  
+				File f= new File(GLOBAL.SURUCU + "OBS_VERSIONS.txt");           //file to be delete  
 				success = f.delete();  
 				ftp.logout();
 				ftp.disconnect();
 				return ;
 				}
-			//************************************
 			ftp.logout();
 			ftp.disconnect();
 			fileName = "" ;
-			fileName = GLOBAL.SURUCU + "/OBS_VERSIONS.txt";
+			fileName = GLOBAL.SURUCU + "OBS_VERSIONS.txt";
 			fileReader = null;
 			fileReader =  new FileReader(fileName);
-			// Always wrap FileReader in BufferedReader.
 			bufferedReader = null;
 			bufferedReader =    new BufferedReader(fileReader);
 			counter = 0;
@@ -1499,7 +1493,7 @@ public class LOGIN extends JDialog {
 			bufferedReader.close();
 			if (eskiver.equals(yeniver))
 			{
-				File f= new File(GLOBAL.SURUCU +"/OBS_VERSIONS.txt");           //file to be delete  
+				File f= new File(GLOBAL.SURUCU + "OBS_VERSIONS.txt");           //file to be delete  
 				success = f.delete();  
 			}
 			else
@@ -1729,7 +1723,7 @@ public class LOGIN extends JDialog {
 	private void lAktar(String mODUL , ILOGGER[] ilogg)
 	{
 		switch(mODUL) {
-		case "Cari Hesap" ->	oac._ICari_Loger = ilogg;
+		case "Cari Hesap" -> oac._ICari_Loger = ilogg;
 		case "Kur" -> oac._IKur_Loger = ilogg;
 		case "Adres" -> oac._IAdres_Loger = ilogg;
 		case "Fatura" -> oac._IFatura_Loger = ilogg;

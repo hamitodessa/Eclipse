@@ -39,7 +39,6 @@ import java.awt.event.ItemListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
-import java.beans.PropertyVetoException;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -258,13 +257,9 @@ public class URUN_KART extends JInternalFrame {
 		chcbas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (chcbas.isSelected())
-				{
 					chcicin .setSelected(false);
-				}
 				else
-				{
 					chcicin.setSelected(true);
-				}
 			}
 		});
 		chcbas.setBounds(18, 17, 97, 23);
@@ -276,13 +271,9 @@ public class URUN_KART extends JInternalFrame {
 		chcicin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (chcicin.isSelected())
-				{
 					chcbas .setSelected(false);
-				}
 				else
-				{
 					chcbas.setSelected(true);
-				}
 			}
 		});
 		chcicin.setBounds(18, 40, 97, 23);
@@ -335,12 +326,10 @@ public class URUN_KART extends JInternalFrame {
 						imagePanel.setImage(bi);
 					} catch (Exception ex) {
 						 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
-					//	JOptionPane.showMessageDialog(null, ex.getMessage());
 					}
 				}
-				else {
+				else
 					imagePanel.setImage(null);
-				}
 			}
 		});
 		button_4.setBounds(730, 291, 60, 23);
@@ -371,9 +360,7 @@ public class URUN_KART extends JInternalFrame {
 			public void keyReleased(KeyEvent e) {
 				ResultSet sonuc =null;
 				try {
-
 					sonuc = f_Access.ur_kod_bak(txtkodu.getText());
-
 					if (!sonuc.isBeforeFirst() ) {  
 						txtadi.setForeground(Color.black);
 						txtadi.setText("");
@@ -637,8 +624,7 @@ public class URUN_KART extends JInternalFrame {
 				{
 					try {
 						OBS_MAIN.pencere_aktiv_yap("RECETE");
-					} catch (PropertyVetoException e1) {
-						// TODO Auto-generated catch block
+					} catch (Exception e1) {
 						e1.printStackTrace();
 					}
 				}
@@ -655,7 +641,7 @@ public class URUN_KART extends JInternalFrame {
 					RECETE.kontrol();
 					GuiUtil.setWaitCursor(getContentPane(),false);
 				} 
-				catch (NumberFormatException e1) 
+				catch (Exception e1) 
 				{
 					GuiUtil.setWaitCursor(getContentPane(),false);
 					e1.printStackTrace();
@@ -723,7 +709,7 @@ public class URUN_KART extends JInternalFrame {
 				catch (Exception ex)
 				{
 					getContentPane().setCursor(oac.DEFAULT_CURSOR);
-					 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
+					OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
 				}
 			}
 		});
@@ -829,14 +815,9 @@ public class URUN_KART extends JInternalFrame {
 				rss.previous();
 			}
 			else if (nereye.equals("ILK"))
-			{
 				rss.first();
-			}
 			else if (nereye.equals("SON"))
-			{
 				rss.last();
-			}
-
 			txtkayit.setText(rss.getRow() + "/" +   String.valueOf(kayit_sayi));
 			txtkodu.setText(rss.getString("Kodu"));
 			txtadi.setText(rss.getString("Adi"));
@@ -852,8 +833,6 @@ public class URUN_KART extends JInternalFrame {
 			txtagirlik.setText(FORMATLAMA.doub_3(rss.getDouble("Agirlik")));
 			txtbarkod.setText(rss.getString("Barkod"));
 
-
-
 			ResultSet qrs = null ;
 			qrs = f_Access.urun_kod_degisken_ara("MENSEI","MEID_Y",  "MENSEI_DEGISKEN",String.valueOf(rss.getInt("Mensei")));
 			if (!qrs.isBeforeFirst() ) {  
@@ -862,17 +841,11 @@ public class URUN_KART extends JInternalFrame {
 			else {
 				qrs.next();
 				if (! qrs.getString("MENSEI").toString().equals("0"))
-				{
 					cmbmensei.setSelectedItem(qrs.getString("MENSEI"));
-				}
 				else
-				{
 					cmbmensei.setSelectedItem("");
-				}
 			}
-
 			//***** ANA GRUP 
-
 			qrs = null ;
 			qrs = f_Access.urun_kod_degisken_ara("ANA_GRUP",  "AGID_Y","ANA_GRUP_DEGISKEN",String.valueOf(rss.getInt("Ana_Grup")));
 			if (!qrs.isBeforeFirst() ) {  
@@ -881,17 +854,11 @@ public class URUN_KART extends JInternalFrame {
 			else {
 				qrs.next();
 				if (! qrs.getString("ANA_GRUP").toString().equals("0"))
-				{
 					cmbanagrup.setSelectedItem(qrs.getString("ANA_GRUP"));
-				}
 				else
-				{
 					cmbanagrup.setSelectedItem("");
-				}
 			}
-
 			//***** ALT GRUP 
-
 			qrs = null ;
 			qrs = f_Access.urun_kod_degisken_ara("ALT_GRUP","ALID_Y",  "ALT_GRUP_DEGISKEN",String.valueOf(rss.getInt("Alt_Grup")));
 			if (!qrs.isBeforeFirst() ) {  
@@ -900,18 +867,11 @@ public class URUN_KART extends JInternalFrame {
 			else {
 				qrs.next();
 				if (! qrs.getString("ALT_GRUP").toString().equals("0"))
-				{
 					cmbaltgrup.setSelectedItem(qrs.getString("ALT_GRUP"));
-				}
 				else
-				{
 					cmbaltgrup.setSelectedItem("");
-				}
 			}
-
-
 			//***** OZK 1
-
 			qrs = null ;
 			qrs = f_Access.urun_kod_degisken_ara("OZEL_KOD_1","OZ1ID",  "OZ_KOD_1_DEGISKEN",String.valueOf(rss.getInt("Ozel_Kod_1")));
 			if (!qrs.isBeforeFirst() ) {  
@@ -920,17 +880,11 @@ public class URUN_KART extends JInternalFrame {
 			else {
 				qrs.next();
 				if (! qrs.getString("OZEL_KOD_1").toString().equals("0"))
-				{
 					cmboz1.setSelectedItem(qrs.getString("OZEL_KOD_1"));
-				}
 				else
-				{
 					cmboz1.setSelectedItem("");
-				}
 			}
-
 			//***** OZ2
-
 			qrs = null ;
 			qrs = f_Access.urun_kod_degisken_ara("OZEL_KOD_2","OZ2ID",  "OZ_KOD_2_DEGISKEN",String.valueOf(rss.getInt("Ozel_Kod_2")));
 			if (!qrs.isBeforeFirst() ) {  
@@ -939,22 +893,17 @@ public class URUN_KART extends JInternalFrame {
 			else {
 				qrs.next();
 				if (! qrs.getString("OZEL_KOD_2").toString().equals("0"))
-				{
 					cmboz2.setSelectedItem(qrs.getString("OZEL_KOD_2"));
-				}
 				else
-				{
 					cmboz2.setSelectedItem("");
-				}
 			}
-
 			if (  rss.getBytes("Resim") != null)
 			{
 				byte[] img = rss.getBytes("Resim");
 				ImageIcon image = new ImageIcon(img);
 				Image im = image.getImage();
-				// Image myImg = im.getScaledInstance(230, 175,Image.SCALE_DEFAULT);
-				ImageIcon newImage = new ImageIcon(im);
+				Image myImg = im.getScaledInstance(230, 175,Image.SCALE_DEFAULT);
+				ImageIcon newImage = new ImageIcon(myImg);
 				BufferedImage bi = new BufferedImage(newImage .getIconWidth(), newImage .getIconHeight(), BufferedImage.TYPE_INT_RGB);
 				Graphics2D g = bi.createGraphics();
 				newImage.paintIcon(null, g, 0, 0);
@@ -963,9 +912,7 @@ public class URUN_KART extends JInternalFrame {
 				imagePanel.setImage(bi);
 			}
 			else
-			{
 				imagePanel.setImage(null);
-			}
 			lbluser.setText(rss.getString("USER"));
 		}
 		catch(Exception ex)
@@ -1008,9 +955,7 @@ public class URUN_KART extends JInternalFrame {
 			getContentPane().setCursor(oac.WAIT_CURSOR);
 			cmbmensei.removeAllItems();
 			ResultSet rs=null;
-
 			rs = f_Access.stk_kod_degisken_oku("MENSEI", "MEID_Y", "MENSEI_DEGISKEN");
-
 			if (!rs.isBeforeFirst() ) {  
 				cmbmensei.addItem("");
 				cmbmensei.setSelectedItem("");
@@ -1019,16 +964,13 @@ public class URUN_KART extends JInternalFrame {
 			} 
 			cmbmensei.addItem("");
 			while (rs.next())
-			{
 				cmbmensei.addItem(rs.getString("MENSEI"));
-			}
 			getContentPane().setCursor(oac.DEFAULT_CURSOR);
 		}
 		catch (Exception ex)
 		{
 			getContentPane().setCursor(oac.DEFAULT_CURSOR);
 			 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
-		//	JOptionPane.showMessageDialog(null, ex.getMessage(),  "Alt Grup", JOptionPane.ERROR_MESSAGE);   
 		}
 	}
 	private void ana_grup_doldur()
@@ -1037,9 +979,7 @@ public class URUN_KART extends JInternalFrame {
 			getContentPane().setCursor(oac.WAIT_CURSOR);
 			cmbanagrup .removeAllItems();
 			ResultSet rs=null;
-
 			rs =f_Access.stk_kod_degisken_oku("ANA_GRUP", "AGID_Y", "ANA_GRUP_DEGISKEN");
-
 			if (!rs.isBeforeFirst() ) {  
 				getContentPane().setCursor(oac.DEFAULT_CURSOR);
 				cmbaltgrup.setEnabled(false);
@@ -1049,9 +989,7 @@ public class URUN_KART extends JInternalFrame {
 			} 
 			cmbanagrup .addItem("");
 			while (rs.next())
-			{
 				cmbanagrup .addItem(rs.getString("ANA_GRUP"));
-			}
 			getContentPane().setCursor(oac.DEFAULT_CURSOR);
 		}
 		catch (Exception ex)
@@ -1066,9 +1004,7 @@ public class URUN_KART extends JInternalFrame {
 			getContentPane().setCursor(oac.WAIT_CURSOR);
 			cmboz1 .removeAllItems();
 			ResultSet rs=null;
-
 			rs = f_Access.stk_kod_degisken_oku("OZEL_KOD_1", "OZ1ID_Y", "OZ_KOD_1_DEGISKEN");
-
 			if (!rs.isBeforeFirst() ) {  
 				getContentPane().setCursor(oac.DEFAULT_CURSOR);
 				cmboz1.addItem("");
@@ -1077,9 +1013,7 @@ public class URUN_KART extends JInternalFrame {
 			} 
 			cmboz1.addItem("");
 			while (rs.next())
-			{
 				cmboz1.addItem(rs.getString("OZEL_KOD_1"));
-			}
 			getContentPane().setCursor(oac.DEFAULT_CURSOR);
 		}
 		catch (Exception ex)
@@ -1094,9 +1028,7 @@ public class URUN_KART extends JInternalFrame {
 			getContentPane().setCursor(oac.WAIT_CURSOR);
 			cmboz2 .removeAllItems();
 			ResultSet rs=null;
-
 			rs = f_Access.stk_kod_degisken_oku("OZEL_KOD_2", "OZ2ID_Y", "OZ_KOD_2_DEGISKEN");
-
 			if (!rs.isBeforeFirst() ) {  
 				getContentPane().setCursor(oac.DEFAULT_CURSOR);
 				cmboz2.addItem("");
@@ -1105,16 +1037,13 @@ public class URUN_KART extends JInternalFrame {
 			} 
 			cmboz2.addItem("");
 			while (rs.next())
-			{
 				cmboz2.addItem(rs.getString("OZEL_KOD_2"));
-			}
 			getContentPane().setCursor(oac.DEFAULT_CURSOR);
 		}
 		catch (Exception ex)
 		{
 			getContentPane().setCursor(oac.DEFAULT_CURSOR);
 			 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
-		//	JOptionPane.showMessageDialog(null, ex.getMessage(),  "Ozel Kod", JOptionPane.ERROR_MESSAGE);    	
 		}
 	}
 	private void alt_grup_doldur()
@@ -1124,7 +1053,6 @@ public class URUN_KART extends JInternalFrame {
 			cmbaltgrup.removeAllItems();
 			cmbaltgrup .addItem("");
 			ResultSet rs=null;
-
 			rs = f_Access.urun_kod_degisken_ara("AGID_Y", "ANA_GRUP", "ANA_GRUP_DEGISKEN", cmbanagrup.getItemAt(cmbanagrup.getSelectedIndex()));
 			if (!rs.isBeforeFirst() ) {
 			}
@@ -1135,8 +1063,6 @@ public class URUN_KART extends JInternalFrame {
 				rs =null;
 				rs = f_Access.stk_kod_alt_grup_degisken_oku(in1);
 			}
-
-
 			if (!rs.isBeforeFirst() ) {  
 				cmbaltgrup.setSelectedItem("");
 				cmbaltgrup.setEnabled(false);
@@ -1145,9 +1071,7 @@ public class URUN_KART extends JInternalFrame {
 			else
 			{
 				while (rs.next())
-				{
 					cmbaltgrup .addItem(rs.getString("ALT_GRUP"));
-				}
 				cmbaltgrup.setSelectedItem(0);
 				cmbaltgrup.setEnabled(true);
 			}
@@ -1157,33 +1081,21 @@ public class URUN_KART extends JInternalFrame {
 		{
 			getContentPane().setCursor(oac.DEFAULT_CURSOR);
 			 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
-		//	JOptionPane.showMessageDialog(null, ex.getMessage(),  "Alt Grup", JOptionPane.ERROR_MESSAGE);    	
 		}
-
 	}
 	private void arama()
 	{
 		String ara = "";
 		if (chckbxKod.isSelected())
-		{
 			ara= "Kodu";
-		}
 		else if (chckbxAdi.isSelected())
-		{
 			ara= "Adi";
-		}
 		else if (chckbxBarkod.isSelected())
-		{
 			ara= "Barkod";
-		}
 		if (chcbas.isSelected())
-		{
 			hisset(ara, "WHERE  Kodu like  N'" + textField_1.getText() + "%' OR  Adi Like N'" + textField_1.getText() + "%'");
-		}
 		else
-		{
 			hisset(ara, "WHERE  Kodu like  N'%" + textField_1.getText() + "%' OR  Adi Like N'%" + textField_1.getText() + "%'");
-		}
 	}
 	public static void sil()
 	{
@@ -1196,29 +1108,22 @@ public class URUN_KART extends JInternalFrame {
 				oac.options[1]); //default button
 		if(g != 0 ) { return;	}
 		try {
-
 			f_Access.stk_ur_sil(txtkodu.getText());
 
 			temizle();
 			txtkodu.setEnabled(false);
-			// rd_yenile();
 			hisset("Kodu","");
 		}
 		catch (Exception ex)
 		{
 			 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
-		//	JOptionPane.showMessageDialog(null, ex.getMessage(),  "Urun Silme", JOptionPane.ERROR_MESSAGE);    	
 		}
 	}
 	public static void kayit()
 	{
 		if ( txtkodu.getText().equals("") ) return ;
 		try {
-
-
 			f_Access.stk_ur_sil(txtkodu.getText());
-
-
 			double dbl1 = 0 ;
 			int int2 = 0 ;
 			int int3 = 0 ;
@@ -1230,75 +1135,50 @@ public class URUN_KART extends JInternalFrame {
 			double dbl4 = 0 ;
 			double dbl5 = 0 ;
 			ResultSet qaz = null;
-
 			if (! cmbanagrup.getItemAt(cmbanagrup.getSelectedIndex()).toString().equals(""))
 			{
 				qaz = f_Access.urun_kod_degisken_ara("AGID_Y", "ANA_GRUP", "ANA_GRUP_DEGISKEN", cmbanagrup.getItemAt(cmbanagrup.getSelectedIndex()));
 				qaz.next();
 				int2 = qaz.getInt("AGID_Y");
 			}
-
-
 			//*** ALT GRUP
-
 			if (! cmbaltgrup.getItemAt(cmbaltgrup.getSelectedIndex()).toString().equals(""))
 			{
 				qaz = f_Access.urun_kod_degisken_ara("ALID_Y", "ALT_GRUP", "ALT_GRUP_DEGISKEN", cmbaltgrup.getItemAt(cmbaltgrup.getSelectedIndex()));
 				qaz.next();
 				int3 = qaz.getInt("ALID_Y");
 			}
-
-
 			//*** MENSEI 
-
 			if (! cmbmensei.getItemAt(cmbmensei.getSelectedIndex()).toString().equals(""))
 			{
 				qaz = f_Access.urun_kod_degisken_ara("MEID_Y", "MENSEI", "MENSEI_DEGISKEN", cmbmensei.getItemAt(cmbmensei.getSelectedIndex()));
 				qaz.next();
 				int4 = qaz.getInt("MEID_Y");
 			}
-
-
 			//*** OZEL 1
-
 			if (! cmboz1.getItemAt(cmboz1.getSelectedIndex()).toString().equals(""))
 			{
 				qaz = f_Access.urun_kod_degisken_ara("OZ1ID_Y", "OZEL_KOD_1", "OZ_KOD_1_DEGISKEN", cmboz1.getItemAt(cmboz1.getSelectedIndex()));
 				qaz.next();
 				int6 = qaz.getInt("OZ1ID_Y");
 			}
-
-
 			//*** OZEL 2
-
 			if (! cmboz2.getItemAt(cmboz2.getSelectedIndex()).toString().equals(""))
 			{
 				qaz =f_Access.urun_kod_degisken_ara("OZ2ID_Y", "OZEL_KOD_2", "OZ_KOD_2_DEGISKEN", cmboz2.getItemAt(cmboz2.getSelectedIndex()));
 				qaz.next();
 				int7 = qaz.getInt("OZ2ID_Y");
 			}
-
 			if (! txtkusurat.getText().isEmpty())
-			{
 				dbl1 = DecimalFormat.getNumberInstance().parse(txtkusurat.getText()).doubleValue();
-			}
 			if (! txtfiat1.getText().isEmpty())
-			{
 				dbl2 = DecimalFormat.getNumberInstance().parse(txtfiat1.getText()).doubleValue();
-			}
 			if (! txtfiat2.getText().isEmpty())
-			{
 				dbl4 = DecimalFormat.getNumberInstance().parse(txtfiat2.getText()).doubleValue();
-			}
 			if (! txtfiat3.getText().isEmpty())
-			{
 				dbl5 = DecimalFormat.getNumberInstance().parse(txtfiat3.getText()).doubleValue();
-			}
 			if (! txtagirlik.getText().isEmpty())
-			{
 				dbl3 = DecimalFormat.getNumberInstance().parse(txtagirlik.getText()).doubleValue();
-			}
-
 			InputStream fis = null;
 			if ( imagePanel.getImage()) 
 			{
@@ -1324,6 +1204,5 @@ public class URUN_KART extends JInternalFrame {
 		{
 			 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
 		}
-
 	}
 }

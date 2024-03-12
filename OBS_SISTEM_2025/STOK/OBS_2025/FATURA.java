@@ -89,7 +89,6 @@ import java.beans.PropertyVetoException;
 import java.io.IOException;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.border.EtchedBorder;
-import javax.swing.border.LineBorder;
 
 @SuppressWarnings({"serial","static-access"})
 public class FATURA extends JInternalFrame {
@@ -495,7 +494,7 @@ public class FATURA extends JInternalFrame {
 
 		imagePanel = new ImagePanel();
 		imagePanel.setBounds(1015, 4, 125, 100);
-		imagePanel.setBorder(new LineBorder(new Color(95, 158, 160), 2,true));
+		//imagePanel.setBorder(new LineBorder(new Color(95, 158, 160), 2,true));
 		panel_2.add( imagePanel);
 
 

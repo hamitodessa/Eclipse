@@ -270,12 +270,7 @@ public class HAZIR_GOREVLER extends JInternalFrame {
 			dd.height = 30;
 			th.setPreferredSize(dd); 
 			th.repaint();
-
-			//table.setSelectionBackground(Color.PINK);
-			//table.setSelectionForeground(Color.BLUE);
 			lbladet.setText( FORMATLAMA.doub_0(table.getRowCount()) );
-
-
 			long endTime = System.currentTimeMillis();
 			long estimatedTime = endTime - startTime; 
 			double seconds = (double)estimatedTime/1000; 

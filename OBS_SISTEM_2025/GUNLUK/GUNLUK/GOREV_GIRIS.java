@@ -27,7 +27,6 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
-import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 import javax.swing.border.Border;
 import javax.swing.event.AncestorEvent;
@@ -47,6 +46,7 @@ import OBS_C_2025.GUNLUK_ACCESS;
 import OBS_C_2025.Gunluk_Bilgi;
 import OBS_C_2025.JTextFieldLimit;
 import OBS_C_2025.JTextFieldRegularPopupMenu;
+import OBS_C_2025.Obs_TextFIeld;
 import OBS_C_2025.TARIH_CEVIR;
 import OBS_C_2025.lOG_BILGI;
 import raven.toast.Notifications;
@@ -57,18 +57,18 @@ import javax.swing.SwingConstants;
 public class GOREV_GIRIS extends JInternalFrame {
 	private static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
 	private static GUNLUK_ACCESS  g_Access = new GUNLUK_ACCESS(OBS_SIS_2025_ANA_CLASS._IGunluk , oac._IGunluk_Loger);
-	private static JTextField txtIsim;
-	private static JTextField txtGorev;
+	private static Obs_TextFIeld txtIsim;
+	private static Obs_TextFIeld txtGorev;
 	private static JTextArea txtMesaj;
-	public static JTextField txtGID;
+	public static Obs_TextFIeld txtGID;
 	public static JDateChooser dtcBaslama ;
 	public static JDateChooser dtcBitis;
 	public static JComboBox<String> cmbBaslamaSaat ;
 	public static JComboBox<String> cmbBitisSaat;
 	private static JComboBox<String> cmbSecenek;
 	private JLabel lblBitis;
-	private static JTextField txtYer;
-	private static JTextField txtDeger;
+	private static Obs_TextFIeld txtYer;
+	private static Obs_TextFIeld txtDeger;
 	static JPanel panel;
 
 	public GOREV_GIRIS() {
@@ -93,9 +93,7 @@ public class GOREV_GIRIS extends JInternalFrame {
 		lblNewLabel_2.setBounds(10, 85, 46, 14);
 		panel.add(lblNewLabel_2);
 
-		txtIsim = new JTextField(30);
-		JTextFieldRegularPopupMenu.addTo(txtIsim);
-		txtIsim.putClientProperty(FlatClientProperties.TEXT_FIELD_SHOW_CLEAR_BUTTON, true);
+		txtIsim = new Obs_TextFIeld(30);
 		txtIsim.setBounds(100, 10, 354, 20);
 		panel.add(txtIsim);
 		txtIsim.setColumns(10);
@@ -118,9 +116,7 @@ public class GOREV_GIRIS extends JInternalFrame {
 		});
 
 
-		txtGorev = new JTextField(30);
-		txtGorev.putClientProperty(FlatClientProperties.TEXT_FIELD_SHOW_CLEAR_BUTTON, true);
-		JTextFieldRegularPopupMenu.addTo(txtGorev);
+		txtGorev = new Obs_TextFIeld(30);
 		txtGorev.setBounds(100, 60, 354, 20);
 		panel.add(txtGorev);
 		txtGorev.setColumns(10);
@@ -248,7 +244,7 @@ public class GOREV_GIRIS extends JInternalFrame {
 		panel.add(cmbBitisSaat);
 
 
-		txtGID = new JTextField();
+		txtGID = new Obs_TextFIeld();
 		txtGID.setBounds(10, 135, 39, 20);
 
 		txtGID.setVisible(false);
@@ -342,8 +338,8 @@ public class GOREV_GIRIS extends JInternalFrame {
 		lblNewLabel_3.setBounds(10, 39, 80, 14);
 		panel.add(lblNewLabel_3);
 
-		txtYer = new JTextField(30);
-		txtYer.putClientProperty(FlatClientProperties.TEXT_FIELD_SHOW_CLEAR_BUTTON, true);
+		txtYer = new Obs_TextFIeld(30);
+		
 		txtYer.setBounds(100, 35, 354, 20);
 		panel.add(txtYer);
 		txtYer.setColumns(10);
@@ -362,10 +358,10 @@ public class GOREV_GIRIS extends JInternalFrame {
 		cmbSecenek.setBounds(355, 173, 100, 25);
 		panel.add(cmbSecenek);
 
-		txtDeger = new JTextField();
+		txtDeger = new Obs_TextFIeld();
 		txtDeger.setHorizontalAlignment(SwingConstants.RIGHT);
-		txtDeger.setFont(new Font("Tahoma", Font.BOLD, 14));
-		txtDeger.setBounds(415, 202, 39, 20);
+		txtDeger.setFont(new Font("Tahoma", Font.BOLD, 12));
+		txtDeger.setBounds(408, 202, 46, 20);
 		panel.add(txtDeger);
 		txtDeger.setColumns(10);
 
@@ -450,14 +446,12 @@ public class GOREV_GIRIS extends JInternalFrame {
 				lOG_BILGI lBILGI = new lOG_BILGI();
 				lBILGI.setmESAJ(mesaj);
 				lBILGI.seteVRAK("");
-
 				g_Access.gorev_kayit(gbilgi,lBILGI, BAGLAN_LOG.gunLogDizin );
 				gbilgi.gid = g_Access.gid_ogren(gbilgi);
 				g_Access.gunluk_farkli_kayit(gbilgi);
 				sifirla();
 				Thread.currentThread().isInterrupted();
 				GuiUtil.setWaitCursor(GOREV_GIRIS.panel,false);	
-
 			}
 			catch (Exception ex)
 			{

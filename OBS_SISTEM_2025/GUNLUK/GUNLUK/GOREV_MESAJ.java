@@ -24,14 +24,7 @@ public class GOREV_MESAJ extends JInternalFrame {
 	private JTable table;
 	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
 
-	/**
-	 * Launch the application.
-	 */
-
-	/**
-	 * Create the frame.
-	 */
-
+	
 	public GOREV_MESAJ(java.util.List<GOREV_BILGI> gBILGI) {
 		setResizable(true);
 		setClosable(true);
@@ -81,7 +74,7 @@ public class GOREV_MESAJ extends JInternalFrame {
 		col.setHeaderRenderer(new SOLA());
 		col.setMinWidth(300);
 		
-		table.setRowHeight(20);
+		table.setRowHeight(22);
 		table.setAutoResizeMode( JTable.AUTO_RESIZE_OFF );
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		table.setShowHorizontalLines(true);

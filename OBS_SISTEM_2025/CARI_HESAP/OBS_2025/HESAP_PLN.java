@@ -7,7 +7,7 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import javax.swing.border.LineBorder;
+import javax.swing.border.TitledBorder;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.table.DefaultTableModel;
@@ -75,7 +75,7 @@ public class HESAP_PLN extends JDialog {
 		contentPanel.add(splitPane, BorderLayout.CENTER);
 		
 		JPanel panel = new JPanel();
-		panel.setBorder(new LineBorder(null));
+		panel.setBorder(new TitledBorder(null,"", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		splitPane.setLeftComponent(panel);
 		panel.setMinimumSize(new Dimension(0, 40));
 		

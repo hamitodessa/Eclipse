@@ -51,7 +51,6 @@ import javax.swing.JTextArea;
 import javax.swing.ListSelectionModel;
 import javax.swing.UIManager;
 import javax.swing.border.Border;
-import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
@@ -108,7 +107,8 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 		panel.setLayout(null);
 
 		JPanel panel_1 = new JPanel();
-		panel_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Gonderen", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel_1.setBorder(new TitledBorder(null,"Gonderen", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		//panel_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Gonderen", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panel_1.setBounds(10, 11, 324, 77);
 		panel.add(panel_1);
 		panel_1.setLayout(null);
@@ -135,7 +135,8 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 		panel_1.add(lblNewLabel_1);
 
 		JPanel panel_1_1 = new JPanel();
-		panel_1_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Alici", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel_1_1.setBorder(new TitledBorder(null,"Alici", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		//panel_1_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Alici", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panel_1_1.setBounds(10, 99, 324, 55);
 		panel.add(panel_1_1);
 		panel_1_1.setLayout(null);
@@ -147,7 +148,8 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 		panel_1_1.add(cmbalici);
 
 		JPanel panel_1_2 = new JPanel();
-		panel_1_2.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Format Turu", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel_1_2.setBorder(new TitledBorder(null,"Format Turu", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		//panel_1_2.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Format Turu", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panel_1_2.setBounds(10, 166, 324, 55);
 		panel.add(panel_1_2);
 		panel_1_2.setLayout(null);
@@ -162,7 +164,8 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 
 
 		JPanel panel_1_3 = new JPanel();
-		panel_1_3.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Konu", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel_1_3.setBorder(new TitledBorder(null,"Konu", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		//panel_1_3.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Konu", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panel_1_3.setBounds(10, 232, 324, 55);
 		panel.add(panel_1_3);
 		panel_1_3.setLayout(null);
@@ -175,7 +178,8 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 
 
 		JPanel panel_1_3_1 = new JPanel();
-		panel_1_3_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Aciklama", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel_1_3_1.setBorder(new TitledBorder(null,"Aciklama", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		//panel_1_3_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Aciklama", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panel_1_3_1.setBounds(10, 293, 567, 87);
 		panel.add(panel_1_3_1);
 		panel_1_3_1.setLayout(new BorderLayout(0, 0));
@@ -230,78 +234,42 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 					txtaciklama.requestFocus();
 					return ;
 				}
-				if ( OBS_MAIN.pencere_bak("RAPOR YAZDIRMA") == true  || etiketten ==true || ekstreden == true ) 
-				{
+				if ( OBS_MAIN.pencere_bak("RAPOR YAZDIRMA") == true  || etiketten ==true || ekstreden == true )
 					gonder();
-				}
-				else if ( OBS_MAIN.pencere_bak("GRAFIK") == true ) 
-				{
+				else if ( OBS_MAIN.pencere_bak("GRAFIK") == true )
 					grf_gonder();
-				}
-				else if ( OBS_MAIN.pencere_bak("GRUP RAPOR") == true ) 
-				{
+				else if ( OBS_MAIN.pencere_bak("GRUP RAPOR") == true )
 					grup_gonder();
-				}
-				else if ( OBS_MAIN.pencere_bak("KERESTE GRUP RAPOR") == true ) 
-				{
+				else if ( OBS_MAIN.pencere_bak("KERESTE GRUP RAPOR") == true )
 					ker_grup_gonder();
-				}
-				else if ( OBS_MAIN.pencere_bak("KERESTE DETAY RAPOR") == true ) 
-				{
+				else if ( OBS_MAIN.pencere_bak("KERESTE DETAY RAPOR") == true )
 					ker_detay_gonder();
-				}
-				else if ( OBS_MAIN.pencere_bak("KERESTE ORTALAMA FIAT") == true ) 
-				{
+				else if ( OBS_MAIN.pencere_bak("KERESTE ORTALAMA FIAT") == true )
 					ker_ortfiat_gonder();
-				}
-				else if ( OBS_MAIN.pencere_bak("KERESTE ENVANTER") == true ) 
-				{
+				else if ( OBS_MAIN.pencere_bak("KERESTE ENVANTER") == true )
 					ker_envanter_gonder();
-				}
-				else if ( OBS_MAIN.pencere_bak("KERESTE FATURA RAPORLAMA") == true ) 
-				{
+				else if ( OBS_MAIN.pencere_bak("KERESTE FATURA RAPORLAMA") == true )
 					ker_fatura_gonder();
-				}
-				else if ( OBS_MAIN.pencere_bak("IMALAT GRUP RAPOR") == true ) 
-				{
+				else if ( OBS_MAIN.pencere_bak("IMALAT GRUP RAPOR") == true )
 					ima_grup_gonder();
-				}
-				else if ( OBS_MAIN.pencere_bak("STOK DETAY") == true ) 
-				{
+				else if ( OBS_MAIN.pencere_bak("STOK DETAY") == true )
 					stk_gonder();
-				}
-				else if ( OBS_MAIN.pencere_bak("IMALAT RAPORLAMA") == true ) 
-				{
+				else if ( OBS_MAIN.pencere_bak("IMALAT RAPORLAMA") == true )
 					ima_gonder();
-				}
-				else if ( OBS_MAIN.pencere_bak("STOK_RAPOR") == true ) 
-				{
+				else if ( OBS_MAIN.pencere_bak("STOK_RAPOR") == true )
 					stk_rpr_gonder();
-				}
-				else if ( OBS_MAIN.pencere_bak("ORTALAMA SATIS") == true ) 
-				{
+				else if ( OBS_MAIN.pencere_bak("ORTALAMA SATIS") == true )
 					ort_satis();
-				}
-				else if ( OBS_MAIN.pencere_bak("CARI OZEL MIZAN") == true ) 
-				{
+				else if ( OBS_MAIN.pencere_bak("CARI OZEL MIZAN") == true )
 					ozmiz_gonder();
-				}
-				else if ( OBS_MAIN.pencere_bak("LOG RAPORLAMA") == true ) 
-				{
+				else if ( OBS_MAIN.pencere_bak("LOG RAPORLAMA") == true )
 					log_gonder();
-				}
-				else if ( OBS_MAIN.pencere_bak("KERESTE CIKIS") == true ) 
-				{
+				else if ( OBS_MAIN.pencere_bak("KERESTE CIKIS") == true )
 					ker_cikis();
-				}
-				else if ( OBS_MAIN.pencere_bak("KERESTE GIRIS") == true ) 
-				{
+				else if ( OBS_MAIN.pencere_bak("KERESTE GIRIS") == true )
 					ker_giris();
-				}
 				else
-				{
 					duz_gonder();
-				}
 				dispose();
 				getContentPane().setCursor(DEFAULT_CURSOR);
 				//GuiUtil.setWaitCursor(E_MAIL_GONDERME.panel,false);	
@@ -315,7 +283,8 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 		list = new JList<String>(model);
 		//list.setForeground(new Color(0, 0, 128));
 		list.setFont(new Font("Tahoma", Font.BOLD, 11));
-		list.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Ek Dosya Secimi", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		list.setBorder(new TitledBorder(null,"Ek Dosya Secimi", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		//list.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Ek Dosya Secimi", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		list.setBounds(338, 11, 239, 218);
 		list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		list.setDropTarget(new DropTarget() {
@@ -427,9 +396,7 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 		try {
 			lblNewLabel_2.setText("");
 			if (rapor_kontrol() )
-			{
 				lblNewLabel_2.setText("1 Rapor Ekli");
-			}
 			else if (grf_kontrol() )
 			{
 				comboBox.enable(false);
@@ -545,9 +512,7 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 				return;
 			} 
 			while(rss.next())
-			{
 				cmbalici.addItem(rss.getString("ALICI"));
-			}
 			cmbalici.setSelectedItem("");
 		}
 		catch (Exception ex)
@@ -565,9 +530,7 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 			Properties props = System.getProperties();
 			props.put("mail.smtp.starttls.enable", MAIL_SETTINGS.TSL);
 			if (MAIL_SETTINGS.SSL)
-			{
 				props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");   
-			}
 			props.put("mail.smtp.host", MAIL_SETTINGS.HOST);
 			props.put("mail.smtp.user", MAIL_SETTINGS.HESAP);
 			props.put("mail.smtp.password", MAIL_SETTINGS.PWD);
@@ -582,12 +545,10 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 			MimeMessage message = new MimeMessage(session);
 			message.setFrom(new InternetAddress(txtgonhesap.getText(),txtgonisim.getText()));
 			InternetAddress[] toAddress = new InternetAddress[to.length];
-			for (int i = 0; i < to.length; i++) {
+			for (int i = 0; i < to.length; i++)
 				toAddress[i] = new InternetAddress(to[i]);
-			}
-			for (int i = 0; i < toAddress.length; i++) {
+			for (int i = 0; i < toAddress.length; i++)
 				message.setRecipient(RecipientType.TO,  toAddress[i]);
-			}
 			messagePart = new MimeBodyPart();
 			messagePart.setText(txtaciklama.getText().toString(),"UTF-8");
 			Multipart multipart = new MimeMultipart();
@@ -638,18 +599,14 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 			if (etiketten)
 			{
 				if (comboBox.getItemAt(comboBox.getSelectedIndex()).equals("PDF") )
-				{
 					ds = PRINT_JASPER.export_to();
-				}
 				else if (comboBox.getItemAt(comboBox.getSelectedIndex()).equals("EXCELL") )
 				{
 					ds = PRINT_JASPER.export_xls();
 					File outputFile = new File("etiket.xls");
 					boolean exists = outputFile.exists();
 					if (exists)
-					{    
 						outputFile.delete();
-					}
 				}
 				else if (comboBox.getItemAt(comboBox.getSelectedIndex()).equals("WORD") )
 				{
@@ -657,26 +614,20 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 					File outputFile = new File("etiket.doc");
 					boolean exists = outputFile.exists();
 					if (exists)
-					{    
 						outputFile.delete();
-					}
 				}
 			}
 			else if (ekstreden)
 			{
 				if (comboBox.getItemAt(comboBox.getSelectedIndex()).equals("PDF") )
-				{
 					ds = PRINT_JASPER.export_to();
-				}
 				else if (comboBox.getItemAt(comboBox.getSelectedIndex()).equals("EXCELL") )
 				{
 					ds = PRINT_JASPER.export_xls();
 					File outputFile = new File("ekstre.xls");
 					boolean exists = outputFile.exists();
 					if (exists)
-					{    
 						outputFile.delete();
-					}
 				}
 				else if (comboBox.getItemAt(comboBox.getSelectedIndex()).equals("WORD") )
 				{
@@ -684,9 +635,7 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 					File outputFile = new File("ekstre.doc");
 					boolean exists = outputFile.exists();
 					if (exists)
-					{    
 						outputFile.delete();
-					}
 				}
 			}
 			else
@@ -738,12 +687,10 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 			MimeMessage message = new MimeMessage(session);
 			message.setFrom(new InternetAddress(MAIL_SETTINGS.HESAP,MAIL_SETTINGS.GADI));
 			InternetAddress[] toAddress = new InternetAddress[to.length];
-			for (int i = 0; i < to.length; i++) {
+			for (int i = 0; i < to.length; i++)
 				toAddress[i] = new InternetAddress(to[i]);
-			}
-			for (int i = 0; i < toAddress.length; i++) {
+			for (int i = 0; i < toAddress.length; i++)
 				message.setRecipient(RecipientType.TO,  toAddress[i]);
-			}
 			messagePart = new MimeBodyPart();
 			messagePart.setText(txtaciklama.getText(), "UTF-8");
 
@@ -821,9 +768,7 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 			Properties props = System.getProperties();
 			props.put("mail.smtp.starttls.enable", MAIL_SETTINGS.TSL);
 			if (MAIL_SETTINGS.SSL)
-			{
 				props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");   
-			}
 			props.put("mail.smtp.host",MAIL_SETTINGS.HOST);
 			props.put("mail.smtp.user", MAIL_SETTINGS.HESAP);
 			props.put("mail.smtp.password", MAIL_SETTINGS.PWD);
@@ -838,12 +783,10 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 			MimeMessage message = new MimeMessage(session);
 			message.setFrom(new InternetAddress(MAIL_SETTINGS.HESAP,MAIL_SETTINGS.GADI));
 			InternetAddress[] toAddress = new InternetAddress[to.length];
-			for (int i = 0; i < to.length; i++) {
+			for (int i = 0; i < to.length; i++)
 				toAddress[i] = new InternetAddress(to[i]);
-			}
-			for (int i = 0; i < toAddress.length; i++) {
+			for (int i = 0; i < toAddress.length; i++)
 				message.setRecipient(RecipientType.TO,  toAddress[i]);
-			}
 			messagePart = new MimeBodyPart();
 			messagePart.setText(txtaciklama.getText(), "UTF-8");
 
@@ -1096,9 +1039,7 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 			Properties props = System.getProperties();
 			props.put("mail.smtp.starttls.enable", MAIL_SETTINGS.TSL);
 			if (MAIL_SETTINGS.SSL)
-			{
 				props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");   
-			}
 			props.put("mail.smtp.host",MAIL_SETTINGS.HOST);
 			props.put("mail.smtp.user", MAIL_SETTINGS.HESAP);
 			props.put("mail.smtp.password", MAIL_SETTINGS.PWD);
@@ -1113,12 +1054,10 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 			MimeMessage message = new MimeMessage(session);
 			message.setFrom(new InternetAddress(MAIL_SETTINGS.HESAP,MAIL_SETTINGS.GADI));
 			InternetAddress[] toAddress = new InternetAddress[to.length];
-			for (int i = 0; i < to.length; i++) {
+			for (int i = 0; i < to.length; i++)
 				toAddress[i] = new InternetAddress(to[i]);
-			}
-			for (int i = 0; i < toAddress.length; i++) {
+			for (int i = 0; i < toAddress.length; i++)
 				message.setRecipient(RecipientType.TO,  toAddress[i]);
-			}
 			messagePart = new MimeBodyPart();
 			messagePart.setText(txtaciklama.getText(), "UTF-8");
 
@@ -1172,167 +1111,121 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 	private boolean  rapor_kontrol() throws ReportSDKException
 	{
 		boolean result  = false;
-
 		if (OBS_MAIN.pencere_bak("RAPOR YAZDIRMA"))
-		{
 			result = true ;
-		}
 		return result;
 	}
 	private boolean  grf_kontrol() throws ReportSDKException
 	{
 		boolean result  = false;
 		if (OBS_MAIN.pencere_bak("GRAFIK"))
-		{
 			result = true ;
-		}
 		return result;
 	}
 	private boolean  grup_kontrol() throws ReportSDKException
 	{
 		boolean result  = false;
-
 		if (OBS_MAIN.pencere_bak("GRUP RAPOR"))
-		{
 			result = true ;
-		}
 		return result;
 	}
 	private boolean  ker_grup_kontrol() throws ReportSDKException
 	{
 		boolean result  = false;
-
 		if (OBS_MAIN.pencere_bak("KERESTE GRUP RAPOR"))
-		{
 			result = true ;
-		}
 		return result;
 	}
 	private boolean  ker_detay_kontrol() throws ReportSDKException
 	{
 		boolean result  = false;
-
 		if (OBS_MAIN.pencere_bak("KERESTE DETAY RAPOR"))
-		{
 			result = true ;
-		}
 		return result;
 	}
 	private boolean  ker_fatura_kontrol() throws ReportSDKException
 	{
 		boolean result  = false;
-
 		if (OBS_MAIN.pencere_bak("KERESTE FATURA RAPORLAMA"))
-		{
 			result = true ;
-		}
 		return result;
 	}
 
 	private boolean  ker_ortfiat_kontrol() throws ReportSDKException
 	{
 		boolean result  = false;
-
 		if (OBS_MAIN.pencere_bak("KERESTE ORTALAMA FIAT"))
-		{
 			result = true ;
-		}
 		return result;
 	}
 	private boolean  ker_envanter_kontrol() throws ReportSDKException
 	{
 		boolean result  = false;
-
 		if (OBS_MAIN.pencere_bak("KERESTE ENVANTER"))
-		{
 			result = true ;
-		}
 		return result;
 	}
 	private boolean  ker_cikis_kontrol() throws ReportSDKException
 	{
 		boolean result  = false;
-
 		if (OBS_MAIN.pencere_bak("KERESTE CIKIS"))
-		{
 			result = true ;
-		}
 		return result;
 	}
 	private boolean  ker_giris_kontrol() throws ReportSDKException
 	{
 		boolean result  = false;
-
 		if (OBS_MAIN.pencere_bak("KERESTE GIRIS"))
-		{
 			result = true ;
-		}
 		return result;
 	}
 	private boolean  ima_grup_kontrol() throws ReportSDKException
 	{
 		boolean result  = false;
 		if (OBS_MAIN.pencere_bak("IMALAT GRUP RAPOR"))
-		{
 			result = true ;
-		}
 		return result;
 	}
 	private boolean  ima_kontrol() throws ReportSDKException
 	{
 		boolean result  = false;
 		if (OBS_MAIN.pencere_bak("IMALAT RAPORLAMA"))
-		{
 			result = true ;
-		}
 		return result;
 	}
 	private boolean  stk_grup_kontrol() throws ReportSDKException
 	{
 		boolean result  = false;
-
 		if (OBS_MAIN.pencere_bak("STOK DETAY"))
-		{
 			result = true ;
-		}
 		return result;
 	}
 	private boolean  stk_rpr_kontrol() throws ReportSDKException
 	{
 		boolean result  = false;
-
 		if (OBS_MAIN.pencere_bak("STOK_RAPOR"))
-		{
 			result = true ;
-		}
 		return result;
 	}
 	private boolean  ort_fiyatlama() throws ReportSDKException
 	{
 		boolean result  = false;
-
 		if (OBS_MAIN.pencere_bak("ORTALAMA SATIS"))
-		{
 			result = true ;
-		}
 		return result;
 	}
 	private boolean  ozmiz_kontrol() throws ReportSDKException
 	{
 		boolean result  = false;
 		if (OBS_MAIN.pencere_bak("CARI OZEL MIZAN"))
-		{
 			result = true ;
-		}
 		return result;
 	}
 	private boolean  log_kontrol() throws ReportSDKException
 	{
 		boolean result  = false;
 		if (OBS_MAIN.pencere_bak("LOG RAPORLAMA"))
-		{
 			result = true ;
-		}
 		return result;
 	}
 
@@ -1340,18 +1233,14 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 	{
 		boolean result  = false;
 		if (oac.nerden.equals("etiket"))
-		{
 			result = true ;
-		}
 		return result;
 	}
 	private boolean  ekstre_kontrol() throws ReportSDKException
 	{
 		boolean result  = false;
 		if (oac.nerden.equals("ekstre"))
-		{
 			result = true ;
-		}
 		return result;
 	}
 }

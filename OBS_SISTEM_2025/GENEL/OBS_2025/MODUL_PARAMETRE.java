@@ -1,7 +1,5 @@
 package OBS_2025;
 
-import java.awt.Color;
-
 import javax.swing.ImageIcon;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
@@ -20,7 +18,6 @@ import OBS_C_2025.SMS_ACCESS;
 import OBS_C_2025.STOK_ACCESS;
 import raven.toast.Notifications;
 
-import javax.swing.border.EtchedBorder;
 import java.awt.Font;
 
 
@@ -82,28 +79,14 @@ public class MODUL_PARAMETRE extends JInternalFrame {
 	//int x ,y ;
 	
 	public MODUL_PARAMETRE() {
-		/*
-		 * addMouseMotionListener(new MouseMotionAdapter() {
-		 * 
-		 * @Override public void mouseDragged(MouseEvent e) { int xx = e.getXOnScreen();
-		 * int yy = e.getYOnScreen(); setLocation(xx-x,yy-y);
-		 * 
-		 * } }); addMouseListener(new MouseAdapter() {
-		 * 
-		 * @Override public void mousePressed(MouseEvent e) { x = e.getX(); y = e.getY()
-		 * ; } });
-		 */		//setBorder(null);
-		//BasicInternalFrameUI bUi =(BasicInternalFrameUI) this.getUI();
-		//bUi.setNorthPane(null);
-		//getRootPane().setWindowDecorationStyle(5);
-		//************************************************************************
 		setTitle("CALISMA DIZINLERI");
 		setClosable(true);
 		setBounds(100, 100, 854, 456);
 		getContentPane().setLayout(null);
 		setFrameIcon(FIT_IMAGE.formIcon(new ImageIcon(MODUL_PARAMETRE.class.getResource("/ICONLAR/icons8-database-administrator-30.png")), 16, 16));//
 		JPanel panel = new JPanel();
-		panel.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Cari Hesap", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel.setBorder(new TitledBorder(null,"Cari Hesap", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		//panel.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Cari Hesap", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 
 		panel.setBounds(25, 10, 791, 50);
 		panel.setLayout(null);
@@ -141,7 +124,8 @@ public class MODUL_PARAMETRE extends JInternalFrame {
 		
 		
 		JPanel panel_1 = new JPanel();
-		panel_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Stok", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel_1.setBorder(new TitledBorder(null,"Stok", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		//panel_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Stok", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panel_1.setBounds(25, 60, 791, 50);
 		panel_1.setLayout(null);
 		getContentPane().add(panel_1);
@@ -181,7 +165,8 @@ public class MODUL_PARAMETRE extends JInternalFrame {
 
 
 		JPanel panel_2 = new JPanel();
-		panel_2.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Kambiyo", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel_2.setBorder(new TitledBorder(null,"Kambiyo", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		//panel_2.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Kambiyo", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 
 		panel_2.setBounds(25, 210, 791, 50);
 		panel_2.setLayout(null);
@@ -221,7 +206,8 @@ public class MODUL_PARAMETRE extends JInternalFrame {
 
 
 		JPanel panel_3 = new JPanel();
-		panel_3.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Adres", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel_3.setBorder(new TitledBorder(null,"Adres", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		//panel_3.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Adres", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panel_3.setBounds(25, 160, 791, 50);
 
 		panel_3.setLayout(null);
@@ -260,7 +246,8 @@ public class MODUL_PARAMETRE extends JInternalFrame {
 
 
 		JPanel panel_4 = new JPanel();
-		panel_4.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Kur", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel_4.setBorder(new TitledBorder(null,"Kur", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		//panel_4.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Kur", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panel_4.setBounds(25, 110, 791, 50);  //panel_2.setBounds(25, 110, 791, 50);setBounds(25, 210, 791, 50)
 
 		panel_4.setLayout(null);
@@ -299,7 +286,8 @@ public class MODUL_PARAMETRE extends JInternalFrame {
 
 
 		JPanel panel_5 = new JPanel();
-		panel_5.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Gunluk", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel_5.setBorder(new TitledBorder(null,"Gunluk", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		//panel_5.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Gunluk", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panel_5.setBounds(25, 260, 791, 50);
 		panel_5.setLayout(null);
 		getContentPane().add(panel_5);
@@ -336,7 +324,8 @@ public class MODUL_PARAMETRE extends JInternalFrame {
 		
 		JPanel panel_5_1 = new JPanel();
 		panel_5_1.setLayout(null);
-		panel_5_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Kereste", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel_5_1.setBorder(new TitledBorder(null,"Kereste", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		//panel_5_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Kereste", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 
 		panel_5_1.setBounds(25, 310, 791, 50);
 		getContentPane().add(panel_5_1);
@@ -373,7 +362,8 @@ public class MODUL_PARAMETRE extends JInternalFrame {
 		
 		JPanel panel_5_1_1 = new JPanel();
 		panel_5_1_1.setLayout(null);
-		panel_5_1_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Sms", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel_5_1_1.setBorder(new TitledBorder(null,"Sms", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		//panel_5_1_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Sms", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panel_5_1_1.setBounds(25, 366, 791, 50);
 		getContentPane().add(panel_5_1_1);
 		
@@ -406,7 +396,6 @@ public class MODUL_PARAMETRE extends JInternalFrame {
 		lblNewLabel_1_6_1.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblNewLabel_1_6_1.setBounds(730, 20, 50, 14);
 		panel_5_1_1.add(lblNewLabel_1_6_1);
-
 		yukle();
 	}
 
@@ -417,13 +406,9 @@ public class MODUL_PARAMETRE extends JInternalFrame {
 		lblNewLabel.setText(BAGLAN.cariDizin.kOD);
 		lblNewLabel_1.setText(BAGLAN.cariDizin.hAN_SQL);
 		if (BAGLAN.cariDizin.yER.equals("L"))
-		{
 			lblNewLabel_2.setText(BAGLAN.cariDizin.yER); 
-		}
 		else
-		{
 			lblNewLabel_2.setText(BAGLAN.cariDizin.sERVER);	
-		}
 		lblClog.setText(BAGLAN.cariDizin.lOG == true ? "Loglama" : "");
 		lblNewLabel_4.setText( c_Access.cari_firma_adi()  );
 
@@ -431,26 +416,18 @@ public class MODUL_PARAMETRE extends JInternalFrame {
 		label.setText(BAGLAN.fatDizin.kOD);
 		lblNewLabel_1_1.setText(BAGLAN.fatDizin.hAN_SQL);
 		if (BAGLAN.fatDizin.yER.equals("L"))
-		{
 			label_1.setText(BAGLAN.fatDizin.yER);
-		}
 		else
-		{
 			label_1.setText(BAGLAN.fatDizin.sERVER);	
-		}
 		lblStoklog.setText(BAGLAN.fatDizin.lOG == true ? "Loglama" : "");
 		label_2.setText( f_Access.fat_firma_adi() );
 		// Kambiyo 
 		label_3.setText(BAGLAN.kamDizin.kOD);
 		lblNewLabel_1_2.setText(BAGLAN.kamDizin.hAN_SQL);
 		if (BAGLAN.kamDizin.yER.equals("L"))
-		{
 			label_4.setText(BAGLAN.kamDizin.yER);
-		}
 		else
-		{
 			label_4.setText(BAGLAN.kamDizin.sERVER);	
-		}
 		lblKamlog.setText(BAGLAN.kamDizin.lOG == true ? "Loglama" : "");
 		label_55.setText( ka_Access.kam_firma_adi());
 
@@ -458,67 +435,46 @@ public class MODUL_PARAMETRE extends JInternalFrame {
 		label_6.setText(BAGLAN.adrDizin.kOD);
 		lblNewLabel_1_3.setText(BAGLAN.adrDizin.hAN_SQL);
 		if (BAGLAN.adrDizin.yER.equals("L"))
-		{
 			label_7.setText(BAGLAN.adrDizin.yER);
-		}
 		else
-		{
 			label_7.setText(BAGLAN.adrDizin.sERVER);	
-		}
 		lblAdrlog.setText(BAGLAN.adrDizin.lOG == true ? "Loglama" : "");
 		label_8.setText( a_Access.adr_firma_adi() );
 		// Kur
 		label_9.setText(BAGLAN.kurDizin.kOD);
 		lblNewLabel_1_4.setText(BAGLAN.kurDizin.hAN_SQL);
 		if (BAGLAN.kurDizin.yER.equals("L"))
-		{
 			label_10.setText(BAGLAN.kurDizin.yER);
-		}
 		else
-		{
 			label_10.setText(BAGLAN.kurDizin.sERVER);	
-		}
 		lblKurlog.setText(BAGLAN.kurDizin.lOG == true ? "Loglama" : "");
 		label_11.setText("");
 		// Gunluk
 		label_12.setText(BAGLAN.gunDizin.kOD);
 		lblNewLabel_1_5.setText(BAGLAN.gunDizin.hAN_SQL);
 		if (BAGLAN.gunDizin.yER.equals("L"))
-		{
 			label_13.setText(BAGLAN.gunDizin.yER);
-		}
 		else
-		{
 			label_13.setText(BAGLAN.gunDizin.sERVER);	
-		}
 		lblGunlog.setText(BAGLAN.gunDizin.lOG == true ? "Loglama" : "");
 		label_14.setText(g_Access.gun_firma_adi() );
 		// Kereste
 		label_12_1.setText(BAGLAN.kerDizin.kOD);
 		lblNewLabel_1_6.setText(BAGLAN.kerDizin.hAN_SQL);
 		if (BAGLAN.kerDizin.yER.equals("L"))
-		{
 			label_13_1.setText(BAGLAN.kerDizin.yER);
-		}
 		else
-		{
 			label_13_1.setText(BAGLAN.kerDizin.sERVER);	
-		}
 		lblKerlog.setText(BAGLAN.kerDizin.lOG == true ? "Loglama" : "");
 		label_14_1.setText(ker_Access.ker_firma_adi() );
 		// Sms
 		label_12_1_1.setText(BAGLAN.smsDizin.kOD);
 		lblNewLabel_1_6_1.setText(BAGLAN.smsDizin.hAN_SQL);
 		if (BAGLAN.smsDizin.yER.equals("L"))
-		{
 			label_13_1_1.setText(BAGLAN.smsDizin.yER);
-		}
 		else
-		{
 			label_13_1_1.setText(BAGLAN.smsDizin.sERVER);	
-		}
 		lblSmslog.setText(BAGLAN.smsDizin.lOG == true ? "Loglama" : "");
-		
 		} 
 		catch (Exception e) 
 		{

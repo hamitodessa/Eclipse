@@ -60,20 +60,15 @@ public class TARIH_CEVIR {
 		ay = tar.substring(3, 5);
 		yil = tar.substring(6,10);
 		tarih = yil + "." + ay + "."+ gun ;
-
 		return tarih;
-
 	}
 	public static String tarih_ters(String tar) {
 		String gun,ay,yil,tarih = "";
-
 		gun = tar.substring(8, 10);
 		ay = tar.substring(5, 7);
 		yil = tar.substring(0,4);
 		tarih =  gun + "." + ay + "."+ yil;
-
 		return tarih;
-
 	}
 	public static String  tarih_geri(JDateChooser dc) {
 		DateFormat df = new SimpleDateFormat("yyyy.MM.dd");

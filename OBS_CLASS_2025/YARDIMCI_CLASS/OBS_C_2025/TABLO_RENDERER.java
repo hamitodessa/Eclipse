@@ -36,7 +36,6 @@ public class TABLO_RENDERER extends DefaultTableCellRenderer {
         case 4 -> value = formatter4.format((Number)value);
  		}
 		super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
-
 		if (bold)
 			setFont (new Font(table.getFont().getFontName(),1 ,table.getFont().getSize())); //12
 		else

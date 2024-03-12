@@ -20,21 +20,13 @@ public class DoubleEditor extends DefaultCellEditor
        ftf = (JFormattedTextField)getComponent();
         ftf.setBorder(new LineBorder(Color.BLACK));
         if (kesir == 0)
-        {
-        decimalFormat = new DecimalFormat( "##,###,##0" );
-        }
+        	decimalFormat = new DecimalFormat( "##,###,##0" );
         else if (kesir == 1)
-        {
-        decimalFormat = new DecimalFormat( "##,###,##0.0" );
-        }
+        	decimalFormat = new DecimalFormat( "##,###,##0.0" );
         else if (kesir == 2)
-        {
-        decimalFormat = new DecimalFormat( "##,###,##0.00" );
-        }
+        	decimalFormat = new DecimalFormat( "##,###,##0.00" );
         else  if (kesir == 3)
-        {
-        decimalFormat = new DecimalFormat( "##,###,##0.000" );
-        }
+        	decimalFormat = new DecimalFormat( "##,###,##0.000" );
         NumberFormatter intFormatter = new NumberFormatter(decimalFormat);
         intFormatter.setFormat(decimalFormat);
         ftf.setFormatterFactory(new DefaultFormatterFactory(intFormatter));
@@ -62,9 +54,7 @@ public class DoubleEditor extends DefaultCellEditor
                 if (!ftf.isEditValid())  //The text is invalid.
                 {
                     if (userSaysRevert())
-                    {
-                        ftf.postActionEvent(); //inform the editor
-                    }
+                    	ftf.postActionEvent(); //inform the editor
                 }
                 else
                     try
@@ -94,25 +84,15 @@ public class DoubleEditor extends DefaultCellEditor
         ftf.setHorizontalAlignment(JFormattedTextField.RIGHT);
          return ftf;
     }
-
-    //Override to ensure that the value remains an Integer.
-	
-
-	
-
 	public Object getCellEditorValue()
     {
         JFormattedTextField ftf = (JFormattedTextField)getComponent();
         Object o = ftf.getValue();
         if (o instanceof Double)
-        {
-            return o;
-        }
+        	return o;
         else if (o instanceof Number)
-        {
-            return ((Number)o).doubleValue();
+        	return ((Number)o).doubleValue();
             // return new Double(((Number)o).doubleValue());
-        }
         else
         {
             try

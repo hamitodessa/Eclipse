@@ -225,19 +225,17 @@ public class ScrollBarWin11UI extends BasicScrollBarUI {
             int y = isIncrease ? 8 : 0;
             int width = getWidth();
             int height = getHeight() - 8;
-            if (orientation == JScrollBar.VERTICAL) {
-                g2.fill(new Rectangle2D.Double(x, y, width, height));
-            } else {
-                g2.fill(new Rectangle2D.Double(y, x, height, width));
-            }
+            if (orientation == JScrollBar.VERTICAL)
+            	g2.fill(new Rectangle2D.Double(x, y, width, height));
+            else
+            	g2.fill(new Rectangle2D.Double(y, x, height, width));
             g2.setComposite(AlphaComposite.SrcOver.derive(animate));
-            if (mousePress) {
-                g2.setColor(new Color(110, 110, 110));
-            } else if (mouseHover) {
-                g2.setColor(new Color(130, 130, 130));
-            } else {
-                g2.setColor(scrollbar.getForeground());
-            }
+            if (mousePress)
+            	g2.setColor(new Color(110, 110, 110));
+            else if (mouseHover)
+            	g2.setColor(new Color(130, 130, 130));
+            else
+            	g2.setColor(scrollbar.getForeground());
             double ax = scrollSize * 0.1f;
             double ay = scrollSize * 0.15f;
             g2.translate(ax, ay);
@@ -247,7 +245,6 @@ public class ScrollBarWin11UI extends BasicScrollBarUI {
         }
     }
     public class PolygonCorner {
-
         public GeneralPath getRoundedGeneralPathFromPoints(List<Point2D> l, float arcSize) {
             l.add(l.get(0));
             l.add(l.get(1));
@@ -266,7 +263,6 @@ public class ScrollBarWin11UI extends BasicScrollBarUI {
             }
             return p;
         }
-
         private Point2D calculatePoint(Point2D p1, Point2D p2, float arcSize) {
             double d1 = Math.sqrt(Math.pow(p1.getX() - p2.getX(), 2f) + Math.pow(p1.getY() - p2.getY(), 2f));
             double per = arcSize / d1;

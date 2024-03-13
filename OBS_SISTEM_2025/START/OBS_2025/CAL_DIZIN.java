@@ -99,7 +99,6 @@ import net.proteanit.sql.DbUtils;
 import raven.toast.Notifications;
 
 import javax.swing.border.TitledBorder;
-import javax.swing.border.EtchedBorder;
 import javax.swing.event.ChangeListener;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -335,9 +334,6 @@ public class CAL_DIZIN extends JDialog {
 			public void actionPerformed(ActionEvent e) {
 				cIKIS();			}
 		});
-		//btnNewButton_5.setIcon(new ImageIcon(CAL_DIZIN.class.getResource("/ICONLAR/exit.png")));
-		//toolBar.add(btnNewButton_5);
-		
 
 		JLabel lblNewLabel_1 = new JLabel("Kodu");
 		lblNewLabel_1.setBounds(24, 76, 68, 14);
@@ -369,7 +365,6 @@ public class CAL_DIZIN extends JDialog {
 					chckbxD.setEnabled(false);
 					chckbxO.setEnabled(false);
 				}
-				
 			}
 		});
 		chckbxL.setSelected(true);
@@ -653,10 +648,8 @@ public class CAL_DIZIN extends JDialog {
 		tblFatura.setShowHorizontalLines(true);
 		tblFatura.setShowVerticalLines(true);
 		tblFatura.setFont(new Font("Dialog", Font.PLAIN, 12));
-		if(! oac.gridcolor.toString().equals("java.awt.Color[r=255,g=255,b=255]")) 
-		{
+		if(! oac.gridcolor.toString().equals("java.awt.Color[r=255,g=255,b=255]"))
 			tblFatura.setGridColor(oac.gridcolor);
-		}
 		tablo_baslik(tblFatura);
 		scrollPane_1.setViewportView(tblFatura);
 
@@ -974,7 +967,8 @@ public class CAL_DIZIN extends JDialog {
 		panel_2.setLayout(null);
 
 		JPanel panel_3 = new JPanel();
-		panel_3.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "E Mail Loglama", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel_3.setBorder(new TitledBorder(null,"E Mail Loglama", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		//panel_3.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "E Mail Loglama", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panel_3.setBounds(10, 11, 617, 74);
 		panel_3.setLayout(null);
 		panel_2.add(panel_3);
@@ -1055,10 +1049,7 @@ public class CAL_DIZIN extends JDialog {
 				}
 			}
 		});
-
-		//table_1.setAutoResizeMode( JTable.AUTO_RESIZE_OFF );
 		scrollPane_10.setViewportView(table_1);
-		
 		btnNewButton_4 = new JButton("");
 		btnNewButton_4.setBounds(680, 11, 23, 23);
 		panel_2.add(btnNewButton_4);
@@ -1114,25 +1105,20 @@ public class CAL_DIZIN extends JDialog {
 					OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,  ex.getMessage() );
 					txtsif.requestFocus();		
 				}				
-
 			}
 		});
 		btnNewButton_2_2.setToolTipText("Kaydet");
 		btnNewButton_2_2.setIcon(new ImageIcon(CAL_DIZIN.class.getResource("/ICONLAR/save.png")));
 
 		//====================SQL baglanti 
-		
-		
 		ScrollPaneWin11 scrollPane_11 = new ScrollPaneWin11();
 		tabbedPane.addTab("SQL Baglanti", null,scrollPane_11, null);
-
 		JPanel panel_4 = new JPanel();
-		
 		scrollPane_11.setViewportView(panel_4);
 		panel_4.setLayout(null);
 		
 		panel_5 = new JPanel();
-		panel_5.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "MS SQL - Ornek", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel_5.setBorder(new TitledBorder(null,"MS SQL - Ornek", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panel_5.setBounds(33, 30, 320, 259);
 		panel_4.add(panel_5);
 		panel_5.setLayout(null);
@@ -1190,7 +1176,8 @@ public class CAL_DIZIN extends JDialog {
 		
 		JPanel panel_5_1 = new JPanel();
 		panel_5_1.setLayout(null);
-		panel_5_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "MY SQL - Ornek", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel_5_1.setBorder(new TitledBorder(null,"MY SQL - Ornek", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		//panel_5_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "MY SQL - Ornek", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panel_5_1.setBounds(371, 30, 320, 259);
 		panel_4.add(panel_5_1);
 		
@@ -1358,7 +1345,6 @@ public class CAL_DIZIN extends JDialog {
 		panel.add(btnNewButton_6);
 
 		separator = new JSeparator();
-		//separator.setForeground(new Color(0, 191, 255));
 		separator.setBounds(24, 32, 260, 2);
 		panel.add(separator);
 		
@@ -1507,7 +1493,6 @@ public class CAL_DIZIN extends JDialog {
 		
 		th.repaint();
 		grd.setRowSelectionInterval(0, 0);
-		
 		if (chckbxS.isSelected())
 		{
 			chckbxD.setEnabled(false);
@@ -1536,13 +1521,11 @@ public class CAL_DIZIN extends JDialog {
 		txtKodu.setText(grd.getModel().getValueAt(satir, 1).toString());
 		txtIp.setText(grd.getModel().getValueAt(satir, 6).toString());
 		txtkul.setText(grd.getModel().getValueAt(satir, 3).toString());
-		
 		String decodedString = grd.getModel().getValueAt(satir, 4).toString();
 		String[] byteValues = decodedString.substring(1, decodedString.length() - 1).split(",");
 		byte[] bytes = new byte[byteValues.length];
-		for (int i=0, len=bytes.length; i<len; i++) {
-		   bytes[i] = Byte.parseByte(byteValues[i].trim());     
-		}
+		for (int i=0, len=bytes.length; i<len; i++)
+			bytes[i] = Byte.parseByte(byteValues[i].trim());     
 		try {
 			txtsifr.setText( ENCRYPT_DECRYPT_STRING.dCRYPT_manual(bytes));
 		} catch (Exception e) {
@@ -1795,7 +1778,6 @@ public class CAL_DIZIN extends JDialog {
 			int g =  JOptionPane.showOptionDialog( null,  "Yeni Dosya Olusturulsunmu............?", "Dosya Olusturma",   JOptionPane.YES_NO_OPTION,
 					JOptionPane.QUESTION_MESSAGE,	 	null,    	oac.options,  	 	oac.options[1]); 
 			if(g != 0 ) { return;	}
-			//Thread.yield();
 			dosya_olustur_L();
 			mdb_yaz();
 			grid_doldur();
@@ -1831,9 +1813,8 @@ public class CAL_DIZIN extends JDialog {
 			if ( !GLOBAL.KULL_ADI.equals("Admin") )
 			{
 				ResultSet rs = oac.uSER_ISL.user_details_izinleri(GLOBAL.KULL_ADI, modul, "YER = 'S'");
-				if (!rs.isBeforeFirst() ) {  
+				if (!rs.isBeforeFirst() )
 					izinli = false;
-				} 
 			}
 			if (izinli == false)
 			{
@@ -1868,7 +1849,6 @@ public class CAL_DIZIN extends JDialog {
 			if(g != 0 ) { return;	}
 			{
 				contentPane.setCursor(WAIT_CURSOR);
-				//Thread.yield();
 				dosya_olustur_S();
 				mdb_yaz();
 				grid_doldur();
@@ -2431,7 +2411,6 @@ public class CAL_DIZIN extends JDialog {
 		lOG_BILGI lBILGI = new lOG_BILGI();
 		lBILGI.setmESAJ("Dosya Olusturuldu");
 		lBILGI.seteVRAK("");
-		
 		Server_Bilgi sbilgi = new Server_Bilgi();
 		sbilgi.setKod(txtKodu.getText());
 		sbilgi.setIns(comboBox.getSelectedItem().toString());
@@ -2505,9 +2484,7 @@ public class CAL_DIZIN extends JDialog {
 		sbilgi.setDizin_yeri("default");;
 		sbilgi.setDizin("");;
 		if (chckbxD.isSelected())
-		{
 			ker_Access.kER_SIFIR_S(sbilgi, lBILGI,BAGLAN_LOG.kerLogDizin);
-		}    
 	}
 	private  void dosya_olustur_S() throws IOException, ClassNotFoundException, SQLException
 	{
@@ -2803,7 +2780,6 @@ public class CAL_DIZIN extends JDialog {
 				sBilgi.setKull(txtkul.getText()); ;
 				sBilgi.setSifre( oac.sDONDUR.sDONDUR(txtsifr));;
 			}
-
 			StringBuilder stb = new StringBuilder();
 			switch(activ_sayfa) {
 			case 0:
@@ -2978,7 +2954,6 @@ public class CAL_DIZIN extends JDialog {
 						s_CONN.job_sil_S("OK_Kam" +  txtKodu.getText() + "_Index","/ok_kam" + txtKodu.getText()  , sBilgi); 
 						s_CONN.job_olustur_S("OK_Kam" +  txtKodu.getText() + "_Index","/ok_kam" +  txtKodu.getText() , stb.toString() ,sBilgi);	
 					}
-
 				}
 				break;
 			case 5:
@@ -3039,7 +3014,6 @@ public class CAL_DIZIN extends JDialog {
 						s_CONN.job_olustur_S("OK_Gun" +  txtKodu.getText() + "_Index","OK_Gun" +  txtKodu.getText() , stb.toString() ,sBilgi);
 						s_CONN.job_baslat_S("OK_Gun" +  txtKodu.getText() + "_Index", sBilgi);
 					}
-
 				}
 				else 
 				{

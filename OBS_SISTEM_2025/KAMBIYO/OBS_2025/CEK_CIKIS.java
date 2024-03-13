@@ -31,7 +31,6 @@ import javax.swing.JSplitPane;
 import javax.swing.JTable;
 
 import javax.swing.SwingConstants;
-import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
@@ -235,35 +234,31 @@ public class CEK_CIKIS extends JInternalFrame {
 		JPanel panel = new JPanel();
 		splitPane_1.setRightComponent(panel);
 		//panel.setBorder(new LineBorder(null));
-		panel.setMinimumSize(new Dimension(0, 30));
-		panel.setMaximumSize(new Dimension(0, 30));
+		panel.setMinimumSize(new Dimension(0, 25));
+		panel.setMaximumSize(new Dimension(0, 25));
 		panel.setLayout(null);
 
 		JLabel lblNewLabel_6 = new JLabel("Evrak Sayisi :");
-		lblNewLabel_6.setBounds(10, 11, 83, 14);
+		lblNewLabel_6.setBounds(10, 5, 83, 14);
 		panel.add(lblNewLabel_6);
 
 		lblNewLabel_12 = new JLabel("0");
-		//lblNewLabel_12.setForeground(new Color(0, 0, 139));
-		lblNewLabel_12.setBounds(103, 11, 58, 14);
+		lblNewLabel_12.setBounds(103, 5, 58, 14);
 		panel.add(lblNewLabel_12);
 
 		label = new JLabel("0.00");
-		//label.setForeground(new Color(139, 0, 0));
 		label.setFont(new Font("Tahoma", Font.BOLD, 12));
 		label.setHorizontalAlignment(SwingConstants.RIGHT);
-		label.setBounds(1073, 11, 136, 14);
+		label.setBounds(1073, 5, 136, 14);
 		panel.add(label);
 
 		MaterialTabbed tabbedPane = new MaterialTabbed();
-		//tabbedPane.setForeground(new Color(0, 0, 128));
 		tabbedPane.setFont(new Font("Tahoma", Font.BOLD, 14));
 		tabbedPane.setMinimumSize(new Dimension(0, 135));
 		tabbedPane.setMaximumSize(new Dimension(0, 135));
 		splitPane.setLeftComponent(tabbedPane);
 
 		JPanel panel_2 = new JPanel();
-		//panel_2.setBorder(new LineBorder(null));
 		tabbedPane.addTab("Cek Cikis", null, panel_2, null);
 		panel_2.setLayout(null);
 
@@ -428,7 +423,8 @@ public class CEK_CIKIS extends JInternalFrame {
 				if(e.getKeyCode()==KeyEvent.VK_DOWN) {
 					SimpleDateFormat datefmt = new SimpleDateFormat("dd.MM.yyyy"); // Or format you're using
 					Date date;
-					try {
+					try 
+					{
 						date = datefmt.parse(TARIH_CEVIR.tarih_dt_ddMMyyyy(dateChooser));
 						Calendar cal = Calendar.getInstance();
 						cal.setTime(date);
@@ -446,7 +442,6 @@ public class CEK_CIKIS extends JInternalFrame {
 						Calendar cal = Calendar.getInstance();
 						cal.setTime(date);
 						cal.add(Calendar.DAY_OF_MONTH, 1); // Add 30 days
-
 						dateChooser.setDate(new Date(cal.getTimeInMillis()));
 					} catch (ParseException e1) {
 						e1.printStackTrace();
@@ -460,7 +455,7 @@ public class CEK_CIKIS extends JInternalFrame {
 		panel_2.add(dateChooser);
 
 		JPanel panel_3 = new JPanel();
-		panel_3.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Vade Farki", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel_3.setBorder(new TitledBorder(null,"Vade Farki", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panel_3.setBounds(451, 5, 352, 53);
 		panel_2.add(panel_3);
 		panel_3.setLayout(null);
@@ -913,10 +908,12 @@ public class CEK_CIKIS extends JInternalFrame {
 		{
 			DefaultTableModel model = (DefaultTableModel)table.getModel();
 			if (model.getRowCount()  == 0 ) return ;
-			if (textField_2.getText().equals("")) {
+			if (textField_2.getText().equals("")) 
+			{
 				lblNewLabel_7.setText(FORMATLAMA.doub_2(0.00));
 				lblOrtGun.setText("0");
-				return;}
+				return;
+			}
 			getContentPane().setCursor(oac.WAIT_CURSOR);
 			double tfaiz ,gun,faiz,orgun,toppara,double_0 ;
 			tfaiz = 0;

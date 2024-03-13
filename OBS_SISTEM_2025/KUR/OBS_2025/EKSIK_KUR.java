@@ -152,13 +152,9 @@ public class EKSIK_KUR extends JInternalFrame
 
 		DefaultTableModel model = new DefaultTableModel() ;
 		table = new JTable(model) ;
-		if(! oac.gridcolor.toString().equals("java.awt.Color[r=255,g=255,b=255]")) 
-		{
+		if(! oac.gridcolor.toString().equals("java.awt.Color[r=255,g=255,b=255]"))
 			table.setGridColor(oac.gridcolor);
-		}
-
 		table.getTableHeader().setReorderingAllowed(false);
-
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		model.addColumn("Tarih",   new String []{""});
 		model.addColumn("MA",new Double [] {new Double( 0 )});
@@ -231,7 +227,6 @@ public class EKSIK_KUR extends JInternalFrame
 			DefaultTableModel model = (DefaultTableModel)table.getModel();
 			String str= "";
 			double ma ,ms ;
-
 			for (int i = 0; i < table.getRowCount()  ; i ++)
 			{
 				str =  model.getValueAt(i , 0).toString();
@@ -246,9 +241,7 @@ public class EKSIK_KUR extends JInternalFrame
 			do {
 				i++;
 				if(i==modell.getRowCount())
-				{
 					break;
-				}
 				ma =  (double) modell.getValueAt(i , 1);
 				if (  ma!=0)
 				{
@@ -257,7 +250,6 @@ public class EKSIK_KUR extends JInternalFrame
 				}
 			}
 			while (i < modell.getRowCount());
-
 			lblkayit.setText(String.valueOf(modell.getRowCount()));
 		}
 		catch (Exception ex)
@@ -276,9 +268,7 @@ public class EKSIK_KUR extends JInternalFrame
 	{
 		DefaultTableModel modell = (DefaultTableModel)table.getModel();
 		if(modell.getRowCount() == 0)
-		{
 			return;
-		}
 		Runnable runner = new Runnable()
 		{ public void run() {
 			String tar = "" ;
@@ -292,14 +282,12 @@ public class EKSIK_KUR extends JInternalFrame
 			do {
 				i++;
 				if(i==modell.getRowCount())
-				{
 					break;
-				}
 				kur =  (double) modell.getValueAt(i , 1);
 				if (  kur ==0)
 				{
 					modell.removeRow(i);
-					i = i-1;
+					i = i - 1;
 				}
 			}
 			while (i < modell.getRowCount());
@@ -370,7 +358,6 @@ public class EKSIK_KUR extends JInternalFrame
 			int g =  JOptionPane.showOptionDialog( null,  "Kayit Islemi Baslayacak ..?", "Kur Dosyasina Kayit",   JOptionPane.YES_NO_OPTION,
 					JOptionPane.QUESTION_MESSAGE,	   			 	null,   	oac.options,   	oac.options[1]); 
 			if(g != 0 ) { return;	}
-
 			String tarih = "";
 			double ma,ms =0 ;
 			long startTime = System.currentTimeMillis(); 
@@ -382,12 +369,10 @@ public class EKSIK_KUR extends JInternalFrame
 				ms =  (double) modell.getValueAt(i , 2);
 				kayit(tarih = TARIH_CEVIR.tarih_sql(tarih),(String) cmbCins.getSelectedItem().toString(),ma,ms);
 			}
-
 			long endTime = System.currentTimeMillis();
 			long estimatedTime = endTime - startTime; 
 			double seconds = (double)estimatedTime/1000; 
 			OBS_MAIN.lblNewLabel_9.setText("Son Raporlama Suresi : " + FORMATLAMA.doub_4(seconds) +  " saniye");
-
 		}
 		catch (Exception ex)
 		{

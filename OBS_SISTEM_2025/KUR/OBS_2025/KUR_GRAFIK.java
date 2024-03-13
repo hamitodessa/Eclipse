@@ -72,17 +72,11 @@ public class KUR_GRAFIK extends JInternalFrame {
 		duzenle();
 
 		if (FILTRE.comboBox_73.getItemAt(FILTRE.comboBox_73.getSelectedIndex()).equals("Yil"))
-		{
 			yil_goster();
-		}
 		else if (FILTRE.comboBox_73.getItemAt(FILTRE.comboBox_73.getSelectedIndex()).equals("Ay"))
-		{
 			ay_goster();
-		}
 		else if (FILTRE.comboBox_73.getItemAt(FILTRE.comboBox_73.getSelectedIndex()).equals("Gun"))
-		{
 			gun_goster();
-		}
 	}
 	private static void duzenle()
 	{
@@ -115,21 +109,16 @@ public class KUR_GRAFIK extends JInternalFrame {
 		try {
 			ResultSet rs =null;
 			ResultSet rss =null;
-
 			rs = k_Access.kur_yil_graf_rapor(FILTRE.comboBox_74.getSelectedItem().toString(),
 					TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_32), TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_32_1));
-
-			if (!rs.isBeforeFirst() ) {  
+			if (!rs.isBeforeFirst() )
 				return ;
-			} 
 			DefaultTableModel model = (DefaultTableModel) table.getModel();
 			while (rs.next()) {
-
 				rss = k_Access.kur_graf_rapor(FILTRE.comboBox_74.getSelectedItem().toString(),
 						rs.getString("TARIH").toString() + "." + "1" + "." + "1",
 						rs.getString("TARIH").toString() + "." + "1" + "." + "10",
 						FILTRE.comboBox_72.getItemAt(FILTRE.comboBox_72.getSelectedIndex()),"YEAR");
-
 				if (!rss.isBeforeFirst() ) 
 				{  
 
@@ -153,25 +142,17 @@ public class KUR_GRAFIK extends JInternalFrame {
 		if (FILTRE.comboBox_73.getItemAt(FILTRE.comboBox_73.getSelectedIndex()).equals("Yil"))
 		{
 			GLOBAL.g_baslik = "KUR GRAFIK YILLARA GORE";
-			//***LEGENDS
 			DefaultTableModel mdll = (DefaultTableModel) table.getModel();
 			GLOBAL.g_legends = "Yillar";
-
-			//*** g_setNumbersAxisTitleText
 			GLOBAL.g_setNumbersAxisTitleText = "Kur" ;
 			ArrayList<Double> kur = new ArrayList<Double>();
 			for (int y = 0;y<mdll.getRowCount() - 1 ;y++)
-			{
 				kur.add(  mdll.getValueAt(y,2) == null ? 0: Double.parseDouble( mdll.getValueAt(y,2).toString()));
-			}
 			GLOBAL.min_value =  Collections.min(kur) - (Collections.min(kur) * .10) ;
 			GLOBAL.max_value = Collections.max(kur) + (Collections.max(kur) * .10) ;
-
-			///
 			Double asd = 0.00 ;
 			GLOBAL.dataset = new DefaultCategoryDataset();  
 			String series1 = "YILLAR";  
-			// String series2 = "Unique Visitor";  
 			for (int y = 1;y<=mdll.getRowCount() ;y++)
 			{
 				asd =  mdll.getValueAt(y-1,2) == null ? 0: Double.parseDouble( mdll.getValueAt(y-1,2).toString());
@@ -181,25 +162,16 @@ public class KUR_GRAFIK extends JInternalFrame {
 		else if (FILTRE.comboBox_73.getItemAt(FILTRE.comboBox_73.getSelectedIndex()).equals("Ay"))
 		{
 			GLOBAL.g_baslik = "KUR GRAFIK AYLARA GORE";
-			//***LEGENDS
 			DefaultTableModel mdll = (DefaultTableModel) table.getModel();
 			GLOBAL.g_legends = "Aylar";
-
-			//*** g_setNumbersAxisTitleText
 			GLOBAL.g_setNumbersAxisTitleText = "Kur" ;
-			//*** Dataset
 			GLOBAL.min_value = Double.parseDouble( mdll.getValueAt(0,2).toString());
-			///
 			String series1 = "AYLAR";  
-			// String series2 = "Unique Visitor";  
 			ArrayList<Double> kur = new ArrayList<Double>();
 			for (int y = 0;y<mdll.getRowCount() - 1 ;y++)
-			{
 				kur.add(  mdll.getValueAt(y,2) == null ? 0: Double.parseDouble( mdll.getValueAt(y,2).toString()));
-			}
 			GLOBAL.min_value =  Collections.min(kur) - (Collections.min(kur) * .10) ;
 			GLOBAL.max_value = Collections.max(kur) + (Collections.max(kur) * .10) ;
-			///
 			GLOBAL.dataset = new DefaultCategoryDataset();  
 			Double asd = 0.00 ;
 			for (int y = 1;y<=mdll.getRowCount() ;y++)
@@ -207,26 +179,19 @@ public class KUR_GRAFIK extends JInternalFrame {
 				asd =  mdll.getValueAt(y-1,2) == null ? 0: Double.parseDouble( mdll.getValueAt(y-1,2).toString());
 				GLOBAL.dataset.addValue(asd, series1, mdll.getValueAt(y-1,0).toString());  
 			}
-			///
 		}
 		else if (FILTRE.comboBox_73.getItemAt(FILTRE.comboBox_73.getSelectedIndex()).equals("Gun"))
 		{
 			GLOBAL.g_baslik = "KUR GRAFIK Gunlere GORE";
-			//***LEGENDS
 			DefaultTableModel mdll = (DefaultTableModel) table.getModel();
 			GLOBAL.g_legends = "Gunler";
-			//*** g_setNumbersAxisTitleText
 			GLOBAL.g_setNumbersAxisTitleText = "Kur" ;
-			//*** Dataset
 			String series1 = "GUNLER";  
 			ArrayList<Double> kur = new ArrayList<Double>();
 			for (int y = 0;y<mdll.getRowCount() - 1 ;y++)
-			{
 				kur.add(  mdll.getValueAt(y,2) == null ? 0: Double.parseDouble( mdll.getValueAt(y,2).toString()));
-			}
 			GLOBAL.min_value =  Collections.min(kur) - (Collections.min(kur) * .10) ;
 			GLOBAL.max_value = Collections.max(kur) + (Collections.max(kur) * .10) ;
-			///
 			Double asd = 0.00 ;
 			GLOBAL.dataset = new DefaultCategoryDataset();  
 			for (int y = 1;y<=mdll.getRowCount() ;y++)
@@ -234,7 +199,6 @@ public class KUR_GRAFIK extends JInternalFrame {
 				asd =  mdll.getValueAt(y-1,2) == null ? 0: Double.parseDouble( mdll.getValueAt(y-1,2).toString());
 				GLOBAL.dataset.addValue(asd, series1, mdll.getValueAt(y-1,0).toString());  
 			}
-			///
 		}
 	}
 	private static void ay_goster()
@@ -242,9 +206,7 @@ public class KUR_GRAFIK extends JInternalFrame {
 		try {
 			ResultSet rss =null;
 			DefaultTableModel model = (DefaultTableModel) table.getModel();	
-			//  GRID_TEMIZLE.grid_temizle(table);
 			for (int i =1; i <= 12;i++) {
-
 				rss = k_Access.kur_graf_rapor(FILTRE.comboBox_74.getSelectedItem().toString(),
 						TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_32).substring(0,4)  + "." + i + "." + "1",
 						TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_32).substring(0,4)+ "." + i + "." + "10",
@@ -281,9 +243,7 @@ public class KUR_GRAFIK extends JInternalFrame {
 				//	System.out.println("Bos");
 			} 
 			else
-			{
 				table.setModel(DbUtils.resultSetToTableModel(rss));		
-			}
 			duzenle();
 		}
 		catch (Exception ex)

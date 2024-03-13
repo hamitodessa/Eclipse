@@ -67,7 +67,6 @@ public class GID_RAPOR extends JInternalFrame {
 
 		JPanel panel = new JPanel();
 		splitPane.setLeftComponent(panel);
-		//panel.setBorder(new LineBorder(null));
 		panel.setMinimumSize(new Dimension(0, 30));
 		panel.setMaximumSize(new Dimension(0, 30));
 		panel.setLayout(null);
@@ -152,9 +151,8 @@ public class GID_RAPOR extends JInternalFrame {
 			GRID_TEMIZLE.grid_temizle(table);
 			textField.setText("");
 			rs = oac.uSER_ISL.giden_rapor(GLOBAL.KULL_ADI);				
-			if (!rs.isBeforeFirst() ) {  
+			if (!rs.isBeforeFirst() )
 				return;
-			} 
 			GRID_TEMIZLE.grid_temizle(table);
 			table.setModel(DbUtils.resultSetToTableModel(rs));
 			table.removeColumn(table.getColumnModel().getColumn(0));
@@ -226,9 +224,7 @@ public class GID_RAPOR extends JInternalFrame {
 	public void arama()  
 	{
 		if (textField.getText().equals(""))
-		{
 			table.setRowSorter(null);
-		}
 		else
 		{
 			GuiUtil.setWaitCursor(splitPane,true);
@@ -247,7 +243,6 @@ public class GID_RAPOR extends JInternalFrame {
 		try
 		{
 			GuiUtil.setWaitCursor(splitPane,true);
-			
 			if( table.getRowSorter() == null)
 			{
 				DefaultTableModel mdl = (DefaultTableModel) table.getModel();

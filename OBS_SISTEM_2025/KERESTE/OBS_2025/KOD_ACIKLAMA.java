@@ -65,17 +65,17 @@ public class KOD_ACIKLAMA extends JInternalFrame {
 		txtKod = new Obs_TextFIeld(2);
 		txtKod.setFont(new Font("Tahoma", Font.BOLD, 11));
 	
-		txtKod.setBounds(50, 15, 46, 20);
+		txtKod.setBounds(50, 15, 60, 20);
 		panel.add(txtKod);
 		
 		JLabel lblNewLabel_1 = new JLabel("Aciklama");
-		lblNewLabel_1.setBounds(105, 18, 65, 14);
+		lblNewLabel_1.setBounds(129, 18, 65, 14);
 		panel.add(lblNewLabel_1);
 		
 		txtAciklama = new Obs_TextFIeld(50);
 		txtAciklama.setFont(new Font("Tahoma", Font.BOLD, 11));
 
-		txtAciklama.setBounds(168, 15, 402, 20);
+		txtAciklama.setBounds(193, 15, 377, 20);
 		panel.add(txtAciklama);
 		
 		JScrollPane scrollPane = new JScrollPane();

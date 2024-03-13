@@ -40,7 +40,6 @@ import OBS_C_2025.dEKONT_BILGI;
 import OBS_C_2025.lOG_BILGI;
 import raven.toast.Notifications;
 
-import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
@@ -267,24 +266,24 @@ public class CEK_GIRIS extends JInternalFrame {
 		JPanel panel = new JPanel();
 		//panel.setBorder(new LineBorder(null));
 		splitPane_1.setRightComponent(panel);
-		panel.setMinimumSize(new Dimension(0, 30));
-		panel.setMaximumSize(new Dimension(0, 30));
+		panel.setMinimumSize(new Dimension(0, 25));
+		panel.setMaximumSize(new Dimension(0, 25));
 		panel.setLayout(null);
 
 		JLabel lblNewLabel_6 = new JLabel("Evrak Sayisi :");
-		lblNewLabel_6.setBounds(10, 11, 83, 14);
+		lblNewLabel_6.setBounds(10, 5, 83, 14);
 		panel.add(lblNewLabel_6);
 
 		lblNewLabel_12 = new JLabel("0");
 		//lblNewLabel_12.setForeground(new Color(0, 0, 139));
-		lblNewLabel_12.setBounds(103, 11, 58, 14);
+		lblNewLabel_12.setBounds(103, 5, 58, 14);
 		panel.add(lblNewLabel_12);
 
 		label = new JLabel("0.00");
 		//label.setForeground(new Color(139, 0, 0));
 		label.setFont(new Font("Tahoma", Font.BOLD, 12));
 		label.setHorizontalAlignment(SwingConstants.RIGHT);
-		label.setBounds(1073, 11, 136, 14);
+		label.setBounds(1073, 5, 136, 14);
 		panel.add(label);
 
 		MaterialTabbed tabbedPane = new MaterialTabbed();
@@ -492,7 +491,8 @@ public class CEK_GIRIS extends JInternalFrame {
 		panel_2.add(dateChooser);
 
 		JPanel panel_3 = new JPanel();
-		panel_3.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Vade Farki", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel_3.setBorder(new TitledBorder(null,"Vade Farki", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		//panel_3.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Vade Farki", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panel_3.setBounds(451, 5, 352, 53);
 		panel_2.add(panel_3);
 		panel_3.setLayout(null);

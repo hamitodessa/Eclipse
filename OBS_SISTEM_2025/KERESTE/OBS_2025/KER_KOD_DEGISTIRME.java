@@ -148,7 +148,7 @@ public class KER_KOD_DEGISTIRME extends JInternalFrame {
 		
 		txtYKod = new Obs_TextFIeld(2);
 		txtYKod.setFont(new Font("Tahoma", Font.BOLD, 12));
-		txtYKod.setBounds(10, 18, 42, 20);
+		txtYKod.setBounds(10, 18, 60, 20);
 		txtYKod.getDocument().addDocumentListener(new DocumentListener() {
 			public void changedUpdate(DocumentEvent e) {
 			}

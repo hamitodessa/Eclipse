@@ -63,7 +63,7 @@ public class KONS_ACIKLAMA extends JInternalFrame {
 		
 		txtKons = new Obs_TextFIeld(15);
 		txtKons.setFont(new Font("Tahoma", Font.BOLD, 11));
-		txtKons.setBounds(88, 15, 102, 20);
+		txtKons.setBounds(78, 15, 112, 20);
 		panel.add(txtKons);
 		
 		JLabel lblNewLabel_1 = new JLabel("Aciklama");

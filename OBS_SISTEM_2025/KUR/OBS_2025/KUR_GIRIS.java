@@ -27,7 +27,6 @@ import net.proteanit.sql.DbUtils;
 import raven.toast.Notifications;
 
 import javax.swing.JButton;
-import javax.swing.border.TitledBorder;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
@@ -84,14 +83,12 @@ public class KUR_GIRIS extends JInternalFrame {
 	DecimalFormat df = new DecimalFormat(); // And here..
 	NumberFormatter dnff = new NumberFormatter(df);
 
-
-
 	public KUR_GIRIS() {
 		setIconifiable(true);
 		setResizable(true);
 		setTitle("KUR GIRIS");
 		setClosable(true);
-		setBounds(0, 0, 500, 438);
+		setBounds(0, 0, 487, 438);
 		setFrameIcon(FIT_IMAGE.formIcon(new ImageIcon(KUR_GIRIS.class.getResource("/ICONLAR/icons8-currency-exchange-30.png")), 16, 16));//
 		JSplitPane splitPane = new JSplitPane();
 		splitPane.setDividerSize(0);
@@ -105,10 +102,8 @@ public class KUR_GIRIS extends JInternalFrame {
 		table = new JTable(){
 			public boolean isCellEditable(int row, int column) {     return false;          }
 		};
-		if(! oac.gridcolor.toString().equals("java.awt.Color[r=255,g=255,b=255]")) 
-		{
+		if(! oac.gridcolor.toString().equals("java.awt.Color[r=255,g=255,b=255]"))
 			table.setGridColor(oac.gridcolor);
-		}
 		table.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -145,7 +140,6 @@ public class KUR_GIRIS extends JInternalFrame {
 		panel.setLayout(null);
 
 		comboBox = new JComboBox<String>();
-		//comboBox.setForeground(new Color(0, 0, 128));
 		comboBox.setFont(new Font("Tahoma", Font.BOLD, 11));
 		comboBox.setModel(new DefaultComboBoxModel<String>(new String[] {"USD", "EUR", "RUB", "GBR", "CHF", "SEK", "NOK", "SAR"}));
 		comboBox.setEditable(true);
@@ -155,28 +149,25 @@ public class KUR_GIRIS extends JInternalFrame {
 				getContentPane().setCursor(oac.WAIT_CURSOR);
 				DefaultTableModel model = (DefaultTableModel) table.getModel();
 				for (int i = 0; i <= table.getRowCount() -1; i++) {
-					
 					if(model.getValueAt(i, 0).equals(comboBox.getSelectedItem()))
 					{
 						sifirla();
 						kutu_doldur(i);
 						break;
 					}
+					else
+						sifirla();
 				}
 				getContentPane().setCursor(oac.DEFAULT_CURSOR);
 			}
 		});
-
 		panel.add(comboBox);
-
 		dateChooser = new JDateChooser();
 		dateChooser.getComponent(1).addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if (e.getClickCount() == 2) 
-				{
+				if (e.getClickCount() == 2)
 					dateChooser.setDate(new Date());
-				}
 			}
 		});
 		dateChooser.setDateFormatString("dd.MM.yyyy");
@@ -190,7 +181,6 @@ public class KUR_GIRIS extends JInternalFrame {
 						if ("date".equals(e.getPropertyName())) {
 							getContentPane().setCursor(oac.WAIT_CURSOR);
 							kur_liste();
-							//kur_oku();
 							getContentPane().setCursor(oac.DEFAULT_CURSOR);
 						}
 					}
@@ -214,148 +204,39 @@ public class KUR_GIRIS extends JInternalFrame {
 		btnNewButton.setBounds(369, 9, 86, 30);
 		panel.add(btnNewButton);
 
-		JPanel panel_1 = new JPanel();
-		panel_1.setBorder(new TitledBorder(null,"Merkez", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		//panel_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Merkez", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panel_1.setBounds(75, 51, 120, 79);
-		panel.add(panel_1);
-		panel_1.setLayout(null);
-
-		formattedTextField = new JFormattedTextField();
-		formattedTextField.putClientProperty(FlatClientProperties.TEXT_FIELD_SHOW_CLEAR_BUTTON, true);
-		JTextFieldRegularPopupMenu.addTo(formattedTextField);
-		formattedTextField.setFont(new Font("Tahoma", Font.BOLD, 12));
-		formattedTextField.setHorizontalAlignment(SwingConstants.RIGHT);
-		formattedTextField.setText("0.0000");
-
 		DefaultFormatterFactory f_dob = new DefaultFormatterFactory(dnff); 
 		df.setMinimumFractionDigits(4);
 		df.setMaximumFractionDigits(4);
-		formattedTextField.setFormatterFactory(f_dob);
-		formattedTextField.setBounds(15, 21, 90, 20);
-		panel_1.add(formattedTextField);
-
-		formattedTextField_1 = new JFormattedTextField();
-		JTextFieldRegularPopupMenu.addTo(formattedTextField_1);
-		formattedTextField_1.putClientProperty(FlatClientProperties.TEXT_FIELD_SHOW_CLEAR_BUTTON, true);
-		formattedTextField_1.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				if (e.getClickCount() == 2) 
-				{
-					formattedTextField_1.setText(formattedTextField.getText());		
-				}
-			}
-		});
-		formattedTextField_1.setFont(new Font("Tahoma", Font.BOLD, 12));
-		formattedTextField_1.setText("0.0000");
 		DefaultFormatterFactory f_dob1 = new DefaultFormatterFactory(dnff); 
 		df.setMinimumFractionDigits(4);
 		df.setMaximumFractionDigits(4);
-		formattedTextField_1.setFormatterFactory(f_dob1);
-		formattedTextField_1.setHorizontalAlignment(SwingConstants.RIGHT);
-		formattedTextField_1.setBounds(15, 45, 90, 20);
-		
-		panel_1.add(formattedTextField_1);
-
-		JPanel panel_1_1 = new JPanel();
-		panel_1_1.setLayout(null);
-		panel_1_1.setBorder(new TitledBorder(null,"Serbest", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		//panel_1_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Serbest", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panel_1_1.setBounds(205, 51, 120, 79);
-		panel.add(panel_1_1);
-
-		formattedTextField_2 = new JFormattedTextField();
-		JTextFieldRegularPopupMenu.addTo(formattedTextField_2);
-		formattedTextField_2.putClientProperty(FlatClientProperties.TEXT_FIELD_SHOW_CLEAR_BUTTON, true);
-		formattedTextField_2.setFont(new Font("Tahoma", Font.BOLD, 12));
-		formattedTextField_2.setText("0.0000");
 		DefaultFormatterFactory f_dob2 = new DefaultFormatterFactory(dnff); 
 		df.setMinimumFractionDigits(4);
 		df.setMaximumFractionDigits(4);
-		formattedTextField_2.setFormatterFactory(f_dob2);
-		formattedTextField_2.setHorizontalAlignment(SwingConstants.RIGHT);
-		formattedTextField_2.setBounds(15, 21, 90, 20);
-		panel_1_1.add(formattedTextField_2);
-
-		formattedTextField_1_1 = new JFormattedTextField();
-		JTextFieldRegularPopupMenu.addTo(formattedTextField_1_1);
-		formattedTextField_1_1.putClientProperty(FlatClientProperties.TEXT_FIELD_SHOW_CLEAR_BUTTON, true);
-		formattedTextField_1_1.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				if (e.getClickCount() == 2) 
-				{
-					formattedTextField_1_1.setText(formattedTextField_2.getText());		
-				}
-			}
-		});
-		formattedTextField_1_1.setFont(new Font("Tahoma", Font.BOLD, 12));
-		formattedTextField_1_1.setText("0.0000");
 		DefaultFormatterFactory f_dob11 = new DefaultFormatterFactory(dnff); 
 		df.setMinimumFractionDigits(4);
 		df.setMaximumFractionDigits(4);
-		formattedTextField_1_1.setFormatterFactory(f_dob11);
-		formattedTextField_1_1.setHorizontalAlignment(SwingConstants.RIGHT);
-		formattedTextField_1_1.setBounds(15, 45, 90, 20);
-		panel_1_1.add(formattedTextField_1_1);
-
-		JPanel panel_1_2 = new JPanel();
-		panel_1_2.setLayout(null);
-		panel_1_2.setBorder(new TitledBorder(null,"Bankalar Arasi", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		//panel_1_2.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Bankalar Arasi", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panel_1_2.setBounds(335, 51, 120, 79);
-		panel.add(panel_1_2);
-
-		formattedTextField_3 = new JFormattedTextField();
-		JTextFieldRegularPopupMenu.addTo(formattedTextField_3);
-		formattedTextField_3.putClientProperty(FlatClientProperties.TEXT_FIELD_SHOW_CLEAR_BUTTON, true);
-		formattedTextField_3.setFont(new Font("Tahoma", Font.BOLD, 12));
-		formattedTextField_3.setText("0.0000");
 		DefaultFormatterFactory f_dob3 = new DefaultFormatterFactory(dnff); 
 		df.setMinimumFractionDigits(4);
 		df.setMaximumFractionDigits(4);
-		formattedTextField_3.setFormatterFactory(f_dob3);
-		formattedTextField_3.setHorizontalAlignment(SwingConstants.RIGHT);
-		formattedTextField_3.setBounds(15, 21, 90, 20);
-		panel_1_2.add(formattedTextField_3);
-
-		formattedTextField_1_2 = new JFormattedTextField();
-		JTextFieldRegularPopupMenu.addTo(formattedTextField_1_2);
-		formattedTextField_1_2.putClientProperty(FlatClientProperties.TEXT_FIELD_SHOW_CLEAR_BUTTON, true);
-		formattedTextField_1_2.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				if (e.getClickCount() == 2) 
-				{
-					formattedTextField_1_2.setText(formattedTextField_3.getText());		
-				}
-			}
-		});
-		formattedTextField_1_2.setFont(new Font("Tahoma", Font.BOLD, 12));
-		formattedTextField_1_2.setText("0.0000");
 		DefaultFormatterFactory f_dob12 = new DefaultFormatterFactory(dnff); 
 		df.setMinimumFractionDigits(4);
 		df.setMaximumFractionDigits(4);
-		formattedTextField_1_2.setFormatterFactory(f_dob12);
-		formattedTextField_1_2.setHorizontalAlignment(SwingConstants.RIGHT);
-		formattedTextField_1_2.setBounds(15, 45, 90, 20);
-		panel_1_2.add(formattedTextField_1_2);
 
 		JLabel lblNewLabel = new JLabel("Alis");
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblNewLabel.setBounds(10, 75, 55, 14);
+		lblNewLabel.setBounds(10, 74, 55, 14);
 		panel.add(lblNewLabel);
 
 		JLabel lblSatis = new JLabel("Satis");
 		lblSatis.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblSatis.setBounds(10, 98, 55, 14);
+		lblSatis.setBounds(10, 104, 55, 14);
 		panel.add(lblSatis);
 
 		JSeparator separator = new JSeparator();
 		separator.setBounds(10, 48, 442, 2);
 		panel.add(separator);
-		
+
 		JButton btnNewButton_1_2 = new JButton("");
 		btnNewButton_1_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -377,7 +258,7 @@ public class KUR_GIRIS extends JInternalFrame {
 		btnNewButton_1_2.setIcon(new ImageIcon(KUR_GIRIS.class.getResource("/ICONLAR/undo-20.png")));
 		btnNewButton_1_2.setBounds(152, 9, 30, 30);
 		panel.add(btnNewButton_1_2);
-		
+
 		JButton btnNewButton_1 = new JButton("");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -399,9 +280,101 @@ public class KUR_GIRIS extends JInternalFrame {
 		btnNewButton_1.setFont(new Font("Tahoma", Font.BOLD, 10));
 		btnNewButton_1.setBounds(329, 9, 30, 30);
 		panel.add(btnNewButton_1);
+
+		formattedTextField = new JFormattedTextField();
+		formattedTextField.setBounds(75, 75, 100, 20);
+		panel.add(formattedTextField);
+		formattedTextField.putClientProperty(FlatClientProperties.TEXT_FIELD_SHOW_CLEAR_BUTTON, true);
+		JTextFieldRegularPopupMenu.addTo(formattedTextField);
+		formattedTextField.setFont(new Font("Tahoma", Font.BOLD, 12));
+		formattedTextField.setHorizontalAlignment(SwingConstants.RIGHT);
+		formattedTextField.setText("0.0000");
+		formattedTextField.setFormatterFactory(f_dob);
+
+		formattedTextField_1 = new JFormattedTextField();
+		formattedTextField_1.setBounds(75, 100, 100, 20);
+		panel.add(formattedTextField_1);
+		JTextFieldRegularPopupMenu.addTo(formattedTextField_1);
+		formattedTextField_1.putClientProperty(FlatClientProperties.TEXT_FIELD_SHOW_CLEAR_BUTTON, true);
+		formattedTextField_1.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if (e.getClickCount() == 2)
+					formattedTextField_1.setText(formattedTextField.getText());		
+			}
+		});
+		formattedTextField_1.setFont(new Font("Tahoma", Font.BOLD, 12));
+		formattedTextField_1.setText("0.0000");
+		formattedTextField_1.setFormatterFactory(f_dob1);
+		formattedTextField_1.setHorizontalAlignment(SwingConstants.RIGHT);
+
+		formattedTextField_2 = new JFormattedTextField();
+		formattedTextField_2.setBounds(213, 75, 100, 20);
+		panel.add(formattedTextField_2);
+		JTextFieldRegularPopupMenu.addTo(formattedTextField_2);
+		formattedTextField_2.putClientProperty(FlatClientProperties.TEXT_FIELD_SHOW_CLEAR_BUTTON, true);
+		formattedTextField_2.setFont(new Font("Tahoma", Font.BOLD, 12));
+		formattedTextField_2.setText("0.0000");
+		formattedTextField_2.setFormatterFactory(f_dob2);
+		formattedTextField_2.setHorizontalAlignment(SwingConstants.RIGHT);
+
+		formattedTextField_1_1 = new JFormattedTextField();
+		formattedTextField_1_1.setBounds(213, 100, 100, 20);
+		panel.add(formattedTextField_1_1);
+		JTextFieldRegularPopupMenu.addTo(formattedTextField_1_1);
+		formattedTextField_1_1.putClientProperty(FlatClientProperties.TEXT_FIELD_SHOW_CLEAR_BUTTON, true);
+		formattedTextField_1_1.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if (e.getClickCount() == 2)
+					formattedTextField_1_1.setText(formattedTextField_2.getText());		
+			}
+		});
+		formattedTextField_1_1.setFont(new Font("Tahoma", Font.BOLD, 12));
+		formattedTextField_1_1.setText("0.0000");
+		formattedTextField_1_1.setFormatterFactory(f_dob11);
+		formattedTextField_1_1.setHorizontalAlignment(SwingConstants.RIGHT);
+
+		formattedTextField_3 = new JFormattedTextField();
+		formattedTextField_3.setBounds(355, 75, 100, 20);
+		panel.add(formattedTextField_3);
+		JTextFieldRegularPopupMenu.addTo(formattedTextField_3);
+		formattedTextField_3.putClientProperty(FlatClientProperties.TEXT_FIELD_SHOW_CLEAR_BUTTON, true);
+		formattedTextField_3.setFont(new Font("Tahoma", Font.BOLD, 12));
+		formattedTextField_3.setText("0.0000");
+		formattedTextField_3.setFormatterFactory(f_dob3);
+		formattedTextField_3.setHorizontalAlignment(SwingConstants.RIGHT);
+
+		formattedTextField_1_2 = new JFormattedTextField();
+		formattedTextField_1_2.setBounds(355, 100, 100, 20);
+		panel.add(formattedTextField_1_2);
+		JTextFieldRegularPopupMenu.addTo(formattedTextField_1_2);
+		formattedTextField_1_2.putClientProperty(FlatClientProperties.TEXT_FIELD_SHOW_CLEAR_BUTTON, true);
+		formattedTextField_1_2.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if (e.getClickCount() == 2)
+					formattedTextField_1_2.setText(formattedTextField_3.getText());		
+			}
+		});
+		formattedTextField_1_2.setFont(new Font("Tahoma", Font.BOLD, 12));
+		formattedTextField_1_2.setText("0.0000");
+		formattedTextField_1_2.setFormatterFactory(f_dob12);
+		formattedTextField_1_2.setHorizontalAlignment(SwingConstants.RIGHT);
+
+		JLabel lblNewLabel_1 = new JLabel("Merkez");
+		lblNewLabel_1.setBounds(75, 58, 46, 14);
+		panel.add(lblNewLabel_1);
+
+		JLabel lblNewLabel_2 = new JLabel("Bankalar Arası");
+		lblNewLabel_2.setBounds(213, 58, 100, 14);
+		panel.add(lblNewLabel_2);
+
+		JLabel lblNewLabel_3 = new JLabel("Serbest");
+		lblNewLabel_3.setBounds(355, 58, 46, 14);
+		panel.add(lblNewLabel_3);
 		kur_liste();
 		kutu_doldur(0);
-		//kur_oku();
 	}
 	private static void kur_liste()
 	{
@@ -468,19 +441,19 @@ public class KUR_GIRIS extends JInternalFrame {
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,  ex.getMessage());
 		}
 	}
-	
+
 	private void kutu_doldur(int satir)
 	{
 		if( table.getRowCount()  > 0)  
 		{
-		comboBox.setSelectedItem(table.getValueAt(satir, 0));
-		DecimalFormat decimal4 = new DecimalFormat("#,##0.0000");
-		formattedTextField.setText((String.valueOf(decimal4.format(table.getValueAt(satir, 1)))));
-		formattedTextField_1.setText((String.valueOf(decimal4.format(table.getValueAt(satir, 2)))));
-		formattedTextField_2.setText((String.valueOf( decimal4.format(table.getValueAt(satir, 3)))));
-		formattedTextField_1_1.setText((String.valueOf(decimal4.format(table.getValueAt(satir, 4)))));
-		formattedTextField_3.setText((String.valueOf( decimal4.format(table.getValueAt(satir, 5)))));
-		formattedTextField_1_2.setText((String.valueOf(decimal4.format(table.getValueAt(satir, 6)))));
+			comboBox.setSelectedItem(table.getValueAt(satir, 0));
+			DecimalFormat decimal4 = new DecimalFormat("#,##0.0000");
+			formattedTextField.setText((String.valueOf(decimal4.format(table.getValueAt(satir, 1)))));
+			formattedTextField_1.setText((String.valueOf(decimal4.format(table.getValueAt(satir, 2)))));
+			formattedTextField_2.setText((String.valueOf( decimal4.format(table.getValueAt(satir, 3)))));
+			formattedTextField_1_1.setText((String.valueOf(decimal4.format(table.getValueAt(satir, 4)))));
+			formattedTextField_3.setText((String.valueOf( decimal4.format(table.getValueAt(satir, 5)))));
+			formattedTextField_1_2.setText((String.valueOf(decimal4.format(table.getValueAt(satir, 6)))));
 		}
 	}
 	private static void sifirla()

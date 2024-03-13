@@ -586,10 +586,8 @@ public class OBS_GOREV extends JFrame  {
 				trayIcon.setToolTip("OBS GOREV");
 			} catch (AWTException e) {
 			}
-			if (trayIcon != null) 
-			{
+			if (trayIcon != null)
 				trayIcon.setImage(Toolkit.getDefaultToolkit().getImage(OBS_GOREV.class.getResource("/obs/gorev/other/job-24.png")));
-			}
 		} else 
 		{
 			btnMinimize.doClick();

@@ -117,14 +117,12 @@ public class ADRES_MYSQL implements IADRES {
 		//  TEXT DOSYASI ILK ACILIS
 		ILOGER_KAYIT  tEXLOG = new TXT_LOG();
 		lBILGI.setmESAJ("Dosya Olusturuldu");
-		 tEXLOG.Logla(lBILGI, BAGLAN_LOG.adrLogDizin);
-		 lBILGI.setmESAJ("Firma Adi:" + sbilgi.getFir_adi());
-		 tEXLOG.Logla(lBILGI, BAGLAN_LOG.adrLogDizin);
+		tEXLOG.Logla(lBILGI, BAGLAN_LOG.adrLogDizin);
+		lBILGI.setmESAJ("Firma Adi:" + sbilgi.getFir_adi());
+		tEXLOG.Logla(lBILGI, BAGLAN_LOG.adrLogDizin);
 		//
-
 		stmt.close();
 		con.close();
-
 	}
 
 	@Override
@@ -182,8 +180,6 @@ public class ADRES_MYSQL implements IADRES {
 		sql = "INSERT INTO  `OZEL` (`YONETICI`,`YON_SIFRE`,`FIRMA_ADI`) VALUES ('" + GLOBAL.KULL_ADI  + "','12345' , '" + fir_adi + "')";
 		stmt = con.createStatement();  
 		stmt.executeUpdate(sql);
-
-
 	}
 
 	@Override
@@ -237,14 +233,10 @@ public class ADRES_MYSQL implements IADRES {
 		int count=0;
 		count = rss.getRow();
 		String result="";
-		if (count  != 0) 
-		{
+		if (count  != 0)
 			result = rss.getString("Adi");
-		}
 		else
-		{
 			result = "";
-		}
 		return result;	
 	}
 	@Override
@@ -287,16 +279,12 @@ public class ADRES_MYSQL implements IADRES {
 			ByteArrayOutputStream bos = new ByteArrayOutputStream();
 			byte[] buf = new byte[1024];
 			for (int readNum; (readNum =  aDEGIS.resim.read(buf)) != -1;)
-			{
 				bos.write(buf, 0, readNum);
-			}
 			byte[] bytes = bos.toByteArray();
 			stmt.setBytes(27,bytes);
 		}
 		else
-		{
 			stmt.setBytes(27,null);
-		}
 		stmt.executeUpdate();
 		stmt.close();
 	}

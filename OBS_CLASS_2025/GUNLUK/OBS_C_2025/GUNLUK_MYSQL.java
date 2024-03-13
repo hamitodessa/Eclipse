@@ -123,7 +123,6 @@ public class GUNLUK_MYSQL implements IGUNLUK{
 		stmt.close();
 		con.close();
 	}
-
 	@Override
 	public void create_table(String fir_adi) throws SQLException { //`ACID`  INTEGER AUTO_INCREMENT PRIMARY KEY
 		String sql = null;
@@ -206,7 +205,6 @@ public class GUNLUK_MYSQL implements IGUNLUK{
 		stmt.setString(11, gbilgi.user);
 		stmt.executeUpdate();
 		stmt.close();
-
 	}
 	@Override
 	public void gorev_sil(int id) throws ClassNotFoundException, SQLException {
@@ -235,13 +233,9 @@ public class GUNLUK_MYSQL implements IGUNLUK{
 		rss.next();
 		int count=0;
 		count = rss.getRow();
-
-		if (count  != 0) 
-		{
+		if (count  != 0)
 			gid =  rss.getInt("GID");
-		}
 		return gid;	
-
 	}
 	@Override
 	public ResultSet gorev_oku(Gunluk_Bilgi gbilgi) throws ClassNotFoundException, SQLException {
@@ -296,13 +290,10 @@ public class GUNLUK_MYSQL implements IGUNLUK{
 		rss.next();
 		int count=0;
 		count = rss.getRow();
-		if (count  != 0) 
-		{
+		if (count  != 0)
 			gid =  rss.getInt("GID");
-		}
 		stmt.close();
 		return gid;	
-
 	}
 	@Override
 	public ResultSet gID_oku(Gunluk_Bilgi gbilgi) throws ClassNotFoundException, SQLException {
@@ -316,8 +307,6 @@ public class GUNLUK_MYSQL implements IGUNLUK{
 		rss = stmt.executeQuery();
 		return rss;	
 	}
-
-
 	@Override
 	public ResultSet hazir_gorevler(Gunluk_Bilgi gbilgi) throws ClassNotFoundException, SQLException {
 		Class.forName("com.mysql.cj.jdbc.Driver");
@@ -361,10 +350,8 @@ public class GUNLUK_MYSQL implements IGUNLUK{
 		}
 		Date secSAAT = new SimpleDateFormat("yyyy.MM.dd HH:mm").parse(gbilgi.tarih1 + " " + gbilgi.saat1);
 		Calendar saatCalendar = Calendar.getInstance();
-		
 		SimpleDateFormat format1 = new SimpleDateFormat("yyyy.MM.dd");
 		String  anl_tS =  format1.format(bas_tarih);
-
 		String sql  = "INSERT INTO GUNLUK (GID,TARIH,SAAT,ISIM,GOREV,YER,MESAJ,[USER]) " +
 					" VALUES (?,?,?,?,?,?,?,?)" ;
 		kONTROL();

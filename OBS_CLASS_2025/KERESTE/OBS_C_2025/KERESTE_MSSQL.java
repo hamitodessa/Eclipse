@@ -135,7 +135,6 @@ public class KERESTE_MSSQL implements IKERESTE {
 		stmt.close();
 		con.close();
 	}
-	
 	@Override
 	public void create_table(String fir_adi) throws SQLException {
 		String sql = null;
@@ -456,7 +455,6 @@ public class KERESTE_MSSQL implements IKERESTE {
 		stmt = con.createStatement();  
 		stmt.executeUpdate(sql);
 	}
-	
 	@Override
 	public void create_table_log() throws SQLException {
 		String sql = "" ;
@@ -499,7 +497,6 @@ public class KERESTE_MSSQL implements IKERESTE {
 		result = count != 0 ? rss.getString("FIRMA_ADI") : "" ;
 		return result;	
 	}
-
 	@Override
 	public ResultSet kod_pln() throws ClassNotFoundException, SQLException {
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
@@ -509,7 +506,6 @@ public class KERESTE_MSSQL implements IKERESTE {
 		rss = stmt.executeQuery();
 		return rss;	
 	}
-
 	@Override
 	public void kod_kayit(String kodu, String aciklama) throws ClassNotFoundException, SQLException {
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
@@ -523,7 +519,6 @@ public class KERESTE_MSSQL implements IKERESTE {
 		stmt.executeUpdate();
 		stmt.close();
 	}
-
 	@Override
 	public void kod_sil(String kod) throws ClassNotFoundException, SQLException {
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
@@ -542,7 +537,6 @@ public class KERESTE_MSSQL implements IKERESTE {
 		rss = stmt.executeQuery();
 		return rss;	
 	}
-
 	@Override
 	public void kons_kayit(String kons, String aciklama,int paket_no) throws ClassNotFoundException, SQLException {
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
@@ -620,7 +614,6 @@ public class KERESTE_MSSQL implements IKERESTE {
 		rss = stmt.executeQuery();
 		return rss;	
 	}
-
 	@Override
 	public ResultSet ker_kod_degisken_ara(String fieldd, String sno, String nerden, String arama)
 			throws ClassNotFoundException, SQLException {
@@ -632,7 +625,6 @@ public class KERESTE_MSSQL implements IKERESTE {
 		rss = stmt.executeQuery();
 		return rss;	
 	}
-
 	@Override
 	public ResultSet ker_kod_alt_grup_degisken_oku(int sno) throws ClassNotFoundException, SQLException {
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
@@ -644,7 +636,6 @@ public class KERESTE_MSSQL implements IKERESTE {
 		rss = stmt.executeQuery();
 		return rss;	 
 	}
-
 	@Override
 	public boolean alt_grup_kontrol(int anagrp, int altgrp) throws ClassNotFoundException, SQLException {
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver"); 
@@ -659,7 +650,6 @@ public class KERESTE_MSSQL implements IKERESTE {
 		if (!rs.isBeforeFirst() )   result = false ;
 		return result;
 	}
-
 	@Override
 	public void ker_degisken_alt_grup_sil(int ID) throws ClassNotFoundException, SQLException {
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver"); 
@@ -668,7 +658,6 @@ public class KERESTE_MSSQL implements IKERESTE {
 		PreparedStatement stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();
 	}
-
 	@Override
 	public void ker_kod_degisken_sil(String nerden, String hangi_Y, int sira)
 			throws ClassNotFoundException, SQLException {
@@ -688,7 +677,6 @@ public class KERESTE_MSSQL implements IKERESTE {
 		PreparedStatement stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();
 	}
-
 	@Override
 	public void ker_degisken_kayit(String fieldd, String nerden, String degisken_adi, String sira)
 			throws ClassNotFoundException, SQLException {
@@ -716,7 +704,6 @@ public class KERESTE_MSSQL implements IKERESTE {
 		stmt.executeUpdate();
 		stmt.close();
 	}
-
 	@Override
 	public void ker_degisken_alt_grup_kayit(String alt_grup, int ana_grup) throws ClassNotFoundException, SQLException {
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
@@ -796,7 +783,6 @@ public class KERESTE_MSSQL implements IKERESTE {
 				" ,Tevkifat,Ana_Grup,Alt_Grup,Depo,Ozel_Kod,Izahat,Nakliyeci,[USER],Cikis_Evrak,CTarih,CKdv,CDoviz,CFiat,CTutar,Ckur,CCari_Firma,CAdres_Firma " + //17
 				" ,CIskonto,CTevkifat,CAna_Grup,CAlt_Grup,CDepo,COzel_Kod,CIzahat,CNakliyeci,CUSER,Mensei,Satir,CSatir) " + //9
 				" VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)" ;
-		///////////////////
 		PreparedStatement stmt = null;
 		kONTROL();
 		stmt = con.prepareStatement(sql);
@@ -874,7 +860,6 @@ public class KERESTE_MSSQL implements IKERESTE {
 		rss = stmt.executeQuery(sql);
 		return rss;	
 	}
-
 	@Override
 	public void dipnot_sil(String ino, String cins, String gircik) throws ClassNotFoundException, SQLException {
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
@@ -887,7 +872,6 @@ public class KERESTE_MSSQL implements IKERESTE {
 		PreparedStatement stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();
 	}
-
 	@Override
 	public void dipnot_yaz(String eno, String bir, String iki, String uc, String tip, String gircik, String usr)
 			throws ClassNotFoundException, SQLException {
@@ -907,7 +891,6 @@ public class KERESTE_MSSQL implements IKERESTE {
 		stmt.executeUpdate();
 		stmt.close();
 	}
-
 	@Override
 	public ResultSet dipnot_oku(String ino, String cins, String gircik) throws ClassNotFoundException, SQLException {
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
@@ -922,7 +905,6 @@ public class KERESTE_MSSQL implements IKERESTE {
 		rss = stmt.executeQuery();
 		return rss;
 	}
-
 	@Override
 	public void aciklama_sil(String evrcins, String evrno, String cins) throws ClassNotFoundException, SQLException {
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
@@ -935,7 +917,6 @@ public class KERESTE_MSSQL implements IKERESTE {
 		PreparedStatement stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();
 	}
-
 	@Override
 	public void aciklama_yaz(String evrcins, int satir, String evrno, String aciklama, String gircik)
 			throws ClassNotFoundException, SQLException {
@@ -953,7 +934,6 @@ public class KERESTE_MSSQL implements IKERESTE {
 		stmt.executeUpdate();
 		stmt.close();
 	}
-
 	@Override
 	public String aciklama_oku(String evrcins, int satir, String evrno, String gircik)
 			throws ClassNotFoundException, SQLException {
@@ -978,7 +958,6 @@ public class KERESTE_MSSQL implements IKERESTE {
 		}
 		return result;	
 	}
-
 	@Override
 	public ResultSet paket_oku(String pno,String nerden) throws ClassNotFoundException, SQLException {
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
@@ -1000,7 +979,6 @@ public class KERESTE_MSSQL implements IKERESTE {
 		rss = stmt.executeQuery(sql);
 		return rss;
 	}
-
 	@Override
 	public void ker_cikis_sil(String eno) throws ClassNotFoundException, SQLException {
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
@@ -1011,7 +989,6 @@ public class KERESTE_MSSQL implements IKERESTE {
 		PreparedStatement stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();
 	}
-
 	@Override
 	public void ker_cikis_kaydet(KER_BILGI kBILGI) throws ClassNotFoundException, SQLException {
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
@@ -1034,7 +1011,6 @@ public class KERESTE_MSSQL implements IKERESTE {
 		PreparedStatement stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();
 	}
-
 	@Override
 	public int evrak_no_al(String cins) throws ClassNotFoundException, SQLException {
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
@@ -1057,7 +1033,6 @@ public class KERESTE_MSSQL implements IKERESTE {
 		}
 		return E_NUMBER;	
 	}
-
 	@Override
 	public ResultSet baslik_bak(String baslik, String ordr, String jkj, String k1, String k2, String f1,
 			String f2, String t1, String t2,String dURUM,String e1, String e2) throws ClassNotFoundException, SQLException {
@@ -1098,7 +1073,6 @@ public class KERESTE_MSSQL implements IKERESTE {
 		rss = stmt.executeQuery(sql);
 		return rss;	
 	}
-
 	@Override
 	public ResultSet grp_rapor(String gruplama,String sstr_2, String sstr_4, String kur_dos, String qwq6,
 			String qwq7, String qwq8, String k1, String k2, String s1, String s2, String jkj,
@@ -1115,10 +1089,10 @@ public class KERESTE_MSSQL implements IKERESTE {
 		if (! token[2].equals("0000"))
 			kODU.append(" SUBSTRING(KERESTE.Kodu, 8, 4) >= '" + token[2] + "' AND" );
 		if (! token[3].equals("0000"))
-			kODU.append( " SUBSTRING(KERESTE.Kodu, 13, 4) >= '" + token[3] + "'  AND"  );
+			kODU.append( " SUBSTRING(KERESTE.Kodu, 13, 4) >= '" + token[3] + "' AND"  );
 		token = k2.toString().split("-");
 		if (! token[0].equals("ZZ"))
-			kODU.append(" SUBSTRING(KERESTE.Kodu, 1, 2) <= '" + token[0] + "'  AND" );
+			kODU.append(" SUBSTRING(KERESTE.Kodu, 1, 2) <= '" + token[0] + "' AND" );
 		if (! token[1].equals("999"))
 			kODU.append(" SUBSTRING(KERESTE.Kodu, 4, 3) <= '" + token[1] + "' AND"  ) ;
 		if (! token[2].equals("9999"))
@@ -1175,7 +1149,6 @@ public class KERESTE_MSSQL implements IKERESTE {
 	public ResultSet stok_rapor(KER_RAPOR_BILGI ker_rap_BILGI) throws ClassNotFoundException, SQLException {
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 		ResultSet	rss = null;
-		
 		String[] token = ker_rap_BILGI.getGKodu1().toString().split("-");
 		StringBuilder kODU = new StringBuilder();
 		if (! token[0].equals("00"))
@@ -1261,7 +1234,6 @@ public class KERESTE_MSSQL implements IKERESTE {
 		rss = stmt.executeQuery();
 		return rss;	
 	}
-
 	@Override
 	public ResultSet ker_barkod_kod_oku(String sira) throws ClassNotFoundException, SQLException {
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
@@ -1274,7 +1246,6 @@ public class KERESTE_MSSQL implements IKERESTE {
 		rss = stmt.executeQuery();
 		return rss;	
 	}
-
 	@Override
 	public String kons_adi(String kons) throws ClassNotFoundException, SQLException {
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
@@ -1292,7 +1263,6 @@ public class KERESTE_MSSQL implements IKERESTE {
 		}
 		return result;	
 	}
-
 	@Override
 	public ResultSet fat_rapor(KER_RAPOR_BILGI ker_rap_BILGI) throws ClassNotFoundException, SQLException {
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
@@ -1444,7 +1414,6 @@ public class KERESTE_MSSQL implements IKERESTE {
 			eVRAKNO = "Cikis_Evrak" ;
 			aLsAT = "Satis";
 			dURUM =   " Cikis_Evrak <> '' AND" ;
-
 		}
 		String sql =  " SELECT "+ eVRAKNO +",'"+ aLsAT +"' as Hareket," + hANGI + "Tarih " 
 				+" " + qw1 + "" 
@@ -1482,7 +1451,6 @@ public class KERESTE_MSSQL implements IKERESTE {
 		rss = stmt.executeQuery();
 		return rss;	
 	}
-
 	@Override
 	public ResultSet fat_rapor_cari_kod(KER_RAPOR_BILGI ker_rap_BILGI, String qw1, String qw2, String qw3)
 			throws ClassNotFoundException, SQLException {
@@ -1549,7 +1517,6 @@ public class KERESTE_MSSQL implements IKERESTE {
 		rss = stmt.executeQuery();
 		return rss;	
 	}
-
 	@Override
 	public ResultSet urun_detay(KER_RAPOR_BILGI ker_rap_BILGI) throws ClassNotFoundException, SQLException {
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
@@ -1621,7 +1588,6 @@ public class KERESTE_MSSQL implements IKERESTE {
 		rss = stmt.executeQuery();
 		return rss;	
 	}
-
 	@Override
 	public void ker_kod_degis(String paket_No, String kon, String yenikod,int satir) throws ClassNotFoundException, SQLException {
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
@@ -1633,7 +1599,6 @@ public class KERESTE_MSSQL implements IKERESTE {
 		PreparedStatement stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();
 	}
-
 	@Override
 	public void degisken_degistir(int anagrp, int altgrp, int anaygrp, int altygrp,String durum)
 			throws ClassNotFoundException, SQLException {
@@ -1647,7 +1612,6 @@ public class KERESTE_MSSQL implements IKERESTE {
 		PreparedStatement stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();
 	}
-
 	@Override
 	public String[] kod_aciklama_bul(String paket, String kons) throws ClassNotFoundException, SQLException {
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
@@ -1674,7 +1638,6 @@ public class KERESTE_MSSQL implements IKERESTE {
 		}
 		return result;	
 	}
-
 	@Override
 	public ResultSet ort_diger_kodu(String yu, String qwq6, String qwq7, String m1, String m2, String s1, String s2,
 			String k1, String k2, String t1, String t2, String kurkod, String kurc, String iu,String hANGI,boolean kurlu)
@@ -1998,7 +1961,6 @@ public class KERESTE_MSSQL implements IKERESTE {
 		rss = stmt.executeQuery();
 		return rss;	
 	}
-
 	@Override
 	public ResultSet bos_kur(String kur, String cins,String dURUM) throws ClassNotFoundException, SQLException {
 			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
@@ -2015,7 +1977,6 @@ public class KERESTE_MSSQL implements IKERESTE {
 		rss = stmt.executeQuery();
 		return rss;	
 	}
-
 	@Override
 	public ResultSet sql_sorgu(String sql) throws ClassNotFoundException, SQLException {
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
@@ -2025,7 +1986,6 @@ public class KERESTE_MSSQL implements IKERESTE {
 		rss = stmt.executeQuery();
 		return rss;	
 	}
-
 	@Override
 	public void ker_kons_degis(String kons, String yenikons, int satir) throws ClassNotFoundException, SQLException {
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
@@ -2036,7 +1996,6 @@ public class KERESTE_MSSQL implements IKERESTE {
 		PreparedStatement stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();
 	}
-
 	@Override
 	public ResultSet envanter(KER_RAPOR_BILGI ker_rap_BILGI,String gruplama[]) throws ClassNotFoundException, SQLException {
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
@@ -2098,7 +2057,6 @@ public class KERESTE_MSSQL implements IKERESTE {
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;	
-
 	}
 	private void kONTROL() throws SQLException, ClassNotFoundException
 	{

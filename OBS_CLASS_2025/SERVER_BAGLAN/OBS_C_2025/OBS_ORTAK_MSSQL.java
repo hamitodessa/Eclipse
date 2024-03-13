@@ -27,7 +27,6 @@ public class OBS_ORTAK_MSSQL implements IConnection {
 		} 
 		catch (SQLException e)
 		{  
-			//JOptionPane.showMessageDialog(null, e.getMessage(),  "Server Baglanti", JOptionPane.ERROR_MESSAGE);      
 			result = false;  
 		}  
 		return result;
@@ -46,7 +45,6 @@ public class OBS_ORTAK_MSSQL implements IConnection {
 		} 
 		catch (SQLException e)
 		{  
-			//JOptionPane.showMessageDialog(null, e.getMessage(),  "Server Baglanti_S", JOptionPane.ERROR_MESSAGE);     
 			result =  false;  
 		}  
 		return result;
@@ -91,10 +89,11 @@ public class OBS_ORTAK_MSSQL implements IConnection {
 		conn = DriverManager.getConnection(cumle,sbilgi.getKull(),sbilgi.getSifre());
 		PreparedStatement stmt = conn.prepareStatement("SELECT job_id, [name] FROM msdb.dbo.sysjobs where name= N'"+ jobName + "'");
 		ResultSet rs = stmt.executeQuery();
-		if (!rs.isBeforeFirst() ) {  
-				
-			} 
-		else {
+		if (!rs.isBeforeFirst() ) 
+		{  
+		} 
+		else 
+		{
 			rs.next();
 			PreparedStatement stmtt = conn.prepareStatement(" EXEC msdb.dbo.sp_delete_job '" + rs.getString("job_id") + "'");
 			stmtt.execute();

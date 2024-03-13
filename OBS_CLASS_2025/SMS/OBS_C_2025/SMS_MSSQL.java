@@ -27,10 +27,8 @@ public class SMS_MSSQL implements ISMS{
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 		con = null;  
 		String cumle = "";
-		if ( ! sbilgi.getPort().toString().equals("") )
-		{
+		if ( ! sbilgi.getPort().toString().equals(""))
 			sbilgi.setPort(  ":" + sbilgi.getPort() ) ;
-		}
 		cumle = "jdbc:sqlserver://localhost"+ sbilgi.getPort() +";instanceName=" + sbilgi.getIns() + ";";
 		con = DriverManager.getConnection(cumle,sbilgi.getKull(),sbilgi.getSifre());
 		String VERITABANI = "OK_Sms" + sbilgi.getKod();
@@ -378,7 +376,6 @@ public class SMS_MSSQL implements ISMS{
 	}
 	public void sms_yaz(String uname,String tar ,String msj,String mobile,String hsp, String unv) throws ClassNotFoundException, SQLException
 	{
-
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 		String sql =  "INSERT INTO SMS_BILGILERI (USER_NAME,TARIH,MOBILE,MESAJ,HESAP,UNVAN) " +
 				"VALUES (?,?,?,?,?,?)";
@@ -391,7 +388,6 @@ public class SMS_MSSQL implements ISMS{
 		stmt.setString(4, msj);
 		stmt.setString(5, hsp);
 		stmt.setString(6, unv);
-
 		stmt.executeUpdate();
 	}
 	@Override

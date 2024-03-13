@@ -27,10 +27,8 @@ public class KAMBIYO_MSSQL implements IKAMBIYO{
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 		con = null;  
 		String cumle = "";
-		if ( ! sbilgi.getPort().toString().equals("") )
-		{
+		if ( ! sbilgi.getPort().toString().equals(""))
 			sbilgi.setPort(  ":" + sbilgi.getPort() );
-		}
 		cumle = "jdbc:sqlserver://localhost" + sbilgi.getPort() + ";instanceName=" + sbilgi.getIns() + ";";
 		con = DriverManager.getConnection(cumle,sbilgi.getKull(),sbilgi.getSifre());
 		String VERITABANI = "OK_Kam" + sbilgi.getKod();
@@ -240,7 +238,6 @@ public class KAMBIYO_MSSQL implements IKAMBIYO{
 		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();
-
 	}
 	public void cek_kayit(String cno ,String vade,String gbo, String gmus ,String gtar,String gozk  
 			, String ctar , String cbno ,String cmus ,String cozk ,String bank ,String sube 
@@ -252,7 +249,6 @@ public class KAMBIYO_MSSQL implements IKAMBIYO{
 				" ,Cikis_Bordro,Cikis_Musteri,Cikis_Ozel_Kod,Banka,Sube,Tutar,Cins,Seri_No " +
 				" ,Ilk_Borclu,Cek_Hesap_No,Durum,T_Tarih,[USER])" +
 				"VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)" ;
-
 		PreparedStatement stmt = null;
 		kONTROL();
 		stmt = con.prepareStatement(sql);
@@ -278,7 +274,6 @@ public class KAMBIYO_MSSQL implements IKAMBIYO{
 		stmt.setString(20, usr);
 		stmt.executeUpdate();
 		stmt.close();
-
 	}
 	public void kam_aciklama_sil(String evrcins,String evrno,String cins) throws ClassNotFoundException, SQLException
 	{
@@ -290,7 +285,6 @@ public class KAMBIYO_MSSQL implements IKAMBIYO{
 		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();
-
 	}
 	public void kam_aciklama_yaz(String evrcins,int satir,String evrno,String aciklama,String gircik) throws ClassNotFoundException, SQLException
 	{
@@ -306,14 +300,11 @@ public class KAMBIYO_MSSQL implements IKAMBIYO{
 		stmt.setString(3,evrno);
 		stmt.setString(4, aciklama);
 		stmt.setString(5, gircik);
-
 		stmt.executeUpdate();
 		stmt.close();
-
 	}
 	public ResultSet kam_bordno(String cins,String bno,String gircik) throws ClassNotFoundException, SQLException
 	{
-
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 		ResultSet	rss = null;
 		String sql = "SELECT * " +
@@ -323,7 +314,6 @@ public class KAMBIYO_MSSQL implements IKAMBIYO{
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;
-
 	}
 	public String kam_aciklama_oku(String evrcins,String satir,String evrno,String gircik) throws ClassNotFoundException, SQLException
 	{
@@ -339,14 +329,12 @@ public class KAMBIYO_MSSQL implements IKAMBIYO{
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		rss.next();
-
 		String result;
 		if (rss.getRow() != 0)
 			result = rss.getString("ACIKLAMA");
 		else
 			result = "";
 		return result;	
-
 	}
 	public ResultSet cek_kontrol(String cek) throws ClassNotFoundException, SQLException
 
@@ -360,7 +348,6 @@ public class KAMBIYO_MSSQL implements IKAMBIYO{
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;
-
 	}
 	public void bordro_cikis_sil(String bno,String ceksen) throws ClassNotFoundException, SQLException
 	{
@@ -370,12 +357,10 @@ public class KAMBIYO_MSSQL implements IKAMBIYO{
 		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();
-
 	}
 	public void bordro_cikis_yaz(String ceksenfrom,String ceksencins_where,String cekno,String cmus ,
 			String cbor,String ctar,String ozkod) throws ClassNotFoundException, SQLException
 	{
-
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver"); 
 		String sql = "UPDATE "+ ceksenfrom + " SET Cikis_Bordro = '"+ cbor + "', Cikis_Musteri = '"+ cmus + "'" + 
 				",  Cikis_Tarihi = '"+ ctar + "', Cikis_Ozel_Kod = '" + ozkod + "'" +
@@ -434,11 +419,9 @@ public class KAMBIYO_MSSQL implements IKAMBIYO{
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;
-
 	}
 	@Override
 	public void create_table_log() throws SQLException {
-	
 		String sql = "" ;
 		sql = "CREATE TABLE [dbo].[LOGLAMA]("
 				+ "	[TARIH] [datetime] NOT NULL,"
@@ -471,6 +454,5 @@ public class KAMBIYO_MSSQL implements IKAMBIYO{
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;
-
 	}
 }

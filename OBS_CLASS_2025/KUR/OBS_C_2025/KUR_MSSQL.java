@@ -232,7 +232,7 @@ public class KUR_MSSQL implements IKUR{
 		ResultSet	rss = null;
 		String sql = "SELECT DATEPART(" + siralama + ",Tarih) as Tarih,Kur, " +  cins + " " + 
 				" FROM kurlar  "  + 
-				" WHERE Tarih >= '" + t1 +"' AND  Tarih <= '" + t2 + "'" + 
+				" WHERE Tarih >= '" + t1 + "' AND  Tarih <= '" + t2 + "'" + 
 				" AND Kur = '" + c1 + "'  ORDER BY Tarih  ";
 		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);

@@ -29,10 +29,8 @@ public class ADRES_MSSQL implements IADRES {
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 		con = null;  
 		String cumle = "";
-		if ( ! sbilgi.getPort().toString().equals("") )
-		{
+		if ( ! sbilgi.getPort().toString().equals(""))
 			sbilgi.setPort(  ":" + sbilgi.getPort() );
-		}
 		cumle = "jdbc:sqlserver://localhost"+ sbilgi.getPort() +";instanceName=" +  sbilgi.getIns() + ";";
 		con = DriverManager.getConnection(cumle,sbilgi.getKull(),sbilgi.getSifre());
 		String VERITABANI = "OK_Adr" + sbilgi.getKod();
@@ -230,14 +228,10 @@ public class ADRES_MSSQL implements IADRES {
 		int count=0;
 		count = rss.getRow();
 		String result="";
-		if (count  != 0) 
-		{
+		if (count  != 0)
 			result = rss.getString("Adi");
-		}
 		else
-		{
 			result = "";
-		}
 		return result;	
 	}
 	public void adres_kayit(ADRESS_DEGISKENLER aDEGIS) throws ClassNotFoundException, SQLException, IOException
@@ -281,16 +275,12 @@ public class ADRES_MSSQL implements IADRES {
 			ByteArrayOutputStream bos = new ByteArrayOutputStream();
 			byte[] buf = new byte[1024];
 			for (int readNum; (readNum =  aDEGIS.resim.read(buf)) != -1;)
-			{
 				bos.write(buf, 0, readNum);
-			}
 			byte[] bytes = bos.toByteArray();
 			stmt.setBytes(27,bytes);
 		}
 		else
-		{
 			stmt.setBytes(27,null);
-		}
 		stmt.executeUpdate();
 		stmt.close();
 	}
@@ -302,7 +292,6 @@ public class ADRES_MSSQL implements IADRES {
 		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();
-
 	}
 	public ResultSet adr_hpl() throws ClassNotFoundException, SQLException
 	{
@@ -313,7 +302,6 @@ public class ADRES_MSSQL implements IADRES {
 		Statement stmt = con.createStatement( ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
 		rss = stmt.executeQuery(sql);
 		return rss;
-
 	}
 	public ResultSet sms_adr_hpl(String nerden) throws ClassNotFoundException, SQLException
 	{
@@ -354,7 +342,6 @@ public class ADRES_MSSQL implements IADRES {
 		if (!rss.isBeforeFirst() ) {  
 
 		}
-
 		else
 		{
 			rss.next();
@@ -366,7 +353,6 @@ public class ADRES_MSSQL implements IADRES {
 			bilgi[5] = rss.getString("Vergi_No");
 		}
 		return bilgi;
-
 	}
 	@Override
 	public void create_table_log() throws SQLException {
@@ -393,7 +379,6 @@ public class ADRES_MSSQL implements IADRES {
 		Statement stmt = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
 		rss = stmt.executeQuery(sql);
 		return rss;
-		
 	}
 	@Override
 	public ResultSet adr_etiket_arama(String arama) throws ClassNotFoundException, SQLException {
@@ -434,6 +419,5 @@ public class ADRES_MSSQL implements IADRES {
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;
-
 	}
 }

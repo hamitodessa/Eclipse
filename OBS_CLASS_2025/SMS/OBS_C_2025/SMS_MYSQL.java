@@ -109,7 +109,6 @@ public class SMS_MYSQL implements ISMS{
 		stmt.close();
 		con.close();
 	}
-
 	@Override
 	public void create_table() throws SQLException {
 		String sql = null;
@@ -121,7 +120,6 @@ public class SMS_MYSQL implements ISMS{
 				+ "`DURUM`  TINYINT NULL,"
 				+ "`USER_NAME`  nvarchar (20) NULL,"
 				+ "  INDEX `IDX_SMS_HESAP` (`TEL_NO` ASC, `UNVAN` ASC,  `GRUP` ASC) VISIBLE)";
-
 		stmt = con.createStatement();  
 		stmt.executeUpdate(sql);
 		sql = "CREATE TABLE `SMS_BILGILERI`( "
@@ -135,7 +133,6 @@ public class SMS_MYSQL implements ISMS{
 				+ "  INDEX `IDX_SMS_BILGILERI` (`TARIH` ASC,   `MOBILE` ASC,  `HESAP` ASC,  `UNVAN` ASC) VISIBLE)";
 		stmt = con.createStatement();  
 		stmt.executeUpdate(sql);
-
 		sql = "CREATE TABLE `MAIL_HESAP`( "
 				+ "  `MAIL`  nvarchar (50) PRIMARY KEY  NOT NULL ,"
 				+ "  `UNVAN`  nvarchar (50) NULL,"
@@ -144,10 +141,8 @@ public class SMS_MYSQL implements ISMS{
 				+ "  `DURUM` TINYINT NULL,"
 				+ "  `USER_NAME`  nvarchar (20) NULL,"
 				+ "  INDEX `IDX_MAIL_HESAP` ( `MAIL` ASC,  `UNVAN` ASC, `GRUP` ASC, `KODU` ASC) VISIBLE)";
-
 		stmt = con.createStatement();  
 		stmt.executeUpdate(sql);
-
 		sql = "CREATE TABLE `MAIL_BILGILERI`( "
 				+ "  `MID` INTEGER AUTO_INCREMENT PRIMARY KEY,"
 				+ "  `TARIH` datetime NULL,"
@@ -159,10 +154,8 @@ public class SMS_MYSQL implements ISMS{
 				+ "  `GONDEREN`  nvarchar (50) NULL,"
 				+ "  `USER_NAME`  nvarchar (20) NULL,"
 				+ "  INDEX `IDX_MAIL_HESAP` ( `TARIH` ASC ,`MAIL` ASC, `HESAP` ASC, `UNVAN` ASC, `GONDEREN` ASC, `KONU` ASC) VISIBLE)";
-
 		stmt = con.createStatement();  
 		stmt.executeUpdate(sql);
-
 		sql = "CREATE TABLE `GIDEN_RAPOR` ( EID INTEGER AUTO_INCREMENT PRIMARY KEY , "
 				+ " `TARIH` DATETIME ,"
 				+ " `KONU` nvarchar(50),"
@@ -173,8 +166,6 @@ public class SMS_MYSQL implements ISMS{
 				+ "  `USER_NAME` nvarchar(20)) ";
 		stmt = con.createStatement();  
 		stmt.executeUpdate(sql);
-
-
 	}
 	public ResultSet mail_giris_bak() throws ClassNotFoundException, SQLException
 	{
@@ -195,15 +186,6 @@ public class SMS_MYSQL implements ISMS{
 		rss.next();
 		int count=0;
 		count = rss.getRow();
-//		boolean result;
-//		if (count  != 0) 
-//		{
-//			result = true;
-//		}
-//		else
-//		{
-//			result = false;
-//		}
 		return count  != 0;	
 	}
 	public void mail_giris_sil(String mail) throws ClassNotFoundException, SQLException
@@ -346,7 +328,6 @@ public class SMS_MYSQL implements ISMS{
 	}
 	public void sms_yaz(String uname,String tar ,String msj,String mobile,String hsp, String unv) throws ClassNotFoundException, SQLException
 	{
-
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		String sql =  "INSERT INTO SMS_BILGILERI (USER_NAME,TARIH,MOBILE,MESAJ,HESAP,UNVAN) " +
 				"VALUES (?,?,?,?,?,?)";
@@ -359,7 +340,6 @@ public class SMS_MYSQL implements ISMS{
 		stmt.setString(4, msj);
 		stmt.setString(5, hsp);
 		stmt.setString(6, unv);
-
 		stmt.executeUpdate();
 	}
 	@Override

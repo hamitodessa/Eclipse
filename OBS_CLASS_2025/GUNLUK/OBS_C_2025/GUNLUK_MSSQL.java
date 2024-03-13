@@ -81,7 +81,6 @@ public class GUNLUK_MSSQL implements IGUNLUK {
 		//
 		stmt.close();
 		con.close();
-
 	}
 
 	@Override
@@ -100,7 +99,6 @@ public class GUNLUK_MSSQL implements IGUNLUK {
 		cumle = "jdbc:sqlserver://" + sbilgi.getServer() + ";instanceName=" + sbilgi.getIns() + ";database=" + VERITABANI + ";";
 		con = DriverManager.getConnection(cumle,sbilgi.getKull(),sbilgi.getSifre());
 		create_table(sbilgi.getFir_adi());
-		
 		sql = "CREATE DATABASE [" + VERITABANI + "_LOG" + "]";
 		cumle = "jdbc:sqlserver://" + sbilgi.getServer() + ";instanceName=" + sbilgi.getIns() + ";";
 		con = DriverManager.getConnection(cumle,sbilgi.getKull(),sbilgi.getSifre());
@@ -161,9 +159,7 @@ public class GUNLUK_MSSQL implements IGUNLUK {
 		sql = "INSERT INTO  OZEL(YONETICI,YON_SIFRE,FIRMA_ADI) VALUES ('" + GLOBAL.KULL_ADI  + "','12345' , '" + fir_adi + "')";
 		stmt = con.createStatement();  
 		stmt.executeUpdate(sql);
-
 	}
-
 	@Override
 	public String gun_firma_adi() throws ClassNotFoundException, SQLException {
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
@@ -218,7 +214,6 @@ public class GUNLUK_MSSQL implements IGUNLUK {
 		stmt.setString(12, gbilgi.user);
 		stmt.executeUpdate();
 		stmt.close();
-
 	}
 	@Override
 	public void gorev_sil(int id) throws ClassNotFoundException, SQLException 

@@ -37,7 +37,6 @@ import javax.swing.JToolBar;
 import javax.swing.ListSelectionModel;
 import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
-import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
@@ -207,7 +206,8 @@ public class CAL_DIZIN extends JDialog {
 		anaPanel.setLayout(null);
 
 		JPanel panel = new JPanel();
-		panel.setBorder(new LineBorder(null));
+		//panel.setBorder(new LineBorder(null));
+		panel.setBorder(new TitledBorder(null,"", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panel.setBounds(775, 10, 316, 381);
 		anaPanel.add(panel);
 		panel.setLayout(null);
@@ -580,9 +580,10 @@ public class CAL_DIZIN extends JDialog {
 		tabbedPane.setBounds(10, 10, 755, 381);
 		//tabbedPane.setForeground(new Color(25, 25, 112));
 		tabbedPane.setTabLayoutPolicy(MaterialTabbed.SCROLL_TAB_LAYOUT);
-		tabbedPane.setBorder(new LineBorder(null));
+		//tabbedPane.setBorder(new LineBorder(null));
 		anaPanel.add(tabbedPane);
 		ScrollPaneWin11 scrollPane = new ScrollPaneWin11();
+		
 		tabbedPane.addTab("Cari Hesap", null, scrollPane, null);
 		tblCari = new JTable() {
 			private static final long serialVersionUID = 1L;

@@ -35,8 +35,6 @@ import OBS_C_2025.MaterialTabbed;
 import OBS_C_2025.Obs_TextFIeld;
 import OBS_C_2025.TARIH_CEVIR;
 
-import javax.swing.border.LineBorder;
-
 import com.toedter.calendar.JDateChooser;
 
 
@@ -191,7 +189,7 @@ public class PARAMETRELER   extends JInternalFrame   {
 		tabbedPane.addTab("Program", null, scrollPane_5, null);
 
 		JPanel panel_4 = new JPanel();
-		panel_4.setBorder(new LineBorder(null));
+		//panel_4.setBorder(new LineBorder(null));
 		scrollPane_5.setViewportView(panel_4);
 		panel_4.setLayout(null);
 
@@ -435,7 +433,7 @@ public class PARAMETRELER   extends JInternalFrame   {
 		tabbedPane.addTab("Cari Hesap", null, scrollPane, null);
 
 		JPanel panel = new JPanel();
-		panel.setBorder(new LineBorder(null));
+		//panel.setBorder(new LineBorder(null));
 		scrollPane.setViewportView(panel);
 		panel.setLayout(null);
 
@@ -797,7 +795,7 @@ public class PARAMETRELER   extends JInternalFrame   {
 		tabbedPane.addTab("Fatura", null, scrollPane_1, null);
 
 		JPanel panel_1 = new JPanel();
-		panel_1.setBorder(new LineBorder(null));
+		//panel_1.setBorder(new LineBorder(null));
 		scrollPane_1.setViewportView(panel_1);
 		panel_1.setLayout(null);
 
@@ -1203,7 +1201,7 @@ public class PARAMETRELER   extends JInternalFrame   {
 		tabbedPane.addTab("Gunluk", null, scrollPane_2, null);
 
 		JPanel panel_2 = new JPanel();
-		panel_2.setBorder(new LineBorder(null));
+		//panel_2.setBorder(new LineBorder(null));
 		scrollPane_2.setViewportView(panel_2);
 		panel_2.setLayout(null);
 
@@ -1296,12 +1294,13 @@ public class PARAMETRELER   extends JInternalFrame   {
 		JLabel lblNewLabel_7 = new JLabel("Dakika da bir");
 		lblNewLabel_7.setBounds(290, 40, 126, 14);
 		panel_2.add(lblNewLabel_7);
-
+		
+		//***************************** KAMBIYO
 		JScrollPane scrollPane_3 = new JScrollPane();
 		tabbedPane.addTab("Kambiyo", null, scrollPane_3, null);
 
 		JPanel panel_3 = new JPanel();
-		panel_3.setBorder(new LineBorder(null));
+		//panel_3.setBorder(new LineBorder(null));
 		scrollPane_3.setViewportView(panel_3);
 		panel_3.setLayout(null);
 
@@ -1498,7 +1497,7 @@ public class PARAMETRELER   extends JInternalFrame   {
 		tabbedPane.addTab("Kereste", null, scrollPane_4, null);
 
 		JPanel panel_5 = new JPanel();
-		panel_5.setBorder(new LineBorder(null));
+		//panel_5.setBorder(new LineBorder(null));
 		scrollPane_4.setViewportView(panel_5);
 		panel_5.setLayout(null);
 

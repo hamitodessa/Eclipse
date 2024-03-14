@@ -294,7 +294,7 @@ public class H_PLANI extends JInternalFrame {
 
 		imagePanel = new ImagePanel();
 		imagePanel.setBounds(664, 182, 155, 175);
-		imagePanel.setBorder(new LineBorder(new Color(95, 158, 160), 2,true));
+		imagePanel.setBorder(new LineBorder(null, 1,true));
 		panel.add( imagePanel);
 
 		chcsms = new JCheckBox("Sms Gonder");

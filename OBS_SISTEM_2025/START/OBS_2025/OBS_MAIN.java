@@ -289,7 +289,7 @@ public class OBS_MAIN extends JFrame  {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(OBS_MAIN.class.getResource("/ICONLAR/icon-obs-32.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
-		//setBounds(0, 0, 1200, 800);
+		setBounds(0, 0, 1200, 800);
 		setTitle("OBS SISTEM");
 
 		JMenuBar menuBar = new JMenuBar();
@@ -327,7 +327,6 @@ public class OBS_MAIN extends JFrame  {
 			}
 		});
 		mnCari.add(mntmTah );
-		
 		
 		JMenuItem mntmCgiris = new JMenuItem("Coklu Giris");
 		mntmCgiris.addActionListener(new ActionListener() {
@@ -435,10 +434,6 @@ public class OBS_MAIN extends JFrame  {
 		mnCari.add(mntmSql);
 
 		mnCari.addSeparator();
-		
-		
-
-		
 		
 		JMenuItem mntmOrnek = new JMenuItem("Ornek Hesap Plani");
 		mntmOrnek.addActionListener(new ActionListener() {
@@ -1452,9 +1447,6 @@ public class OBS_MAIN extends JFrame  {
 		btnNewButton_13.setIcon(new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/hsp-30.png")));
 		toolBar_2.add(btnNewButton_13);
 
-		//JButton btnNewButton_14 = new JButton("");
-		//btnNewButton_14.setIcon(new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/icons8-related-companies-30.png")));
-		//toolBar_2.add(btnNewButton_14);
 
 		btnNewButton_15 = new JButton("");
 		btnNewButton_15.setToolTipText("Gunluk Islem");
@@ -2005,7 +1997,7 @@ public class OBS_MAIN extends JFrame  {
 		toolBar_5.add(lblNewLabel_15);
 		//****************************************************************************
 		JComboBox<String> comboDegisken = new JComboBox<String>();
-		comboDegisken.setBorder(new LineBorder(null));
+		//comboDegisken.setBorder(new LineBorder(null));
 		comboDegisken.setFont(new Font("Tahoma", Font.BOLD, 14));
 		comboDegisken.setMaximumSize(new Dimension(210, 35));
 		comboDegisken.addItemListener(new ItemListener() 
@@ -2360,30 +2352,7 @@ public class OBS_MAIN extends JFrame  {
 		btnNewButton_23.setToolTipText("Konsimento Aciklama Giris");
 		toolBar_Kereste.add(btnNewButton_23);
 		
-		JComboBox<String> comboDegisken_1 = new JComboBox<String>();
-		comboDegisken_1.setMaximumSize(new Dimension(200, 35));
-		comboDegisken_1.setFont(new Font("Tahoma", Font.BOLD, 14));
-		comboDegisken_1.addItemListener(new ItemListener() 
-		{
-			public void itemStateChanged(ItemEvent e) {
-				String hangi = (String) comboDegisken_1.getItemAt(comboDegisken_1.getSelectedIndex())  ;
-				boolean varmi = pencere_bak("KERESTE DEGISKENLER");
-				if (varmi)
-					pencere_kapat("KERESTE DEGISKENLER");
-				if (hangi == "Ana Grup")
-					form_ac("KERESTE DEGISKENLER","anagrup");
-				else if (hangi == "Alt Grup")
-					form_ac("KERESTE DEGISKENLER","altgrup");
-				else if (hangi == "Mensei")
-					form_ac("KERESTE DEGISKENLER","mensei");
-				else if (hangi == "Depo")
-					form_ac("KERESTE DEGISKENLER","depo");
-				else if (hangi == "Ozel Kod 1")
-					form_ac("KERESTE DEGISKENLER","oz1");
-				else if (hangi == "Nakliyeci")
-					form_ac("KERESTE DEGISKENLER","nak");
-			}
-		});
+
 		
 		JLabel lblNewLabel_44 = new JLabel("          ");
 		toolBar_Kereste.add(lblNewLabel_44);
@@ -2437,6 +2406,32 @@ public class OBS_MAIN extends JFrame  {
 		
 		JLabel lblNewLabel_43 = new JLabel("                    ");
 		toolBar_Kereste.add(lblNewLabel_43);
+		
+		
+		JComboBox<String> comboDegisken_1 = new JComboBox<String>();
+		comboDegisken_1.setMaximumSize(new Dimension(200, 35));
+		comboDegisken_1.setFont(new Font("Tahoma", Font.BOLD, 14));
+		comboDegisken_1.addItemListener(new ItemListener() 
+		{
+			public void itemStateChanged(ItemEvent e) {
+				String hangi = (String) comboDegisken_1.getItemAt(comboDegisken_1.getSelectedIndex())  ;
+				boolean varmi = pencere_bak("KERESTE DEGISKENLER");
+				if (varmi)
+					pencere_kapat("KERESTE DEGISKENLER");
+				if (hangi == "Ana Grup")
+					form_ac("KERESTE DEGISKENLER","anagrup");
+				else if (hangi == "Alt Grup")
+					form_ac("KERESTE DEGISKENLER","altgrup");
+				else if (hangi == "Mensei")
+					form_ac("KERESTE DEGISKENLER","mensei");
+				else if (hangi == "Depo")
+					form_ac("KERESTE DEGISKENLER","depo");
+				else if (hangi == "Ozel Kod 1")
+					form_ac("KERESTE DEGISKENLER","oz1");
+				else if (hangi == "Nakliyeci")
+					form_ac("KERESTE DEGISKENLER","nak");
+			}
+		});
 		comboDegisken_1.setModel(new DefaultComboBoxModel<String>(new String[] {"Degiskenler             ","Ana Grup","Alt Grup","Mensei","Depo","Ozel Kod 1","Nakliyeci"}));
 		toolBar_Kereste.add(comboDegisken_1);
 		

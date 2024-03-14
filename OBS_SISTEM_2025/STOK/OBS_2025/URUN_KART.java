@@ -291,7 +291,7 @@ public class URUN_KART extends JInternalFrame {
 
 		imagePanel = new ImagePanel();
 		imagePanel.setBounds(650, 105, 220, 175);
-		imagePanel.setBorder(new LineBorder(new Color(95, 158, 160), 2,true));
+		imagePanel.setBorder(new LineBorder(null, 1,true));
 		panel.add( imagePanel);
 
 		JButton button_4 = new JButton("");

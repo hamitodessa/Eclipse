@@ -377,7 +377,7 @@ public class IMALAT extends JInternalFrame {
 
 		imagePanel = new ImagePanel();
 		imagePanel.setBounds(920, 5, 180, 140);
-		imagePanel.setBorder(new LineBorder(new Color(95, 158, 160), 2,true));
+		imagePanel.setBorder(new LineBorder(null, 1,true));
 		panel_2.add( imagePanel);
 
 

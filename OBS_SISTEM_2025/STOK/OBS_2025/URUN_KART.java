@@ -27,7 +27,6 @@ import OBS_C_2025.Obs_TextFIeld;
 import OBS_C_2025.STOK_ACCESS;
 import raven.toast.Notifications;
 
-import javax.swing.border.EtchedBorder;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -183,7 +182,8 @@ public class URUN_KART extends JInternalFrame {
 		textField_1.setColumns(10);
 
 		JPanel panel_1 = new JPanel();
-		panel_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Siralama", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel_1.setBorder(new TitledBorder(null,"Siralama" , TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		//panel_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Siralama", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panel_1.setBounds(490, 11, 175, 70);
 		panel.add(panel_1);
 		panel_1.setLayout(null);
@@ -247,7 +247,8 @@ public class URUN_KART extends JInternalFrame {
 		panel_1.add(chckbxBarkod);
 
 		JPanel panel_2 = new JPanel();
-		panel_2.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Arama", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel_2.setBorder(new TitledBorder(null,"Siralama" , TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		//panel_2.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Arama", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panel_2.setBounds(690, 11, 175, 70);
 		panel.add(panel_2);
 		panel_2.setLayout(null);

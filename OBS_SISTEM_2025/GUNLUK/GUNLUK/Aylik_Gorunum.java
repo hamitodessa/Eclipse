@@ -9,7 +9,6 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JButton;
 import javax.swing.JPanel;
-import javax.swing.border.LineBorder;
 
 
 @SuppressWarnings("serial")
@@ -24,7 +23,6 @@ public class Aylik_Gorunum extends JPanel{
 		else if ((sayi + sayi2 ) <= 30)
 			gridRow = 4;
 		setPreferredSize( new Dimension(600, 400) );
-		setBorder(new LineBorder(null));
 		setLayout(new GridLayout(gridRow, gridColumn, 2, 2));
 		JButton button  ;
 		int gunler = 1 ;

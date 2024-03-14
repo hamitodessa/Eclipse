@@ -448,7 +448,7 @@ public class FATURA extends JInternalFrame {
 		panel_2.add(lblAnaGrup);
 
 		cmbanagrup = new JComboBox<String>();
-		cmbanagrup.setForeground(new Color(0, 0, 128));
+		//cmbanagrup.setForeground(new Color(0, 0, 128));
 		cmbanagrup.setFont(new Font("Dialog", Font.BOLD, 12));
 		cmbanagrup.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

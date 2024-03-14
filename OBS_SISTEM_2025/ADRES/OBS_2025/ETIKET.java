@@ -10,6 +10,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.sql.ResultSet;
@@ -63,7 +64,7 @@ import javax.swing.border.TitledBorder;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
 
-@SuppressWarnings({"serial","unused","removal"})
+@SuppressWarnings({"serial","unused","removal","static-access"})
 public class ETIKET extends JInternalFrame {
 	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
 	static ADRES_ACCESS a_Access = new ADRES_ACCESS(OBS_SIS_2025_ANA_CLASS._IAdres , OBS_SIS_2025_ANA_CLASS._IAdres_Loger);
@@ -241,6 +242,20 @@ public class ETIKET extends JInternalFrame {
 				}
 			}
 		});
+//		textField.addMouseListener(new MouseAdapter() {
+//			
+//			@Override
+//			public void mouseClicked(MouseEvent e) {
+//				if (e.getClickCount() == 2) 
+//				{
+//					ADRES_LISTE asp ;
+//					asp = new ADRES_LISTE();
+//					asp.setVisible(true);
+//					textField.setText( oac.hsp_hsp_kodu);
+//				}
+//			}
+//		});
+
 		panel_1.add(textField);
 		textField.setColumns(10);
 		//

@@ -359,7 +359,7 @@ public class LOGIN extends JDialog {
 		panel.add(txtUser);
 
 		JSeparator separator = new JSeparator();
-		separator.setForeground(Color.WHITE);
+		//separator.setForeground(Color.WHITE);
 		separator.setBounds(309, 31, 150, 7);
 		panel.add(separator);
 		
@@ -631,7 +631,7 @@ public class LOGIN extends JDialog {
 		panel.add(lblModul);
 		
 		JSeparator separator_1 = new JSeparator();
-		separator_1.setForeground(Color.WHITE);
+		//separator_1.setForeground(Color.WHITE);
 		separator_1.setBounds(310, 57, 150, 7);
 		panel.add(separator_1);
 		

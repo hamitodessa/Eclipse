@@ -19,7 +19,8 @@ import javax.swing.JSplitPane;
 import javax.swing.JTable;
 import javax.swing.RowFilter;
 import javax.swing.border.EmptyBorder;
-import javax.swing.border.LineBorder;
+import javax.swing.border.EtchedBorder;
+import javax.swing.border.TitledBorder;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.table.DefaultTableModel;
@@ -70,7 +71,7 @@ public class ADRES_LISTE extends JDialog {
 
 	JPanel panel = new JPanel();
 	splitPane.setLeftComponent(panel);
-	panel.setBorder(new LineBorder(null));
+	panel.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
 	panel.setMinimumSize(new Dimension(0, 40));
 	panel.setMaximumSize(new Dimension(0, 40));
 	panel.setLayout(null);
@@ -124,16 +125,15 @@ public class ADRES_LISTE extends JDialog {
 	panel.add(lblNewLabel);
 
 	ScrollPaneWin11 scrollPane = new ScrollPaneWin11();
+	scrollPane.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
+
 	splitPane.setRightComponent(scrollPane);
 
 	table = new JTable() {
 		public boolean isCellEditable(int row, int column) {     return false;          }
 	};
-	if(! oac.gridcolor.toString().equals("java.awt.Color[r=255,g=255,b=255]")) 
-	{
+	if(! oac.gridcolor.toString().equals("java.awt.Color[r=255,g=255,b=255]"))
 		table.setGridColor(oac.gridcolor);
-	}
-
 	table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 	table.setFont(new Font("Calibri", Font.PLAIN, 14));
 	table.addKeyListener(new KeyAdapter() {

@@ -2,6 +2,7 @@ package OBS_2025;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -13,6 +14,8 @@ import raven.toast.Notifications;
 
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
+import javax.swing.border.EtchedBorder;
+import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumn;
@@ -46,6 +49,8 @@ public class KUR_GRAFIK extends JInternalFrame {
 		setBounds(0, 0, 275, 600);
 		setFrameIcon(FIT_IMAGE.formIcon(new ImageIcon(KUR_GRAFIK.class.getResource("/ICONLAR/grafik.png")), 16, 16));//
 		scrollPane = new ScrollPaneWin11();
+		scrollPane.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
+
 		add(scrollPane, BorderLayout.CENTER);
 		
 		

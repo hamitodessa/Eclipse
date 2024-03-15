@@ -30,6 +30,8 @@ import javax.swing.JTable;
 import javax.swing.KeyStroke;
 import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
+import javax.swing.border.EtchedBorder;
+import javax.swing.border.TitledBorder;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.table.JTableHeader;
@@ -101,12 +103,14 @@ public class KASA extends JInternalFrame {
 		getContentPane().add(splitPane, BorderLayout.CENTER);
 		
 		ScrollPaneWin11 scrollPane = new ScrollPaneWin11();
+		scrollPane.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
+
 		scrollPane.setMinimumSize(new Dimension(0, 75));
 		scrollPane.setMaximumSize(new Dimension(0, 75));
 		splitPane.setLeftComponent(scrollPane);
 		
 		JPanel leftPanel = new JPanel();
-		
+
 		leftPanel.setPreferredSize(new Dimension(718,65));
 		leftPanel.setLayout(null);
 		scrollPane.setViewportView(leftPanel);
@@ -331,6 +335,8 @@ public class KASA extends JInternalFrame {
 		splitPane.setRightComponent(splitPane_1);
 		
 		ScrollPaneWin11 scrollPane_1 = new ScrollPaneWin11();
+		scrollPane_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
+
 		scrollPane_1.setMinimumSize(new Dimension(0, 100));
 		scrollPane_1.setMaximumSize(new Dimension(0, 100));
 		splitPane_1.setRightComponent(scrollPane_1);
@@ -472,6 +478,8 @@ public class KASA extends JInternalFrame {
 		table_1.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
 		ScrollPaneWin11 scrollPane_2 = new ScrollPaneWin11();
+		scrollPane_2.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
+
 		splitPane_1.setLeftComponent(scrollPane_2);
 		scrollPane_2.setViewportView(table_1);
 	}

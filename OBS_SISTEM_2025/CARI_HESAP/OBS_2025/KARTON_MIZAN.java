@@ -21,6 +21,8 @@ import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
+import javax.swing.border.EtchedBorder;
+import javax.swing.border.TitledBorder;
 import javax.swing.event.AncestorEvent;
 import javax.swing.event.AncestorListener;
 import javax.swing.table.DefaultTableModel;
@@ -69,6 +71,8 @@ public class KARTON_MIZAN extends JInternalFrame {
 		getContentPane().add(splitPane, BorderLayout.CENTER);
 
 		ScrollPaneWin11 jScrollPane1 = new ScrollPaneWin11();
+		jScrollPane1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
+
 		splitPane.setLeftComponent(jScrollPane1);
 
 		table = new JTable(){
@@ -192,7 +196,8 @@ public class KARTON_MIZAN extends JInternalFrame {
 		jScrollPane1.setViewportView(table);
 
 		JPanel panel = new JPanel();
-		//panel.setBorder(new LineBorder(new Color(0, 191, 255)));
+		panel.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
+
 		panel.setMinimumSize(new Dimension(0, 25));
 		panel.setMaximumSize(new Dimension(0, 25));
 		splitPane.setRightComponent(panel);

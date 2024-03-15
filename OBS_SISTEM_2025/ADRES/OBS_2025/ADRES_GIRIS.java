@@ -31,7 +31,9 @@ import javax.swing.JSeparator;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
+import javax.swing.border.EtchedBorder;
 import javax.swing.border.LineBorder;
+import javax.swing.border.TitledBorder;
 import javax.swing.event.AncestorEvent;
 import javax.swing.event.AncestorListener;
 import javax.swing.event.DocumentEvent;
@@ -306,6 +308,8 @@ public class ADRES_GIRIS extends JInternalFrame {
 		imagePanel = new ImagePanel();
 		imagePanel.setBounds(665, 272, 155, 175);
 		imagePanel.setBorder(new LineBorder(null, 2,true));
+		imagePanel.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
+
 		panel.add( imagePanel);
 
 		chcsms = new JCheckBox("Sms Gonder");

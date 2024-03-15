@@ -5,7 +5,6 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.sql.ResultSet;
 
-import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JInternalFrame;
 import javax.swing.JSplitPane;
@@ -14,7 +13,8 @@ import java.awt.Dimension;
 
 import javax.swing.ListSelectionModel;
 import javax.swing.SwingUtilities;
-import javax.swing.border.Border;
+import javax.swing.border.EtchedBorder;
+import javax.swing.border.TitledBorder;
 import javax.swing.event.AncestorEvent;
 import javax.swing.event.AncestorListener;
 import javax.swing.table.JTableHeader;
@@ -62,6 +62,8 @@ public class SQL_SORGULAMA extends JInternalFrame {
 		getContentPane().add(splitPane, BorderLayout.CENTER);
 
 		ScrollPaneWin11 scrollPane = new ScrollPaneWin11();
+		scrollPane.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
+
 		splitPane.setRightComponent(scrollPane);
 
 		table = new JTable(){
@@ -74,19 +76,17 @@ public class SQL_SORGULAMA extends JInternalFrame {
 			table.setGridColor(oac.gridcolor);
 		table.setShowHorizontalLines(true);
 		table.setShowVerticalLines(true);
-		//table.setAutoResizeMode( JTable.AUTO_RESIZE_OFF );
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		scrollPane.setViewportView(table);
 
 		textArea = new JTextArea();
-		//textArea.setBorder(new LineBorder(null));
+		textArea.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
+
 		textArea.setFont(new Font("Monospaced", Font.BOLD, 14));
 		textArea.setMinimumSize(new Dimension(0, 100));
 		textArea.setMaximumSize(new Dimension(0, 100));
 		textArea.setLineWrap(true);
-		
 		textArea.setWrapStyleWord(true);
-		//textArea.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 		textArea.setDocument(new JTextFieldLimit(100));
 		textArea.addKeyListener(new KeyAdapter() {
 			@Override
@@ -101,8 +101,6 @@ public class SQL_SORGULAMA extends JInternalFrame {
 				}
 			}
 		});
-		Border borderr = BorderFactory.createLineBorder(null);
-		textArea.setBorder(BorderFactory.createCompoundBorder(borderr,BorderFactory.createEmptyBorder(2, 2, 2, 2)));
 		splitPane.setLeftComponent(textArea);
 		modul = nerden ;
 		textArea.addAncestorListener(new AncestorListener() {

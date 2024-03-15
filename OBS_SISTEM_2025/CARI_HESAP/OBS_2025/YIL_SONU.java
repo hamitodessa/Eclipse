@@ -121,6 +121,8 @@ public class YIL_SONU extends JInternalFrame {
 		
 		panel_3.add(lblNewLabel_3);
 		ScrollPaneWin11 scrollPane = new ScrollPaneWin11();
+		scrollPane.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null),  "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
+
 		splitPane1.setRightComponent(scrollPane);
 
 		table = new JTable(){
@@ -145,7 +147,8 @@ public class YIL_SONU extends JInternalFrame {
 		panel = new JPanel();
 		panel.setMinimumSize(new Dimension(0, 80));
 		panel.setMaximumSize(new Dimension(0, 80));
-		//panel.setBorder(new LineBorder(null));
+		panel.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null),  "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
+
 		splitPane1.setLeftComponent(panel);
 		panel.setLayout(null);
 
@@ -172,7 +175,8 @@ public class YIL_SONU extends JInternalFrame {
 		panel.add(chckbxNewCheckBox);
 
 		panel_1 = new JPanel();
-		panel_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Mizan Devir Bilgileri", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		
+		panel_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "Mizan Devir Bilgileri", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panel_1.setBounds(305, 5, 367, 63);
 		panel_1.setVisible(false);
 		panel.add(panel_1);

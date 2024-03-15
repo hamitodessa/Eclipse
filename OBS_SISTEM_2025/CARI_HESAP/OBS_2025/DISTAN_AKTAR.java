@@ -93,6 +93,8 @@ import raven.toast.Notifications;
 import javax.swing.ListSelectionModel;
 import javax.swing.RowFilter;
 import javax.swing.RowFilter.ComparisonType;
+import javax.swing.border.EtchedBorder;
+import javax.swing.border.TitledBorder;
 import javax.swing.RowSorter;
 import javax.swing.SortOrder;
 import javax.swing.JSeparator;
@@ -149,11 +151,13 @@ public class DISTAN_AKTAR extends JInternalFrame {
 
 
 		ScrollPaneWin11 scrollPaneust = new ScrollPaneWin11();
+		scrollPaneust.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
+
 		scrollPaneust.setMinimumSize(new Dimension(1160, 110));
 		scrollPaneust.setMaximumSize(new Dimension(1160, 110));
 
 		JPanel panel = new JPanel();
-		//panel.setBorder(new LineBorder(null));
+
 
 		panel.setPreferredSize(new Dimension(1160,100));
 		scrollPaneust.setViewportView(panel);
@@ -539,6 +543,9 @@ public class DISTAN_AKTAR extends JInternalFrame {
 		splitPane_1.setLeftComponent(tabbedPane);
 
 		ScrollPaneWin11 scrollPane = new ScrollPaneWin11();
+		scrollPane.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
+
+		
 		tabbedPane.addTab("Excell", null, scrollPane, null);
 
 
@@ -727,6 +734,8 @@ public class DISTAN_AKTAR extends JInternalFrame {
 		splitPane_3.setDividerLocation(450);
 
 		JPanel panel_2 = new JPanel();
+		panel_2.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
+
 		splitPane_3.setLeftComponent(panel_2);
 		panel_2.setLayout(null);
 
@@ -890,7 +899,9 @@ public class DISTAN_AKTAR extends JInternalFrame {
 		panel_2.add(textField);
 
 		JSeparator separator = new JSeparator();
-		separator.setBounds(0, 30, 439, 2);
+		separator.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
+
+		separator.setBounds(5, 30, 440, 2);
 		panel_2.add(separator);
 
 		JSplitPane splitPane_5 = new JSplitPane();
@@ -902,6 +913,8 @@ public class DISTAN_AKTAR extends JInternalFrame {
 		splitPane_3.setRightComponent(splitPane_5);
 
 		ScrollPaneWin11 scrollPane_2 = new ScrollPaneWin11();
+		scrollPane_2.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
+
 		//scrollPane_2.setViewportBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Karsi Hesap Kodlari", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 		splitPane_5.setRightComponent(scrollPane_2);
 
@@ -939,7 +952,8 @@ public class DISTAN_AKTAR extends JInternalFrame {
 		scrollPane_2.setViewportView(table_1);
 
 		JPanel panel_5 = new JPanel();
-		//panel_5.setBorder(new LineBorder(new Color(0, 191, 255)));
+		panel.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
+
 		panel_5.setMinimumSize(new Dimension(0, 30));
 		panel_5.setMaximumSize(new Dimension(0, 30));
 		splitPane_5.setLeftComponent(panel_5);
@@ -976,6 +990,8 @@ public class DISTAN_AKTAR extends JInternalFrame {
 		splitPane_2.setLeftComponent(splitPane_4);
 
 		ScrollPaneWin11 scrollPane_1 = new ScrollPaneWin11();
+		scrollPane_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
+
 		//scrollPane_1.setViewportBorder(new TitledBorder(null, "Izahat Kismi Degisim Parametreleri", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		splitPane_4.setRightComponent(scrollPane_1);
 
@@ -1009,7 +1025,8 @@ public class DISTAN_AKTAR extends JInternalFrame {
 		scrollPane_1.setViewportView(table);
 
 		JPanel panel_4 = new JPanel();
-		//panel_4.setBorder(new LineBorder(null));
+		panel.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
+
 		panel_4.setMinimumSize(new Dimension(0, 30));
 		panel_4.setMaximumSize(new Dimension(0, 30));
 		panel_4.setLayout(null);
@@ -1039,7 +1056,8 @@ public class DISTAN_AKTAR extends JInternalFrame {
 		toolBar.add(btnNewButton_5);
 
 		JPanel panel_3 = new JPanel();
-		//panel_3.setBorder(new LineBorder(null));
+		panel_3.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
+
 		splitPane_1.setRightComponent(panel_3);
 		panel_3.setMinimumSize(new Dimension(0, 25));
 		panel_3.setMaximumSize(new Dimension(0, 25));

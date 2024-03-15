@@ -34,6 +34,7 @@ import OBS_C_2025.ImagePanel;
 import OBS_C_2025.JDateChooserEditor;
 import OBS_C_2025.JTextFieldRegularPopupMenu;
 
+import javax.swing.border.EtchedBorder;
 import javax.swing.border.LineBorder;
 import javax.swing.event.AncestorEvent;
 import javax.swing.event.AncestorListener;
@@ -182,7 +183,8 @@ public class TAH_FISI extends JInternalFrame {
 		df.setMaximumFractionDigits(2);
 		
 		JPanel panel_2 = new JPanel();
-		panel_2.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel_2.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
+
 		panel_2.setBounds(29, 30, 750, 75);
 		panel.add(panel_2);
 		panel_2.setLayout(null);
@@ -390,7 +392,8 @@ public class TAH_FISI extends JInternalFrame {
 		
 		
 		JPanel panel_1 = new JPanel();
-		panel_1.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
+
 		panel_1.setBounds(29, 120, 750, 92);
 		panel.add(panel_1);
 		panel_1.setLayout(null);
@@ -598,7 +601,9 @@ public class TAH_FISI extends JInternalFrame {
 		formattedTutar.setText("0.00");
 		
 		JPanel panel_3 = new JPanel();
-		panel_3.setBorder(new TitledBorder(null, "Doviz Cinsi", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel_3.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "Doviz Cinsi", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
+
+
 		panel_3.setBounds(29, 223, 750, 66);
 		panel.add(panel_3);
 		panel_3.setLayout(null);
@@ -627,7 +632,9 @@ public class TAH_FISI extends JInternalFrame {
 		
 		panel_4 = new JPanel();
 		panel_4.setVisible(false);
-		panel_4.setBorder(new TitledBorder(null, "Cek Bilgisi", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel_4.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null),  "Cek Bilgisi", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
+
+		
 		panel_4.setBounds(29, 295, 750, 75);
 		panel.add(panel_4);
 		panel_4.setLayout(null);
@@ -818,11 +825,14 @@ public class TAH_FISI extends JInternalFrame {
 		panel_5.setLayout(new BorderLayout(0, 0));
 		
 		scrollPane = new ScrollPaneWin11();
-		
+		scrollPane.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null),  "Cek Bilgisi", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
+
 		
 		panel_5.add(scrollPane, BorderLayout.CENTER);
 		
 		JPanel pnlalt = new JPanel();
+		pnlalt.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null),  "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
+
 		pnlalt.setPreferredSize(new Dimension(0,25));
 		panel_5.add(pnlalt, BorderLayout.SOUTH);
 		pnlalt.setLayout(null);

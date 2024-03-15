@@ -39,6 +39,8 @@ import java.sql.ResultSet;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.SwingUtilities;
+import javax.swing.border.EtchedBorder;
+import javax.swing.border.TitledBorder;
 import javax.swing.JScrollPane;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
@@ -71,6 +73,8 @@ public class TAH_DOKUM extends JInternalFrame {
 		getContentPane().add(splitPane, BorderLayout.CENTER);
 
 		ScrollPaneWin11 scrollPane_1 = new ScrollPaneWin11();
+		scrollPane_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
+
 		scrollPane_1.setMinimumSize(new Dimension(0, 100));
 		scrollPane_1.setMaximumSize(new Dimension(0, 100));
 
@@ -184,7 +188,8 @@ public class TAH_DOKUM extends JInternalFrame {
 		splitPane.setLeftComponent(splitPane_1);
 
 		JPanel paneToplam = new JPanel();
-		//paneToplam.setBorder(new LineBorder(null));
+		paneToplam.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
+
 		paneToplam.setMinimumSize(new Dimension(0, 25));
 		paneToplam.setMaximumSize(new Dimension(0, 25));
 
@@ -207,6 +212,8 @@ public class TAH_DOKUM extends JInternalFrame {
 		paneToplam.add(lblKayit);
 
 		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
+
 		scrollPane.setViewportView(table);
 		splitPane_1.setLeftComponent(scrollPane);
 

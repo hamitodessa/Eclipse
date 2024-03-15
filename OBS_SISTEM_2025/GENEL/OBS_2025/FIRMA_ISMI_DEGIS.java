@@ -4,8 +4,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JInternalFrame;
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
-import java.awt.Color;
-
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 
@@ -54,7 +52,7 @@ public class FIRMA_ISMI_DEGIS extends JInternalFrame {
 		panel.setLayout(null);
 
 		panel_1 = new JPanel();
-		panel_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Baslik", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		//panel_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "Baslik", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
 		panel_1.setBounds(52, 11, 529, 64);
 		panel.add(panel_1);
 		panel_1.setLayout(null);
@@ -72,32 +70,38 @@ public class FIRMA_ISMI_DEGIS extends JInternalFrame {
 		modul = mod ;
 		if (modul.equals("cari"))
 		{
-			panel_1.setBorder(new TitledBorder(null, "Cari Hesap", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+			panel_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "Cari Hesap", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
+
 			isim_oku(mod);
 		}
 		else if (modul.equals("kambiyo"))
 		{
-			panel_1.setBorder(new TitledBorder(null, "Kambiyo", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+			panel_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "Kambiyo", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
+
 			isim_oku(mod);
 		}
 		else if (modul.equals("stok"))
 		{
-			panel_1.setBorder(new TitledBorder(null, "Stok", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+			panel_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "Stok", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
+
 			isim_oku(mod);
 		}
 		else if (modul.equals("adres"))
 		{
-			panel_1.setBorder(new TitledBorder(null, "Adres", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+			panel_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "Adres", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
+
 			isim_oku(mod);
 		}
 		else if (modul.equals("gunluk"))
 		{
-			panel_1.setBorder(new TitledBorder(null, "Gunluk", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+			panel_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "Gunluk", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
+
 			isim_oku(mod);
 		}
 		else if (modul.equals("kereste"))
 		{
-			panel_1.setBorder(new TitledBorder(null, "Kereste", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+			panel_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "Kereste", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
+
 			isim_oku(mod);
 		}
 	}

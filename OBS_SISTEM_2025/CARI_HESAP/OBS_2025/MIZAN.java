@@ -17,6 +17,8 @@ import java.awt.Dimension;
 import javax.swing.JTable;
 import javax.swing.RowSorter;
 import javax.swing.RowSorter.SortKey;
+import javax.swing.border.EtchedBorder;
+import javax.swing.border.TitledBorder;
 import javax.swing.SortOrder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
@@ -80,6 +82,8 @@ public class MIZAN extends JInternalFrame {
 		getContentPane().add(splitPane, BorderLayout.CENTER);
 
 		ScrollPaneWin11 jScrollPane1 = new ScrollPaneWin11();
+		jScrollPane1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
+
 		splitPane.setLeftComponent(jScrollPane1);
 
 		table = new JTable(){
@@ -216,7 +220,8 @@ public class MIZAN extends JInternalFrame {
 		jScrollPane1.setViewportView(table);
 
 		JPanel panel = new JPanel();
-		//panel.setBorder(new LineBorder(null));
+		panel.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
+
 		panel.setMinimumSize(new Dimension(0, 25));
 		panel.setMaximumSize(new Dimension(0, 25));
 		splitPane.setRightComponent(panel);

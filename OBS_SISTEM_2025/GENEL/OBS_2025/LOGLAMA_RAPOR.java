@@ -72,6 +72,8 @@ import LOGER_KAYIT.TXT_LOG;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
+import javax.swing.border.EtchedBorder;
+import javax.swing.border.TitledBorder;
 
 @SuppressWarnings({ "static-access", "serial" ,"resource"})
 public class LOGLAMA_RAPOR extends JInternalFrame {
@@ -106,6 +108,8 @@ public class LOGLAMA_RAPOR extends JInternalFrame {
 		setBounds(0, 0, 1063, 600);
 		setFrameIcon(FIT_IMAGE.formIcon(new ImageIcon(LOGLAMA_RAPOR.class.getResource("/ICONLAR/icons8-data-sheet-filled-30.png")), 16, 16));//
 		ScrollPaneWin11 scrollPaneust = new ScrollPaneWin11();
+		scrollPaneust.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
+
 		JPanel leftPanel = new JPanel();
 		leftPanel.setPreferredSize(new Dimension(1033,50));
 		scrollPaneust.setViewportView(leftPanel);
@@ -114,10 +118,13 @@ public class LOGLAMA_RAPOR extends JInternalFrame {
 		leftPanel.setMinimumSize(new Dimension(0, 50));
 		leftPanel.setMaximumSize(new Dimension(0, 50));
 		ScrollPaneWin11 centerPanel = new ScrollPaneWin11();
+		centerPanel.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
+
 		JPanel rightPanel = new JPanel();
-		//rightPanel.setBorder(new LineBorder(null));
-		rightPanel.setMinimumSize(new Dimension(0, 30));
-		rightPanel.setMaximumSize(new Dimension(0, 30));
+		rightPanel.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
+
+		rightPanel.setMinimumSize(new Dimension(0, 25));
+		rightPanel.setMaximumSize(new Dimension(0, 25));
 		JSplitPane sp = new JSplitPane(JSplitPane.VERTICAL_SPLIT, scrollPaneust, centerPanel);
 		sp.setDividerSize(0);
 		leftPanel.setLayout(null);

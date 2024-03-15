@@ -17,6 +17,8 @@ import javax.swing.RowFilter;
 import java.awt.Font;
 import java.sql.ResultSet;
 import javax.swing.SwingConstants;
+import javax.swing.border.EtchedBorder;
+import javax.swing.border.TitledBorder;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.event.ListSelectionEvent;
@@ -81,6 +83,8 @@ public class HESAP_BAK extends JInternalFrame {
 		splitPane_1.setMaximumSize(new Dimension(0, 200));
 
 		ScrollPaneWin11 scrollPane = new ScrollPaneWin11();
+		scrollPane.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
+
 		splitPane_1.setLeftComponent(scrollPane);
 
 		tblhesap = new JTable(){
@@ -166,6 +170,8 @@ public class HESAP_BAK extends JInternalFrame {
 		scrollPane.setViewportView(tblhesap);
 
 		ScrollPaneWin11 scrollPane_1 = new ScrollPaneWin11();
+		scrollPane_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
+
 		splitPane_1.setRightComponent(scrollPane_1);
 		scrollPane_1.setMinimumSize(new Dimension(0, 410));
 		scrollPane_1.setMaximumSize(new Dimension(0, 410));
@@ -199,6 +205,8 @@ public class HESAP_BAK extends JInternalFrame {
 		splitPane.setRightComponent(splitPane_2);
 
 		ScrollPaneWin11 scrollPane_2 = new ScrollPaneWin11();
+		scrollPane_2.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
+
 		splitPane_2.setRightComponent(scrollPane_2);
 
 		tbldetay = new JTable(){
@@ -265,12 +273,14 @@ public class HESAP_BAK extends JInternalFrame {
 		scrollPane_2.setViewportView(tbldetay);
 
 		ScrollPaneWin11 jScrollPane1alt = new ScrollPaneWin11(); //1091-30
+		jScrollPane1alt.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
+
 		jScrollPane1alt.setMinimumSize(new Dimension(0,40));
 		splitPane_2.setLeftComponent(jScrollPane1alt);
 		
 		JPanel panel = new JPanel();
 		jScrollPane1alt.setViewportView(panel);
-		//panel.setBorder(new LineBorder(null));
+
 		//panel.setMinimumSize(new Dimension(0,35));
 		panel.setPreferredSize(new Dimension(1060,35));
 		panel.setLayout(null);

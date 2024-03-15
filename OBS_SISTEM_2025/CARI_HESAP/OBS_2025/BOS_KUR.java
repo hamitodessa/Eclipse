@@ -4,6 +4,7 @@ import java.sql.ResultSet;
 import javax.swing.JInternalFrame;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.Font;
 
 import javax.swing.JTable;
 import javax.swing.table.JTableHeader;
@@ -20,6 +21,8 @@ import net.proteanit.sql.DbUtils;
 import raven.toast.Notifications;
 
 import javax.swing.ListSelectionModel;
+import javax.swing.border.EtchedBorder;
+import javax.swing.border.TitledBorder;
 
 @SuppressWarnings({"serial" })public class BOS_KUR extends JInternalFrame {
 	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
@@ -33,6 +36,8 @@ import javax.swing.ListSelectionModel;
 		setBounds(100, 100, 145, 551);
 		
 		ScrollPaneWin11 scrollPane = new ScrollPaneWin11();
+		scrollPane.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
+
 		getContentPane().add(scrollPane, BorderLayout.CENTER);
 		
 		table = new JTable(){

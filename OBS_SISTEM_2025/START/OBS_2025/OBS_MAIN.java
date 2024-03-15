@@ -2621,11 +2621,9 @@ public class OBS_MAIN extends JFrame  {
 		toolBar_11.add(btnHakkinda);
 
 		toolBar = new JToolBar();
-		
-		//toolBar.setBorder(new LineBorder(null));
+		toolBar.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
 		toolBar.setFloatable(false);
 		splitPane.setRightComponent(toolBar);
-
 		btnKaydet = new JButton(""); // Kaydet //
 		btnKaydet.setToolTipText("Kayit");
 		btnKaydet.addActionListener(new ActionListener() {

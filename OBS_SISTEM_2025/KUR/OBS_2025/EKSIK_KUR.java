@@ -46,6 +46,8 @@ import java.text.SimpleDateFormat;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
+import javax.swing.border.EtchedBorder;
+import javax.swing.border.TitledBorder;
 
 @SuppressWarnings({"serial","static-access", "removal"})
 public class EKSIK_KUR extends JInternalFrame 
@@ -76,6 +78,8 @@ public class EKSIK_KUR extends JInternalFrame
 		getContentPane().add(splitPane, BorderLayout.CENTER);
 
 		JPanel panel = new JPanel();
+		panel.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
+
 		splitPane.setLeftComponent(panel);
 		panel.setMinimumSize(new Dimension(0, 110));
 		panel.setMaximumSize(new Dimension(0, 110));
@@ -148,6 +152,9 @@ public class EKSIK_KUR extends JInternalFrame
 		panel.add(lblNewLabel);
 
 		ScrollPaneWin11 scrollPane = new ScrollPaneWin11();
+		scrollPane.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
+
+		
 		splitPane.setRightComponent(scrollPane);
 
 		DefaultTableModel model = new DefaultTableModel() ;

@@ -35,6 +35,8 @@ import javax.swing.JLabel;
 
 import javax.swing.RowFilter;
 import javax.swing.SwingUtilities;
+import javax.swing.border.EtchedBorder;
+import javax.swing.border.TitledBorder;
 import javax.swing.event.AncestorEvent;
 import javax.swing.event.AncestorListener;
 import javax.swing.event.DocumentEvent;
@@ -66,6 +68,8 @@ public class GID_RAPOR extends JInternalFrame {
 		getContentPane().add(splitPane, BorderLayout.CENTER);
 
 		JPanel panel = new JPanel();
+		panel.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
+
 		splitPane.setLeftComponent(panel);
 		panel.setMinimumSize(new Dimension(0, 30));
 		panel.setMaximumSize(new Dimension(0, 30));
@@ -117,7 +121,8 @@ public class GID_RAPOR extends JInternalFrame {
 		textField.setColumns(10);
 
 		ScrollPaneWin11 scrollPane = new ScrollPaneWin11();
-		
+		scrollPane.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
+
 		splitPane.setRightComponent(scrollPane);
 
 		table = new JTable() {

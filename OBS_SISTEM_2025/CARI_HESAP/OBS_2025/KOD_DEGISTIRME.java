@@ -4,6 +4,8 @@ import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
+
+import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
@@ -42,11 +44,13 @@ public class KOD_DEGISTIRME extends JInternalFrame {
 		setBounds(5, 5, 606, 187);
 		setFrameIcon(FIT_IMAGE.formIcon(new ImageIcon(KOD_DEGISTIRME.class.getResource("/ICONLAR/icons8-exchange-30.png")), 16, 16));//
 		JPanel panel = new JPanel();
+		panel.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
+
 		getContentPane().add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
 		
 		JPanel panel_1 = new JPanel();
-		panel_1.setBorder(new TitledBorder(null,"Aranacak", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "Aranacak", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
 
 		panel_1.setBounds(34, 21, 250, 74);
 		panel.add(panel_1);
@@ -101,7 +105,7 @@ public class KOD_DEGISTIRME extends JInternalFrame {
 		
 		JPanel panel_1_1 = new JPanel();
 		panel_1_1.setLayout(null);
-		panel_1_1.setBorder(new TitledBorder(null,"Yazilacak", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel_1_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "Yazilacak", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
 		panel_1_1.setBounds(313, 21, 250, 74);
 		panel.add(panel_1_1);
 		

@@ -34,6 +34,8 @@ import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.ListSelectionModel;
 import javax.swing.RowFilter;
+import javax.swing.border.EtchedBorder;
+import javax.swing.border.TitledBorder;
 
 import java.awt.Font;
 import javax.swing.event.DocumentEvent;
@@ -63,6 +65,8 @@ public class HESAP_PLANI_DETAY extends JInternalFrame {
 		getContentPane().add(splitPane, BorderLayout.CENTER);
 
 		ScrollPaneWin11 scrollPane = new ScrollPaneWin11();
+		scrollPane.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
+
 		splitPane.setRightComponent(scrollPane);
 
 		table = new JTable(){
@@ -133,7 +137,8 @@ public class HESAP_PLANI_DETAY extends JInternalFrame {
 		scrollPane.setViewportView(table);
 
 		JPanel panel = new JPanel();
-		//panel.setBorder(new LineBorder(null));
+		panel.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
+
 		splitPane.setLeftComponent(panel);
 		panel.setMinimumSize(new Dimension(0, 30));
 		panel.setMaximumSize(new Dimension(0, 30));

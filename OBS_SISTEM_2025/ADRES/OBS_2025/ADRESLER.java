@@ -15,6 +15,8 @@ import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.RowFilter;
 import javax.swing.SwingUtilities;
+import javax.swing.border.EtchedBorder;
+import javax.swing.border.TitledBorder;
 import javax.swing.event.AncestorEvent;
 import javax.swing.event.AncestorListener;
 import javax.swing.event.DocumentEvent;
@@ -71,6 +73,8 @@ public class ADRESLER extends JInternalFrame {
 	
 
 	ScrollPaneWin11 scrollPane = new ScrollPaneWin11();
+	scrollPane.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
+
 	splitPane_1.setLeftComponent(scrollPane);
 
 	table = new JTable(){
@@ -110,7 +114,8 @@ public class ADRESLER extends JInternalFrame {
 	splitPane.setLeftComponent(panel);
 	panel.setMinimumSize(new Dimension(0, 30));
 	panel.setMaximumSize(new Dimension(0, 30));
-	//panel.setBorder(new LineBorder(null));
+	panel.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
+
 	panel.setLayout(null);
 
 	JLabel lblNewLabel = new JLabel("Arama");
@@ -155,7 +160,8 @@ public class ADRESLER extends JInternalFrame {
 	JPanel panelalt = new JPanel();
 	panelalt.setMinimumSize(new Dimension(0, 25));
 	panelalt.setMaximumSize(new Dimension(0, 25));
-	//panelalt.setBorder(new LineBorder(null));
+	panel.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
+
 	splitPane_1.setRightComponent(panelalt);
 	panelalt.setLayout(null);
 	

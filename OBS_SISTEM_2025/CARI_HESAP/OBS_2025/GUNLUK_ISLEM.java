@@ -16,6 +16,8 @@ import javax.swing.ListSelectionModel;
 import javax.swing.RowFilter;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
+import javax.swing.border.EtchedBorder;
+import javax.swing.border.TitledBorder;
 import javax.swing.event.AncestorEvent;
 import javax.swing.event.AncestorListener;
 import javax.swing.event.DocumentEvent;
@@ -74,6 +76,8 @@ public class GUNLUK_ISLEM extends JInternalFrame {
 		setFrameIcon(FIT_IMAGE.formIcon(new ImageIcon(GUNLUK_ISLEM.class.getResource("/ICONLAR/icons8-check-book-30.png")), 16, 16));//
 
 		JPanel pnlust = new JPanel();
+		pnlust.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
+
 		pnlust.setMinimumSize(new Dimension(0, 30));
 		pnlust.setMaximumSize(new Dimension(0, 30));
 		getContentPane().add(pnlust, BorderLayout.NORTH);
@@ -112,6 +116,8 @@ public class GUNLUK_ISLEM extends JInternalFrame {
 		getContentPane().add(splitPane, BorderLayout.CENTER);
 
 		ScrollPaneWin11 scrollPane = new ScrollPaneWin11();
+		scrollPane.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
+
 		splitPane.setLeftComponent(scrollPane);
 
 		table = new JTable(){
@@ -200,7 +206,8 @@ public class GUNLUK_ISLEM extends JInternalFrame {
 		scrollPane.setViewportView(table);
 
 		JPanel panel = new JPanel();
-		//panel.setBorder(new LineBorder(new Color(0, 191, 255)));
+		panel.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
+
 		panel.setMinimumSize(new Dimension(0, 25));
 		panel.setMaximumSize(new Dimension(0, 25));
 		splitPane.setRightComponent(panel);

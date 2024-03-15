@@ -10,6 +10,8 @@ import java.awt.Dimension;
 import javax.swing.JTable;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
+import javax.swing.border.EtchedBorder;
+import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableCellRenderer;
@@ -102,7 +104,8 @@ public class EKSTRE extends JInternalFrame {
 
 		
 		jScrollPane1alt = new ScrollPaneWin11();
-		//jScrollPane1alt.setBorder(new LineBorder(null));
+		jScrollPane1alt.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
+
 		jScrollPane1alt.getHorizontalScrollBar().addAdjustmentListener(new AdjustmentListener() {
 			@Override
 			public void adjustmentValueChanged(AdjustmentEvent e) {
@@ -224,6 +227,8 @@ public class EKSTRE extends JInternalFrame {
 		panel.add(lblNewLabel_2);
 
 		jScrollPane1 = new ScrollPaneWin11();
+		jScrollPane1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
+
 		jScrollPane1.getHorizontalScrollBar().addAdjustmentListener(new AdjustmentListener() {
 			@Override
 			public void adjustmentValueChanged(AdjustmentEvent e) {

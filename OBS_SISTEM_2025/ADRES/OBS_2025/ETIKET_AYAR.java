@@ -5,6 +5,7 @@ import javax.swing.JInternalFrame;
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
 import java.awt.Component;
+import java.awt.Font;
 
 import javax.swing.JLabel;
 import java.awt.event.FocusAdapter;
@@ -16,6 +17,8 @@ import java.util.List;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingUtilities;
+import javax.swing.border.EtchedBorder;
+import javax.swing.border.TitledBorder;
 import javax.swing.text.JTextComponent;
 
 import OBS_C_2025.FIT_IMAGE;
@@ -47,6 +50,8 @@ public class ETIKET_AYAR extends JInternalFrame {
 		setFrameIcon(FIT_IMAGE.formIcon(new ImageIcon(ETIKET_AYAR.class.getResource("/ICONLAR/icons8-pincode-keyboard-30.png")), 16, 16));//
 		
 		JPanel panel = new JPanel();
+		panel.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
+
 		getContentPane().add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
 

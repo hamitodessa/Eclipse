@@ -16,6 +16,8 @@ import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
+import javax.swing.border.EtchedBorder;
+import javax.swing.border.TitledBorder;
 import javax.swing.event.AncestorEvent;
 import javax.swing.event.AncestorListener;
 import javax.swing.table.DefaultTableModel;
@@ -82,7 +84,8 @@ public class DVZ_CEVIRME extends JInternalFrame {
 		
 		
 		JPanel panel = new JPanel();
-		//panel.setBorder(new LineBorder(null));
+		panel.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
+
 		splitPane.setLeftComponent(panel);
 		panel.setMinimumSize(new Dimension(0, 30));
 		panel.setMaximumSize(new Dimension(0, 30));
@@ -175,6 +178,8 @@ public class DVZ_CEVIRME extends JInternalFrame {
 		panel.add(label_1);
 		
 		ScrollPaneWin11 scrollPane = new ScrollPaneWin11();
+		scrollPane.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
+
 		splitPane.setRightComponent(scrollPane);
 		
 		table = new JTable(){

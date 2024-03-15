@@ -59,6 +59,7 @@ import javax.swing.JPanel;
 
 import javax.swing.ListSelectionModel;
 import javax.swing.RowFilter;
+import javax.swing.border.EtchedBorder;
 import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.JSpinner;
@@ -106,6 +107,8 @@ public class ETIKET extends JInternalFrame {
 		splitPane.setRightComponent(splitPane_1);
 		//
 		ScrollPaneWin11 scrollPane = new ScrollPaneWin11();
+		scrollPane.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
+
 		orTabbedPane = new MaterialTabbed();
 		orTabbedPane.setFont(new Font("Tahoma", Font.BOLD, 14));
 		//orTabbedPane.setForeground(new Color(0, 0, 128));
@@ -115,7 +118,9 @@ public class ETIKET extends JInternalFrame {
 		orTabbedPane.addTab("Tek Etiket", null,tekPanel , null);  //
 
 		JPanel panel_2 = new JPanel();
-		panel_2.setBorder(new TitledBorder(null, "Bilgiler", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel_2.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "Bilgiler", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
+
+		//panel_2.setBorder(new TitledBorder(null, "Bilgiler", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panel_2.setBounds(43, 37, 431, 207);
 		tekPanel.add(panel_2);
 		panel_2.setLayout(null);
@@ -187,7 +192,8 @@ public class ETIKET extends JInternalFrame {
 		JPanel panel = new JPanel();
 		panel.setMinimumSize(new Dimension(0, 25));
 		panel.setMaximumSize(new Dimension(0, 25));
-		//panel.setBorder(new LineBorder(null));
+		panel.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
+
 
 		splitPane_1.setRightComponent(panel);
 		panel.setLayout(null);
@@ -205,7 +211,8 @@ public class ETIKET extends JInternalFrame {
 		JPanel panel_1 = new JPanel();
 		panel_1.setMinimumSize(new Dimension(0, 50));
 		panel_1.setMaximumSize(new Dimension(0, 50));
-		//panel_1.setBorder(new LineBorder(null));
+		panel_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
+
 		splitPane.setLeftComponent(panel_1);
 		panel_1.setLayout(null);
 

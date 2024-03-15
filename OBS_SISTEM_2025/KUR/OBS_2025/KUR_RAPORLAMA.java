@@ -6,9 +6,12 @@ import javax.swing.ImageIcon;
 import javax.swing.JInternalFrame;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.Font;
 
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
+import javax.swing.border.EtchedBorder;
+import javax.swing.border.TitledBorder;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
@@ -47,6 +50,8 @@ public class KUR_RAPORLAMA extends JInternalFrame {
 		setBounds(0, 0, 700, 600);
 		setFrameIcon(FIT_IMAGE.formIcon(new ImageIcon(KUR_RAPORLAMA.class.getResource("/ICONLAR/icons8-pincode-keyboard-30.png")), 16, 16));//
 		scrollPane = new ScrollPaneWin11();
+		scrollPane.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
+
 		getContentPane().add(scrollPane, BorderLayout.CENTER);
 
 		table = new JTable();

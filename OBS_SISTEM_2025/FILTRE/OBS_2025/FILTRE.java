@@ -64,6 +64,8 @@ import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import java.awt.event.ItemListener;
 import java.awt.event.ItemEvent;
+
+import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.JCheckBox;
 import java.awt.Cursor;
@@ -458,11 +460,13 @@ public class FILTRE extends JDialog {
 		setLocationRelativeTo(null);
 	
 		getContentPane().setLayout(new BorderLayout());
+		
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(new BorderLayout(0, 0));
 		
 		
 		tabbedPane = new JTabbedPane();
+		
 		//*****************************************************************************************************************
 		// Goruntu icin asagidaki blogu kaldir 
 
@@ -492,7 +496,6 @@ public class FILTRE extends JDialog {
 		
 		//*******************************EKSTRE ****************************************************
 		JPanel paneleks = new JPanel();
-		//paneleks.setBorder(new LineBorder(null));
 		
 		tabbedPane.addTab("Ekstre", null, paneleks, null);
 		
@@ -501,17 +504,17 @@ public class FILTRE extends JDialog {
 		lblNewLabelh.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblNewLabelh.setBounds(26, 30, 103, 14);
 		paneleks.add(lblNewLabelh);
+
 		lblNewLabel_1 = new JLabel(".....");
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 12));
-		//lblNewLabel_1.setForeground(new Color(25, 25, 112));
 		lblNewLabel_1.setBounds(139, 58, 315, 14);
 		paneleks.add(lblNewLabel_1);
 
 		lblNewLabel_2 = new JLabel(".....");
 		lblNewLabel_2.setFont(new Font("Tahoma", Font.BOLD, 12));
-		//lblNewLabel_2.setForeground(new Color(25, 25, 112));
 		lblNewLabel_2.setBounds(139, 83, 120, 14);
 		paneleks.add(lblNewLabel_2);
+
 		JLabel lblNewLabel_3e = new JLabel("Ilk Tarih");
 		lblNewLabel_3e.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblNewLabel_3e.setBounds(26, 114, 87, 14);
@@ -710,7 +713,7 @@ public class FILTRE extends JDialog {
 
 		//*******************************************MIZAN ********************************************
 		JPanel panel_1m = new JPanel();
-		//panel_1m.setBorder(new LineBorder(null));
+
 		tabbedPane.addTab("Mizan", null, panel_1m, null);
 		panel_1m.setLayout(null);
 
@@ -1058,7 +1061,7 @@ public class FILTRE extends JDialog {
 
 		/// DOVIZE CEVIRME **********************************************************************
 		JPanel panel = new JPanel();
-		//panel.setBorder(new LineBorder(null));
+
 		tabbedPane.addTab("Dvz_Cevirme", null, panel, null);
 		panel.setLayout(null);
 
@@ -1330,7 +1333,8 @@ public class FILTRE extends JDialog {
 		panel.add(chckbxNewCheckBox_4);
 		/// CARI ARAMA ****************************************************************************************************
 		JPanel panel_1 = new JPanel();
-		//panel_1.setBorder(new LineBorder(null));
+		//panel_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
+
 		tabbedPane.addTab("Arama", null, panel_1, null);
 		panel_1.setLayout(null);
 
@@ -1441,7 +1445,7 @@ public class FILTRE extends JDialog {
 		panel_1.add(textField_5);
 
 		JPanel panel_2 = new JPanel();
-		panel_2.setBorder(new TitledBorder(null, "Arama Kriteri", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel_2.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "Arama Kriteri", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
 		panel_2.setBounds(327, 95, 290, 88);
 		panel_1.add(panel_2);
 		panel_2.setLayout(null);
@@ -1485,7 +1489,8 @@ public class FILTRE extends JDialog {
 
 		//**************** GUNLUK ISLEM *************************************************************************
 		panel_3 = new JPanel();
-		//panel_3.setBorder(new LineBorder(null));
+		//panel_3.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
+
 		tabbedPane.addTab("Gunluk_Islem", null, panel_3, null);
 		panel_3.setLayout(null);
 
@@ -1608,7 +1613,8 @@ public class FILTRE extends JDialog {
 
 		//******************************************CEK RAPOR **********************************************************
 		JPanel panel_4 = new JPanel();
-		//panel_4.setBorder(new LineBorder(null));
+		//panel_4.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
+
 		tabbedPane.addTab("Cek_Rapor", null, panel_4, null);
 		panel_4.setLayout(null);
 
@@ -1956,7 +1962,8 @@ public class FILTRE extends JDialog {
 		panel_4.add(txtch2);
 
 		JPanel panel_5 = new JPanel();
-		//panel_5.setBorder(new LineBorder(null));
+		//panel_5.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
+
 		tabbedPane.addTab("Kur_Rapor", null, panel_5, null);
 		panel_5.setLayout(null);
 
@@ -2030,7 +2037,8 @@ public class FILTRE extends JDialog {
 		panel_5.add(txtkc2);
 
 		panel_6 = new JPanel();
-		//panel_6.setBorder(new LineBorder(null));
+		//panel_6.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
+
 		tabbedPane.addTab("Fatura", null, panel_6, null);
 		panel_6.setLayout(null);
 
@@ -2287,7 +2295,7 @@ public class FILTRE extends JDialog {
 		panel_6.add(lblNewLabel_33);
 
 		JPanel panel_7 = new JPanel();
-		panel_7.setBorder(new TitledBorder(null, "Gruplama", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel_7.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "Gruplama", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
 		panel_7.setBounds(459, 133, 272, 70);
 		panel_6.add(panel_7);
 		panel_7.setLayout(null);
@@ -2356,7 +2364,8 @@ public class FILTRE extends JDialog {
 
 		JPanel panel_8 = new JPanel();
 		panel_8.setLayout(null);
-		//panel_8.setBorder(new LineBorder(null));
+		//panel_8.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
+
 		tabbedPane.addTab("Imalat_rapor", null, panel_8, null);
 
 		JLabel lblEvrakNo = new JLabel("Evrak No");
@@ -2532,7 +2541,8 @@ public class FILTRE extends JDialog {
 		panel_8.add(comboBox_13);
 
 		JPanel panel_9 = new JPanel();
-		//panel_9.setBorder(new LineBorder(null));
+		//panel_9.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
+
 		tabbedPane.addTab("Stok_Rapor", null, panel_9, null);
 		panel_9.setLayout(null);
 
@@ -2673,8 +2683,8 @@ public class FILTRE extends JDialog {
 		panel_9.add(comboBox_18);
 
 		JPanel panel_10 = new JPanel();
-		panel_10.setBorder(new TitledBorder(null, "Gruplama", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		//panel_10.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Gruplama", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		//panel_10.setBorder(new TitledBorder(null, "Gruplama", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel_10.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "Gruplama", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panel_10.setBounds(484, 100, 256, 68);
 		panel_9.add(panel_10);
 		panel_10.setLayout(null);
@@ -2715,7 +2725,8 @@ public class FILTRE extends JDialog {
 
 		JPanel panel_11 = new JPanel();
 		panel_11.setLayout(null);
-		//panel_11.setBorder(new LineBorder(null));
+		//panel_11.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
+
 		tabbedPane.addTab("Stok_Detay", null, panel_11, null);
 
 		JLabel label_10 = new JLabel("Tarih");
@@ -2897,7 +2908,8 @@ public class FILTRE extends JDialog {
 
 		JPanel panel_12 = new JPanel();
 		panel_12.setLayout(null);
-		//panel_12.setBorder(new LineBorder(null));
+		//panel_12.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
+
 		tabbedPane.addTab("Grup_Rapor", null, panel_12, null);
 
 		JLabel label_18 = new JLabel("Tarih");
@@ -3158,7 +3170,8 @@ public class FILTRE extends JDialog {
 
 		JPanel panel_13 = new JPanel();
 		panel_13.setLayout(null);
-		//panel_13.setBorder(new LineBorder(null));
+		//panel_13.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
+
 		tabbedPane.addTab("Imalat_Grup", null, panel_13, null);
 
 		JLabel label_20 = new JLabel("Urun Kodu");
@@ -3308,8 +3321,8 @@ public class FILTRE extends JDialog {
 		panel_13.add(comboBox_41);
 
 		JPanel panel_14 = new JPanel();
-		panel_14.setBorder(new TitledBorder(null, "Urun Ana Grup / Alt Grup", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		//panel_14.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Urun Ana Grup / Alt Grup", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		//panel_14.setBorder(new TitledBorder(null, "Urun Ana Grup / Alt Grup", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel_14.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "Urun Ana Grup / Alt Grup", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panel_14.setBounds(443, 11, 243, 88);
 		panel_13.add(panel_14);
 		panel_14.setLayout(null);
@@ -3339,7 +3352,8 @@ public class FILTRE extends JDialog {
 
 		JPanel panel_15 = new JPanel();
 		panel_15.setLayout(null);
-		//panel_15.setBorder(new LineBorder(null));
+		//panel_15.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
+
 		tabbedPane.addTab("Irsaliye_Rapor", null, panel_15, null);
 
 		JLabel lblIrsaliyeNo = new JLabel("Irsaliye No");
@@ -3550,7 +3564,8 @@ public class FILTRE extends JDialog {
 
 		JPanel panel_16 = new JPanel();
 		panel_16.setLayout(null);
-		//panel_16.setBorder(new LineBorder(null));
+		//panel_16.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
+
 		tabbedPane.addTab("Recete_Rapor", null, panel_16, null);
 
 		JLabel lblReceteNo = new JLabel("Recete No");
@@ -3632,8 +3647,8 @@ public class FILTRE extends JDialog {
 		JPanel panel_17 = new JPanel();
 
 		panel_17.setLayout(null);
-		panel_17.setBorder(new TitledBorder(null, "Urun Ana Grup / Alt Grup", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		//panel_17.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Urun Ana Grup / Alt Grup", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		//panel_17.setBorder(new TitledBorder(null, "Urun Ana Grup / Alt Grup", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel_17.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "Urun Ana Grup / Alt Grup", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panel_17.setBounds(472, 11, 243, 88);
 		panel_16.add(panel_17);
 
@@ -3657,7 +3672,8 @@ public class FILTRE extends JDialog {
 
 		JPanel panel_18 = new JPanel();
 		panel_18.setLayout(null);
-		//panel_18.setBorder(new LineBorder(null));
+		//panel_18.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
+
 		tabbedPane.addTab("Ortalama_Fiat", null, panel_18, null);
 
 		JLabel label_21 = new JLabel("Urun Kodu");
@@ -3743,8 +3759,8 @@ public class FILTRE extends JDialog {
 
 		JPanel panel_19 = new JPanel();
 		panel_19.setLayout(null);
-		panel_19.setBorder(new TitledBorder(null, "Urun Ana Grup / Alt Grup", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		//panel_19.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Urun Ana Grup / Alt Grup", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		//panel_19.setBorder(new TitledBorder(null, "Urun Ana Grup / Alt Grup", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel_19.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "Urun Ana Grup / Alt Grup", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panel_19.setBounds(443, 11, 243, 88);
 		panel_18.add(panel_19);
 
@@ -3831,7 +3847,8 @@ public class FILTRE extends JDialog {
 
 		JPanel panel_20 = new JPanel();
 		panel_20.setLayout(null);
-		//panel_20.setBorder(new LineBorder(null));
+		//panel_20.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
+
 		tabbedPane.addTab("Urun_Liste", null, panel_20, null);
 
 		JLabel label_43 = new JLabel("Urun Kodu");
@@ -3980,7 +3997,8 @@ public class FILTRE extends JDialog {
 
 		JPanel panel_21 = new JPanel();
 		panel_21.setLayout(null);
-		//panel_21.setBorder(new LineBorder(null));
+		//panel_21.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
+
 		tabbedPane.addTab("Envanter", null, panel_21, null);
 
 		JLabel label_39 = new JLabel("Tarih");
@@ -4173,7 +4191,8 @@ public class FILTRE extends JDialog {
 
 		JPanel panel_22 = new JPanel();
 		panel_22.setLayout(null);
-		//panel_22.setBorder(new LineBorder(null));
+		//panel_22.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
+
 		tabbedPane.addTab("Zayi", null, panel_22, null);
 
 		JLabel label_58 = new JLabel("Tarih");
@@ -4313,7 +4332,8 @@ public class FILTRE extends JDialog {
 		panel_22.add(comboBox_71);
 		//*************************************************KUR ***************************************************
 		JPanel panel_23 = new JPanel();
-		//panel_23.setBorder(new LineBorder(null));
+		//panel_23.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
+
 		tabbedPane.addTab("Kur_Grafik", null, panel_23, null);
 		panel_23.setLayout(null);
 
@@ -4380,7 +4400,8 @@ public class FILTRE extends JDialog {
 
 		//***********************************************GUNLUK ********************************************************************	
 		JPanel panel_GUNLUK = new JPanel();
-		//panel_GUNLUK.setBorder(new LineBorder(null));
+		//panel_GUNLUK.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
+
 		tabbedPane.addTab("Hazir_Gorev", null, panel_GUNLUK, null);
 		panel_GUNLUK.setLayout(null);
 
@@ -4455,7 +4476,8 @@ public class FILTRE extends JDialog {
 		//******************************** KERESTE GRUP *************************************************************************
 
 		JPanel panel_KERESTE = new JPanel();
-		//panel_KERESTE.setBorder(new LineBorder(null));
+		//panel_KERESTE.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
+
 		tabbedPane.addTab("Kereste", null, panel_KERESTE, null);
 		panel_KERESTE.setLayout(null);
 
@@ -4742,7 +4764,8 @@ public class FILTRE extends JDialog {
 		/// KERESTE DETAY ***************************************************************************
 
 		JPanel panel_KERESTE_DETAY = new JPanel();
-		//panel_KERESTE_DETAY.setBorder(new LineBorder(null));
+		//panel_KERESTE_DETAY.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
+
 		tabbedPane.addTab("Kereste_Detay", null, panel_KERESTE_DETAY, null);
 		panel_KERESTE_DETAY.setLayout(null);
 
@@ -5108,7 +5131,8 @@ public class FILTRE extends JDialog {
 		/// KERESTE ORTALAMA FIAT*******************************************************************************
 
 		JPanel panel_KERESTE_ORTFIAT = new JPanel();
-		//panel_KERESTE_ORTFIAT.setBorder(new LineBorder(null));
+		//panel_KERESTE_ORTFIAT.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
+
 		tabbedPane.addTab("Kereste_Ort_Fiat", null, panel_KERESTE_ORTFIAT, null);
 		panel_KERESTE_ORTFIAT.setLayout(null);
 
@@ -5443,7 +5467,8 @@ public class FILTRE extends JDialog {
 		
 		//**********************************************************************OK BUTTON **********************************
 		JPanel buttonPane = new JPanel();
-		//buttonPane.setBorder(new LineBorder(null));
+		buttonPane.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
+
 		buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 		getContentPane().add(buttonPane, BorderLayout.SOUTH);
 

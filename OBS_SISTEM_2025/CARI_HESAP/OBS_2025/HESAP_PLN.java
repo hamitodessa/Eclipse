@@ -241,7 +241,7 @@ public class HESAP_PLN extends JDialog {
 		    return;
 		}
 		table.setModel(DbUtils.resultSetToTableModel(rs));
-		c_Access.connClose();
+		
 		JTableHeader th = table.getTableHeader();
 		TableColumnModel tcm = th.getColumnModel();
 		TableColumn tc;

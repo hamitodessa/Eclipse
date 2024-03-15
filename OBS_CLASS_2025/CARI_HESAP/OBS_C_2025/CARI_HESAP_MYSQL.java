@@ -11,8 +11,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import org.apache.commons.dbcp2.BasicDataSource;
-
 import LOGER_KAYIT.DOSYA_MYSQL;
 import LOGER_KAYIT.ILOGER_KAYIT;
 import LOGER_KAYIT.TXT_LOG;
@@ -22,27 +20,15 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 	public static Connection con = null;
 	public static Connection akt_con = null;
 	static Connection SQLitecon = null;
-	static Statement stmtt = null;
-	PreparedStatement stmt = null;
+	static Statement stmt = null;
 	private GLOBAL gLB = new GLOBAL();
-	private static BasicDataSource dataSource;
 
 	public void baglan() throws SQLException, ClassNotFoundException
 	{
-		//Class.forName("com.mysql.cj.jdbc.Driver");
+		Class.forName("com.mysql.cj.jdbc.Driver");
 		String cumle = "jdbc:mysql://" + BAGLAN.cariDizin.cONN_STR ;
-		dataSource = new BasicDataSource();
-		dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
-		dataSource.setUrl(cumle); 
-		dataSource.setUsername(BAGLAN.cariDizin.kULLANICI);
-		dataSource.setPassword(BAGLAN.cariDizin.sIFRESI);
-		dataSource.setInitialSize(5); 
-		dataSource.setMaxTotal(10);
-		con = dataSource.getConnection();
-		
-		//String cumle = "jdbc:mysql://" + BAGLAN.cariDizin.cONN_STR ;
 		//DriverManager.setLoginTimeout(0);
-		//con = DriverManager.getConnection(cumle,BAGLAN.cariDizin.kULLANICI,BAGLAN.cariDizin.sIFRESI);
+		con = DriverManager.getConnection(cumle,BAGLAN.cariDizin.kULLANICI,BAGLAN.cariDizin.sIFRESI);
 	}
 	public void akt_baglan(String kod, String port) throws SQLException
 	{
@@ -60,18 +46,18 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 		cumle = "jdbc:mysql://localhost:" + sbilgi.getPort() ;  // SERVER BAGLANDI
 		con = DriverManager.getConnection(cumle,sbilgi.getKull(),sbilgi.getSifre());
 		String VERITABANI = "ok_car" + sbilgi.getKod();
-		stmtt = null;
+		stmt = null;
 		String sql =null;
 		sql = "CREATE DATABASE " + VERITABANI ;
-		stmtt = con.createStatement();  
-		stmtt.execute(sql);
+		stmt = con.createStatement();  
+		stmt.execute(sql);
 		cumle = "jdbc:mysql://localhost/" +VERITABANI ;
 		con = DriverManager.getConnection(cumle,sbilgi.getKull(),sbilgi.getSifre());  // DATABASE BAGLANDI
 		create_table(sbilgi.getFir_adi());
 		//
 		sql = "CREATE DATABASE " + VERITABANI + "_log" ;
-		stmtt = con.createStatement();  
-		stmtt.execute(sql);
+		stmt = con.createStatement();  
+		stmt.execute(sql);
 		cumle = "jdbc:mysql://localhost/" + VERITABANI + "_log" ;
 		con = DriverManager.getConnection(cumle,sbilgi.getKull(),sbilgi.getSifre());
 		create_table_log();
@@ -96,27 +82,28 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 		lBILGI.setmESAJ("Firma Adi:" + sbilgi.getFir_adi());
 		tEXLOG.Logla(lBILGI, BAGLAN_LOG.cariLogDizin);
 		//
-		connClose(stmtt,con);
+		stmt.close();
+		con.close();
 	}
 	public void cARI_SIFIR_S(Server_Bilgi sbilgi) throws ClassNotFoundException, SQLException {
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		con = null;  
 		String VERITABANI = "ok_car" + sbilgi.getKod();
 		String cumle = "";
-		stmtt = null;
+		stmt = null;
 		String sql =null;
 		cumle = "jdbc:mysql://" + sbilgi.getServer() ;
 		con = DriverManager.getConnection(cumle,sbilgi.getKull(),sbilgi.getSifre());
 		sql = "CREATE DATABASE " + VERITABANI ;
-		stmtt = con.createStatement();  
-		stmtt.executeUpdate(sql);
+		stmt = con.createStatement();  
+		stmt.executeUpdate(sql);
 		cumle = "jdbc:mysql://" + sbilgi.getServer() + "/" + VERITABANI ;
 		con = DriverManager.getConnection(cumle,sbilgi.getKull(),sbilgi.getSifre());
 		create_table(sbilgi.getFir_adi());
 		//
 		sql = "CREATE DATABASE " + VERITABANI + "_log" ;
-		stmtt = con.createStatement();  
-		stmtt.executeUpdate(sql);
+		stmt = con.createStatement();  
+		stmt.executeUpdate(sql);
 		cumle = "jdbc:mysql://" + sbilgi.getServer() + "/" + VERITABANI + "_log" ;
 		con = DriverManager.getConnection(cumle,sbilgi.getKull(),sbilgi.getSifre());
 		create_table_log();
@@ -142,7 +129,8 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 		lBILGI.setmESAJ("Firma Adi:" + sbilgi.getFir_adi());
 		tEXLOG.Logla(lBILGI, BAGLAN_LOG.cariLogDizin);
 		//
-		connClose(stmtt,con);
+		stmt.close();
+		con.close();
 	}
 	public void create_table(String fir_adi) throws SQLException {
 		String sql = null;
@@ -155,8 +143,8 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 				+ "  PRIMARY KEY (`HESAP`),"
 				+ "  UNIQUE INDEX `HESAP_UNIQUE` (`HESAP` ASC) INVISIBLE,"
 				+ "  INDEX `IX_HESAP` (`HESAP` ASC) VISIBLE);";
-		stmtt = con.createStatement();  
-		stmtt.executeUpdate(sql);
+		stmt = con.createStatement();  
+		stmt.executeUpdate(sql);
 		sql = "CREATE TABLE `HESAP_DETAY` ( "
 				+ " `D_HESAP` NVARCHAR(12) NOT NULL,"
 				+ " `YETKILI` NVARCHAR(30) NULL,"
@@ -182,8 +170,8 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 				+ "  PRIMARY KEY (`D_HESAP`),"
 				+ "  UNIQUE INDEX `D_HESAP_UNIQUE` (`D_HESAP` ASC) VISIBLE,"
 				+ "  INDEX `IX_DHESAP` (`D_HESAP` ASC) VISIBLE);";
-		stmtt = con.createStatement();  
-		stmtt.executeUpdate(sql);
+		stmt = con.createStatement();  
+		stmt.executeUpdate(sql);
 		sql = "CREATE TABLE `SATIRLAR` ("
 				+ "  `SID` MEDIUMINT NOT NULL AUTO_INCREMENT PRIMARY KEY ,"
 				+ "  `HESAP` VARCHAR(12) NOT NULL,"
@@ -199,25 +187,25 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 				+ "  UNIQUE INDEX `SID_UNIQUE` (`SID` ASC) VISIBLE,"
 				+ "  INDEX `IX_SATIRLAR` (`HESAP` ASC, `TARIH` ASC, `EVRAK` ASC) VISIBLE ,"
 				+ "  INDEX `IXS_HESAP` (`HESAP` ASC  ) VISIBLE);";
-		stmtt = con.createStatement();  
-		stmtt.executeUpdate(sql);
+		stmt = con.createStatement();  
+		stmt.executeUpdate(sql);
 		sql = "CREATE TABLE `IZAHAT`(	`EVRAK` int NOT NULL,	`IZAHAT` nvarchar(100) NULL,"
 				+ "  PRIMARY KEY (`EVRAK`),"
 				+ "  UNIQUE INDEX `EVRAK_UNIQUE` (`EVRAK` ASC) VISIBLE,"
 				+ "  FULLTEXT IZ_FULL (`IZAHAT`) ,"
 				+ "  INDEX `IX_IZAHAT` ( `EVRAK` ASC) VISIBLE);";
-		stmtt = con.createStatement();  
-		stmtt.executeUpdate(sql);
+		stmt = con.createStatement();  
+		stmt.executeUpdate(sql);
 		sql = "CREATE TABLE `EVRAK_NO` (EID INTEGER AUTO_INCREMENT PRIMARY KEY ,`EVRAK` integer ) ;";
-		stmtt = con.createStatement();  
-		stmtt.executeUpdate(sql);
+		stmt = con.createStatement();  
+		stmt.executeUpdate(sql);
 		sql = "CREATE TABLE `OZEL` ("
 				+ "  `OZID` INTEGER AUTO_INCREMENT PRIMARY KEY,"
 				+ "  `YONETICI` VARCHAR(25) NULL,"
 				+ "  `YON_SIFRE` VARCHAR(15) NULL,"
 				+ "  `FIRMA_ADI` VARCHAR(50) NULL);";
-		stmtt = con.createStatement();  
-		stmtt.executeUpdate(sql);
+		stmt = con.createStatement();  
+		stmt.executeUpdate(sql);
 
 		sql = "CREATE TABLE `YETKILER`( "
 				+ " `YETID` INTEGER AUTO_INCREMENT PRIMARY KEY,"
@@ -225,24 +213,24 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 				+ "`KARTON` nvarchar(5) NULL,"
 				+ "`TAM_YETKI` TINYINT NULL,"
 				+ "`GORUNTU` TINYINT NULL);";
-		stmtt = con.createStatement();  
-		stmtt.executeUpdate(sql);
+		stmt = con.createStatement();  
+		stmt.executeUpdate(sql);
 		sql= "CREATE TABLE `ANA_GRUP_DEGISKEN` ("
 				+ "  `ANA_GRUP` VARCHAR(25) NOT NULL,"
 				+ "  `USER` VARCHAR(15) NULL,"
 				+ "  PRIMARY KEY (`ANA_GRUP`));";
-		stmtt = con.createStatement();  
-		stmtt.executeUpdate(sql);
+		stmt = con.createStatement();  
+		stmt.executeUpdate(sql);
 		sql = "CREATE TABLE `ALT_GRUP_DEGISKEN`( "
 				+ "`ANA_GRUP` int NOT NULL, "
 				+ "`ALT_GRUP` nvarchar(25) NOT NULL, "
 				+ "  `USER` VARCHAR(15) NULL);";
-		stmtt = con.createStatement();  
-		stmtt.executeUpdate(sql);
+		stmt = con.createStatement();  
+		stmt.executeUpdate(sql);
 				//TAHSIL FISI
 		sql = "CREATE TABLE `TAH_EVRAK`(`CINS` nvarchar(3),`NO` integer );";
-		stmtt = con.createStatement();  
-		stmtt.executeUpdate(sql);
+		stmt = con.createStatement();  
+		stmt.executeUpdate(sql);
 		sql = "CREATE TABLE `TAH_AYARLAR`( " +
 				" `LOGO` MEDIUMBLOB NULL," +
 				" `FIR_ISMI` nvarchar(50) NULL, " +
@@ -252,8 +240,8 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 				" `MAIL` nvarchar(60) NULL," +
 				" `DIGER` nvarchar(50) NULL, " + 
 				" `KASE` MEDIUMBLOB NULL);";
-		stmtt = con.createStatement();  
-		stmtt.executeUpdate(sql);
+		stmt = con.createStatement();  
+		stmt.executeUpdate(sql);
 		sql = "CREATE TABLE `TAH_DETAY`(" +
 				" `EVRAK` nvarchar(15) NOT NULL," +
 				" `TARIH` datetime NULL," +
@@ -265,26 +253,26 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 				" `ACIKLAMA` nvarchar(50) NULL," +
 				" `DVZ_CINS` nvarchar(3) NULL," +
 				" `POS_BANKA` nvarchar(40) NULL);";
-		stmtt = con.createStatement();  
-		stmtt.executeUpdate(sql);
+		stmt = con.createStatement();  
+		stmt.executeUpdate(sql);
 		sql = "CREATE TABLE `TAH_CEK` (`EVRAK` nvarchar(15),`CINS` int, `BANKA` nvarchar(40), " + 
 				"`SUBE` nvarchar(40) ,`SERI` nvarchar(20),`HESAP` nvarchar(20),`BORCLU` nvarchar(40),`TARIH` datetime,`TUTAR` double); "  ;
-		stmtt = con.createStatement();  
-		stmtt.executeUpdate(sql); 
+		stmt = con.createStatement();  
+		stmt.executeUpdate(sql); 
 		sql = "INSERT INTO  `TAH_EVRAK`(`CINS`,`NO`) VALUES ('GIR','0')";
-		stmtt = con.createStatement();  
-		stmtt.executeUpdate(sql);
+		stmt = con.createStatement();  
+		stmt.executeUpdate(sql);
 		sql = "INSERT INTO  `TAH_EVRAK`(`CINS`,`NO`) VALUES ('CIK','0')";
-		stmtt = con.createStatement();  
-		stmtt.executeUpdate(sql);
+		stmt = con.createStatement();  
+		stmt.executeUpdate(sql);
 		// ***************EVRAK NO YAZ ************
 		sql = "INSERT INTO  `EVRAK_NO` (`EVRAK`) VALUES ('0')";
-		stmtt = con.createStatement();  
-		stmtt.executeUpdate(sql);
+		stmt = con.createStatement();  
+		stmt.executeUpdate(sql);
 		// ***************OZEL NO YAZ ************
 		sql = "INSERT INTO  `OZEL` (`YONETICI`,`YON_SIFRE`,`FIRMA_ADI`) VALUES ('" + GLOBAL.KULL_ADI  + "','12345' , '" + fir_adi + "')";
-		stmtt = con.createStatement();  
-		stmtt.executeUpdate(sql);
+		stmt = con.createStatement();  
+		stmt.executeUpdate(sql);
 
 	}
 	public String cari_firma_adi() throws ClassNotFoundException, SQLException {
@@ -292,14 +280,13 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 		ResultSet	rss = null;
 		String cumle = "jdbc:mysql://" +  BAGLAN.cariDizin.cONN_STR ;
 		con = DriverManager.getConnection(cumle, BAGLAN.cariDizin.kULLANICI, BAGLAN.cariDizin.sIFRESI);
-		stmt = con.prepareStatement("SELECT *  FROM OZEL ");
+		PreparedStatement stmt = con.prepareStatement("SELECT *  FROM OZEL ");
 		rss = stmt.executeQuery();
 		rss.next();
 		int count=0;
 		count = rss.getRow();
 		String result;
 		result = count  != 0 ? rss.getString("FIRMA_ADI") : "" ;
-		connClose(stmt,con);
 		return result;	
 	}
 	public ResultSet ekstre(String hesap, String t1, String t2) throws SQLException, ClassNotFoundException {
@@ -316,7 +303,7 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 					tARIH + 
 				" ORDER BY TARIH   ";
 		kONTROL();
-		 stmt = con.prepareStatement(sql);
+		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;	 
 	}
@@ -324,7 +311,7 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		ResultSet	rss = null;
 		kONTROL();
-		stmt = con.prepareStatement("SELECT HESAP, HESAP_CINSI,  KARTON, UNVAN FROM HESAP USE INDEX (IX_HESAP) " + 
+		PreparedStatement stmt = con.prepareStatement("SELECT HESAP, HESAP_CINSI,  KARTON, UNVAN FROM HESAP USE INDEX (IX_HESAP) " + 
 				" WHERE HESAP = N'" + hesap + "'");
 		rss = stmt.executeQuery();
 		return rss;	 
@@ -333,7 +320,7 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		ResultSet	rss = null;
 		kONTROL();
-		stmt = con.prepareStatement("SELECT * FROM HESAP USE INDEX (IX_HESAP)  ORDER BY HESAP ");
+		PreparedStatement stmt = con.prepareStatement("SELECT * FROM HESAP USE INDEX (IX_HESAP)  ORDER BY HESAP ");
 		rss = stmt.executeQuery();
 		return rss;	 
 	}
@@ -351,7 +338,7 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 				" GROUP BY SATIRLAR.HESAP, HESAP.UNVAN, HESAP.HESAP_CINSI " +
 				" ORDER BY SATIRLAR.HESAP ";
 		kONTROL();
-		 stmt = con.prepareStatement(sql);
+		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;	 
 	}
@@ -359,7 +346,7 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		ResultSet	rss = null;
 		kONTROL();
-		 stmt = con.prepareStatement(" SELECT SATIRLAR.HESAP, HESAP.UNVAN, HESAP.HESAP_CINSI, SUM(SATIRLAR.BORC) AS islem, SUM(SATIRLAR.ALACAK) AS islem2, SUM(SATIRLAR.ALACAK - SATIRLAR.BORC) AS bakiye" +
+		PreparedStatement stmt = con.prepareStatement(" SELECT SATIRLAR.HESAP, HESAP.UNVAN, HESAP.HESAP_CINSI, SUM(SATIRLAR.BORC) AS islem, SUM(SATIRLAR.ALACAK) AS islem2, SUM(SATIRLAR.ALACAK - SATIRLAR.BORC) AS bakiye" +
 				" FROM SATIRLAR  USE INDEX (IX_SATIRLAR)  LEFT JOIN" +
 				" HESAP  USE INDEX (IX_HESAP)  ON SATIRLAR.HESAP = HESAP.HESAP " +
 				" WHERE SATIRLAR.HESAP =N'" + kod + "' " + 
@@ -373,7 +360,7 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 		Class.forName("org.sqlite.JDBC");
 		SQLitecon = null;
 		ResultSet	rss = null;
-		 stmt = null;
+		PreparedStatement stmt = null;
 		SQLitecon = gLB.myEkstreConnection();
 		String sql = "SELECT TARIH,EVRAK ,IZAHAT,KOD,KUR,BORC,ALACAK,BAKIYE FROM EKSTRE";
 		stmt = SQLitecon.prepareStatement(sql);
@@ -398,7 +385,7 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 				" AND HESAP.KARTON BETWEEN N'" + k1 + "' AND N'" + k2 + "' " +
 				" GROUP BY SATIRLAR.HESAP, HESAP.UNVAN, HESAP.HESAP_CINSI " + o1 + " " + o2 + "";
 		kONTROL();
-		 stmt = con.prepareStatement(sql);
+		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;	 
 	}
@@ -406,7 +393,7 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		ResultSet	rss = null;
 		kONTROL();
-		 stmt = con.prepareStatement("SELECT HESAP,DATE(TARIH) AS TARIH ,H,SATIRLAR.EVRAK,CINS, KUR,BORC,ALACAK," +
+		PreparedStatement stmt = con.prepareStatement("SELECT HESAP,DATE(TARIH) AS TARIH ,H,SATIRLAR.EVRAK,CINS, KUR,BORC,ALACAK," +
 				" IFNULL( IZAHAT.IZAHAT,'') AS IZAHAT ,KOD ,USER " +
 				" FROM SATIRLAR USE INDEX (IX_SATIRLAR) LEFT JOIN IZAHAT USE INDEX (IX_IZAHAT)  ON  SATIRLAR.EVRAK = IZAHAT.EVRAK  " +
 				" WHERE SATIRLAR.EVRAK = '" + evrakno + "'" +
@@ -419,7 +406,7 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 		ResultSet	rss = null;
 		String sql = "SELECT MAX(EVRAK) AS MAX_NO  FROM SATIRLAR";
 		kONTROL();
-		 stmt = con.prepareStatement(sql);
+		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;	
 	}
@@ -438,7 +425,7 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 		sql = "UPDATE EVRAK_NO SET EVRAK =" + E_NUMBER + "  WHERE EID = 1";
 		stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();
-		connClose(stmt,con);
+		stmt.close();
 		//**************
 		return E_NUMBER;	
 	}
@@ -451,7 +438,6 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 		sql = "DELETE FROM  IZAHAT  WHERE  EVRAK = " + num;
 		stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();
-		connClose(stmt,con);
 	}
 	public boolean cari_fino_bak(int fisno) throws ClassNotFoundException, SQLException {
 		Class.forName("com.mysql.cj.jdbc.Driver");
@@ -463,7 +449,6 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 		rss.next();
 		int count = 0;
 		count = rss.getRow();
-		connClose(stmt,con);
 		return count  != 0;
 	}
 	public void cari_dekont_kaydet(dEKONT_BILGI dBilgi)
@@ -499,12 +484,14 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 		stmt.addBatch();
 		stmt.executeBatch();
 		//************** IZAHAT  *********
+		PreparedStatement stmt3 = null;
 		sql = "INSERT INTO IZAHAT (EVRAK,IZAHAT) VALUES ( ?,? )" ;
-		stmt = con.prepareStatement(sql);
-		stmt.setInt(1, dBilgi.geteVRAK());
-		stmt.setString(2, dBilgi.getiZAHAT());
-		stmt.executeUpdate();
-		connClose(stmt,con);
+		stmt3 = con.prepareStatement(sql);
+		stmt3.setInt(1, dBilgi.geteVRAK());
+		stmt3.setString(2, dBilgi.getiZAHAT());
+		stmt3.executeUpdate();
+		stmt.close();
+		stmt3.close();
 
 	}
 	public ResultSet hsp_pln(String arama) throws SQLException, ClassNotFoundException {
@@ -516,7 +503,7 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 				" FROM HESAP USE INDEX (IX_HESAP) LEFT OUTER JOIN HESAP_DETAY USE INDEX (IX_DHESAP) ON " + 
 				"HESAP.HESAP = HESAP_DETAY.D_HESAP "+ arama + " ORDER BY HESAP ";
 		kONTROL();
-		stmtt = con.createStatement( ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+		Statement stmt = con.createStatement( ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
 		rss = stmt.executeQuery(sql);
 		return rss;	
 	}
@@ -529,7 +516,6 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 		sql =  "DELETE FROM HESAP_DETAY WHERE D_HESAP =N'" + hesap + "'" ;
 		stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();
-		connClose(stmt,con);
 	}
 	public String kod_ismi(String kodu) throws ClassNotFoundException, SQLException
 	{
@@ -547,7 +533,6 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 			result = rss.getString("UNVAN") ;
 		else
 			result = "";
-		connClose(stmt,con);
 		return result;	
 	}
 	public void hpln_kayit(String kodu,String adi,String karton,String hcins,String usr) throws ClassNotFoundException, SQLException
@@ -564,7 +549,7 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 		stmt.setString(4, hcins);
 		stmt.setString(5, usr);
 		stmt.executeUpdate();
-		connClose(stmt,con);
+		stmt.close();
 	}
 	public void hpln_detay_kayit(String kodu ,String yet ,String ad1 ,String ad2 ,String semt,String seh  , String vd , String vn 
 			, String t1 ,String t2 ,String t3 ,String fx ,String o1 ,String o2 ,String o3 , String web 
@@ -610,7 +595,7 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 		else
 			stmt.setBytes(21,null);
 		stmt.executeUpdate();
-		connClose(stmt,con);
+		stmt.close();
 	}
 	public ResultSet dvz_cevirme(String kcins,String hesap,String t1,String t2,String kur,String islem,String hKUR) throws ClassNotFoundException, SQLException
 	{
@@ -679,7 +664,7 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 				" WHERE KARTON = N'" + karton + "'" + 
 				" ORDER BY HESAP ";
 		kONTROL();
-		stmt = con.prepareStatement(sql);
+		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;	
 	}
@@ -707,7 +692,7 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 		ResultSet	rss = null;
 		String sql = stb.toString() ;
 		kONTROL();
-		 stmt = con.prepareStatement(sql);
+		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;	
 	}
@@ -721,7 +706,7 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 				" AND DATE( TARIH) LIKE  '" + t1 + "%'" +
 				" ORDER BY SATIRLAR.EVRAK  ";
 		kONTROL();
-		 stmt = con.prepareStatement(sql);
+		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;	
 	}
@@ -735,7 +720,7 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 				" AND  SATIRLAR.HESAP= N'" + kod + "'" +
 				" GROUP BY SATIRLAR.HESAP ,HESAP.UNVAN,HESAP_CINSI " +
 				" ORDER BY SATIRLAR.HESAP ";
-		 stmt = con.prepareStatement(sql);
+		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;	
 	}
@@ -756,7 +741,7 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 		sql = "UPDATE EVRAK_NO SET EVRAK =" + sayi + "  WHERE EID = 1";
 		stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();
-		connClose(stmt,con);
+		stmt.close();
 		//**************
 		return E_NUMBER;	
 	}
@@ -771,7 +756,7 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 				" AND TARIH BETWEEN  '" + t1 + "' AND '" + t2 + " 23:59:59.998'" +
 				" ORDER BY TARIH ,SATIRLAR.EVRAK ";
 		kONTROL();
-		stmt = con.prepareStatement(sql);
+		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;	
 	}
@@ -784,9 +769,7 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		rss.next();
-		int sayi = rss.getInt("SAYI");
-		connClose(stmt,con);
-		return sayi;
+		return rss.getInt("SAYI");
 	}
 	public void hpln_ilk_detay_kayit(String kodu) throws ClassNotFoundException, SQLException
 	{
@@ -819,7 +802,7 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 		stmt.setBoolean(20,false);
 		stmt.setBytes(21,null);
 		stmt.executeUpdate();
-		connClose(stmt,con);
+		stmt.close();
 	}
 	public void cari_kod_degis_hesap(String t1,String t2) throws ClassNotFoundException, SQLException
 	{
@@ -836,7 +819,6 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 		sql = "UPDATE TAH_DETAY  SET C_HES = N'" + t2 + "'  WHERE C_HES = N'" + t1 + "'";
 		stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();
-		connClose(stmt,con);
 	}
 	public void cari_kod_degis_satirlar(String t1,String t2) throws ClassNotFoundException, SQLException
 	{
@@ -845,7 +827,6 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();
-		connClose(stmt,con);
 	}
 	public int yilsonu_hesap_plani_kayit_adedi () throws ClassNotFoundException, SQLException
 	{
@@ -855,9 +836,7 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 		PreparedStatement stmt = akt_con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		rss.next();
-		int sayi = rss.getInt("SAYI");
-		connClose(stmt,con);
-		return sayi;
+		return rss.getInt("SAYI");
 	}
 	public void yilsonu_hpln_kayit(String kodu,String adi,String karton,String hcins,String usr) throws ClassNotFoundException, SQLException
 	{
@@ -872,7 +851,7 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 		stmt.setString(4, hcins);
 		stmt.setString(5, usr);
 		stmt.executeUpdate();
-		connClose(stmt,con);
+		stmt.close();
 	}
 	public void yilsonu_hpln_detay_kayit(String kodu ,String yet ,String ad1 ,String ad2 ,String semt,String seh  , String vd , String vn 
 			, String t1 ,String t2 ,String t3 ,String fx ,String o1 ,String o2 ,String o3 , String web 
@@ -907,7 +886,7 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 		stmt.setBoolean(20, true);
 		stmt.setBytes(21,null);
 		stmt.executeUpdate();
-		connClose(stmt,con);
+		stmt.close();
 	}
 	public ResultSet mizan_aktar (String hesap) throws ClassNotFoundException, SQLException
 	{
@@ -918,7 +897,7 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 				" WHERE HESAP= N'" + hesap + "'" +
 				" GROUP BY HESAP  ORDER BY HESAP ";
 		kONTROL();
-		stmt = con.prepareStatement(sql);
+		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;	
 
@@ -938,7 +917,7 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 		sql = "UPDATE EVRAK_NO SET EVRAK =" + E_NUMBER + "  WHERE EID = 1";
 		stmt = akt_con.prepareStatement(sql);
 		stmt.executeUpdate();
-		connClose(stmt,con);
+		stmt.close();
 		//**************
 		return E_NUMBER;	
 	}
@@ -985,7 +964,9 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 		stmt3.setInt(1, evrak);
 		stmt3.setString(2, izahat);
 		stmt3.executeUpdate();
-		connClose(stmt,stmt2,stmt3,con);
+		stmt.close();
+		stmt2.close();
+		stmt3.close();
 	}
 	public int aktar_hesap_plani_kayit_adedi () throws ClassNotFoundException, SQLException
 	{
@@ -995,9 +976,7 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 		PreparedStatement stmt = akt_con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		rss.next();
-		int sayi = rss.getInt("SAYI");
-		connClose(stmt,con);
-		return sayi;
+		return rss.getInt("SAYI");
 	} 
 	public void cari_firma_adi_kayit(String fadi) throws ClassNotFoundException, SQLException
 	{
@@ -1007,7 +986,8 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 		kONTROL();
 		stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();
-		connClose(stmt,con);
+		stmt.close();
+
 	}
 	public ResultSet sms_cari_pln(String nerden) throws ClassNotFoundException, SQLException
 	{
@@ -1046,7 +1026,7 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 				+ " WHERE  s.HESAP > N'"+ h1 +"' AND  s.HESAP < N'"+ h2+ "'"  
 				+ " GROUP BY s.HESAP " + o1 + " " + o2 + "" ;
 		kONTROL();
-		stmt = con.prepareStatement(sql);
+		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;	
 	}
@@ -1056,7 +1036,7 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 		ResultSet	rss = null;
 		String sql = "SELECT EVRAK FROM IZAHAT WHERE  IZAHAT LIKE N'%" + text + "%' ";
 		kONTROL();
-		stmt = con.prepareStatement(sql);
+		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;	
 	}
@@ -1095,7 +1075,7 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 				" AND SATIRLAR.TARIH BETWEEN  '" + t1 + "'  AND '" + t2 + " 23:59:59.998'" +
 				" ORDER BY DATE( SATIRLAR.TARIH) ";
 		kONTROL();
-		stmt = con.prepareStatement(sql);
+		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;	
 	}
@@ -1104,7 +1084,7 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		ResultSet	rss = null;
 		kONTROL();
-		stmt = con.prepareStatement(sql);
+		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;	
 	}
@@ -1132,7 +1112,6 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 			bilgi[4] = rss.getString("VERGI_DAIRESI");
 			bilgi[5] = rss.getString("VERGI_NO");
 		}
-		connClose(stmt,con);
 		return bilgi;
 	}
 	public ResultSet hesap_adi_auto(String hesap) throws ClassNotFoundException, SQLException
@@ -1140,7 +1119,7 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		ResultSet	rss = null;
 		kONTROL();
-		stmt = con.prepareStatement("SELECT   HESAP, HESAP_CINSI,  KARTON, UNVAN FROM HESAP  USE INDEX (IX_HESAP)  " + 
+		PreparedStatement stmt = con.prepareStatement("SELECT   HESAP, HESAP_CINSI,  KARTON, UNVAN FROM HESAP  USE INDEX (IX_HESAP)  " + 
 				" WHERE HESAP  Like N'" + hesap + "%'  ORDER BY HESAP");
 		rss = stmt.executeQuery();
 		return rss;	
@@ -1166,8 +1145,8 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 				+ "  `EVRAK` VARCHAR(15) NULL,"
 				+ "  `USER_NAME` VARCHAR(15) NULL,"
 				+ "  INDEX `IX_LOGLAMA` (`TARIH` ASC, `USER_NAME` ASC) VISIBLE);";
-		stmtt = con.createStatement();  
-		stmtt.executeUpdate(sql);
+		stmt = con.createStatement();  
+		stmt.executeUpdate(sql);
 	}
 	@Override
 	public ResultSet karton_mizan(String h1, String h2, String t1, String t2, String c1, String c2, String k1,
@@ -1188,7 +1167,7 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 				" AND HESAP.KARTON BETWEEN N'" + k1 + "' AND N'" + k2 + "' " +
 				" GROUP BY HESAP.KARTON,SATIRLAR.HESAP, HESAP.UNVAN, HESAP.HESAP_CINSI " + o1 + " " + o2 + " " ;
 		kONTROL();
-		stmt = con.prepareStatement(sql);
+		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;	 
 	}
@@ -1215,15 +1194,15 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 	}
 	private void kONTROL() throws SQLException, ClassNotFoundException
 	{
-//		if(con.isClosed())    
-//			baglan();
+		if(con.isClosed())    
+			baglan();
 	}
 	@Override
 	public ResultSet yilsonu_hp_pln() throws ClassNotFoundException, SQLException {
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		ResultSet	rss = null;
 		kONTROL();
-		stmt = con.prepareStatement("SELECT CAST(0 AS UNSIGNED), HESAP"
+		PreparedStatement stmt = con.prepareStatement("SELECT CAST(0 AS UNSIGNED), HESAP"
 				+ " ,UNVAN"
 				+ " ,KARTON"
 				+ "	,HESAP_CINSI"
@@ -1247,7 +1226,7 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 		sql = "UPDATE TAH_EVRAK SET NO =" + E_NUMBER + "  WHERE CINS = '" + tur + "'";
 		stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();
-		connClose(stmt,con);
+		stmt.close();
 		//**************
 		return E_NUMBER;	
 	}
@@ -1291,7 +1270,8 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 		else
 			stmt.setBytes(8,null);
 		stmt.executeUpdate();
-		connClose(stmt,con);
+		stmt.close();
+		
 	}
 	@Override
 	public void tah_ayar_sil() throws ClassNotFoundException, SQLException {
@@ -1300,14 +1280,14 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();
-		connClose(stmt,con);
+		stmt.close();
 	}
 	@Override
 	public ResultSet tah_ayar_oku() throws ClassNotFoundException, SQLException {
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		ResultSet	rss = null;
 		kONTROL();
-		stmt = con.prepareStatement("SELECT * FROM TAH_AYARLAR ");
+		PreparedStatement stmt = con.prepareStatement("SELECT * FROM TAH_AYARLAR ");
 		rss = stmt.executeQuery();
 		return rss;	
 	}
@@ -1335,14 +1315,14 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 		stmt.setString(9, dvzcins);
 		stmt.setString(10, posbanka);
 		stmt.executeUpdate();
-		connClose(stmt,con);
+		stmt.close();
 	}
 	@Override
 	public ResultSet tah_oku(String no, int cins) throws ClassNotFoundException, SQLException {
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		ResultSet	rss = null;
 		kONTROL();
-		stmt = con.prepareStatement("SELECT * FROM TAH_DETAY  WHERE EVRAK = '" + no + "' AND CINS = '" + cins + "'");
+		PreparedStatement stmt = con.prepareStatement("SELECT * FROM TAH_DETAY  WHERE EVRAK = '" + no + "' AND CINS = '" + cins + "'");
 		rss = stmt.executeQuery();
 		return rss;	
 	}
@@ -1353,7 +1333,7 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();
-		connClose(stmt,con);
+		stmt.close();
 	}
 	@Override
 	public void tah_cek_kayit(String evr, int cins,  String bnk, String sb, String sr, String hsp, String brcl,
@@ -1362,6 +1342,7 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		String sql  = "INSERT INTO TAH_CEK (EVRAK,CINS,BANKA,SUBE,SERI,HESAP,BORCLU,TARIH,TUTAR)" +
 				" VALUES (?,?,?,?,?,?,?,?,?)" ;
+		stmt = null;
 		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		stmt.setString(1, evr);
@@ -1374,7 +1355,7 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 		stmt.setString(8, tar );
 		stmt.setDouble(9, tut);
 		stmt.executeUpdate();
-		connClose(stmt,con);
+		stmt.close();
 	}
 	@Override
 	public ResultSet tah_cek_doldur(String no, int cins) throws ClassNotFoundException, SQLException {
@@ -1382,7 +1363,7 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 		ResultSet	rss = null;
 		kONTROL();
 		String sql = "SELECT * FROM TAH_CEK WHERE EVRAK = '" + no + "' AND CINS = '" + cins + "'";
-		stmt = con.prepareStatement(sql);
+		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;	
 	}
@@ -1393,7 +1374,7 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();
-		connClose(stmt,con);
+		stmt.close();
 	}
 	@Override
 	public void tah_cek_kayit_aktar(String no, int cins) throws ClassNotFoundException, SQLException {
@@ -1430,7 +1411,7 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 			stmtcek.setDouble(15, rsCekler.getDouble("TUTAR"));
 			stmtcek.executeUpdate();
 		}
-		connClose(stmtcek,con);
+		stmtcek.close();
 	}
 	@Override
 	public ResultSet tah_listele(int cins, int tur, String ilktarih, String sontarih, String ilkevr, String sonevr,String ilkck,String sonck,String pos)
@@ -1454,7 +1435,7 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 				" AND C_HES >= '" + ilkck + "' AND C_HES < '" + sonck + "' " + 
 				" ORDER BY TARIH " ;
 		kONTROL();
-		stmt = con.prepareStatement(sql);
+		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;	
 	}
@@ -1477,30 +1458,15 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 		stmt.setBytes(7,ayar.getBytes("LOGO"));
 		stmt.setBytes(8,ayar.getBytes("KASE"));
 		stmt.executeUpdate();
-		connClose(stmt,con);
+		stmt.close();
 	}
 	@Override
 	public ResultSet pos_banka_oku() throws ClassNotFoundException, SQLException {
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		ResultSet	rss = null;
 		kONTROL();
-		stmt = con.prepareStatement("SELECT DISTINCT POS_BANKA FROM TAH_DETAY WHERE TUR = '2'");
+		PreparedStatement stmt = con.prepareStatement("SELECT DISTINCT POS_BANKA FROM TAH_DETAY WHERE TUR = '2'");
 		rss = stmt.executeQuery();
 		return rss;	
-	}
-	@Override
-	public void connClose(AutoCloseable ...close) {
-		try {
-			if(close.length == 0)
-				connClose(stmt,stmtt,con);
-			for(AutoCloseable c:close)
-			{
-				if(c != null)
-					c.close();
-			}
-		} catch (Exception e) {
-			
-		}
-		
 	}
 }

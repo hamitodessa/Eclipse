@@ -424,7 +424,7 @@ public class DEKONT extends JInternalFrame {
 					} 
 					int evr = rs.getInt("MAX_NO");
 					txtevrak.setText(Integer.toString(evr));
-					c_Access.connClose();
+					
 					fiskont();
 					getContentPane().setCursor(oac.DEFAULT_CURSOR);
 				} catch (Exception ex) {
@@ -1577,7 +1577,7 @@ public class DEKONT extends JInternalFrame {
 			double seconds = (double)estimatedTime/1000; 
 			OBS_MAIN.lblNewLabel_9.setText("Son Raporlama Suresi : " + FORMATLAMA.doub_4(seconds) +  " saniye");
 			kutu_ac();
-			c_Access.connClose();
+			
 		}
 		catch (Exception ex)
 		{
@@ -1857,7 +1857,7 @@ public class DEKONT extends JInternalFrame {
 					lblaba.setText(FORMATLAMA.doub_2(rs.getDouble("bakiye")));
 				}
 			}
-			c_Access.connClose();
+			
 		}
 		catch (Exception ex)
 		{

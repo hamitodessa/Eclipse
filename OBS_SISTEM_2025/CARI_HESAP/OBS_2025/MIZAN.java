@@ -290,11 +290,11 @@ public class MIZAN extends JInternalFrame {
 			GRID_TEMIZLE.grid_temizle(table);
 			if (!rs.isBeforeFirst() )
 			{
-				c_Access.connClose();
+				
 				return;
 			}
 			table.setModel(DbUtils.resultSetToTableModel(rs));
-			c_Access.connClose();
+			
 			lblNewLabel_3.setText(FORMATLAMA.doub_0(table.getRowCount()));
 			ara_ayir();
 
@@ -455,7 +455,7 @@ public class MIZAN extends JInternalFrame {
 				rs.next();
 				sonuc=rs.getString("UNVAN");
 			}
-			c_Access.connClose();
+			
 		}
 		catch (Exception ex)
 		{

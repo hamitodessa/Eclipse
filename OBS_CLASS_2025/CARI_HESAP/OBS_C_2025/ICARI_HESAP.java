@@ -84,6 +84,5 @@ public interface ICARI_HESAP {
 	public ResultSet tah_listele ( int cins,int tur,String ilktarih,String sontarih,String ilkevr,String sonevr,String ilkck,String sonck,String pos) throws ClassNotFoundException, SQLException;
 	public void yilsonu_tahsilat_bilgi_kayit() throws ClassNotFoundException, SQLException;
 	public ResultSet pos_banka_oku () throws ClassNotFoundException, SQLException;
-	public void connClose(AutoCloseable ...close) ;
 }
 

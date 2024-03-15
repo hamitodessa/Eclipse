@@ -289,11 +289,11 @@ public class YIL_SONU extends JInternalFrame {
 				th.repaint();
 				table.repaint();
 				getContentPane().setCursor(oac.DEFAULT_CURSOR);
-				c_Access.connClose();
+				
 				return;
 			}
 			table.setModel(DbUtils.resultSetToTableModel(rs));
-			c_Access.connClose();
+			
 			JTableHeader th = table.getTableHeader();
 			TableColumnModel tcm = th.getColumnModel();
 			TableColumn tc;

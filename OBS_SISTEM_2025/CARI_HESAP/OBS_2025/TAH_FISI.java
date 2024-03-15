@@ -1064,6 +1064,7 @@ public class TAH_FISI extends JInternalFrame {
 		ayar_temizle();
 	 	ResultSet rs = c_Access.tah_ayar_oku();
 	 	if (!rs.isBeforeFirst() ) {  
+	 		c_Access.connClose();
 			return;
 		} 
 	 	rs.next();
@@ -1099,6 +1100,7 @@ public class TAH_FISI extends JInternalFrame {
 		textVdVn.setText(rs.getString("VD_VN"));
 		textMail.setText(rs.getString("MAIL"));
 		textDiger.setText(rs.getString("DIGER"));
+		c_Access.connClose();
 		} catch (Exception ex) {
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR, ex.getMessage() );
 		}
@@ -1127,6 +1129,7 @@ public class TAH_FISI extends JInternalFrame {
 		if (!rs.isBeforeFirst() ) 
 		{ 
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING,"Bu Numarada Kayitli Fis Yok......" );
+			c_Access.connClose();
 			return; // Kayit Yok
 		} 
 		rs.next();
@@ -1140,6 +1143,7 @@ public class TAH_FISI extends JInternalFrame {
 		comboBanka.setSelectedItem(rs.getString("POS_BANKA"));
 		if(cmbTur.getSelectedIndex() == 1 )
 			cek_doldur();
+		c_Access.connClose();
 		} catch (Exception ex) {
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR, ex.getMessage() );
 		}
@@ -1199,12 +1203,14 @@ public class TAH_FISI extends JInternalFrame {
 			rs = c_Access.hesap_adi_oku(alh);
 			if (!rs.isBeforeFirst() ) {  
 				OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING, alh + " Bu numarada hesaba rastlanmadi!!!!" );
+				c_Access.connClose();
 				return ;
 			} 
-			rs= null;
+			rs = null;
 			rs = c_Access.hesap_adi_oku(bh);
 			if (!rs.isBeforeFirst() ) {  
 				OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING,  bh +  " Bu numarada hesaba rastlanmadi!!!!" );
+				c_Access.connClose();
 				return;
 			} 
 			int e_number = 0;
@@ -1374,7 +1380,10 @@ public class TAH_FISI extends JInternalFrame {
 		try {
 			ResultSet rs = c_Access.tah_cek_doldur(textEvrakNo.getText(),cmbCins.getSelectedIndex());
 			if (!rs.isBeforeFirst() )
+			{
+				c_Access.connClose();
 				return;
+			}
 			DefaultTableModel mdll = (DefaultTableModel) tableCek.getModel();
 			int satir =0 ;
 			while (rs.next()) 
@@ -1390,6 +1399,7 @@ public class TAH_FISI extends JInternalFrame {
 				else
 					mdll.removeRow(mdll.getRowCount() -1);	
 			}
+			c_Access.connClose();
 		} catch (Exception ex) 
 		{
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
@@ -1402,8 +1412,10 @@ public class TAH_FISI extends JInternalFrame {
 			ResultSet rs = null;
 			rs = c_Access.pos_banka_oku();
 			comboBanka.addItem("");
-			if (!rs.isBeforeFirst() )
+			if (!rs.isBeforeFirst() ) {
+				c_Access.connClose();
 				return;
+			}
 			else
 			{
 				while (rs.next())
@@ -1412,6 +1424,7 @@ public class TAH_FISI extends JInternalFrame {
 						comboBanka.addItem(rs.getString("POS_BANKA"));
 				}
 			}
+			c_Access.connClose();
 		} catch (Exception ex) {
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
 		}

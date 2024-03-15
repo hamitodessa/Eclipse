@@ -234,9 +234,11 @@ public class TAH_DOKUM extends JInternalFrame {
 			if (!rs.isBeforeFirst() ) {  
 				lblToplam.setText("0.00");
 				lblKayit.setText("0");
+				c_Access.connClose();
 				return;
 			} 
 			table.setModel(DbUtils.resultSetToTableModel(rs));
+			c_Access.connClose();
 			JTableHeader th = table.getTableHeader();
 			TableColumnModel tcm = th.getColumnModel();
 			TableColumn tc;

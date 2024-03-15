@@ -1469,4 +1469,9 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 		rss = stmt.executeQuery();
 		return rss;	
 	}
+	@Override
+	public void connClose(AutoCloseable ...close) {
+		// TODO Auto-generated method stub
+		
+	}
 }

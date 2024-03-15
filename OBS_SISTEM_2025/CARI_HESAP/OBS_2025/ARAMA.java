@@ -216,6 +216,7 @@ public class ARAMA extends JInternalFrame {
 
 			GRID_TEMIZLE.grid_temizle(table);
 			table.setModel(DbUtils.resultSetToTableModel(rs));
+			c_Access.connClose();
 			JTableHeader th = table.getTableHeader();
 			TableColumnModel tcm = th.getColumnModel();
 			TableColumn tc;

@@ -334,4 +334,8 @@ public class CARI_ACCESS {
 	{
 		return _ICari.pos_banka_oku();
 	}
+	public void connClose(AutoCloseable ...close) 
+	{
+		_ICari.connClose(close);
+	}
 }

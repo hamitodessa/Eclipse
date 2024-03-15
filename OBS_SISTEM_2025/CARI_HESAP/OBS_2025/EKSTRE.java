@@ -356,6 +356,7 @@ public class EKSTRE extends JInternalFrame {
 			else
 			{
 				table.setModel(DbUtils.resultSetToTableModel(rs));
+				c_Access.connClose();
 				JTableHeader th = table.getTableHeader();
 				TableColumnModel tcm = th.getColumnModel();
 				TableColumn tc;
@@ -491,7 +492,6 @@ public class EKSTRE extends JInternalFrame {
 			parts = deger.split(",");
 			bigFont = new Font(parts[0], Integer.parseInt(parts[1].trim()), Integer.parseInt(parts[2].trim()));
 			table.setFont(bigFont);
-
 		} catch (Exception ex) {
 			 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage() );
 		}
@@ -516,6 +516,7 @@ public class EKSTRE extends JInternalFrame {
 			lblNewLabel_4.setText(FORMATLAMA.doub_2(double_2));  
 			lblNewLabel_5_2_1_1.setText(FORMATLAMA.doub_2(double_2 - double_1 ));  
 		}
+		c_Access.connClose();
 	}
 	public static void sQLITE_YAZ_YENI() throws ClassNotFoundException, SQLException, InterruptedException, ParseException 
 	{

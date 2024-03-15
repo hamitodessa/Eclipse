@@ -265,6 +265,7 @@ public class KARTON_MIZAN extends JInternalFrame {
 			if (!rs.isBeforeFirst())
 				return;
 			table.setModel(DbUtils.resultSetToTableModel(rs));
+			c_Access.connClose();
 			lblNewLabel_3.setText(FORMATLAMA.doub_0(table.getRowCount()));
 			ara_ayir();
 			JTableHeader th = table.getTableHeader();

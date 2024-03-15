@@ -345,8 +345,12 @@ public class OZEL_MIZAN extends JInternalFrame {
 					o1 , o2);
 			GRID_TEMIZLE.grid_temizle(table);
 			if (!rs.isBeforeFirst() )
+			{
+				c_Access.connClose();
 				return;
+			}
 			table.setModel(DbUtils.resultSetToTableModel(rs));
+			c_Access.connClose();
 			lblNewLabel_1.setText(FORMATLAMA.doub_0(table.getRowCount()));
 			ara_ayir();
 			JTableHeader th = table.getTableHeader();
@@ -1000,6 +1004,7 @@ public class OZEL_MIZAN extends JInternalFrame {
 				rs.next();
 				sonuc=rs.getString("UNVAN");
 			}
+			c_Access.connClose();
 		}
 		catch (Exception ex)
 		{

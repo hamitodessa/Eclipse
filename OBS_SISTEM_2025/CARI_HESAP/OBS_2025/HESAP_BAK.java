@@ -354,6 +354,7 @@ public class HESAP_BAK extends JInternalFrame {
 
 			GRID_TEMIZLE.grid_temizle(tblhesap);
 			tblhesap.setModel(DbUtils.resultSetToTableModel(rs));
+			c_Access.connClose();
 			JTableHeader th = tblhesap.getTableHeader();
 			TableColumnModel tcm = th.getColumnModel();
 			TableColumn tc;
@@ -415,6 +416,7 @@ public class HESAP_BAK extends JInternalFrame {
 				return;
 			} 
 			tblkarton.setModel(DbUtils.resultSetToTableModel(rs));
+			c_Access.connClose();
 			JTableHeader th = tblkarton.getTableHeader();
 			TableColumnModel tcm = th.getColumnModel();
 			TableColumn tc;
@@ -471,6 +473,7 @@ public class HESAP_BAK extends JInternalFrame {
 				return;
 			} 
 			tbldetay.setModel(DbUtils.resultSetToTableModel(rs));
+			c_Access.connClose();
 			JTableHeader th = tbldetay.getTableHeader();
 			TableColumnModel tcm = th.getColumnModel();
 			TableColumn tc;

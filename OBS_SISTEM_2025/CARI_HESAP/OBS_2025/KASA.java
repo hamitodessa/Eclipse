@@ -481,11 +481,13 @@ public class KASA extends JInternalFrame {
 		if (!rs.isBeforeFirst()) {
 			lblNewLabel_1.setText("");
 			lblNewLabel_6.setText("");
+			c_Access.connClose();
 			return;
 		}
 		rs.next();
 		lblNewLabel_1.setText(rs.getString("UNVAN"));
 		lblNewLabel_6.setText(rs.getString("HESAP_CINSI"));
+		c_Access.connClose();
 	}
 
 	private void yenile() {
@@ -502,6 +504,7 @@ public class KASA extends JInternalFrame {
 			} else {
 				GRID_TEMIZLE.grid_temizle(table_1);
 				table_1.setModel(DbUtils.resultSetToTableModel(rs));
+				c_Access.connClose();
 				JTableHeader th = table_1.getTableHeader();
 
 				TableColumnModel tcm = th.getColumnModel();
@@ -590,9 +593,11 @@ public class KASA extends JInternalFrame {
 			double_1 = rs.getDouble("islem");
 			double_2 = rs.getDouble("islem2");
 		}
+		c_Access.connClose();
 		lblNewLabel_5.setText(FORMATLAMA.doub_2(double_1));
 		lblNewLabel_4.setText(FORMATLAMA.doub_2(double_2));
 		lblNewLabel_4_1_2.setText(FORMATLAMA.doub_2(double_2 - double_1));
+		c_Access.connClose();
 	}
 
 	private void onceki_bakiye() throws ClassNotFoundException, SQLException {
@@ -611,5 +616,6 @@ public class KASA extends JInternalFrame {
 		lblNewLabel_5_1.setText(FORMATLAMA.doub_2(double_3));
 		lblNewLabel_4_1.setText(FORMATLAMA.doub_2(double_4));
 		lblNewLabel_4_1_1.setText(FORMATLAMA.doub_2(double_4 - double_3));
+		c_Access.connClose();
 	}
 }

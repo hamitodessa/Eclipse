@@ -37,6 +37,7 @@ import javax.swing.JToolBar;
 import javax.swing.ListSelectionModel;
 import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
+import javax.swing.border.EtchedBorder;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
@@ -206,8 +207,7 @@ public class CAL_DIZIN extends JDialog {
 		anaPanel.setLayout(null);
 
 		JPanel panel = new JPanel();
-		//panel.setBorder(new LineBorder(null));
-		panel.setBorder(new TitledBorder(null,"", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
 		panel.setBounds(775, 10, 316, 381);
 		anaPanel.add(panel);
 		panel.setLayout(null);
@@ -583,7 +583,8 @@ public class CAL_DIZIN extends JDialog {
 		//tabbedPane.setBorder(new LineBorder(null));
 		anaPanel.add(tabbedPane);
 		ScrollPaneWin11 scrollPane = new ScrollPaneWin11();
-		
+		scrollPane.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null),"", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
+
 		tabbedPane.addTab("Cari Hesap", null, scrollPane, null);
 		tblCari = new JTable() {
 			private static final long serialVersionUID = 1L;
@@ -621,6 +622,8 @@ public class CAL_DIZIN extends JDialog {
 		scrollPane.setViewportView(tblCari);
 
 		ScrollPaneWin11 scrollPane_1 = new ScrollPaneWin11();
+		scrollPane_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null),"", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
+
 		tabbedPane.addTab("Fatura", null, scrollPane_1, null);
 
 		tblFatura = new JTable(){
@@ -655,7 +658,8 @@ public class CAL_DIZIN extends JDialog {
 		scrollPane_1.setViewportView(tblFatura);
 
 		ScrollPaneWin11 scrollPane_2 = new ScrollPaneWin11();
-		
+		scrollPane_2.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null),"", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
+
 		tabbedPane.addTab("Adres", null, scrollPane_2, null);
 		tblAdres = new JTable(){
 			private static final long serialVersionUID = 1L;
@@ -689,6 +693,9 @@ public class CAL_DIZIN extends JDialog {
 		scrollPane_2.setViewportView(tblAdres);
 
 		ScrollPaneWin11 scrollPane_3 = new ScrollPaneWin11();
+		scrollPane_3.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null),"", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
+
+		
 		tabbedPane.addTab("Kur", null, scrollPane_3, null);
 		tblKur = new JTable(){
 			private static final long serialVersionUID = 1L;
@@ -722,6 +729,8 @@ public class CAL_DIZIN extends JDialog {
 		scrollPane_3.setViewportView(tblKur);
 
 		ScrollPaneWin11 scrollPane_4 = new ScrollPaneWin11();
+		scrollPane_4.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null),"", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
+
 		tabbedPane.addTab("Kambiyo", null, scrollPane_4, null);
 
 		tblKambiyo = new JTable(){
@@ -757,6 +766,8 @@ public class CAL_DIZIN extends JDialog {
 		scrollPane_4.setViewportView(tblKambiyo);
 
 		ScrollPaneWin11 scrollPane_5 = new ScrollPaneWin11();
+		scrollPane_5.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null),"", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
+
 		tabbedPane.addTab("Sms", null, scrollPane_5, null);
 
 		tblSms = new JTable(){
@@ -791,6 +802,8 @@ public class CAL_DIZIN extends JDialog {
 		scrollPane_5.setViewportView(tblSms);
 
 		ScrollPaneWin11 scrollPane_6 = new ScrollPaneWin11();
+		scrollPane_6.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null),"", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
+
 		tabbedPane.addTab("Gunluk", null, scrollPane_6, null);
 		tblGunluk = new JTable(){
 			private static final long serialVersionUID = 1L;
@@ -825,6 +838,8 @@ public class CAL_DIZIN extends JDialog {
 		
 		//*****************************************************************
 		ScrollPaneWin11 scrollPane_9 = new ScrollPaneWin11();
+		scrollPane_9.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null),"", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
+
 		tabbedPane.addTab("Kereste", null, scrollPane_9, null);
 		tblKereste = new JTable(){
 			private static final long serialVersionUID = 1L;
@@ -861,6 +876,9 @@ public class CAL_DIZIN extends JDialog {
 		
 		tabbedPane.addTab("Sifre", null, scrollPane_7, null);
 		JPanel panel_1 = new JPanel();
+		panel_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null),"", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
+
+		
 		scrollPane_7.setViewportView(panel_1);
 		panel_1.setLayout(null);
 
@@ -964,12 +982,14 @@ public class CAL_DIZIN extends JDialog {
 		tabbedPane.addTab("Loglama", null, scrollPane_8, null);
 
 		JPanel panel_2 = new JPanel();
+		panel_2.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null),"", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
+
 		scrollPane_8.setViewportView(panel_2);
 		panel_2.setLayout(null);
 
 		JPanel panel_3 = new JPanel();
-		panel_3.setBorder(new TitledBorder(null,"E Mail Loglama", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		//panel_3.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "E Mail Loglama", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		//panel_3.setBorder(new TitledBorder(null,"E Mail Loglama", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel_3.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "E Mail Loglama", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panel_3.setBounds(10, 11, 617, 74);
 		panel_3.setLayout(null);
 		panel_2.add(panel_3);
@@ -1021,6 +1041,8 @@ public class CAL_DIZIN extends JDialog {
 		
 		
 		ScrollPaneWin11 scrollPane_10 = new ScrollPaneWin11();
+		scrollPane_10.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null),"", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
+
 	
 		scrollPane_10.setBounds(10, 96, 617, 218);
 		panel_2.add(scrollPane_10);
@@ -1115,11 +1137,13 @@ public class CAL_DIZIN extends JDialog {
 		ScrollPaneWin11 scrollPane_11 = new ScrollPaneWin11();
 		tabbedPane.addTab("SQL Baglanti", null,scrollPane_11, null);
 		JPanel panel_4 = new JPanel();
+		panel_4.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null),"", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
+
 		scrollPane_11.setViewportView(panel_4);
 		panel_4.setLayout(null);
 		
 		panel_5 = new JPanel();
-		panel_5.setBorder(new TitledBorder(null,"MS SQL - Ornek", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel_5.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null),"MS SQL - Ornek", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
 		panel_5.setBounds(33, 30, 320, 259);
 		panel_4.add(panel_5);
 		panel_5.setLayout(null);
@@ -1177,8 +1201,7 @@ public class CAL_DIZIN extends JDialog {
 		
 		JPanel panel_5_1 = new JPanel();
 		panel_5_1.setLayout(null);
-		panel_5_1.setBorder(new TitledBorder(null,"MY SQL - Ornek", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		//panel_5_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "MY SQL - Ornek", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel_5_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null),"MY SQL - Ornek", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
 		panel_5_1.setBounds(371, 30, 320, 259);
 		panel_4.add(panel_5_1);
 		

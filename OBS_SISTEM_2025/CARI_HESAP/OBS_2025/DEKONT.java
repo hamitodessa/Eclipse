@@ -198,12 +198,12 @@ public class DEKONT extends JInternalFrame {
 				if(e.getKeyCode()==KeyEvent.VK_DOWN) {
 					if (TARIH_CEVIR.tarih_dt_ddMMyyyy(dtc) == null)
 						return;
-					
 					final JTextComponent textComponent=((JTextComponent)e.getSource());
 					int currentCaretPosition = textComponent.getCaretPosition();
 					SimpleDateFormat datefmt = new SimpleDateFormat("dd.MM.yyyy"); // Or format you're using
 					Date date;
-					try {
+					try 
+					{
 						date = datefmt.parse(TARIH_CEVIR.tarih_dt_ddMMyyyy(dtc));
 						Calendar cal = Calendar.getInstance();
 						cal.setTime(date);
@@ -420,7 +420,7 @@ public class DEKONT extends JInternalFrame {
 						kutu_kapa();
 						getContentPane().setCursor(oac.DEFAULT_CURSOR);
 						OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING, "Dosyada Hic Kayit Yok" );	
-						return; // Kayit Yok
+						return; 
 					} 
 					int evr = rs.getInt("MAX_NO");
 					txtevrak.setText(Integer.toString(evr));
@@ -442,7 +442,6 @@ public class DEKONT extends JInternalFrame {
 			public void actionPerformed(ActionEvent e) {
 				getContentPane().setCursor(oac.WAIT_CURSOR);
 				try {
-
 					int evr = Integer.parseInt(txtevrak.getText());
 					evr -= 1 ;
 					if (evr < 1)
@@ -471,9 +470,9 @@ public class DEKONT extends JInternalFrame {
 
 		JPanel panel_1 = new JPanel();
 		panelANA.add(panel_1);
+		//panel_1.setBorder(new TitledBorder(null,"Borclu Hesap", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panel_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "Borclu Hesap", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
 		panel_1.setBounds(10, 99, 710, 87);
-		//getContentPane().add(panel_1);
 		panel_1.setLayout(null);
 
 		btnbh = new JButton("");
@@ -924,8 +923,7 @@ public class DEKONT extends JInternalFrame {
 		txtaciklama.setLineWrap(true);
 		txtaciklama.setDocument(new JTextFieldLimit(100));
 		JTextFieldRegularPopupMenu.addTo(txtaciklama,100);
-		Border borderr = BorderFactory.createLineBorder(Color.GRAY);
-		txtaciklama.setBorder(BorderFactory.createCompoundBorder(borderr, BorderFactory.createEmptyBorder(2, 2, 2, 2)));
+		txtaciklama.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
 		txtaciklama.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {

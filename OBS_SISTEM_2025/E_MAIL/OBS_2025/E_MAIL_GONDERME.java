@@ -1,7 +1,6 @@
 package OBS_2025;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Font;
 import java.awt.datatransfer.DataFlavor;
@@ -36,7 +35,6 @@ import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 import javax.mail.util.ByteArrayDataSource;
-import javax.swing.BorderFactory;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
@@ -50,7 +48,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.ListSelectionModel;
 import javax.swing.UIManager;
-import javax.swing.border.Border;
+import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
@@ -107,8 +105,7 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 		panel.setLayout(null);
 
 		JPanel panel_1 = new JPanel();
-		panel_1.setBorder(new TitledBorder(null,"Gonderen", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		//panel_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Gonderen", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "Gonderen", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
 		panel_1.setBounds(10, 11, 324, 77);
 		panel.add(panel_1);
 		panel_1.setLayout(null);
@@ -135,8 +132,7 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 		panel_1.add(lblNewLabel_1);
 
 		JPanel panel_1_1 = new JPanel();
-		panel_1_1.setBorder(new TitledBorder(null,"Alici", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		//panel_1_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Alici", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel_1_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "Alici", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
 		panel_1_1.setBounds(10, 99, 324, 55);
 		panel.add(panel_1_1);
 		panel_1_1.setLayout(null);
@@ -148,8 +144,7 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 		panel_1_1.add(cmbalici);
 
 		JPanel panel_1_2 = new JPanel();
-		panel_1_2.setBorder(new TitledBorder(null,"Format Turu", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		//panel_1_2.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Format Turu", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel_1_2.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "Format Turu", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
 		panel_1_2.setBounds(10, 166, 324, 55);
 		panel.add(panel_1_2);
 		panel_1_2.setLayout(null);
@@ -164,8 +159,7 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 
 
 		JPanel panel_1_3 = new JPanel();
-		panel_1_3.setBorder(new TitledBorder(null,"Konu", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		//panel_1_3.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Konu", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel_1_3.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "Konu", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
 		panel_1_3.setBounds(10, 232, 324, 55);
 		panel.add(panel_1_3);
 		panel_1_3.setLayout(null);
@@ -178,8 +172,7 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 
 
 		JPanel panel_1_3_1 = new JPanel();
-		panel_1_3_1.setBorder(new TitledBorder(null,"Aciklama", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		//panel_1_3_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Aciklama", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel_1_3_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "Aciklama", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
 		panel_1_3_1.setBounds(10, 293, 567, 87);
 		panel.add(panel_1_3_1);
 		panel_1_3_1.setLayout(new BorderLayout(0, 0));
@@ -188,9 +181,10 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 		txtaciklama.setFont(new Font("Monospaced", Font.BOLD, 13));
 		txtaciklama.setLineWrap(true);
 		txtaciklama.setDocument(new JTextFieldLimit(100));
-		Border border = BorderFactory.createLineBorder(Color.GRAY);
-		txtaciklama.setBorder(BorderFactory.createCompoundBorder(border,
-				BorderFactory.createEmptyBorder(2, 2, 2, 2)));
+		//Border border = BorderFactory.createLineBorder(Color.GRAY);
+		//txtaciklama.setBorder(BorderFactory.createCompoundBorder(border,BorderFactory.createEmptyBorder(2, 2, 2, 2)));
+		txtaciklama.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
+
 		panel_1_3_1.add(txtaciklama, BorderLayout.CENTER);
 
 		JButton btnNewButton = new JButton("Gonder");
@@ -283,7 +277,7 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 		list = new JList<String>(model);
 		//list.setForeground(new Color(0, 0, 128));
 		list.setFont(new Font("Tahoma", Font.BOLD, 11));
-		list.setBorder(new TitledBorder(null,"Ek Dosya Secimi", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		list.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "Ek Dosya Secimi", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
 		//list.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Ek Dosya Secimi", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		list.setBounds(338, 11, 239, 218);
 		list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);

@@ -4,6 +4,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 
 import OBS_C_2025.ADRES_ACCESS;
@@ -85,8 +86,7 @@ public class MODUL_PARAMETRE extends JInternalFrame {
 		getContentPane().setLayout(null);
 		setFrameIcon(FIT_IMAGE.formIcon(new ImageIcon(MODUL_PARAMETRE.class.getResource("/ICONLAR/icons8-database-administrator-30.png")), 16, 16));//
 		JPanel panel = new JPanel();
-		panel.setBorder(new TitledBorder(null,"Cari Hesap", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		//panel.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Cari Hesap", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "Cari Hesap", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
 
 		panel.setBounds(25, 10, 791, 50);
 		panel.setLayout(null);
@@ -124,8 +124,8 @@ public class MODUL_PARAMETRE extends JInternalFrame {
 		
 		
 		JPanel panel_1 = new JPanel();
-		panel_1.setBorder(new TitledBorder(null,"Stok", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		//panel_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Stok", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		//panel_1.setBorder(new TitledBorder(null,"Stok", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "Stok", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
 		panel_1.setBounds(25, 60, 791, 50);
 		panel_1.setLayout(null);
 		getContentPane().add(panel_1);
@@ -165,7 +165,7 @@ public class MODUL_PARAMETRE extends JInternalFrame {
 
 
 		JPanel panel_2 = new JPanel();
-		panel_2.setBorder(new TitledBorder(null,"Kambiyo", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel_2.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "Kambiyo", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
 		//panel_2.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Kambiyo", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 
 		panel_2.setBounds(25, 210, 791, 50);
@@ -206,8 +206,7 @@ public class MODUL_PARAMETRE extends JInternalFrame {
 
 
 		JPanel panel_3 = new JPanel();
-		panel_3.setBorder(new TitledBorder(null,"Adres", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		//panel_3.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Adres", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel_3.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "Adres", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
 		panel_3.setBounds(25, 160, 791, 50);
 
 		panel_3.setLayout(null);
@@ -246,7 +245,7 @@ public class MODUL_PARAMETRE extends JInternalFrame {
 
 
 		JPanel panel_4 = new JPanel();
-		panel_4.setBorder(new TitledBorder(null,"Kur", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel_4.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "Kur", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
 		//panel_4.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Kur", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panel_4.setBounds(25, 110, 791, 50);  //panel_2.setBounds(25, 110, 791, 50);setBounds(25, 210, 791, 50)
 
@@ -286,7 +285,7 @@ public class MODUL_PARAMETRE extends JInternalFrame {
 
 
 		JPanel panel_5 = new JPanel();
-		panel_5.setBorder(new TitledBorder(null,"Gunluk", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel_5.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "Gunluk", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
 		//panel_5.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Gunluk", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panel_5.setBounds(25, 260, 791, 50);
 		panel_5.setLayout(null);
@@ -324,7 +323,7 @@ public class MODUL_PARAMETRE extends JInternalFrame {
 		
 		JPanel panel_5_1 = new JPanel();
 		panel_5_1.setLayout(null);
-		panel_5_1.setBorder(new TitledBorder(null,"Kereste", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel_5_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "Kereste", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
 		//panel_5_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Kereste", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 
 		panel_5_1.setBounds(25, 310, 791, 50);
@@ -362,7 +361,7 @@ public class MODUL_PARAMETRE extends JInternalFrame {
 		
 		JPanel panel_5_1_1 = new JPanel();
 		panel_5_1_1.setLayout(null);
-		panel_5_1_1.setBorder(new TitledBorder(null,"Sms", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel_5_1_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "Sms", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
 		//panel_5_1_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Sms", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panel_5_1_1.setBounds(25, 360, 791, 50);
 		getContentPane().add(panel_5_1_1);

@@ -5,7 +5,9 @@ import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.border.EtchedBorder;
 import javax.swing.border.LineBorder;
+import javax.swing.border.TitledBorder;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -1257,6 +1259,7 @@ public class OBS_MAIN extends JFrame  {
 		contentPane.add(splitPane, BorderLayout.NORTH);
 //***************************************GORUNTU ICIN ASAGIDAKI BLOGU KALDIR********************************
 		tabbedPane = new  MaterialTabbed();
+		//tabbedPane.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null),"", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		tabbedPane.addComponentListener(new ComponentAdapter() 
 		{
 		    @Override
@@ -1292,6 +1295,8 @@ public class OBS_MAIN extends JFrame  {
 		splitPane.setLeftComponent(tabbedPane);
 //******************************************************* CARI HESAP *******************************************************
 		ScrollPaneWin11 cscrol = new ScrollPaneWin11();
+		cscrol.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null),"", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+
 		cscrol.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
 		cscrol.getHorizontalScrollBar().setPreferredSize(new Dimension(0, 10));
 		JPanel qwerc = new JPanel();
@@ -1536,6 +1541,7 @@ public class OBS_MAIN extends JFrame  {
 //**********************************************************************KUR ********************************************************************
 		
 		ScrollPaneWin11 cscrolk = new ScrollPaneWin11();
+		cscrolk.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null),"", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		cscrolk.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
 		cscrolk.getHorizontalScrollBar().setPreferredSize(new Dimension(0, 10));
 		JPanel qwerck = new JPanel();
@@ -1598,6 +1604,8 @@ public class OBS_MAIN extends JFrame  {
 		toolBar_3.add(lblKurBilgi);
 //************************************************************ADRES *********************************************************************************
 		ScrollPaneWin11 cscrola = new ScrollPaneWin11();
+		cscrola.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null),"", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		
 		cscrola.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
 		cscrola.getHorizontalScrollBar().setPreferredSize(new Dimension(0, 10));
 		JPanel qwerca = new JPanel();
@@ -1673,6 +1681,8 @@ public class OBS_MAIN extends JFrame  {
 		toolBar_4.add(lblAdresBilgi);
 		//***********************************************************************************************************************
 		ScrollPaneWin11 stkscrol = new ScrollPaneWin11();
+		stkscrol.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null),"", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		
 		stkscrol.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
 		stkscrol.getHorizontalScrollBar().setPreferredSize(new Dimension(0, 10));
 		JPanel qwer = new JPanel();
@@ -2032,6 +2042,8 @@ public class OBS_MAIN extends JFrame  {
 		
 		//************************************************************KAMBIYO *********************************************************************************
 		ScrollPaneWin11 cscrolka = new ScrollPaneWin11();
+		cscrolka.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null),"", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		
 		cscrolka.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
 		cscrolka.getHorizontalScrollBar().setPreferredSize(new Dimension(0, 10));
 		JPanel qwercka = new JPanel();
@@ -2112,6 +2124,8 @@ public class OBS_MAIN extends JFrame  {
 		//************************************************************GUNLUK *********************************************************************************
 
 		ScrollPaneWin11 cscrolg = new ScrollPaneWin11();
+		cscrolg.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null),"", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		
 		cscrolg.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
 		cscrolg.getHorizontalScrollBar().setPreferredSize(new Dimension(0, 10));
 		JPanel qwercg = new JPanel();
@@ -2182,6 +2196,8 @@ public class OBS_MAIN extends JFrame  {
 		toolBar_7.add(lblGunlukBilgi);
 		//************************************************************SMS*********************************************************************************
 		ScrollPaneWin11 cscrols = new ScrollPaneWin11();
+		cscrols.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null),"", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		
 		cscrols.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
 		cscrols.getHorizontalScrollBar().setPreferredSize(new Dimension(0, 10));
 		JPanel qwercs = new JPanel();
@@ -2220,6 +2236,8 @@ public class OBS_MAIN extends JFrame  {
 		
 		//************************************************************KERESTE*********************************************************************************
 		ScrollPaneWin11 cscrolke = new ScrollPaneWin11();
+		cscrolke.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null),"", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		
 		cscrolke.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
 		cscrolke.getHorizontalScrollBar().setPreferredSize(new Dimension(0, 10));
 		JPanel qwercke = new JPanel();
@@ -2443,7 +2461,7 @@ public class OBS_MAIN extends JFrame  {
 		//*********************************************************** GIDEN RAPOR *********************************************************************************
 
 		JToolBar toolBar_9 = new JToolBar();
-		//toolBar_9.setBorder(new LineBorder(new Color(0, 191, 255)));
+		toolBar_9.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null),"", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		toolBar_9.setFloatable(false);
 		tabbedPane.addTab("Genel", null, toolBar_9, null);
 
@@ -2518,7 +2536,7 @@ public class OBS_MAIN extends JFrame  {
 		//************************************************************AYARLAR*********************************************************************************
 
 		JToolBar toolBar_10 = new JToolBar();
-		//toolBar_10.setBorder(new LineBorder(new Color(0, 191, 255)));
+		toolBar_10.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null),"", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		toolBar_10.setFloatable(false);
 		tabbedPane.addTab("Ayarlar", null, toolBar_10, null);
 
@@ -2589,7 +2607,7 @@ public class OBS_MAIN extends JFrame  {
 		//************************************************************HAKKINDA *********************************************************************************
 
 		JToolBar toolBar_11 = new JToolBar();
-		//toolBar_11.setBorder(new LineBorder(new Color(0, 191, 255)));
+		toolBar_11.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null),"", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		toolBar_11.setFloatable(false);
 		tabbedPane.addTab("Hakkinda", null, toolBar_11, null);
 
@@ -3509,7 +3527,8 @@ public class OBS_MAIN extends JFrame  {
 		progressBar = new JProgressBar();
 		progressBar.setFont(new Font("Tahoma", Font.BOLD, 11));
 		progressBar.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
-		
+		progressBar.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null),"", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+
 		progressBar.setMaximumSize(new Dimension(350, 20));
 		progressBar.setMinimumSize(new Dimension(350, 20));
 		progressBar.setPreferredSize(new Dimension(350, 20));
@@ -3553,9 +3572,12 @@ public class OBS_MAIN extends JFrame  {
 		toolBar_1.add(btnNewButton_72);
        //***************************************************************************************************
 		desktopPane = new JDesktopPane();
+		//desktopPane.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null),"", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+
 		//desktopPane.setBackground(new Color(39, 45, 61));
 		Notifications.getInstance().setJFrame(this);
 		DesktopScrollPane scrpane = new DesktopScrollPane(desktopPane );
+		scrpane.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null),"", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 
 		JSplitPane ortapane = new  JSplitPane();
 		ortapane.setDividerSize(0);
@@ -3564,6 +3586,8 @@ public class OBS_MAIN extends JFrame  {
 		ortapane.setLeftComponent(scrpane );
 
 		ScrollPaneWin11 qaz = new ScrollPaneWin11();
+		qaz.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null),"", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+
 		qaz.setMinimumSize(new Dimension(0, 30));
 		qaz.setMaximumSize(new Dimension(0, 30));
 		qaz.setViewportView (toolBar_1);

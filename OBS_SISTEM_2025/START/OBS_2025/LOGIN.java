@@ -60,7 +60,9 @@ import javax.swing.SwingUtilities;
 import javax.swing.UIDefaults;
 import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
+import javax.swing.border.EtchedBorder;
 import javax.swing.border.LineBorder;
+import javax.swing.border.TitledBorder;
 import javax.swing.event.AncestorEvent;
 import javax.swing.event.AncestorListener;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
@@ -333,7 +335,8 @@ public class LOGIN extends JDialog {
 		contentPane.add(splitPane, BorderLayout.CENTER);
 
 		JPanel panel = new JPanel();
-		panel.setBorder(null);
+		panel.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null),"", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+
 		splitPane.setLeftComponent(panel);
 		panel.setLayout(null);
 		JLabel lblicon = new JLabel("");
@@ -654,6 +657,7 @@ public class LOGIN extends JDialog {
 		progressBar.setFont(new Font("Tahoma", Font.BOLD, 11));
 		progressBar.setMinimumSize(new Dimension(0, 25));
 		progressBar.setMaximumSize(new Dimension(0, 25));
+		progressBar.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null),"", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 
 		//************SURUCU KONTROL**************************
 		GLOBAL.surucu_kontrol();

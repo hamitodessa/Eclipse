@@ -1138,9 +1138,8 @@ public class KERESTE_GIRIS extends JInternalFrame {
 							DefaultTableModel model = (DefaultTableModel) table.getModel();
 							if (! model.getValueAt(table.getSelectedRow(),1).toString().equals(""))
 							{
-								if ( model.getValueAt(table.getSelectedRow(),2).toString().equals(model.getValueAt(table.getSelectedRow()-1,2).toString())) {
-									model.setValueAt(model.getValueAt(table.getSelectedRow() -1, 6), table.getSelectedRow(), 6);
-								}
+								if ( model.getValueAt(table.getSelectedRow(),2).toString().equals(model.getValueAt(table.getSelectedRow()-1,2).toString()))
+								model.setValueAt(model.getValueAt(table.getSelectedRow() -1, 6), table.getSelectedRow(), 6);
 							}
 							else {
 								model.setValueAt("",table.getSelectedRow(),1);
@@ -1151,16 +1150,11 @@ public class KERESTE_GIRIS extends JInternalFrame {
 						table.getCellEditor().stopCellEditing();
 				}
 				if (e.getKeyCode() == 127)
-				{
 					satir_sil();
-				}
 			}
 		});
-		if(! oac.gridcolor.toString().equals("java.awt.Color[r=255,g=255,b=255]")) 
-		{
+		if(! oac.gridcolor.toString().equals("java.awt.Color[r=255,g=255,b=255]"))
 			table.setGridColor(oac.gridcolor);
-		}
-
 		table.setCellSelectionEnabled(true);
 		model.addColumn("Barkod", new String []{""});
 		model.addColumn("Urun Kodu", new String []{""});

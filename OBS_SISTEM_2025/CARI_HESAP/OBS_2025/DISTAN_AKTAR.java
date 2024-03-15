@@ -694,7 +694,10 @@ public class DISTAN_AKTAR extends JInternalFrame {
 		//***
 		tblexcell.setAutoResizeMode( JTable.AUTO_RESIZE_OFF );
 		tblexcell.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		//tblexcell.putClientProperty("terminateEditOnFocusLost", Boolean.TRUE);
+		InputMap im = tblexcell.getInputMap(JTable.WHEN_FOCUSED);
+		im.put(KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, 0), "Action.NextCell");
+		im.put(KeyStroke.getKeyStroke(KeyEvent.VK_TAB, 0), "Action.NextCell");
+		tblexcell.putClientProperty("terminateEditOnFocusLost", Boolean.TRUE);
 		tblexcell.setRowSelectionAllowed(false);
 		tblexcell.setShowHorizontalLines(true);
 		tblexcell.setShowVerticalLines(true);

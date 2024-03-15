@@ -364,7 +364,7 @@ public class MODUL_PARAMETRE extends JInternalFrame {
 		panel_5_1_1.setLayout(null);
 		panel_5_1_1.setBorder(new TitledBorder(null,"Sms", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		//panel_5_1_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Sms", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panel_5_1_1.setBounds(25, 366, 791, 50);
+		panel_5_1_1.setBounds(25, 360, 791, 50);
 		getContentPane().add(panel_5_1_1);
 		
 		label_12_1_1 = new JLabel("");

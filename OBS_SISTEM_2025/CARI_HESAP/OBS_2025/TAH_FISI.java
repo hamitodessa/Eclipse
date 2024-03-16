@@ -88,7 +88,6 @@ import java.io.File;
 import java.io.InputStream;
 import java.sql.ResultSet;
 import java.text.DecimalFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -225,7 +224,6 @@ public class TAH_FISI extends JInternalFrame {
 		cmbTur.setModel(new DefaultComboBoxModel<String>(new String[] {"Nakit", "Cek", "Kredi Karti"}));
 		
 		dtc = new JDateChooser();
-		//dtc.getComponent(1).setBackground(new Color(235, 235, 235));
 		dtc.setBounds(281, 11, 150, 24);
 		panel_2.add(dtc);
 		dtc.getDateEditor().getUiComponent().addFocusListener(new FocusAdapter()    {
@@ -274,7 +272,7 @@ public class TAH_FISI extends JInternalFrame {
 							cal.add(Calendar.YEAR, -1); 
 						dtc.setDate(new Date(cal.getTimeInMillis()));
 						textComponent.setCaretPosition(currentCaretPosition);
-					} catch (ParseException e1) {
+					} catch (Exception e1) {
 						e1.printStackTrace();
 					}
 				}
@@ -297,7 +295,7 @@ public class TAH_FISI extends JInternalFrame {
 							cal.add(Calendar.YEAR, 1); 
 						dtc.setDate(new Date(cal.getTimeInMillis()));
 						textComponent1.setCaretPosition(currentCaretPosition);
-					} catch (ParseException e1) {
+					} catch (Exception e1) {
 						e1.printStackTrace();
 					}
 				}
@@ -599,6 +597,54 @@ public class TAH_FISI extends JInternalFrame {
 		formattedTutar.setHorizontalAlignment(SwingConstants.RIGHT);
 		formattedTutar.setFormatterFactory(f_dob);
 		formattedTutar.setText("0.00");
+		
+		JButton btnbh = new JButton("");
+		btnbh.setToolTipText("Ekstre Dokumu");
+		btnbh.setBounds(170, 33, 30, 25);
+		btnbh.setIcon(new ImageIcon(DEKONT.class.getResource("/ICONLAR/eks16.png")));
+		btnbh.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (textCKodu.getText().equals("")) return;
+				getContentPane().setCursor(oac.WAIT_CURSOR);
+				try 
+				{
+				boolean varmi = OBS_MAIN.pencere_bak("EKSTRE");
+				if (varmi)
+					OBS_MAIN.pencere_aktiv_yap("EKSTRE");
+				else
+				{
+					JInternalFrame internalFrame;
+					internalFrame  = new EKSTRE();
+					int xx= 0 ;
+					int yy = 0;
+					for(int i=0;i<OBS_MAIN.desktopPane.getAllFrames().length;i++)
+					{   
+						JInternalFrame frame=(JInternalFrame) OBS_MAIN.desktopPane.getComponent(i);
+						String tit=frame.getTitle();
+						if (tit.equals("TAHSILAT") )
+						{
+							xx =(int) frame.getLocation().getX() + frame.getWidth();
+							yy =(int) frame.getLocation().getY();
+							break; 
+						}
+					}
+					internalFrame.setLocation(xx ,yy);
+					OBS_MAIN.desktopPane.add(internalFrame);
+					internalFrame.setVisible(true);
+				}
+					FILTRE intFrame = new FILTRE();
+					intFrame.txtkodu.setText(textCKodu.getText());
+					EKSTRE.hisset();
+				} 
+				catch (Exception e1) 
+				{
+					getContentPane().setCursor(oac.DEFAULT_CURSOR);
+					e1.printStackTrace();
+				}
+				getContentPane().setCursor(oac.DEFAULT_CURSOR);
+			}
+		});
+		panel_1.add(btnbh);
 		
 		JPanel panel_3 = new JPanel();
 		panel_3.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "Doviz Cinsi", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));

@@ -92,8 +92,7 @@ import java.awt.event.MouseWheelListener;
 import java.awt.event.MouseWheelEvent;
 import java.awt.event.MouseMotionAdapter;
 
-
-@SuppressWarnings({"serial","static-access" ,"unused"} )
+@SuppressWarnings({"serial","static-access" ,"unused", "unchecked", "rawtypes"} )
 public class DEKONT extends JInternalFrame {
 
 	private static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
@@ -476,25 +475,19 @@ public class DEKONT extends JInternalFrame {
 		panel_1.setLayout(null);
 
 		btnbh = new JButton("");
+		btnbh.setToolTipText("Ekstre Dokumu");
 		btnbh.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (cmbbhes.getItemAt(cmbbhes.getSelectedIndex()).toString() == "") return;
 				getContentPane().setCursor(oac.WAIT_CURSOR);
+				try {
 				boolean varmi = OBS_MAIN.pencere_bak("EKSTRE");
-				if (varmi  ) 
-				{
-					try {
-						OBS_MAIN.pencere_aktiv_yap("EKSTRE");
-					} catch (PropertyVetoException e1) {
-						getContentPane().setCursor(oac.DEFAULT_CURSOR);
-						e1.printStackTrace();
-					}
-				}
+				if (varmi)
+					OBS_MAIN.pencere_aktiv_yap("EKSTRE");
 				else
 				{
 					JInternalFrame internalFrame;
 					internalFrame  = new EKSTRE();
-					// yer bul
 					int xx= 0 ;
 					int yy = 0;
 					for(int i=0;i<OBS_MAIN.desktopPane.getAllFrames().length;i++)
@@ -508,18 +501,15 @@ public class DEKONT extends JInternalFrame {
 							break; 
 						}
 					}
-					//yerbul
 					internalFrame.setLocation(xx ,yy);
 					OBS_MAIN.desktopPane.add(internalFrame);
 					internalFrame.setVisible(true);
 				}
-				try 
-				{
 					FILTRE intFrame = new FILTRE();
-					FILTRE.txtkodu.setText(cmbbhes.getItemAt(cmbbhes.getSelectedIndex()).toString());
+					intFrame.txtkodu.setText(cmbbhes.getItemAt(cmbbhes.getSelectedIndex()).toString());
 					EKSTRE.hisset();
 				} 
-				catch (NumberFormatException e1) 
+				catch (Exception e1) 
 				{
 					getContentPane().setCursor(oac.DEFAULT_CURSOR);
 					e1.printStackTrace();
@@ -533,7 +523,6 @@ public class DEKONT extends JInternalFrame {
 		panel_1.add(btnbh);
 
 		lblb = new JLabel("...");
-		//lblb.setForeground(new Color(128, 0, 0));
 		lblb.setFont(new Font("Tahoma", Font.BOLD, 16));
 		lblb.setBounds(230, 50, 59, 20);
 		panel_1.add(lblb);
@@ -976,20 +965,15 @@ public class DEKONT extends JInternalFrame {
 		panelANA.add(panel_1_1);
 
 		btnah = new JButton("");
+		btnah.setToolTipText("Ekstre Dokumu");
 		btnah.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (cmbbhes.getItemAt(cmbahes.getSelectedIndex()).toString() == "") return;
 				getContentPane().setCursor(oac.WAIT_CURSOR);
+				try {
 				boolean varmi = OBS_MAIN.pencere_bak("EKSTRE");
-				if (varmi  ) 
-				{
-					try {
-						OBS_MAIN.pencere_aktiv_yap("EKSTRE");
-					} catch (PropertyVetoException e1) {
-						getContentPane().setCursor(oac.DEFAULT_CURSOR);
-						e1.printStackTrace();
-					}
-				}
+				if (varmi)
+					OBS_MAIN.pencere_aktiv_yap("EKSTRE");
 				else
 				{
 					JInternalFrame internalFrame;
@@ -1011,13 +995,11 @@ public class DEKONT extends JInternalFrame {
 					OBS_MAIN.desktopPane.add(internalFrame);
 					internalFrame.setVisible(true);
 				}
-				try 
-				{
 					FILTRE intFrame = new FILTRE();
-					FILTRE.txtkodu.setText(cmbahes.getSelectedItem().toString());
+					intFrame.txtkodu.setText(cmbahes.getSelectedItem().toString());
 					EKSTRE.hisset();
 				} 
-				catch (NumberFormatException e1) 
+				catch (Exception e1) 
 				{
 					getContentPane().setCursor(oac.DEFAULT_CURSOR);
 					e1.printStackTrace();
@@ -1593,7 +1575,6 @@ public class DEKONT extends JInternalFrame {
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage()  );
 		}
 	}
-	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public static void kaydet () 
 	{
 		if (txtevrak.getText() == null ) return ;
@@ -1621,10 +1602,8 @@ public class DEKONT extends JInternalFrame {
 				OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING, "Alacakli Hesap Kodu Hesap Planinda Bulunmamaktadir...."  );
 				return ;
 			}
-
 			if( lblb.getText().equals(lbla.getText()))
 			{
-				
 				if (DecimalFormat.getNumberInstance().parse(txtbtutar.getText()).doubleValue() != DecimalFormat.getNumberInstance().parse(txtatutar.getText()).doubleValue())
 				{
 					OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING,  "Alacakli ve Borclu Tutar Esit Degil...." );
@@ -1645,7 +1624,8 @@ public class DEKONT extends JInternalFrame {
 				if(optionPane.getValue() == null)
 					return;
 				else
-					if(oac.mesajDeger(optionPane.getValue().toString()) ==0) return;
+					if(oac.mesajDeger(optionPane.getValue().toString()) ==0)
+						return;
 			}
 			long startTime = System.currentTimeMillis(); 
 			String str = TARIH_CEVIR.tarih_geri_saatli(dtc) ;

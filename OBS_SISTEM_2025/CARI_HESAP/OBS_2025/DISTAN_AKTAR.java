@@ -209,7 +209,7 @@ public class DISTAN_AKTAR extends JInternalFrame {
 
 		txtBORCLU = new Obs_TextFIeld(12,"");
 		txtBORCLU.setFont(new Font("Tahoma", Font.BOLD, 11));
-		txtBORCLU.setBounds(603, 18, 100, 20);
+		txtBORCLU.setBounds(603, 18, 120, 20);
 		txtBORCLU.setColumns(12);
 		InputMap txtkoduMap = txtBORCLU.getInputMap();
 		txtkoduMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_H,KeyEvent.CTRL_DOWN_MASK ), "foo");
@@ -295,7 +295,7 @@ public class DISTAN_AKTAR extends JInternalFrame {
 				borcluUYGULA();
 			}
 		});
-		btnNewButton_3.setBounds(708, 17, 24, 24);
+		btnNewButton_3.setBounds(730, 17, 24, 24);
 		panel.add(btnNewButton_3);
 
 		txtARAMA = new Obs_TextFIeld(30,"");
@@ -348,7 +348,7 @@ public class DISTAN_AKTAR extends JInternalFrame {
 		txtALACAK = new Obs_TextFIeld(12,"");
 		txtALACAK.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txtALACAK.setColumns(12);
-		txtALACAK.setBounds(945, 18, 100, 20);
+		txtALACAK.setBounds(945, 18, 120, 20);
 		InputMap txtkoduMap1 = txtALACAK.getInputMap();
 		txtkoduMap1.put(KeyStroke.getKeyStroke(KeyEvent.VK_H,KeyEvent.CTRL_DOWN_MASK ), "foo");
 		txtALACAK.addMouseListener(new MouseAdapter() {
@@ -436,7 +436,7 @@ public class DISTAN_AKTAR extends JInternalFrame {
 		});
 		btnNewButton_3_1.setToolTipText("Uygula");
 		btnNewButton_3_1.setIcon(new ImageIcon(DISTAN_AKTAR.class.getResource("/ICONLAR/icons8-approved-16.png")));
-		btnNewButton_3_1.setBounds(1050, 17, 24, 24);
+		btnNewButton_3_1.setBounds(1070, 17, 24, 24);
 		panel.add(btnNewButton_3_1);
 
 		cmbArama = new JComboBox<String>();
@@ -905,7 +905,7 @@ public class DISTAN_AKTAR extends JInternalFrame {
 		panel_2.add(separator);
 
 		JSplitPane splitPane_5 = new JSplitPane();
-		splitPane_5.setDividerSize(1);
+		splitPane_5.setDividerSize(0);
 		splitPane_5.setResizeWeight(0.0);
 		splitPane_5.setDividerLocation(30);
 

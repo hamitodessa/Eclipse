@@ -48,6 +48,8 @@ public class FIRMA_ISMI_DEGIS extends JInternalFrame {
 		setBounds(100, 100, 663, 126);
 		setFrameIcon(FIT_IMAGE.formIcon(new ImageIcon(FIRMA_ISMI_DEGIS.class.getResource("/ICONLAR/icons8-organization-30.png")), 16, 16));//
 		JPanel panel = new JPanel();
+		panel.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
+
 		getContentPane().add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
 

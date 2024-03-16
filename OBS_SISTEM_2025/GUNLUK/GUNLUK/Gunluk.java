@@ -103,7 +103,7 @@ public class Gunluk extends JInternalFrame {
 		setMaximizable(true);
 		setIconifiable(true);
 		setClosable(true);
-		setBounds(0,0, 1268, 675);
+		setBounds(0,0, 1268, 700);
 		setFrameIcon(FIT_IMAGE.formIcon(new ImageIcon(Gunluk.class.getResource("/ICONLAR/icons8-schedule-30.png")), 16, 16));//
 		JSplitPane splitPane = new JSplitPane();
 		splitPane.setDividerSize(1);

@@ -52,6 +52,8 @@ import java.awt.Font;
 import java.awt.Rectangle;
 
 import javax.swing.SwingConstants;
+import javax.swing.border.EtchedBorder;
+import javax.swing.border.TitledBorder;
 
 @SuppressWarnings("serial")
 public class HAZIR_GOREVLER extends JInternalFrame {
@@ -78,6 +80,8 @@ public class HAZIR_GOREVLER extends JInternalFrame {
 		getContentPane().add(splitPane, BorderLayout.CENTER);
 
 		scrollPane = new ScrollPaneWin11();
+		scrollPane.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
+
 		splitPane.setLeftComponent(scrollPane);
 		///***************************
 		popup = new JPopupMenu();

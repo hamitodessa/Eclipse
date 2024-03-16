@@ -33,7 +33,6 @@ import javax.swing.JTextArea;
 import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
 import javax.swing.border.EtchedBorder;
-import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
@@ -110,7 +109,7 @@ public class SMS extends JInternalFrame {
 
 		JSplitPane splitPane = new JSplitPane();
 		splitPane.setResizeWeight(1.0);
-		splitPane.setDividerSize(1);
+		splitPane.setDividerSize(0);
 		splitPane.setOrientation(JSplitPane.VERTICAL_SPLIT);
 
 		getContentPane().add(splitPane, BorderLayout.CENTER);
@@ -271,14 +270,13 @@ public class SMS extends JInternalFrame {
 
 
 		ScrollPaneWin11 scrollPane = new ScrollPaneWin11();
+		scrollPane.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
+
 		splitPane_1.setRightComponent(scrollPane);
 
 		table = new JTable();
-		if(! oac.gridcolor.toString().equals("java.awt.Color[r=255,g=255,b=255]")) 
-		{
+		if(! oac.gridcolor.toString().equals("java.awt.Color[r=255,g=255,b=255]"))
 			table.setGridColor(oac.gridcolor);
-		}
-
 		table.setAutoResizeMode( JTable.AUTO_RESIZE_OFF );
 		table.setShowHorizontalLines(true);
 		table.setShowVerticalLines(true);
@@ -315,7 +313,7 @@ public class SMS extends JInternalFrame {
 		scrollPane_1.setViewportView(table_1);
 
 		JPanel panel_4 = new JPanel();
-		panel_4.setBorder(new LineBorder(null));
+		panel_4.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
 		tabbedPane.addTab("Modem Baglanti", null, panel_4, null);
 		panel_4.setLayout(null);
 
@@ -561,11 +559,8 @@ public class SMS extends JInternalFrame {
 		table_2 = new JTable(){
 			public boolean isCellEditable(int row, int column) {     return false;          }
 		};
-		if(! oac.gridcolor.toString().equals("java.awt.Color[r=255,g=255,b=255]")) 
-		{
+		if(! oac.gridcolor.toString().equals("java.awt.Color[r=255,g=255,b=255]"))
 			table_2.setGridColor(oac.gridcolor);
-		}
-
 		table_2.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {

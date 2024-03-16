@@ -20,6 +20,8 @@ import java.util.Date;
 import java.awt.event.ActionEvent;
 import javax.swing.JComboBox;
 import javax.swing.JSeparator;
+import javax.swing.border.EtchedBorder;
+import javax.swing.border.TitledBorder;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 
@@ -183,6 +185,8 @@ public class PARAMETRELER   extends JInternalFrame   {
 		});
 		getContentPane().add(tabbedPane, BorderLayout.CENTER);
 		JScrollPane scrollPane_5 = new JScrollPane();
+		scrollPane_5.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
+
 		tabbedPane.addTab("Program", null, scrollPane_5, null);
 
 		JPanel panel_4 = new JPanel();
@@ -416,6 +420,7 @@ public class PARAMETRELER   extends JInternalFrame   {
 
 		///**************************************************CARI HESAP *****************************
 		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
 
 		tabbedPane.addTab("Cari Hesap", null, scrollPane, null);
 
@@ -774,6 +779,8 @@ public class PARAMETRELER   extends JInternalFrame   {
 
 		panel.add(btnNewButton_4_1);
 		JScrollPane scrollPane_1 = new JScrollPane();
+		scrollPane_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
+
 		tabbedPane.addTab("Fatura", null, scrollPane_1, null);
 
 		JPanel panel_1 = new JPanel();
@@ -1171,6 +1178,8 @@ public class PARAMETRELER   extends JInternalFrame   {
 
 		/////////////////////////////GUNLUK ***************************************************************							
 		JScrollPane scrollPane_2 = new JScrollPane();
+		scrollPane_2.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
+
 		tabbedPane.addTab("Gunluk", null, scrollPane_2, null);
 
 		JPanel panel_2 = new JPanel();
@@ -1265,6 +1274,8 @@ public class PARAMETRELER   extends JInternalFrame   {
 		
 		//***************************** KAMBIYO
 		JScrollPane scrollPane_3 = new JScrollPane();
+		scrollPane_3.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
+
 		tabbedPane.addTab("Kambiyo", null, scrollPane_3, null);
 
 		JPanel panel_3 = new JPanel();
@@ -1450,6 +1461,8 @@ public class PARAMETRELER   extends JInternalFrame   {
 		panel_3.add(comboBox_2_1_1_2_1);
 		//////////////////////////////////////////////// KERESTE /////////////////////////////////////////////////////////
 		JScrollPane scrollPane_4 = new JScrollPane();
+		scrollPane_4.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
+
 		tabbedPane.addTab("Kereste", null, scrollPane_4, null);
 
 		JPanel panel_5 = new JPanel();

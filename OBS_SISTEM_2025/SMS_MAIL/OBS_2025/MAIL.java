@@ -123,7 +123,7 @@ public class MAIL extends JInternalFrame {
 		setFrameIcon(FIT_IMAGE.formIcon(new ImageIcon(MAIL.class.getResource("/ICONLAR/icons8-post-30.png")), 16, 16));//
 		JSplitPane splitPane = new JSplitPane();
 		splitPane.setResizeWeight(1.0);
-		splitPane.setDividerSize(1);
+		splitPane.setDividerSize(0);
 		splitPane.setOrientation(JSplitPane.VERTICAL_SPLIT);
 
 		getContentPane().add(splitPane, BorderLayout.CENTER);
@@ -379,11 +379,8 @@ public class MAIL extends JInternalFrame {
 		splitPane_1.setRightComponent(scrollPane);
 
 		table = new JTable();
-		if(! oac.gridcolor.toString().equals("java.awt.Color[r=255,g=255,b=255]")) 
-		{
+		if(! oac.gridcolor.toString().equals("java.awt.Color[r=255,g=255,b=255]"))
 			table.setGridColor(oac.gridcolor);
-		}
-
 		table.setAutoResizeMode( JTable.AUTO_RESIZE_OFF );
 		table.setShowHorizontalLines(true);
 		table.setShowVerticalLines(true);

@@ -893,11 +893,9 @@ public class DEKONT extends JInternalFrame {
 		InputMap txtbhesMap = editorComponent.getInputMap(editorComponent.WHEN_FOCUSED);
 		txtbhesMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_H, KeyEvent.CTRL_DOWN_MASK), "none");
 		
-		//cmbbhes.getEditor().getEditorComponent().setForeground(new Color(0, 0, 128));
 		cmbbhes.setBounds(10, 45, 147, 25);
 		AutoCompleteDecorator.decorate(cmbbhes);
 		panel_1.add(cmbbhes);
-
 
 		lblbb.setVisible(false);
 		lblbba.setVisible(false);
@@ -907,7 +905,6 @@ public class DEKONT extends JInternalFrame {
 		panelANA.add(panel_3);
 		panel_3.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "Aciklama", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12),null));
 		panel_3.setBounds(10, 275, 548, 95);
-		//getContentPane().add(panel_3);
 		panel_3.setLayout(new BorderLayout(0, 0));
 
 		txtaciklama =   new JTextArea();
@@ -976,7 +973,6 @@ public class DEKONT extends JInternalFrame {
 		panel_1_1.setLayout(null);
 		panel_1_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "Alacakli Hesap", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panel_1_1.setBounds(10, 187, 710, 87);
-		//getContentPane().add(panel_1_1);
 		panelANA.add(panel_1_1);
 
 		btnah = new JButton("");
@@ -1035,7 +1031,6 @@ public class DEKONT extends JInternalFrame {
 		panel_1_1.add(btnah);
 
 		lbla = new JLabel("...");
-		//lbla.setForeground(new Color(0, 128, 128));
 		lbla.setFont(new Font("Tahoma", Font.BOLD, 16));
 		lbla.setBounds(230, 50, 59, 20);
 		panel_1_1.add(lbla);
@@ -1193,7 +1188,7 @@ public class DEKONT extends JInternalFrame {
 				if ( Character.isDigit(cc)  )
 					txtatutar.setEditable(true);
 				else {
-					if ( cc == '.' || cc == ',' || (int)e.getKeyChar() ==8 || (int)e.getKeyChar() ==127   )
+					if ( cc == '.' || cc == ',' || (int)e.getKeyChar() ==8 || (int)e.getKeyChar() == 127   )
 						txtatutar.setEditable(true);
 					else
 						txtatutar.setEditable(false);
@@ -1208,7 +1203,6 @@ public class DEKONT extends JInternalFrame {
 		dfat.setMaximumFractionDigits(2);
 		txtatutar.setFormatterFactory(f_dobat);
 		txtatutar.setHorizontalAlignment(SwingConstants.RIGHT);
-		//txtatutar.setForeground(new Color(0, 0, 139));
 		txtatutar.setFont(new Font("Tahoma", Font.BOLD, 22));
 		txtatutar.setBounds(496, 40, 206, 30);
 		panel_1_1.add(txtatutar);
@@ -1251,7 +1245,6 @@ public class DEKONT extends JInternalFrame {
 				} catch (IOException e1) {
 					e1.printStackTrace();
 				}
-
 			}
 			@Override
 			public void keyTyped(KeyEvent e) {
@@ -1313,7 +1306,6 @@ public class DEKONT extends JInternalFrame {
 		pnla.add(lblaba);
 
 		cmbahes = new JComboBox<String>();
-		//cmbahes.getEditor().getEditorComponent().setForeground(new Color(0, 0, 128));
 		cmbahes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				getContentPane().setCursor(oac.WAIT_CURSOR);
@@ -1418,7 +1410,6 @@ public class DEKONT extends JInternalFrame {
 		panelANA.add(panel_3_1);
 		panel_3_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "Kod", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
 		panel_3_1.setBounds(585, 275, 135, 48);
-		//getContentPane().add(panel_3_1);
 		panel_3_1.setLayout(new BorderLayout(0, 0));
 
 		txtkod = new Obs_TextFIeld(5,"");
@@ -1431,8 +1422,6 @@ public class DEKONT extends JInternalFrame {
 		});
 		txtkod.setEnabled(false);
 		txtkod.setFont(new Font("Tahoma", Font.BOLD, 12));
-		//txtkod.setDocument(new JTextFieldLimit(5));
-		//JTextFieldRegularPopupMenu.addTo(txtkod);
 		txtkod.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
@@ -1503,7 +1492,6 @@ public class DEKONT extends JInternalFrame {
 		panel_1_1.add(btnHYenileA);
 
 		lblNewLabel = new JLabel(".");
-		//lblNewLabel.setForeground(Color.BLUE);
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblNewLabel.setBounds(568, 350, 152, 14);
 		panelANA.add(lblNewLabel);
@@ -1575,7 +1563,6 @@ public class DEKONT extends JInternalFrame {
 			double seconds = (double)estimatedTime/1000; 
 			OBS_MAIN.lblNewLabel_9.setText("Son Raporlama Suresi : " + FORMATLAMA.doub_4(seconds) +  " saniye");
 			kutu_ac();
-			
 		}
 		catch (Exception ex)
 		{
@@ -1691,11 +1678,8 @@ public class DEKONT extends JInternalFrame {
 			dBilgi.setkOD(txtkod.getText());
 			dBilgi.setuSER(GLOBAL.KULL_ADI);
 			lBILGI.setmESAJ(mesaj);
-			
 			c_Access.cari_dekont_kaydet(dBilgi,	lBILGI ,BAGLAN_LOG.cariLogDizin	);
-
 			sifirla();
-			
 			kutu_kapa();
 			long endTime = System.currentTimeMillis();
 			long estimatedTime = endTime - startTime;

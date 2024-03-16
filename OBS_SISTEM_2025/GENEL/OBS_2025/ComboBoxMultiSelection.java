@@ -33,21 +33,17 @@ public class ComboBoxMultiSelection<E> extends JComboBox<E> {
     public List<Object> getSelectedItems() {
         return selectedItems;
     }
-
     public void setSelectedItems(List<Object> selectedItems) {
         List<Object> comboItem = new ArrayList<>();
         int count = getItemCount();
-        for (int i = 0; i < count; i++) {
-            comboItem.add(getItemAt(i));
-        }
+        for (int i = 0; i < count; i++)
+        	comboItem.add(getItemAt(i));
         for (Object obj : selectedItems) {
-            if (comboItem.contains(obj)) {
-                addItemObject(obj);
-            }
+            if (comboItem.contains(obj))
+            	addItemObject(obj);
         }
         comboItem.clear();
     }
-
     public void clearSelectedItems() {
        
         selectedItems.clear();
@@ -61,19 +57,15 @@ public class ComboBoxMultiSelection<E> extends JComboBox<E> {
             comboList.repaint();
         }
      }
-
     private final List<Object> selectedItems = new ArrayList<>();
     private final ComboBoxMultiCellEditor comboBoxMultiCellEditor;
     private Component comboList;
-
     private void removeItemObject(Object obj) {
         selectedItems.remove(obj);
         comboBoxMultiCellEditor.removeItem(obj);
-        if (comboList != null) {
-            comboList.repaint();
-        }
+        if (comboList != null)
+        	comboList.repaint();
     }
-
     private void addItemObject(Object obj) {
         selectedItems.add(obj);
         comboBoxMultiCellEditor.addItem(obj);
@@ -81,7 +73,6 @@ public class ComboBoxMultiSelection<E> extends JComboBox<E> {
             comboList.repaint();
         }
     }
-
 	public ComboBoxMultiSelection() {
         comboBoxMultiCellEditor = new ComboBoxMultiCellEditor();
         setRenderer(new ComboBoxMultiCellRenderer());
@@ -91,45 +82,35 @@ public class ComboBoxMultiSelection<E> extends JComboBox<E> {
             if (e.getModifiers() == ActionEvent.MOUSE_EVENT_MASK) {
                 JComboBox combo = (JComboBox) e.getSource();
                 Object obj = combo.getSelectedItem();
-                if (selectedItems.contains(obj)) {
-                    removeItemObject(obj);
-                } else {
-                    addItemObject(obj);
-                }
+                if (selectedItems.contains(obj))
+                	removeItemObject(obj);
+                else
+                	addItemObject(obj);
             }
         });
     }
-
     @Override
     public void setPopupVisible(boolean v) {
-
     }
-
     private class ComboBoxMultiCellRenderer extends BasicComboBoxRenderer {
-
         @Override
         public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
             super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
-            if (comboList != list) {
-                comboList = list;
-            }
+            if (comboList != list)
+            	comboList = list;
             setIcon(new CheckBoxIcon(selectedItems.contains(value)));
             return this;
         }
     }
-
     private class ComboBoxMultiCellEditor extends BasicComboBoxEditor {
-
         protected final JScrollPane scroll;
         protected final JPanel panel;
-
         protected void addItem(Object obj) {
             Item item = new Item(obj);
             panel.add(item);
             panel.repaint();
             panel.revalidate();
         }
-
  		protected void removeItem(Object obj) {
             int count = panel.getComponentCount();
             for (int i = 0; i < count; i++) {
@@ -142,7 +123,6 @@ public class ComboBoxMultiSelection<E> extends JComboBox<E> {
                 }
             }
         }
-
         public ComboBoxMultiCellEditor() {
             this.panel = new JPanel(new MigLayout("insets 0,filly,gapx 2", "", "fill"));
             this.scroll = new JScrollPane(panel);
@@ -158,44 +138,32 @@ public class ComboBoxMultiSelection<E> extends JComboBox<E> {
                     + "thumbInsets:0,0,0,1;"
                     + "hoverTrackColor:null");
             scrollBar.setUnitIncrement(10);
-
         }
-
         @Override
         public Component getEditorComponent() {
             return scroll;
         }
-
     }
-
     private class CheckBoxIcon extends FlatCheckBoxIcon {
-
         private final boolean selected;
-
         public CheckBoxIcon(boolean selected) {
             this.selected = selected;
         }
-
         @Override
         protected boolean isSelected(Component c) {
             return selected;
         }
     }
-
     private class Item extends JLabel {
-
         public Object getItem() {
             return item;
         }
-
         private final Object item;
-
         public Item(Object item) {
             super(item.toString());
             this.item = item;
             init();
         }
-
         private void init() {
             putClientProperty(FlatClientProperties.STYLE, ""
                     + "border:0,5,0,20;"
@@ -213,7 +181,6 @@ public class ComboBoxMultiSelection<E> extends JComboBox<E> {
             setLayout(new MigLayout("fill"));
             add(cmd, "pos 1al 0.5al 10 10");
         }
-
         @Override
         protected void paintComponent(Graphics g) {
             Graphics2D g2 = (Graphics2D) g.create();

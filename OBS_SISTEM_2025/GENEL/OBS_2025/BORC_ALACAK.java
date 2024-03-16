@@ -94,17 +94,13 @@ public class BORC_ALACAK extends JDialog {
 				}
 			}
 		});
-
 		txtcari.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txtcari.setBounds(100, 11, 124, 20);
 		contentPanel.add(txtcari);
 		txtcari.setColumns(10);
-
 		lblNewLabel_1 = new JLabel(".....");
-		//lblNewLabel_1.setForeground(new Color(25, 25, 112));
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblNewLabel_1.setBounds(100, 40, 285, 14);
 		contentPanel.add(lblNewLabel_1);
 	}
-
 }

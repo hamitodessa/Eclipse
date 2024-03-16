@@ -69,9 +69,11 @@ public class KAM_CEKNO extends DefaultCellEditor {
 				if (KeyEvent.getKeyText(e.getKeyCode()) == "Enter" )
 				{
 					try {
-						if (turu.equals("CG")) { 
+						if (turu.equals("CG")) 
+						{ 
 							varmi =  CEK_GIRIS.cek_kontrol(textField.getText(),turu);
-							if (varmi) textField.setText("");
+							if (varmi)
+								textField.setText("");
 						}
 						else if (turu.equals("CC")) { 
 							//varmi =  CEK_CIKIS.cek_kontrol(textField.getText(),turu,satir);
@@ -83,7 +85,6 @@ public class KAM_CEKNO extends DefaultCellEditor {
 				}
 			}
 		});
-
 	}
 
 	@Override

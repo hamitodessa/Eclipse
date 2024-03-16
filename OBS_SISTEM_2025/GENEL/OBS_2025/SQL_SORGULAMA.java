@@ -126,11 +126,11 @@ public class SQL_SORGULAMA extends JInternalFrame {
 		try
 		{
 			if (textArea.getText().equals("")) return ;
-			if (  textArea.getText().toUpperCase().contains("DROP") ) return;
-			if (  textArea.getText().toUpperCase().contains("ALTER") ) return;
-			if (  textArea.getText().toUpperCase(). contains("DELETE") ) return;  
-			if (  textArea.getText().toUpperCase(). contains("INSERT") ) return;  
-			if (  textArea.getText().toUpperCase(). contains("UPDATE") ) return;  
+			if (textArea.getText().toUpperCase().contains("DROP") ) return;
+			if (textArea.getText().toUpperCase().contains("ALTER") ) return;
+			if (textArea.getText().toUpperCase(). contains("DELETE") ) return;  
+			if (textArea.getText().toUpperCase(). contains("INSERT") ) return;  
+			if (textArea.getText().toUpperCase(). contains("UPDATE") ) return;  
 
 			ResultSet rs =null;
 			if (modul.equals("cari"))
@@ -138,18 +138,13 @@ public class SQL_SORGULAMA extends JInternalFrame {
 				String mesaj = "Aranan:" ;
 				String mesaj1 = textArea.getText();
 				if( mesaj1.length() <= 93)
-				{
 					mesaj = mesaj +  mesaj1 ;
-				}
 				else
-				{
 					mesaj = mesaj +  mesaj1.substring(0, 93  -(mesaj.length())) ;
-				}
 				lOG_BILGI lBILGI = new lOG_BILGI();
 				lBILGI.setmESAJ(mesaj);
 				lBILGI.seteVRAK("");
 				rs = c_Access.sql_sorgu(textArea.getText(),lBILGI,BAGLAN_LOG.cariLogDizin);
-
 				if (!rs.isBeforeFirst() ) {  
 					GRID_TEMIZLE.grid_temizle(table);
 					return;
@@ -204,12 +199,9 @@ public class SQL_SORGULAMA extends JInternalFrame {
 			 {
 				tc = tcm.getColumn(i);
 				tc.setHeaderRenderer(new SOLA());
-				//tc.setMinWidth(100);
 			 }
-			//table.setAutoResizeMode( JTable.AUTO_RESIZE_ALL_COLUMNS );
 			table.setRowSelectionInterval(0, 0);
 			table.setRowHeight(21);
-
 		}
 		catch (Exception ex)
 		{

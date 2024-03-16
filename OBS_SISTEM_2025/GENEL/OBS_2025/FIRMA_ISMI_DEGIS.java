@@ -49,92 +49,52 @@ public class FIRMA_ISMI_DEGIS extends JInternalFrame {
 		setFrameIcon(FIT_IMAGE.formIcon(new ImageIcon(FIRMA_ISMI_DEGIS.class.getResource("/ICONLAR/icons8-organization-30.png")), 16, 16));//
 		JPanel panel = new JPanel();
 		panel.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
-
 		getContentPane().add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
-
 		panel_1 = new JPanel();
 		//panel_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "Baslik", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
 		panel_1.setBounds(52, 11, 529, 64);
 		panel.add(panel_1);
 		panel_1.setLayout(null);
-
 		textField = new Obs_TextFIeld(50);
-		//textField.setForeground(new Color(0, 0, 128));
 		textField.setFont(new Font("Tahoma", Font.BOLD, 11));
 		textField.setBounds(53, 25, 423, 20);
 		panel_1.add(textField);
 		textField.setColumns(10);
-
 	}
 	public static void modul(String mod)
 	{
 		modul = mod ;
 		if (modul.equals("cari"))
-		{
 			panel_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "Cari Hesap", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
-
-			isim_oku(mod);
-		}
 		else if (modul.equals("kambiyo"))
-		{
 			panel_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "Kambiyo", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
-
-			isim_oku(mod);
-		}
 		else if (modul.equals("stok"))
-		{
 			panel_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "Stok", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
-
-			isim_oku(mod);
-		}
 		else if (modul.equals("adres"))
-		{
 			panel_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "Adres", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
-
-			isim_oku(mod);
-		}
 		else if (modul.equals("gunluk"))
-		{
 			panel_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "Gunluk", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
-
-			isim_oku(mod);
-		}
 		else if (modul.equals("kereste"))
-		{
 			panel_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "Kereste", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
-
-			isim_oku(mod);
-		}
+		isim_oku(mod);
 	}
 	private static void  isim_oku(String modul)
 	{
 		try
 		{
 			if (modul.equals("cari"))
-			{
 				textField.setText(oac._ICar.cari_firma_adi() );
-			}
 			else if (modul.equals("kambiyo"))
-			{
 				textField.setText(oac._IKambiyo.kam_firma_adi());
-			}
 			else if (modul.equals("stok"))
-			{
 				textField.setText(oac._IStok.fat_firma_adi());
-			}
 			else if (modul.equals("adres"))
-			{
 				textField.setText(oac._IAdres.adr_firma_adi());
-			}
 			else if (modul.equals("gunluk"))
-			{
 				textField.setText(oac._IGunluk.gun_firma_adi());
-			}
 			else if (modul.equals("kereste"))
-			{
 				textField.setText(oac._IKereste.ker_firma_adi());
-			}
 		}
 		catch (Exception ex)
 		{

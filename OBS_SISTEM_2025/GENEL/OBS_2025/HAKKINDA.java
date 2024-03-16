@@ -47,7 +47,6 @@ public class HAKKINDA extends JInternalFrame {
 		panel.add(lblNewLabel);
 
 		lbljava = new JLabel("...");
-		//lbljava.setForeground(new Color(0, 128, 128));
 		lbljava.setBounds(144, 11, 76, 14);
 		panel.add(lbljava);
 
@@ -57,14 +56,12 @@ public class HAKKINDA extends JInternalFrame {
 		panel.add(lblProgramVersion);
 
 		lblver = new JLabel("...");
-		//lblver.setForeground(new Color(0, 0, 128));
 		lblver.setBounds(144, 36, 44, 14);
 		panel.add(lblver);
 
 		lbljava.setText(Integer.toString(getVersion()));
 
 		lbltar = new JLabel("...");
-		//lbltar.setForeground(new Color(0, 0, 128));
 		lbltar.setBounds(198, 36, 67, 14);
 		panel.add(lbltar);
 
@@ -91,7 +88,6 @@ public class HAKKINDA extends JInternalFrame {
 		panel.add(lblNewLabel_1);
 
 		lblNewLabel_2 = new JLabel();
-		//lblNewLabel_2.setText("<html><font color=\"#0000CF\"><u>info@okumus.gen.tr</u></font></html>");
 		lblNewLabel_2.setText("<html><u>info@okumus.gen.tr</u></html>");
 		lblNewLabel_2.setBounds(144, 101, 261, 14);
 		panel.add(lblNewLabel_2);
@@ -165,8 +161,8 @@ public class HAKKINDA extends JInternalFrame {
 			try {
 				URI uri = new URI(sayfa);
 				Desktop.getDesktop().browse(uri);
-			} catch (IOException | URISyntaxException e) { /* TODO: error handling */ }
-		} else { /* TODO: error handling */ }
+			} catch (IOException | URISyntaxException e) { }
+		} else { }
 	}
 	private static int getVersion() {
 		String version = System.getProperty("java.version");

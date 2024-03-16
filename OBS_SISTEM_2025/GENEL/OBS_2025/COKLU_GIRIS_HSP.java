@@ -18,14 +18,11 @@ import OBS_C_2025.Obs_TextFIeld;
 
 @SuppressWarnings({"serial","unused","static-access"})
 public class COKLU_GIRIS_HSP extends DefaultCellEditor {
-
 	private static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
-
 	private static final Border red = new LineBorder(Color.red);
 	private static final Border black = new LineBorder(Color.black);
 	private Obs_TextFIeld textField;
 	private String turu= "" ;
-
 	public COKLU_GIRIS_HSP(Obs_TextFIeld textField,String tur) {
 		super(textField);
 		turu = tur ;
@@ -80,5 +77,4 @@ public class COKLU_GIRIS_HSP extends DefaultCellEditor {
 		return super.getTableCellEditorComponent(
 				table, value, isSelected, row, column);
 	}
-
 }

@@ -13,6 +13,9 @@ import OBS_C_2025.Obs_TextFIeld;
 import raven.toast.Notifications;
 
 import javax.swing.JSeparator;
+import javax.swing.border.EtchedBorder;
+import javax.swing.border.TitledBorder;
+
 import java.awt.Font;
 import javax.swing.JPasswordField;
 
@@ -35,6 +38,8 @@ public class E_MAIL_BILGILERI extends JInternalFrame {
 		setBounds(100, 100, 492, 249);
 		setFrameIcon(FIT_IMAGE.formIcon(new ImageIcon(E_MAIL_BILGILERI.class.getResource("/ICONLAR/icons8-mailbox-opened-flag-up-30.png")), 16, 16));//
 		panel = new JPanel();
+		panel.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
+
 		getContentPane().add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
 

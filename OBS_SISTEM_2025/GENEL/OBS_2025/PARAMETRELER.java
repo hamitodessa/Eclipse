@@ -159,10 +159,8 @@ public class PARAMETRELER   extends JInternalFrame   {
 		setBounds(0, 0, 540, 594);
 		setFrameIcon(FIT_IMAGE.formIcon(new ImageIcon(PARAMETRELER.class.getResource("/ICONLAR/icons8-settings-30.png")), 16, 16));//
 		MaterialTabbed tabbedPane = new MaterialTabbed();
-		//tabbedPane.setForeground(new Color(25, 25, 112));
 		tabbedPane.setFont(new Font("Tahoma", Font.BOLD, 14));
 		tabbedPane.addKeyListener(new KeyAdapter() {
-
 			@Override
 			public void keyPressed(KeyEvent e) {
 				String[] parts;
@@ -184,12 +182,10 @@ public class PARAMETRELER   extends JInternalFrame   {
 			}
 		});
 		getContentPane().add(tabbedPane, BorderLayout.CENTER);
-
 		JScrollPane scrollPane_5 = new JScrollPane();
 		tabbedPane.addTab("Program", null, scrollPane_5, null);
 
 		JPanel panel_4 = new JPanel();
-		//panel_4.setBorder(new LineBorder(null));
 		scrollPane_5.setViewportView(panel_4);
 		panel_4.setLayout(null);
 
@@ -210,10 +206,8 @@ public class PARAMETRELER   extends JInternalFrame   {
 					if ( ! parts[2].equals(" ")) 
 					{
 						char c=parts[2].charAt(0);
-						if ((e.getKeyCode() == c) && ((e.getModifiersEx() & (parts[0].equals("E") ?  KeyEvent.CTRL_DOWN_MASK : KeyEvent.ALT_DOWN_MASK) ) != 0)) {
+						if ((e.getKeyCode() == c) && ((e.getModifiersEx() & (parts[0].equals("E") ?  KeyEvent.CTRL_DOWN_MASK : KeyEvent.ALT_DOWN_MASK) ) != 0))
 							OBS_MAIN.btnKaydet.doClick();
-							//     System.out.println("woot!");
-						}
 					}
 				} catch (IOException e1) {
 					e1.printStackTrace();
@@ -252,7 +246,6 @@ public class PARAMETRELER   extends JInternalFrame   {
 		panel_4.add(chckbxNewCheckBox_2_1_1_1_1);
 
 		comboBox_2_1_1_1 = new JComboBox<String>(comboModel);
-		//comboBox_2_1_1_1.setForeground(new Color(25, 25, 112));
 		comboBox_2_1_1_1.setFont(new Font("Tahoma", Font.BOLD, 14));
 		comboBox_2_1_1_1.setBounds(295, 35, 55, 22);
 		panel_4.add(comboBox_2_1_1_1);
@@ -281,7 +274,6 @@ public class PARAMETRELER   extends JInternalFrame   {
 		panel_4.add(chckbxNewCheckBox_2_1_1_1_2);
 
 		comboBox_2_1_1_2 = new JComboBox<String>(comboModel1);
-		//comboBox_2_1_1_2.setForeground(new Color(25, 25, 112));
 		comboBox_2_1_1_2.setFont(new Font("Tahoma", Font.BOLD, 14));
 		comboBox_2_1_1_2.setBounds(295, 60, 55, 22);
 		panel_4.add(comboBox_2_1_1_2);
@@ -310,7 +302,6 @@ public class PARAMETRELER   extends JInternalFrame   {
 		panel_4.add(chckbxNewCheckBox_2_1_1_1_2_2);
 
 		comboBox_2_1_1_2_2 = new JComboBox<String>(comboModel2);
-		//comboBox_2_1_1_2_2.setForeground(new Color(25, 25, 112));
 		comboBox_2_1_1_2_2.setFont(new Font("Tahoma", Font.BOLD, 14));
 		comboBox_2_1_1_2_2.setBounds(295, 98, 55, 22);
 		panel_4.add(comboBox_2_1_1_2_2);
@@ -339,14 +330,12 @@ public class PARAMETRELER   extends JInternalFrame   {
 		panel_4.add(chckbxNewCheckBox_2_1_1_1_2_3);
 
 		comboBox_2_1_1_2_3 = new JComboBox<String>(comboModel3);
-		//comboBox_2_1_1_2_3.setForeground(new Color(25, 25, 112));
 		comboBox_2_1_1_2_3.setFont(new Font("Tahoma", Font.BOLD, 14));
 		comboBox_2_1_1_2_3.setBounds(295, 123, 55, 22);
 		panel_4.add(comboBox_2_1_1_2_3);
 
 		JSeparator separator_2 = new JSeparator();
 		separator_2.setBounds(10, 89, 340, 2);
-		//separator_2.setForeground(new Color(0, 191, 255));
 		panel_4.add(separator_2);
 
 		JLabel lblNewLabel_2 = new JLabel("Gorunum");
@@ -355,7 +344,6 @@ public class PARAMETRELER   extends JInternalFrame   {
 		panel_4.add(lblNewLabel_2);
 
 		comboBox_2 = new JComboBox<String>();
-		//comboBox_2.setForeground(new Color(25, 25, 112));
 		comboBox_2.setFont(new Font("Tahoma", Font.BOLD, 14));
 
 		comboBox_2.setModel(new DefaultComboBoxModel<String>(new String[] {"Windows" ,"TextureLookAndFeel","FlatSolarizedLightIJTheme" ,"FlatCarbonIJ","FlatArcOrangeIJTheme" ,
@@ -394,7 +382,6 @@ public class PARAMETRELER   extends JInternalFrame   {
 		panel_4.add(chckbxNewCheckBox_2);
 
 		JSeparator separator_2_1 = new JSeparator();
-		//separator_2_1.setForeground(new Color(0, 191, 255));
 		separator_2_1.setBounds(10, 328, 340, 2);
 		panel_4.add(separator_2_1);
 
@@ -469,9 +456,6 @@ public class PARAMETRELER   extends JInternalFrame   {
 				lblNewLabel_3.setText("[" + fc.getFont().getName() + "," + fc.getFont().getStyle() + "," + fc.getFont().getSize()+ "]" );
 				bigFont = new Font(fc.getFont().getName(), fc.getFont().getStyle(), fc.getFont().getSize());
 				lblNewLabel_3.setFont(bigFont);
-
-				//JColorChooser asd = new JColorChooser();
-				//System.out.println(asd.getColor().toString());
 
 			}
 		});
@@ -729,7 +713,6 @@ public class PARAMETRELER   extends JInternalFrame   {
 		panel.add(chckbxNewCheckBox_2_1_1);
 
 		comboBox_2_1 = new JComboBox<String>(comboModel);
-		//comboBox_2_1.setForeground(new Color(25, 25, 112));
 		comboBox_2_1.setFont(new Font("Tahoma", Font.BOLD, 14));
 		comboBox_2_1.setBounds(295, 71, 55, 22);
 		panel.add(comboBox_2_1);
@@ -758,7 +741,6 @@ public class PARAMETRELER   extends JInternalFrame   {
 		panel.add(chckbxNewCheckBox_2_1_1_1);
 
 		comboBox_2_1_1 =  new JComboBox<String>(comboModel1);
-		//comboBox_2_1_1.setForeground(new Color(25, 25, 112));
 		comboBox_2_1_1.setFont(new Font("Tahoma", Font.BOLD, 14));
 		comboBox_2_1_1.setBounds(295, 221, 55, 22);
 		panel.add(comboBox_2_1_1);
@@ -795,7 +777,6 @@ public class PARAMETRELER   extends JInternalFrame   {
 		tabbedPane.addTab("Fatura", null, scrollPane_1, null);
 
 		JPanel panel_1 = new JPanel();
-		//panel_1.setBorder(new LineBorder(null));
 		scrollPane_1.setViewportView(panel_1);
 		panel_1.setLayout(null);
 
@@ -883,7 +864,6 @@ public class PARAMETRELER   extends JInternalFrame   {
 		panel_1.add(lblNewLabel_4_1_1);
 
 		comboBox = new JComboBox<String>();
-		//comboBox.setForeground(new Color(25, 25, 112));
 		comboBox.setFont(new Font("Tahoma", Font.BOLD, 14));
 		comboBox.setModel(new DefaultComboBoxModel<String>(new String[] {"Cari_Dosya", "Adres_Dosya"}));
 		comboBox.setBounds(150, 86, 139, 22);
@@ -938,9 +918,7 @@ public class PARAMETRELER   extends JInternalFrame   {
 					{
 						char c=parts[2].charAt(0);
 						if ((e.getKeyCode() == c) && ((e.getModifiersEx() & (parts[0].equals("E") ?  KeyEvent.CTRL_DOWN_MASK : KeyEvent.ALT_DOWN_MASK) ) != 0))
-						{
 							OBS_MAIN.btnKaydet.doClick();
-						}
 					}
 				} catch (IOException e1) {
 					e1.printStackTrace();
@@ -1066,7 +1044,6 @@ public class PARAMETRELER   extends JInternalFrame   {
 		panel_1.add(lblNewLabel_4_1_1_1);
 
 		comboBox_1 = new JComboBox<String>();
-		//comboBox_1.setForeground(new Color(25, 25, 112));
 		comboBox_1.setFont(new Font("Tahoma", Font.BOLD, 14));
 		comboBox_1.setModel(new DefaultComboBoxModel<String>(new String[] {"Cari_Dosya", "Adres_Dosya"}));
 		comboBox_1.setBounds(150, 309, 139, 22);
@@ -1100,7 +1077,6 @@ public class PARAMETRELER   extends JInternalFrame   {
 
 		JSeparator separator = new JSeparator();
 		separator.setBounds(10, 225, 453, 2);
-		//separator.setForeground(new Color(0, 191, 255));
 		panel_1.add(separator);
 
 		JLabel lblNewLabel_4_1_2_1_1 = new JLabel("Irsaliye Satir Sayi");
@@ -1121,9 +1097,7 @@ public class PARAMETRELER   extends JInternalFrame   {
 					{
 						char c=parts[2].charAt(0);
 						if ((e.getKeyCode() == c) && ((e.getModifiersEx() & (parts[0].equals("E") ?  KeyEvent.CTRL_DOWN_MASK : KeyEvent.ALT_DOWN_MASK) ) != 0))
-						{
 							OBS_MAIN.btnKaydet.doClick();
-						}
 					}
 				} catch (IOException e1) {
 					e1.printStackTrace();
@@ -1137,7 +1111,6 @@ public class PARAMETRELER   extends JInternalFrame   {
 
 		JSeparator separator_1 = new JSeparator();
 		separator_1.setBounds(10, 395, 453, 2);
-		//separator_1.setForeground(new Color(0, 191, 255));
 		panel_1.add(separator_1);
 
 		JLabel lblNewLabel_1_1_1_1 = new JLabel("Raporlama Font");
@@ -1201,7 +1174,6 @@ public class PARAMETRELER   extends JInternalFrame   {
 		tabbedPane.addTab("Gunluk", null, scrollPane_2, null);
 
 		JPanel panel_2 = new JPanel();
-		//panel_2.setBorder(new LineBorder(null));
 		scrollPane_2.setViewportView(panel_2);
 		panel_2.setLayout(null);
 
@@ -1232,9 +1204,7 @@ public class PARAMETRELER   extends JInternalFrame   {
 					{
 						char c=parts[2].charAt(0);
 						if ((e.getKeyCode() == c) && ((e.getModifiersEx() & (parts[0].equals("E") ?  KeyEvent.CTRL_DOWN_MASK : KeyEvent.ALT_DOWN_MASK) ) != 0))
-						{
 							OBS_MAIN.btnKaydet.doClick();
-						}
 					}
 				} catch (IOException e1) {
 					e1.printStackTrace();
@@ -1276,9 +1246,7 @@ public class PARAMETRELER   extends JInternalFrame   {
 					{
 						char c=parts[2].charAt(0);
 						if ((e.getKeyCode() == c) && ((e.getModifiersEx() & (parts[0].equals("E") ?  KeyEvent.CTRL_DOWN_MASK : KeyEvent.ALT_DOWN_MASK) ) != 0))
-						{
 							OBS_MAIN.btnKaydet.doClick();
-						}
 					}
 				} catch (IOException e1) {
 					e1.printStackTrace();
@@ -1300,7 +1268,6 @@ public class PARAMETRELER   extends JInternalFrame   {
 		tabbedPane.addTab("Kambiyo", null, scrollPane_3, null);
 
 		JPanel panel_3 = new JPanel();
-		//panel_3.setBorder(new LineBorder(null));
 		scrollPane_3.setViewportView(panel_3);
 		panel_3.setLayout(null);
 
@@ -1322,9 +1289,7 @@ public class PARAMETRELER   extends JInternalFrame   {
 					{
 						char c=parts[2].charAt(0);
 						if ((e.getKeyCode() == c) && ((e.getModifiersEx() & (parts[0].equals("E") ?  KeyEvent.CTRL_DOWN_MASK : KeyEvent.ALT_DOWN_MASK) ) != 0))
-						{
 							OBS_MAIN.btnKaydet.doClick();
-						}
 					}
 				} catch (IOException e1) {
 					e1.printStackTrace();
@@ -1354,9 +1319,7 @@ public class PARAMETRELER   extends JInternalFrame   {
 					{
 						char c=parts[2].charAt(0);
 						if ((e.getKeyCode() == c) && ((e.getModifiersEx() & (parts[0].equals("E") ?  KeyEvent.CTRL_DOWN_MASK : KeyEvent.ALT_DOWN_MASK) ) != 0))
-						{
 							OBS_MAIN.btnKaydet.doClick();
-						}
 					}
 				} catch (IOException e1) {
 					e1.printStackTrace();
@@ -1387,9 +1350,7 @@ public class PARAMETRELER   extends JInternalFrame   {
 					{
 						char c=parts[2].charAt(0);
 						if ((e.getKeyCode() == c) && ((e.getModifiersEx() & (parts[0].equals("E") ?  KeyEvent.CTRL_DOWN_MASK : KeyEvent.ALT_DOWN_MASK) ) != 0))
-						{
 							OBS_MAIN.btnKaydet.doClick();
-						}
 					}
 				} catch (IOException e1) {
 					e1.printStackTrace();
@@ -1420,9 +1381,7 @@ public class PARAMETRELER   extends JInternalFrame   {
 					{
 						char c=parts[2].charAt(0);
 						if ((e.getKeyCode() == c) && ((e.getModifiersEx() & (parts[0].equals("E") ?  KeyEvent.CTRL_DOWN_MASK : KeyEvent.ALT_DOWN_MASK) ) != 0))
-						{
 							OBS_MAIN.btnKaydet.doClick();
-						}
 					}
 				} catch (IOException e1) {
 					e1.printStackTrace();
@@ -1458,7 +1417,6 @@ public class PARAMETRELER   extends JInternalFrame   {
 		panel_3.add(chckbxNewCheckBox_2_1_1_1_1_1);
 
 		comboBox_2_1_1_1_1 = new JComboBox<String>(comboModel);
-		//comboBox_2_1_1_1_1.setForeground(new Color(25, 25, 112));
 		comboBox_2_1_1_1_1.setFont(new Font("Tahoma", Font.BOLD, 14));
 		comboBox_2_1_1_1_1.setBounds(295, 127, 55, 22);
 		panel_3.add(comboBox_2_1_1_1_1);
@@ -1487,17 +1445,14 @@ public class PARAMETRELER   extends JInternalFrame   {
 		panel_3.add(chckbxNewCheckBox_2_1_1_1_2_1);
 
 		comboBox_2_1_1_2_1 = new JComboBox<String>(comboModel1);
-		//comboBox_2_1_1_2_1.setForeground(new Color(25, 25, 112));
 		comboBox_2_1_1_2_1.setFont(new Font("Tahoma", Font.BOLD, 14));
 		comboBox_2_1_1_2_1.setBounds(295, 152, 55, 22);
 		panel_3.add(comboBox_2_1_1_2_1);
-
 		//////////////////////////////////////////////// KERESTE /////////////////////////////////////////////////////////
 		JScrollPane scrollPane_4 = new JScrollPane();
 		tabbedPane.addTab("Kereste", null, scrollPane_4, null);
 
 		JPanel panel_5 = new JPanel();
-		//panel_5.setBorder(new LineBorder(null));
 		scrollPane_4.setViewportView(panel_5);
 		panel_5.setLayout(null);
 
@@ -1507,7 +1462,6 @@ public class PARAMETRELER   extends JInternalFrame   {
 		panel_5.add(lblNewLabel_4_1_1_2);
 
 		comboBox_3 = new JComboBox<String>();
-		//comboBox_3.setForeground(new Color(25, 25, 112));
 		comboBox_3.setFont(new Font("Tahoma", Font.BOLD, 14));
 		comboBox_3.setModel(new DefaultComboBoxModel<String>(new String[] {"Cari_Dosya", "Adres_Dosya"}));
 		comboBox_3.setBounds(150, 27, 139, 22);
@@ -1585,14 +1539,8 @@ public class PARAMETRELER   extends JInternalFrame   {
 		});
 		btnNewButton_10_1_1_1.setBounds(417, 149, 46, 23);
 		panel_5.add(btnNewButton_10_1_1_1);
-
-
-
-
 		//************************************************************************************
 		doldur();
-
-
 	}
 	private void doldur()  {
 		try {
@@ -1872,9 +1820,6 @@ public class PARAMETRELER   extends JInternalFrame   {
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR, ex.getMessage() );
 		}
 	}
-
-
-
 	public static  void kayit()
 	{
 		try {
@@ -1969,11 +1914,9 @@ public class PARAMETRELER   extends JInternalFrame   {
 			deger = Integer.toString(clrFore.getSelectedColor().getRed() ) + "," + Integer.toString(clrFore.getSelectedColor().getGreen()) + "," + Integer.toString(clrFore.getSelectedColor().getBlue());
 			oac.glb.setting_yaz("PRG_GRID_FORE_RENK", deger);
 			oac.glb.setting_yaz("VERSION", chckbxVersion.isSelected() ?  "0" : "-1");
-
-			OBS_SIS_2025_ANA_CLASS. gridcolor =  colorChooser.getSelectedColor();
+			OBS_SIS_2025_ANA_CLASS.gridcolor =  colorChooser.getSelectedColor();
 			OBS_SIS_2025_ANA_CLASS.satBackColor =  clrBack.getSelectedColor();
 			OBS_SIS_2025_ANA_CLASS.satForeColor =  clrFore.getSelectedColor();
-
 		} 
 		catch (Exception ex) 
 		{

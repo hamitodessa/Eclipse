@@ -114,7 +114,6 @@ public class LOGLAMA_RAPOR extends JInternalFrame {
 		leftPanel.setPreferredSize(new Dimension(1033,50));
 		scrollPaneust.setViewportView(leftPanel);
 
-		//leftPanel.setBorder(new LineBorder(null));
 		leftPanel.setMinimumSize(new Dimension(0, 50));
 		leftPanel.setMaximumSize(new Dimension(0, 50));
 		ScrollPaneWin11 centerPanel = new ScrollPaneWin11();
@@ -133,7 +132,6 @@ public class LOGLAMA_RAPOR extends JInternalFrame {
 
 		lblSatir = new JLabel("0");
 		lblSatir.setBounds(97, 3, 47, 14);
-		//lblSatir.setForeground(new Color(0, 0, 128));
 		lblSatir.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblSatir.setHorizontalAlignment(SwingConstants.RIGHT);
 		rightPanel.add(lblSatir);
@@ -147,7 +145,6 @@ public class LOGLAMA_RAPOR extends JInternalFrame {
 		getContentPane().add(sp2, BorderLayout.CENTER);
 
 		comboBox = new JComboBox<String>();
-		//comboBox.setForeground(new Color(0, 0, 139));
 		comboBox.setFont(new Font("Tahoma", Font.BOLD, 14));
 		comboBox.setModel(new DefaultComboBoxModel<String>(new String[] {"Cari Hesap", "Fatura", "Kambiyo", "Adres", "Kur", "Sms-Mail", "Gunluk","Kereste"}));
 		comboBox.setBounds(10, 11, 120, 27);
@@ -218,10 +215,8 @@ public class LOGLAMA_RAPOR extends JInternalFrame {
 			public boolean isCellEditable(int row, int column) {     return false;          }
 		};
 		table.getTableHeader().setReorderingAllowed(false);
-		if(! oac.gridcolor.toString().equals("java.awt.Color[r=255,g=255,b=255]")) 
-		{
+		if(! oac.gridcolor.toString().equals("java.awt.Color[r=255,g=255,b=255]"))
 			table.setGridColor(oac.gridcolor);
-		}
 		table.setShowHorizontalLines(true);
 		table.setShowVerticalLines(true);
 		centerPanel.setViewportView(table);
@@ -572,13 +567,9 @@ public class LOGLAMA_RAPOR extends JInternalFrame {
 	{
 		DefaultTableModel mdl = (DefaultTableModel) table.getModel();
 		if (mdl.getRowCount() == 0 )
-		{
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR, "Aktarilacak Bilgi Yok....." );
-		}
 		else
-		{
 			write() ;	
-		}
 	}
 	public static void write()
 	{
@@ -602,9 +593,7 @@ public class LOGLAMA_RAPOR extends JInternalFrame {
 			
 			int returnVal = fileChooser.showSaveDialog(null);
 			if ( returnVal != JFileChooser.APPROVE_OPTION )
-			{
 				return;
-			}
 			GuiUtil.setWaitCursor(sp2,true);
 			String uzanti ="";
 			File excelFile =  FILE_UZANTI. getSelectedFileWithExtension(fileChooser);
@@ -687,9 +676,8 @@ public class LOGLAMA_RAPOR extends JInternalFrame {
 						hname.setCellStyle(solaStyle); 
 					}
 				}
-				for (int i=0; i<= mdl.getColumnCount()-1; i++){
+				for (int i=0; i<= mdl.getColumnCount()-1; i++)
 					sheet.autoSizeColumn(i);
-				}
 				//
 				FileOutputStream out = new FileOutputStream(new File(fileChooser.getSelectedFile() + "_" + zaman + uzanti));
 				workbook.write(out);
@@ -770,17 +758,14 @@ public class LOGLAMA_RAPOR extends JInternalFrame {
 						hname.setCellStyle(solaStyle); 
 					}
 				}
-				for (int i=0; i<= mdl.getColumnCount()-1; i++){
+				for (int i=0; i<= mdl.getColumnCount()-1; i++)
 					sheet.autoSizeColumn(i);
-				}
 				//
 				FileOutputStream out = new FileOutputStream(new File(fileChooser.getSelectedFile()  + "_" + zaman + uzanti));
 				workbook.write(out);
 				out.close();
-				//**************************************
 			}
 			GuiUtil.setWaitCursor(sp2,false);
-			
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.INFO, "Aktarma Islemi Tamamlandi....." );
 		}
 		catch (Exception ex)
@@ -862,9 +847,8 @@ public class LOGLAMA_RAPOR extends JInternalFrame {
 				hname.setCellStyle(solaStyle); 
 			}
 		}		
-		for (int i=0; i<= mdl.getColumnCount()-1; i++){
+		for (int i=0; i<= mdl.getColumnCount()-1; i++)
 			sheet.autoSizeColumn(i);
-		}
 		ByteArrayOutputStream bos = new ByteArrayOutputStream();
 		workbook.write(bos);
 		byte[] byteArray= bos.toByteArray();

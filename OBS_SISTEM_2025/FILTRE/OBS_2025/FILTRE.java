@@ -13,6 +13,7 @@ import javax.swing.event.AncestorEvent;
 import javax.swing.event.AncestorListener;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
+import javax.swing.plaf.metal.MetalTabbedPaneUI;
 import javax.swing.text.MaskFormatter;
 
 import javax.swing.JLabel;
@@ -472,7 +473,7 @@ public class FILTRE extends JDialog {
 		// Goruntu icin asagidaki blogu kaldir 
 
 		final boolean showTabsHeader = false;
-		tabbedPane.setUI(new javax.swing.plaf.metal.MetalTabbedPaneUI()
+		tabbedPane.setUI(new MetalTabbedPaneUI()
 		{
 		    @Override
 		    protected int calculateTabAreaHeight(int tabPlacement, int horizRunCount, int maxTabHeight) {
@@ -481,9 +482,10 @@ public class FILTRE extends JDialog {
 		  protected void paintTabArea(Graphics g,int tabPlacement,int selectedIndex){}
 		}); 
 
-		
+		tabbedPane.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
+
 		//final boolean showTabsHeader = false;
-		//tabbedPane.setUI(new javax.swing.plaf.metal.MetalTabbedPaneUI()
+		//tabbedPane.setUI(new MetalTabbedPaneUI()
 		//{
 		//    @Override
 		//    protected int calculateTabAreaHeight(int tabPlacement, int horizRunCount, int maxTabHeight) {

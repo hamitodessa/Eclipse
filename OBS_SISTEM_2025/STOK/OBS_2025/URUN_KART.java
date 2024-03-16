@@ -2,6 +2,8 @@ package OBS_2025;
 
 import javax.swing.JInternalFrame;
 import java.awt.BorderLayout;
+import java.awt.Color;
+
 import javax.swing.JPanel;
 import javax.swing.JSeparator;
 import javax.imageio.ImageIO;
@@ -11,7 +13,7 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
-import java.awt.Color;
+
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 import javax.swing.border.TitledBorder;
@@ -45,7 +47,8 @@ import java.io.InputStream;
 import java.sql.ResultSet;
 import java.text.DecimalFormat;
 import java.awt.event.ActionEvent;
-import javax.swing.border.LineBorder;
+
+import javax.swing.border.EtchedBorder;
 import javax.swing.JFormattedTextField;
 import javax.swing.DefaultComboBoxModel;
 
@@ -96,6 +99,8 @@ public class URUN_KART extends JInternalFrame {
 		setBounds(0, 0,900, 580);
 		setFrameIcon(FIT_IMAGE.formIcon(new ImageIcon(URUN_KART.class.getResource("/ICONLAR/icons8-product-30.png")), 16, 16));//
 		JPanel panel = new JPanel();
+		panel.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+
 		getContentPane().add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
 
@@ -182,8 +187,7 @@ public class URUN_KART extends JInternalFrame {
 		textField_1.setColumns(10);
 
 		JPanel panel_1 = new JPanel();
-		panel_1.setBorder(new TitledBorder(null,"Siralama" , TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		//panel_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Siralama", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED,null, null), "Siralama", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panel_1.setBounds(490, 11, 175, 70);
 		panel.add(panel_1);
 		panel_1.setLayout(null);
@@ -247,8 +251,7 @@ public class URUN_KART extends JInternalFrame {
 		panel_1.add(chckbxBarkod);
 
 		JPanel panel_2 = new JPanel();
-		panel_2.setBorder(new TitledBorder(null,"Siralama" , TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		//panel_2.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Arama", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel_2.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "Arama", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panel_2.setBounds(690, 11, 175, 70);
 		panel.add(panel_2);
 		panel_2.setLayout(null);
@@ -292,7 +295,8 @@ public class URUN_KART extends JInternalFrame {
 
 		imagePanel = new ImagePanel();
 		imagePanel.setBounds(650, 105, 220, 175);
-		imagePanel.setBorder(new LineBorder(null, 1,true));
+		imagePanel.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+
 		panel.add( imagePanel);
 
 		JButton button_4 = new JButton("");
@@ -353,7 +357,7 @@ public class URUN_KART extends JInternalFrame {
 		panel.add(lblNewLabel_2);
 
 		txtkodu = new Obs_TextFIeld(12);
-		txtkodu.setForeground(Color.BLACK);
+		txtkodu.setForeground(null);
 		txtkodu.setEnabled(false);
 		txtkodu.addKeyListener(new KeyAdapter() {
 
@@ -363,7 +367,7 @@ public class URUN_KART extends JInternalFrame {
 				try {
 					sonuc = f_Access.ur_kod_bak(txtkodu.getText());
 					if (!sonuc.isBeforeFirst() ) {  
-						txtadi.setForeground(Color.black);
+						txtadi.setForeground(null);
 						txtadi.setText("");
 					} 
 					else
@@ -428,9 +432,7 @@ public class URUN_KART extends JInternalFrame {
 		panel.add(btnNewButton);
 
 		JPanel panel_3 = new JPanel();
-		panel_3.setBorder(new TitledBorder(null, "Grup", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-
-		//panel_3.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(0, 191, 255), new Color(160, 160, 160)), , TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel_3.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null,null),"Grup" , TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panel_3.setBounds(10, 185, 624, 58);
 		panel.add(panel_3);
 		panel_3.setLayout(null);
@@ -480,9 +482,7 @@ public class URUN_KART extends JInternalFrame {
 
 		JPanel panel_4 = new JPanel();
 		panel_4.setLayout(null);
-		panel_4.setBorder(new TitledBorder(null,"Aciklama", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-
-		//panel_4.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(0, 191, 255), new Color(160, 160, 160)), "Aciklama", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
+		panel_4.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "Aciklama", TitledBorder.LEADING, TitledBorder.TOP, null,null));
 		panel_4.setBounds(10, 254, 624, 81);
 		panel.add(panel_4);
 
@@ -510,8 +510,7 @@ public class URUN_KART extends JInternalFrame {
 
 		JPanel panel_5 = new JPanel();
 		panel_5.setLayout(null);
-		panel_5.setBorder(new TitledBorder(null,"Ozel Kod", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		//panel_5.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(0, 191, 255), new Color(160, 160, 160)), "Ozel Kod", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
+		panel_5.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null,null), "Ozel Kod", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panel_5.setBounds(10, 346, 624, 58);
 		panel.add(panel_5);
 
@@ -557,8 +556,7 @@ public class URUN_KART extends JInternalFrame {
 
 		JPanel panel_6 = new JPanel();
 		panel_6.setLayout(null);
-		panel_6.setBorder(new TitledBorder(null,"Fiat", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		//panel_6.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(0, 191, 255), new Color(160, 160, 160)), "Fiat", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
+		panel_6.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED,null, null), "Fiat", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panel_6.setBounds(10, 415, 624, 53);
 		panel.add(panel_6);
 
@@ -607,8 +605,7 @@ public class URUN_KART extends JInternalFrame {
 		panel_7.setBounds(650, 346, 221, 58);
 		panel.add(panel_7);
 		panel_7.setLayout(null);
-		panel_7.setBorder(new TitledBorder(null,"Recete", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		//panel_7.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(0, 191, 255), new Color(160, 160, 160)), "Recete", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
+		panel_7.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "Recete", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 
 		txtrecete = new Obs_TextFIeld(10);
 		txtrecete.setFont(new Font("Tahoma", Font.BOLD, 12));
@@ -671,8 +668,7 @@ public class URUN_KART extends JInternalFrame {
 
 		JPanel panel_8 = new JPanel();
 		panel_8.setLayout(null);
-		panel_8.setBorder(new TitledBorder(null, "Barkod", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		//panel_8.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(0, 191, 255), new Color(160, 160, 160)), "Barkod", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
+		panel_8.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "Barkod", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panel_8.setBounds(10, 481, 624, 58);
 		panel.add(panel_8);
 

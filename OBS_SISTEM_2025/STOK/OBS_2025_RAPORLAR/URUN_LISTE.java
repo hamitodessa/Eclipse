@@ -17,6 +17,8 @@ import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
+import javax.swing.border.EtchedBorder;
+import javax.swing.border.TitledBorder;
 import javax.swing.event.AncestorEvent;
 import javax.swing.event.AncestorListener;
 import javax.swing.table.JTableHeader;
@@ -76,6 +78,8 @@ public class URUN_LISTE extends JInternalFrame {
 		getContentPane().add(splitPane, BorderLayout.CENTER);
 		
 		ScrollPaneWin11 scrollPane = new ScrollPaneWin11();
+		scrollPane.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+
 		splitPane.setLeftComponent(scrollPane);
 		
 		table = new JTable(){
@@ -152,7 +156,8 @@ public class URUN_LISTE extends JInternalFrame {
 		
 		
 		JPanel panel_1 = new JPanel();
-		//panel_1.setBorder(new LineBorder(null));
+		panel_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+
 		panel_1.setMinimumSize(new Dimension(0, 25));
 		panel_1.setMaximumSize(new Dimension(0, 25));
 		splitPane.setRightComponent(panel_1);

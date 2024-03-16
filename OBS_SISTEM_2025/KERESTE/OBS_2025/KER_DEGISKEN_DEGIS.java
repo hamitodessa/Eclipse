@@ -10,6 +10,7 @@ import javax.swing.JComboBox;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 
 import OBS_C_2025.BAGLAN_LOG;
@@ -39,12 +40,13 @@ public class KER_DEGISKEN_DEGIS extends JInternalFrame {
 		setBounds(0,0, 430, 297);
 		setFrameIcon(FIT_IMAGE.formIcon(new ImageIcon(KER_DEGISKEN_DEGIS.class.getResource("/ICONLAR/icons8-not-equal-30.png")), 16, 16));//
 		panel = new JPanel();
+		panel.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+
 		getContentPane().add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
 		
 		JPanel panel_1 = new JPanel();
-		panel_1.setBorder(new TitledBorder(null,"Aranacak", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		//panel_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Aranacak", TitledBorder.LEADING, TitledBorder.TOP, null, SystemColor.textHighlight));
+		panel_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "Aranacak", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panel_1.setBounds(35, 20, 340, 84);
 		panel.add(panel_1);
 		panel_1.setLayout(null);
@@ -79,8 +81,7 @@ public class KER_DEGISKEN_DEGIS extends JInternalFrame {
 		
 		JPanel panel_1_1 = new JPanel();
 		panel_1_1.setLayout(null);
-		panel_1_1.setBorder(new TitledBorder(null,"Yazilacak", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		//panel_1_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Yazilacak", TitledBorder.LEADING, TitledBorder.TOP, null, SystemColor.textHighlight));
+		panel_1_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "Yazilacak", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panel_1_1.setBounds(35, 115, 340, 84);
 		panel.add(panel_1_1);
 		

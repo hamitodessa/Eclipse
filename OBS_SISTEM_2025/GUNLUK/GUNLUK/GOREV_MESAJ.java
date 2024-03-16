@@ -3,10 +3,13 @@ package GUNLUK;
 import javax.swing.JInternalFrame;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.Font;
 
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.SwingUtilities;
+import javax.swing.border.EtchedBorder;
+import javax.swing.border.TitledBorder;
 import javax.swing.event.AncestorEvent;
 import javax.swing.event.AncestorListener;
 import javax.swing.table.DefaultTableModel;
@@ -37,6 +40,8 @@ public class GOREV_MESAJ extends JInternalFrame {
 		setLocation((desktopSize.width - jInternalFrameSize.width)/2,(desktopSize.height- jInternalFrameSize.height)/2);
 
 		ScrollPaneWin11 jScrollPane1 = new ScrollPaneWin11();
+		jScrollPane1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
+
 		getContentPane().add(jScrollPane1, BorderLayout.CENTER);
 
 		DefaultTableModel model = new DefaultTableModel() ; 

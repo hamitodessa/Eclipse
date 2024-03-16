@@ -12,6 +12,8 @@ import javax.imageio.ImageIO;
 import javax.swing.JFileChooser;
 import javax.swing.JInternalFrame;
 import javax.swing.UIManager;
+import javax.swing.border.EtchedBorder;
+import javax.swing.border.TitledBorder;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 import org.jfree.chart.ChartFactory;
@@ -105,6 +107,8 @@ public class GRAFIK extends JInternalFrame {
 	    chart.setBackgroundPaint(new Color(189, 209, 219));//
        
 		ChartPanel panel = new ChartPanel(chart);  
+		panel.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+
 		setContentPane(panel);  
 	}
 	public static  void kaydet()

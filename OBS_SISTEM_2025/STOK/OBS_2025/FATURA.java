@@ -169,6 +169,8 @@ public class FATURA extends JInternalFrame {
 
 
 		ScrollPaneWin11 scrollPaneust = new ScrollPaneWin11();
+		scrollPaneust.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+
 		scrollPaneust.setMinimumSize(new Dimension(0, 160));
 		scrollPaneust.setMaximumSize(new Dimension(0, 160));
 		splitPane.setLeftComponent(scrollPaneust);
@@ -184,7 +186,8 @@ public class FATURA extends JInternalFrame {
 		panel.add(tabbedPane_1, BorderLayout.CENTER);
 
 		JPanel panel_2 = new JPanel();
-		//panel_2.setBorder(new LineBorder(null));
+		panel_2.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+
 		tabbedPane_1.addTab("Fatura Bilgileri", null, panel_2, null);
 		panel_2.setLayout(null);
 
@@ -494,12 +497,14 @@ public class FATURA extends JInternalFrame {
 
 		imagePanel = new ImagePanel();
 		imagePanel.setBounds(1015, 4, 125, 100);
-		//imagePanel.setBorder(new LineBorder(new Color(95, 158, 160), 2,true));
+		imagePanel.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+
 		panel_2.add( imagePanel);
 
 
 		JPanel panel_4 = new JPanel();
-		//panel_4.setBorder(new LineBorder(null));
+		panel_4.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+
 		tabbedPane_1.addTab("Yazici Bilgileri", null, panel_4, null);
 		panel_4.setLayout(null);
 
@@ -543,7 +548,7 @@ public class FATURA extends JInternalFrame {
 		panel_4.add(chckbxNewCheckBox);
 
 		JPanel panel_7 = new JPanel();
-		panel_7.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Gidecegi Yer Bilgileri", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel_7.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "Gidecegi Yer Bilgileri", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 
 		panel_7.setBounds(710, 5, 257, 70);
 		panel_4.add(panel_7);
@@ -639,7 +644,8 @@ public class FATURA extends JInternalFrame {
 		panel_7.add(btnNewButton_4);
 
 		JPanel panel_5 = new JPanel();
-		//panel_5.setBorder(new LineBorder(null));
+		panel_5.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+
 		tabbedPane_1.addTab("Ek Bilgi", null, panel_5, null);
 		panel_5.setLayout(null);
 
@@ -684,7 +690,8 @@ public class FATURA extends JInternalFrame {
 
 		//***
 		JPanel panel_71 = new JPanel();
-		//panel_71.setBorder(new LineBorder(null));
+		panel_71.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+
 		panel_71.setMinimumSize(new Dimension(0, 25));
 		panel_71.setMaximumSize(new Dimension(0,25));
 
@@ -738,7 +745,8 @@ public class FATURA extends JInternalFrame {
 		panell.add(tabbedPane_2, BorderLayout.CENTER);
 		
 		JPanel panel_1 = new JPanel();
-		//panel_1.setBorder(new LineBorder(null));
+		panel_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+
 		tabbedPane_2.addTab("Toplamlar", null, panel_1, null);
 		panel_1.setLayout(null);
 
@@ -880,7 +888,8 @@ public class FATURA extends JInternalFrame {
 		panel_1.add(txttev);
 
 		JPanel panel_6 = new JPanel();
-		//panel_6.setBorder(new LineBorder(null));
+		panel_6.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+
 		tabbedPane_2.addTab("Yazici Tevkifat Kasesi", null, panel_6, null);
 		panel_6.setLayout(null);
 
@@ -897,7 +906,7 @@ public class FATURA extends JInternalFrame {
 		panel_6.add(chckbxNewCheckBox_1);
 
 		panel_8 = new JPanel();
-		panel_8.setBorder(new TitledBorder(null, "Tevkifat Bilgileri", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel_8.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "Tevkifat Bilgileri", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panel_8.setBounds(167, 7, 571, 57);
 		panel_8.setVisible(false);
 		panel_6.add(panel_8);
@@ -920,6 +929,8 @@ public class FATURA extends JInternalFrame {
 		splitPane_1.setLeftComponent(splitPane_2);
 
 		JToolBar toolBar_1 = new JToolBar();
+		toolBar_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+
 		toolBar_1.setFloatable(false);
 		toolBar_1.setMinimumSize(new Dimension(30, 0));
 		toolBar_1.setMaximumSize(new Dimension(30, 0));
@@ -1027,6 +1038,7 @@ public class FATURA extends JInternalFrame {
 		splitPane_2.setRightComponent(tabbedPane);
 
 		ScrollPaneWin11 scrollPane = new ScrollPaneWin11();
+		scrollPane.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 
 		tabbedPane.addTab("Fatura", null, scrollPane, null);
 
@@ -1236,6 +1248,8 @@ public class FATURA extends JInternalFrame {
 		scrollPane.setViewportView(table);
 
 		ScrollPaneWin11 scrollPane_1 = new ScrollPaneWin11();
+		scrollPane_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+
 		tabbedPane.addTab("Ilgili Irsaliye Bilgileri", null, scrollPane_1, null);
 
 		DefaultTableModel model1 = new DefaultTableModel() ; 

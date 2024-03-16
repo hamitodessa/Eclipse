@@ -7,6 +7,7 @@ import java.awt.Graphics;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
+import javax.swing.JSplitPane;
 import javax.swing.JTabbedPane;
 import javax.swing.event.AncestorEvent;
 import javax.swing.event.AncestorListener;
@@ -458,15 +459,15 @@ public class FILTRE extends JDialog {
 		setBounds(100, 100, 800, 338);
 		setResizable(false);	
 		setLocationRelativeTo(null);
-	
-		getContentPane().setLayout(new BorderLayout());
+
+		JSplitPane splitPane= new JSplitPane() ;
 		
-		getContentPane().add(contentPanel, BorderLayout.CENTER);
-		contentPanel.setLayout(new BorderLayout(0, 0));
-		
+		splitPane.setOrientation(JSplitPane.VERTICAL_SPLIT);
+		splitPane.setDividerSize(0);
+		splitPane.setResizeWeight(1.0);
+		getContentPane().add(splitPane, BorderLayout.CENTER);
 		
 		tabbedPane = new JTabbedPane();
-		
 		//*****************************************************************************************************************
 		// Goruntu icin asagidaki blogu kaldir 
 
@@ -492,11 +493,9 @@ public class FILTRE extends JDialog {
 		//}); 
 
 //*****************************************************************************************************************		    
-		contentPanel.add(tabbedPane, BorderLayout.CENTER);
-		
+		splitPane.setLeftComponent(tabbedPane);
 		//*******************************EKSTRE ****************************************************
 		JPanel paneleks = new JPanel();
-		
 		tabbedPane.addTab("Ekstre", null, paneleks, null);
 		
 		paneleks.setLayout(null);
@@ -709,8 +708,6 @@ public class FILTRE extends JDialog {
 		txtkodu.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txtkodu.setBounds(139, 27, 145, 20);
 		paneleks.add(txtkodu);
-
-
 		//*******************************************MIZAN ********************************************
 		JPanel panel_1m = new JPanel();
 
@@ -5470,7 +5467,8 @@ public class FILTRE extends JDialog {
 		buttonPane.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
 
 		buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
-		getContentPane().add(buttonPane, BorderLayout.SOUTH);
+		splitPane.setRightComponent(buttonPane);
+		//getContentPane().add(buttonPane, BorderLayout.SOUTH);
 
 		
 	

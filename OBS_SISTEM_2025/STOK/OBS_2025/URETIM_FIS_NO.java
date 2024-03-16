@@ -12,6 +12,7 @@ import javax.swing.JSplitPane;
 import javax.swing.JToolBar;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
+import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
@@ -79,6 +80,8 @@ public class URETIM_FIS_NO extends JInternalFrame {
 		getContentPane().add(splitPane, BorderLayout.CENTER);
 
 		JPanel panel = new JPanel();
+		panel.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+
 		splitPane.setLeftComponent(panel);
 		panel.setMinimumSize(new Dimension(0, 60));
 		panel.setMaximumSize(new Dimension(0, 60));
@@ -156,8 +159,7 @@ public class URETIM_FIS_NO extends JInternalFrame {
 		panel.add(chckbxNewCheckBox);
 
 		panel_1 = new JPanel();
-		panel_1.setBorder(new TitledBorder(null, "Degiskenler", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		//panel_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Degiskenler", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(65, 105, 225)));
+		panel_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "Degiskenler", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panel_1.setBounds(336, 5, 517, 50);
 		panel_1.setVisible(false);
 		panel.add(panel_1);
@@ -216,7 +218,8 @@ public class URETIM_FIS_NO extends JInternalFrame {
 		splitPane_1.setRightComponent(panel_3);
 		panel_3.setMinimumSize(new Dimension(0, 25));
 		panel_3.setMaximumSize(new Dimension(0, 25));
-		//panel_3.setBorder(new LineBorder(null));
+		panel_3.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+
 		panel_3.setLayout(null);
 
 		JLabel lblNewLabel_1 = new JLabel("Kayit Sayisi  :");
@@ -231,6 +234,8 @@ public class URETIM_FIS_NO extends JInternalFrame {
 		panel_3.add(lbladet);
 
 		ScrollPaneWin11 scrollPane = new ScrollPaneWin11();
+		scrollPane.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+
 		splitPane_1.setLeftComponent(scrollPane);
 
 		table = new JTable();

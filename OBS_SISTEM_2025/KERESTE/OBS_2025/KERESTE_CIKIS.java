@@ -209,11 +209,15 @@ public class KERESTE_CIKIS extends JInternalFrame {
 		getContentPane().add(splitPane, BorderLayout.CENTER);
 		
 		ScrollPaneWin11 scrollPaneust = new ScrollPaneWin11();
+		scrollPaneust.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+
 		scrollPaneust.setMinimumSize(new Dimension(0, 140));
 		scrollPaneust.setMaximumSize(new Dimension(0, 140));
 		splitPane.setLeftComponent(scrollPaneust);
 
 		JPanel panel = new JPanel();
+		panel.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+
 		panel.setPreferredSize(new Dimension(1185,125));
 		panel.setLayout(new BorderLayout(0, 0));
 		scrollPaneust.setViewportView( panel);
@@ -224,6 +228,8 @@ public class KERESTE_CIKIS extends JInternalFrame {
 		panel.add(tabbedPane_1, BorderLayout.CENTER);
 
 		JPanel panel_2 = new JPanel();
+		panel_2.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+
 		panel_2.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -704,7 +710,8 @@ public class KERESTE_CIKIS extends JInternalFrame {
 
 
 		JPanel panel_4 = new JPanel();
-		//panel_4.setBorder(new LineBorder(null));
+		panel_4.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+
 		tabbedPane_1.addTab("Notlar", null, panel_4, null);
 		panel_4.setLayout(null);
 
@@ -743,7 +750,8 @@ public class KERESTE_CIKIS extends JInternalFrame {
 
 
 		JPanel panel_5 = new JPanel();
-		//panel_5.setBorder(new LineBorder(null));
+		panel_5.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+
 		tabbedPane_1.addTab("Ek Bilgi", null, panel_5, null);
 		panel_5.setLayout(null);
 
@@ -787,13 +795,16 @@ public class KERESTE_CIKIS extends JInternalFrame {
 
 		
 		ScrollPaneWin11 scrollPanetoplam = new ScrollPaneWin11();
-		scrollPanetoplam.setMinimumSize(new Dimension(1128, 35));
-		scrollPanetoplam.setMaximumSize(new Dimension(1128,35));
+		scrollPanetoplam.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+
+		scrollPanetoplam.setMinimumSize(new Dimension(1128, 30));
+		scrollPanetoplam.setMaximumSize(new Dimension(1128,30));
 		splitPane_3.setLeftComponent(scrollPanetoplam);
 		
 		JPanel panel_71 = new JPanel();
-		//panel_71.setBorder(new LineBorder(null));
-		panel_71.setPreferredSize(new Dimension(1128,30));
+		//panel_71.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+
+		panel_71.setPreferredSize(new Dimension(1128, 25));
 		scrollPanetoplam.setViewportView(panel_71);
 		
 		panel_71.setLayout(null);
@@ -839,12 +850,15 @@ public class KERESTE_CIKIS extends JInternalFrame {
 		  ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 		
 		ScrollPaneWin11 scrollPanealt = new ScrollPaneWin11();
+		scrollPanealt.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+
 		scrollPanealt.setMinimumSize(new Dimension(0, 125)); 
 		scrollPanealt.setMaximumSize(new  Dimension(0, 125)); 
 		splitPane_3.setRightComponent(scrollPanealt);
 		
 		JPanel panel_21 = new JPanel();
-		
+		panel_21.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+
 		
 		panel_21.setLayout(new BorderLayout(0, 0)); 
 		panel_21.setPreferredSize(new Dimension(1128,115));
@@ -858,7 +872,8 @@ public class KERESTE_CIKIS extends JInternalFrame {
 
 
 		JPanel panel_1 = new JPanel(); 
-		//panel_1.setBorder(new LineBorder(null)); 
+		panel_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+
 
 		panel_1.setLayout(null);
 		tabbedPane_2.addTab("Toplamlar", null, panel_1, null);
@@ -1000,6 +1015,8 @@ public class KERESTE_CIKIS extends JInternalFrame {
 		splitPane_1.setLeftComponent(splitPane_2);
 
 		JToolBar toolBar_1 = new JToolBar();
+		toolBar_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+
 		toolBar_1.setFloatable(false);
 		toolBar_1.setMinimumSize(new Dimension(30, 0));
 		toolBar_1.setMaximumSize(new Dimension(30, 0));
@@ -1075,6 +1092,7 @@ public class KERESTE_CIKIS extends JInternalFrame {
 		splitPane_2.setRightComponent(tabbedPane);
 
 		ScrollPaneWin11 scrollPane = new ScrollPaneWin11();
+		scrollPane.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 
 		tabbedPane.addTab("Kereste", null, scrollPane, null);
 

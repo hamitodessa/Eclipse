@@ -26,7 +26,8 @@ import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
-import javax.swing.border.LineBorder;
+import javax.swing.border.EtchedBorder;
+import javax.swing.border.TitledBorder;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
@@ -140,19 +141,21 @@ public class ENVANTER extends JInternalFrame {
 		getContentPane().add(splitPane, BorderLayout.CENTER);
 
 		tabbedPane = new MaterialTabbed();
+		tabbedPane.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+
 		splitPane.setLeftComponent(tabbedPane);
 
 		ScrollPaneWin11 scrollPane = new ScrollPaneWin11();
+		scrollPane.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+
 		tabbedPane.add(scrollPane);
 		tabbedPane.setTitleAt(0, "Agir");
 
 		table = new JTable(){
 			public boolean isCellEditable(int row, int column) {     return false;          }
 		};
-		if(! oac.gridcolor.toString().equals("java.awt.Color[r=255,g=255,b=255]")) 
-		{
+		if(! oac.gridcolor.toString().equals("java.awt.Color[r=255,g=255,b=255]"))
 			table.setGridColor(oac.gridcolor);
-		}
 
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		//table.setRowSelectionAllowed(false);
@@ -168,6 +171,7 @@ public class ENVANTER extends JInternalFrame {
 		tabbedPane.addTab("FIFO", null, 	splitPane_1, null);
 
 		ScrollPaneWin11 scrollPane_3 = new ScrollPaneWin11();
+		scrollPane_3.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 
 		splitPane_1.setRightComponent(scrollPane_3);
 
@@ -229,6 +233,8 @@ public class ENVANTER extends JInternalFrame {
 		scrollPane_3.setViewportView(table_2);
 
 		ScrollPaneWin11 scrollPane_4 = new ScrollPaneWin11();
+		scrollPane_4.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+
 		scrollPane_4.setMinimumSize(new Dimension(0, 70));
 		scrollPane_4.setMaximumSize(new Dimension(0, 70));
 		splitPane_1.setLeftComponent(scrollPane_4);
@@ -264,6 +270,8 @@ public class ENVANTER extends JInternalFrame {
 		tabbedPane.addTab("LIFO", null, splitPane_2, null);
 
 		ScrollPaneWin11 scrollPane_2 = new ScrollPaneWin11();
+		scrollPane_2.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+
 		scrollPane_2.setMinimumSize(new Dimension(0, 70));
 		scrollPane_2.setMaximumSize(new Dimension(0, 70));
 		splitPane_2.setLeftComponent(scrollPane_2);
@@ -296,6 +304,8 @@ public class ENVANTER extends JInternalFrame {
 		scrollPane_2.setViewportView(table_3);
 
 		ScrollPaneWin11 scrollPane_5 = new ScrollPaneWin11();
+		scrollPane_5.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+
 		splitPane_2.setRightComponent(scrollPane_5);
 
 		table_4 = new JTable(){
@@ -355,7 +365,8 @@ public class ENVANTER extends JInternalFrame {
 		scrollPane_5.setViewportView(table_4);
 
 		JPanel panel = new JPanel();
-		panel.setBorder(new LineBorder(null));
+		panel.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+
 		panel.setMinimumSize(new Dimension(0, 25));
 		panel.setMaximumSize(new Dimension(0, 25));
 		splitPane.setRightComponent(panel);
@@ -416,11 +427,9 @@ public class ENVANTER extends JInternalFrame {
 
 		lbl7 = new JLabel("0.00");
 		lbl7.setHorizontalAlignment(SwingConstants.RIGHT);
-		//lbl7.setForeground(new Color(0, 0, 128));
 		lbl7.setFont(new Font("Arial Narrow", Font.BOLD, 16));
 		lbl7.setBounds(1050, 5, 145, 14);
 		panel.add(lbl7);
-		//tabbedPane.setLayout( new CardLayout() );
 	    final boolean showTabsHeader = false;
 	    tabbedPane.setUI(new javax.swing.plaf.metal.MetalTabbedPaneUI()
 	    {
@@ -431,11 +440,7 @@ public class ENVANTER extends JInternalFrame {
 	      protected void paintTabArea(Graphics g,int tabPlacement,int selectedIndex){}
 	    });
 	    for(int i = 0;i <= tabbedPane.getTabCount() - 1;i++)
-		{
-			tabbedPane.setEnabledAt(i, false);
-		}
-
-
+	    	tabbedPane.setEnabledAt(i, false);
 	}
 	public static void hisset()
 	{

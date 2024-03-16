@@ -10,6 +10,8 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 
 import javax.swing.JTable;
+import javax.swing.border.EtchedBorder;
+import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumn;
@@ -55,6 +57,8 @@ public class EVRAK_FORMAT extends JInternalFrame {
 		getContentPane().add(tabbedPane, BorderLayout.CENTER);
 		
 		ScrollPaneWin11 scrollPane = new ScrollPaneWin11();
+		scrollPane.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+
 		tabbedPane.addTab("Irsaliye Bilgileri", null, scrollPane, null);
 		
 		table = new JTable(){
@@ -68,11 +72,8 @@ public class EVRAK_FORMAT extends JInternalFrame {
 		      }
 				}
 		};
-		if(! oac.gridcolor.toString().equals("java.awt.Color[r=255,g=255,b=255]")) 
-		{
+		if(! oac.gridcolor.toString().equals("java.awt.Color[r=255,g=255,b=255]"))
 			table.setGridColor(oac.gridcolor);
-		}
-
 		table.setModel(new DefaultTableModel(
 			new Object[][] {
 				{"Tarih", 0, 0},
@@ -141,6 +142,8 @@ public class EVRAK_FORMAT extends JInternalFrame {
 		scrollPane.setViewportView(table);
 		
 		ScrollPaneWin11 scrollPane_1 = new ScrollPaneWin11();
+		scrollPane_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+
 		tabbedPane.addTab("Fatura Bilgileri", null, scrollPane_1, null);
 		
 		table_1 = new JTable(){
@@ -230,6 +233,8 @@ public class EVRAK_FORMAT extends JInternalFrame {
 		scrollPane_1.setViewportView(table_1);
 		
 		ScrollPaneWin11 scrollPane_2 = new ScrollPaneWin11();
+		scrollPane_2.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+
 		tabbedPane.addTab("Fatura Dovizli", null, scrollPane_2, null);
 		
 		table_2 = new JTable(){

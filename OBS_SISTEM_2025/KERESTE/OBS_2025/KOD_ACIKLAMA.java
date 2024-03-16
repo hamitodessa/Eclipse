@@ -12,6 +12,8 @@ import java.awt.Dimension;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.border.EtchedBorder;
+import javax.swing.border.TitledBorder;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.event.ListSelectionEvent;
@@ -52,6 +54,8 @@ public class KOD_ACIKLAMA extends JInternalFrame {
 		getContentPane().add(splitPane, BorderLayout.CENTER);
 		
 		JPanel panel = new JPanel();
+		panel.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+
 		panel.setMinimumSize(new Dimension(0, 50));
 		panel.setMaximumSize(new Dimension(0, 50));
 		
@@ -79,6 +83,8 @@ public class KOD_ACIKLAMA extends JInternalFrame {
 		panel.add(txtAciklama);
 		
 		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+
 		splitPane.setRightComponent(scrollPane);
 		
 		table = new JTable(){

@@ -31,6 +31,8 @@ import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
+import javax.swing.border.EtchedBorder;
+import javax.swing.border.TitledBorder;
 import javax.swing.event.AncestorEvent;
 import javax.swing.event.AncestorListener;
 import javax.swing.event.ListSelectionEvent;
@@ -114,15 +116,15 @@ public class KER_FAT_RAPOR extends JInternalFrame {
 		getContentPane().add(splitPane, BorderLayout.CENTER);
 
 		ScrollPaneWin11 scrollPane = new ScrollPaneWin11();
+		scrollPane.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+
 		splitPane.setLeftComponent(scrollPane);
 
 		table = new JTable(){
 			public boolean isCellEditable(int row, int column) {     return false;          }
 		};
-		if(! oac.gridcolor.toString().equals("java.awt.Color[r=255,g=255,b=255]")) 
-		{
+		if(! oac.gridcolor.toString().equals("java.awt.Color[r=255,g=255,b=255]"))
 			table.setGridColor(oac.gridcolor);
-		}
 		table.addAncestorListener(new AncestorListener() {
 			public void ancestorAdded(AncestorEvent event) {
 				SwingUtilities.invokeLater(new Runnable() {
@@ -196,14 +198,13 @@ public class KER_FAT_RAPOR extends JInternalFrame {
 		panel.add(splitPane_1);
 
 		ScrollPaneWin11 scrollPane_1 = new ScrollPaneWin11();
+		scrollPane_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+
 		splitPane_1.setLeftComponent(scrollPane_1);
 
 		table_1 = new JTable();
-		if(! oac.gridcolor.toString().equals("java.awt.Color[r=255,g=255,b=255]")) 
-		{
+		if(! oac.gridcolor.toString().equals("java.awt.Color[r=255,g=255,b=255]"))
 			table_1.setGridColor(oac.gridcolor);
-		}
-
 		table_1.setAutoResizeMode( JTable.AUTO_RESIZE_OFF );
 		table_1.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		table_1.addKeyListener(new KeyAdapter() {
@@ -237,7 +238,8 @@ public class KER_FAT_RAPOR extends JInternalFrame {
 		scrollPane_1.setViewportView(table_1);
 
 		JPanel panel_1 = new JPanel();
-		//panel_1.setBorder(new LineBorder(null));
+		panel_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+
 		panel_1.setMinimumSize(new Dimension(0, 25));
 		panel_1.setMaximumSize(new Dimension(0, 25));
 		splitPane_1.setRightComponent(panel_1);

@@ -70,6 +70,8 @@ import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JTree;
 import javax.swing.ListSelectionModel;
+import javax.swing.border.EtchedBorder;
+import javax.swing.border.TitledBorder;
 
 import java.awt.GridLayout;
 import javax.swing.event.ChangeListener;
@@ -315,7 +317,8 @@ public class Gunluk extends JInternalFrame {
 		panel_2.add(splitPane_5, BorderLayout.CENTER);
 
 		comboIsim = new JComboBox<String>();
-		//comboIsim.setForeground(new Color(0, 0, 139));
+		comboIsim.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
+
 		comboIsim.setMinimumSize(new Dimension(0, 30));
 		comboIsim.setMaximumSize(new Dimension(0, 30));
 		splitPane_5.setLeftComponent(comboIsim);
@@ -357,6 +360,8 @@ public class Gunluk extends JInternalFrame {
 		splitPane_5.setRightComponent(splitPane_6);
 
 		ScrollPaneWin11 scrollPane_1 = new ScrollPaneWin11();
+		scrollPane_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
+
 		 scrollPane_1.setMinimumSize(new Dimension(0, 525));
 		 scrollPane_1.setMaximumSize(new Dimension(0, 525));
 		splitPane_6.setLeftComponent(scrollPane_1);
@@ -395,6 +400,8 @@ public class Gunluk extends JInternalFrame {
 		});
 		scrollPane_1.setViewportView(treeGovev);
 		JPanel panel_5 = new JPanel();
+		panel_5.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
+
 		splitPane_6.setRightComponent(panel_5);
 		panel_5.setLayout(new BorderLayout(0, 0));
 		
@@ -436,6 +443,8 @@ public class Gunluk extends JInternalFrame {
 		table_1.setRowHeight(1, 30);
 		table_1.getColumnModel().getColumn(0).setMaxWidth(100);
 		table_1.getColumnModel().getColumn(0).setMinWidth(100);
+		table_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
+
 		JTableHeader ttt = table_1.getTableHeader();
 		TableColumnModel tcc = ttt.getColumnModel();
 		TableColumn tc1;
@@ -459,6 +468,8 @@ public class Gunluk extends JInternalFrame {
 		//*****************************************************************************************************************		
 		splitPane_3.setLeftComponent(table_1);
 		ScrollPaneWin11 scrollPane = new ScrollPaneWin11();
+		scrollPane.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
+
 		JPanel p = new JPanel();
 		p.setOpaque(false);
 		scrollPane.setCorner(JScrollPane.UPPER_RIGHT_CORNER, p);
@@ -549,6 +560,8 @@ public class Gunluk extends JInternalFrame {
 						"", "", "", "", "", "", "", ""
 				}
 				));
+		table.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
+
 		table.getColumnModel().getColumn(0).setMaxWidth(100);
 		table.getColumnModel().getColumn(0).setMinWidth(100);
 		for (int row = 0; row < table.getRowCount(); row++)
@@ -585,12 +598,16 @@ public class Gunluk extends JInternalFrame {
 		
 		//****************************************Aylik***********************************
 		scrolAylik =  new ScrollPaneWin11();
+		scrolAylik.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
+
 		tabloTabbedPane.addTab("Aylik", null, scrolAylik, null);
 		//****************************************YILLIK *********************************
 		JPanel panel_6 = new JPanel();
 		tabloTabbedPane.addTab("Yillik", null, panel_6, null);
 		panel_6.setLayout(new BorderLayout(0, 0));
 		ScrollPaneWin11 scrollPane_2 = new ScrollPaneWin11();
+		scrollPane_2.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
+
 		p = new JPanel();
 		    p.setOpaque(false);
 		    scrollPane_2.setCorner(JScrollPane.UPPER_RIGHT_CORNER, p);

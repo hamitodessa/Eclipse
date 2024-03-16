@@ -14,7 +14,7 @@ import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-
+import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -71,12 +71,16 @@ public class GIDECEGI_YER extends JInternalFrame {
 		getContentPane().add(splitPane, BorderLayout.CENTER);
 		
 		JPanel panel = new JPanel();
+		panel.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+
 		panel.setMinimumSize(new Dimension(0, 190));
 		panel.setMaximumSize(new Dimension(0, 190));
 		splitPane.setRightComponent(panel);
 		panel.setLayout(null);
 		
 		JPanel panel_1 = new JPanel();
+		panel_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+
 		panel_1.setBounds(10, 11, 626, 34);
 		panel.add(panel_1);
 		panel_1.setLayout(null);
@@ -99,7 +103,7 @@ public class GIDECEGI_YER extends JInternalFrame {
 		textField_5.setColumns(10);
 		
 		JPanel panel_2 = new JPanel();
-		panel_2.setBorder(new TitledBorder(null, "Gidecegi Yer", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel_2.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "Gidecegi Yer", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panel_2.setBounds(10, 55, 626, 127);
 		panel.add(panel_2);
 		panel_2.setLayout(null);
@@ -149,6 +153,8 @@ public class GIDECEGI_YER extends JInternalFrame {
 		panel_2.add(lblNewLabel_4);
 		
 		ScrollPaneWin11 scrollPane = new ScrollPaneWin11();
+		scrollPane.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+
 		splitPane.setLeftComponent(scrollPane);
 
 		table = new JTable(){

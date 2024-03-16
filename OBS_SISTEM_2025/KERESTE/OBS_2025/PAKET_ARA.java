@@ -19,6 +19,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
+import javax.swing.border.EtchedBorder;
+import javax.swing.border.TitledBorder;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
@@ -63,6 +65,8 @@ public class PAKET_ARA extends JDialog {
 		getContentPane().add(splitPane, BorderLayout.CENTER);
 		
 		JPanel panel = new JPanel();
+		panel.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+
 		panel.setMinimumSize(new Dimension(0, 75));
 		panel.setMaximumSize(new Dimension(0, 75));
 		
@@ -141,6 +145,8 @@ public class PAKET_ARA extends JDialog {
 		
 		
 		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+
 		splitPane1.setLeftComponent(scrollPane);
 		
 		table = new JTable(){
@@ -176,7 +182,8 @@ public class PAKET_ARA extends JDialog {
 		table.setShowVerticalLines(true);
 		scrollPane.setViewportView(table);
 		JPanel panel1 = new JPanel();
-		//panel1.setBorder(new LineBorder(null));
+		panel1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+
 		panel1.setMinimumSize(new Dimension(0, 25));
 		panel1.setMaximumSize(new Dimension(0, 25));
 		splitPane1.setRightComponent(panel1);

@@ -211,12 +211,16 @@ public class KERESTE_GIRIS extends JInternalFrame {
 		getContentPane().add(splitPane, BorderLayout.CENTER);
 
 		ScrollPaneWin11 scrollPaneust = new ScrollPaneWin11();
+		scrollPaneust.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+
 		scrollPaneust.setMinimumSize(new Dimension(0, 135));
 		scrollPaneust.setMaximumSize(new Dimension(0, 135));
 		splitPane.setLeftComponent(scrollPaneust);
 		
 		
 		JPanel panel = new JPanel();
+		//panel.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+
 		panel.setPreferredSize(new Dimension(1130,125));
 		panel.setLayout(new BorderLayout(0, 0));
 		scrollPaneust.setViewportView( panel);
@@ -227,7 +231,8 @@ public class KERESTE_GIRIS extends JInternalFrame {
 		panel.add(tabbedPane_1, BorderLayout.CENTER);
 
 		JPanel panel_2 = new JPanel();
-		//panel_2.setBorder(new LineBorder(null));
+		panel_2.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+
 		tabbedPane_1.addTab("Urun Giris", null, panel_2, null);
 		panel_2.setLayout(null);
 
@@ -736,7 +741,8 @@ public class KERESTE_GIRIS extends JInternalFrame {
 
 		
 		JPanel panel_4 = new JPanel();
-		//panel_4.setBorder(new LineBorder(null));
+		panel_4.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+
 		tabbedPane_1.addTab("Notlar", null, panel_4, null);
 		panel_4.setLayout(null);
 
@@ -774,7 +780,8 @@ public class KERESTE_GIRIS extends JInternalFrame {
 		panel_4.add(lblNewLabel_16);
 
 		JPanel panel_5 = new JPanel();
-		//panel_5.setBorder(new LineBorder(null));
+		panel_5.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+
 		tabbedPane_1.addTab("Ek Bilgi", null, panel_5, null);
 		panel_5.setLayout(null);
 
@@ -822,12 +829,14 @@ public class KERESTE_GIRIS extends JInternalFrame {
 		panel_3.add(splitPane_3);
 		
 		ScrollPaneWin11 scrollPanetoplam = new ScrollPaneWin11();
+		scrollPanetoplam.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+
 		splitPane_3.setRightComponent(scrollPanetoplam);
 		
 		JPanel panel_71 = new JPanel();
 		//panel_71.setBorder(new LineBorder(null));
 		//panel_71.setBounds(2, 1, 1158, 21);
-		panel_71.setPreferredSize(new Dimension(1128,30));
+		panel_71.setPreferredSize(new Dimension(1128, 25));
 		scrollPanetoplam.setViewportView(panel_71);
 		
 		panel_71.setLayout(null);
@@ -880,6 +889,8 @@ public class KERESTE_GIRIS extends JInternalFrame {
 		panel_71.add(lblNewLabel_8);
 		
 		ScrollPaneWin11 scrollPanealt = new ScrollPaneWin11();
+		scrollPanealt.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+
 		splitPane_3.setRightComponent(scrollPanealt);
 		
 		MaterialTabbed tabbedPane_2 = new MaterialTabbed();
@@ -888,7 +899,8 @@ public class KERESTE_GIRIS extends JInternalFrame {
 		
 
 		JPanel panel_1 = new JPanel();
-		//panel_1.setBorder(new LineBorder(null));
+		panel_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+
 		tabbedPane_2.addTab("Toplamlar", null, panel_1, null);
 		panel_1.setLayout(null);
 		
@@ -1022,6 +1034,8 @@ public class KERESTE_GIRIS extends JInternalFrame {
 		
 		
 		JToolBar toolBar_1 = new JToolBar();
+		toolBar_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+
 		toolBar_1.setFloatable(false);
 		toolBar_1.setMinimumSize(new Dimension(30, 0));
 		toolBar_1.setMaximumSize(new Dimension(30, 0));
@@ -1095,6 +1109,8 @@ public class KERESTE_GIRIS extends JInternalFrame {
 		splitPane_2.setRightComponent(tabbedPane);
 		
 		ScrollPaneWin11 scrollPane = new ScrollPaneWin11();
+		scrollPane.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+
 		tabbedPane.addTab("Kereste", null, scrollPane, null);
 
 		DefaultTableModel model = new DefaultTableModel() ; 

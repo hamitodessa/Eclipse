@@ -2,6 +2,7 @@ package GUNLUK;
 
 import java.awt.Cursor;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -9,6 +10,8 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JButton;
 import javax.swing.JPanel;
+import javax.swing.border.EtchedBorder;
+import javax.swing.border.TitledBorder;
 
 
 @SuppressWarnings("serial")
@@ -46,6 +49,8 @@ public class Aylik_Gorunum extends JPanel{
 						//String twoLines =  "<html><p style=text-align:center;> <font color = #303A68 > <b> " + qweString + " </b> <br> </p></html>";
 						String twoLines =  "<html><p style=text-align:center;>  <b> " + qweString + " </b> <br> </p></html>";
 						button = new JButton( twoLines );
+						button.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
+
 						button.setToolTipText(twoLines);
 						button.setName(Integer.toString(gunler));
 						button.setActionCommand("" + Integer.toString(gunler) + "");

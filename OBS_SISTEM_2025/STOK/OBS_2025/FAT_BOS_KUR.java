@@ -13,6 +13,8 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
+import javax.swing.border.EtchedBorder;
+import javax.swing.border.TitledBorder;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
@@ -54,7 +56,8 @@ public class FAT_BOS_KUR extends JInternalFrame {
 		JPanel panel = new JPanel();
 		panel.setMinimumSize(new Dimension(0, 40));
 		panel.setMaximumSize(new Dimension(0, 40));
-		//panel.setBorder(new LineBorder(null));
+		panel.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+
 		splitPane.setLeftComponent(panel);
 		panel.setLayout(null);
 
@@ -69,6 +72,8 @@ public class FAT_BOS_KUR extends JInternalFrame {
 		panel.add(comboBox_1);
 
 		ScrollPaneWin11 scrollPane = new ScrollPaneWin11();
+		scrollPane.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+
 		splitPane.setRightComponent(scrollPane);
 
 		table = new JTable(){

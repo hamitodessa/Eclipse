@@ -39,7 +39,8 @@ import javax.swing.KeyStroke;
 import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
-import javax.swing.border.LineBorder;
+import javax.swing.border.EtchedBorder;
+import javax.swing.border.TitledBorder;
 import javax.swing.event.AncestorEvent;
 import javax.swing.event.AncestorListener;
 import javax.swing.event.DocumentEvent;
@@ -131,7 +132,8 @@ public class ZAYI extends JInternalFrame {
 		panel.add(tabbedPane_1, BorderLayout.CENTER);
 		
 		JPanel panel_2 = new JPanel();
-		//panel_2.setBorder(new LineBorder(null));
+		panel_2.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+
 		tabbedPane_1.addTab("Evrak Bilgileri", null, panel_2, null);
 		panel_2.setLayout(null);
 		
@@ -342,7 +344,8 @@ public class ZAYI extends JInternalFrame {
 		
 	
 		JPanel panel_5 = new JPanel();
-		//panel_5.setBorder(new LineBorder(null));
+		panel_5.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+
 		tabbedPane_1.addTab("Ek Bilgi", null, panel_5, null);
 		panel_5.setLayout(null);
 		
@@ -379,6 +382,7 @@ public class ZAYI extends JInternalFrame {
 		
 		
 		JSplitPane splitPane_11 = new JSplitPane();
+
 		splitPane_11.setDividerSize(0);
 		splitPane_11.setResizeWeight(0.0);
 		splitPane_11.setOrientation(JSplitPane.VERTICAL_SPLIT);
@@ -389,7 +393,8 @@ public class ZAYI extends JInternalFrame {
 		//***
 		JPanel panel_71 = new JPanel();
 		splitPane_11.setLeftComponent(panel_71);
-		//panel_71.setBorder(new LineBorder(null));
+		panel_71.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+
 		panel_71.setMinimumSize(new Dimension(0, 25));
 		panel_71.setMaximumSize(new Dimension(0,25));
 		
@@ -421,7 +426,8 @@ public class ZAYI extends JInternalFrame {
 		/////////////////////////////////////////////////////////////////
 		JPanel panel_711 = new JPanel();
 		
-		panel_711.setBorder(new LineBorder(null));
+		panel_711.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+
 		panel_711.setMinimumSize(new Dimension(0, 95));
 		panel_711.setMaximumSize(new Dimension(0,95));
 		panel_711.setLayout(new BorderLayout(0, 0));
@@ -434,7 +440,8 @@ public class ZAYI extends JInternalFrame {
 		panel_711.add(tabbedPane_2,BorderLayout.CENTER);
 
 		JPanel panel_1 = new JPanel();
-		//panel_1.setBorder(new LineBorder(null));
+		panel_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+
 		tabbedPane_2.addTab("Toplamlar", null, panel_1, null);
 		panel_1.setLayout(null);
 		
@@ -463,6 +470,8 @@ public class ZAYI extends JInternalFrame {
 		splitPane_1.setLeftComponent(splitPane_2);
 		
 		JToolBar toolBar_1 = new JToolBar();
+		toolBar_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+
 		toolBar_1.setFloatable(false);
 		toolBar_1.setMinimumSize(new Dimension(30, 0));
 		toolBar_1.setMaximumSize(new Dimension(30, 0));
@@ -515,6 +524,8 @@ public class ZAYI extends JInternalFrame {
 		splitPane_2.setRightComponent(tabbedPane);
 		
 		ScrollPaneWin11 scrollPane = new ScrollPaneWin11();
+		scrollPane.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+
 		tabbedPane.addTab("Zayi", null, scrollPane, null);
 		
 		DefaultTableModel model = new DefaultTableModel() ; 

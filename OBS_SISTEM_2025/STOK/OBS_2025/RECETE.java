@@ -2,12 +2,11 @@ package OBS_2025;
 
 import javax.swing.JInternalFrame;
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Dimension;
 
 import javax.swing.JPanel;
-import javax.swing.border.Border;
+import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.event.AncestorEvent;
 import javax.swing.event.AncestorListener;
@@ -48,7 +47,6 @@ import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 import javax.swing.JTable;
 import javax.swing.ActionMap;
-import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.InputMap;
 
@@ -98,12 +96,13 @@ public class RECETE extends JInternalFrame {
 		setFrameIcon(FIT_IMAGE.formIcon(new ImageIcon(RECETE.class.getResource("/ICONLAR/icons8-prototype-30.png")), 16, 16));//
 		
 		JPanel panel = new JPanel();
+		panel.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+
 		getContentPane().add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
 		
 		JPanel panel_1 = new JPanel();
-		panel_1.setBorder(new TitledBorder(null, "Uretim Recetesi", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		//panel_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(0, 191, 255), new Color(160, 160, 160)), "Uretim Recetesi", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 128, 128)));
+		panel_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "Uretim Recetesi", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 
 		panel_1.setBounds(5, 11, 604, 117);
 		panel.add(panel_1);
@@ -224,9 +223,8 @@ public class RECETE extends JInternalFrame {
 		textArea = new JTextArea();
 		textArea.setLineWrap(true);
 		textArea.setBounds(66, 56, 265, 45);
-		Border border = BorderFactory.createLineBorder(Color.GRAY);
-		textArea.setBorder(BorderFactory.createCompoundBorder(border,
-	    BorderFactory.createEmptyBorder(2, 2, 2, 2)));
+		textArea.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+
 		textArea.setFont(new Font("Monospaced", Font.BOLD, 13));
 		textArea.setDocument(new JTextFieldLimit(50));
 		panel_1.add(textArea);
@@ -278,8 +276,7 @@ public class RECETE extends JInternalFrame {
 		
 		JPanel panel_2 = new JPanel();
 		panel_2.setLayout(null);
-		panel_2.setBorder(new TitledBorder(null,  "Uretilecek (Yeni) Urun ", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		//panel_2.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(0, 191, 255), new Color(160, 160, 160)), "Uretilecek (Yeni) Urun ", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 128, 128)));
+		panel_2.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "Uretilecek (Yeni) Urun ", TitledBorder.LEADING, TitledBorder.TOP, null,null));
 		panel_2.setBounds(5, 401, 604, 110);
 		panel.add(panel_2);
 		
@@ -408,9 +405,11 @@ public class RECETE extends JInternalFrame {
 		panel_2.add(label_6);
 		
 		JToolBar toolBar = new JToolBar();
+		toolBar.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+
 		toolBar.setFloatable(false);
 		toolBar.setOrientation(SwingConstants.VERTICAL);
-		toolBar.setBounds(5, 128, 25, 222);
+		toolBar.setBounds(5, 128, 25, 262);
 		panel.add(toolBar);
 		
 		JButton btnNewButton_1 = new JButton("");
@@ -448,6 +447,8 @@ public class RECETE extends JInternalFrame {
 		toolBar.add(button_4);
 		
 		ScrollPaneWin11 scrollPane = new ScrollPaneWin11();
+		scrollPane.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+
 		scrollPane.setBounds(35, 128, 574, 272);
 		panel.add(scrollPane);
 		

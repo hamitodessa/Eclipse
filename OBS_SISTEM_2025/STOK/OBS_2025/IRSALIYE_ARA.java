@@ -20,8 +20,9 @@ import javax.swing.JTable;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-
+import javax.swing.border.EtchedBorder;
 import javax.swing.border.LineBorder;
+import javax.swing.border.TitledBorder;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.table.JTableHeader;
@@ -82,6 +83,8 @@ public class IRSALIYE_ARA extends JDialog {
 		getContentPane().add(splitPane, BorderLayout.CENTER);
 		
 		ScrollPaneWin11 scrollPane = new ScrollPaneWin11();
+		scrollPane.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+
 		splitPane.setRightComponent(scrollPane);
 		
 		table = new JTable(){
@@ -119,7 +122,8 @@ public class IRSALIYE_ARA extends JDialog {
 		JPanel panel = new JPanel();
 		panel.setMinimumSize(new Dimension(0, 81));
 		panel.setMaximumSize(new Dimension(0, 81));
-		//panel.setBorder(new LineBorder(null));
+		panel.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+
 		splitPane.setLeftComponent(panel);
 		panel.setLayout(null);
 		

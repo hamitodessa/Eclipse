@@ -47,6 +47,7 @@ import OBS_C_2025.CheckBoxHeader;
 import net.proteanit.sql.DbUtils;
 import raven.toast.Notifications;
 
+import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.AbstractButton;
 import javax.swing.DefaultCellEditor;
@@ -92,11 +93,15 @@ public class KER_KOD_DEGISTIRME extends JInternalFrame {
 		
 		
 		ScrollPaneWin11 scrollPaneust = new ScrollPaneWin11();
+		scrollPaneust.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+
 		scrollPaneust.setMinimumSize(new Dimension(0, 100)); 
 		scrollPaneust.setMaximumSize(new  Dimension(0, 100)); 
 		splitPane.setLeftComponent(scrollPaneust);
 		
 		JPanel panel = new JPanel();
+		//panel.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+
 		panel.setPreferredSize(new Dimension(970,80));
 		scrollPaneust.setViewportView(panel);
 		
@@ -141,7 +146,7 @@ public class KER_KOD_DEGISTIRME extends JInternalFrame {
 		panel.add(txtPaketNo);
 		
 		JPanel panel_1 = new JPanel();
-		panel_1.setBorder(new TitledBorder(null, "Yeni Kod", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "Yeni Kod", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panel_1.setBounds(444, 14, 224, 65);
 		panel_1.setLayout(null);
 		panel.add(panel_1);
@@ -232,8 +237,7 @@ public class KER_KOD_DEGISTIRME extends JInternalFrame {
 		
 		JPanel panel_1_1 = new JPanel();
 		panel_1_1.setLayout(null);
-		panel_1_1.setBorder(new TitledBorder(null, "Yeni Konsimento", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		//panel_1_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Yeni Konsimento", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel_1_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "Yeni Konsimento", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panel_1_1.setBounds(678, 14, 224, 65);
 		panel.add(panel_1_1);
 		
@@ -322,6 +326,8 @@ public class KER_KOD_DEGISTIRME extends JInternalFrame {
 		splitPane.setRightComponent(splitPane1);
 		
 		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+
 		splitPane1.setLeftComponent(scrollPane);
 		
 		table = new JTable(){
@@ -347,7 +353,8 @@ public class KER_KOD_DEGISTIRME extends JInternalFrame {
 		table.setShowVerticalLines(true);
 		scrollPane.setViewportView(table);
 		JPanel panel1 = new JPanel();
-		//panel1.setBorder(new LineBorder(null));
+		panel1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+
 		panel1.setMinimumSize(new Dimension(0, 25));
 		panel1.setMaximumSize(new Dimension(0, 25));
 		splitPane1.setRightComponent(panel1);

@@ -18,7 +18,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Enumeration;
 
-import javax.swing.BorderFactory;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -33,7 +32,6 @@ import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
-import javax.swing.border.Border;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
@@ -118,9 +116,10 @@ public class SMS extends JInternalFrame {
 		getContentPane().add(splitPane, BorderLayout.CENTER);
 
 		JPanel panel = new JPanel();
-		//panel.setBorder(new LineBorder(null));
-		panel.setMinimumSize(new Dimension(0, 30));
-		panel.setMaximumSize(new Dimension(0, 30));
+		panel.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
+
+		panel.setMinimumSize(new Dimension(0, 25));
+		panel.setMaximumSize(new Dimension(0, 25));
 		splitPane.setRightComponent(panel);
 		panel.setLayout(null);
 
@@ -159,7 +158,8 @@ public class SMS extends JInternalFrame {
 		tabbedPane.addTab("Sms Gonder", null, splitPane_1, null);
 
 		JPanel panel_1 = new JPanel();
-		//panel_1.setBorder(new LineBorder(null));
+		panel_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
+
 		panel_1.setMinimumSize(new Dimension(0, 130));
 		panel_1.setMaximumSize(new Dimension(0, 130));
 		splitPane_1.setLeftComponent(panel_1);
@@ -183,9 +183,8 @@ public class SMS extends JInternalFrame {
 		txtaciklama.setFont(new Font("Monospaced", Font.BOLD, 13));
 		txtaciklama.setBounds(120, 39, 365, 71);
 		txtaciklama.setLineWrap(true);
-		Border border = BorderFactory.createLineBorder(Color.GRAY);
-		txtaciklama.setBorder(BorderFactory.createCompoundBorder(border,
-				BorderFactory.createEmptyBorder(2, 2, 2, 2)));
+		txtaciklama.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
+
 		txtaciklama.setDocument(new JTextFieldLimit(140));
 		panel_1.add(txtaciklama);
 
@@ -292,12 +291,15 @@ public class SMS extends JInternalFrame {
 		tabbedPane.addTab("Gonderilmis  Sms", null, splitPane_2, null);
 
 		JPanel panel_2 = new JPanel();
-		//panel_2.setBorder(new LineBorder(null));
+		panel_2.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
+
 		panel_2.setMinimumSize(new Dimension(0, 30));
 		panel_2.setMaximumSize(new Dimension(0, 30));
 		splitPane_2.setLeftComponent(panel_2);
 
 		ScrollPaneWin11 scrollPane_1 = new ScrollPaneWin11();
+		scrollPane_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
+
 		splitPane_2.setRightComponent(scrollPane_1);
 
 		table_1 = new JTable(){
@@ -432,7 +434,7 @@ public class SMS extends JInternalFrame {
 		panel_4.add(btnNewButton);
 
 		JPanel panel_5 = new JPanel();
-		panel_5.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Baglanti durumu", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel_5.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "Baglanti durumu", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panel_5.setBounds(97, 350, 251, 66);
 		panel_4.add(panel_5);
 		panel_5.setLayout(null);
@@ -470,7 +472,8 @@ public class SMS extends JInternalFrame {
 		tabbedPane.addTab("Bilgi Girisi", null, splitPane_3, null);
 
 		JPanel panel_3 = new JPanel();
-		//panel_3.setBorder(new LineBorder(null));
+		panel_3.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
+
 		panel_3.setMinimumSize(new Dimension(0, 100));
 		panel_3.setMaximumSize(new Dimension(0, 100));
 		splitPane_3.setLeftComponent(panel_3);
@@ -551,6 +554,8 @@ public class SMS extends JInternalFrame {
 		panel_3.add(comboBox_2);
 
 		ScrollPaneWin11 scrollPane_2 = new ScrollPaneWin11();
+		scrollPane_2.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
+
 		splitPane_3.setRightComponent(scrollPane_2);
 
 		table_2 = new JTable(){

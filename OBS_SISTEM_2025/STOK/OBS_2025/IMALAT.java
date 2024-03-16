@@ -3,7 +3,6 @@ package OBS_2025;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import javax.swing.ActionMap;
-import javax.swing.BorderFactory;
 import javax.swing.DefaultCellEditor;
 import javax.swing.ImageIcon;
 import javax.swing.InputMap;
@@ -19,7 +18,7 @@ import javax.swing.KeyStroke;
 import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
-import javax.swing.border.Border;
+import javax.swing.border.EtchedBorder;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
 
@@ -83,7 +82,6 @@ import java.util.Calendar;
 import java.util.Date;
 
 import javax.swing.JFormattedTextField;
-import javax.swing.border.LineBorder;
 import javax.swing.DefaultComboBoxModel;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -170,7 +168,8 @@ public class IMALAT extends JInternalFrame {
 		panel.add(tabbedPane_1, BorderLayout.CENTER);
 
 		JPanel panel_2 = new JPanel();
-		//panel_2.setBorder(new LineBorder(null));
+		panel_2.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+
 		tabbedPane_1.addTab("Imalat Bilgileri", null, panel_2, null);
 		tabbedPane_1.setEnabledAt(0, true);
 		panel_2.setLayout(null);
@@ -377,13 +376,13 @@ public class IMALAT extends JInternalFrame {
 
 		imagePanel = new ImagePanel();
 		imagePanel.setBounds(920, 5, 180, 140);
-		imagePanel.setBorder(new LineBorder(null, 1,true));
+		imagePanel.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+
 		panel_2.add( imagePanel);
 
 
 		JPanel panel_5 = new JPanel();
-		panel_5.setBorder(new TitledBorder(null,  "Uretimi Yapilacak Yeni Urun  (GIREN)", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		//panel_5.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(0, 128, 0), new Color(160, 160, 160)), "Uretimi Yapilacak Yeni Urun  (GIREN)", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel_5.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "Uretimi Yapilacak Yeni Urun  (GIREN)", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panel_5.setBounds(10, 66, 898, 52);
 		panel_2.add(panel_5);
 		panel_5.setLayout(null);
@@ -548,7 +547,8 @@ public class IMALAT extends JInternalFrame {
 		panel_2.add(lblNewLabel);
 
 		JPanel panel_4 = new JPanel();
-		//panel_4.setBorder(new LineBorder(new Color(0, 191, 255)));
+		panel_4.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+
 		tabbedPane_1.addTab("Aciklama", null, panel_4, null);
 		panel_4.setLayout(null);
 
@@ -562,9 +562,8 @@ public class IMALAT extends JInternalFrame {
 		textArea.setBounds(86, 21, 375, 63);
 		textArea.setDocument(new JTextFieldLimit(40));
 		textArea.setFont(new Font("Monospaced", Font.BOLD, 13));
-		Border border1 = BorderFactory.createLineBorder(Color.GRAY);
-		textArea.setBorder(BorderFactory.createCompoundBorder(border1,
-				BorderFactory.createEmptyBorder(2, 2, 2, 2)));
+		textArea.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+
 		panel_4.add(textArea);
 
 		JSplitPane splitPane_1 = new JSplitPane();
@@ -575,8 +574,7 @@ public class IMALAT extends JInternalFrame {
 		splitPane.setRightComponent(splitPane_1);
 
 		JPanel panel_3 = new JPanel();
-		panel_3.setBorder(new TitledBorder(null, "Giren Urun Bilgileri", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		//panel_3.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(0, 191, 255), new Color(160, 160, 160)), "Giren Urun Bilgileri", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel_3.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null,null), "Giren Urun Bilgileri", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		splitPane_1.setRightComponent(panel_3);
 		panel_3.setMinimumSize(new Dimension(0, 80));
 		panel_3.setMaximumSize(new Dimension(0, 80));
@@ -593,7 +591,7 @@ public class IMALAT extends JInternalFrame {
 		panel_3.add(label_4);
 
 		label_5 = new JLabel("...");
-		label_5.setForeground(new Color(128, 0, 0));
+		//label_5.setForeground(new Color(128, 0, 0));
 		label_5.setBounds(75, 48, 149, 14);
 		panel_3.add(label_5);
 
@@ -664,6 +662,8 @@ public class IMALAT extends JInternalFrame {
 		splitPane_1.setLeftComponent(splitPane_2);
 
 		JToolBar toolBar_1 = new JToolBar();
+		toolBar_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+
 		toolBar_1.setFloatable(false);
 		toolBar_1.setMinimumSize(new Dimension(30, 0));
 		toolBar_1.setMaximumSize(new Dimension(30, 0));
@@ -699,6 +699,8 @@ public class IMALAT extends JInternalFrame {
 		toolBar_1.add(button_5);
 
 		ScrollPaneWin11 scrollPane = new ScrollPaneWin11();
+		scrollPane.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+
 		splitPane_2.setRightComponent(scrollPane);
 
 		DefaultTableModel model = new DefaultTableModel() ; 

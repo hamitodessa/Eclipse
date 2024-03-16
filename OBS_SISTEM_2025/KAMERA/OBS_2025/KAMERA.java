@@ -5,7 +5,8 @@ import java.awt.Image;
 import java.awt.RenderingHints;
 import javax.swing.JInternalFrame;
 import javax.swing.JSplitPane;
-import javax.swing.border.LineBorder;
+import javax.swing.border.EtchedBorder;
+import javax.swing.border.TitledBorder;
 
 import com.github.sarxos.webcam.Webcam;
 import com.github.sarxos.webcam.WebcamPanel;
@@ -14,6 +15,7 @@ import com.github.sarxos.webcam.WebcamResolution;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 
 import javax.swing.JPanel;
 import javax.swing.ImageIcon;
@@ -56,7 +58,8 @@ public class KAMERA extends JInternalFrame
 		panel.add(panel1);
 
 		JPanel panel_1 = new JPanel();
-		panel_1.setBorder(new LineBorder(new Color(0, 191, 255)));
+		panel_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
+
 		panel_1.setMinimumSize(new Dimension(0, 30));
 		panel.setMaximumSize(new Dimension(0, 30));
 		splitPane.setRightComponent(panel_1);

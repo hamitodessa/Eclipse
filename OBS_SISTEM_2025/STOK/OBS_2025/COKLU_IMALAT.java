@@ -1,7 +1,6 @@
 package OBS_2025;
 
 import javax.swing.ActionMap;
-import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.InputMap;
 import javax.swing.JButton;
@@ -12,7 +11,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSplitPane;
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import javax.swing.JScrollPane;
@@ -20,7 +18,8 @@ import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.KeyStroke;
 import javax.swing.ListSelectionModel;
-import javax.swing.border.Border;
+import javax.swing.border.EtchedBorder;
+import javax.swing.border.TitledBorder;
 import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -111,7 +110,8 @@ public class COKLU_IMALAT extends JInternalFrame {
 		panel.add(tabbedPane_1, BorderLayout.CENTER);
 
 		JPanel panel_2 = new JPanel();
-		//panel_2.setBorder(new LineBorder(null));
+		panel_2.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+
 		tabbedPane_1.addTab("Imalat Bilgileri", null, panel_2, null);
 		tabbedPane_1.setEnabledAt(0, true);
 		panel_2.setLayout(null);
@@ -229,7 +229,8 @@ public class COKLU_IMALAT extends JInternalFrame {
 
 
 		JPanel panel_4 = new JPanel();
-		//panel_4.setBorder(new LineBorder(null));
+		panel_4.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+
 		tabbedPane_1.addTab("Aciklama", null, panel_4, null);
 		panel_4.setLayout(null);
 
@@ -242,12 +243,13 @@ public class COKLU_IMALAT extends JInternalFrame {
 		textArea.setBounds(86, 11, 445, 47);
 		textArea.setDocument(new JTextFieldLimit(40));
 		textArea.setFont(new Font("Monospaced", Font.BOLD, 13));
-		Border border1 = BorderFactory.createLineBorder(Color.GRAY);
-		textArea.setBorder(BorderFactory.createCompoundBorder(border1,
-				BorderFactory.createEmptyBorder(2, 2, 2, 2)));
+		textArea.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+
 		panel_4.add(textArea);
 
 		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+
 		splitPane.setRightComponent(scrollPane);
 
 		DefaultTableModel model = new DefaultTableModel() ; 
@@ -405,18 +407,19 @@ public class COKLU_IMALAT extends JInternalFrame {
 		anaPane.setRightComponent(panel_1);
 		panel_1.setMinimumSize(new Dimension(0, 25));
 		panel_1.setMaximumSize(new Dimension(0, 25));
-		//panel_1.setBorder(new LineBorder(null));
+		panel_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+
 		panel_1.setLayout(null);
 
 		JLabel label_2 = new JLabel("Satir Sayisi :");
 		label_2.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		label_2.setBounds(10, 3, 85, 14);
+		label_2.setBounds(10, 5, 85, 14);
 		panel_1.add(label_2);
 
 		label_3 = new JLabel("0");
 		//label_3.setForeground(new Color(0, 0, 128));
 		label_3.setFont(new Font("Tahoma", Font.BOLD, 11));
-		label_3.setBounds(100, 3, 46, 14);
+		label_3.setBounds(100, 5, 46, 14);
 		panel_1.add(label_3);
 
 		for (int i = 0; i <= 15 ; i ++)

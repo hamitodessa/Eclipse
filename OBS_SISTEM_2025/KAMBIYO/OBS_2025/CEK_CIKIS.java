@@ -31,6 +31,7 @@ import javax.swing.JSplitPane;
 import javax.swing.JTable;
 
 import javax.swing.SwingConstants;
+import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
@@ -114,6 +115,8 @@ public class CEK_CIKIS extends JInternalFrame {
 		splitPane.setRightComponent(splitPane_1);
 
 		ScrollPaneWin11 scrollPane = new ScrollPaneWin11();
+		scrollPane.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
+
 		splitPane_1.setLeftComponent(scrollPane);
 
 		DefaultTableModel model = new DefaultTableModel() ; 
@@ -232,8 +235,10 @@ public class CEK_CIKIS extends JInternalFrame {
 		scrollPane.setViewportView(table);
 
 		JPanel panel = new JPanel();
+		panel.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
+
 		splitPane_1.setRightComponent(panel);
-		//panel.setBorder(new LineBorder(null));
+		
 		panel.setMinimumSize(new Dimension(0, 25));
 		panel.setMaximumSize(new Dimension(0, 25));
 		panel.setLayout(null);
@@ -259,6 +264,8 @@ public class CEK_CIKIS extends JInternalFrame {
 		splitPane.setLeftComponent(tabbedPane);
 
 		JPanel panel_2 = new JPanel();
+		panel_2.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
+
 		tabbedPane.addTab("Cek Cikis", null, panel_2, null);
 		panel_2.setLayout(null);
 
@@ -455,7 +462,7 @@ public class CEK_CIKIS extends JInternalFrame {
 		panel_2.add(dateChooser);
 
 		JPanel panel_3 = new JPanel();
-		panel_3.setBorder(new TitledBorder(null,"Vade Farki", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel_3.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "Vade Farki", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
 		panel_3.setBounds(451, 5, 352, 53);
 		panel_2.add(panel_3);
 		panel_3.setLayout(null);
@@ -526,7 +533,8 @@ public class CEK_CIKIS extends JInternalFrame {
 		textField_4.setColumns(10);
 
 		JPanel panel_1 = new JPanel();
-		//panel_1.setBorder(new LineBorder(null));
+		panel_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
+
 		tabbedPane.addTab("Aciklama", null, panel_1, null);
 		panel_1.setLayout(null);
 

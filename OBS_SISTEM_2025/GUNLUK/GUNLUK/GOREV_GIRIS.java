@@ -1,7 +1,6 @@
 package GUNLUK;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
@@ -18,7 +17,6 @@ import java.util.Date;
 import java.util.Locale;
 import java.util.regex.Pattern;
 
-import javax.swing.BorderFactory;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
@@ -28,7 +26,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.SwingUtilities;
-import javax.swing.border.Border;
+import javax.swing.border.EtchedBorder;
+import javax.swing.border.TitledBorder;
 import javax.swing.event.AncestorEvent;
 import javax.swing.event.AncestorListener;
 import javax.swing.text.JTextComponent;
@@ -78,6 +77,8 @@ public class GOREV_GIRIS extends JInternalFrame {
 		setTitle("GOREV GIRIS");
 		setFrameIcon(FIT_IMAGE.formIcon(new ImageIcon(GOREV_GIRIS.class.getResource("/ICONLAR/icons8-active-directory-30.png")), 16, 16));//
 		panel = new JPanel();
+		panel.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
+
 		panel.setLayout(null);
 		getContentPane().add(panel, BorderLayout.CENTER);
 
@@ -134,8 +135,8 @@ public class GOREV_GIRIS extends JInternalFrame {
 		txtMesaj.setLineWrap(true);
 		txtMesaj.setDocument(new JTextFieldLimit(100));
 		JTextFieldRegularPopupMenu.addTo(txtMesaj,100);
-		Border borderr = BorderFactory.createLineBorder(Color.GRAY);
-		txtMesaj.setBorder(BorderFactory.createCompoundBorder(borderr, BorderFactory.createEmptyBorder(2, 2, 2, 2)));
+		txtMesaj.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
+
 
 		panel.add(txtMesaj);
 

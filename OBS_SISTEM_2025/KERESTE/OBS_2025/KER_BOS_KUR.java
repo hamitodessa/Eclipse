@@ -2,6 +2,7 @@ package OBS_2025;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.sql.ResultSet;
 
 import javax.swing.DefaultComboBoxModel;
@@ -13,6 +14,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
+import javax.swing.border.EtchedBorder;
+import javax.swing.border.TitledBorder;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
@@ -51,7 +54,8 @@ public class KER_BOS_KUR extends JInternalFrame {
 		JPanel panel = new JPanel();
 		panel.setMinimumSize(new Dimension(0, 65));
 		panel.setMaximumSize(new Dimension(0, 65));
-		//panel.setBorder(new LineBorder(null));
+		panel.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
+
 		splitPane.setLeftComponent(panel);
 		panel.setLayout(null);
 		
@@ -71,6 +75,8 @@ public class KER_BOS_KUR extends JInternalFrame {
 		panel.add(comboBox_2);
 		
 		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
+
 		splitPane.setRightComponent(scrollPane);
 		
 		table = new JTable(){

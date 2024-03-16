@@ -48,6 +48,7 @@ import javax.swing.KeyStroke;
 import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
+import javax.swing.border.EtchedBorder;
 import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.event.AncestorEvent;
@@ -179,7 +180,8 @@ public class IRSALIYE extends JInternalFrame {
 		
 		
 		JPanel panel_2 = new JPanel();
-		//panel_2.setBorder(new LineBorder(null));
+		panel_2.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+
 		tabbedPane_1.addTab("Irsaliye Bilgileri", null, panel_2, null);
 		panel_2.setLayout(null);
 
@@ -531,13 +533,14 @@ public class IRSALIYE extends JInternalFrame {
 		panel_2.add(txtkur);
 		
 		JPanel panel_9 = new JPanel();
-		//panel_9.setBorder(new LineBorder(null));
+		panel_9.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+
 		tabbedPane_1.addTab("Fatura Bilgileri", null, panel_9, null);
 		panel_9.setLayout(null);
 
 		
 		JPanel panel_6 = new JPanel();
-		panel_6.setBorder(new TitledBorder(null, "Kesilmis Fatura Bilgileri", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel_6.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "Kesilmis Fatura Bilgileri", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panel_6.setBounds(10, 11, 510, 70);
 		panel_9.add(panel_6);
 		panel_6.setLayout(null);
@@ -563,7 +566,8 @@ public class IRSALIYE extends JInternalFrame {
 	
 		
 		JPanel panel_4 = new JPanel();
-		//panel_4.setBorder(new LineBorder(null));
+		panel_4.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+
 		tabbedPane_1.addTab("Yazici Bilgileri", null, panel_4, null);
 		panel_4.setLayout(null);
 		
@@ -609,7 +613,7 @@ public class IRSALIYE extends JInternalFrame {
 
 
 		JPanel panel_7 = new JPanel();
-		panel_7.setBorder(new TitledBorder(null, "Gidecegi Yer Bilgileri", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel_7.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "Gidecegi Yer Bilgileri", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panel_7.setBounds(710, 5, 257, 70);
 		panel_4.add(panel_7);
 		panel_7.setLayout(null);
@@ -719,211 +723,214 @@ public class IRSALIYE extends JInternalFrame {
 		panel_7.add(btnNewButton_4);
 
 		//*********************************************************NORMAL *****************************************************
-		  JPanel panel_5 = new JPanel(); 
-		  //panel_5.setBorder(new LineBorder(null)); 
-		  tabbedPane_1.addTab("Ek Bilgi", null, panel_5, null);
-		  panel_5.setLayout(null);
-		  
-		  JLabel lblNewLabel_18 = new JLabel("1 -"); lblNewLabel_18.setFont(new
-		  Font("Tahoma", Font.PLAIN, 11)); lblNewLabel_18.setBounds(10, 11, 34, 14);
-		  panel_5.add(lblNewLabel_18);
-		  
-		  JLabel lblNewLabel_19 = new JLabel("2 -"); lblNewLabel_19.setFont(new
-		  Font("Tahoma", Font.PLAIN, 11)); lblNewLabel_19.setBounds(10, 38, 34, 14);
-		  panel_5.add(lblNewLabel_19);
-		  
-		  textField_9 = new Obs_TextFIeld(50); 
-		  textField_9.setFont(new Font("Tahoma",Font.BOLD, 12)); 
-		  textField_9.setBounds(54, 8, 447, 20);
-		  panel_5.add(textField_9);
-		  textField_9.setColumns(10);
-		  
-		  textField_10 = new Obs_TextFIeld(50); 
-		  textField_10.setFont(new Font("Tahoma",  Font.BOLD, 12)); 
-		  textField_10.setBounds(54, 33, 447, 20);
-		  panel_5.add(textField_10);
-		  textField_10.setColumns(10);
-		 		
-		
+		JPanel panel_5 = new JPanel(); 
+		panel_5.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+
+		tabbedPane_1.addTab("Ek Bilgi", null, panel_5, null);
+		panel_5.setLayout(null);
+
+		JLabel lblNewLabel_18 = new JLabel("1 -"); lblNewLabel_18.setFont(new Font("Tahoma", Font.PLAIN, 11)); lblNewLabel_18.setBounds(10, 11, 34, 14);
+		panel_5.add(lblNewLabel_18);
+
+		JLabel lblNewLabel_19 = new JLabel("2 -"); lblNewLabel_19.setFont(new	Font("Tahoma", Font.PLAIN, 11)); lblNewLabel_19.setBounds(10, 38, 34, 14);
+		panel_5.add(lblNewLabel_19);
+
+		textField_9 = new Obs_TextFIeld(50); 
+		textField_9.setFont(new Font("Tahoma",Font.BOLD, 12)); 
+		textField_9.setBounds(54, 8, 447, 20);
+		panel_5.add(textField_9);
+		textField_9.setColumns(10);
+
+		textField_10 = new Obs_TextFIeld(50); 
+		textField_10.setFont(new Font("Tahoma",  Font.BOLD, 12)); 
+		textField_10.setBounds(54, 33, 447, 20);
+		panel_5.add(textField_10);
+		textField_10.setColumns(10);
+
+
 		//*******************************************************************************
 		JSplitPane splitPane_1 = new JSplitPane();
 		splitPane_1.setDividerSize(0);
 		splitPane_1.setResizeWeight(1.0);
 		splitPane_1.setOrientation(JSplitPane.VERTICAL_SPLIT);
-		
+
 		splitPane.setRightComponent(splitPane_1);
-		
+
 		JPanel panel_3 = new JPanel();
 		splitPane_1.setRightComponent(panel_3);
 		panel_3.setMinimumSize(new Dimension(0, 135));
 		panel_3.setMaximumSize(new Dimension(0, 135));
 		panel_3.setLayout(null);
-		
+
 		JPanel panel_71 = new JPanel();
-		//panel_71.setBorder(new LineBorder(null));
+		panel_71.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+
 		panel_71.setBounds(2, 1, 1158, 21);
 		panel_71.setMinimumSize(new Dimension(0, 25));
 		panel_71.setMaximumSize(new Dimension(0,25));
 		panel_3.add(panel_71);
 		panel_71.setLayout(null);
-		
+
 		JLabel lblNewLabel = new JLabel("Satir Sayisi :");
 		lblNewLabel.setBounds(32, 3, 73, 14);
 		panel_71.add(lblNewLabel);
-		
+
 		lblNewLabel_13 = new JLabel("0");
 		//lblNewLabel_13.setForeground(new Color(139, 0, 0));
 		lblNewLabel_13.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblNewLabel_13.setBounds(104, 3, 46, 14);
 		panel_71.add(lblNewLabel_13);
-		
+
 		lblmiktar = new JLabel("0.000");
 		lblmiktar.setHorizontalAlignment(SwingConstants.RIGHT);
 		//lblmiktar.setForeground(new Color(139, 0, 0));
 		lblmiktar.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblmiktar.setBounds(571, 3, 102, 14);
 		panel_71.add(lblmiktar);
-		
+
 		lbltutar = new JLabel("0.00");
 		lbltutar.setHorizontalAlignment(SwingConstants.RIGHT);
 		//lbltutar.setForeground(new Color(139, 0, 0));
 		lbltutar.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lbltutar.setBounds(809, 3, 125, 14);
 		panel_71.add(lbltutar);
-		
+
 		MaterialTabbed tabbedPane_2 = new MaterialTabbed();
 		tabbedPane_2.setBounds(2, 22, 1158, 110);
 		panel_3.add(tabbedPane_2);
-		
+
 		JPanel panel_1 = new JPanel();
-		//panel_1.setBorder(new LineBorder(null));
+		panel_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+
 		tabbedPane_2.addTab("Toplamlar", null, panel_1, null);
 		panel_1.setLayout(null);
-		
+
 		JLabel lblNewLabel_11 = new JLabel("Barkod");
 		lblNewLabel_11.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblNewLabel_11.setBounds(10, 11, 46, 14);
 		panel_1.add(lblNewLabel_11);
-		
+
 		textField_4 = new Obs_TextFIeld();
 		textField_4.setBounds(66, 8, 156, 20);
 		panel_1.add(textField_4);
 		textField_4.setColumns(10);
-		
+
 		lblNewLabel_12 = new JLabel(".....");
 		lblNewLabel_12.setForeground(new Color(139, 0, 0));
 		lblNewLabel_12.setBounds(66, 33, 270, 14);
 		panel_1.add(lblNewLabel_12);
-		
+
 		lblNewLabel_20 = new JLabel("0.00");
 		//lblNewLabel_20.setForeground(new Color(0, 0, 255));
 		lblNewLabel_20.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		lblNewLabel_20.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblNewLabel_20.setBounds(1019, 11, 109, 14);
 		panel_1.add(lblNewLabel_20);
-		
+
 		label = new JLabel("0.00");
 		//label.setForeground(new Color(0, 0, 128));
 		label.setFont(new Font("Tahoma", Font.BOLD, 12));
 		label.setHorizontalAlignment(SwingConstants.RIGHT);
 		label.setBounds(1019, 39, 109, 14);
 		panel_1.add(label);
-		
+
 		JLabel lblNewLabel_21 = new JLabel("Beyan Edilen KDV");
 		lblNewLabel_21.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblNewLabel_21.setBounds(920, 11, 109, 14);
 		panel_1.add(lblNewLabel_21);
-		
+
 		JLabel lblNewLabel_22 = new JLabel("Tev.Har.Top.Tutar");
 		lblNewLabel_22.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblNewLabel_22.setBounds(920, 39, 109, 14);
 		panel_1.add(lblNewLabel_22);
-		
+
 		label_1 = new JLabel("0.00");
 		//label_1.setForeground(new Color(0, 0, 255));
 		label_1.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		label_1.setHorizontalAlignment(SwingConstants.RIGHT);
 		label_1.setBounds(810, 11, 99, 14);
 		panel_1.add(label_1);
-		
+
 		label_2 = new JLabel("0.00");
 		//label_2.setForeground(new Color(0, 0, 255));
 		label_2.setHorizontalAlignment(SwingConstants.RIGHT);
 		label_2.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		label_2.setBounds(810, 39, 99, 14);
 		panel_1.add(label_2);
-		
+
 		JLabel lblTevedilenKdv = new JLabel("Tev.Edilen K.D.V.");
 		lblTevedilenKdv.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblTevedilenKdv.setBounds(700, 11, 109, 14);
 		panel_1.add(lblTevedilenKdv);
-		
+
 		JLabel lblTevdahtoptutar = new JLabel("Tev.Dah.Top.Tutar");
 		lblTevdahtoptutar.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblTevdahtoptutar.setBounds(700, 39, 109, 14);
 		panel_1.add(lblTevdahtoptutar);
-		
+
 		label_3 = new JLabel("0.00");
 		//label_3.setForeground(new Color(0, 0, 255));
 		label_3.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		label_3.setHorizontalAlignment(SwingConstants.RIGHT);
 		label_3.setBounds(585, 11, 99, 14);
 		panel_1.add(label_3);
-		
+
 		label_4 = new JLabel("0.00");
 		//label_4.setForeground(new Color(0, 0, 255));
 		label_4.setHorizontalAlignment(SwingConstants.RIGHT);
 		label_4.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		label_4.setBounds(585, 39, 99, 14);
 		panel_1.add(label_4);
-		
+
 		JLabel lblKdv = new JLabel("K.D.V.");
 		lblKdv.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblKdv.setBounds(520, 11, 52, 14);
 		panel_1.add(lblKdv);
-		
-		
-		
+
+
+
 		JLabel lblIskonto = new JLabel("Iskonto");
 		lblIskonto.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblIskonto.setBounds(346, 11, 52, 14);
 		panel_1.add(lblIskonto);
-		
+
 		label_6 = new JLabel("0.00");
 		//label_6.setForeground(new Color(0, 0, 255));
 		label_6.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		label_6.setHorizontalAlignment(SwingConstants.RIGHT);
 		label_6.setBounds(411, 11, 99, 14);
 		panel_1.add(label_6);
-		
+
 		label_7 = new JLabel("0.00");
 		//label_7.setForeground(new Color(0, 0, 255));
 		label_7.setHorizontalAlignment(SwingConstants.RIGHT);
 		label_7.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		label_7.setBounds(411, 39, 99, 14);
 		panel_1.add(label_7);
-		
+
 		JLabel lblBakiye = new JLabel("Bakiye");
 		lblBakiye.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblBakiye.setBounds(346, 39, 82, 14);
 		panel_1.add(lblBakiye);
-		
+
 		label_8 = new JLabel(".....");
 		//label_8.setForeground(new Color(0, 0, 128));
 		label_8.setBounds(66, 50, 254, 14);
 		panel_1.add(label_8);
-		
+
 		JSplitPane splitPane_2 = new JSplitPane();
 		splitPane_2.setDividerSize(0);
 		splitPane_2.setResizeWeight(0.0);
 		splitPane_1.setLeftComponent(splitPane_2);
-		
+
 		JToolBar toolBar_1 = new JToolBar();
+		toolBar_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+
 		toolBar_1.setMinimumSize(new Dimension(30, 0));
 		toolBar_1.setMaximumSize(new Dimension(30, 0));
 		toolBar_1.setOrientation(SwingConstants.VERTICAL);
 		splitPane_2.setLeftComponent(toolBar_1);
-		
+
 		JButton btnNewButton = new JButton("");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) 
@@ -931,37 +938,37 @@ public class IRSALIYE extends JInternalFrame {
 				if (table.getSelectedRow() < 0 ) return ;
 				URUN_ARAMA arm ;
 				getContentPane().setCursor(oac.WAIT_CURSOR);
-					arm = new URUN_ARAMA();
-					arm.setVisible(true);
+				arm = new URUN_ARAMA();
+				arm.setVisible(true);
 				getContentPane().setCursor(oac.DEFAULT_CURSOR);
 				if ( ! oac.stk_kodu.equals(""))
 				{
-				table.getModel().setValueAt( oac.stk_kodu,table.getSelectedRow(), 1) ;
-				bilgi_doldur(oac.stk_kodu) ;
+					table.getModel().setValueAt( oac.stk_kodu,table.getSelectedRow(), 1) ;
+					bilgi_doldur(oac.stk_kodu) ;
 				}
 			}
 		});
 		btnNewButton.setIcon(new ImageIcon(FATURA.class.getResource("/ICONLAR/icons8-view-16.png")));
 		toolBar_1.add(btnNewButton);
-		
+
 		JButton btnNewButton_1 = new JButton("");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				 boolean varmi = OBS_MAIN.pencere_bak("URUN KARTI");
-				 	try {
-				 if (varmi  ) 
-          		{
-          		OBS_MAIN.pencere_aktiv_yap("URUN KARTI");
-          		}
-				 else
-             {
-					 JInternalFrame internalFrame;
-					 internalFrame  = new URUN_KART();
-					 OBS_MAIN.desktopPane.add(internalFrame);
-					 internalFrame.setVisible(true);
-	            }
+				boolean varmi = OBS_MAIN.pencere_bak("URUN KARTI");
+				try {
+					if (varmi  ) 
+					{
+						OBS_MAIN.pencere_aktiv_yap("URUN KARTI");
+					}
+					else
+					{
+						JInternalFrame internalFrame;
+						internalFrame  = new URUN_KART();
+						OBS_MAIN.desktopPane.add(internalFrame);
+						internalFrame.setVisible(true);
+					}
 					URUN_KART.textField_1.setText(table.getValueAt(table.getSelectedRow() == -1 ? 0:table.getSelectedRow(), 1).toString());
-          		}
+				}
 				catch (Exception ex) 
 				{
 					OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
@@ -970,13 +977,13 @@ public class IRSALIYE extends JInternalFrame {
 		});
 		btnNewButton_1.setIcon(new ImageIcon(FATURA.class.getResource("/ICONLAR/icons8-product-16.png")));
 		toolBar_1.add(btnNewButton_1);
-		
+
 		JButton btnNewButton_2 = new JButton("");
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-					satir_ilave();
-					DefaultTableModel mdll = (DefaultTableModel) table.getModel();
-					 mdll.removeRow(mdll.getRowCount() -1);
+				satir_ilave();
+				DefaultTableModel mdll = (DefaultTableModel) table.getModel();
+				mdll.removeRow(mdll.getRowCount() -1);
 			}
 		});
 		btnNewButton_2.setIcon(new ImageIcon(FATURA.class.getResource("/ICONLAR/yeni.png")));
@@ -1000,6 +1007,8 @@ public class IRSALIYE extends JInternalFrame {
 		splitPane_2.setRightComponent(tabbedPane);
 		
 		ScrollPaneWin11 scrollPane = new ScrollPaneWin11();
+		scrollPane.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+
 		tabbedPane.addTab("Irsaliye", null, scrollPane, null);
 		
 		DefaultTableModel model = new DefaultTableModel() ; 

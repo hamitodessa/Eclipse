@@ -40,8 +40,7 @@ import javax.swing.JPasswordField;
 
 import com.formdev.flatlaf.FlatClientProperties;
 
-
-
+import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 
 import java.io.FileOutputStream;
@@ -71,6 +70,7 @@ public class Ayarlar extends JPanel {
 	public Ayarlar()
 	{
 		setLayout(null);
+		setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
 
 		lblNewLabel = new JLabel("Gorunum");
 		lblNewLabel.setBounds(42, 87, 85, 14);
@@ -169,7 +169,7 @@ public class Ayarlar extends JPanel {
 		add(chckbxPrgSifre);
 
 		JPanel panel = new JPanel();
-		panel.setBorder(new TitledBorder(null, "Windows Scheduler", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "Windows Scheduler", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
 		panel.setBounds(42, 475, 372, 60);
 		add(panel);
 		panel.setLayout(null);

@@ -13,6 +13,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSeparator;
+import javax.swing.border.EtchedBorder;
+import javax.swing.border.TitledBorder;
 
 import OBS_C_2025.GLOBAL;
 import obs.backup.main.OBS_BACKUP;
@@ -32,7 +34,8 @@ public class Hakkinda extends JPanel {
 	public Hakkinda ()
 	{
 		setLayout(null);
-		
+		setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
+
 		JLabel lblNewLabel = new JLabel("Java Version");
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblNewLabel.setBounds(173, 56, 99, 14);

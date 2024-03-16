@@ -4,6 +4,8 @@ import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.JPasswordField;
 import javax.swing.SwingUtilities;
+import javax.swing.border.EtchedBorder;
+import javax.swing.border.TitledBorder;
 import javax.swing.event.AncestorEvent;
 import javax.swing.event.AncestorListener;
 
@@ -32,7 +34,8 @@ public class SifreGiris extends JPanel {
 	 */
 	public SifreGiris() {
 		setLayout(null);
-		
+		setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
+
 		lblNewLabel = new JLabel("Sifre");
 		lblNewLabel.setBounds(217, 285, 86, 20);
 		add(lblNewLabel);

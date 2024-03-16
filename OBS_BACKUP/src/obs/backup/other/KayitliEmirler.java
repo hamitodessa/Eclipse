@@ -16,6 +16,8 @@ import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.RowFilter;
 import javax.swing.SwingUtilities;
+import javax.swing.border.EtchedBorder;
+import javax.swing.border.TitledBorder;
 import javax.swing.event.AncestorEvent;
 import javax.swing.event.AncestorListener;
 import javax.swing.event.DocumentEvent;
@@ -54,6 +56,8 @@ public class KayitliEmirler extends JPanel {
 		setLayout(new BorderLayout(0, 0));
 
 		JPanel panel = new JPanel();
+		panel.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
+
 		panel.setPreferredSize(new Dimension(0, 50));
 		add(panel, BorderLayout.NORTH);
 		panel.setLayout(null);
@@ -107,6 +111,8 @@ public class KayitliEmirler extends JPanel {
 			}
 		});
 		ScrollPaneWin11 scrollPane = new ScrollPaneWin11();
+		scrollPane.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
+
 		add(scrollPane, BorderLayout.CENTER);
 
 		tblEmir = new JTable(){

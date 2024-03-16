@@ -37,6 +37,8 @@ import javax.swing.JTextField;
 import javax.swing.JToolBar;
 import javax.swing.ListSelectionModel;
 import javax.swing.SwingUtilities;
+import javax.swing.border.EtchedBorder;
+import javax.swing.border.TitledBorder;
 import javax.swing.event.AncestorEvent;
 import javax.swing.event.AncestorListener;
 import javax.swing.event.DocumentEvent;
@@ -109,6 +111,8 @@ public class DownloadFile extends JPanel {
 		setLayout(new BorderLayout(0, 0));
 
 		panel = new JPanel();
+		panel.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
+
 		panel.setPreferredSize(new Dimension(0, 50));
 		add(panel, BorderLayout.NORTH);
 		panel.setLayout(null);
@@ -154,6 +158,8 @@ public class DownloadFile extends JPanel {
 		panel.add(btnNewButton);
 		
 		scrollPane = new ScrollPaneWin11();
+		scrollPane.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
+
 		add(scrollPane, BorderLayout.CENTER);
 
 		tblFile = new JTable(){

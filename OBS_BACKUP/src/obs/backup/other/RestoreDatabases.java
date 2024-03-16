@@ -33,6 +33,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
+import javax.swing.border.EtchedBorder;
+import javax.swing.border.TitledBorder;
 import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableModel;
@@ -75,8 +77,11 @@ public class RestoreDatabases  extends JPanel{
 
 	public RestoreDatabases()
 	{
+
 		setLayout(new BorderLayout(0, 0));
 		panel = new JPanel();
+		panel.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
+
 		panel.setPreferredSize(new Dimension(0, 50));
 		add(panel, BorderLayout.NORTH);
 		panel.setLayout(null);
@@ -102,6 +107,8 @@ public class RestoreDatabases  extends JPanel{
 		panel.add(btnRestore);
 
 		scrollPane = new ScrollPaneWin11();
+		scrollPane.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
+
 		add(scrollPane, BorderLayout.CENTER);
 
 		tblFile = new JTable(){

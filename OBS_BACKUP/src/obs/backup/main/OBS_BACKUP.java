@@ -10,6 +10,7 @@ import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.WindowConstants;
 import javax.swing.border.EmptyBorder;
+import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
@@ -348,6 +349,9 @@ public class OBS_BACKUP extends JFrame {
 		contentPane.add(splitPane, BorderLayout.CENTER);
 
 		ScrollPaneWin11 jScrollPaneToolBar = new ScrollPaneWin11();
+		jScrollPaneToolBar.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
+
+		
 		splitPane.setLeftComponent(jScrollPaneToolBar);
 		JPanel panel = new JPanel();
 		jScrollPaneToolBar.setViewportView(panel);
@@ -456,7 +460,7 @@ public class OBS_BACKUP extends JFrame {
 				for (Component component : components) 
 				{
 					if(component.getName() != null)
-						component.setPreferredSize(new Dimension(00,70));
+						component.setPreferredSize(new Dimension(00,67));
 				}
 				container.revalidate();
 				tabbedPane.setSelectedIndex(0);
@@ -838,9 +842,13 @@ public class OBS_BACKUP extends JFrame {
 		panel_1.add(uplpnl, BorderLayout.SOUTH);
 
 		scrollPane = new ScrollPaneWin11();
+		scrollPane.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
+
 		panel_1.add(scrollPane, BorderLayout.CENTER);
 		//**************************************************************************************
 		container = new JPanel(); 
+		//container.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
+
 		scrollPane.setViewportView(container);
 		container.setLayout(new BoxLayout(container, BoxLayout.Y_AXIS));
 
@@ -1492,7 +1500,7 @@ public class OBS_BACKUP extends JFrame {
 			if(component.getName() != null)
 			{
 				if( component.getName().toString().equals(eadi))
-					component.setPreferredSize(new Dimension(00,70));
+					component.setPreferredSize(new Dimension(00,67));
 			}
 		}
 		container.revalidate();

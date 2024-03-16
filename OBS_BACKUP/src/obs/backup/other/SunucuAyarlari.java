@@ -6,6 +6,7 @@ import javax.swing.JFileChooser;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.UIManager;
+import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 
 import com.formdev.flatlaf.FlatClientProperties;
@@ -68,7 +69,8 @@ public class SunucuAyarlari extends JPanel {
 	public SunucuAyarlari() {
 
 		setLayout(null);
-		
+		setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
+
 		chckbxFtp = new JCheckBox("FTP");
 		chckbxFtp.setFont(new Font("Tahoma", Font.BOLD, 11));
 		chckbxFtp.setSelected(true);
@@ -121,7 +123,7 @@ public class SunucuAyarlari extends JPanel {
 		 add(chckbxYerel);
 		
 		panel_12 = new JPanel();
-		panel_12.setBorder(new TitledBorder(null, "FTP Ayarlari", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel_12.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "FTP Ayarlari", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
 		panel_12.setBounds(37, 75, 627, 100);
 		add(panel_12);
 		panel_12.setLayout(null);
@@ -158,8 +160,7 @@ public class SunucuAyarlari extends JPanel {
 		
 		panel_12_1 = new JPanel();
 		panel_12_1.setLayout(null);
-		panel_12_1.setBorder(new TitledBorder(null, "FTP Diger Ayarlar", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		//, TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
+		panel_12_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "FTP Diger Ayarlar", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
 		panel_12_1.setBounds(37, 180, 627, 100);
 		 add(panel_12_1);
 		
@@ -212,8 +213,7 @@ public class SunucuAyarlari extends JPanel {
 		
 		panel_12_1_1 = new JPanel();
 		panel_12_1_1.setLayout(null);
-		panel_12_1_1.setBorder(new TitledBorder(null, "Yerel Surucu", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		
+		panel_12_1_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "Yerel Surucu", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
 		panel_12_1_1.setBounds(37, 285, 627, 75);
 		add(panel_12_1_1);
 		
@@ -253,8 +253,7 @@ public class SunucuAyarlari extends JPanel {
 		
 		panel_12_1_1_1 = new JPanel();
 		panel_12_1_1_1.setLayout(null);
-		panel_12_1_1_1.setBorder(new TitledBorder(null, "Eski Yedek", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		
+		panel_12_1_1_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "Eski Yedek", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
 		panel_12_1_1_1.setBounds(37, 365, 627, 75);
 		 add(panel_12_1_1_1);
 		

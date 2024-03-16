@@ -2,7 +2,6 @@ package obs.backup.other;
 
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.ComponentOrientation;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -12,7 +11,9 @@ import java.awt.GridLayout;
 import javax.swing.JProgressBar;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
-import javax.swing.border.LineBorder;
+import javax.swing.border.EtchedBorder;
+import javax.swing.border.TitledBorder;
+
 import obs.backup.ayarlar.dilSecenek;
 import obs.backup.main.OBS_BACKUP;
 
@@ -47,18 +48,20 @@ public class UploadPanel extends JPanel {
 		panel.setLayout(new GridLayout(2, 1, 0, 0));
 		
 		RPB1 = new JProgressBar();
-		RPB1.setBorder(new LineBorder(new Color(0, 191, 255)));
+		RPB1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
 		RPB1.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
 		RPB1.setFont(new Font("Tahoma", Font.BOLD, 11));
 		panel.add(RPB1);
 		
 		RPB2 = new JProgressBar();
-		RPB2.setBorder(new LineBorder(new Color(0, 191, 255)));
+		RPB2.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
 		RPB2.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
 		RPB2.setFont(new Font("Tahoma", Font.BOLD, 11));
 		panel.add(RPB2);
 		
 		JPanel panel_1 = new JPanel();
+		panel_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
+
 		splitPane.setLeftComponent(panel_1);
 		panel_1.setLayout(null);
 		

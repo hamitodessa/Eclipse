@@ -29,6 +29,9 @@ import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.UIManager;
+import javax.swing.border.EtchedBorder;
+import javax.swing.border.TitledBorder;
+
 import OBS_C_2025.BACKUP_GLOBAL;
 import OBS_C_2025.CheckListItem;
 import OBS_C_2025.CheckListRenderer;
@@ -89,6 +92,8 @@ public class EmirAnaGiris extends JPanel {
 		
 		
 		JPanel panel_10 = new JPanel();
+		panel_10.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
+
 		splitPane_2.setRightComponent(panel_10);
 		panel_10.setLayout(null);
 		
@@ -226,6 +231,8 @@ public class EmirAnaGiris extends JPanel {
 		panel_9.add(splitPane_3, BorderLayout.CENTER);
 		
 		JPanel panel_11 = new JPanel();
+		panel_11.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
+
 		panel_11.setPreferredSize(new Dimension(0,75));
 		splitPane_3.setLeftComponent(panel_11);
 		panel_11.setLayout(null);
@@ -330,6 +337,8 @@ public class EmirAnaGiris extends JPanel {
 		panel_11.add(btnServer);
 		
 		JScrollPane scrollPane_1 = new JScrollPane();
+		scrollPane_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
+
 		splitPane_3.setRightComponent(scrollPane_1);
 
 		model = new DefaultListModel<>();

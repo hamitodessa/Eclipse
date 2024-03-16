@@ -8,6 +8,7 @@ import java.awt.Font;
 import javax.swing.JTabbedPane;
 import javax.swing.JLabel;
 import javax.swing.UIManager;
+import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 
 import com.formdev.flatlaf.FlatClientProperties;
@@ -59,11 +60,14 @@ public class ServerBilgileri extends JPanel {
 	@SuppressWarnings("deprecation")
 	public ServerBilgileri() {
 		setLayout(new BorderLayout(0, 0));
-		
+		setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
+
 		tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		add(tabbedPane, BorderLayout.CENTER);
 		
 		JPanel panel = new JPanel();
+		//panel.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
+
 		tabbedPane.addTab("MS Sql", null, panel, null);
 		panel.setLayout(null);
 		
@@ -77,7 +81,7 @@ public class ServerBilgileri extends JPanel {
 		textMSServer.setColumns(10);
 		
 		panel_2 = new JPanel();
-		panel_2.setBorder(new TitledBorder(null, "Baglanti", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel_2.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "Baglanti", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
 		panel_2.setBounds(37, 94, 339, 104);
 		panel.add(panel_2);
 		panel_2.setLayout(null);
@@ -193,13 +197,15 @@ public class ServerBilgileri extends JPanel {
 		panel.add(textMSPort);
 		
 		JPanel panel_1 = new JPanel();
+		//panel_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
+
 		tabbedPane.addTab("MY Sql", null, panel_1, null);
 		panel_1.setLayout(null);
 		
 
 		panel_2_2 = new JPanel();
 		panel_2_2.setLayout(null);
-		panel_2_2.setBorder(new TitledBorder(null, "Baglanti", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel_2_2.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "Baglanti", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
 		panel_2_2.setBounds(37, 94, 440, 104);
 		panel_1.add(panel_2_2);
 		

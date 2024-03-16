@@ -12,6 +12,7 @@ import java.util.Date;
 
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
+import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 
 import OBS_C_2025.Obs_TextFIeld;
@@ -51,7 +52,8 @@ public class YedeklemeAraligi extends JPanel {
 	@SuppressWarnings("deprecation")
 	public YedeklemeAraligi() {
 		setLayout(null);
-		
+		setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
+
 		lblNewLabel = new JLabel("Her");
 		lblNewLabel.setBounds(37, 35, 48, 14);
 		add(lblNewLabel);
@@ -98,7 +100,7 @@ public class YedeklemeAraligi extends JPanel {
 		add(chckbxPazar);
 		
 		panel = new JPanel();
-		panel.setBorder(new TitledBorder(null, "Yedekleme Araligi", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "Yedekleme Araligi", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
 		panel.setBounds(37, 322, 380, 112);
 		add(panel);
 		panel.setLayout(null);

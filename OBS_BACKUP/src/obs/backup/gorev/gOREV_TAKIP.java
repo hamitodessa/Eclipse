@@ -3,8 +3,8 @@ package obs.backup.gorev;
 import javax.swing.JPanel;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerDateModel;
-import javax.swing.border.CompoundBorder;
-import javax.swing.border.EmptyBorder;
+import javax.swing.border.EtchedBorder;
+import javax.swing.border.TitledBorder;
 
 import OBS_C_2025.BACKUP_GLOBAL;
 import OBS_C_2025.db_List;
@@ -34,7 +34,6 @@ import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.TimeUnit;
 
-import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -90,7 +89,9 @@ public  class gOREV_TAKIP extends JPanel {
 	public gOREV_TAKIP(String emirADI) {
 		
 		eADI = emirADI;
-		setBorder(new CompoundBorder(new EmptyBorder(5, 5, 0, 5), BorderFactory.createLineBorder(new Color(235, 235, 235))));
+		setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+
+		//setBorder(new CompoundBorder(new EmptyBorder(5, 5, 0, 5), BorderFactory.createLineBorder(new Color(235, 235, 235))));
 		setName(emirADI); 
 		setPreferredSize(new Dimension(800,175));
 		setLayout(null);

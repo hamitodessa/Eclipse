@@ -1,6 +1,8 @@
 package obs.backup.other;
 
 import javax.swing.JPanel;
+import javax.swing.border.EtchedBorder;
+import javax.swing.border.TitledBorder;
 
 import java.awt.Cursor;
 import java.awt.Font;
@@ -30,7 +32,8 @@ public class EmirKopyala extends JPanel {
 	 */
 	public EmirKopyala() {
 		setLayout(null);
-		
+		setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
+
 		lblNewLabel = new JLabel("Yeni Emir Ismi");
 		lblNewLabel.setBounds(56, 129, 107, 14);
 		add(lblNewLabel);

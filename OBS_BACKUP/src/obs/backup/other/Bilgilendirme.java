@@ -4,6 +4,7 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JLabel;
 import javax.swing.JCheckBox;
+import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 
 import com.formdev.flatlaf.FlatClientProperties;
@@ -58,6 +59,8 @@ public class Bilgilendirme extends JPanel {
 		
 		setLayout(null);
 		setName("bilgilendirmePanel");
+		setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
+
 		lblNewLabel = new JLabel("Durum");
 		lblNewLabel.setBounds(37, 28, 48, 14);
 		add(lblNewLabel);
@@ -68,7 +71,7 @@ public class Bilgilendirme extends JPanel {
 		add(chckbxAktifPasif);
 		
 		panel = new JPanel();
-		panel.setBorder(new TitledBorder(null, "Gonderme Durumu", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "Gonderme Durumu", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
 		panel.setBounds(37, 70, 580, 71);
 		add(panel);
 		panel.setLayout(null);
@@ -96,7 +99,7 @@ public class Bilgilendirme extends JPanel {
 		
 		panel_1 = new JPanel();
 		panel_1.setLayout(null);
-		panel_1.setBorder(new TitledBorder(null, "Mail Bilgileri", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "Mail Bilgileri", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
 		panel_1.setBounds(37, 153, 580, 125);
 		add(panel_1);
 		
@@ -138,7 +141,7 @@ public class Bilgilendirme extends JPanel {
 		
 		panel_1_1 = new JPanel();
 		panel_1_1.setLayout(null);
-		panel_1_1.setBorder(new TitledBorder(null, "Server Ayarlari", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel_1_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "Server Ayarlari", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
 		panel_1_1.setBounds(37, 285, 580, 132);
 		add(panel_1_1);
 		

@@ -30,6 +30,7 @@ import com.formdev.flatlaf.FlatClientProperties;
 import com.formdev.flatlaf.FlatLaf;
 import com.toedter.calendar.JDateChooser;
 
+import GUNLUK.Gunluk;
 import OBS_C_2025.BAGLAN_LOG;
 import OBS_C_2025.CARI_ACCESS;
 import OBS_C_2025.FIT_IMAGE;
@@ -386,7 +387,7 @@ public class DEKONT extends JInternalFrame {
 		txtevrak.setColumns(10);
 
 		JButton btnNewButton_1 = new JButton("");
-		btnNewButton_1.setIcon(new ImageIcon(DEKONT.class.getResource("/ICONLAR/redo-20.png")));
+		btnNewButton_1.setIcon(new ImageIcon(DEKONT.class.getResource("/ICONLAR/icons_ileri-24.png")));
 		btnNewButton_1.setToolTipText("Ileri");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -433,7 +434,7 @@ public class DEKONT extends JInternalFrame {
 				}
 			}
 		});
-		btnNewButton_1_1.setIcon(new ImageIcon(DEKONT.class.getResource("/ICONLAR/icons8-open-view-24.png")));
+		btnNewButton_1_1.setIcon(new ImageIcon(DEKONT.class.getResource("/ICONLAR/refresh-24.png")));
 		btnNewButton_1_1.setBounds(381, 25, 55, 30);
 		panel.add(btnNewButton_1_1);
 
@@ -460,7 +461,7 @@ public class DEKONT extends JInternalFrame {
 			}
 		});
 		btnNewButton_1_2.setFont(new Font("Tahoma", Font.BOLD, 10));
-		btnNewButton_1_2.setIcon(new ImageIcon(DEKONT.class.getResource("/ICONLAR/undo-20.png")));
+		btnNewButton_1_2.setIcon(new ImageIcon(DEKONT.class.getResource("/ICONLAR/icons_geri-24.png")));
 		btnNewButton_1_2.setBounds(327, 25, 55, 30);
 		panel.add(btnNewButton_1_2);
 

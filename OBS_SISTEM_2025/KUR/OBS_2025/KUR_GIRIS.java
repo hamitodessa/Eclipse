@@ -265,7 +265,7 @@ public class KUR_GIRIS extends JInternalFrame {
 		});
 		btnNewButton_1_2.setToolTipText("Geri");
 		btnNewButton_1_2.setFont(new Font("Tahoma", Font.BOLD, 10));
-		btnNewButton_1_2.setIcon(new ImageIcon(KUR_GIRIS.class.getResource("/ICONLAR/undo-20.png")));
+		btnNewButton_1_2.setIcon(new ImageIcon(KUR_GIRIS.class.getResource("/ICONLAR/icons_geri-24.png")));
 		btnNewButton_1_2.setBounds(152, 9, 30, 30);
 		panel.add(btnNewButton_1_2);
 
@@ -286,7 +286,7 @@ public class KUR_GIRIS extends JInternalFrame {
 			}
 		});
 		btnNewButton_1.setToolTipText("Ileri");
-		btnNewButton_1.setIcon(new ImageIcon(KUR_GIRIS.class.getResource("/ICONLAR/redo-20.png")));
+		btnNewButton_1.setIcon(new ImageIcon(KUR_GIRIS.class.getResource("/ICONLAR/icons_ileri-24.png")));
 		btnNewButton_1.setFont(new Font("Tahoma", Font.BOLD, 10));
 		btnNewButton_1.setBounds(329, 9, 30, 30);
 		panel.add(btnNewButton_1);

@@ -111,7 +111,9 @@ public class URUN_KART extends JInternalFrame {
 		//separator.setForeground(new Color(0, 191, 255));
 		panel.add(separator);
 
-		JButton button = new JButton("|<<");
+		JButton button = new JButton("");
+		button.setIcon(new ImageIcon(URUN_KART.class.getResource("/ICONLAR/backward-24.png")));
+
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				getContentPane().setCursor(oac.WAIT_CURSOR);
@@ -123,7 +125,10 @@ public class URUN_KART extends JInternalFrame {
 		button.setBounds(88, 17, 64, 30);
 		panel.add(button);
 
-		JButton button_1 = new JButton("<<");
+		JButton button_1 = new JButton("");
+		button_1.setIcon(new ImageIcon(URUN_KART.class.getResource("/ICONLAR/icons_geri-24.png")));
+
+		
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				getContentPane().setCursor(oac.WAIT_CURSOR);
@@ -144,7 +149,9 @@ public class URUN_KART extends JInternalFrame {
 		txtkayit.setBounds(208, 18, 74, 28);
 		panel.add(txtkayit);
 
-		JButton button_2 = new JButton(">>");
+		JButton button_2 = new JButton("");
+		button_2.setIcon(new ImageIcon(URUN_KART.class.getResource("/ICONLAR/icons_ileri-24.png")));
+
 		button_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				getContentPane().setCursor(oac.WAIT_CURSOR);
@@ -156,7 +163,9 @@ public class URUN_KART extends JInternalFrame {
 		button_2.setBounds(285, 17, 54, 30);
 		panel.add(button_2);
 
-		JButton button_3 = new JButton(">>|");
+		JButton button_3 = new JButton("");
+		button_3.setIcon(new ImageIcon(URUN_KART.class.getResource("/ICONLAR/forwardson.png")));
+
 		button_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				getContentPane().setCursor(oac.WAIT_CURSOR);

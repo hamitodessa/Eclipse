@@ -114,7 +114,9 @@ public class ADRES_GIRIS extends JInternalFrame {
 		separator_1.setBounds(28, 103, 787, 2);
 		panel.add(separator_1);
 
-		JButton btnNewButton = new JButton("|<<");
+		JButton btnNewButton = new JButton("");
+		btnNewButton.setIcon(new ImageIcon(ADRES_GIRIS.class.getResource("/ICONLAR/backward-24.png")));
+
 		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -124,7 +126,9 @@ public class ADRES_GIRIS extends JInternalFrame {
 		btnNewButton.setBounds(102, 65, 64, 30);
 		panel.add(btnNewButton);
 
-		JButton btnNewButton_1 = new JButton("<<");
+		JButton btnNewButton_1 = new JButton("");
+		btnNewButton_1.setIcon(new ImageIcon(ADRES_GIRIS.class.getResource("/ICONLAR/icons_geri-24.png")));
+
 		btnNewButton_1.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -143,7 +147,9 @@ public class ADRES_GIRIS extends JInternalFrame {
 		panel.add(txtkayit);
 		txtkayit.setColumns(10);
 
-		JButton btnNewButton_2 = new JButton(">>");
+		JButton btnNewButton_2 = new JButton("");
+		btnNewButton_2.setIcon(new ImageIcon(ADRES_GIRIS.class.getResource("/ICONLAR/icons_ileri-24.png")));
+
 		btnNewButton_2.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -153,7 +159,9 @@ public class ADRES_GIRIS extends JInternalFrame {
 		btnNewButton_2.setBounds(301, 65, 54, 30);
 		panel.add(btnNewButton_2);
 
-		JButton btnNewButton_3 = new JButton(">>|");
+		JButton btnNewButton_3 = new JButton("");
+		btnNewButton_3.setIcon(new ImageIcon(ADRES_GIRIS.class.getResource("/ICONLAR/forwardson.png")));
+
 		btnNewButton_3.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnNewButton_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

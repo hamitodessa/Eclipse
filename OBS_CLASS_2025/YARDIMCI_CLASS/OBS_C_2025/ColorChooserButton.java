@@ -23,11 +23,9 @@ public class ColorChooserButton extends JButton {
             public void actionPerformed(ActionEvent arg0) {
                 Color newColor = JColorChooser.showDialog(null, "Renk Secimi", current);
                 setSelectedColor(newColor);
-         
             }
         });
     }
-
     public Color getSelectedColor() {
         return current;
     }
@@ -35,17 +33,12 @@ public class ColorChooserButton extends JButton {
     public void setSelectedColor(Color newColor) {
         setSelectedColor(newColor, true);
     }
-
     public void setSelectedColor(Color newColor, boolean notify) {
-
         if (newColor == null) return;
-
         current = newColor;
         setIcon(createIcon(current, 16, 16));
         repaint();
-
         if (notify) {
-            // Notify everybody that may be interested.
             for (ColorChangedListener l : listeners) {
                 l.colorChanged(newColor);
             }

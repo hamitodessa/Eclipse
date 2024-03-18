@@ -339,7 +339,9 @@ public class PARAMETRELER   extends JInternalFrame   {
 		panel_4.add(comboBox_2_1_1_2_3);
 
 		JSeparator separator_2 = new JSeparator();
-		separator_2.setBounds(10, 89, 340, 2);
+        separator_2.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+
+		separator_2.setBounds(10, 85, 451, 6);
 		panel_4.add(separator_2);
 
 		JLabel lblNewLabel_2 = new JLabel("Gorunum");
@@ -386,7 +388,9 @@ public class PARAMETRELER   extends JInternalFrame   {
 		panel_4.add(chckbxNewCheckBox_2);
 
 		JSeparator separator_2_1 = new JSeparator();
-		separator_2_1.setBounds(10, 328, 340, 2);
+        separator_2_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+
+		separator_2_1.setBounds(10, 324, 451, 6);
 		panel_4.add(separator_2_1);
 
 		JLabel lblNewLabel_6_1 = new JLabel("Satir Arka Renk");
@@ -1083,6 +1087,8 @@ public class PARAMETRELER   extends JInternalFrame   {
 		panel_1.add(btnNewButton_2_1_1_2);
 
 		JSeparator separator = new JSeparator();
+        separator.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+
 		separator.setBounds(10, 225, 453, 2);
 		panel_1.add(separator);
 
@@ -1117,6 +1123,8 @@ public class PARAMETRELER   extends JInternalFrame   {
 		panel_1.add(textField_2);
 
 		JSeparator separator_1 = new JSeparator();
+        separator_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+
 		separator_1.setBounds(10, 395, 453, 2);
 		panel_1.add(separator_1);
 

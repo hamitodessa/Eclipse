@@ -82,6 +82,8 @@ public class CEK_TAKIP extends JInternalFrame {
 		setBounds(100, 100, 614, 410);
 		setFrameIcon(FIT_IMAGE.formIcon(new ImageIcon(CEK_TAKIP.class.getResource("/ICONLAR/icons8-services-30.png")), 16, 16));//
 		panel = new JPanel();
+		panel.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+
 		getContentPane().add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
 

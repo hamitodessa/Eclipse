@@ -116,6 +116,8 @@ public class H_PLANI extends JInternalFrame {
 		panel.add(separator);
 
 		JSeparator separator_1 = new JSeparator();
+        separator_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+
 		separator_1.setBounds(28, 83, 791, 2);
 		panel.add(separator_1);
 
@@ -168,6 +170,8 @@ public class H_PLANI extends JInternalFrame {
 		panel.add(btnNewButton_3);
 
 		JSeparator separator_2 = new JSeparator();
+        separator_2.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+
 		separator_2.setBounds(28, 169, 791, 2);
 		panel.add(separator_2);
 
@@ -520,6 +524,8 @@ public class H_PLANI extends JInternalFrame {
 		panel.add(btnNewButton_6);
 
 		JSeparator separator_3 = new JSeparator();
+        separator_3.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+
 		separator_3.setBounds(28, 11, 791, 2);
 		panel.add(separator_3);
 

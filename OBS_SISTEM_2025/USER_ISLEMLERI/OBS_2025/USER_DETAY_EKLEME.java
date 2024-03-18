@@ -96,12 +96,13 @@ public class USER_DETAY_EKLEME extends JInternalFrame {
 		getContentPane().add(splitPane, BorderLayout.CENTER);
 
 		ScrollPaneWin11 scrollPaneust = new ScrollPaneWin11();
+		scrollPaneust.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+
 		scrollPaneust.setMinimumSize(new Dimension(0, 130));
 		scrollPaneust.setMaximumSize(new Dimension(0, 130));
 		
 		
 		JPanel panel = new JPanel();
-		panel.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
 
 		panel.setPreferredSize(new Dimension(1130,120));
 		scrollPaneust.setViewportView(panel);
@@ -316,7 +317,8 @@ public class USER_DETAY_EKLEME extends JInternalFrame {
 		
 		
 		ScrollPaneWin11 scrollPane = new ScrollPaneWin11();
-		
+		scrollPane.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+
 		
 		String columnheaders[] = { "KODU", "KULLANICI", "SER.KULLANICI" ,"SIFRE","INSTANCE", "IP", "MODUL" ,
 				"DIZIN","YER","DIZIN CINS","IZINLI MI" ,"CALISAN MI","SQL CINSI" ,"LOGLAMA" ,"LOG_YERI" , "ID"};

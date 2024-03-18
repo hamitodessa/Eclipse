@@ -109,9 +109,6 @@ public class EKSIK_KUR extends JInternalFrame
 		panel.add(cmbCins);
 
 		JButton btnNewButton = new JButton("Bos Tarihleri Bul");
-		btnNewButton.setHorizontalAlignment(SwingConstants.LEFT);
-		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 10));
-		//btnNewButton.setForeground(new Color(0, 0, 128));
 		btnNewButton.setMargin(new Insets(2, 1, 2, 1));
 		btnNewButton.addActionListener(new ActionListener() 
 		{
@@ -127,15 +124,12 @@ public class EKSIK_KUR extends JInternalFrame
 		panel.add(btnNewButton);
 
 		lblkayit = new JLabel("0");
-		//lblkayit.setForeground(new Color(0, 0, 205));
 		lblkayit.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblkayit.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblkayit.setBounds(300, 79, 40, 14);
 		panel.add(lblkayit);
 
 		JButton btnMerkezOku = new JButton("Merkez Oku");
-		//btnMerkezOku.setForeground(new Color(0, 0, 128));
-		btnMerkezOku.setFont(new Font("Tahoma", Font.BOLD, 10));
 		btnMerkezOku.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				getContentPane().setCursor(oac.WAIT_CURSOR);

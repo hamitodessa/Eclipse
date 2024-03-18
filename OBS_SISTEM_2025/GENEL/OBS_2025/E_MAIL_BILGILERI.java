@@ -111,7 +111,8 @@ public class E_MAIL_BILGILERI extends JInternalFrame {
 		txtgonisim.setColumns(10);
 
 		JSeparator separator = new JSeparator();
-		//separator.setForeground(new Color(135, 206, 235));
+        separator.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+
 		separator.setBounds(39, 140, 403, 2);
 		panel.add(separator);
 

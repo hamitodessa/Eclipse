@@ -106,12 +106,12 @@ public class ADRES_GIRIS extends JInternalFrame {
 
 		JSeparator separator = new JSeparator();
 		separator.setBounds(28, 58, 787, 2);
-		//separator.setForeground(new Color(0, 191, 255));
 		panel.add(separator);
 
 		JSeparator separator_1 = new JSeparator();
+        separator_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+
 		separator_1.setBounds(28, 103, 787, 2);
-		//separator_1.setForeground(new Color(0, 191, 255));
 		panel.add(separator_1);
 
 		JButton btnNewButton = new JButton("|<<");
@@ -164,8 +164,9 @@ public class ADRES_GIRIS extends JInternalFrame {
 		panel.add(btnNewButton_3);
 
 		JSeparator separator_2 = new JSeparator();
+        separator_2.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+
 		separator_2.setBounds(28, 141, 787, 2);
-		//separator_2.setForeground(new Color(0, 191, 255));
 		panel.add(separator_2);
 
 		JLabel lblNewLabel_1 = new JLabel("Kodu");
@@ -619,6 +620,8 @@ public class ADRES_GIRIS extends JInternalFrame {
 		txtarama.setColumns(10);
 
 		JSeparator separator_3 = new JSeparator();
+        separator_3.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+
 		separator_3.setBounds(28, 11, 787, 2);
 		//separator_3.setForeground(new Color(0, 191, 255));
 		panel.add(separator_3);

@@ -34,6 +34,8 @@ import javax.swing.JScrollPane;
 import javax.swing.KeyStroke;
 import javax.swing.ListSelectionModel;
 import javax.swing.UIManager;
+import javax.swing.border.EtchedBorder;
+import javax.swing.border.TitledBorder;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.event.EventListenerList;
@@ -46,10 +48,8 @@ public class Font_Sec extends JComponent {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-    private static final Integer[] SIZES =
-            {8, 9, 10, 11, 12, 13, 14, 16, 18, 20, 24, 26, 28, 32, 36, 40, 48, 56, 64, 72};
-    private static final String[] FONTS = GraphicsEnvironment.getLocalGraphicsEnvironment()
-            .getAvailableFontFamilyNames();
+    private static final Integer[] SIZES = {8, 9, 10, 11, 12, 13, 14, 16, 18, 20, 24, 26, 28, 32, 36, 40, 48, 56, 64, 72};
+    private static final String[] FONTS = GraphicsEnvironment.getLocalGraphicsEnvironment().getAvailableFontFamilyNames();
     private FontSelectionModel selectionModel;
     private JList<String> fontList;
     private JList<Integer> sizeList;
@@ -68,14 +68,12 @@ public class Font_Sec extends JComponent {
     }
     private class SelectionUpdater implements ChangeListener, ListSelectionListener {
         public void stateChanged(ChangeEvent e) {
-            if (!updatingComponents) {
-                setFont(buildFont());
-            }
+            if (!updatingComponents)
+            	setFont(buildFont());
         }
         public void valueChanged(ListSelectionEvent e) {
-            if (!updatingComponents) {
-                setFont(buildFont());
-            }
+            if (!updatingComponents)
+            	setFont(buildFont());
         }
     }
     public Font showDialog(Component component, String title) {
@@ -106,20 +104,31 @@ public class Font_Sec extends JComponent {
     @SuppressWarnings({ "unchecked", "rawtypes" })
 	private void init(Font font) {
         setLayout(new GridBagLayout());
+		setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+
         Insets ins = new Insets(2, 2, 2, 2);
         fontList = new JList(FONTS);
+
         fontList.setVisibleRowCount(10);
         fontList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        add(new JScrollPane(fontList), new GridBagConstraints(0, 0, 1, 1, 2, 2,
-                GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-                new Insets(2, 2, 5, 5), 0, 0));
+        JScrollPane scrollPanefontList = new JScrollPane();
+        scrollPanefontList.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+        scrollPanefontList.setViewportView(fontList);
+		
+        add(scrollPanefontList, new GridBagConstraints(0, 0, 1, 1, 2, 2, GridBagConstraints.CENTER, GridBagConstraints.BOTH,new Insets(2, 2, 5, 5), 0, 0));
 
         sizeList = new JList(SIZES);
+        sizeList.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+
         ((JLabel)sizeList.getCellRenderer()).setHorizontalAlignment(JLabel.CENTER);
         sizeList.setVisibleRowCount(10);
        
         sizeList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        add(new JScrollPane(sizeList), new GridBagConstraints(1, 0, 1, 1, 1, 2,
+        JScrollPane scrollPanesizeList = new JScrollPane();
+        scrollPanesizeList.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+        scrollPanesizeList.setViewportView(sizeList);
+
+        add(scrollPanesizeList, new GridBagConstraints(1, 0, 1, 1, 1, 2,
                 GridBagConstraints.CENTER, GridBagConstraints.BOTH,
                 new Insets(2, 2, 5, 2), 0, 0));
 
@@ -135,10 +144,10 @@ public class Font_Sec extends JComponent {
         previewLabel = new JLabel("");
         previewLabel.setHorizontalAlignment(JLabel.CENTER);
         previewLabel.setVerticalAlignment(JLabel.CENTER);
-        add(new JScrollPane(previewLabel), new GridBagConstraints(0, 4, 2, 1, 1, 1,
-                GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-                ins, 0, 0));
-
+        JScrollPane scrollPaneLabel = new JScrollPane();
+		scrollPaneLabel.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		scrollPaneLabel.setViewportView(previewLabel);
+        add(scrollPaneLabel, new GridBagConstraints(0, 4, 2, 1, 1, 1,GridBagConstraints.CENTER, GridBagConstraints.BOTH,ins, 0, 0));
         setFont(font == null ? previewLabel.getFont() : font);
 
         fontList.addListSelectionListener(selectionUpdater);
@@ -149,18 +158,14 @@ public class Font_Sec extends JComponent {
     }
     private Font buildFont() {
       String fontName = (String)fontList.getSelectedValue();
-      if (fontName == null) {
-          return null;
-      }
+      if (fontName == null)
+    	  return null;
       Integer sizeInt = (Integer)sizeList.getSelectedValue();
-      if (sizeInt == null) {
-          return null;
-      }
+      if (sizeInt == null)
+    	  return null;
       return new Font(fontName,
               (italicCheckBox.isSelected() ? Font.ITALIC : Font.PLAIN)
-             
-              | (boldCheckBox.isSelected() ? Font.BOLD : Font.PLAIN),
-              sizeInt);
+              | (boldCheckBox.isSelected() ? Font.BOLD : Font.PLAIN), sizeInt);
   }
     private void updateComponents() {
         updatingComponents = true;
@@ -170,12 +175,9 @@ public class Font_Sec extends JComponent {
         boldCheckBox.setSelected(font.isBold());
         italicCheckBox.setSelected(font.isItalic());
         
-        if (previewText == null) {
-            previewLabel.setText(font.getName());
-        }
+        if (previewText == null)
+        	previewLabel.setText(font.getName());
         Font oldValue = previewLabel.getFont();
-        
-        
         previewLabel.setFont(font);
         firePropertyChange("font", oldValue, font);
         updatingComponents = false;
@@ -183,7 +185,6 @@ public class Font_Sec extends JComponent {
     public FontSelectionModel getSelectionModel() {
         return selectionModel;
     }
-
     public void setSelectionModel(FontSelectionModel newModel ) {
         FontSelectionModel oldModel = selectionModel;
         selectionModel = newModel;
@@ -206,7 +207,7 @@ public class Font_Sec extends JComponent {
         updateComponents();
     }
 }
-     class FontChooserDialog extends JDialog {
+    class FontChooserDialog extends JDialog {
 	private static final long serialVersionUID = 1L;
 	private Font initialFont;
     private Font_Sec chooserPane;
@@ -222,9 +223,8 @@ public class Font_Sec extends JComponent {
       JButton okButton = new JButton(okString);
       getRootPane().setDefaultButton(okButton);
       okButton.setActionCommand("OK");
-      if (okListener != null) {
-          okButton.addActionListener(okListener);
-      }
+      if (okListener != null)
+    	  okButton.addActionListener(okListener);
       okButton.addActionListener(new ActionListener() {
           public void actionPerformed(ActionEvent e) {
               setVisible(false);
@@ -251,11 +251,9 @@ public class Font_Sec extends JComponent {
           actionMap.put("cancel", cancelKeyAction);
       }
       // end esc handling
-
       cancelButton.setActionCommand("cancel");
-      if (cancelListener != null) {
-          cancelButton.addActionListener(cancelListener);
-      }
+      if (cancelListener != null)
+    	  cancelButton.addActionListener(cancelListener);
       cancelButton.addActionListener(new ActionListener() {
           public void actionPerformed(ActionEvent e) {
               setVisible(false);
@@ -270,9 +268,8 @@ public class Font_Sec extends JComponent {
           }
       });
       int mnemonic = UIManager.getInt("ColorChooser.resetMnemonic");
-      if (mnemonic != -1) {
-          resetButton.setMnemonic(mnemonic);
-      }
+      if (mnemonic != -1)
+    	  resetButton.setMnemonic(mnemonic);
       buttonPane.add(resetButton);
       this.chooserPane = chooserPane;
       Container contentPane = getContentPane();
@@ -305,7 +302,6 @@ public class Font_Sec extends JComponent {
             w.dispose();
         }
     }
-
 }
      class FontTracker implements ActionListener, Serializable {
 		private static final long serialVersionUID = 1L;
@@ -329,9 +325,8 @@ public class Font_Sec extends JComponent {
     	        this(DEFAULT_INITIAL_FONT);
     	    }
     	    public DefaultFontSelectionModel(Font selectedFont) {
-    	        if (selectedFont == null) {
-    	            selectedFont = DEFAULT_INITIAL_FONT;
-    	        }
+    	        if (selectedFont == null)
+    	        	selectedFont = DEFAULT_INITIAL_FONT;
     	        this.selectedFont = selectedFont;
     	    }
     	    public Font getSelectedFont() {
@@ -352,12 +347,10 @@ public class Font_Sec extends JComponent {
     	    protected void fireChangeListeners() {
     	        ChangeEvent ev = new ChangeEvent(this);
     	        Object[] l = listeners.getListeners(ChangeListener.class);
-    	        for (Object listener : l) {
-    	            ((ChangeListener) listener).stateChanged(ev);
-    	        }
+    	        for (Object listener : l)
+    	        	((ChangeListener) listener).stateChanged(ev);
     	    }
     	}
-     
      interface FontSelectionModel {
     	    Font getSelectedFont();
     	    void setSelectedFont(Font font);

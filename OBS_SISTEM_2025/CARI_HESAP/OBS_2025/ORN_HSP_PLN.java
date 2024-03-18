@@ -45,6 +45,8 @@ public class ORN_HSP_PLN extends JInternalFrame {
 		setBounds(0,0, 422, 168);
 		setFrameIcon(FIT_IMAGE.formIcon(new ImageIcon(ORN_HSP_PLN.class.getResource("/ICONLAR/icons8-user-groups-30.png")), 16, 16));//
 		panel = new JPanel();
+        panel.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+
 		getContentPane().add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
 

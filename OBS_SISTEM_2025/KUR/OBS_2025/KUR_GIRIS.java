@@ -93,6 +93,8 @@ public class KUR_GIRIS extends JInternalFrame {
 		setClosable(true);
 		setBounds(0, 0, 487, 438);
 		setFrameIcon(FIT_IMAGE.formIcon(new ImageIcon(KUR_GIRIS.class.getResource("/ICONLAR/icons8-currency-exchange-30.png")), 16, 16));//
+		setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
+
 		JSplitPane splitPane = new JSplitPane();
 		splitPane.setDividerSize(0);
 		splitPane.setResizeWeight(0.0);
@@ -101,7 +103,6 @@ public class KUR_GIRIS extends JInternalFrame {
 
 		ScrollPaneWin11 scrollPane = new ScrollPaneWin11();
 		scrollPane.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
-
 		splitPane.setRightComponent(scrollPane);
 
 		table = new JTable(){
@@ -139,6 +140,8 @@ public class KUR_GIRIS extends JInternalFrame {
 		scrollPane.setViewportView(table);
 
 		JPanel panel = new JPanel();
+		panel.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
+
 		splitPane.setLeftComponent(panel);
 		panel.setMinimumSize(new Dimension(0, 140));
 		panel.setMaximumSize(new Dimension(0, 140));
@@ -239,6 +242,8 @@ public class KUR_GIRIS extends JInternalFrame {
 		panel.add(lblSatis);
 
 		JSeparator separator = new JSeparator();
+        separator.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+
 		separator.setBounds(10, 48, 442, 2);
 		panel.add(separator);
 

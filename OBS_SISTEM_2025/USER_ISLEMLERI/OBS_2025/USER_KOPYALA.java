@@ -12,6 +12,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
 import java.awt.BorderLayout;
 import javax.swing.JPanel;
+import javax.swing.border.EtchedBorder;
+import javax.swing.border.TitledBorder;
 
 import OBS_C_2025.ENCRYPT_DECRYPT_STRING;
 import OBS_C_2025.FIT_IMAGE;
@@ -39,6 +41,9 @@ public class USER_KOPYALA extends JInternalFrame {
 		setFrameIcon(FIT_IMAGE.formIcon(new ImageIcon(USER_KOPYALA.class.getResource("/ICONLAR/icons8-identification-documents-30.png")), 16, 16));//
 		getContentPane().setLayout(new BorderLayout(0, 0));
 		panel = new JPanel();
+		panel.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+
+		
 		getContentPane().add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
 

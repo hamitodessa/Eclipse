@@ -33,6 +33,8 @@ import OBS_C_2025.ScrollPaneWin11;
 import raven.toast.Notifications;
 
 import javax.swing.ListSelectionModel;
+import javax.swing.border.EtchedBorder;
+import javax.swing.border.TitledBorder;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
@@ -70,6 +72,9 @@ public class USER_EKLEME extends JInternalFrame {
 		getContentPane().add(splitPane, BorderLayout.CENTER);
 		
 		ScrollPaneWin11 scrollPane = new ScrollPaneWin11();
+		scrollPane.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+
+		
 		Object[][] tabledata = {{ "", ""  , "" ,"" ,"",false,false},    };
 		String columnheaders[] = { "KULLANICI", "SIFRE", "SEVIYE" ,"DB IZIN","MAIL", "LOKAL IZIN", "SERVER IZIN"};
 		DefaultTableModel model = new DefaultTableModel(tabledata,columnheaders);
@@ -146,6 +151,8 @@ public class USER_EKLEME extends JInternalFrame {
 
 		
 		ScrollPaneWin11 scrollPaneust = new ScrollPaneWin11();
+		scrollPaneust.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+
 		scrollPaneust.setMinimumSize(new Dimension(0, 110));
 		scrollPaneust.setMaximumSize(new Dimension(0, 110));
 		

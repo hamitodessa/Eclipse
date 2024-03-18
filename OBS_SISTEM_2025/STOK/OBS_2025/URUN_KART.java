@@ -105,7 +105,9 @@ public class URUN_KART extends JInternalFrame {
 		panel.setLayout(null);
 
 		JSeparator separator = new JSeparator();
-		separator.setBounds(10, 92, 864, 2);
+        separator.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+
+		separator.setBounds(10, 89, 855, 2);
 		//separator.setForeground(new Color(0, 191, 255));
 		panel.add(separator);
 
@@ -294,7 +296,7 @@ public class URUN_KART extends JInternalFrame {
 		panel.add(lbluser);
 
 		imagePanel = new ImagePanel();
-		imagePanel.setBounds(650, 105, 220, 175);
+		imagePanel.setBounds(650, 105, 215, 175);
 		imagePanel.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 
 		panel.add( imagePanel);
@@ -348,7 +350,7 @@ public class URUN_KART extends JInternalFrame {
 				imagePanel.setImage(null);
 			}
 		});
-		button_5.setBounds(809, 291, 60, 23);
+		button_5.setBounds(805, 291, 60, 23);
 		panel.add(button_5);
 
 		JLabel lblNewLabel_2 = new JLabel("Kodu");
@@ -602,7 +604,7 @@ public class URUN_KART extends JInternalFrame {
 		panel.add(lblNewLabel_7);
 
 		JPanel panel_7 = new JPanel();
-		panel_7.setBounds(650, 346, 221, 58);
+		panel_7.setBounds(650, 346, 215, 58);
 		panel.add(panel_7);
 		panel_7.setLayout(null);
 		panel_7.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "Recete", TitledBorder.LEADING, TitledBorder.TOP, null, null));

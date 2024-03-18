@@ -74,6 +74,7 @@ public class HAZIR_GOREVLER extends JInternalFrame {
 		setTitle("HAZIR GOREVLER");
 		setFrameIcon(FIT_IMAGE.formIcon(new ImageIcon(HAZIR_GOREVLER.class.getResource("/ICONLAR/icons8-news-30.png")), 16, 16));//
 		JSplitPane splitPane = new JSplitPane();
+
 		splitPane.setOrientation(JSplitPane.VERTICAL_SPLIT);
 		splitPane.setDividerSize(0);
 		splitPane.setResizeWeight(1.0);
@@ -171,9 +172,10 @@ public class HAZIR_GOREVLER extends JInternalFrame {
 		table.setShowVerticalLines(true);
 		scrollPane.setViewportView(table);
 		panel = new JPanel();
+		panel.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+
 		panel.setMinimumSize(new Dimension(0, 25));
 		panel.setMaximumSize(new Dimension(0, 25));
-		//panel.setBorder(new LineBorder(null));
 		panel.setLayout(null);
 		splitPane.setRightComponent(panel);
 
@@ -183,7 +185,6 @@ public class HAZIR_GOREVLER extends JInternalFrame {
 
 		lbladet = new JLabel("0");
 		lbladet.setHorizontalAlignment(SwingConstants.LEFT);
-		//lbladet.setForeground(new Color(0, 0, 128));
 		lbladet.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lbladet.setBounds(100, 5, 66, 14);
 		panel.add(lbladet);

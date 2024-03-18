@@ -1488,7 +1488,7 @@ public class DEKONT extends JInternalFrame {
 			}
 		});
 		btnAciksil.setVisible(false);
-		btnAciksil.setBounds(557, 320, 19, 19);
+		btnAciksil.setBounds(557, 320, 20, 20);
 		panelANA.add(btnAciksil);
 		try {
 			String deger;

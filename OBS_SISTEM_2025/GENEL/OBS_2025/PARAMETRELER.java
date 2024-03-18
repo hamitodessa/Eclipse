@@ -354,7 +354,7 @@ public class PARAMETRELER   extends JInternalFrame   {
 
 		comboBox_2.setModel(new DefaultComboBoxModel<String>(new String[] {"Windows" ,"TextureLookAndFeel","FlatSolarizedLightIJTheme" ,"FlatCarbonIJ","FlatArcOrangeIJTheme" ,
 				"FlatSpacegrayIJTheme","FlatArcIJTheme","FlatCyanLightIJTheme","FlatHighContrastIJTheme","FlatGrayIJTheme","FlatNordIJTheme",
-				"FlatGradiantoNatureGreenIJTheme","FlatMonocaiIJ" ,"SmartLookAndFeel","NoireLookAndFeel","AcrylLookAndFeel" ,
+				"FlatGradiantoNatureGreenIJTheme","FlatMonocaiIJ" ,"SmartLookAndFeel","NoireLookAndFeel",
 				"AeroLookAndFeel","AluminiumLookAndFeel","BernsteinLookAndFeel","FastLookAndFeel","GraphiteLookAndFeel","HiFiLookAndFeel",
 				"LunaLookAndFeel","McWinLookAndFeel","MintLookAndFeel"}));
 		comboBox_2.setBounds(151, 163, 310, 22);

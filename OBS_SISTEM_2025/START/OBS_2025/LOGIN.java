@@ -225,8 +225,6 @@ public class LOGIN extends JDialog {
 				UIManager.setLookAndFeel("com.jtattoo.plaf.smart.SmartLookAndFeel"); 
 			else if ( GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("NoireLookAndFeel"))
 				UIManager.setLookAndFeel("com.jtattoo.plaf.noire.NoireLookAndFeel");
-			else if ( GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("AcrylLookAndFeel"))
-				UIManager.setLookAndFeel("com.jtattoo.plaf.acryl.AcrylLookAndFeel");
 			else if ( GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("AeroLookAndFeel"))
 				UIManager.setLookAndFeel("com.jtattoo.plaf.aero.AeroLookAndFeel"); 
 			else  if ( GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("AluminiumLookAndFeel"))

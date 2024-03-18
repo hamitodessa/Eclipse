@@ -481,7 +481,6 @@ public class Gunluk extends JInternalFrame {
 
 		};
 		table.setSurrendersFocusOnKeystroke(true);
-		
 		table.addMouseListener(new MouseAdapter() 
 		{
 			@Override
@@ -1037,15 +1036,16 @@ public class Gunluk extends JInternalFrame {
 		DefaultTableModel mdlBaslik = (DefaultTableModel) table_1.getModel();
 		DefaultTreeModel model = (DefaultTreeModel)treeGovev.getModel();
 		DefaultMutableTreeNode root = (DefaultMutableTreeNode)model.getRoot();
-		root.removeAllChildren(); //this removes all nodes
-		model.reload(); //this notifies the listeners and changes the GUI
+		root.removeAllChildren(); 
+		model.reload(); 
 		if (mdlGunluk.getValueAt(satir, 0).toString().equals("") ) return;
 
 		Gunluk_Bilgi gbilgi = new Gunluk_Bilgi();
 
 		gbilgi.tarih1 = TARIH_CEVIR.tarih_sql(mdlBaslik.getValueAt(0, sutun).toString());
 		gbilgi.saat1 = mdlGunluk.getValueAt(satir, 0).toString() ;
-
+		gbilgi.saat2 = mdlGunluk.getValueAt(satir, 0).toString() ;
+		
 		ResultSet rSet = g_Access.gorev_oku_tarih(gbilgi);
 		if (!rSet.isBeforeFirst() ) { 
 			setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	 

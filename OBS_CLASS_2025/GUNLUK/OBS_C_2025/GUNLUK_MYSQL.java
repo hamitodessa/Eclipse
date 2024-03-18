@@ -434,7 +434,7 @@ public class GUNLUK_MYSQL implements IGUNLUK{
 		ResultSet	rss = null;
 		String sql = "SELECT  TARIH,ISIM,GOREV,YER,MESAJ   " +
 				" FROM GUNLUK  " +
-				" WHERE " + gbilgi.isim + " TARIH BETWEEN   '" + gbilgi.tarih1 + "' AND '" + gbilgi.tarih2 + "'" +
+				" WHERE " + gbilgi.isim + " TARIH >= '" + gbilgi.tarih1 + "' AND TARIH <= '" + gbilgi.tarih2 + "'" +
 				" GROUP BY TARIH,ISIM,GOREV,YER,MESAJ  ORDER BY TARIH   ";
 		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);

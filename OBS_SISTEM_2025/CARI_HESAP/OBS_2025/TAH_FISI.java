@@ -873,7 +873,7 @@ public class TAH_FISI extends JInternalFrame {
 		panel_5.setLayout(new BorderLayout(0, 0));
 		
 		scrollPane = new ScrollPaneWin11();
-		scrollPane.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null),  "Cek Bilgisi", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
+		scrollPane.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null),  "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
 
 		
 		panel_5.add(scrollPane, BorderLayout.CENTER);

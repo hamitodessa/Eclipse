@@ -292,11 +292,6 @@ public class LOGIN extends JDialog {
 				FlatNordIJTheme.setup();
 				FlatLaf.updateUI();
 			}
-			else if (GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("FlatMaterial")) 
-			{
-				FlatMaterialLighterIJTheme.setup();
-				FlatLaf.updateUI();
-			}
 			else if (GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("FlatMonocaiIJ")) 
 			{
 				FlatMonocaiIJTheme.setup();

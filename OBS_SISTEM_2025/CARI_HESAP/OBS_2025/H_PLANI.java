@@ -106,17 +106,17 @@ public class H_PLANI extends JInternalFrame {
 		setFrameIcon(FIT_IMAGE.formIcon(new ImageIcon(H_PLANI.class.getResource("/ICONLAR/hsp-30.png")), 16, 16));//
 		
 		JPanel panel = new JPanel();
+		panel.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
+
 		getContentPane().add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
 
 		JSeparator separator = new JSeparator();
 		separator.setBounds(28, 46, 791, 2);
-		//separator.setForeground(new Color(0, 191, 255));
 		panel.add(separator);
 
 		JSeparator separator_1 = new JSeparator();
 		separator_1.setBounds(28, 83, 791, 2);
-		//separator_1.setForeground(new Color(0, 191, 255));
 		panel.add(separator_1);
 
 		JButton btnNewButton = new JButton("|<<");
@@ -140,7 +140,6 @@ public class H_PLANI extends JInternalFrame {
 		panel.add(btnNewButton_1);
 
 		txtkayit = new JTextField();
-		//txtkayit.setForeground(new Color(0, 0, 205));
 		txtkayit.setEditable(false);
 		txtkayit.setHorizontalAlignment(SwingConstants.CENTER);
 		txtkayit.setFont(new Font("Tahoma", Font.BOLD, 11));
@@ -170,7 +169,6 @@ public class H_PLANI extends JInternalFrame {
 
 		JSeparator separator_2 = new JSeparator();
 		separator_2.setBounds(28, 169, 791, 2);
-		//separator_2.setForeground(new Color(0, 191, 255));
 		panel.add(separator_2);
 
 		JLabel lblNewLabel_1 = new JLabel("Kodu");
@@ -523,7 +521,6 @@ public class H_PLANI extends JInternalFrame {
 
 		JSeparator separator_3 = new JSeparator();
 		separator_3.setBounds(28, 11, 791, 2);
-		//separator_3.setForeground(new Color(0, 191, 255));
 		panel.add(separator_3);
 
 		txtarama = new Obs_TextFIeld(40,"");
@@ -632,8 +629,6 @@ public class H_PLANI extends JInternalFrame {
 						{
 							list.setSelectedIndex(i);
 							list.scrollRectToVisible(list.getCellBounds(i, i+14));
-							//	FATURA.bilgi_doldur( value);
-							//System.out.println(value);
 							return;
 						}
 					}
@@ -644,7 +639,6 @@ public class H_PLANI extends JInternalFrame {
 				{
 					cmbKodu.getEditor().setItem("");
 					try {
-						//KERESTE_CIKIS.kod_aciklama_bul(editorComponent.getText().toString());
 					} catch (Exception e1) {
 						e1.printStackTrace();
 					}

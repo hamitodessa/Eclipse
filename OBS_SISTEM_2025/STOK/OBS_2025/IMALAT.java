@@ -148,6 +148,8 @@ public class IMALAT extends JInternalFrame {
 
 		
 		ScrollPaneWin11 scrollPaneust = new ScrollPaneWin11();
+		scrollPaneust.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null),  "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
+
 		scrollPaneust.setMinimumSize(new Dimension(0, 210));
 		scrollPaneust.setMaximumSize(new Dimension(0, 210));
 		splitPane.setLeftComponent(scrollPaneust);

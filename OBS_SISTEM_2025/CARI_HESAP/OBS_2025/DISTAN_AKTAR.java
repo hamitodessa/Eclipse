@@ -144,6 +144,8 @@ public class DISTAN_AKTAR extends JInternalFrame {
 		setFrameIcon(FIT_IMAGE.formIcon(new ImageIcon(DISTAN_AKTAR.class.getResource("/ICONLAR/coklud-30.png")), 16, 16));//
 
 		splitPane = new JSplitPane();
+		splitPane.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
+
 		splitPane.setDividerSize(0);
 		splitPane.setResizeWeight(0.0);
 		splitPane.setOrientation(JSplitPane.VERTICAL_SPLIT);
@@ -157,7 +159,6 @@ public class DISTAN_AKTAR extends JInternalFrame {
 		scrollPaneust.setMaximumSize(new Dimension(1160, 110));
 
 		JPanel panel = new JPanel();
-
 
 		panel.setPreferredSize(new Dimension(1160,100));
 		scrollPaneust.setViewportView(panel);
@@ -189,9 +190,7 @@ public class DISTAN_AKTAR extends JInternalFrame {
 		btnNewButton_1.setToolTipText("Aciklama Duzelt");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//**********************
 				aciklama_duzelt();
-				//**********************
 			}
 		});
 		btnNewButton_1.setIcon(new ImageIcon(DISTAN_AKTAR.class.getResource("/ICONLAR/description-16.png")));
@@ -267,21 +266,18 @@ public class DISTAN_AKTAR extends JInternalFrame {
 				getContentPane().setCursor(OBS_SIS_2025_ANA_CLASS.WAIT_CURSOR);
 				lblunvan_1.setText(CARI_ISIM_OKU.isim(txtBORCLU.getText())[0]);
 				getContentPane().setCursor(OBS_SIS_2025_ANA_CLASS.DEFAULT_CURSOR);
-
 			}
 			public void removeUpdate(DocumentEvent e) {
 
 				getContentPane().setCursor(OBS_SIS_2025_ANA_CLASS.WAIT_CURSOR);
 				lblunvan_1.setText(CARI_ISIM_OKU.isim(txtBORCLU.getText())[0]);
 				getContentPane().setCursor(OBS_SIS_2025_ANA_CLASS.DEFAULT_CURSOR);
-
 			}
 			public void insertUpdate(DocumentEvent e) {
 
 				getContentPane().setCursor(OBS_SIS_2025_ANA_CLASS.WAIT_CURSOR);
 				lblunvan_1.setText(CARI_ISIM_OKU.isim(txtBORCLU.getText())[0]);
 				getContentPane().setCursor(OBS_SIS_2025_ANA_CLASS.DEFAULT_CURSOR);
-
 			}
 		});
 		panel.add(txtBORCLU);
@@ -952,7 +948,7 @@ public class DISTAN_AKTAR extends JInternalFrame {
 		scrollPane_2.setViewportView(table_1);
 
 		JPanel panel_5 = new JPanel();
-		panel.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
+		panel_5.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
 
 		panel_5.setMinimumSize(new Dimension(0, 30));
 		panel_5.setMaximumSize(new Dimension(0, 30));
@@ -1025,7 +1021,7 @@ public class DISTAN_AKTAR extends JInternalFrame {
 		scrollPane_1.setViewportView(table);
 
 		JPanel panel_4 = new JPanel();
-		panel.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
+		panel_4.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
 
 		panel_4.setMinimumSize(new Dimension(0, 30));
 		panel_4.setMaximumSize(new Dimension(0, 30));

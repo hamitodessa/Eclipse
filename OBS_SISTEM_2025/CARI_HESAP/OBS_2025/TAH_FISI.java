@@ -157,6 +157,8 @@ public class TAH_FISI extends JInternalFrame {
 		setTitle("TAHSILAT");
 		setClosable(true);
 		setBounds(100, 100, 800, 485);
+		setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
+
 		tabbedPane = new MaterialTabbed();
 		tabbedPane.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent e) {

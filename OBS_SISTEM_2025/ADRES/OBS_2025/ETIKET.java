@@ -311,6 +311,7 @@ public class ETIKET extends JInternalFrame {
 
 				tc = tcm.getColumn(0);
 				JCheckBox checkBox = new JCheckBox();
+				checkBox.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
 				checkBox.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						JTableHeader th = table.getTableHeader();

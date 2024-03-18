@@ -28,21 +28,14 @@ public class CheckBoxRenderer extends JCheckBox implements TableCellRenderer {
 		}
 		if ( value != null)
 		{
-			if (value.toString().equals("0") )
-			{
+			if (value.toString().equals("0"))
 				setSelected(false);
-			}
 			else if (value.toString().equals("1"))
-			{ 
 				setSelected(true);
-			}
-			else if (value.toString().equals("false")) 
-			{ 
-				setSelected(false);}
+			else if (value.toString().equals("false"))
+				setSelected(false);
 			else if (value.toString().equals("true"))
-			{
 				setSelected(true);
-			}
 		}
 		//	   setSelected((value != null && ((Boolean) value).booleanValue()));
 		return this;

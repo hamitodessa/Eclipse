@@ -304,6 +304,7 @@ public class YIL_SONU extends JInternalFrame {
 
 			tc = tcm.getColumn(0);
 			JCheckBox checkBox = new JCheckBox();
+
 			checkBox.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					JTableHeader th = table.getTableHeader();

@@ -40,7 +40,8 @@ public class CheckBoxHeader extends JCheckBox   implements TableCellRenderer, Mo
 		setColumn(column);
 		setHorizontalAlignment(JLabel.CENTER);
 		setBorder(UIManager.getBorder("TableHeader.cellBorder"));
-		//setSelected(true);
+		//setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+
 		return rendererComponent;
 	}
 	protected void setColumn(int column) {
@@ -58,9 +59,8 @@ public class CheckBoxHeader extends JCheckBox   implements TableCellRenderer, Mo
 			int viewColumn = columnModel.getColumnIndexAtX(e.getX());
 			int column = tableView.convertColumnIndexToModel(viewColumn);
 
-			if (viewColumn == this.column && e.getClickCount() == 1 && column != -1) {
+			if (viewColumn == this.column && e.getClickCount() == 1 && column != -1)
 				doClick();
-			}
 		}
 	}
 	public void mouseClicked(MouseEvent e) {

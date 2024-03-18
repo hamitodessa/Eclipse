@@ -148,6 +148,8 @@ public class DEKONT extends JInternalFrame {
 		setFrameIcon(FIT_IMAGE.formIcon(new ImageIcon(DEKONT.class.getResource("/ICONLAR/dek-30.png")), 16, 16));
 		
 		ScrollPaneWin11 scrollPaneust = new ScrollPaneWin11();
+		scrollPaneust.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
+
 		getContentPane().add(scrollPaneust, BorderLayout.CENTER);
 		JPanel panelANA = new JPanel();
 		panelANA.setPreferredSize(new Dimension(720,370));

@@ -3519,9 +3519,9 @@ public class OBS_MAIN extends JFrame  {
 		progressBar.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
 		progressBar.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null),"", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 
-		progressBar.setMaximumSize(new Dimension(350, 20));
-		progressBar.setMinimumSize(new Dimension(350, 20));
-		progressBar.setPreferredSize(new Dimension(350, 20));
+		progressBar.setMaximumSize(new Dimension(450, 20));
+		progressBar.setMinimumSize(new Dimension(450, 20));
+		progressBar.setPreferredSize(new Dimension(450, 20));
 		toolBar_1.add(progressBar);
 
 		JLabel lblNewLabel_1 = new JLabel("     ");

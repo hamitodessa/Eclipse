@@ -2,7 +2,6 @@ package OBS_C_2025;
 
 import javax.swing.JTextField;
 import javax.swing.UIManager;
-
 import com.formdev.flatlaf.FlatClientProperties;
 
 @SuppressWarnings("serial")

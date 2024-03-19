@@ -155,7 +155,6 @@ public class H_PLANI extends JInternalFrame {
 
 		JButton btnNewButton_2 = new JButton("");
 		btnNewButton_2.setIcon(new ImageIcon(H_PLANI.class.getResource("/ICONLAR/icons_ileri-24.png")));
-
 		btnNewButton_2.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

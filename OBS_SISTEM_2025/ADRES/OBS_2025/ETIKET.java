@@ -65,12 +65,11 @@ import javax.swing.border.TitledBorder;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
 
-@SuppressWarnings({"serial","unused","removal","static-access"})
+@SuppressWarnings({"serial","unused","removal"})
 public class ETIKET extends JInternalFrame {
 	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
 	static ADRES_ACCESS a_Access = new ADRES_ACCESS(OBS_SIS_2025_ANA_CLASS._IAdres , OBS_SIS_2025_ANA_CLASS._IAdres_Loger);
 	static ResultSet rs = null ;
-	//private static final Vector<?> Boolean = null;
 	public static JTable table;
 	private JLabel lbladet;
 	private Obs_TextFIeld textField;

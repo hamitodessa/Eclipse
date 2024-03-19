@@ -142,7 +142,6 @@ public class URUN_KART extends JInternalFrame {
 
 		txtkayit = new Obs_TextFIeld();
 		txtkayit.setHorizontalAlignment(SwingConstants.CENTER);
-		//txtkayit.setForeground(new Color(0, 0, 205));
 		txtkayit.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txtkayit.setEditable(false);
 		txtkayit.setColumns(10);

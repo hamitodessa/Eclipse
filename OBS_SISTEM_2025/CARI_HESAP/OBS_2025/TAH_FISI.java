@@ -658,14 +658,12 @@ public class TAH_FISI extends JInternalFrame {
 		combCins = new JComboBox<String>();
 		combCins.setBounds(50, 25, 77, 22);
 		panel_3.add(combCins);
-		combCins.setModel(new DefaultComboBoxModel<String>(new String[] {"TL", "USD", "EUR", "RUB"}));
+		combCins.setModel(new DefaultComboBoxModel<String>(new String[] {"TL", "USD", "EUR", "RUB","GBR","CHF","SEK","NOK","SAR"}));
 		
 		lblPos = new JLabel("Pos Banka");
 		lblPos.setVisible(false);
 		lblPos.setBounds(184, 29, 87, 14);
 		panel_3.add(lblPos);
-
-		//		comboBanka = new JComboBox(new DefaultComboBoxModel(new String[] {"Akbank", "Alternatifbank", "Anadolubank", "Arap Türk Bankası", "Bank Ekspress", "Bayındır Bank", "Citibank", "Credit Suisse FB.", "Denizbank", "Diler Yatırım Bankası", "Dışbank", "Finans Bank", "Takas ve Saklama Bankası", "İnterbank", "Kentbank", "Koçbank", "MNG Bank", "Nurol Yatırım Bankası", "Oyak Bank", "Pamukbank", "Park Yatırım Bankası", "Sınai Yatırım Bankası", "Şekerbank", "Tekfen Bank", "ICBC Turkey Bank A.Ş.", "The Chase Manhattan Bank", "Turkish Bank", "Türk Dışbank", "Türk Ekonomi Bankası", "Türk Eximbank", "Türkbank", "Türk Ticaret Bankası", "TC Ziraat Bankası", "Türkiye Emlak Bankası", "Türkiye Garanti Bankası", "Türkiye Halk Bankası", "Türkiye İş Bankası", "Türkiye Kalkınma Bankası", "Türkiye Sınai Kalkınma Bankası", "Yaşarbank", "Vakıflar Bankası", "Yapı ve Kredi Bankası"}));
 
 		comboBanka = new JComboBox<String>();
 		comboBanka.setEditable(true);
@@ -994,7 +992,6 @@ public class TAH_FISI extends JInternalFrame {
 		});
 		scrollPane.setViewportView(tableCek);
 		tabbedPane.setEnabledAt(2, false);
-		
 		//POS BANKA OKU
 		try {
 			pos_doldur();
@@ -1011,7 +1008,6 @@ public class TAH_FISI extends JInternalFrame {
 		else 
 		{
 			fis_kayit();
-			
 		}
 		tabbedPane.setSelectedIndex(0);
 	}
@@ -1068,7 +1064,6 @@ public class TAH_FISI extends JInternalFrame {
 				}
 			}
 			fis_temizle();
-
 		} catch (Exception ex) {
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage() );
 		}
@@ -1118,10 +1113,8 @@ public class TAH_FISI extends JInternalFrame {
 		try {
 		ayar_temizle();
 	 	ResultSet rs = c_Access.tah_ayar_oku();
-	 	if (!rs.isBeforeFirst() ) {  
-	 		
-			return;
-		} 
+	 	if (!rs.isBeforeFirst() )
+	 		return;
 	 	rs.next();
 		if (rs.getBytes("LOGO") != null)
 		{
@@ -1184,7 +1177,6 @@ public class TAH_FISI extends JInternalFrame {
 		if (!rs.isBeforeFirst() ) 
 		{ 
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING,"Bu Numarada Kayitli Fis Yok......" );
-			
 			return; // Kayit Yok
 		} 
 		rs.next();
@@ -1258,14 +1250,12 @@ public class TAH_FISI extends JInternalFrame {
 			rs = c_Access.hesap_adi_oku(alh);
 			if (!rs.isBeforeFirst() ) {  
 				OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING, alh + " Bu numarada hesaba rastlanmadi!!!!" );
-				
 				return ;
 			} 
 			rs = null;
 			rs = c_Access.hesap_adi_oku(bh);
 			if (!rs.isBeforeFirst() ) {  
 				OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING,  bh +  " Bu numarada hesaba rastlanmadi!!!!" );
-				
 				return;
 			} 
 			int e_number = 0;
@@ -1295,8 +1285,11 @@ public class TAH_FISI extends JInternalFrame {
 			}
 			else if(cmbTur.getSelectedIndex()==2)
 			{
-				dBilgi.setiZAHAT(textEvrakNo.getText() + " Nolu Tah.Fisi ile Kredi Karti " + "Pos:" + comboBanka.getSelectedItem().toString() );
-				lBILGI.setmESAJ(textEvrakNo.getText() + " Nolu Tah.Fisi ile Kredi Karti  " + "Pos:" + comboBanka.getSelectedItem().toString() );
+				double aqw = DecimalFormat.getNumberInstance().parse(formattedTutar.getText()).doubleValue();
+				dBilgi.setiZAHAT(textEvrakNo.getText() + " Nolu Tah.Fisi ile Kredi Karti " + "Pos:" + comboBanka.getSelectedItem().toString() + 
+					"  " + 	FORMATLAMA.doub_0(aqw) + " " + combCins.getSelectedItem().toString());
+				lBILGI.setmESAJ(textEvrakNo.getText() + " Nolu Tah.Fisi ile Kredi Karti " + "Pos:" + comboBanka.getSelectedItem().toString() +
+						"  " + 	FORMATLAMA.doub_0(aqw) + " " + combCins.getSelectedItem().toString());
 			}
 			if(cmbCins.getSelectedIndex()==0)
 				dBilgi.setkOD("Tahs.");
@@ -1434,11 +1427,8 @@ public class TAH_FISI extends JInternalFrame {
 	{
 		try {
 			ResultSet rs = c_Access.tah_cek_doldur(textEvrakNo.getText(),cmbCins.getSelectedIndex());
-			if (!rs.isBeforeFirst() )
-			{
-				
+			if (!rs.isBeforeFirst())
 				return;
-			}
 			DefaultTableModel mdll = (DefaultTableModel) tableCek.getModel();
 			int satir =0 ;
 			while (rs.next()) 
@@ -1454,7 +1444,6 @@ public class TAH_FISI extends JInternalFrame {
 				else
 					mdll.removeRow(mdll.getRowCount() -1);	
 			}
-			
 		} catch (Exception ex) 
 		{
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
@@ -1468,7 +1457,6 @@ public class TAH_FISI extends JInternalFrame {
 			rs = c_Access.pos_banka_oku();
 			comboBanka.addItem("");
 			if (!rs.isBeforeFirst() ) {
-				
 				return;
 			}
 			else
@@ -1479,7 +1467,6 @@ public class TAH_FISI extends JInternalFrame {
 						comboBanka.addItem(rs.getString("POS_BANKA"));
 				}
 			}
-			
 		} catch (Exception ex) {
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
 		}

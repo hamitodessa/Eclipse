@@ -68,7 +68,7 @@ public class TAH_DOKUM extends JInternalFrame {
 		setFrameIcon(FIT_IMAGE.formIcon(new ImageIcon(TAH_DOKUM.class.getResource("/ICONLAR/tah_dokum-30.png")), 16, 16));//
 		splitPane = new JSplitPane();
 		splitPane.setResizeWeight(1.0);
-		splitPane.setDividerSize(0);
+		splitPane.setDividerSize(2);
 		splitPane.setOrientation(JSplitPane.VERTICAL_SPLIT);
 		getContentPane().add(splitPane, BorderLayout.CENTER);
 

@@ -527,6 +527,7 @@ public class H_PLANI extends JInternalFrame {
 			}
 		});
 		btnNewButton_6.setToolTipText("Hesap Plani");
+		
 		btnNewButton_6.setIcon(new ImageIcon(H_PLANI.class.getResource("/ICONLAR/user-16.png")));
 		btnNewButton_6.setBounds(665, 115, 22, 23);
 		panel.add(btnNewButton_6);

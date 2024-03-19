@@ -521,7 +521,7 @@ public class DEKONT extends JInternalFrame {
 			}
 		});
 		btnbh.setEnabled(false);
-		btnbh.setIcon(new ImageIcon(DEKONT.class.getResource("/ICONLAR/eks16.png")));
+		btnbh.setIcon(FIT_IMAGE.formIcon(new ImageIcon(DEKONT.class.getResource("/ICONLAR/icons8-search-property-30.png")), 16, 16));
 		btnbh.setBounds(190, 45, 30, 25);
 		panel_1.add(btnbh);
 
@@ -1011,7 +1011,7 @@ public class DEKONT extends JInternalFrame {
 			}
 		});
 		btnah.setEnabled(false);
-		btnah.setIcon(new ImageIcon(DEKONT.class.getResource("/ICONLAR/eks16.png")));
+		btnah.setIcon(FIT_IMAGE.formIcon(new ImageIcon(DEKONT.class.getResource("/ICONLAR/icons8-search-property-30.png")), 16, 16));
 		btnah.setBounds(190, 45, 30, 25);
 		panel_1_1.add(btnah);
 

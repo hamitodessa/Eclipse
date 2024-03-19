@@ -123,13 +123,13 @@ public class SMS extends JInternalFrame {
 		panel.setLayout(null);
 
 		JLabel lblNewLabel_11 = new JLabel("Kayit Sayisi :");
-		lblNewLabel_11.setBounds(10, 8, 72, 14);
+		lblNewLabel_11.setBounds(10, 5, 72, 14);
 		panel.add(lblNewLabel_11);
 
 		lblNewLabel_12 = new JLabel("0");
 		lblNewLabel_12.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblNewLabel_12.setHorizontalAlignment(SwingConstants.LEFT);
-		lblNewLabel_12.setBounds(85, 8, 46, 14);
+		lblNewLabel_12.setBounds(85, 5, 46, 14);
 		panel.add(lblNewLabel_12);
 
 		tabbedPane = new MaterialTabbed();

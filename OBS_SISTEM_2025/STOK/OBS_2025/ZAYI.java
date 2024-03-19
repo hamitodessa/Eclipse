@@ -424,25 +424,15 @@ public class ZAYI extends JInternalFrame {
 		label_9.setBounds(659, 3, 109, 14);
 		panel_71.add(label_9);
 		/////////////////////////////////////////////////////////////////
-		JPanel panel_711 = new JPanel();
-		
-		panel_711.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-
-		panel_711.setMinimumSize(new Dimension(0, 95));
-		panel_711.setMaximumSize(new Dimension(0,95));
-		panel_711.setLayout(new BorderLayout(0, 0));
-		
-		splitPane_11.setRightComponent(panel_711);
-		
-		MaterialTabbed tabbedPane_2 = new MaterialTabbed();
-		tabbedPane_2.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		//tabbedPane_2.setForeground(new Color(0, 0, 128));
-		panel_711.add(tabbedPane_2,BorderLayout.CENTER);
 
 		JPanel panel_1 = new JPanel();
+		panel_1.setMinimumSize(new Dimension(0, 50));
+		panel_1.setMaximumSize(new Dimension(0,50));
+		splitPane_11.setRightComponent(panel_1);
+		
 		panel_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 
-		tabbedPane_2.addTab("Toplamlar", null, panel_1, null);
+		splitPane_11.setRightComponent(panel_1);
 		panel_1.setLayout(null);
 		
 		JLabel lblNewLabel_11 = new JLabel("Barkod");

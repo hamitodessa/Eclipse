@@ -975,7 +975,7 @@ public class IRSALIYE extends JInternalFrame {
 				}
 			}
 		});
-		btnNewButton_1.setIcon(new ImageIcon(FATURA.class.getResource("/ICONLAR/icons8-product-16.png")));
+		btnNewButton_1.setIcon(FIT_IMAGE.formIcon(new ImageIcon(IRSALIYE.class.getResource("/ICONLAR/icons8-product-30.png")), 16, 16));
 		toolBar_1.add(btnNewButton_1);
 
 		JButton btnNewButton_2 = new JButton("");

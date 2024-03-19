@@ -602,7 +602,7 @@ public class TAH_FISI extends JInternalFrame {
 		JButton btnbh = new JButton("");
 		btnbh.setToolTipText("Ekstre Dokumu");
 		btnbh.setBounds(170, 33, 30, 25);
-		btnbh.setIcon(new ImageIcon(DEKONT.class.getResource("/ICONLAR/eks16.png")));
+		btnbh.setIcon(FIT_IMAGE.formIcon(new ImageIcon(TAH_FISI.class.getResource("/ICONLAR/icons8-search-property-30.png")), 16, 16));
 		btnbh.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (textCKodu.getText().equals("")) return;

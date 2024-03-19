@@ -657,7 +657,8 @@ public class URUN_KART extends JInternalFrame {
 				}
 			}
 		});
-		button_7_1.setIcon(new ImageIcon(URUN_KART.class.getResource("/ICONLAR/rect.png")));
+		
+		button_7_1.setIcon(FIT_IMAGE.formIcon(new ImageIcon(URUN_KART.class.getResource("/ICONLAR/rect.png")), 16, 16));
 		button_7_1.setToolTipText("Recete Goruntule");
 		button_7_1.setBounds(185, 17, 24, 24);
 		panel_7.add(button_7_1);
@@ -748,8 +749,7 @@ public class URUN_KART extends JInternalFrame {
 				getContentPane().setCursor(oac.DEFAULT_CURSOR);
 			}
 		});
-
-		button_8.setIcon(new ImageIcon(URUN_KART.class.getResource("/ICONLAR/icons8-product-16.png")));
+		button_8.setIcon(FIT_IMAGE.formIcon(new ImageIcon(URUN_KART.class.getResource("/ICONLAR/icons8-product-30.png")), 16, 16));
 		button_8.setToolTipText("Hesap Plani");
 		button_8.setBounds(611, 103, 24, 24);
 		panel.add(button_8);

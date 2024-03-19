@@ -409,7 +409,7 @@ public class RECETE extends JInternalFrame {
 
 		toolBar.setFloatable(false);
 		toolBar.setOrientation(SwingConstants.VERTICAL);
-		toolBar.setBounds(5, 128, 25, 262);
+		toolBar.setBounds(5, 128, 25, 272);
 		panel.add(toolBar);
 		
 		JButton btnNewButton_1 = new JButton("");

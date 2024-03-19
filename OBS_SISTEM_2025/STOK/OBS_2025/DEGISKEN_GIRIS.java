@@ -136,7 +136,6 @@ public class DEGISKEN_GIRIS extends JInternalFrame {
 		panel.add(panel_3);
 
 		cmbanagrup = new JComboBox<String>();
-		//cmbanagrup.setForeground(new Color(0, 0, 128));
 		cmbanagrup.setFont(new Font("Tahoma", Font.BOLD, 12));
 		cmbanagrup.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -187,43 +186,37 @@ public class DEGISKEN_GIRIS extends JInternalFrame {
 		{
 			panel.setMinimumSize(new Dimension(0, 200));
 			panel.setMaximumSize(new Dimension(0, 200));
-			panel_2.setBorder(new TitledBorder(null, "Alt Grup", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-			//panel_2.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Alt Grup", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+			panel_2.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "Alt Grup", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		}
 		else if (nerden.equals("anagrup"))
 		{
 			panel.setMinimumSize(new Dimension(0,135));
 			panel.setMaximumSize(new Dimension(0, 135));
-			panel_2.setBorder(new TitledBorder(null, "Ana Grup", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-			//panel_2.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Ana Grup", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+			panel_2.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "Ana Grup", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		}
 		else if (nerden.equals("mensei"))
 		{
 			panel.setMinimumSize(new Dimension(0,135));
 			panel.setMaximumSize(new Dimension(0, 135));
-			panel_2.setBorder(new TitledBorder(null, "Mensei", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-			//panel_2.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Mensei", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+			panel_2.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "Mensei", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		}
 		else if (nerden.equals("depo"))
 		{
 			panel.setMinimumSize(new Dimension(0,135));
 			panel.setMaximumSize(new Dimension(0, 135));
-			panel_2.setBorder(new TitledBorder(null, "Depo", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-			//panel_2.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Depo", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+			panel_2.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "Depo", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		}
 		else if (nerden.equals("oz1"))
 		{
 			panel.setMinimumSize(new Dimension(0,135));
 			panel.setMaximumSize(new Dimension(0, 135));
-			panel_2.setBorder(new TitledBorder(null, "Ozel Kod 1", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-			//panel_2.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Ozel Kod 1", TitledBorder.LEADING, TitledBorder.TOP, null,null));
+			panel_2.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "Ozel Kod 1", TitledBorder.LEADING, TitledBorder.TOP, null,null));
 		}
 		else if (nerden.equals("oz2"))
 		{
 			panel.setMinimumSize(new Dimension(0,135));
 			panel.setMaximumSize(new Dimension(0, 135));
-			panel_2.setBorder(new TitledBorder(null, "Ozel Kod 2", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-			//panel_2.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Ozel Kod 2", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+			panel_2.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "Ozel Kod 2", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		}
 		yenile();
 	}

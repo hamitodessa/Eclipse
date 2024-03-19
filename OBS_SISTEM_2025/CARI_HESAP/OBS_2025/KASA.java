@@ -270,7 +270,7 @@ public class KASA extends JInternalFrame {
 		});
 		leftPanel.add(dateChooser);
 
-		JButton btnNewButton_1_2 = new JButton("<<");
+		JButton btnNewButton_1_2 = new JButton("");
 		btnNewButton_1_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				SimpleDateFormat datefmt = new SimpleDateFormat("dd.MM.yyyy"); // Or format you're using
@@ -286,6 +286,7 @@ public class KASA extends JInternalFrame {
 				}
 			}
 		});
+		btnNewButton_1_2.setIcon(new ImageIcon(KASA.class.getResource("/ICONLAR/icons_geri-24.png")));
 		btnNewButton_1_2.setToolTipText("Geri");
 		btnNewButton_1_2.setFont(new Font("Tahoma", Font.BOLD, 10));
 		btnNewButton_1_2.setBounds(484, 11, 50, 30);
@@ -299,10 +300,10 @@ public class KASA extends JInternalFrame {
 		});
 		btnNewButton_1_1.setToolTipText("Bugun");
 		btnNewButton_1_1.setBounds(538, 11, 55, 30);
-		btnNewButton_1_1.setIcon(new ImageIcon(DEKONT.class.getResource("/ICONLAR/icons8-open-view-24.png")));
+		btnNewButton_1_1.setIcon(new ImageIcon(KASA.class.getResource("/ICONLAR/refresh-24.png")));
 		leftPanel.add(btnNewButton_1_1);
 
-		JButton btnNewButton_1 = new JButton(">>");
+		JButton btnNewButton_1 = new JButton("");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				SimpleDateFormat datefmt = new SimpleDateFormat("dd.MM.yyyy"); // Or format you're using
@@ -318,6 +319,7 @@ public class KASA extends JInternalFrame {
 				}
 			}
 		});
+		btnNewButton_1.setIcon(new ImageIcon(KASA.class.getResource("/ICONLAR/icons_ileri-24.png")));
 		btnNewButton_1.setToolTipText("Ileri");
 		btnNewButton_1.setFont(new Font("Tahoma", Font.BOLD, 10));
 		btnNewButton_1.setBounds(597, 11, 50, 30);

@@ -122,7 +122,7 @@ public class URUN_KART extends JInternalFrame {
 			}
 		});
 		button.setFont(new Font("Tahoma", Font.BOLD, 11));
-		button.setBounds(88, 17, 64, 30);
+		button.setBounds(88, 17, 60, 30);
 		panel.add(button);
 
 		JButton button_1 = new JButton("");
@@ -137,7 +137,7 @@ public class URUN_KART extends JInternalFrame {
 			}
 		});
 		button_1.setFont(new Font("Tahoma", Font.BOLD, 11));
-		button_1.setBounds(151, 17, 54, 30);
+		button_1.setBounds(148, 17, 60, 30);
 		panel.add(button_1);
 
 		txtkayit = new Obs_TextFIeld();
@@ -146,7 +146,7 @@ public class URUN_KART extends JInternalFrame {
 		txtkayit.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txtkayit.setEditable(false);
 		txtkayit.setColumns(10);
-		txtkayit.setBounds(208, 18, 74, 28);
+		txtkayit.setBounds(212, 18, 74, 28);
 		panel.add(txtkayit);
 
 		JButton button_2 = new JButton("");
@@ -160,7 +160,7 @@ public class URUN_KART extends JInternalFrame {
 			}
 		});
 		button_2.setFont(new Font("Tahoma", Font.BOLD, 11));
-		button_2.setBounds(285, 17, 54, 30);
+		button_2.setBounds(290, 17, 60, 30);
 		panel.add(button_2);
 
 		JButton button_3 = new JButton("");
@@ -174,7 +174,7 @@ public class URUN_KART extends JInternalFrame {
 			}
 		});
 		button_3.setFont(new Font("Tahoma", Font.BOLD, 11));
-		button_3.setBounds(338, 17, 64, 30);
+		button_3.setBounds(350, 17, 60, 30);
 		panel.add(button_3);
 
 		textField_1 = new Obs_TextFIeld();
@@ -193,7 +193,7 @@ public class URUN_KART extends JInternalFrame {
 			}
 		});
 		textField_1.setFont(new Font("Tahoma", Font.BOLD, 12));
-		textField_1.setBounds(88, 58, 314, 20);
+		textField_1.setBounds(88, 58, 322, 20);
 		panel.add(textField_1);
 		textField_1.setColumns(10);
 

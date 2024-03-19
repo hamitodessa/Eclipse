@@ -35,7 +35,6 @@ import OBS_C_2025.JDateChooserEditor;
 import OBS_C_2025.JTextFieldRegularPopupMenu;
 
 import javax.swing.border.EtchedBorder;
-import javax.swing.border.LineBorder;
 import javax.swing.event.AncestorEvent;
 import javax.swing.event.AncestorListener;
 import javax.swing.event.ChangeEvent;
@@ -706,7 +705,8 @@ public class TAH_FISI extends JInternalFrame {
 		panel_Ayarlar.setLayout(null);
 
 		imagePanel = new ImagePanel();
-		imagePanel.setBorder(new LineBorder(new Color(95, 158, 160), 1,true));
+		imagePanel.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+
 		imagePanel.setBounds(101, 186, 315, 150);
 		panel_Ayarlar.add(imagePanel);
 
@@ -814,7 +814,7 @@ public class TAH_FISI extends JInternalFrame {
 		panel_Ayarlar.add(btnNewButton_5);
 		
 		imageKase = new ImagePanel();
-		imageKase.setBorder(new LineBorder(new Color(95, 158, 160), 1,true));
+		imageKase.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		imageKase.setBounds(440, 186, 315, 150);
 		panel_Ayarlar.add(imageKase);
 		
@@ -822,11 +822,8 @@ public class TAH_FISI extends JInternalFrame {
 		btnNewButton_4_1.setMargin(new Insets(2, 1, 2, 14));
 		btnNewButton_4_1.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		btnNewButton_4_1.setBounds(440, 347, 100, 23);
-		
 		btnNewButton_4_1.setIcon(new ImageIcon(H_PLANI.class.getResource("/ICONLAR/icons8-camera-16.png")));
-		
 		btnNewButton_4_1.addActionListener(new ActionListener() {
-			
 			public void actionPerformed(ActionEvent e) {
 				getContentPane().setCursor(oac.WAIT_CURSOR);
 				UIManager.put("FileChooser.cancelButtonText", "Vazgec");

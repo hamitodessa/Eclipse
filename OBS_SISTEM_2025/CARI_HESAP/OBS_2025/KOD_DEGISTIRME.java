@@ -164,7 +164,7 @@ public class KOD_DEGISTIRME extends JInternalFrame {
 			}
 		});
 		btnNewButton.setIcon(new ImageIcon(KOD_DEGISTIRME.class.getResource("/ICONLAR/save.png")));
-		btnNewButton.setBounds(34, 106, 529, 31);
+		btnNewButton.setBounds(34, 106, 529, 30);
 		panel.add(btnNewButton);
 
 	}

@@ -142,14 +142,14 @@ public class H_PLANI extends JInternalFrame {
 				doldur("G");
 			}
 		});
-		btnNewButton_1.setBounds(162, 50, 54, 30);
+		btnNewButton_1.setBounds(162, 50, 60, 30);
 		panel.add(btnNewButton_1);
 
 		txtkayit = new JTextField();
 		txtkayit.setEditable(false);
 		txtkayit.setHorizontalAlignment(SwingConstants.CENTER);
 		txtkayit.setFont(new Font("Tahoma", Font.BOLD, 11));
-		txtkayit.setBounds(220, 50, 64, 30);
+		txtkayit.setBounds(226, 51, 64, 28);
 		panel.add(txtkayit);
 		txtkayit.setColumns(10);
 
@@ -162,7 +162,7 @@ public class H_PLANI extends JInternalFrame {
 				doldur("I");
 			}
 		});
-		btnNewButton_2.setBounds(287, 50, 54, 30);
+		btnNewButton_2.setBounds(294, 50, 60, 30);
 		panel.add(btnNewButton_2);
 
 		JButton btnNewButton_3 = new JButton("");
@@ -174,7 +174,7 @@ public class H_PLANI extends JInternalFrame {
 				doldur("SON");
 			}
 		});
-		btnNewButton_3.setBounds(342, 50, 60, 30);
+		btnNewButton_3.setBounds(354, 50, 60, 30);
 		panel.add(btnNewButton_3);
 
 		JSeparator separator_2 = new JSeparator();

@@ -41,7 +41,6 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.beans.PropertyVetoException;
 import java.io.File;
-import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -3323,7 +3322,7 @@ public class OBS_MAIN extends JFrame  {
 				GuiUtil.setWaitCursor(toolBar,false);//
 			}
 		});
-		btnExcell.setIcon(new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/excel-icon_16.png")));
+		btnExcell.setIcon(new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/excel-16.png")));
 		toolBar.add(btnExcell);
 
 		btnGrafik = new JButton("");
@@ -3463,8 +3462,6 @@ public class OBS_MAIN extends JFrame  {
 		btnNewButton_30.setIcon(new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/icons8-calculator-16.png")));
 		toolBar.add(btnNewButton_30);
 		
-		final Dimension size = label.getPreferredSize();
-
 		JLabel lblNewLabel_32 = new JLabel("     ");
 		toolBar.add(lblNewLabel_32);
 
@@ -3491,7 +3488,7 @@ public class OBS_MAIN extends JFrame  {
 					frame.setVisible(true);
 					dispose();
 					GuiUtil.setWaitCursor(toolBar,false);
-				} catch (IOException e1) {
+				} catch (Exception e1) {
 					GuiUtil.setWaitCursor(toolBar,false);
 					e1.printStackTrace();
 				}
@@ -3502,25 +3499,20 @@ public class OBS_MAIN extends JFrame  {
 		button_1.setToolTipText("Giris");
 		toolBar.add(button_1);
 
-
 		JLabel lblNewLabel_8 = new JLabel("          ");
 		lblNewLabel_8.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		toolBar.add(lblNewLabel_8);
 		
 	
+		Dimension size = label.getPreferredSize();
 		lblNewLabel_9 = new JLabel("");
 		lblNewLabel_9.setOpaque(true);
-		
 		lblNewLabel_9.setFont(new Font("Tahoma", Font.BOLD, 11));
-		//lblNewLabel_9.setForeground(new Color(0, 0, 128));
 		lblNewLabel_9 .setMinimumSize(size);
 		lblNewLabel_9 .setPreferredSize(new Dimension(250, 14));
 		toolBar.add(lblNewLabel_9);
-
 		//******************************************************** TOOLBAR !*******************************************
-
 		toolBar_1 = new JToolBar();
-		//toolBar_1.setBorder(new LineBorder(null));
 		toolBar_1.setFloatable(false);
 		progressBar = new JProgressBar();
 		progressBar.setFont(new Font("Tahoma", Font.BOLD, 11));
@@ -3536,7 +3528,6 @@ public class OBS_MAIN extends JFrame  {
 		toolBar_1.add(lblNewLabel_1);
 
 		lblUser = new JLabel("     ");
-		//lblUser.setForeground(new Color(0, 0, 128));
 		lblUser.setFont(new Font("Tahoma", Font.BOLD, 11));
 		toolBar_1.add(lblUser);
 		
@@ -3571,8 +3562,6 @@ public class OBS_MAIN extends JFrame  {
        //***************************************************************************************************
 		desktopPane = new JDesktopPane();
 		//desktopPane.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null),"", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-
-		//desktopPane.setBackground(new Color(39, 45, 61));
 		Notifications.getInstance().setJFrame(this);
 		DesktopScrollPane scrpane = new DesktopScrollPane(desktopPane );
 		scrpane.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null),"", TitledBorder.LEADING, TitledBorder.TOP, null, null));
@@ -3585,16 +3574,13 @@ public class OBS_MAIN extends JFrame  {
 
 		ScrollPaneWin11 qaz = new ScrollPaneWin11();
 		qaz.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null),"", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-
 		qaz.setMinimumSize(new Dimension(0, 30));
 		qaz.setMaximumSize(new Dimension(0, 30));
 		qaz.setViewportView (toolBar_1);
-
 		ortapane.setRightComponent(qaz);
 		contentPane.add( ortapane, BorderLayout.CENTER);
 
 		setExtendedStatee(JFrame.MAXIMIZED_BOTH);
-		
 		try {
 			String 	deger = GLOBAL.setting_oku("PRG_GRID_RENK").toString();
 			String[] parts;
@@ -3619,125 +3605,126 @@ public class OBS_MAIN extends JFrame  {
 	private void form_ac(String pencere,String hangi) 
 	{
 		boolean varmi = pencere_bak(pencere);
-
-		if (varmi  ) 
-		{
-			try {
+		try {
+			if (varmi) 
+			{
 				pencere_aktiv_yap(pencere);
-			} catch (PropertyVetoException e1) {	e1.printStackTrace();	}
-			return;
-		}
-		else
-		{
-			GuiUtil.setWaitCursor(tabbedPane,true);
-			JInternalFrame internalFrame = null;
-			if (pencere.equals("DEKONT")) internalFrame  = new DEKONT();
-			else if (pencere.equals("TAHSILAT")) internalFrame  = new TAH_FISI();
-			else if (pencere.equals("EKSTRE")) internalFrame  = new EKSTRE();
-			else if (pencere.equals("HESAP GIRISI")) internalFrame  = new H_PLANI();
-			else if (pencere.equals("TOPLU GIRIS")) internalFrame  = new DISTAN_AKTAR();
-			else if (pencere.equals("CARI MIZAN")) internalFrame  = new MIZAN();
-			else if (pencere.equals("DOVIZE CEVIRME")) internalFrame  = new DVZ_CEVIRME();
-			else if (pencere.equals("CARI OZEL MIZAN")) internalFrame  = new OZEL_MIZAN();
-			else if (pencere.equals("HESAP BAK")) internalFrame  = new HESAP_BAK();
-			else if (pencere.equals("CARI ARAMA")) internalFrame  = new ARAMA();
-			else if (pencere.equals("GUNLUK TAKIP")) internalFrame  = new KASA();
-			else if (pencere.equals("HESAP PLANI DETAY")) internalFrame  = new HESAP_PLANI_DETAY();
-			else if (pencere.equals("GUNLUK ISLEM")) internalFrame  = new GUNLUK_ISLEM();
-			else if (pencere.equals("ORNEK HESAP PLANI")) internalFrame  = new ORN_HSP_PLN();
-			else if (pencere.equals("KOD DEGISTIRME")) internalFrame  = new KOD_DEGISTIRME();
-			else if (pencere.equals("TAHSILAT DOKUM")) internalFrame  = new TAH_DOKUM();
-			else if (pencere.equals("YIL SONU AKTARMA")) internalFrame  = new YIL_SONU();
-			else if (pencere.equals("CARI KARTON MIZAN")) internalFrame  = new KARTON_MIZAN();
-			//KUR
-			else if (pencere.equals("KUR GIRIS")) internalFrame  = new KUR_GIRIS();
-			else if (pencere.equals("KUR RAPORLAMA")) internalFrame  = new KUR_RAPORLAMA();
-			else if (pencere.equals("KUR GRAFIK")) internalFrame  = new KUR_GRAFIK();
-			else if (pencere.equals("EKSIK_KUR")) internalFrame  = new EKSIK_KUR();
-			//ADRES
-			else if (pencere.equals("ADRES GIRISI")) internalFrame  = new ADRES_GIRIS();
-			else if (pencere.equals("ADRES DETAY")) internalFrame  = new ADRESLER();
-			else if (pencere.equals("ETIKET")) internalFrame  = new ETIKET();
-			//else if (pencere.equals("ETIKET PRINT")) internalFrame  = new ETIKET_PRINT();
-			else if (pencere.equals("ETIKET AYAR")) internalFrame  = new ETIKET_AYAR();
-			//GUNLUK
-			else if (pencere.equals("GUNLUK")) internalFrame  = new Gunluk();
-			else if (pencere.equals("GOREV GIRIS")) internalFrame  = new GOREV_GIRIS();
-			else if (pencere.equals("HAZIR GOREVLER")) internalFrame  = new HAZIR_GOREVLER();
-			else if (pencere.equals("ANLIK MESAJLAR")) internalFrame  = new GOREV_MESAJ(gBILGI);
-			//STOK
-			else if (pencere.equals("URUN KARTI")) internalFrame  = new URUN_KART();
-			else if (pencere.equals("IMALAT")) internalFrame  = new IMALAT();
-			else if (pencere.equals("RECETE")) internalFrame  = new RECETE();
-			else if (pencere.equals("COKLU IMALAT")) internalFrame  = new COKLU_IMALAT();
-			else if (pencere.equals("URETIM FIS NO YENILEME")) internalFrame  = new URETIM_FIS_NO();
-			else if (pencere.equals("FATURA		- SATIS")) internalFrame  = new FATURA();
-			else if (pencere.equals("IRSALIYE		- SATIS")) internalFrame  = new IRSALIYE();
-			else if (pencere.equals("ZAYI")) internalFrame  = new ZAYI();
-			else if (pencere.equals("FATURA RAPORLAMA")) internalFrame  = new FATURA_RAPOR();
-			else if (pencere.equals("ENVANTER DOKUM")) internalFrame  = new ENVANTER();
-			else if (pencere.equals("URUN LISTE")) internalFrame  = new URUN_LISTE();
-			else if (pencere.equals("STOK DETAY")) internalFrame  = new STOK_DETAY();
-			else if (pencere.equals("IRSALIYE RAPOR")) internalFrame  = new IRSALIYE_RAPOR();
-			else if (pencere.equals("IMALAT RAPORLAMA")) internalFrame  = new IMALAT_RAPORLAMA();
-			else if (pencere.equals("RECETE RAPORLAMA")) internalFrame  = new RECETE_RAPOR();
-			else if (pencere.equals("GRUP RAPOR")) internalFrame  = new GRUP_RAPOR();
-			else if (pencere.equals("IMALAT GRUP RAPOR")) internalFrame  = new IMALAT_GRUP_RAPOR();
-			else if (pencere.equals("STOK RAPOR")) internalFrame  = new STOK_RAPOR();
-			else if (pencere.equals("ORTALAMA SATIS")) internalFrame  = new ORTALAMA_FIAT();
-			else if (pencere.equals("STOK BOS KUR")) internalFrame  = new FAT_BOS_KUR();
-			else if (pencere.equals("E FATURA ARAMA")) internalFrame  = new E_FATURA();
-			else if (pencere.equals("ZAYI RAPORLAMA")) internalFrame  = new ZAYI_RAPOR();
-			else if (pencere.equals("EVRAK FORMATLAMA")) internalFrame  = new EVRAK_FORMAT();
-			else if (pencere.equals("DEGISKEN YENILEME")) internalFrame  = new DEGISKEN_DEGIS();
-			else if (pencere.equals("STOK YIL SONU")) internalFrame  = new STK_YIL_SONU();
-			else if (pencere.equals("DEGISKENLER")) internalFrame  = new DEGISKEN_GIRIS(hangi);
-			//KAMBIYO
-			else if (pencere.equals("CEK GIRIS")) internalFrame  = new CEK_GIRIS();
-			else if (pencere.equals("CEK CIKIS")) internalFrame  = new CEK_CIKIS();
-			else if (pencere.equals("CEK RAPOR")) internalFrame  = new CEK_RAPOR();
-			else if (pencere.equals("CEK TAKIP")) internalFrame  = new CEK_TAKIP();
-			//SMS-MAIL
-			else if (pencere.equals("SMS")) internalFrame  = new SMS();
-			else if (pencere.equals("MAIL")) internalFrame  = new MAIL();
-			//else if (pencere.equals("SMS INET")) internalFrame  = new SMS_INET();
-			//KERESTE
-			else if (pencere.equals("KERESTE GIRIS")) internalFrame  = new KERESTE_GIRIS();
-			else if (pencere.equals("KERESTE CIKIS")) internalFrame  = new KERESTE_CIKIS();
-			else if (pencere.equals("KOD ACIKLAMA")) internalFrame  = new KOD_ACIKLAMA();
-			else if (pencere.equals("KONSIMENTO ACIKLAMA")) internalFrame  = new KONS_ACIKLAMA();
-			else if (pencere.equals("KERESTE DEGISKENLER")) internalFrame  = new KER_DEGISKEN_GIRIS(hangi);
-			else if (pencere.equals("KERESTE GRUP RAPOR")) internalFrame  = new KER_GRUP_RAPOR();
-			else if (pencere.equals("KERESTE DETAY RAPOR")) internalFrame  = new KER_DETAY();
-			else if (pencere.equals("KERESTE FATURA RAPORLAMA")) internalFrame  = new KER_FAT_RAPOR();
-			else if (pencere.equals("KERESTE KOD-KONSIMENTO DEGISTIRME")) internalFrame  = new KER_KOD_DEGISTIRME();
-			else if (pencere.equals("KERESTE DEGISKEN YENILEME")) internalFrame  = new KER_DEGISKEN_DEGIS();
-			else if (pencere.equals("KERESTE ORTALAMA FIAT")) internalFrame  = new KER_ORT_FIAT();
-			else if (pencere.equals("KERESTE BOS KUR")) internalFrame  = new KER_BOS_KUR();
-			else if (pencere.equals("KERESTE ENVANTER")) internalFrame  = new KER_ENVANTER();
-			//GENEL
-			else if (pencere.equals("GIDEN RAPORLAR")) internalFrame  = new GID_RAPOR();
-			else if (pencere.equals("CALISMA DIZINLERI")) internalFrame  = new MODUL_PARAMETRE();
-			//AYARLAR
-			else if (pencere.equals("KULLANICI EKLEME")) internalFrame  = new  USER_EKLEME();
-			else if (pencere.equals("KULLANICI DETAY EKLEME")) internalFrame  = new  USER_DETAY_EKLEME();
-			else if (pencere.equals("KULLANICI KOPYALA")) internalFrame  = new  USER_KOPYALA();
-			else if (pencere.equals("PARAMETRELER")) internalFrame  = new  PARAMETRELER();
-			else if (pencere.equals("E MAIL BILGILERI")) internalFrame  = new  E_MAIL_BILGILERI();
-			//
-			else if (pencere.equals("FIRMA ISMI DEGISTIRME")) internalFrame  = new FIRMA_ISMI_DEGIS();
-			else if (pencere.equals("E MAIL GONDERME")) internalFrame  = new E_MAIL_GONDERME();
-			
-			else if (pencere.equals("SQL SORGULAMA")) internalFrame  = new SQL_SORGULAMA(hangi);
-			else if (pencere.equals("LOG RAPORLAMA")) internalFrame  = new LOGLAMA_RAPOR();
-			else if (pencere.equals("HAKKINDA")) internalFrame  = new HAKKINDA();
-			else {
-				GuiUtil.setWaitCursor(tabbedPane,false);
 				return;
 			}
-			desktopPane.add(internalFrame);
-			internalFrame.setVisible(true);
-			GuiUtil.setWaitCursor(tabbedPane,false);
+			else
+			{
+				GuiUtil.setWaitCursor(tabbedPane,true);
+				JInternalFrame internalFrame = null;
+				if (pencere.equals("DEKONT")) internalFrame  = new DEKONT();
+				else if (pencere.equals("TAHSILAT")) internalFrame  = new TAH_FISI();
+				else if (pencere.equals("EKSTRE")) internalFrame  = new EKSTRE();
+				else if (pencere.equals("HESAP GIRISI")) internalFrame  = new H_PLANI();
+				else if (pencere.equals("TOPLU GIRIS")) internalFrame  = new DISTAN_AKTAR();
+				else if (pencere.equals("CARI MIZAN")) internalFrame  = new MIZAN();
+				else if (pencere.equals("DOVIZE CEVIRME")) internalFrame  = new DVZ_CEVIRME();
+				else if (pencere.equals("CARI OZEL MIZAN")) internalFrame  = new OZEL_MIZAN();
+				else if (pencere.equals("HESAP BAK")) internalFrame  = new HESAP_BAK();
+				else if (pencere.equals("CARI ARAMA")) internalFrame  = new ARAMA();
+				else if (pencere.equals("GUNLUK TAKIP")) internalFrame  = new KASA();
+				else if (pencere.equals("HESAP PLANI DETAY")) internalFrame  = new HESAP_PLANI_DETAY();
+				else if (pencere.equals("GUNLUK ISLEM")) internalFrame  = new GUNLUK_ISLEM();
+				else if (pencere.equals("ORNEK HESAP PLANI")) internalFrame  = new ORN_HSP_PLN();
+				else if (pencere.equals("KOD DEGISTIRME")) internalFrame  = new KOD_DEGISTIRME();
+				else if (pencere.equals("TAHSILAT DOKUM")) internalFrame  = new TAH_DOKUM();
+				else if (pencere.equals("YIL SONU AKTARMA")) internalFrame  = new YIL_SONU();
+				else if (pencere.equals("CARI KARTON MIZAN")) internalFrame  = new KARTON_MIZAN();
+				//KUR
+				else if (pencere.equals("KUR GIRIS")) internalFrame  = new KUR_GIRIS();
+				else if (pencere.equals("KUR RAPORLAMA")) internalFrame  = new KUR_RAPORLAMA();
+				else if (pencere.equals("KUR GRAFIK")) internalFrame  = new KUR_GRAFIK();
+				else if (pencere.equals("EKSIK_KUR")) internalFrame  = new EKSIK_KUR();
+				//ADRES
+				else if (pencere.equals("ADRES GIRISI")) internalFrame  = new ADRES_GIRIS();
+				else if (pencere.equals("ADRES DETAY")) internalFrame  = new ADRESLER();
+				else if (pencere.equals("ETIKET")) internalFrame  = new ETIKET();
+				//else if (pencere.equals("ETIKET PRINT")) internalFrame  = new ETIKET_PRINT();
+				else if (pencere.equals("ETIKET AYAR")) internalFrame  = new ETIKET_AYAR();
+				//GUNLUK
+				else if (pencere.equals("GUNLUK")) internalFrame  = new Gunluk();
+				else if (pencere.equals("GOREV GIRIS")) internalFrame  = new GOREV_GIRIS();
+				else if (pencere.equals("HAZIR GOREVLER")) internalFrame  = new HAZIR_GOREVLER();
+				else if (pencere.equals("ANLIK MESAJLAR")) internalFrame  = new GOREV_MESAJ(gBILGI);
+				//STOK
+				else if (pencere.equals("URUN KARTI")) internalFrame  = new URUN_KART();
+				else if (pencere.equals("IMALAT")) internalFrame  = new IMALAT();
+				else if (pencere.equals("RECETE")) internalFrame  = new RECETE();
+				else if (pencere.equals("COKLU IMALAT")) internalFrame  = new COKLU_IMALAT();
+				else if (pencere.equals("URETIM FIS NO YENILEME")) internalFrame  = new URETIM_FIS_NO();
+				else if (pencere.equals("FATURA		- SATIS")) internalFrame  = new FATURA();
+				else if (pencere.equals("IRSALIYE		- SATIS")) internalFrame  = new IRSALIYE();
+				else if (pencere.equals("ZAYI")) internalFrame  = new ZAYI();
+				else if (pencere.equals("FATURA RAPORLAMA")) internalFrame  = new FATURA_RAPOR();
+				else if (pencere.equals("ENVANTER DOKUM")) internalFrame  = new ENVANTER();
+				else if (pencere.equals("URUN LISTE")) internalFrame  = new URUN_LISTE();
+				else if (pencere.equals("STOK DETAY")) internalFrame  = new STOK_DETAY();
+				else if (pencere.equals("IRSALIYE RAPOR")) internalFrame  = new IRSALIYE_RAPOR();
+				else if (pencere.equals("IMALAT RAPORLAMA")) internalFrame  = new IMALAT_RAPORLAMA();
+				else if (pencere.equals("RECETE RAPORLAMA")) internalFrame  = new RECETE_RAPOR();
+				else if (pencere.equals("GRUP RAPOR")) internalFrame  = new GRUP_RAPOR();
+				else if (pencere.equals("IMALAT GRUP RAPOR")) internalFrame  = new IMALAT_GRUP_RAPOR();
+				else if (pencere.equals("STOK RAPOR")) internalFrame  = new STOK_RAPOR();
+				else if (pencere.equals("ORTALAMA SATIS")) internalFrame  = new ORTALAMA_FIAT();
+				else if (pencere.equals("STOK BOS KUR")) internalFrame  = new FAT_BOS_KUR();
+				else if (pencere.equals("E FATURA ARAMA")) internalFrame  = new E_FATURA();
+				else if (pencere.equals("ZAYI RAPORLAMA")) internalFrame  = new ZAYI_RAPOR();
+				else if (pencere.equals("EVRAK FORMATLAMA")) internalFrame  = new EVRAK_FORMAT();
+				else if (pencere.equals("DEGISKEN YENILEME")) internalFrame  = new DEGISKEN_DEGIS();
+				else if (pencere.equals("STOK YIL SONU")) internalFrame  = new STK_YIL_SONU();
+				else if (pencere.equals("DEGISKENLER")) internalFrame  = new DEGISKEN_GIRIS(hangi);
+				//KAMBIYO
+				else if (pencere.equals("CEK GIRIS")) internalFrame  = new CEK_GIRIS();
+				else if (pencere.equals("CEK CIKIS")) internalFrame  = new CEK_CIKIS();
+				else if (pencere.equals("CEK RAPOR")) internalFrame  = new CEK_RAPOR();
+				else if (pencere.equals("CEK TAKIP")) internalFrame  = new CEK_TAKIP();
+				//SMS-MAIL
+				else if (pencere.equals("SMS")) internalFrame  = new SMS();
+				else if (pencere.equals("MAIL")) internalFrame  = new MAIL();
+				//else if (pencere.equals("SMS INET")) internalFrame  = new SMS_INET();
+				//KERESTE
+				else if (pencere.equals("KERESTE GIRIS")) internalFrame  = new KERESTE_GIRIS();
+				else if (pencere.equals("KERESTE CIKIS")) internalFrame  = new KERESTE_CIKIS();
+				else if (pencere.equals("KOD ACIKLAMA")) internalFrame  = new KOD_ACIKLAMA();
+				else if (pencere.equals("KONSIMENTO ACIKLAMA")) internalFrame  = new KONS_ACIKLAMA();
+				else if (pencere.equals("KERESTE DEGISKENLER")) internalFrame  = new KER_DEGISKEN_GIRIS(hangi);
+				else if (pencere.equals("KERESTE GRUP RAPOR")) internalFrame  = new KER_GRUP_RAPOR();
+				else if (pencere.equals("KERESTE DETAY RAPOR")) internalFrame  = new KER_DETAY();
+				else if (pencere.equals("KERESTE FATURA RAPORLAMA")) internalFrame  = new KER_FAT_RAPOR();
+				else if (pencere.equals("KERESTE KOD-KONSIMENTO DEGISTIRME")) internalFrame  = new KER_KOD_DEGISTIRME();
+				else if (pencere.equals("KERESTE DEGISKEN YENILEME")) internalFrame  = new KER_DEGISKEN_DEGIS();
+				else if (pencere.equals("KERESTE ORTALAMA FIAT")) internalFrame  = new KER_ORT_FIAT();
+				else if (pencere.equals("KERESTE BOS KUR")) internalFrame  = new KER_BOS_KUR();
+				else if (pencere.equals("KERESTE ENVANTER")) internalFrame  = new KER_ENVANTER();
+				//GENEL
+				else if (pencere.equals("GIDEN RAPORLAR")) internalFrame  = new GID_RAPOR();
+				else if (pencere.equals("CALISMA DIZINLERI")) internalFrame  = new MODUL_PARAMETRE();
+				//AYARLAR
+				else if (pencere.equals("KULLANICI EKLEME")) internalFrame  = new  USER_EKLEME();
+				else if (pencere.equals("KULLANICI DETAY EKLEME")) internalFrame  = new  USER_DETAY_EKLEME();
+				else if (pencere.equals("KULLANICI KOPYALA")) internalFrame  = new  USER_KOPYALA();
+				else if (pencere.equals("PARAMETRELER")) internalFrame  = new  PARAMETRELER();
+				else if (pencere.equals("E MAIL BILGILERI")) internalFrame  = new  E_MAIL_BILGILERI();
+				//
+				else if (pencere.equals("FIRMA ISMI DEGISTIRME")) internalFrame  = new FIRMA_ISMI_DEGIS();
+				else if (pencere.equals("E MAIL GONDERME")) internalFrame  = new E_MAIL_GONDERME();
+				else if (pencere.equals("SQL SORGULAMA")) internalFrame  = new SQL_SORGULAMA(hangi);
+				else if (pencere.equals("LOG RAPORLAMA")) internalFrame  = new LOGLAMA_RAPOR();
+				else if (pencere.equals("HAKKINDA")) internalFrame  = new HAKKINDA();
+				else {
+					GuiUtil.setWaitCursor(tabbedPane,false);
+					return;
+				}
+				desktopPane.add(internalFrame);
+				internalFrame.setVisible(true);
+				GuiUtil.setWaitCursor(tabbedPane,false);
+			}
+		} catch (Exception ex) 
+		{
+			mesaj_goster(10000,Notifications.Type.ERROR,ex.getMessage());
 		}
 	}
 	private String  pencere_activmi()

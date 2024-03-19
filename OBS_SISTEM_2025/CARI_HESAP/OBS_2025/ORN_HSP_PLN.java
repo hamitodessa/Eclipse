@@ -29,8 +29,7 @@ import javax.swing.JButton;
 import javax.swing.ImageIcon;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-
-@SuppressWarnings({"serial"})
+@SuppressWarnings({"serial","resource"})
 public class ORN_HSP_PLN extends JInternalFrame {
 
 	private static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
@@ -67,7 +66,7 @@ public class ORN_HSP_PLN extends JInternalFrame {
 			}
 		});
 		btnNewButton.setIcon(new ImageIcon(ORN_HSP_PLN.class.getResource("/ICONLAR/save.png")));
-		btnNewButton.setBounds(71, 85, 274, 42);
+		btnNewButton.setBounds(71, 85, 274, 30);
 		panel.add(btnNewButton);
 
 		oku();
@@ -89,7 +88,7 @@ public class ORN_HSP_PLN extends JInternalFrame {
 	private void kaydet() 
 	{
 		Runnable runner = new Runnable()
-		{ @SuppressWarnings("resource")
+		{ 
 		public void run() {
 			try
 			{

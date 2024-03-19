@@ -123,7 +123,7 @@ public class ADRES_GIRIS extends JInternalFrame {
 				doldur("ILK");
 			}
 		});
-		btnNewButton.setBounds(102, 65, 64, 30);
+		btnNewButton.setBounds(102, 65, 60, 30);
 		panel.add(btnNewButton);
 
 		JButton btnNewButton_1 = new JButton("");
@@ -135,7 +135,7 @@ public class ADRES_GIRIS extends JInternalFrame {
 				doldur("G");
 			}
 		});
-		btnNewButton_1.setBounds(165, 65, 54, 30);
+		btnNewButton_1.setBounds(162, 65, 60, 30);
 		panel.add(btnNewButton_1);
 
 		txtkayit = new Obs_TextFIeld(30,"");
@@ -143,7 +143,7 @@ public class ADRES_GIRIS extends JInternalFrame {
 		txtkayit.setEditable(false);
 		txtkayit.setHorizontalAlignment(SwingConstants.CENTER);
 		txtkayit.setFont(new Font("Tahoma", Font.BOLD, 11));
-		txtkayit.setBounds(222, 65, 74, 30);
+		txtkayit.setBounds(226, 66, 74, 28);
 		panel.add(txtkayit);
 		txtkayit.setColumns(10);
 
@@ -156,7 +156,7 @@ public class ADRES_GIRIS extends JInternalFrame {
 				doldur("I");
 			}
 		});
-		btnNewButton_2.setBounds(301, 65, 54, 30);
+		btnNewButton_2.setBounds(304, 65, 60, 30);
 		panel.add(btnNewButton_2);
 
 		JButton btnNewButton_3 = new JButton("");
@@ -168,7 +168,7 @@ public class ADRES_GIRIS extends JInternalFrame {
 				doldur("SON");
 			}
 		});
-		btnNewButton_3.setBounds(355, 65, 64, 30);
+		btnNewButton_3.setBounds(364, 65, 60, 30);
 		panel.add(btnNewButton_3);
 
 		JSeparator separator_2 = new JSeparator();

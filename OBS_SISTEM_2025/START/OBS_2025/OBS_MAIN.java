@@ -237,7 +237,7 @@ public class OBS_MAIN extends JFrame  {
 	private static int mESAJ_SAYI = 0 ;
 
 	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
-	private static GUNLUK_ACCESS  g_Access = new GUNLUK_ACCESS(oac._IGunluk , oac._IGunluk_Loger);
+	private static GUNLUK_ACCESS  g_Access = new GUNLUK_ACCESS(OBS_SIS_2025_ANA_CLASS._IGunluk , OBS_SIS_2025_ANA_CLASS._IGunluk_Loger);
 	static List<GOREV_BILGI> gBILGI = new ArrayList<GOREV_BILGI>();
 	static Timer timerr ;
 	

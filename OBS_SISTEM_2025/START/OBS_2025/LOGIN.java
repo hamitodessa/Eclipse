@@ -486,7 +486,6 @@ public class LOGIN extends JDialog {
 		btndevam.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (contentPane.getCursor() == Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR) ) return ;
-				
 				Runnable runner = new Runnable()
 				{ public void run() {
 					contentPane.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
@@ -710,7 +709,6 @@ public class LOGIN extends JDialog {
 				OBS_MAIN.lblCariBilgi.setText (BAGLAN.cariDizin.kOD + "  /  " + BAGLAN.cariDizin.fIRMA_ADI + "  /  " + qwe  + " / "+ BAGLAN.cariDizin.hAN_SQL );
 				Dimension size = OBS_MAIN.lblCariBilgi.getPreferredSize();
 				OBS_MAIN.lblCariBilgi.setBounds(10, 55, size.width +10, 14);
-				//OBS_MAIN.lblCariBilgi.setForeground(new Color(0, 0, 128));
 				OBS_MAIN.lblCariBilgi.setFont(new Font("Tahoma", Font.BOLD, 11));
 				OBS_MAIN.tabbedPane.setEnabledAt(0, true);
 			}
@@ -738,7 +736,6 @@ public class LOGIN extends JDialog {
 				OBS_MAIN.lblKurBilgi.setText (BAGLAN.kurDizin.kOD + "/ "  + qwe + " / "+ BAGLAN.kurDizin.hAN_SQL );
 				Dimension size = OBS_MAIN.lblKurBilgi.getPreferredSize();
 				OBS_MAIN.lblKurBilgi.setBounds(10, 55, size.width +10, 14);
-				//OBS_MAIN.lblKurBilgi.setForeground(new Color(0, 0, 128));
 				OBS_MAIN.lblKurBilgi.setFont(new Font("Tahoma", Font.BOLD, 11));
 				OBS_MAIN.tabbedPane.setEnabledAt(1, true);
 			}
@@ -766,7 +763,6 @@ public class LOGIN extends JDialog {
 				OBS_MAIN.lblSmsBilgi.setText (BAGLAN.smsDizin.kOD + "/ "  + qwe + " / "+ BAGLAN.smsDizin.hAN_SQL );
 				Dimension size = OBS_MAIN.lblSmsBilgi.getPreferredSize();
 				OBS_MAIN.lblSmsBilgi.setBounds(10, 55, size.width +10, 14);
-				//OBS_MAIN.lblSmsBilgi.setForeground(new Color(0, 0, 128));
 				OBS_MAIN.lblSmsBilgi.setFont(new Font("Tahoma", Font.BOLD, 11));
 				OBS_MAIN.tabbedPane.setEnabledAt(6, true);
 			}
@@ -795,7 +791,6 @@ public class LOGIN extends JDialog {
 				OBS_MAIN.lblAdresBilgi.setText  (BAGLAN.adrDizin.kOD + "/ " + BAGLAN.adrDizin.fIRMA_ADI + "/ " + qwe + " / "+ BAGLAN.adrDizin.hAN_SQL );
 				Dimension size = OBS_MAIN.lblAdresBilgi.getPreferredSize();
 				OBS_MAIN.lblAdresBilgi.setBounds(10, 55, size.width +10, 14);
-				//OBS_MAIN.lblAdresBilgi.setForeground(new Color(0, 0, 128));
 				OBS_MAIN.lblAdresBilgi.setFont(new Font("Tahoma", Font.BOLD, 11));
 				OBS_MAIN.tabbedPane.setEnabledAt(2, true);
 			}

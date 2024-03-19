@@ -2771,7 +2771,7 @@ public class CAL_DIZIN extends JDialog {
 			frame.setVisible(true);
 			dispose();
 			contentPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-		} catch (IOException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}

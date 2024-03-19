@@ -242,7 +242,6 @@ public class OBS_MAIN extends JFrame  {
 	static Timer timerr ;
 	
 	public OBS_MAIN() {
-
 		this.addWindowStateListener(new WindowStateListener()
 		{
 		  @Override

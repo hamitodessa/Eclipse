@@ -192,28 +192,22 @@ public class LOGIN extends JDialog {
 	boolean ds = false;
 	boolean tx = false;
 	boolean em = false;
-	public Thread t = null ;
+	public static Thread t = null ;
 	private JLabel lblNewLabel_1;
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) 
 	{	
-		EventQueue.invokeLater(new Runnable() 
+		try 
 		{
-			public void run() 
-			{
-				try {
-					new LOGIN().setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
+			new LOGIN().setVisible(true);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
-	public LOGIN() throws IOException {
-		//************************************************************************
+	public LOGIN()  {
 		try 
 		{ 
 			FlatLaf.registerCustomDefaultsSource("OBS_2025");
@@ -654,13 +648,13 @@ public class LOGIN extends JDialog {
 		//************SURUCU KONTROL**************************
 		GLOBAL.surucu_kontrol();
 		//VERSION KONTROL/////
-		String deger = oac.glb.setting_oku("VERSION").toString();
-		if (deger.equals("0"))
-			versiyon_oku();
-		//************BENI_HATIRLA**	
-		deger = GLOBAL.setting_oku("BENI_HATIRLA").toString();
 		try 
 		{
+			String deger = oac.glb.setting_oku("VERSION").toString();
+			if (deger.equals("0"))
+				versiyon_oku();
+			//************BENI_HATIRLA**	
+			deger = GLOBAL.setting_oku("BENI_HATIRLA").toString();
 			if (new String(deger).equals("E") == true) 
 			{
 				chckbxhatirla.setSelected(true);

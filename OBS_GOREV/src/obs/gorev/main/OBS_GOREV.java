@@ -42,6 +42,8 @@ import javax.swing.JPanel;
 import javax.swing.JSpinner;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
+import javax.swing.border.EtchedBorder;
+import javax.swing.border.TitledBorder;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -192,6 +194,8 @@ public class OBS_GOREV extends JFrame  {
 		getContentPane().add( tBAR, BorderLayout.NORTH);
 
 		JPanel panelalt = new JPanel();
+		panelalt.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+
 		panelalt.setPreferredSize(new Dimension(0,30));
 		getContentPane().add(panelalt, BorderLayout.SOUTH);
 		panelalt.setLayout(null);
@@ -201,6 +205,8 @@ public class OBS_GOREV extends JFrame  {
 		panelalt.add(lblAciklama);
 
 		JPanel panel_1 = new JPanel();
+		panel_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+
 		getContentPane().add(panel_1 , BorderLayout.CENTER);
 		panel_1.setLayout(null);
 
@@ -228,6 +234,8 @@ public class OBS_GOREV extends JFrame  {
 
 		model = new DefaultListModel<>();
 		list = new JList(model);
+		list.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+
 		list.setCellRenderer(new CheckListRenderer());
 		list.setBounds(289, 12, 134, 283);
 		list.addMouseListener(new MouseAdapter() {

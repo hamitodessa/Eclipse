@@ -401,7 +401,7 @@ public class CEK_CIKIS extends JInternalFrame {
 
 		});
 		btnNewButton.setIcon(new ImageIcon(CEK_GIRIS.class.getResource("/ICONLAR/icons8-view-16.png")));
-		btnNewButton.setBounds(220, 7, 25, 22);
+		btnNewButton.setBounds(215, 7, 25, 22);
 		panel_2.add(btnNewButton);
 
 		JLabel lblNewLabel_3 = new JLabel("Tarih");

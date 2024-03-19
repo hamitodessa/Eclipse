@@ -142,6 +142,8 @@ public class Gunluk extends JInternalFrame {
 		panel_1.add(splitSolUst, BorderLayout.CENTER);
 		
 		JPanel panelToolbar= new JPanel();
+		panelToolbar.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP,null, null));
+
 		panelToolbar.setMinimumSize(new Dimension(0, 35));
 		panelToolbar.setMaximumSize(new Dimension(0, 35));
 		splitSolUst.setLeftComponent(panelToolbar);
@@ -290,6 +292,7 @@ public class Gunluk extends JInternalFrame {
 		});
 		calendar.setTodayButtonText("Bugun");
 		calendar.setTodayButtonVisible(true);
+		calendar.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP,null, null));
 		splitSolUst.setRightComponent(calendar);
 		//**********************************************************************************		
 		JSplitPane splitPane_2 = new JSplitPane();
@@ -443,7 +446,6 @@ public class Gunluk extends JInternalFrame {
 		table_1.setRowHeight(1, 30);
 		table_1.getColumnModel().getColumn(0).setMaxWidth(100);
 		table_1.getColumnModel().getColumn(0).setMinWidth(100);
-		table_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
 
 		JTableHeader ttt = table_1.getTableHeader();
 		TableColumnModel tcc = ttt.getColumnModel();
@@ -466,7 +468,14 @@ public class Gunluk extends JInternalFrame {
 		table_1.setShowHorizontalLines(true);
 		table_1.setShowVerticalLines(true);
 		//*****************************************************************************************************************		
-		splitPane_3.setLeftComponent(table_1);
+		JPanel pbaslik = new JPanel();
+		pbaslik.setLayout(new BorderLayout());
+		pbaslik.setPreferredSize(new Dimension(0,65));
+		pbaslik.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
+
+		pbaslik.add(table_1,BorderLayout.CENTER);
+		splitPane_3.setLeftComponent(pbaslik);
+		
 		ScrollPaneWin11 scrollPane = new ScrollPaneWin11();
 		scrollPane.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
 
@@ -559,7 +568,7 @@ public class Gunluk extends JInternalFrame {
 						"", "", "", "", "", "", "", ""
 				}
 				));
-		table.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
+		//table.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
 
 		table.getColumnModel().getColumn(0).setMaxWidth(100);
 		table.getColumnModel().getColumn(0).setMinWidth(100);
@@ -761,6 +770,8 @@ public class Gunluk extends JInternalFrame {
 		temizle();
 		calendar.setDate(new Date());
 		JPanel panel_4 = new JPanel();
+		panel_4.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP,null, null));
+		
 		splitPane_1.setRightComponent(panel_4);
 		tabloTabbedPane.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent e) {
@@ -845,22 +856,6 @@ public class Gunluk extends JInternalFrame {
 			case 6 -> tarr=  "Cuma";
 			case 7 -> tarr=  "Cumartesi";
 			}
-			
-//			if (cal.get(Calendar.DAY_OF_WEEK) ==1)
-//				tarr=  "Pazar";
-//			else if (cal.get(Calendar.DAY_OF_WEEK) ==2)
-//				tarr=  "Pazartesi";
-//			else if (cal.get(Calendar.DAY_OF_WEEK) ==3)
-//				tarr=  "Sali";
-//			else if (cal.get(Calendar.DAY_OF_WEEK) ==4)
-//				tarr=  "Carsamba";
-//			else if (cal.get(Calendar.DAY_OF_WEEK) ==5)
-//				tarr=  "Persembe";
-//			else if (cal.get(Calendar.DAY_OF_WEEK) ==6)
-//				tarr=  "Cuma";
-//			else if (cal.get(Calendar.DAY_OF_WEEK) ==7)
-//				tarr=  "Cumartesi";
-
 		} catch (ParseException e) {
 		}
 		return tarr;

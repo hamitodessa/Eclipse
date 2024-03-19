@@ -9,6 +9,8 @@ import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.border.Border;
+import javax.swing.border.EtchedBorder;
+import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableCellRenderer;
 
 @SuppressWarnings("serial")
@@ -40,7 +42,6 @@ public class COLUMN_RENDERER  extends DefaultTableCellRenderer
 				cell.setFont(fnt);
 				Border border = BorderFactory.createMatteBorder(1, 0, 1, 0, new Color(0, 60, 102));
 				setBorder(border);
-				
 				
 				String[] token = value.toString().split(",");
 				String ewqString = "";
@@ -78,6 +79,8 @@ public class COLUMN_RENDERER  extends DefaultTableCellRenderer
 		else if (column ==0)
 		{
 			setHorizontalAlignment( JLabel.CENTER);
+			setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP,null, null));
+
 			cell.setBackground(backgroundColor);
 			cell.setForeground(foregroundColor); 
 			Font fnt = new Font(table.getFont().getFontName(), 1 ,12);

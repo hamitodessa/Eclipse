@@ -205,7 +205,7 @@ public class ZAYI extends JInternalFrame {
 		    }
 		});
 		textField.setFont(new Font("Tahoma", Font.BOLD, 12));
-		textField.setBounds(77, 8, 110, 20);
+		textField.setBounds(77, 8, 121, 20);
 		panel_2.add(textField);
 		textField.setColumns(10);
 		
@@ -317,7 +317,7 @@ public class ZAYI extends JInternalFrame {
 			}
 		});
 		button.setIcon(new ImageIcon(ZAYI.class.getResource("/ICONLAR/icons8-view-16.png")));
-		button.setBounds(195, 7, 28, 23);
+		button.setBounds(200, 7, 28, 23);
 		panel_2.add(button);
 		
 		JButton button_1 = new JButton("");
@@ -401,27 +401,27 @@ public class ZAYI extends JInternalFrame {
 		panel_71.setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("Satir Sayisi :");
-		lblNewLabel.setBounds(32, 3, 85, 14);
+		lblNewLabel.setBounds(32, 5, 85, 14);
 		panel_71.add(lblNewLabel);
 		
 		lblNewLabel_13 = new JLabel("0");
 		//lblNewLabel_13.setForeground(new Color(0, 0, 128));
 		lblNewLabel_13.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblNewLabel_13.setBounds(122, 3, 50, 14);
+		lblNewLabel_13.setBounds(122, 5, 50, 14);
 		panel_71.add(lblNewLabel_13);
 		
 		label_8 = new JLabel("0.000");
 		label_8.setHorizontalAlignment(SwingConstants.RIGHT);
 		//label_8.setForeground(new Color(139, 0, 0));
 		label_8.setFont(new Font("Tahoma", Font.BOLD, 11));
-		label_8.setBounds(471, 3, 102, 14);
+		label_8.setBounds(460, 5, 102, 14);
 		panel_71.add(label_8);
 		
 		label_9 = new JLabel("0.00");
 		label_9.setHorizontalAlignment(SwingConstants.RIGHT);
 		//label_9.setForeground(new Color(139, 0, 0));
 		label_9.setFont(new Font("Tahoma", Font.BOLD, 11));
-		label_9.setBounds(659, 3, 109, 14);
+		label_9.setBounds(653, 5, 109, 14);
 		panel_71.add(label_9);
 		/////////////////////////////////////////////////////////////////
 

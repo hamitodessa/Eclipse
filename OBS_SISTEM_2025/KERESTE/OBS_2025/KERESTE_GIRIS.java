@@ -316,7 +316,7 @@ public class KERESTE_GIRIS extends JInternalFrame {
 			}
 		});
 		textField.setFont(new Font("Tahoma", Font.BOLD, 12));
-		textField.setBounds(89, 8, 110, 20);
+		textField.setBounds(89, 8, 120, 20);
 		panel_2.add(textField);
 		textField.setColumns(10);
 		
@@ -330,7 +330,7 @@ public class KERESTE_GIRIS extends JInternalFrame {
 		});
 		button_1.setIcon(new ImageIcon(FATURA.class.getResource("/ICONLAR/icons8-view-16.png")));
 		button_1.setToolTipText("Son Fis");
-		button_1.setBounds(209, 7, 26, 23);
+		button_1.setBounds(215, 7, 26, 23);
 		panel_2.add(button_1);
 
 		JLabel lblNewLabel_2 = new JLabel("Cari Hesap");
@@ -406,7 +406,7 @@ public class KERESTE_GIRIS extends JInternalFrame {
 		});
 
 		txtcari.setFont(new Font("Tahoma", Font.BOLD, 12));
-		txtcari.setBounds(89, 33, 110, 20);
+		txtcari.setBounds(89, 33, 120, 20);
 		panel_2.add(txtcari);
 		txtcari.setColumns(10);
 

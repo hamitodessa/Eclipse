@@ -247,7 +247,7 @@ public class IMALAT extends JInternalFrame {
 				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 			}
 		});
-		textField.setBounds(96, 8, 110, 20);
+		textField.setBounds(96, 8, 120, 20);
 		panel_2.add(textField);
 		textField.setColumns(10);
 
@@ -273,7 +273,7 @@ public class IMALAT extends JInternalFrame {
 				}
 			}
 		});
-		button.setBounds(210, 7, 28, 23);
+		button.setBounds(220, 7, 28, 23);
 		button.setIcon(new ImageIcon(FATURA.class.getResource("/ICONLAR/icons8-view-16.png")));
 		panel_2.add(button);
 

@@ -1,7 +1,6 @@
 package OBS_INDIR;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.ComponentOrientation;
 import java.awt.Cursor;
 import java.awt.Dimension;
@@ -22,7 +21,8 @@ import OBS_C_2025.GLOBAL;
 
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import javax.swing.border.LineBorder;
+import javax.swing.border.EtchedBorder;
+import javax.swing.border.TitledBorder;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFileChooser;
@@ -123,7 +123,8 @@ public class OBS_INDIRME extends JFrame {
 		contentPane.add(new Title_Bar(this), BorderLayout.NORTH);
 		
 		JPanel panel = new JPanel();
-		panel.setBorder(new LineBorder(new Color(0, 191, 255)));
+		panel.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+
 		contentPane.add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
 
@@ -141,14 +142,16 @@ public class OBS_INDIRME extends JFrame {
 
 		progressBar = new JProgressBar();
 	
-		progressBar.setBorder(new LineBorder(new Color(0, 191, 255)));
+		progressBar.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+
 		progressBar.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
 		progressBar.setFont(new Font("Tahoma", Font.BOLD, 11));
 		progressBar.setBounds(52, 183, 484, 25);
 		panel.add(progressBar);
 
 		txtdiz = new JTextField();
-		//txtdiz.setForeground(new Color(0, 0, 128));
+		txtdiz.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+
 		txtdiz.setText(GLOBAL.SURUCU);
 		txtdiz.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txtdiz.setBounds(52, 24, 399, 23);

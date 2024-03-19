@@ -172,30 +172,14 @@ public class FIHRIST extends JFrame {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					FIHRIST frame = new FIHRIST();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
+		try {
+			FIHRIST frame = new FIHRIST();
+			frame.setVisible(true);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
-
-	/**
-	 * Create the frame.
-	 */
 	public FIHRIST() {
-		
-//		try 
-//		{
-//			UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel" );
-//			} catch (Exception e) 
-//		{
-//			e.printStackTrace();
-//		}
 		FlatLaf.registerCustomDefaultsSource("obs.ayarlar");
 		//FlatArcOrangeIJTheme.setup();
 		//FlatMacDarkLaf.setup();

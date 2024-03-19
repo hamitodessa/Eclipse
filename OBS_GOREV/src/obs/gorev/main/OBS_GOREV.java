@@ -132,16 +132,12 @@ public class OBS_GOREV extends JFrame  {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					OBS_GOREV frame = new OBS_GOREV();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
+		try {
+			OBS_GOREV frame = new OBS_GOREV();
+			frame.setVisible(true);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	public OBS_GOREV() {

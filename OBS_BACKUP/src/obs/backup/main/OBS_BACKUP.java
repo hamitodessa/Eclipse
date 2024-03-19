@@ -268,16 +268,12 @@ public class OBS_BACKUP extends JFrame {
 	 * OBS Backup Hamit.
 	 */
 	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					OBS_BACKUP frame = new OBS_BACKUP();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
+		try {
+			OBS_BACKUP frame = new OBS_BACKUP();
+			frame.setVisible(true);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	public OBS_BACKUP() {
 		setUndecorated(true);

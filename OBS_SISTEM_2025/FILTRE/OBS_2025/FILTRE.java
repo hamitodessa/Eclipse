@@ -482,7 +482,6 @@ public class FILTRE extends JDialog {
 		  protected void paintTabArea(Graphics g,int tabPlacement,int selectedIndex){}
 		}); 
 
-		tabbedPane.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
 
 		//final boolean showTabsHeader = false;
 		//tabbedPane.setUI(new MetalTabbedPaneUI()
@@ -493,6 +492,8 @@ public class FILTRE extends JDialog {
 		//        } else {return 0;}	        }
 		//  protected void paintTabArea(Graphics g,int tabPlacement,int selectedIndex){}
 		//}); 
+		
+		tabbedPane.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
 
 //*****************************************************************************************************************		    
 		splitPane.setLeftComponent(tabbedPane);
@@ -1792,7 +1793,7 @@ public class FILTRE extends JDialog {
 			}
 		});
 		txtgh1.setText("");
-		txtgh1.setBounds(85, 158, 114, 20);
+		txtgh1.setBounds(85, 158, 120, 20);
 		panel_4.add(txtgh1);
 		txtgh1.setColumns(10);
 
@@ -1813,7 +1814,7 @@ public class FILTRE extends JDialog {
 			}
 		});
 		txtgh2.setText("ZZZZZZZZZZZZ");
-		txtgh2.setBounds(219, 158, 114, 20);
+		txtgh2.setBounds(219, 158, 120, 20);
 		panel_4.add(txtgh2);
 		txtgh2.setColumns(10);
 
@@ -1936,7 +1937,7 @@ public class FILTRE extends JDialog {
 		});
 		txtch1.setText("");
 		txtch1.setColumns(10);
-		txtch1.setBounds(444, 158, 114, 20);
+		txtch1.setBounds(444, 158, 120, 20);
 		panel_4.add(txtch1);
 
 		txtch2 = new Obs_TextFIeld(12);
@@ -1957,7 +1958,7 @@ public class FILTRE extends JDialog {
 		});
 		txtch2.setText("ZZZZZZZZZZZZ");
 		txtch2.setColumns(10);
-		txtch2.setBounds(584, 158, 114, 20);
+		txtch2.setBounds(584, 158, 120, 20);
 		panel_4.add(txtch2);
 
 		JPanel panel_5 = new JPanel();

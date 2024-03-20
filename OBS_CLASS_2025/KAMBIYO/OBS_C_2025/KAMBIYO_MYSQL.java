@@ -392,7 +392,7 @@ public class KAMBIYO_MYSQL implements IKAMBIYO {
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		ResultSet	rss = null;
 		String sql = " SELECT  Cek_No, Vade, Giris_Bordro,Giris_Tarihi, " +
-				" Giris_Musteri, Banka, Sube, Cins, Tutar, Durum, " +
+				" Giris_Musteri, Banka, Sube, Cins, Tutar,  CASE Durum  WHEN '1' THEN 'Iade'  WHEN '2' THEN 'Protesto' WHEN '3' THEN 'Tahsil' END as Durum, " +
 				" IF(T_Tarih = '1900.01.01', '',DATE_FORMAT(T_Tarih,  '%d.%m.%Y') ) as T_Tarih, " +
 				" Giris_Ozel_Kod ,Cikis_Bordro , " + 
 				" IF(Cikis_Tarihi = '1900.01.01', '',DATE_FORMAT(Cikis_Tarihi,  '%d.%m.%Y') ) as Cikis_Tarihi," +

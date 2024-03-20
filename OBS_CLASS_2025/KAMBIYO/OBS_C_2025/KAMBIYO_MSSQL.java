@@ -395,7 +395,7 @@ public class KAMBIYO_MSSQL implements IKAMBIYO{
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 		ResultSet	rss = null;
 		String sql = " SELECT  Cek_No, Vade, Giris_Bordro,Giris_Tarihi, " +
-				" Giris_Musteri, Banka, Sube, Cins, Tutar, Durum, " +
+				" Giris_Musteri, Banka, Sube, Cins, Tutar, CASE Durum  WHEN '1' THEN 'Iade'  WHEN '2' THEN 'Protesto' WHEN '3' THEN 'Tahsil' END as Durum, " +
 				" IIF(T_Tarih = '1900.01.01', '',right(T_Tarih,2) +  '.' + Substring(Convert(nvarchar, T_Tarih), 6, 2) + '.' + left(T_Tarih,4) ) as T_Tarih, " +
 				" Giris_Ozel_Kod ,Cikis_Bordro , " + 
 				" IIF(Cikis_Tarihi = '1900.01.01', '',right(Cikis_Tarihi,2) +  '.' + Substring(Convert(nvarchar, Cikis_Tarihi), 6, 2) + '.' + left(Cikis_Tarihi,4) ) as Cikis_Tarihi," +

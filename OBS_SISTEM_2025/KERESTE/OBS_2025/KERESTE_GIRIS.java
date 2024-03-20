@@ -422,13 +422,12 @@ public class KERESTE_GIRIS extends JInternalFrame {
 		panel_2.add(lblNewLabel_4);
 
 		dtc = new JDateChooser();
+		((JTextField)dtc.getDateEditor()).setBackground(oac.dtcColor);
 		dtc.getComponent(1).addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if (e.getClickCount() == 2) 
-				{
+				if (e.getClickCount() == 2)
 					dtc.setDate(new Date());
-				}
 			}
 		});
 		dtc.getComponent(1).addKeyListener(new KeyListener() {
@@ -446,7 +445,7 @@ public class KERESTE_GIRIS extends JInternalFrame {
 						cal.setTime(date);
 						cal.add(Calendar.DAY_OF_MONTH, -1); 
 						dtc.setDate(new Date(cal.getTimeInMillis()));
-					} catch (ParseException e1) {
+					} catch (Exception e1) {
 						e1.printStackTrace();
 					}
 				}
@@ -459,7 +458,7 @@ public class KERESTE_GIRIS extends JInternalFrame {
 						cal.setTime(date);
 						cal.add(Calendar.DAY_OF_MONTH, 1); // Add 30 days
 						dtc.setDate(new Date(cal.getTimeInMillis()));
-					} catch (ParseException e1) {
+					} catch (Exception e1) {
 						e1.printStackTrace();
 					}
 				}

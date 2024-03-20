@@ -6,6 +6,7 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 
 import javax.swing.JTable;
+import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 import javax.swing.JPanel;
 import javax.swing.JComboBox;
@@ -171,6 +172,8 @@ public class KUR_GIRIS extends JInternalFrame {
 		});
 		panel.add(comboBox);
 		dateChooser = new JDateChooser();
+		((JTextField)dateChooser.getDateEditor()).setBackground(oac.dtcColor);
+
 		dateChooser.getComponent(1).addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {

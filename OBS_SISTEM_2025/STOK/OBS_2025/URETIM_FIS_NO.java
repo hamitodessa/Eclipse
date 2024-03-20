@@ -46,6 +46,7 @@ import java.text.DecimalFormat;
 import java.util.Date;
 import java.awt.event.ActionEvent;
 import javax.swing.JTable;
+import javax.swing.JTextField;
 import javax.swing.ImageIcon;
 import javax.swing.SwingConstants;
 
@@ -166,6 +167,7 @@ public class URETIM_FIS_NO extends JInternalFrame {
 		panel_1.setLayout(null);
 
 		dateChooser = new JDateChooser();
+		((JTextField)dateChooser.getDateEditor()).setBackground(oac.dtcColor);
 		dateChooser.getComponent(1).addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -182,6 +184,7 @@ public class URETIM_FIS_NO extends JInternalFrame {
 		panel_1.add(dateChooser);
 
 		dateChooser_1 = new JDateChooser();
+		((JTextField)dateChooser_1.getDateEditor()).setBackground(oac.dtcColor);
 		dateChooser_1.getComponent(1).addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {

@@ -12,6 +12,7 @@ import javax.swing.JSplitPane;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import javax.swing.JTable;
+import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
@@ -86,6 +87,8 @@ public class EKSIK_KUR extends JInternalFrame
 		panel.setLayout(null);
 
 		dateChooser = new JDateChooser();
+		((JTextField)dateChooser.getDateEditor()).setBackground(oac.dtcColor);
+
 		dateChooser.setDate(TARIH_CEVIR.tarih("01.01.1900"));
 		dateChooser.setDateFormatString("dd.MM.yyyy");
 		dateChooser.setFont(new Font("Tahoma", Font.BOLD, 14));
@@ -94,6 +97,8 @@ public class EKSIK_KUR extends JInternalFrame
 		panel.add(dateChooser);
 
 		dateChooser_1 = new JDateChooser();
+		((JTextField)dateChooser_1.getDateEditor()).setBackground(oac.dtcColor);
+
 		dateChooser_1.setDate(new Date());
 		dateChooser_1.setDateFormatString("dd.MM.yyyy");
 		dateChooser_1.setFont(new Font("Tahoma", Font.BOLD, 14));

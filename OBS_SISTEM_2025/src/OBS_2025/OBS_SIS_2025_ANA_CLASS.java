@@ -61,7 +61,7 @@ public class OBS_SIS_2025_ANA_CLASS
 
 	public static ByteArrayDataSource ds = null ;
 	public static Color gridcolor =  new Color(0, 191, 255);      //   0,153,204   java.awt.Color[r=204,g=0,b=102]
-	
+	public Color dtcColor = new Color(224,224,224);
 	public static Color satBackColor ;
 	public static Color satForeColor ;
 	public static Cursor WAIT_CURSOR =  Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR);

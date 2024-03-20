@@ -166,6 +166,7 @@ public class DEKONT extends JInternalFrame {
 		panel.setLayout(null);
 
 		dtc = new JDateChooser();
+		((JTextField)dtc.getDateEditor()).setBackground(oac.dtcColor);
 		dtc.getDateEditor().getUiComponent().addFocusListener(new FocusAdapter()    {
 			@Override
 			public void focusGained(FocusEvent evt) {

@@ -16,6 +16,7 @@ import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 import javax.swing.JTable;
+import javax.swing.JTextField;
 import javax.swing.JButton;
 
 import com.toedter.calendar.JDateChooser;
@@ -314,6 +315,7 @@ public class FATURA extends JInternalFrame {
 		panel_2.add(lblNewLabel_4);
 
 		dtc = new JDateChooser();
+		((JTextField)dtc.getDateEditor()).setBackground(oac.dtcColor);
 		dtc.getComponent(1).addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {

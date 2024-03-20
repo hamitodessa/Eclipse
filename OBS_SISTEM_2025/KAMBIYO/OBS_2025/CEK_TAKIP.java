@@ -9,7 +9,6 @@ import java.util.Date;
 import javax.swing.JInternalFrame;
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
-
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.event.AncestorEvent;
@@ -145,6 +144,8 @@ public class CEK_TAKIP extends JInternalFrame {
 		panel.add(lblNewLabel_1);
 
 		dateChooser = new JDateChooser();
+		((JTextField)dateChooser.getDateEditor()).setBackground(oac.dtcColor);
+
 		dateChooser.setBounds(131, 138, 130, 22);
 		dateChooser.setDateFormatString("dd.MM.yyyy");
 		dateChooser.setEnabled(false);
@@ -165,6 +166,8 @@ public class CEK_TAKIP extends JInternalFrame {
 		panel.add(lblNewLabel_2_2);
 
 		dateChooser_1 = new JDateChooser();
+		((JTextField)dateChooser_1.getDateEditor()).setBackground(oac.dtcColor);
+
 		dateChooser_1.setBounds(131, 196, 130, 22);
 		dateChooser_1.setDateFormatString("dd.MM.yyyy");
 		dateChooser_1.setFont(new Font("Tahoma", Font.BOLD, 14));
@@ -186,6 +189,8 @@ public class CEK_TAKIP extends JInternalFrame {
 		panel.add(panel_1_1);
 
 		dateChooser_3 = new JDateChooser();
+		((JTextField)dateChooser_3.getDateEditor()).setBackground(oac.dtcColor);
+
 		dateChooser_3.getComponent(1).addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -229,6 +234,8 @@ public class CEK_TAKIP extends JInternalFrame {
 		panel.add(lblNewLabel_7);
 
 		dateChooser_2 = new JDateChooser();
+		((JTextField)dateChooser_2.getDateEditor()).setBackground(oac.dtcColor);
+
 		dateChooser_2.setBounds(371, 138, 130, 22);
 		dateChooser_2.setDateFormatString("dd.MM.yyyy");
 		dateChooser_2.setFont(new Font("Tahoma", Font.BOLD, 14));

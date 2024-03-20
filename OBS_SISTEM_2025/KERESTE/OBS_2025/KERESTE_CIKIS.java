@@ -60,7 +60,7 @@ import javax.swing.JPanel;
 
 import javax.swing.JSplitPane;
 import javax.swing.JTable;
-
+import javax.swing.JTextField;
 import javax.swing.JToolBar;
 import javax.swing.KeyStroke;
 import javax.swing.ListSelectionModel;
@@ -436,6 +436,7 @@ public class KERESTE_CIKIS extends JInternalFrame {
 		panel_2.add(lblNewLabel_4);
 
 		dtc = new JDateChooser();
+		((JTextField)dtc.getDateEditor()).setBackground(oac.dtcColor);
 		dtc.getComponent(1).addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {

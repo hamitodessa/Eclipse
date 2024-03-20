@@ -243,8 +243,9 @@ public class Gunluk extends JInternalFrame {
 					sonraki_gorev_bul_yil();
 			}
 		});
-		
         calendar = new JCalendar(Locale.UK);
+        calendar.getYearChooser().getComponent(0) .setBackground(oac.dtcColor);
+        
         calendar.getMonthChooser().addPropertyChangeListener(new PropertyChangeListener() {
         	public void propertyChange(PropertyChangeEvent evt) {
         		if (ilk == true)

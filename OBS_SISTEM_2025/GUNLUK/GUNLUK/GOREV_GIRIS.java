@@ -25,6 +25,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
+import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
@@ -141,6 +142,7 @@ public class GOREV_GIRIS extends JInternalFrame {
 		panel.add(txtMesaj);
 
 		dtcBaslama = new JDateChooser();
+		((JTextField)dtcBaslama.getDateEditor()).setBackground(oac.dtcColor);
 		dtcBaslama.setBounds(100, 173, 135, 25);
 		dtcBaslama.getDateEditor().getUiComponent().addFocusListener(new FocusAdapter()    {
 			@Override
@@ -252,6 +254,7 @@ public class GOREV_GIRIS extends JInternalFrame {
 		panel.add(txtGID);
 
 		dtcBitis = new JDateChooser();
+		((JTextField)dtcBitis.getDateEditor()).setBackground(oac.dtcColor);
 		dtcBitis.setFont(new Font("Tahoma", Font.BOLD, 14));
 		dtcBitis.setDateFormatString("dd.MM.yyyy");
 		dtcBitis.setDate(new Date());

@@ -247,6 +247,7 @@ public class TAH_FISI extends JInternalFrame {
 		dtc.setDateFormatString("dd.MM.yyyy");
 		dtc.setFont(new Font("Tahoma", Font.BOLD, 14));
 		dtc.setDate(new Date());
+		((JTextField)dtc.getDateEditor()).setBackground(oac.dtcColor);
 		dtc.getComponent(1).addKeyListener(new KeyListener() {
 			@Override
 			public void keyTyped(KeyEvent e) {

@@ -167,6 +167,7 @@ public class STK_YIL_SONU extends JInternalFrame {
 		panel.add(lblNewLabel);
 		
 		dtc = new JDateChooser();
+		((JTextField)dtc.getDateEditor()).setBackground(oac.dtcColor);
 		dtc.setBounds(355, 8, 121, 20);
 		dtc.getComponent(1).addMouseListener(new MouseAdapter() {
 			@Override

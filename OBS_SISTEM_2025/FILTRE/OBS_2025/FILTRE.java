@@ -9,6 +9,7 @@ import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.JSplitPane;
 import javax.swing.JTabbedPane;
+import javax.swing.JTextField;
 import javax.swing.event.AncestorEvent;
 import javax.swing.event.AncestorListener;
 import javax.swing.event.DocumentEvent;
@@ -528,6 +529,8 @@ public class FILTRE extends JDialog {
 		paneleks.add(lblNewLabel_4);
 
 		dateChooser =  new JDateChooser();
+		((JTextField)dateChooser.getDateEditor()).setBackground(oac.dtcColor);
+
 		dateChooser.getComponent(1).addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -580,6 +583,8 @@ public class FILTRE extends JDialog {
 		});
 		paneleks.add(dateChooser);
 		dateChooser_1 = new JDateChooser();
+		((JTextField)dateChooser_1.getDateEditor()).setBackground(oac.dtcColor);
+
 		dateChooser_1.setDate(TARIH_CEVIR.tarih("31.12.2100"));
 		dateChooser_1.setBounds(139, 133, 120, 20);
 		dateChooser_1.setDateFormatString("dd.MM.yyyy");
@@ -942,6 +947,8 @@ public class FILTRE extends JDialog {
 		panel_1m.add(lblNewLabel_8);
 
 		dateChooser_2 = new JDateChooser();
+		((JTextField)dateChooser_2.getDateEditor()).setBackground(oac.dtcColor);
+
 		dateChooser_2.getComponent(1).addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -995,6 +1002,8 @@ public class FILTRE extends JDialog {
 		panel_1m.add(dateChooser_2);
 
 		dateChooser_2_1 = new JDateChooser();
+		((JTextField)dateChooser_2_1.getDateEditor()).setBackground(oac.dtcColor);
+
 		dateChooser_2_1.getComponent(1).addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -1163,6 +1172,7 @@ public class FILTRE extends JDialog {
 		panel.add(lblNewLabel_2_1);
 
 		dateChooser_3 = new JDateChooser();
+		((JTextField)dateChooser_3.getDateEditor()).setBackground(oac.dtcColor);
 		dateChooser_3.getComponent(1).addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -1216,6 +1226,7 @@ public class FILTRE extends JDialog {
 		panel.add(dateChooser_3);
 
 		dateChooser_4 = new JDateChooser();
+		((JTextField)dateChooser_4.getDateEditor()).setBackground(oac.dtcColor);
 		dateChooser_4.getComponent(1).addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -1500,6 +1511,7 @@ public class FILTRE extends JDialog {
 		panel_3.add(lblNewLabel_10);
 
 		dateChooser_5 = new JDateChooser();
+		((JTextField)dateChooser_5.getDateEditor()).setBackground(oac.dtcColor);
 		dateChooser_5.getComponent(1).addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -1558,6 +1570,7 @@ public class FILTRE extends JDialog {
 		panel_3.add(lblNewLabel_10_1);
 
 		dateChooser_5_1 = new JDateChooser();
+		((JTextField)dateChooser_5_1.getDateEditor()).setBackground(oac.dtcColor);
 		dateChooser_5_1.getComponent(1).addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -1667,6 +1680,7 @@ public class FILTRE extends JDialog {
 		panel_4.add(lblNewLabel_17);
 
 		dateChooser_6 = new JDateChooser();
+		((JTextField)dateChooser_6.getDateEditor()).setBackground(oac.dtcColor);
 		dateChooser_6.getComponent(1).addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -1689,6 +1703,7 @@ public class FILTRE extends JDialog {
 			}
 		});
 		dateChooser_6_1.setBounds(219, 34, 114, 20);
+		((JTextField)dateChooser_6_1.getDateEditor()).setBackground(oac.dtcColor);
 		dateChooser_6_1.setFont(new Font("Tahoma", Font.BOLD, 11));
 		dateChooser_6_1.setDateFormatString("dd.MM.yyyy");
 		dateChooser_6_1.setDate(TARIH_CEVIR.tarih("31.12.2100"));
@@ -1708,6 +1723,7 @@ public class FILTRE extends JDialog {
 		txtgb2.setColumns(10);
 
 		dateChooser_7 = new JDateChooser();
+		((JTextField)dateChooser_7.getDateEditor()).setBackground(oac.dtcColor);
 		dateChooser_7.getComponent(1).addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -1722,6 +1738,7 @@ public class FILTRE extends JDialog {
 		panel_4.add(dateChooser_7);
 
 		dateChooser_8 = new JDateChooser();
+		((JTextField)dateChooser_8.getDateEditor()).setBackground(oac.dtcColor);
 		dateChooser_8.getComponent(1).addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -1749,6 +1766,7 @@ public class FILTRE extends JDialog {
 		txtcb2.setColumns(10);
 
 		dateChooser_9 = new JDateChooser();
+		((JTextField)dateChooser_9.getDateEditor()).setBackground(oac.dtcColor);
 		dateChooser_9.getComponent(1).addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -1763,6 +1781,7 @@ public class FILTRE extends JDialog {
 		panel_4.add(dateChooser_9);
 
 		dateChooser_10 = new JDateChooser();
+		((JTextField)dateChooser_10.getDateEditor()).setBackground(oac.dtcColor);
 		dateChooser_10.getComponent(1).addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -1835,6 +1854,7 @@ public class FILTRE extends JDialog {
 		txtd1.setColumns(10);
 
 		dateChooser_6_2 = new JDateChooser();
+		((JTextField)dateChooser_6_2.getDateEditor()).setBackground(oac.dtcColor);
 		dateChooser_6_2.getComponent(1).addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -1856,6 +1876,7 @@ public class FILTRE extends JDialog {
 		panel_4.add(txtd2);
 
 		dateChooser_6_2_1 = new JDateChooser();
+		((JTextField)dateChooser_6_2_1.getDateEditor()).setBackground(oac.dtcColor);
 		dateChooser_6_2_1.getComponent(1).addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -1973,6 +1994,7 @@ public class FILTRE extends JDialog {
 		panel_5.add(lblNewLabel_21);
 
 		dateChooser_11 = new JDateChooser();
+		((JTextField)dateChooser_11.getDateEditor()).setBackground(oac.dtcColor);
 		dateChooser_11.getComponent(1).addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -1987,6 +2009,7 @@ public class FILTRE extends JDialog {
 		panel_5.add(dateChooser_11);
 
 		dateChooser_11_1 = new JDateChooser();
+		((JTextField)dateChooser_11_1.getDateEditor()).setBackground(oac.dtcColor);
 		dateChooser_11_1.getComponent(1).addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -2059,6 +2082,7 @@ public class FILTRE extends JDialog {
 		panel_6.add(lblNewLabel_24);
 
 		dateChooser_12 = new JDateChooser();
+		((JTextField)dateChooser_12.getDateEditor()).setBackground(oac.dtcColor);
 		dateChooser_12.getComponent(1).addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -2165,6 +2189,7 @@ public class FILTRE extends JDialog {
 		panel_6.add(txtZzzzzzzzzz);
 
 		dateChooser_13 = new JDateChooser();
+		((JTextField)dateChooser_13.getDateEditor()).setBackground(oac.dtcColor);
 		dateChooser_13.getComponent(1).addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -2385,6 +2410,7 @@ public class FILTRE extends JDialog {
 		panel_8.add(label_1);
 
 		dateChooser_14 = new JDateChooser();
+		((JTextField)dateChooser_14.getDateEditor()).setBackground(oac.dtcColor);
 		dateChooser_14.getComponent(1).addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -2428,6 +2454,7 @@ public class FILTRE extends JDialog {
 		panel_8.add(textField_21);
 
 		dateChooser_15 = new JDateChooser();
+		((JTextField)dateChooser_15.getDateEditor()).setBackground(oac.dtcColor);
 		dateChooser_15.getComponent(1).addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -2552,6 +2579,7 @@ public class FILTRE extends JDialog {
 		panel_9.add(label_3);
 
 		dateChooser_16 = new JDateChooser();
+		((JTextField)dateChooser_16.getDateEditor()).setBackground(oac.dtcColor);
 		dateChooser_16.getComponent(1).addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -2566,6 +2594,7 @@ public class FILTRE extends JDialog {
 		panel_9.add(dateChooser_16);
 
 		dateChooser_17 = new JDateChooser();
+		((JTextField)dateChooser_17.getDateEditor()).setBackground(oac.dtcColor);
 		dateChooser_17.getComponent(1).addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -2735,6 +2764,7 @@ public class FILTRE extends JDialog {
 		panel_11.add(label_10);
 
 		dateChooser_18 = new JDateChooser();
+		((JTextField)dateChooser_18.getDateEditor()).setBackground(oac.dtcColor);
 		dateChooser_18.getComponent(1).addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -2749,6 +2779,7 @@ public class FILTRE extends JDialog {
 		panel_11.add(dateChooser_18);
 
 		dateChooser_19 = new JDateChooser();
+		((JTextField)dateChooser_19.getDateEditor()).setBackground(oac.dtcColor);
 		dateChooser_19.getComponent(1).addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -2918,6 +2949,7 @@ public class FILTRE extends JDialog {
 		panel_12.add(label_18);
 
 		dateChooser_20 = new JDateChooser();
+		((JTextField)dateChooser_20.getDateEditor()).setBackground(oac.dtcColor);
 		dateChooser_20.getComponent(1).addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -2932,6 +2964,7 @@ public class FILTRE extends JDialog {
 		panel_12.add(dateChooser_20);
 
 		dateChooser_21 = new JDateChooser();
+		((JTextField)dateChooser_21.getDateEditor()).setBackground(oac.dtcColor);
 		dateChooser_21.getComponent(1).addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -3198,6 +3231,7 @@ public class FILTRE extends JDialog {
 		panel_13.add(label_22);
 
 		dateChooser_22 = new JDateChooser();
+		((JTextField)dateChooser_22.getDateEditor()).setBackground(oac.dtcColor);
 		dateChooser_22.getComponent(1).addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -3214,6 +3248,7 @@ public class FILTRE extends JDialog {
 		panel_13.add(dateChooser_22);
 
 		dateChooser_23 = new JDateChooser();
+		((JTextField)dateChooser_23.getDateEditor()).setBackground(oac.dtcColor);
 		dateChooser_23.getComponent(1).addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -3373,6 +3408,7 @@ public class FILTRE extends JDialog {
 		panel_15.add(label_29);
 
 		dateChooser_24 = new JDateChooser();
+		((JTextField)dateChooser_24.getDateEditor()).setBackground(oac.dtcColor);
 		dateChooser_24.getComponent(1).addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -3454,6 +3490,7 @@ public class FILTRE extends JDialog {
 		panel_15.add(textField_48);
 
 		dateChooser_25 = new JDateChooser();
+		((JTextField)dateChooser_25.getDateEditor()).setBackground(oac.dtcColor);
 		dateChooser_25.getComponent(1).addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -3700,6 +3737,7 @@ public class FILTRE extends JDialog {
 		panel_18.add(label_34);
 
 		dateChooser_26 = new JDateChooser();
+		((JTextField)dateChooser_26.getDateEditor()).setBackground(oac.dtcColor);
 		dateChooser_26.getComponent(1).addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -3714,6 +3752,7 @@ public class FILTRE extends JDialog {
 		panel_18.add(dateChooser_26);
 
 		dateChooser_27 = new JDateChooser();
+		((JTextField)dateChooser_27.getDateEditor()).setBackground(oac.dtcColor);
 		dateChooser_27.getComponent(1).addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -4007,6 +4046,7 @@ public class FILTRE extends JDialog {
 		panel_21.add(label_39);
 
 		dateChooser_28 = new JDateChooser();
+		((JTextField)dateChooser_28.getDateEditor()).setBackground(oac.dtcColor);
 		dateChooser_28.getComponent(1).addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -4022,6 +4062,7 @@ public class FILTRE extends JDialog {
 		panel_21.add(dateChooser_28);
 
 		dateChooser_29 = new JDateChooser();
+		((JTextField)dateChooser_29.getDateEditor()).setBackground(oac.dtcColor);
 		dateChooser_29.setBounds(248, 11, 125, 20);
 		dateChooser_29.getComponent(1).addMouseListener(new MouseAdapter() {
 			@Override
@@ -4201,6 +4242,7 @@ public class FILTRE extends JDialog {
 		panel_22.add(label_58);
 
 		dateChooser_30 = new JDateChooser();
+		((JTextField)dateChooser_30.getDateEditor()).setBackground(oac.dtcColor);
 		dateChooser_30.setBounds(79, 11, 125, 20);
 		dateChooser_30.getComponent(1).addMouseListener(new MouseAdapter() {
 			@Override
@@ -4215,6 +4257,7 @@ public class FILTRE extends JDialog {
 		panel_22.add(dateChooser_30);
 
 		dateChooser_31 = new JDateChooser();
+		((JTextField)dateChooser_31.getDateEditor()).setBackground(oac.dtcColor);
 		dateChooser_31.setBounds(248, 11, 125, 20);
 		dateChooser_31.getComponent(1).addMouseListener(new MouseAdapter() {
 			@Override
@@ -4343,6 +4386,7 @@ public class FILTRE extends JDialog {
 		panel_23.add(lblNewLabel_35);
 
 		dateChooser_32 = new JDateChooser();
+		((JTextField)dateChooser_32.getDateEditor()).setBackground(oac.dtcColor);
 		dateChooser_32.setBounds(110, 22, 107, 20);
 		dateChooser_32.getComponent(1).addMouseListener(new MouseAdapter() {
 			@Override
@@ -4357,6 +4401,7 @@ public class FILTRE extends JDialog {
 		panel_23.add(dateChooser_32);
 
 		dateChooser_32_1 = new JDateChooser();
+		((JTextField)dateChooser_32_1.getDateEditor()).setBackground(oac.dtcColor);
 		dateChooser_32_1.setBounds(239, 22, 107, 20);
 		dateChooser_32_1.getComponent(1).addMouseListener(new MouseAdapter() {
 			@Override
@@ -4418,6 +4463,7 @@ public class FILTRE extends JDialog {
 		panel_GUNLUK.add(lblNewLabel_37);
 
 		dateChooser_33 = new JDateChooser();
+		((JTextField)dateChooser_33.getDateEditor()).setBackground(oac.dtcColor);
 		dateChooser_33.setFont(new Font("Tahoma", Font.BOLD, 11));
 		dateChooser_33.setDateFormatString("dd.MM.yyyy");
 		dateChooser_33.setDate(TARIH_CEVIR.tarih("01.01.1900"));
@@ -4437,6 +4483,7 @@ public class FILTRE extends JDialog {
 		panel_GUNLUK.add(lblNewLabel_38);
 
 		dateChooser_34 = new JDateChooser();
+		((JTextField)dateChooser_34.getDateEditor()).setBackground(oac.dtcColor);
 		dateChooser_34.setBounds(354, 62, 128, 20);
 		dateChooser_34.setFont(new Font("Tahoma", Font.BOLD, 11));
 		dateChooser_34.setDateFormatString("dd.MM.yyyy");
@@ -4512,6 +4559,7 @@ public class FILTRE extends JDialog {
 		panel_KERESTE.add(lblStunlar_1);
 
 		dateChooser_20_1 = new JDateChooser();
+		((JTextField)dateChooser_20_1.getDateEditor()).setBackground(oac.dtcColor);
 		dateChooser_20_1.setFont(new Font("Tahoma", Font.BOLD, 11));
 		dateChooser_20_1.setDateFormatString("dd.MM.yyyy");
 		dateChooser_20_1.setDate(TARIH_CEVIR.tarih("01.01.1900"));
@@ -4527,6 +4575,7 @@ public class FILTRE extends JDialog {
 		panel_KERESTE.add(dateChooser_20_1);
 
 		dateChooser_21_1 = new JDateChooser();
+		((JTextField)dateChooser_21_1.getDateEditor()).setBackground(oac.dtcColor);
 		dateChooser_21_1.setFont(new Font("Tahoma", Font.BOLD, 11));
 		dateChooser_21_1.setDateFormatString("dd.MM.yyyy");
 		dateChooser_21_1.setDate(TARIH_CEVIR.tarih("31.12.2100"));
@@ -4785,6 +4834,7 @@ public class FILTRE extends JDialog {
 		panel_KERESTE_DETAY.add(lblHesapKodu_2_1);
 
 		dateChooser_20_1_1 = new JDateChooser();
+		((JTextField)dateChooser_20_1_1.getDateEditor()).setBackground(oac.dtcColor);
 		dateChooser_20_1_1.setFont(new Font("Tahoma", Font.BOLD, 11));
 		dateChooser_20_1_1.setDateFormatString("dd.MM.yyyy");
 		dateChooser_20_1_1.setDate(TARIH_CEVIR.tarih("01.01.1900"));
@@ -4800,6 +4850,7 @@ public class FILTRE extends JDialog {
 		panel_KERESTE_DETAY.add(dateChooser_20_1_1);
 
 		dateChooser_21_1_1 = new JDateChooser();
+		((JTextField)dateChooser_21_1_1.getDateEditor()).setBackground(oac.dtcColor);
 		dateChooser_21_1_1.setFont(new Font("Tahoma", Font.BOLD, 11));
 		dateChooser_21_1_1.setDateFormatString("dd.MM.yyyy");
 		dateChooser_21_1_1.setDate(TARIH_CEVIR.tarih("31.12.2100"));
@@ -4880,6 +4931,7 @@ public class FILTRE extends JDialog {
 		panel_KERESTE_DETAY.add(textField_87);
 
 		dateChooser_21_1_1_1 = new JDateChooser();
+		((JTextField)dateChooser_21_1_1_1.getDateEditor()).setBackground(oac.dtcColor);
 		dateChooser_21_1_1_1.setFont(new Font("Tahoma", Font.BOLD, 11));
 		dateChooser_21_1_1_1.setDateFormatString("dd.MM.yyyy");
 		dateChooser_21_1_1_1.setDate(TARIH_CEVIR.tarih("31.12.2100"));
@@ -5143,6 +5195,7 @@ public class FILTRE extends JDialog {
 
 
 		dateChooser_20_1_2 = new JDateChooser();
+		((JTextField)dateChooser_20_1_2.getDateEditor()).setBackground(oac.dtcColor);
 		dateChooser_20_1_2.setDate(TARIH_CEVIR.tarih("01.01.1900"));
 		dateChooser_20_1_2.setFont(new Font("Tahoma", Font.BOLD, 11));
 		dateChooser_20_1_2.setDateFormatString("dd.MM.yyyy");
@@ -5158,6 +5211,7 @@ public class FILTRE extends JDialog {
 		panel_KERESTE_ORTFIAT.add(dateChooser_20_1_2);
 
 		dateChooser_21_1_2 = new JDateChooser();
+		((JTextField)dateChooser_21_1_2.getDateEditor()).setBackground(oac.dtcColor);
 		dateChooser_21_1_2.setFont(new Font("Tahoma", Font.BOLD, 11));
 		dateChooser_21_1_2.setDateFormatString("dd.MM.yyyy");
 		dateChooser_21_1_2.setDate(TARIH_CEVIR.tarih("31.12.2100"));
@@ -5353,6 +5407,7 @@ public class FILTRE extends JDialog {
 		panel_24.add(comboBox_87);
 		
 		dateChooser_35 = new JDateChooser();
+		((JTextField)dateChooser_35.getDateEditor()).setBackground(oac.dtcColor);
 		dateChooser_35.setFont(new Font("Tahoma", Font.BOLD, 11));
 		dateChooser_35.setDateFormatString("dd.MM.yyyy");
 		dateChooser_35.setDate(TARIH_CEVIR.tarih("01.01.1900"));
@@ -5368,6 +5423,7 @@ public class FILTRE extends JDialog {
 		panel_24.add(dateChooser_35);
 		
 		dateChooser_36 = new JDateChooser();
+		((JTextField)dateChooser_36.getDateEditor()).setBackground(oac.dtcColor);
 		dateChooser_36.setFont(new Font("Tahoma", Font.BOLD, 11));
 		dateChooser_36.setDateFormatString("dd.MM.yyyy");
 		dateChooser_36.setDate(TARIH_CEVIR.tarih("31.12.2100"));

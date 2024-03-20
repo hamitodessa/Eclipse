@@ -328,6 +328,7 @@ public class IRSALIYE extends JInternalFrame {
 		panel_2.add(lblNewLabel_4);
 		
 		dtc = new JDateChooser();
+		((JTextField)dtc.getDateEditor()).setBackground(oac.dtcColor);
 		dtc.getComponent(1).addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {

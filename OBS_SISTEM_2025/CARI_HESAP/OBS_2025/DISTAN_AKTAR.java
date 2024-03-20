@@ -1435,7 +1435,7 @@ public class DISTAN_AKTAR extends JInternalFrame {
 			}
 			if ( kon > 0 )
 			{
-				OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,"Bos Hesap Kodlari mevcut .... Satir Sayisi:" + kon );
+				OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,"Bos Hesap Kodlari mevcut .... Satir Sayisi: " + kon );
 				return;
 			}
 			///HESAP KODLARI KONTROL
@@ -1457,7 +1457,7 @@ public class DISTAN_AKTAR extends JInternalFrame {
 				}
 			}
 			///
-			int g = JOptionPane.showOptionDialog( null,  "Kayit Baslamasi...Kayit Sayisi:" + model.getRowCount(), "Cari Coklu Kayit",   JOptionPane.YES_NO_OPTION,
+			int g = JOptionPane.showOptionDialog( null,  "Kayit Baslamasi...Kayit Sayisi: " + model.getRowCount(), "Cari Coklu Kayit",   JOptionPane.YES_NO_OPTION,
 					JOptionPane.QUESTION_MESSAGE,null, oac.options, oac.options[1]); 
 			if(g != 0 ) { return;	}	
 			cari_kaydet();
@@ -1563,7 +1563,6 @@ public class DISTAN_AKTAR extends JInternalFrame {
 					lOG_BILGI lBILGI = new lOG_BILGI();
 					lBILGI.setmESAJ(mesaj);
 					lBILGI.seteVRAK(String.valueOf(evr_no));
-
 					c_Access.cari_dekont_kaydet(dBilgi,	lBILGI ,	BAGLAN_LOG.cariLogDizin);
 					model.setValueAt(evr_no,i, 6);
 					evr_no += 1;
@@ -1696,7 +1695,6 @@ public class DISTAN_AKTAR extends JInternalFrame {
 		tblexcell.setRowSorter(sorter);
 		tblexcell.revalidate();
 		tblexcell.repaint();
-
 	}
 	public class TableHeaderMouseListener extends MouseAdapter {
 		private JTable table;

@@ -1691,7 +1691,7 @@ public class OBS_BACKUP extends JFrame {
 						String ftpDOSYA = ls.get(r).getDosyaADI();
 						if (fileESITMI(ftpDOSYA,dosADI))
 						{
-							Date ftar = dosyaTAIRIHI(ls.get(r).getDosyaADI().toString());
+							Date ftar = dosyaTARIHI(ls.get(r).getDosyaADI().toString());
 							long dateBeforeInMs = ftar.getTime();
 							long dateAfterInMs = new Date().getTime();
 							long timeDiff = Math.abs(dateAfterInMs - dateBeforeInMs);
@@ -1870,7 +1870,7 @@ public class OBS_BACKUP extends JFrame {
 						String ftpDOSYA = ls.get(r).getDosyaADI();
 						if (fileESITMI(ftpDOSYA,dosADI))
 						{
-							Date ftar = dosyaTAIRIHI(ls.get(r).getDosyaADI().toString());
+							Date ftar = dosyaTARIHI(ls.get(r).getDosyaADI().toString());
 							long dateBeforeInMs = ftar.getTime();
 							long dateAfterInMs = new Date().getTime();
 							long timeDiff = Math.abs(dateAfterInMs - dateBeforeInMs);
@@ -2066,7 +2066,7 @@ public class OBS_BACKUP extends JFrame {
 							dosADI = dosADI.substring(0, index); 
 						if (fileESITMI(ftpDOSYA,dosADI))
 						{
-							Date ftar = dosyaTAIRIHI(ls.get(r).getDosyaADI().toString());
+							Date ftar = dosyaTARIHI(ls.get(r).getDosyaADI().toString());
 							long dateBeforeInMs = ftar.getTime();
 							long dateAfterInMs = new Date().getTime();
 							long timeDiff = Math.abs(dateAfterInMs - dateBeforeInMs);
@@ -2233,7 +2233,7 @@ public class OBS_BACKUP extends JFrame {
 						String ftpDOSYA = ls.get(r).getDosyaADI();
 						if (fileESITMI(ftpDOSYA,dosADI))
 						{
-							Date ftar = dosyaTAIRIHI(ls.get(r).getDosyaADI().toString());
+							Date ftar = dosyaTARIHI(ls.get(r).getDosyaADI().toString());
 							long dateBeforeInMs = ftar.getTime();
 							long dateAfterInMs = new Date().getTime();
 							long timeDiff = Math.abs(dateAfterInMs - dateBeforeInMs);
@@ -2559,7 +2559,7 @@ public class OBS_BACKUP extends JFrame {
 			result = true ;
 		return result;
 	}
-	private Date dosyaTAIRIHI(String ftpDOSYA) throws ParseException
+	private Date dosyaTARIHI(String ftpDOSYA) throws ParseException
 	{
 		Date ftar = null;
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy.MM.dd HH:mm", Locale.ENGLISH);

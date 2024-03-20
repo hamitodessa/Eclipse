@@ -63,7 +63,7 @@ import java.awt.Image;
 import java.awt.Insets;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
-import java.text.ParseException;
+
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -224,7 +224,7 @@ public class DEKONT extends JInternalFrame {
 							cal.add(Calendar.YEAR, -1); 
 						dtc.setDate(new Date(cal.getTimeInMillis()));
 						textComponent.setCaretPosition(currentCaretPosition);
-					} catch (ParseException e1) {
+					} catch (Exception e1) {
 						e1.printStackTrace();
 					}
 				}
@@ -247,7 +247,7 @@ public class DEKONT extends JInternalFrame {
 							cal.add(Calendar.YEAR, 1); 
 						dtc.setDate(new Date(cal.getTimeInMillis()));
 						textComponent1.setCaretPosition(currentCaretPosition);
-					} catch (ParseException e1) {
+					} catch (Exception e1) {
 						e1.printStackTrace();
 					}
 				}
@@ -433,7 +433,6 @@ public class DEKONT extends JInternalFrame {
 					} 
 					int evr = rs.getInt("MAX_NO");
 					txtevrak.setText(Integer.toString(evr));
-					
 					fiskont();
 					getContentPane().setCursor(oac.DEFAULT_CURSOR);
 				} catch (Exception ex) {
@@ -461,7 +460,7 @@ public class DEKONT extends JInternalFrame {
 					txtevrak.setText(Integer.toString(evr));
 					fiskont();
 					getContentPane().setCursor(oac.DEFAULT_CURSOR);
-				} catch (NumberFormatException e1) {
+				} catch (Exception e1) {
 					getContentPane().setCursor(oac.DEFAULT_CURSOR);
 					e1.printStackTrace();
 				}
@@ -574,7 +573,7 @@ public class DEKONT extends JInternalFrame {
 								yeni();
 						}
 					}
-				} catch (IOException e1) {
+				} catch (Exception e1) {
 					e1.printStackTrace();
 				}
 			}
@@ -626,7 +625,7 @@ public class DEKONT extends JInternalFrame {
 							double d2 = kusur2 * dbal;
 							txtbtutar.setText(FORMATLAMA.doub_2(d2));
 						}
-					} catch (ParseException e1) {
+					} catch (Exception e1) {
 						e1.printStackTrace();
 					}
 				}
@@ -660,7 +659,7 @@ public class DEKONT extends JInternalFrame {
 								yeni();
 						}
 					}
-				} catch (IOException e1) {
+				} catch (Exception e1) {
 					e1.printStackTrace();
 				}
 			}
@@ -727,7 +726,7 @@ public class DEKONT extends JInternalFrame {
 								yeni();
 						}
 					}
-				} catch (IOException e1) {
+				} catch (Exception e1) {
 					e1.printStackTrace();
 				}
 			}
@@ -800,6 +799,7 @@ public class DEKONT extends JInternalFrame {
        
 		cmbbhes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if(cmbbhes.getSelectedItem() == null || cmbbhes.getSelectedItem().toString().equals("")) return;
 				getContentPane().setCursor(oac.WAIT_CURSOR);
 				hpl = new String[3];
 				hpl = isim(cmbbhes.getSelectedItem() == null ? "":cmbbhes.getSelectedItem().toString());
@@ -872,7 +872,7 @@ public class DEKONT extends JInternalFrame {
 									hsp.setVisible(true);
 									if (! oac.hsp_hsp_kodu.equals(""))
 									{
-										cmbbhes.setSelectedItem( oac.hsp_hsp_kodu);
+										cmbbhes.setSelectedItem(oac.hsp_hsp_kodu);
 										cmbb.requestFocus();
 									}
 									getContentPane().setCursor(oac.DEFAULT_CURSOR);
@@ -882,7 +882,7 @@ public class DEKONT extends JInternalFrame {
 							}
 						}
 					}
-				} catch (IOException e1) {
+				} catch (Exception e1) {
 					e1.printStackTrace();
 				}
 			}
@@ -1063,7 +1063,7 @@ public class DEKONT extends JInternalFrame {
 								yeni();
 						}
 					}
-				} catch (IOException e1) {
+				} catch (Exception e1) {
 					e1.printStackTrace();
 				}
 			}
@@ -1109,7 +1109,7 @@ public class DEKONT extends JInternalFrame {
 							double d2 = kusur2 * dbborc;
 							txtatutar.setText(FORMATLAMA.doub_2(d2));
 						}
-					} catch (ParseException e1) {
+					} catch (Exception e1) {
 						e1.printStackTrace();
 					}
 				}
@@ -1234,7 +1234,7 @@ public class DEKONT extends JInternalFrame {
 								yeni();
 						}
 					}
-				} catch (IOException e1) {
+				} catch (Exception e1) {
 					e1.printStackTrace();
 				}
 			}
@@ -1300,6 +1300,7 @@ public class DEKONT extends JInternalFrame {
 		cmbahes = new JComboBox<String>();
 		cmbahes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if(cmbahes.getSelectedItem() == null || cmbahes.getSelectedItem().toString().equals("")) return;
 				getContentPane().setCursor(oac.WAIT_CURSOR);
 				hpl = new String[3];
 				hpl = isim(cmbahes.getSelectedItem() == null ? "":cmbahes.getSelectedItem().toString());
@@ -1380,7 +1381,7 @@ public class DEKONT extends JInternalFrame {
 							}
 						}
 					}
-				} catch (IOException e1) {
+				} catch (Exception e1) {
 					e1.printStackTrace();
 				}
 			}
@@ -1436,7 +1437,7 @@ public class DEKONT extends JInternalFrame {
 						if ((e.getKeyCode() == c) && ((e.getModifiersEx() & (parts[0].equals("E") ?  KeyEvent.CTRL_DOWN_MASK : KeyEvent.ALT_DOWN_MASK) ) != 0))
 							yeni();
 					}
-				} catch (IOException e1) {
+				} catch (Exception e1) {
 					e1.printStackTrace();
 				}
 			}
@@ -1509,7 +1510,7 @@ public class DEKONT extends JInternalFrame {
 				bakiye_goster();
 				bakiye_goster =true;
 			}
-		} catch (IOException e1) {
+		} catch (Exception e1) {
 			e1.printStackTrace();
 		}
 	}
@@ -1839,21 +1840,22 @@ public class DEKONT extends JInternalFrame {
 	}
 	private static String[] isim(String kod)  {
 		String [] sonuc = {"","",""}  ;
+		if (kod.equals("")) return sonuc;
 		try
 		{
 			ResultSet	rs = null;
 			rs = c_Access.hesap_adi_oku(kod);
 			if (!rs.isBeforeFirst() ) {  
-				sonuc [0]= "" ;
-				sonuc [1]= "" ;
-				sonuc [2]= "F" ;
+				sonuc [0] = "" ;
+				sonuc [1] = "" ;
+				sonuc [2] = "F" ;
 			} 
 			else
 			{
 				rs.next();
 				sonuc [0] = rs.getString("UNVAN");
-				sonuc [1]=rs.getString("HESAP_CINSI");
-				sonuc [2]= "T" ;
+				sonuc [1] = rs.getString("HESAP_CINSI");
+				sonuc [2] = "T" ;
 			}
 		}
 		catch (Exception ex)

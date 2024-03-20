@@ -29,7 +29,7 @@ import javax.swing.JPanel;
 import javax.swing.JSplitPane;
 
 import javax.swing.JTable;
-
+import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
@@ -409,6 +409,7 @@ public class CEK_CIKIS extends JInternalFrame {
 		panel_2.add(lblNewLabel_3);
 
 		dateChooser = new JDateChooser();
+		((JTextField)dateChooser.getDateEditor()).setBackground(oac.dtcColor);
 		dateChooser.getComponent(1).addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {

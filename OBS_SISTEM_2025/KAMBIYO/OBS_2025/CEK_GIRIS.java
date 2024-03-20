@@ -8,6 +8,7 @@ import java.awt.Component;
 import java.awt.Dimension;
 
 import javax.swing.JTable;
+import javax.swing.JTextField;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -443,6 +444,7 @@ public class CEK_GIRIS extends JInternalFrame {
 		panel_2.add(lblNewLabel_3);
 
 		dateChooser = new JDateChooser();
+		((JTextField)dateChooser.getDateEditor()).setBackground(oac.dtcColor);
 		dateChooser.getComponent(1).addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {

@@ -21,6 +21,7 @@ import javax.swing.JInternalFrame;
 import javax.swing.JPanel;
 import javax.swing.JSplitPane;
 import javax.swing.JTable;
+import javax.swing.JTextField;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
@@ -151,7 +152,9 @@ public class LOGLAMA_RAPOR extends JInternalFrame {
 		leftPanel.add(comboBox);
 
 		dateChooser = new JDateChooser();
-		dateChooser.setBounds(270, 11, 130, 27);dateChooser.getComponent(1).addMouseListener(new MouseAdapter() {
+		((JTextField)dateChooser.getDateEditor()).setBackground(oac.dtcColor);
+		dateChooser.setBounds(270, 11, 130, 27);
+		dateChooser.getComponent(1).addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				if (e.getClickCount() == 2) 
@@ -166,6 +169,7 @@ public class LOGLAMA_RAPOR extends JInternalFrame {
 		leftPanel.add(dateChooser);
 
 		dateChooser_1 = new JDateChooser();
+		((JTextField)dateChooser_1.getDateEditor()).setBackground(oac.dtcColor);
 		dateChooser_1.setBounds(405, 11, 130, 27);
 		dateChooser_1.getComponent(1).addMouseListener(new MouseAdapter() {
 			@Override

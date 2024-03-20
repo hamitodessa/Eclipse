@@ -267,7 +267,7 @@ public class Gunluk extends JInternalFrame {
         });
         JDayChooser dayChooser = calendar.getDayChooser();
         dayChooser.setAlwaysFireDayProperty(true); // here is the key
-		calendar.setForeground(new Color(0, 128, 128));
+		//calendar.setForeground(new Color(0, 128, 128));
 		calendar.getDayChooser().setDayBordersVisible(true);
 		calendar.getMonthChooser().getComboBox().setFont(new Font("Tahoma", Font.BOLD, 11));
 		calendar.getYearChooser().setFont(new Font("Tahoma", Font.BOLD, 11));

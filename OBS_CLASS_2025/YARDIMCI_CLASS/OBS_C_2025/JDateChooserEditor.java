@@ -1,5 +1,6 @@
 package OBS_C_2025;
 
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -28,14 +29,11 @@ public class JDateChooserEditor extends DefaultCellEditor
 		try
 		{
 			if (value.toString().length() >  10)
-			{
 				tar = dateFormater(value.toString() , "dd.MM.yyyy", "EEE MMM dd kk:mm:ss zzzz yyyy" );
-			}
 			else
-			{
 				tar = value.toString();
-			}
 			date = new JDateChooser(TARIH_CEVIR.tarih(tar));
+			((JTextField)date.getDateEditor()).setBackground(new Color(224,224,224));
 			date.getComponent(1).addKeyListener(new KeyListener() {
 				@Override
 				public void keyTyped(KeyEvent e) {

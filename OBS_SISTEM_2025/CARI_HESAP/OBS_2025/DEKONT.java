@@ -4,6 +4,7 @@ import java.awt.EventQueue;
 import javax.swing.BorderFactory;
 import javax.swing.JInternalFrame;
 import javax.swing.JPanel;
+import javax.swing.JSpinner;
 import javax.swing.border.Border;
 import javax.swing.border.TitledBorder;
 import javax.swing.event.AncestorEvent;
@@ -81,6 +82,8 @@ import java.sql.SQLException;
 import javax.swing.JTextArea;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.beans.PropertyVetoException;
 import java.io.IOException;
 import java.awt.event.KeyAdapter;
@@ -167,6 +170,8 @@ public class DEKONT extends JInternalFrame {
 
 		dtc = new JDateChooser();
 		((JTextField)dtc.getDateEditor()).setBackground(oac.dtcColor);
+		
+		
 		dtc.getDateEditor().getUiComponent().addFocusListener(new FocusAdapter()    {
 			@Override
 			public void focusGained(FocusEvent evt) {
@@ -181,10 +186,8 @@ public class DEKONT extends JInternalFrame {
 		dtc.getComponent(1).addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if (e.getClickCount() == 2) 
-				{
+				if (e.getClickCount() == 2)
 					dtc.setDate(new Date());
-				}
 			}
 		});
 		dtc.setDateFormatString("dd.MM.yyyy");

@@ -75,6 +75,7 @@ import KER_RAPOR.KER_GRUP_RAPOR;
 import KER_RAPOR.KER_ORT_FIAT;
 import KER_RAPOR.KER_ENVANTER;
 import OBS_C_2025.DesktopScrollPane;
+import OBS_C_2025.FIT_IMAGE;
 import OBS_C_2025.GLOBAL;
 import OBS_C_2025.GUNLUK_ACCESS;
 import OBS_C_2025.Gunluk_Bilgi;
@@ -219,6 +220,7 @@ public class OBS_MAIN extends JFrame  {
 	private JButton btnSil ;
 	public static JButton btnFiltre ;
 	public static JButton btnYazici ;
+	private JButton btnPrgPrmtr ;
 	
 	public static MaterialTabbed tabbedPane ;
 	public static JToolBar toolBar ;
@@ -255,7 +257,6 @@ public class OBS_MAIN extends JFrame  {
 		this.addWindowListener(new WindowListener() {
 	        @Override
 	        public void windowOpened(WindowEvent e) {
-				form_ac("CALISMA DIZINLERI","");
 				gorev_kontrol();
 	        }
 	        @Override
@@ -2480,7 +2481,7 @@ public class OBS_MAIN extends JFrame  {
 				form_ac("CALISMA DIZINLERI","");
 			}
 		});
-		btnNewButton_86.setIcon(new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/icons8-database-administrator-30.png")));
+		btnNewButton_86.setIcon(new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/settings-30.png")));
 		toolBar_9.add(btnNewButton_86);
 
 		btnNewButton_86_1 = new JButton("");
@@ -3497,6 +3498,20 @@ public class OBS_MAIN extends JFrame  {
 		button_1.setIcon(new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/user-16.png")));
 		button_1.setToolTipText("Giris");
 		toolBar.add(button_1);
+		
+		JLabel lblNewLabel_9 = new JLabel("     ");
+		lblNewLabel_9.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		toolBar.add(lblNewLabel_9);
+		
+		btnPrgPrmtr = new JButton("");
+		btnPrgPrmtr.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				form_ac("CALISMA DIZINLERI","");
+			}
+		});
+		btnPrgPrmtr.setIcon(FIT_IMAGE.formIcon(new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/settings-30.png")), 16, 16));
+		btnPrgPrmtr.setToolTipText("Program Parametreleri");
+		toolBar.add(btnPrgPrmtr);
 
 		JLabel lblNewLabel_8 = new JLabel("          ");
 		lblNewLabel_8.setFont(new Font("Tahoma", Font.PLAIN, 11));
@@ -3560,7 +3575,6 @@ public class OBS_MAIN extends JFrame  {
 		toolBar_1.add(btnNewButton_72);
        //***************************************************************************************************
 		desktopPane = new JDesktopPane();
-		//desktopPane.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null),"", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		Notifications.getInstance().setJFrame(this);
 		DesktopScrollPane scrpane = new DesktopScrollPane(desktopPane );
 		scrpane.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null),"", TitledBorder.LEADING, TitledBorder.TOP, null, null));

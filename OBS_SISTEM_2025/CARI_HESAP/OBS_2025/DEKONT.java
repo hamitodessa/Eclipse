@@ -93,6 +93,9 @@ import java.awt.event.KeyListener;
 import javax.swing.UIManager;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+
 import javax.swing.JList;
 import java.awt.event.MouseWheelListener;
 import java.awt.event.MouseWheelEvent;
@@ -129,8 +132,8 @@ public class DEKONT extends JInternalFrame {
 	private static JButton btnHYenileA;
 	private JButton btnAciksil ;
 	private JButton btnNewButton;
-	private JLabel lblNewLabel_2_1  ;
-	private JLabel lblNewLabel_2 ;
+	private static JLabel lblNewLabel_2_1  ;
+	private static JLabel lblNewLabel_2 ;
 	private static JLabel lblNewLabel ;
 	private static JLabel lblb  ;
 	private static JLabel lbla  ;
@@ -791,18 +794,18 @@ public class DEKONT extends JInternalFrame {
 		pnlb.add(lblbb);
 		lblbb.setHorizontalAlignment(SwingConstants.RIGHT);
 
-		
-		cmbbhes = new JComboBox<String>();  //******************************BORCLU HESAP **********************
+		//******************************BORCLU HESAP **********************
+		cmbbhes = new JComboBox<String>(); 
 		cmbbhes.putClientProperty(FlatClientProperties.TEXT_FIELD_SHOW_CLEAR_BUTTON, true);
 		cmbbhes.setFont(new Font("Tahoma", Font.BOLD, 15));
 		cmbbhes.setEnabled(false);
-       
-		cmbbhes.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+		cmbbhes.addItemListener(new ItemListener() 
+		{
+			public void itemStateChanged(ItemEvent e) {
 				if(cmbbhes.getSelectedItem() == null || cmbbhes.getSelectedItem().toString().equals("")) return;
 				getContentPane().setCursor(oac.WAIT_CURSOR);
 				hpl = new String[3];
-				hpl = isim(cmbbhes.getSelectedItem() == null ? "":cmbbhes.getSelectedItem().toString());
+				hpl = isim(cmbbhes.getSelectedItem().toString());
 				lblNewLabel_2.setText(hpl[0]);
 				lblb.setText(hpl[1]);
 				if (hpl[2].toString().equals("F"))
@@ -888,7 +891,7 @@ public class DEKONT extends JInternalFrame {
 			}
 		});
 		
-		JTextField editorComponent = (JTextField)  cmbbhes.getEditor().getEditorComponent();
+		JTextField editorComponent = (JTextField) cmbbhes.getEditor().getEditorComponent();
 		InputMap txtbhesMap = editorComponent.getInputMap(editorComponent.WHEN_FOCUSED);
 		txtbhesMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_H, KeyEvent.CTRL_DOWN_MASK), "none");
 		
@@ -1298,12 +1301,13 @@ public class DEKONT extends JInternalFrame {
 		pnla.add(lblaba);
 
 		cmbahes = new JComboBox<String>();
-		cmbahes.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+		cmbahes.addItemListener(new ItemListener() 
+		{
+			public void itemStateChanged(ItemEvent e) {
 				if(cmbahes.getSelectedItem() == null || cmbahes.getSelectedItem().toString().equals("")) return;
 				getContentPane().setCursor(oac.WAIT_CURSOR);
 				hpl = new String[3];
-				hpl = isim(cmbahes.getSelectedItem() == null ? "":cmbahes.getSelectedItem().toString());
+				hpl = isim(cmbahes.getSelectedItem().toString());
 				lblNewLabel_2_1.setText(hpl[0]);
 				lbla.setText(hpl[1]);
 				if (hpl[2].toString().equals("F"))
@@ -1725,7 +1729,11 @@ public class DEKONT extends JInternalFrame {
 		txtbtutar.setText("0.00");
 		cmbb.setSelectedItem("");
 		cmbbhes.setSelectedItem("");
+		lblb.setText("");
+		lblNewLabel_2.setText("");
 		cmbahes.setSelectedItem("");
+		lbla.setText("");
+		lblNewLabel_2_1.setText("");
 		txtakur.setText("1.0000");
 		txtatutar.setText("0.00");
 		cmba.setSelectedItem("");

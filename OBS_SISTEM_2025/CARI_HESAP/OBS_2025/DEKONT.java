@@ -58,6 +58,7 @@ import javax.swing.SwingUtilities;
 
 import java.awt.Font;
 import java.awt.Image;
+import java.awt.Insets;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.text.ParseException;
@@ -1482,6 +1483,7 @@ public class DEKONT extends JInternalFrame {
 		panelANA.add(lblNewLabel);
 		
 		btnAciksil = new JButton("X");
+		btnAciksil.setMargin(new Insets(0, 0, 0, 0));
 		btnAciksil.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				txtaciklama.setText("");

@@ -3499,9 +3499,9 @@ public class OBS_MAIN extends JFrame  {
 		button_1.setToolTipText("Giris");
 		toolBar.add(button_1);
 		
-		JLabel lblNewLabel_9 = new JLabel("     ");
-		lblNewLabel_9.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		toolBar.add(lblNewLabel_9);
+		JLabel lblaraparametre = new JLabel("     ");
+		lblaraparametre.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		toolBar.add(lblaraparametre);
 		
 		btnPrgPrmtr = new JButton("");
 		btnPrgPrmtr.addActionListener(new ActionListener() {

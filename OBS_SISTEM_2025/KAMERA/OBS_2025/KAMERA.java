@@ -84,7 +84,7 @@ public class KAMERA extends JInternalFrame
 		{
 			public void actionPerformed(ActionEvent e) 
 			{
-				oac.kam_resmi = webcam.getImage();
+				//oac.kam_resmi = webcam.getImage();
 				Image im = webcam.getImage();
 				Image myImg =  fitimage(im,230,175); // im.getScaledInstance(230, 175,Image.SCALE_SMOOTH);
 				ImageIcon newImage = new ImageIcon(myImg);

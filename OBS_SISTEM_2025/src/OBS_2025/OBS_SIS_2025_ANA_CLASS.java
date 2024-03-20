@@ -3,7 +3,6 @@ package OBS_2025;
 
 import java.awt.Color;
 import java.awt.Cursor;
-import java.awt.image.BufferedImage;
 import javax.mail.util.ByteArrayDataSource;
 import OBS_C_2025.GLOBAL;
 import OBS_C_2025.IADRES;
@@ -72,7 +71,7 @@ public class OBS_SIS_2025_ANA_CLASS
 	public SIFRE_DONDUR sDONDUR = new     SIFRE_DONDUR();
 	public static String hsp_hsp_kodu = ""; 
 	public static String stk_kodu = ""; 
-	public BufferedImage kam_resmi ;
+	//public BufferedImage kam_resmi ;
 	public static String irs_no = ""; 
 	public static String nerden = "";
 	public String[] options = {"Tamam......       		!	", "Vazgec......       		!	"}; 

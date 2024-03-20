@@ -7,7 +7,8 @@ import javax.swing.JInternalFrame;
 import javax.swing.JSplitPane;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
-
+import javax.swing.event.InternalFrameAdapter;
+import javax.swing.event.InternalFrameEvent;
 import com.github.sarxos.webcam.Webcam;
 import com.github.sarxos.webcam.WebcamPanel;
 import com.github.sarxos.webcam.WebcamResolution;
@@ -30,6 +31,18 @@ public class KAMERA extends JInternalFrame
 	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
 	private Webcam webcam  ;
 	public KAMERA() {
+		this.addInternalFrameListener(new InternalFrameAdapter() {
+			@Override
+			public void internalFrameClosing(InternalFrameEvent e) {
+				super.internalFrameClosing(e);
+			}
+			@Override
+			public void internalFrameClosed(InternalFrameEvent e) {
+				webcam.close();
+				super.internalFrameClosed(e);
+			}
+		});
+		setClosable(true);
 		setTitle("Resim Cek");
 		setBounds(100, 100, 450, 300);
 
@@ -40,6 +53,7 @@ public class KAMERA extends JInternalFrame
 
 		JSplitPane splitPane = new JSplitPane();
 		splitPane.setResizeWeight(1.0);
+		splitPane.setDividerSize(0);
 		splitPane.setOrientation(JSplitPane.VERTICAL_SPLIT);
 		getContentPane().add(splitPane, BorderLayout.CENTER);
 
@@ -108,4 +122,5 @@ public class KAMERA extends JInternalFrame
 		g2.dispose();
 		return resizedimage;
 	}
+
 }

@@ -29,6 +29,7 @@ import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableModel;
 
+import com.toedter.calendar.JCalendar;
 import com.toedter.calendar.JDateChooser;
 
 import OBS_C_2025.DoubleEditor;
@@ -119,6 +120,8 @@ public class COKLU_IMALAT extends JInternalFrame {
 
 		dtc = new JDateChooser();
 		((JTextField)dtc.getDateEditor()).setBackground(oac.dtcColor);
+		JCalendar qweCalendar =  dtc.getJCalendar();
+		qweCalendar.getYearChooser().getSpinner().setBackground(oac.dtcColor);
 		dtc.getComponent(1).addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {

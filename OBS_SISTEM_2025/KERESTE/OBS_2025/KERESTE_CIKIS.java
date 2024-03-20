@@ -107,6 +107,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 import org.jsoup.select.Evaluator.IsEmpty;
 
+import com.toedter.calendar.JCalendar;
 import com.toedter.calendar.JDateChooser;
 
 import LOGER_KAYIT.DOSYA_MSSQL;
@@ -437,6 +438,8 @@ public class KERESTE_CIKIS extends JInternalFrame {
 
 		dtc = new JDateChooser();
 		((JTextField)dtc.getDateEditor()).setBackground(oac.dtcColor);
+		JCalendar qweCalendar =  dtc.getJCalendar();
+		qweCalendar.getYearChooser().getSpinner().setBackground(oac.dtcColor);
 		dtc.getComponent(1).addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {

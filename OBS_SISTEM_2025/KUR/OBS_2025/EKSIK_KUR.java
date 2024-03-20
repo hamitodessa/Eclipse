@@ -23,6 +23,7 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
+import com.toedter.calendar.JCalendar;
 import com.toedter.calendar.JDateChooser;
 import OBS_C_2025.DoubleEditor;
 import OBS_C_2025.FIT_IMAGE;
@@ -88,7 +89,9 @@ public class EKSIK_KUR extends JInternalFrame
 
 		dateChooser = new JDateChooser();
 		((JTextField)dateChooser.getDateEditor()).setBackground(oac.dtcColor);
-
+		JCalendar qweCalendar =  dateChooser.getJCalendar();
+		qweCalendar.getYearChooser().getSpinner().setBackground(oac.dtcColor);
+		
 		dateChooser.setDate(TARIH_CEVIR.tarih("01.01.1900"));
 		dateChooser.setDateFormatString("dd.MM.yyyy");
 		dateChooser.setFont(new Font("Tahoma", Font.BOLD, 14));
@@ -98,7 +101,8 @@ public class EKSIK_KUR extends JInternalFrame
 
 		dateChooser_1 = new JDateChooser();
 		((JTextField)dateChooser_1.getDateEditor()).setBackground(oac.dtcColor);
-
+		qweCalendar =  dateChooser_1.getJCalendar();
+		qweCalendar.getYearChooser().getSpinner().setBackground(oac.dtcColor);
 		dateChooser_1.setDate(new Date());
 		dateChooser_1.setDateFormatString("dd.MM.yyyy");
 		dateChooser_1.setFont(new Font("Tahoma", Font.BOLD, 14));

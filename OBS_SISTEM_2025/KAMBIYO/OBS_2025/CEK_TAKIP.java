@@ -17,6 +17,8 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
+
+import com.toedter.calendar.JCalendar;
 import com.toedter.calendar.JDateChooser;
 
 import OBS_C_2025.BAGLAN_LOG;
@@ -145,6 +147,8 @@ public class CEK_TAKIP extends JInternalFrame {
 
 		dateChooser = new JDateChooser();
 		((JTextField)dateChooser.getDateEditor()).setBackground(oac.dtcColor);
+		JCalendar qweCalendar =  dateChooser.getJCalendar();
+		qweCalendar.getYearChooser().getSpinner().setBackground(oac.dtcColor);
 
 		dateChooser.setBounds(131, 138, 130, 22);
 		dateChooser.setDateFormatString("dd.MM.yyyy");
@@ -167,7 +171,8 @@ public class CEK_TAKIP extends JInternalFrame {
 
 		dateChooser_1 = new JDateChooser();
 		((JTextField)dateChooser_1.getDateEditor()).setBackground(oac.dtcColor);
-
+		qweCalendar =  dateChooser_1.getJCalendar();
+		qweCalendar.getYearChooser().getSpinner().setBackground(oac.dtcColor);
 		dateChooser_1.setBounds(131, 196, 130, 22);
 		dateChooser_1.setDateFormatString("dd.MM.yyyy");
 		dateChooser_1.setFont(new Font("Tahoma", Font.BOLD, 14));
@@ -190,7 +195,8 @@ public class CEK_TAKIP extends JInternalFrame {
 
 		dateChooser_3 = new JDateChooser();
 		((JTextField)dateChooser_3.getDateEditor()).setBackground(oac.dtcColor);
-
+		qweCalendar =  dateChooser_3.getJCalendar();
+		qweCalendar.getYearChooser().getSpinner().setBackground(oac.dtcColor);
 		dateChooser_3.getComponent(1).addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -235,7 +241,8 @@ public class CEK_TAKIP extends JInternalFrame {
 
 		dateChooser_2 = new JDateChooser();
 		((JTextField)dateChooser_2.getDateEditor()).setBackground(oac.dtcColor);
-
+		qweCalendar =  dateChooser_2.getJCalendar();
+		qweCalendar.getYearChooser().getSpinner().setBackground(oac.dtcColor);
 		dateChooser_2.setBounds(371, 138, 130, 22);
 		dateChooser_2.setDateFormatString("dd.MM.yyyy");
 		dateChooser_2.setFont(new Font("Tahoma", Font.BOLD, 14));

@@ -63,6 +63,7 @@ import javax.mail.util.ByteArrayDataSource;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 
+import com.toedter.calendar.JCalendar;
 import com.toedter.calendar.JDateChooser;
 
 import LOGER_KAYIT.DOSYA_MSSQL;
@@ -153,6 +154,8 @@ public class LOGLAMA_RAPOR extends JInternalFrame {
 
 		dateChooser = new JDateChooser();
 		((JTextField)dateChooser.getDateEditor()).setBackground(oac.dtcColor);
+		JCalendar qweCalendar =  dateChooser.getJCalendar();
+		qweCalendar.getYearChooser().getSpinner().setBackground(oac.dtcColor);
 		dateChooser.setBounds(270, 11, 130, 27);
 		dateChooser.getComponent(1).addMouseListener(new MouseAdapter() {
 			@Override
@@ -170,6 +173,8 @@ public class LOGLAMA_RAPOR extends JInternalFrame {
 
 		dateChooser_1 = new JDateChooser();
 		((JTextField)dateChooser_1.getDateEditor()).setBackground(oac.dtcColor);
+		qweCalendar =  dateChooser_1.getJCalendar();
+		qweCalendar.getYearChooser().getSpinner().setBackground(oac.dtcColor);
 		dateChooser_1.setBounds(405, 11, 130, 27);
 		dateChooser_1.getComponent(1).addMouseListener(new MouseAdapter() {
 			@Override

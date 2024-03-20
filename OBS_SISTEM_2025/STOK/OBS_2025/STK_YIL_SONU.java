@@ -38,6 +38,7 @@ import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
+import com.toedter.calendar.JCalendar;
 import com.toedter.calendar.JDateChooser;
 
 import OBS_C_2025.CheckBoxRenderer;
@@ -168,6 +169,8 @@ public class STK_YIL_SONU extends JInternalFrame {
 		
 		dtc = new JDateChooser();
 		((JTextField)dtc.getDateEditor()).setBackground(oac.dtcColor);
+		JCalendar qweCalendar =  dtc.getJCalendar();
+		qweCalendar.getYearChooser().getSpinner().setBackground(oac.dtcColor);
 		dtc.setBounds(355, 8, 121, 20);
 		dtc.getComponent(1).addMouseListener(new MouseAdapter() {
 			@Override

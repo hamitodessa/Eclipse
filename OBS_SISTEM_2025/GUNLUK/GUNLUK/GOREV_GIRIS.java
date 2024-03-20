@@ -34,6 +34,7 @@ import javax.swing.event.AncestorListener;
 import javax.swing.text.JTextComponent;
 
 import com.formdev.flatlaf.FlatClientProperties;
+import com.toedter.calendar.JCalendar;
 import com.toedter.calendar.JDateChooser;
 
 import OBS_2025.GuiUtil;
@@ -143,6 +144,9 @@ public class GOREV_GIRIS extends JInternalFrame {
 
 		dtcBaslama = new JDateChooser();
 		((JTextField)dtcBaslama.getDateEditor()).setBackground(oac.dtcColor);
+		JCalendar qweCalendar =  dtcBaslama.getJCalendar();
+		qweCalendar.getYearChooser().getSpinner().setBackground(oac.dtcColor);
+		
 		dtcBaslama.setBounds(100, 173, 135, 25);
 		dtcBaslama.getDateEditor().getUiComponent().addFocusListener(new FocusAdapter()    {
 			@Override
@@ -255,6 +259,8 @@ public class GOREV_GIRIS extends JInternalFrame {
 
 		dtcBitis = new JDateChooser();
 		((JTextField)dtcBitis.getDateEditor()).setBackground(oac.dtcColor);
+		qweCalendar =  dtcBitis.getJCalendar();
+		qweCalendar.getYearChooser().getSpinner().setBackground(oac.dtcColor);
 		dtcBitis.setFont(new Font("Tahoma", Font.BOLD, 14));
 		dtcBitis.setDateFormatString("dd.MM.yyyy");
 		dtcBitis.setDate(new Date());

@@ -11,6 +11,8 @@ import javax.swing.DefaultCellEditor;
 import javax.swing.JCheckBox;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+
+import com.toedter.calendar.JCalendar;
 import com.toedter.calendar.JDateChooser;
 
 @SuppressWarnings("serial")
@@ -34,6 +36,9 @@ public class JDateChooserEditor extends DefaultCellEditor
 				tar = value.toString();
 			date = new JDateChooser(TARIH_CEVIR.tarih(tar));
 			((JTextField)date.getDateEditor()).setBackground(new Color(224,224,224));
+			JCalendar qweCalendar =  date.getJCalendar();
+			qweCalendar.getYearChooser().getSpinner().setBackground(new Color(224,224,224));
+			
 			date.getComponent(1).addKeyListener(new KeyListener() {
 				@Override
 				public void keyTyped(KeyEvent e) {

@@ -12,6 +12,7 @@ import javax.swing.JPanel;
 import javax.swing.JComboBox;
 
 import com.formdev.flatlaf.FlatClientProperties;
+import com.toedter.calendar.JCalendar;
 import com.toedter.calendar.JDateChooser;
 
 import OBS_C_2025.FIT_IMAGE;
@@ -173,7 +174,8 @@ public class KUR_GIRIS extends JInternalFrame {
 		panel.add(comboBox);
 		dateChooser = new JDateChooser();
 		((JTextField)dateChooser.getDateEditor()).setBackground(oac.dtcColor);
-
+		JCalendar qweCalendar =  dateChooser.getJCalendar();
+		qweCalendar.getYearChooser().getSpinner().setBackground(oac.dtcColor);
 		dateChooser.getComponent(1).addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {

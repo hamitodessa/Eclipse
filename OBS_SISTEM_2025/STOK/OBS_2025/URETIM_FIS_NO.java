@@ -21,6 +21,7 @@ import javax.swing.table.TableColumnModel;
 
 import org.apache.commons.lang.StringUtils;
 
+import com.toedter.calendar.JCalendar;
 import com.toedter.calendar.JDateChooser;
 
 import OBS_C_2025.FIT_IMAGE;
@@ -168,6 +169,8 @@ public class URETIM_FIS_NO extends JInternalFrame {
 
 		dateChooser = new JDateChooser();
 		((JTextField)dateChooser.getDateEditor()).setBackground(oac.dtcColor);
+		JCalendar qweCalendar =  dateChooser.getJCalendar();
+		qweCalendar.getYearChooser().getSpinner().setBackground(oac.dtcColor);
 		dateChooser.getComponent(1).addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -185,6 +188,8 @@ public class URETIM_FIS_NO extends JInternalFrame {
 
 		dateChooser_1 = new JDateChooser();
 		((JTextField)dateChooser_1.getDateEditor()).setBackground(oac.dtcColor);
+		qweCalendar =  dateChooser_1.getJCalendar();
+		qweCalendar.getYearChooser().getSpinner().setBackground(oac.dtcColor);
 		dateChooser_1.getComponent(1).addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {

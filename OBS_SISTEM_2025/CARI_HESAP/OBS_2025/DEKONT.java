@@ -29,6 +29,7 @@ import com.businessobjects.visualization.dataexchange.consumer.DataHandler;
 import com.crystaldecisions.reports.queryengine.EnumValueToNameMaps;
 import com.formdev.flatlaf.FlatClientProperties;
 import com.formdev.flatlaf.FlatLaf;
+import com.toedter.calendar.JCalendar;
 import com.toedter.calendar.JDateChooser;
 
 import GUNLUK.Gunluk;
@@ -171,7 +172,8 @@ public class DEKONT extends JInternalFrame {
 		dtc = new JDateChooser();
 		((JTextField)dtc.getDateEditor()).setBackground(oac.dtcColor);
 		
-		
+		JCalendar qweCalendar =  dtc.getJCalendar();
+		qweCalendar.getYearChooser().getSpinner().setBackground(oac.dtcColor);
 		dtc.getDateEditor().getUiComponent().addFocusListener(new FocusAdapter()    {
 			@Override
 			public void focusGained(FocusEvent evt) {

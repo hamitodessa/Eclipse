@@ -91,6 +91,8 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import javax.swing.JComboBox;
+
+import com.toedter.calendar.JCalendar;
 import com.toedter.calendar.JDateChooser;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
@@ -248,6 +250,8 @@ public class TAH_FISI extends JInternalFrame {
 		dtc.setFont(new Font("Tahoma", Font.BOLD, 14));
 		dtc.setDate(new Date());
 		((JTextField)dtc.getDateEditor()).setBackground(oac.dtcColor);
+		JCalendar qweCalendar =  dtc.getJCalendar();
+		qweCalendar.getYearChooser().getSpinner().setBackground(oac.dtcColor);
 		dtc.getComponent(1).addKeyListener(new KeyListener() {
 			@Override
 			public void keyTyped(KeyEvent e) {

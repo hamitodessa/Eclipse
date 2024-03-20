@@ -4956,7 +4956,7 @@ public class FILTRE extends JDialog {
 
 		dateChooser_21_1_1 = new JDateChooser();
 		((JTextField)dateChooser_21_1_1.getDateEditor()).setBackground(oac.dtcColor);
-		qweCalendar =  dateChooser_20_1_1_1.getJCalendar();
+		qweCalendar =  dateChooser_21_1_1.getJCalendar();
 		qweCalendar.getYearChooser().getSpinner().setBackground(oac.dtcColor);
 		dateChooser_21_1_1.setFont(new Font("Tahoma", Font.BOLD, 11));
 		dateChooser_21_1_1.setDateFormatString("dd.MM.yyyy");

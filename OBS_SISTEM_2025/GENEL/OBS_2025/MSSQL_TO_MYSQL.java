@@ -3,6 +3,7 @@ package OBS_2025;
 import java.awt.BorderLayout;
 import java.awt.Cursor;
 import java.awt.EventQueue;
+import java.awt.Font;
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.sql.DriverManager;
@@ -65,6 +66,8 @@ import com.healthmarketscience.jackcess.impl.CodecHandler;
 import com.healthmarketscience.jackcess.impl.CodecProvider;
 import com.healthmarketscience.jackcess.impl.DefaultCodecProvider;
 import com.healthmarketscience.jackcess.impl.PageChannel;
+
+import javax.swing.border.EtchedBorder;
 import javax.swing.border.LineBorder;
 import java.awt.Color;
 
@@ -96,8 +99,10 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 	{
 		setTitle("MS SQL TO MY SQL");
 		setClosable(true);
-		setBounds(100, 100, 892, 529);
+		setBounds(100, 100, 744, 529);
 		JPanel panel = new JPanel();
+		panel.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null),  "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
+
 		getContentPane().add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
 		setFrameIcon(FIT_IMAGE.formIcon(new ImageIcon(MSSQL_TO_MYSQL.class.getResource("/ICONLAR/icons8-data-transfer-30.png")), 16, 16));//
@@ -153,28 +158,30 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 		panel.add(btnNewButton_1_1);
 
 		JPanel panel_1 = new JPanel();
-		panel_1.setBounds(28, 287, 182, 201);
+		panel_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null),  "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+
+		panel_1.setBounds(28, 287, 180, 201);
 		panel_1.setLayout(null);
 		panel.add(panel_1);
 
 		JButton btnNewButton = new JButton("Hesap Plani");
-		btnNewButton.setBounds(10, 11, 159, 23);
+		btnNewButton.setBounds(10, 10, 159, 23);
 		panel_1.add(btnNewButton);
 
 		JButton btnHesapDetay = new JButton("Hesap Detay");
-		btnHesapDetay.setBounds(10, 40, 159, 23);
+		btnHesapDetay.setBounds(10, 35, 159, 23);
 		panel_1.add(btnHesapDetay);
 
 		JButton btnSatirlar = new JButton("Satirlar");
-		btnSatirlar.setBounds(10, 70, 159, 23);
+		btnSatirlar.setBounds(10, 60, 159, 23);
 		panel_1.add(btnSatirlar);
 
 		JButton btnIzahat = new JButton("Izahat");
-		btnIzahat.setBounds(10, 100, 159, 23);
+		btnIzahat.setBounds(10, 85, 159, 23);
 		panel_1.add(btnIzahat);
 
 		JButton btnOzel = new JButton("Ozel");
-		btnOzel.setBounds(10, 130, 159, 23);
+		btnOzel.setBounds(10, 110, 159, 23);
 		panel_1.add(btnOzel);
 		
 		JButton btnTahsilat = new JButton("Tahsilat");
@@ -187,19 +194,25 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 				}
 			}
 		});
-		btnTahsilat.setBounds(10, 164, 159, 23);
+		btnTahsilat.setBounds(10, 135, 159, 23);
 		panel_1.add(btnTahsilat);
 
-		RoundPanel panel_1_1 = new RoundPanel(new Color(0, 128, 128),15);
+		//RoundPanel panel_1_1 = new RoundPanel(new Color(0, 128, 128),15);
+		JPanel panel_1_1 = new JPanel();
+		
+		panel_1_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null),  "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+
 		panel_1_1.setLayout(null);
 		panel_1_1.setBounds(222, 287, 143, 201);
 		panel.add(panel_1_1);
 
 		JButton btnNewButton_2 = new JButton("Kur");
-		btnNewButton_2.setBounds(10, 11, 123, 23);
+		btnNewButton_2.setBounds(10, 10, 123, 23);
 		panel_1_1.add(btnNewButton_2);
 
 		JPanel panel_1_1_1 = new JPanel();
+		panel_1_1_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null),  "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+
 		panel_1_1_1.setLayout(null);
 		panel_1_1_1.setBounds(375, 289, 143, 199);
 		panel.add(panel_1_1_1);
@@ -214,7 +227,7 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 				}
 			}
 		});
-		btnNewButton_2_1.setBounds(10, 11, 123, 23);
+		btnNewButton_2_1.setBounds(10, 10, 123, 23);
 		panel_1_1_1.add(btnNewButton_2_1);
 
 		JButton btnNewButton_2_1_1 = new JButton("Diger");
@@ -310,7 +323,7 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 		
 		JPanel panel_2 = new JPanel();
 		panel_2.setLayout(null);
-		panel_2.setBorder(new TitledBorder(null, "My Sql Baglanti", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel_2.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null),  "My Sql Baglanti", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
 		panel_2.setBounds(459, 66, 244, 178);
 		panel.add(panel_2);
 		
@@ -351,7 +364,8 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 		
 		JPanel panel_3 = new JPanel();
 		panel_3.setLayout(null);
-		panel_3.setBorder(new TitledBorder(null, "Ms Sql Baglanti", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel_3.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null),  "Ms Sql Baglanti", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
+
 		panel_3.setBounds(28, 61, 249, 183);
 		panel.add(panel_3);
 		
@@ -423,6 +437,8 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 		panel.add(btnNewButton_1_1_1_1);
 		
 		JPanel panel_1_1_1_1 = new JPanel();
+		panel_1_1_1_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null),  "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+
 		panel_1_1_1_1.setLayout(null);
 		panel_1_1_1_1.setBounds(540, 289, 143, 199);
 		panel.add(panel_1_1_1_1);
@@ -437,7 +453,7 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 				}
 			}
 		});
-		btnNewButton_2_1_2.setBounds(10, 11, 123, 23);
+		btnNewButton_2_1_2.setBounds(10, 10, 123, 23);
 		panel_1_1_1_1.add(btnNewButton_2_1_2);
 		
 		JButton btnNewButton_2_1_1_2 = new JButton("Kod - Kons");
@@ -621,7 +637,6 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 		ResultSet	rss = null;
 		String sql = "SELECT * FROM HESAP WITH (INDEX (IX_HESAP))  ORDER BY HESAP ";
-		//Statement stmt = MS_conn.createStatement( ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
 		Statement stmt = MS_conn.createStatement();
 		rss = stmt.executeQuery(sql);
 		Class.forName("com.mysql.cj.jdbc.Driver");
@@ -1318,10 +1333,8 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 	void irsaliye () throws ClassNotFoundException, SQLException
 	{
 		getContentPane().setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-
 		ResultSet	rs = null;
 		ResultSet	rss = null;
-	
 		String sql = "SELECT * FROM IRSALIYE  Order by Irsaliye_No  ";
 		Statement stmt = MS_conn.createStatement();
 		rss = stmt.executeQuery(sql);
@@ -1361,16 +1374,13 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 		}
 		stmt2.executeBatch();
 		stmt2.close();
-
 		getContentPane().setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 	}
 	void recete () throws ClassNotFoundException, SQLException
 	{
 		getContentPane().setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-
 		ResultSet	rs = null;
 		ResultSet	rss = null;
-		
 		String sql = "SELECT * FROM RECETE  Order by Recete_No  ";
 		Statement stmt = MS_conn.createStatement();
 		rss = stmt.executeQuery(sql);
@@ -1401,10 +1411,8 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 	void  stok () throws ClassNotFoundException, SQLException
 	{
 		getContentPane().setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-
 		ResultSet	rs = null;
 		ResultSet	rss = null;
-		
 		String sql = "SELECT * FROM STOK  ORDER BY Tarih ";
 		Statement stmt = MS_conn.createStatement();
 		rss = stmt.executeQuery(sql);

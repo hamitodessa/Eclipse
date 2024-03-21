@@ -48,14 +48,14 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 		String VERITABANI = "ok_car" + sbilgi.getKod();
 		stmt = null;
 		String sql =null;
-		sql = "CREATE DATABASE " + VERITABANI + "  DEFAULT CHARACTER SET utf8mb4  ;";
+		sql = "CREATE DATABASE " + VERITABANI ;// DEFAULT CHARACTER SET utf8mb4
 		stmt = con.createStatement();  
 		stmt.execute(sql);
 		cumle = "jdbc:mysql://localhost/" +VERITABANI ;
 		con = DriverManager.getConnection(cumle,sbilgi.getKull(),sbilgi.getSifre());  // DATABASE BAGLANDI
 		create_table(sbilgi.getFir_adi());
 		//
-		sql = "CREATE DATABASE " + VERITABANI + "_log" + "  DEFAULT CHARACTER SET utf8mb4  ;";
+		sql = "CREATE DATABASE " + VERITABANI + "_log";
 		stmt = con.createStatement();  
 		stmt.execute(sql);
 		cumle = "jdbc:mysql://localhost/" + VERITABANI + "_log" ;
@@ -135,36 +135,36 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 	public void create_table(String fir_adi) throws SQLException {
 		String sql = null;
 		sql = "CREATE TABLE `HESAP` ("
-				+ "  `HESAP` NVARCHAR(12) NOT NULL,"
-				+ "  `UNVAN` NVARCHAR(50) NULL,"
-				+ "  `KARTON` NVARCHAR(5) NULL,"
-				+ "  `HESAP_CINSI` NVARCHAR(3) NULL,"
-				+ "  `USER` NVARCHAR(15) NULL,"
+				+ "  `HESAP` VARCHAR(12) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci NOT NULL,"
+				+ "  `UNVAN` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci DEFAULT NULL,"
+				+ "  `KARTON` VARCHAR(5) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci NULL,"
+				+ "  `HESAP_CINSI` VARCHAR(3) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci NULL,"
+				+ "  `USER` VARCHAR(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci NULL,"
 				+ "  PRIMARY KEY (`HESAP`),"
 				+ "  UNIQUE INDEX `HESAP_UNIQUE` (`HESAP` ASC) INVISIBLE,"
-				+ "  INDEX `IX_HESAP` (`HESAP` ASC) VISIBLE);";
+				+ "  INDEX `IX_HESAP` (`HESAP` ASC) VISIBLE); ";
 		stmt = con.createStatement();  
 		stmt.executeUpdate(sql);
 		sql = "CREATE TABLE `HESAP_DETAY` ( "
-				+ " `D_HESAP` NVARCHAR(12) NOT NULL,"
-				+ " `YETKILI` NVARCHAR(30) NULL,"
-				+ " `TC_KIMLIK` NVARCHAR(15) NULL,"
-				+ " `ADRES_1` NVARCHAR(35) NULL,"
-				+ " `ADRES_2` NVARCHAR(35) NULL,"
-				+ " `SEMT` NVARCHAR(15) NULL,"
-				+ " `SEHIR` NVARCHAR(15) NULL,"
-				+ " `VERGI_DAIRESI` NVARCHAR(25) NULL,"
-				+ " `VERGI_NO` NVARCHAR(15) NULL,"
-				+ " `FAX` NVARCHAR(25) NULL,"
-				+ " `TEL_1` NVARCHAR(25) NULL,"
-				+ " `TEL_2` NVARCHAR(25) NULL,"
-				+ " `TEL_3` NVARCHAR(25) NULL,"
-				+ " `OZEL_KOD_1` NVARCHAR(15) NULL,"
-				+ " `OZEL_KOD_2` NVARCHAR(15) NULL,"
-				+ " `OZEL_KOD_3` NVARCHAR(15) NULL,"
-				+ " `ACIKLAMA` NVARCHAR(30) NULL,"
-				+ " `WEB` NVARCHAR(50) NULL,"
-				+ " `E_MAIL` NVARCHAR(30) NULL,"
+				+ " `D_HESAP` VARCHAR(12) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NOT NULL,"
+				+ " `YETKILI` VARCHAR(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL,"
+				+ " `TC_KIMLIK` VARCHAR(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL,"
+				+ " `ADRES_1` VARCHAR(35) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL,"
+				+ " `ADRES_2` VARCHAR(35) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL,"
+				+ " `SEMT` VARCHAR(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL,"
+				+ " `SEHIR` VARCHAR(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL,"
+				+ " `VERGI_DAIRESI` VARCHAR(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL,"
+				+ " `VERGI_NO` VARCHAR(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL,"
+				+ " `FAX` VARCHAR(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL,"
+				+ " `TEL_1` VARCHAR(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL,"
+				+ " `TEL_2` VARCHAR(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL,"
+				+ " `TEL_3` VARCHAR(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL,"
+				+ " `OZEL_KOD_1` VARCHAR(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL,"
+				+ " `OZEL_KOD_2` VARCHAR(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL,"
+				+ " `OZEL_KOD_3` VARCHAR(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL,"
+				+ " `ACIKLAMA` VARCHAR(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL,"
+				+ " `WEB` VARCHAR(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL,"
+				+ " `E_MAIL` VARCHAR(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL,"
 				+ " `SMS_GONDER` TINYINT NULL,"
 				+ " `RESIM` MEDIUMBLOB NULL,"
 				+ "  PRIMARY KEY (`D_HESAP`),"
@@ -174,7 +174,7 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 		stmt.executeUpdate(sql);
 		sql = "CREATE TABLE `SATIRLAR` ("
 				+ "  `SID` MEDIUMINT NOT NULL AUTO_INCREMENT PRIMARY KEY ,"
-				+ "  `HESAP` VARCHAR(12) NOT NULL,"
+				+ "  `HESAP` VARCHAR(12) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NOT NULL,"
 				+ "  `TARIH` DATETIME NULL,"
 				+ "  `H` VARCHAR(1) NULL,"
 				+ "  `EVRAK` INT NOT NULL,"
@@ -182,14 +182,14 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 				+ "  `KUR` DOUBLE NULL,"
 				+ "  `BORC` DOUBLE NULL,"
 				+ "  `ALACAK` DOUBLE NULL,"
-				+ "  `KOD` VARCHAR(5) NULL,"
-				+ "  `USER` VARCHAR(15) NULL,"
+				+ "  `KOD` VARCHAR(5) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL,"
+				+ "  `USER` VARCHAR(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL,"
 				+ "  UNIQUE INDEX `SID_UNIQUE` (`SID` ASC) VISIBLE,"
 				+ "  INDEX `IX_SATIRLAR` (`HESAP` ASC, `TARIH` ASC, `EVRAK` ASC) VISIBLE ,"
 				+ "  INDEX `IXS_HESAP` (`HESAP` ASC  ) VISIBLE);";
 		stmt = con.createStatement();  
 		stmt.executeUpdate(sql);
-		sql = "CREATE TABLE `IZAHAT`(	`EVRAK` int NOT NULL,	`IZAHAT` nvarchar(100) NULL,"
+		sql = "CREATE TABLE `IZAHAT`(	`EVRAK` int NOT NULL,	`IZAHAT` VARCHAR(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL,"
 				+ "  PRIMARY KEY (`EVRAK`),"
 				+ "  UNIQUE INDEX `EVRAK_UNIQUE` (`EVRAK` ASC) VISIBLE,"
 				+ "  FULLTEXT IZ_FULL (`IZAHAT`) ,"
@@ -201,62 +201,62 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 		stmt.executeUpdate(sql);
 		sql = "CREATE TABLE `OZEL` ("
 				+ "  `OZID` INTEGER AUTO_INCREMENT PRIMARY KEY,"
-				+ "  `YONETICI` VARCHAR(25) NULL,"
-				+ "  `YON_SIFRE` VARCHAR(15) NULL,"
-				+ "  `FIRMA_ADI` VARCHAR(50) NULL);";
+				+ "  `YONETICI` VARCHAR(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL,"
+				+ "  `YON_SIFRE` VARCHAR(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL,"
+				+ "  `FIRMA_ADI` VARCHAR(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL);";
 		stmt = con.createStatement();  
 		stmt.executeUpdate(sql);
 
 		sql = "CREATE TABLE `YETKILER`( "
 				+ " `YETID` INTEGER AUTO_INCREMENT PRIMARY KEY,"
-				+ "`KULLANICI` nvarchar(25) NULL,"
-				+ "`KARTON` nvarchar(5) NULL,"
+				+ "`KULLANICI` VARCHAR(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL,"
+				+ "`KARTON` VARCHAR(5) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL,"
 				+ "`TAM_YETKI` TINYINT NULL,"
 				+ "`GORUNTU` TINYINT NULL);";
 		stmt = con.createStatement();  
 		stmt.executeUpdate(sql);
 		sql= "CREATE TABLE `ANA_GRUP_DEGISKEN` ("
-				+ "  `ANA_GRUP` VARCHAR(25) NOT NULL,"
-				+ "  `USER` VARCHAR(15) NULL,"
+				+ "  `ANA_GRUP` VARCHAR(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NOT NULL,"
+				+ "  `USER` VARCHAR(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL,"
 				+ "  PRIMARY KEY (`ANA_GRUP`));";
 		stmt = con.createStatement();  
 		stmt.executeUpdate(sql);
 		sql = "CREATE TABLE `ALT_GRUP_DEGISKEN`( "
 				+ "`ANA_GRUP` int NOT NULL, "
-				+ "`ALT_GRUP` nvarchar(25) NOT NULL, "
-				+ "  `USER` VARCHAR(15) NULL);";
+				+ "`ALT_GRUP` VARCHAR(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NOT NULL, "
+				+ "  `USER` VARCHAR(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL);";
 		stmt = con.createStatement();  
 		stmt.executeUpdate(sql);
 				//TAHSIL FISI
-		sql = "CREATE TABLE `TAH_EVRAK`(`CINS` nvarchar(3),`NO` integer );";
+		sql = "CREATE TABLE `TAH_EVRAK`(`CINS` VARCHAR(3),`NO` integer );";
 		stmt = con.createStatement();  
 		stmt.executeUpdate(sql);
 		sql = "CREATE TABLE `TAH_AYARLAR`( " +
 				" `LOGO` MEDIUMBLOB NULL," +
-				" `FIR_ISMI` nvarchar(50) NULL, " +
-				" `ADR_1` nvarchar(50) NULL," +
-				" `ADR_2` nvarchar(50) NULL," +
-				" `VD_VN` nvarchar(60) NULL," +
-				" `MAIL` nvarchar(60) NULL," +
-				" `DIGER` nvarchar(50) NULL, " + 
+				" `FIR_ISMI` VARCHAR(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL, " +
+				" `ADR_1` VARCHAR(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL," +
+				" `ADR_2` VARCHAR(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL," +
+				" `VD_VN` VARCHAR(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL," +
+				" `MAIL` VARCHAR(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL," +
+				" `DIGER` VARCHAR(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL, " + 
 				" `KASE` MEDIUMBLOB NULL);";
 		stmt = con.createStatement();  
 		stmt.executeUpdate(sql);
 		sql = "CREATE TABLE `TAH_DETAY`(" +
-				" `EVRAK` nvarchar(15) NOT NULL," +
+				" `EVRAK` VARCHAR(15) NOT NULL," +
 				" `TARIH` datetime NULL," +
-				" `C_HES` nvarchar(12) NULL," +
-				" `A_HES` nvarchar(12) NULL," +
+				" `C_HES` VARCHAR(12) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL," +
+				" `A_HES` VARCHAR(12) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL," +
 				" `CINS` int NOT NULL," +
 				" `TUTAR` double NULL," +
 				" `TUR` int NOT NULL," +
-				" `ACIKLAMA` nvarchar(50) NULL," +
-				" `DVZ_CINS` nvarchar(3) NULL," +
-				" `POS_BANKA` nvarchar(40) NULL);";
+				" `ACIKLAMA` VARCHAR(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL," +
+				" `DVZ_CINS` VARCHAR(3) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL," +
+				" `POS_BANKA` VARCHAR(40) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL);";
 		stmt = con.createStatement();  
 		stmt.executeUpdate(sql);
-		sql = "CREATE TABLE `TAH_CEK` (`EVRAK` nvarchar(15),`CINS` int, `BANKA` nvarchar(40), " + 
-				"`SUBE` nvarchar(40) ,`SERI` nvarchar(20),`HESAP` nvarchar(20),`BORCLU` nvarchar(40),`TARIH` datetime,`TUTAR` double); "  ;
+		sql = "CREATE TABLE `TAH_CEK` (`EVRAK` VARCHAR(15),`CINS` int, `BANKA` VARCHAR(40) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci , " + 
+				"`SUBE` VARCHAR(40) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  ,`SERI` VARCHAR(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci ,`HESAP` VARCHAR(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci ,`BORCLU` VARCHAR(40) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci ,`TARIH` datetime,`TUTAR` double); "  ;
 		stmt = con.createStatement();  
 		stmt.executeUpdate(sql); 
 		sql = "INSERT INTO  `TAH_EVRAK`(`CINS`,`NO`) VALUES ('GIR','0')";
@@ -1141,9 +1141,9 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 		String sql = "" ;
 		sql = "CREATE TABLE  `loglama` ("
 				+ "  `TARIH` DATETIME NOT NULL,"
-				+ "  `MESAJ` VARCHAR(100) NULL,"
+				+ "  `MESAJ` VARCHAR(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL,"
 				+ "  `EVRAK` VARCHAR(15) NULL,"
-				+ "  `USER_NAME` VARCHAR(15) NULL,"
+				+ "  `USER_NAME` VARCHAR(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL,"
 				+ "  INDEX `IX_LOGLAMA` (`TARIH` ASC, `USER_NAME` ASC) VISIBLE);";
 		stmt = con.createStatement();  
 		stmt.executeUpdate(sql);

@@ -103,6 +103,7 @@ public class ORN_HSP_PLN extends JInternalFrame {
 				if(g != 0 ) { return;	}	
 				Progres_Bar_Temizle();   
 				OBS_MAIN.progressBar.setMaximum(358); 
+				OBS_MAIN.progressBar.setStringPainted(true);
 				int i = 0 ;
 				panel.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 				Scanner sc = new Scanner(bReader); 

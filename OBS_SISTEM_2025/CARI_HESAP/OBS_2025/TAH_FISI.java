@@ -341,7 +341,7 @@ public class TAH_FISI extends JInternalFrame {
 		textEvrakNo.setHorizontalAlignment(SwingConstants.RIGHT);
 		textEvrakNo.setFont(new Font("Tahoma", Font.BOLD, 14));
 		textEvrakNo.setColumns(10);
-		textEvrakNo.setBounds(598, 11, 96, 24);
+		textEvrakNo.setBounds(577, 11, 98, 24);
 		textEvrakNo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				getContentPane().setCursor(oac.WAIT_CURSOR);
@@ -386,13 +386,37 @@ public class TAH_FISI extends JInternalFrame {
 			}
 		});
 		btnNewButton.setToolTipText("Yeni Fis");
-		btnNewButton.setBounds(704, 11, 24, 24);
+		btnNewButton.setBounds(680, 11, 24, 24);
 		btnNewButton.setIcon(new ImageIcon(DEKONT.class.getResource("/ICONLAR/yeni.png")));
 		panel_2.add(btnNewButton);
 
 		JLabel lblNewLabel_4 = new JLabel("Fis No");
-		lblNewLabel_4.setBounds(540, 15, 48, 14);
+		lblNewLabel_4.setBounds(530, 15, 48, 14);
 		panel_2.add(lblNewLabel_4);
+		
+		JButton btnEnson = new JButton("");
+		btnEnson.setToolTipText("Kayitli Son Fis");
+		btnEnson.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					getContentPane().setCursor(oac.WAIT_CURSOR);
+					int evr =  c_Access.cari_tahsonfisno(cmbCins.getSelectedIndex());
+					if ( evr == 0 ) { 
+						getContentPane().setCursor(oac.DEFAULT_CURSOR);
+						OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING, "Dosyada Hic Kayit Yok" );	
+						return; 
+					} 
+					textEvrakNo.setText(Integer.toString(evr));
+					fiskont();
+					getContentPane().setCursor(oac.DEFAULT_CURSOR);
+				} catch (Exception ex) {
+					getContentPane().setCursor(oac.DEFAULT_CURSOR);
+				}
+			}
+		});
+		btnEnson.setIcon(FIT_IMAGE.formIcon(new ImageIcon(TAH_FISI.class.getResource("/ICONLAR/refresh-24.png")), 16, 16));
+		btnEnson.setBounds(716, 11, 24, 24);
+		panel_2.add(btnEnson);
 		
 		
 		JPanel panel_1 = new JPanel();

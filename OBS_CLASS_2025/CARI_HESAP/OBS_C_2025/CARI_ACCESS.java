@@ -334,4 +334,8 @@ public class CARI_ACCESS {
 	{
 		return _ICari.pos_banka_oku();
 	}
+	public int cari_tahsonfisno(int cins) throws ClassNotFoundException, SQLException
+	{
+		return _ICari.cari_tahsonfisno(cins);
+	}
 }

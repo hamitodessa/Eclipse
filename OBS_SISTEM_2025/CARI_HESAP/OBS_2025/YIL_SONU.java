@@ -46,6 +46,7 @@ import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableModel;
 
+import com.toedter.calendar.JCalendar;
 import com.toedter.calendar.JDateChooser;
 
 
@@ -184,6 +185,10 @@ public class YIL_SONU extends JInternalFrame {
 		panel_1.setLayout(null);
 
 		dateChooser = new JDateChooser();
+		((JTextField)dateChooser.getDateEditor()).setBackground(oac.dtcColor);
+		JCalendar qweCalendar =  dateChooser.getJCalendar();
+		qweCalendar.getYearChooser().getSpinner().setBackground(oac.dtcColor);
+
 		dateChooser.setBounds(10, 20, 128, 22);
 		dateChooser.setDateFormatString("dd.MM.yyyy");
 		dateChooser.setFont(new Font("Tahoma", Font.BOLD, 14));

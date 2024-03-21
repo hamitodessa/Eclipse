@@ -220,7 +220,6 @@ public class KASA extends JInternalFrame {
 
 		dateChooser = new JDateChooser();
 		((JTextField)dateChooser.getDateEditor()).setBackground(oac.dtcColor);
-		
 		JCalendar qweCalendar =  dateChooser.getJCalendar();
 		qweCalendar.getYearChooser().getSpinner().setBackground(oac.dtcColor);
 		dateChooser.setBounds(320, 11, 150, 30);

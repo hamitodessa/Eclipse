@@ -48,14 +48,14 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 		String VERITABANI = "ok_car" + sbilgi.getKod();
 		stmt = null;
 		String sql =null;
-		sql = "CREATE DATABASE " + VERITABANI + "  DEFAULT CHARACTER SET utf8  ;";
+		sql = "CREATE DATABASE " + VERITABANI + "  DEFAULT CHARACTER SET utf8mb4  ;";
 		stmt = con.createStatement();  
 		stmt.execute(sql);
 		cumle = "jdbc:mysql://localhost/" +VERITABANI ;
 		con = DriverManager.getConnection(cumle,sbilgi.getKull(),sbilgi.getSifre());  // DATABASE BAGLANDI
 		create_table(sbilgi.getFir_adi());
 		//
-		sql = "CREATE DATABASE " + VERITABANI + "_log" + "  DEFAULT CHARACTER SET utf8  ;";
+		sql = "CREATE DATABASE " + VERITABANI + "_log" + "  DEFAULT CHARACTER SET utf8mb4  ;";
 		stmt = con.createStatement();  
 		stmt.execute(sql);
 		cumle = "jdbc:mysql://localhost/" + VERITABANI + "_log" ;

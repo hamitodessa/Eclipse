@@ -1473,7 +1473,7 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 	public int cari_tahsonfisno(int cins) throws ClassNotFoundException, SQLException {
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		ResultSet	rss = null;
-		String sql = "SELECT MAX(EVRAK) AS MAX_NO  FROM TAH_DETAY WHERE CINS ='" + cins + "'";
+		String sql = "SELECT MAX(CONVERT(EVRAK,UNSIGNED)) AS MAX_NO FROM TAH_DETAY WHERE CINS ='" + cins + "'";
 		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();

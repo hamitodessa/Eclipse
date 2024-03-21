@@ -102,6 +102,7 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.event.ChangeEvent;
+import javax.swing.DefaultCellEditor;
 import javax.swing.DefaultComboBoxModel;
 
 @SuppressWarnings({"serial" , "static-access","deprecation"})
@@ -615,6 +616,8 @@ public class DISTAN_AKTAR extends JInternalFrame {
 
 		sut= 1;
 		col = tblexcell.getColumnModel().getColumn(sut);
+		Obs_TextFIeld ack = new Obs_TextFIeld();
+		col.setCellEditor(new DefaultCellEditor(ack));
 		col.setHeaderRenderer(new SOLA());
 		col.setMinWidth(480);
 

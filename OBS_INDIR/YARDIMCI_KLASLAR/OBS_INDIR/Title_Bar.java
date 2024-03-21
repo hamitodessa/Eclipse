@@ -17,6 +17,9 @@ import java.awt.event.MouseMotionAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseAdapter;
 import javax.swing.JLabel;
+import javax.swing.border.EtchedBorder;
+import javax.swing.border.TitledBorder;
+
 import java.awt.Font;
 
 @SuppressWarnings({ "serial", "unused" })
@@ -32,7 +35,8 @@ public class Title_Bar extends javax.swing.JPanel{
 		setMinimumSize(new Dimension(0, 18));
 		setMaximumSize(new Dimension(0, 18));
 		setLayout(new BoxLayout(this, BoxLayout.LINE_AXIS));
-		
+		setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+
 		JLabel lblNewLabel = new JLabel("OBS INDIRME");
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 12));
 		add(lblNewLabel);

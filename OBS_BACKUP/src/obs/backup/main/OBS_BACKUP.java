@@ -345,7 +345,7 @@ public class OBS_BACKUP extends JFrame {
 		contentPane.add(splitPane, BorderLayout.CENTER);
 
 		ScrollPaneWin11 jScrollPaneToolBar = new ScrollPaneWin11();
-		jScrollPaneToolBar.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
+		jScrollPaneToolBar.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 
 		
 		splitPane.setLeftComponent(jScrollPaneToolBar);
@@ -801,7 +801,6 @@ public class OBS_BACKUP extends JFrame {
 		});
 		btnAyarlar.setIcon(new ImageIcon(OBS_BACKUP.class.getResource("/obs/backup/icons/settings-24.png")));
 		toolBar.add(btnAyarlar);
-		
 		if(diltemaString[7].equals("0"))
 		{
 			Component verticalGlue = Box.createVerticalGlue();
@@ -874,6 +873,8 @@ public class OBS_BACKUP extends JFrame {
 		panel_3.add(tabbedPane_1, BorderLayout.CENTER);
 		
 		JPanel altPane = new JPanel();
+		altPane.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+
 		altPane.setPreferredSize(new Dimension(0,25));
 		altPane.setLayout(null);
 		contentPane.add(altPane, BorderLayout.SOUTH);

@@ -88,9 +88,7 @@ public class PAKET_ARA extends JDialog {
 			@Override
 			public void keyPressed(KeyEvent e) {
 				if (KeyEvent.getKeyText(e.getKeyCode()) == "Enter" )
-				{	
 					hisset();
-				}
 			}
 		});
 		
@@ -103,9 +101,7 @@ public class PAKET_ARA extends JDialog {
 			@Override
 			public void keyPressed(KeyEvent e) {
 				if (KeyEvent.getKeyText(e.getKeyCode()) == "Enter" )
-				{	
 					hisset();
-				}
 			}
 		});
 		panel.add(textField_1);
@@ -125,9 +121,7 @@ public class PAKET_ARA extends JDialog {
 			@Override
 			public void keyPressed(KeyEvent e) {
 				if (KeyEvent.getKeyText(e.getKeyCode()) == "Enter" )
-				{	
 					hisset();
-				}
 			}
 		});
 
@@ -164,18 +158,15 @@ public class PAKET_ARA extends JDialog {
 				if (e.getClickCount() == 2) 
 				{
 					int row = table.getSelectedRow();
-						   oac.stk_kodu = 	table.getModel().getValueAt(row, 3).toString() +"-"+table.getModel().getValueAt(row, 4).toString() ;
-						dispose();
+					oac.stk_kodu = 	table.getModel().getValueAt(row, 3).toString() +"-"+table.getModel().getValueAt(row, 4).toString() ;
+					dispose();
 				}
 			}
 		});
 
 		table.getTableHeader().setReorderingAllowed(false);
-		if(! oac.gridcolor.toString().equals("java.awt.Color[r=255,g=255,b=255]")) 
-		{
+		if(! oac.gridcolor.toString().equals("java.awt.Color[r=255,g=255,b=255]"))
 			table.setGridColor(oac.gridcolor);
-		}
-
 		table.setAutoResizeMode( JTable.AUTO_RESIZE_OFF );
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		table.setShowHorizontalLines(true);
@@ -190,7 +181,6 @@ public class PAKET_ARA extends JDialog {
 		panel1.setLayout(null);
 		
 		lblNewLabel_2 = new JLabel("0");
-		//lblNewLabel_2.setForeground(new Color(0, 0, 139));
 		lblNewLabel_2.setFont(new Font("Tahoma", Font.BOLD, 12));
 		lblNewLabel_2.setBounds(100, 5, 118, 14);
 		panel1.add(lblNewLabel_2);
@@ -198,7 +188,6 @@ public class PAKET_ARA extends JDialog {
 		JLabel lblNewLabel_3 = new JLabel("Secilen Satir :");
 		lblNewLabel_3.setBounds(10, 5, 80, 14);
 		panel1.add(lblNewLabel_3);
-
 	}
 	private void hisset()
 	{
@@ -355,8 +344,6 @@ public class PAKET_ARA extends JDialog {
 			th.setPreferredSize(dd); 
 			th.repaint();
 			Thread.currentThread().isInterrupted();
-			//table.setSelectionBackground(Color.PINK);
-			//table.setSelectionForeground(Color.BLUE);
 			long endTime = System.currentTimeMillis();
 			long estimatedTime = endTime - startTime;
 			double seconds = (double)estimatedTime/1000; 
@@ -380,7 +367,6 @@ public class PAKET_ARA extends JDialog {
 		//};
 		//Thread q = new Thread(runner1, "Code Executer1");
 		//q.start();
-
 	}
 	private void mWAIT()
 	{
@@ -389,7 +375,6 @@ public class PAKET_ARA extends JDialog {
 		GuiUtil.setWaitCursor(textField,true);
 		GuiUtil.setWaitCursor(textField_1,true);
 		GuiUtil.setWaitCursor(formattedTextField,true);
-
 	}
 	private void mDEFAULT()
 	{
@@ -400,5 +385,4 @@ public class PAKET_ARA extends JDialog {
 		GuiUtil.setWaitCursor(formattedTextField,false);
 
 	}
-	///********
 }

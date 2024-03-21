@@ -100,7 +100,6 @@ public class KER_KOD_DEGISTIRME extends JInternalFrame {
 		splitPane.setLeftComponent(scrollPaneust);
 		
 		JPanel panel = new JPanel();
-		//panel.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 
 		panel.setPreferredSize(new Dimension(970,80));
 		scrollPaneust.setViewportView(panel);
@@ -121,9 +120,7 @@ public class KER_KOD_DEGISTIRME extends JInternalFrame {
 			@Override
 			public void keyPressed(KeyEvent e) {
 				if (KeyEvent.getKeyText(e.getKeyCode()) == "Enter" )
-				{	
 					hisset();
-				}
 			}
 		});
 		txtKons.setFont(new Font("Tahoma", Font.BOLD, 12));
@@ -136,9 +133,7 @@ public class KER_KOD_DEGISTIRME extends JInternalFrame {
 			@Override
 			public void keyPressed(KeyEvent e) {
 				if (KeyEvent.getKeyText(e.getKeyCode()) == "Enter" )
-				{	
 					hisset();
-				}
 			}
 		});
 		txtPaketNo.setFont(new Font("Tahoma", Font.BOLD, 12));
@@ -184,15 +179,12 @@ public class KER_KOD_DEGISTIRME extends JInternalFrame {
 		btnNewButton.addActionListener(new ActionListener() 
 		{
 			public void actionPerformed(ActionEvent e) {
-				if (txtYKod.getText().equals("")) {
+				if (txtYKod.getText().equals(""))
 					OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING,  "Kod Bos ..."  );
-				}
-				else if (satir_kontrol() == 0 ) {
+				else if (satir_kontrol() == 0 )
 					OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING, "Secili Satir Bulunmamaktadir..." );
-				}
-				else if (lblNewLabel_4.getText().equals("") ) {
+				else if (lblNewLabel_4.getText().equals("") )
 					OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING, "Kayitli Kod Bulunmamaktadir....." );
-				}
 				else {
 					mWAIT();	
 					kaydet();
@@ -214,9 +206,7 @@ public class KER_KOD_DEGISTIRME extends JInternalFrame {
 			@Override
 			public void keyPressed(KeyEvent e) {
 				if (KeyEvent.getKeyText(e.getKeyCode()) == "Enter" )
-				{	
 					hisset();
-				}
 			}
 		});
 		txtKodu.setBounds(276, 36, 158, 20);
@@ -275,15 +265,12 @@ public class KER_KOD_DEGISTIRME extends JInternalFrame {
 		btnNewButton_1.addActionListener(new ActionListener() 
 		{
 			public void actionPerformed(ActionEvent e) {
-				if (txtYKons.getText().equals("")) {
+				if (txtYKons.getText().equals(""))
 					OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING, "Konsimento Bos ..." );
-				}
-				else if (satir_kontrol() == 0 ) {
+				else if (satir_kontrol() == 0 )
 					OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING, "Secili Satir Bulunmamaktadir..." );
-				}
-				else if (lblNewLabel_4_1.getText().equals("") ) {
+				else if (lblNewLabel_4_1.getText().equals("") )
 					OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING,  "Kayitli Konsimento Bulunmamaktadir....." );
-				}
 				else 
 				{
 					mWAIT();	
@@ -312,9 +299,7 @@ public class KER_KOD_DEGISTIRME extends JInternalFrame {
 			@Override
 			public void keyPressed(KeyEvent e) {
 				if (KeyEvent.getKeyText(e.getKeyCode()) == "Enter" )
-				{	
 					hisset();
-				}
 			}
 		});
 		panel.add(txtEvrak);
@@ -782,10 +767,8 @@ public class KER_KOD_DEGISTIRME extends JInternalFrame {
 		{
 			if ( modell.getValueAt(i,0) != null) 
 			{
-				if (  modell.getValueAt(i,0).toString().equals("true")   )
-				{
+				if (  modell.getValueAt(i,0).toString().equals("true"))
 					satir += 1 ;
-				}	
 			};
 		}
 		return satir ;
@@ -854,7 +837,7 @@ public class KER_KOD_DEGISTIRME extends JInternalFrame {
     				secilen_satir();
     				Progres_Bar_Temizle();
     				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	
-    			} catch (InterruptedException e1) 
+    			} catch (Exception e1) 
     			{
     				e1.printStackTrace();
     			}

@@ -87,11 +87,8 @@ public class KONS_ACIKLAMA extends JInternalFrame {
 		table = new JTable(){
 			public boolean isCellEditable(int row, int column) {     return false;          }
 		};
-		if(! oac.gridcolor.toString().equals("java.awt.Color[r=255,g=255,b=255]")) 
-		{
+		if(! oac.gridcolor.toString().equals("java.awt.Color[r=255,g=255,b=255]"))
 			table.setGridColor(oac.gridcolor);
-		}
-
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		table.setFont(new Font("Calibri", Font.PLAIN, 14));
 		table.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
@@ -116,9 +113,8 @@ public class KONS_ACIKLAMA extends JInternalFrame {
 		try {
 		ResultSet	rs = null;
 		rs = ker_Access.kons_pln();
-		if (!rs.isBeforeFirst() ) {  
-		    return;
-		}
+		if (!rs.isBeforeFirst() )
+			return;
 		table.setModel(DbUtils.resultSetToTableModel(rs));
 		JTableHeader th = table.getTableHeader();
 		TableColumnModel tcm = th.getColumnModel();
@@ -141,9 +137,6 @@ public class KONS_ACIKLAMA extends JInternalFrame {
 	    th.setPreferredSize(dd); 
 	    th.repaint();
 	    
-		//table.setSelectionBackground(Color.PINK);
-		//table.setSelectionForeground(Color.BLUE);
-		
 		doldur(0);
 		String deger;
 		String[] parts;
@@ -159,9 +152,8 @@ public class KONS_ACIKLAMA extends JInternalFrame {
 	}
 	public static void kaydet() 
 	{
-		if (txtKons.getText().toString().equals("") ) {  
+		if (txtKons.getText().toString().equals("") )
 			return;
-		}
 		lOG_BILGI lBILGI = new lOG_BILGI();
 		lBILGI.setmESAJ(txtKons.getText() + " Acik=" + txtAciklama.getText());
 		lBILGI.seteVRAK("");
@@ -180,9 +172,8 @@ public class KONS_ACIKLAMA extends JInternalFrame {
 	}
 	public static void sil() 
 	{
-		if (table.getRowCount() == 0 || txtKons.getText().toString().equals("") ) {  
+		if (table.getRowCount() == 0 || txtKons.getText().toString().equals("") )
 			return;
-		}
 		int g =  JOptionPane.showOptionDialog( null, txtAciklama.getText() + "   Nolu  Konsimento Dosyadan Silinecek ..?", "Kereste Dosyasindan Konsimento Silme",   JOptionPane.YES_NO_OPTION,
 				JOptionPane.QUESTION_MESSAGE,	   			 	null,   	oac.options,   	oac.options[1]); 
 		if(g != 0 ) { return;	}

@@ -247,9 +247,7 @@ public class KER_DEGISKEN_DEGIS extends JInternalFrame {
 			else
 			{
 				while (rs.next())
-				{
 					altbox .addItem(rs.getString("ALT_GRUP"));
-				}
 				altbox.setSelectedItem(0);
 				altbox.setEnabled(true);
 			}

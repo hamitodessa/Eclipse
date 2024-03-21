@@ -83,11 +83,8 @@ public class KER_BOS_KUR extends JInternalFrame {
 			public boolean isCellEditable(int row, int column) {     return false;          }
 		};
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		if(! oac.gridcolor.toString().equals("java.awt.Color[r=255,g=255,b=255]")) 
-		{
+		if(! oac.gridcolor.toString().equals("java.awt.Color[r=255,g=255,b=255]"))
 			table.setGridColor(oac.gridcolor);
-		}
-
 		table.setShowHorizontalLines(true);
 		table.setShowVerticalLines(true);
 		scrollPane.setViewportView(table);
@@ -95,22 +92,19 @@ public class KER_BOS_KUR extends JInternalFrame {
 	}
 	public static void hisset() 
 	{
-        try 
-        {
-        	 ResultSet	rs = null;
-        	 String dURUMString = "" ;
-        	 //comboBox_2
-        	 if(comboBox_2.getItemAt(comboBox_2.getSelectedIndex()).toString().equals("GIRIS"))
-        		 dURUMString = "" ;
-        	 else {
+		try 
+		{
+			ResultSet	rs = null;
+			String dURUMString = "" ;
+			if(comboBox_2.getItemAt(comboBox_2.getSelectedIndex()).toString().equals("GIRIS"))
+				dURUMString = "" ;
+			else
 				dURUMString = "C" ;
-			}
-    			rs = ker_Access.bos_kur(comboBox.getItemAt(comboBox.getSelectedIndex()).toString(),
-						comboBox_1.getItemAt(comboBox_1.getSelectedIndex()).toString(),dURUMString);
-	    	GRID_TEMIZLE.grid_temizle(table);
-			if (!rs.isBeforeFirst() ) {  
-			    return;
-			} 
+			rs = ker_Access.bos_kur(comboBox.getItemAt(comboBox.getSelectedIndex()).toString(),
+					comboBox_1.getItemAt(comboBox_1.getSelectedIndex()).toString(),dURUMString);
+			GRID_TEMIZLE.grid_temizle(table);
+			if (!rs.isBeforeFirst() )
+				return;
 			table.setModel(DbUtils.resultSetToTableModel(rs));
 			JTableHeader th = table.getTableHeader();
 			TableColumnModel tcm = th.getColumnModel();
@@ -119,14 +113,14 @@ public class KER_BOS_KUR extends JInternalFrame {
 			tc.setHeaderRenderer(new SOLA());
 			tc.setCellRenderer(new TARIH ());
 			Dimension dd = th.getPreferredSize();
-		    dd.height = 30;
-		    th.setPreferredSize(dd); 
+			dd.height = 30;
+			th.setPreferredSize(dd); 
 			table.setRowSelectionInterval(0, 0);
 			table.setRowHeight(21);
-       }
-       catch (Exception ex)
-        {
-    	   OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage() );
-          }
+		}
+		catch (Exception ex)
+		{
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage() );
+		}
 	}
 }

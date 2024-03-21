@@ -1334,11 +1334,8 @@ public class KERESTE_CIKIS extends JInternalFrame {
 			deger = GLOBAL.setting_oku("KER_FAT_SATIR").toString();
 			sat_sayi =Integer.parseInt(deger);
 			for (int i = 0; i <= sat_sayi -1 ; i ++)
-			{
 				satir_ilave();
-			}
 			txtdoviz.setText(GLOBAL.setting_oku("PRG_PARA").toString());
-
 			String[] parts;
 			Font bigFont;
 			deger = GLOBAL.setting_oku("KER_GIRIS").toString();
@@ -1367,9 +1364,7 @@ public class KERESTE_CIKIS extends JInternalFrame {
 			} 
 			cmbanagrup .addItem("");
 			while (rs.next())
-			{
 				cmbanagrup .addItem(rs.getString("ANA_GRUP"));
-			}
 			cmbanagrup.setEnabled(true);
 			setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	
 		}
@@ -1404,9 +1399,7 @@ public class KERESTE_CIKIS extends JInternalFrame {
 			else
 			{
 				while (rs.next())
-				{
 					cmbaltgrup .addItem(rs.getString("ALT_GRUP"));
-				}
 				cmbaltgrup.setSelectedItem(0);
 				cmbaltgrup.setEnabled(true);
 			}
@@ -1434,9 +1427,7 @@ public class KERESTE_CIKIS extends JInternalFrame {
 			} 
 			cmbozkod  .addItem("");
 			while (rs.next())
-			{
 				cmbozkod .addItem(rs.getString("OZEL_KOD_1"));
-			}
 			cmbozkod.setEnabled(true);
 			setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	
 		}
@@ -1462,9 +1453,7 @@ public class KERESTE_CIKIS extends JInternalFrame {
 			} 
 			cmbnakliyeci  .addItem("");
 			while (rs.next())
-			{
 				cmbnakliyeci .addItem(rs.getString("UNVAN"));
-			}
 			cmbnakliyeci.setEnabled(true);
 			setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	
 		}
@@ -1526,9 +1515,8 @@ public class KERESTE_CIKIS extends JInternalFrame {
 				//**Alt Grup
 				rsa = null;
 				rsa = ker_Access.ker_kod_degisken_ara("ALT_GRUP", "ALID_Y", "ALT_GRUP_DEGISKEN",String.valueOf(rss.getInt("CAlt_Grup")));
-				if (!rsa.isBeforeFirst() ) {  
+				if (!rsa.isBeforeFirst() )
 					cmbaltgrup.setSelectedItem("");
-				} 
 				else
 				{
 					rsa.next();
@@ -1540,9 +1528,8 @@ public class KERESTE_CIKIS extends JInternalFrame {
 				//**nakliye
 				rsa = null;
 				rsa = ker_Access.ker_kod_degisken_ara("UNVAN", "NAKID_Y", "NAKLIYECI",String.valueOf(rss.getInt("CNakliyeci")));
-				if (!rsa.isBeforeFirst() ) {  
+				if (!rsa.isBeforeFirst() )
 					cmbnakliyeci.setSelectedItem("");
-				} 
 				else
 				{
 					rsa.next();
@@ -1550,9 +1537,8 @@ public class KERESTE_CIKIS extends JInternalFrame {
 				}	
 				rsa = null;
 				rsa = ker_Access.ker_kod_degisken_ara("OZEL_KOD_1", "OZ1ID_Y", "OZ_KOD_1_DEGISKEN",String.valueOf(rss.getInt("COzel_Kod")));
-				if (!rsa.isBeforeFirst() ) {  
+				if (!rsa.isBeforeFirst() )
 					cmbozkod.setSelectedItem("");
-				} 
 				else
 				{
 					rsa.next();
@@ -1578,13 +1564,10 @@ public class KERESTE_CIKIS extends JInternalFrame {
 							rss.getInt("Satir")});
 					txttev.setText(FORMATLAMA.doub_0(rss.getDouble("CTevkifat")));
 					satir +=1 ;
-					if (satir +1 >= mdl.getRowCount())  
-					{
+					if (satir +1 >= mdl.getRowCount())
 						mdl.addRow(new Object[]{"","","",0.00,0.000,"","",0.00,0.00,0.00,0.00,"","","",0.00,"",0.00,0.00,0.00,"","",0.00,0.00,0,0,0,"","",0,""});
-					}
-					else  {
+					else
 						mdl.removeRow(mdl.getRowCount() -1);	
-					}
 				}  while (rss.next()) ;
 				mdl.addRow(new Object[]{"","","",0.00,0.000,"","",0.00,0.00,0.00,0.00,"","","",0.00,"",0.00,0.00,0.00,"","",0.00,0.00,0,0,0,"","",0,""});
 
@@ -1638,9 +1621,7 @@ public class KERESTE_CIKIS extends JInternalFrame {
 			for (int  i = 0 ; i <=  mdl.getRowCount() - 1 ; i++)
 			{
 				if (! mdl.getValueAt(i,2).toString().equals(""))
-				{
 					sat_yaz_2(i);
-				}
 			}
 		}
 		catch (Exception ex)
@@ -1658,9 +1639,7 @@ public class KERESTE_CIKIS extends JInternalFrame {
 			DefaultTableModel mdl = (DefaultTableModel) table.getModel();
 			ResultSet rs =null ;
 			if (mdl.getValueAt(i,6) == null)
-			{
 				depo = 0 ;
-			}
 			else
 			{
 				rs = ker_Access.ker_kod_degisken_ara("DPID_Y", "DEPO", "DEPO_DEGISKEN",  mdl.getValueAt(i,6).toString());
@@ -1788,8 +1767,6 @@ public class KERESTE_CIKIS extends JInternalFrame {
 			ker_Access.ker_cikis_sil(textField.getText() ,lBILGI,BAGLAN_LOG.kerLogDizin);
 			dipnot_sil();
 			acik_sil();
-
-			//  '************************************
 			textField.setText("");
 			textField.requestFocus();
 		}
@@ -1809,10 +1786,8 @@ public class KERESTE_CIKIS extends JInternalFrame {
 		Dimension size = lblkodAciklama.getPreferredSize();
 		lblkodAciklama.setBounds(10, 55, size.width +10, 14);
 
-		if(kons.equals("")) 
-		{
+		if(kons.equals(""))
 			return ;
-		}
 		token = kons.toString().split("-");
 		lblkONSIMENTO.setText(ker_Access.kons_adi(token[1]));
 		size = lblkONSIMENTO.getPreferredSize();
@@ -1823,7 +1798,6 @@ public class KERESTE_CIKIS extends JInternalFrame {
 		lblkodAciklama.setText("");
 		lblkONSIMENTO.setText("");
 		lblkODU.setText("");
-
 	}
 	public static  void kod_aciklama_bul(String pak_kons ) throws ClassNotFoundException, SQLException 
 
@@ -1911,9 +1885,7 @@ public class KERESTE_CIKIS extends JInternalFrame {
 			deger = GLOBAL.setting_oku("KER_FAT_SATIR").toString();
 			sat_sayi =Integer.parseInt(deger);
 			for (int i = 0; i <= sat_sayi; i ++)
-			{
 				satir_ilave();
-			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -1960,9 +1932,7 @@ public class KERESTE_CIKIS extends JInternalFrame {
 			satir = 0 ;
 		}
 		else
-		{
 			mdl.insertRow(satir, new Object[]{"","","",0.00,0.000,"","",0.00,0.00,0.00,0.00,"",0});
-		}
 		table.isRowSelected(satir);
 		table.repaint();
 	}
@@ -1970,9 +1940,8 @@ public class KERESTE_CIKIS extends JInternalFrame {
 	{
 		if (table.getSelectedRow() < 0 ) return ;
 		DefaultTableModel mdll = (DefaultTableModel) table.getModel();
-		if (table.getCellEditor() != null) {
+		if (table.getCellEditor() != null)
 			table.getCellEditor().stopCellEditing();
-		}
 		mdll.removeRow(table.getSelectedRow());
 		mdll.addRow(new Object[]{"","","",0.00,0.000,"","",0.00,0.00,0.00,0.00,"",0});
 		table.repaint();
@@ -1992,15 +1961,10 @@ public class KERESTE_CIKIS extends JInternalFrame {
 				double_2 += (( Double.parseDouble(model.getValueAt(i, 10).toString()) - ( Double.parseDouble(model.getValueAt(i, 10).toString()) *  Double.parseDouble(model.getValueAt(i, 8).toString())) / 100) *  Double.parseDouble(model.getValueAt(i, 9).toString())) / 100 ; // kdv
 				double_3 +=  Double.parseDouble(model.getValueAt(i, 4).toString());
 				urunmiktar +=  Double.parseDouble(model.getValueAt(i, 3).toString());
-				if (! model.getValueAt(i, 5).toString().trim().isEmpty()) 
-				{
-					//double_6 +=  Double.parseDouble(model.getValueAt(i, 5).toString().trim());
-					paketsayi += 1 ;
-				}
+				if (! model.getValueAt(i, 5).toString().trim().isEmpty())
+					paketsayi += 1 ;//double_6 +=  Double.parseDouble(model.getValueAt(i, 5).toString().trim());
 				if (! model.getValueAt(i,2).toString().equals(""))
-				{
 					urunsayi += 1;
-				}
 			}
 			label_8.setText(FORMATLAMA.doub_3(double_3));
 			label_8_1.setText(FORMATLAMA.doub_0(urunmiktar));
@@ -2042,21 +2006,17 @@ public class KERESTE_CIKIS extends JInternalFrame {
 				if (i == model.getRowCount() -1) {
 					double aram33 = Double.parseDouble(model.getValueAt(i, 4).toString()) ;
 					model.setValueAt( m3+ aram3 ,i-1, 5)  ;
-					if (aram33==0) {
+					if (aram33==0)
 						model.setValueAt( "" ,i, 5)  ;
-					}
-					else {
+					else
 						model.setValueAt( FORMATLAMA.doub_3(aram33) ,i, 5)  ;
-					}
 				}
 				else {
 					m3 = m3 + aram3 ;
-					if (m3==0) {
+					if (m3==0)
 						model.setValueAt("",i-1, 5)  ;
-					}
-					else {
+					else
 						model.setValueAt(FORMATLAMA.doub_3(m3),i-1, 5)  ;
-					}
 					m3 = 0.000;
 				}
 			}
@@ -2065,12 +2025,10 @@ public class KERESTE_CIKIS extends JInternalFrame {
 				{
 					double aram33 = Double.parseDouble(model.getValueAt(i, 4).toString()) ;
 					double aram1 = Double.parseDouble(model.getValueAt(i-1, 4).toString()) ;
-					if (m3+ aram33+ aram1 ==0) {
+					if (m3+ aram33+ aram1 ==0)
 						model.setValueAt("" ,i, 5)  ;
-					}
-					else {
+					else
 						model.setValueAt(FORMATLAMA.doub_3(m3 + aram33 + aram1) ,i, 5)  ;
-					}
 					model.setValueAt("",i-1, 5)  ;
 				}
 				else 
@@ -2123,9 +2081,7 @@ public class KERESTE_CIKIS extends JInternalFrame {
 			{
 				rSet.first();  
 				if (! rSet.getString("Cikis_Evrak").toString().equals("")   && ! rSet.getString("Cikis_Evrak").toString().equals(textField.getText()))
-				{
 					OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING, "Bu Paket daha Once " + rSet.getString("Cikis_Evrak").toString() + " da Cikis Yapilmis" );
-				}
 				else 
 				{
 					DefaultTableModel model = (DefaultTableModel) table.getModel();
@@ -2146,10 +2102,8 @@ public class KERESTE_CIKIS extends JInternalFrame {
 						model.setValueAt( rSet.getString("CIzahat"),satir, 11)  ;
 						model.setValueAt( rSet.getInt("Satir"),satir, 12)  ;
 						satir +=1 ;
-						if (satir +1 >= model.getRowCount())  
-						{
+						if (satir +1 >= model.getRowCount())
 							model.addRow(new Object[]{"","","",0.00,0.000,"","",0.00,0.00,0.00,0.00,"","","",0.00,"",0.00,0.00,0.00,"","",0.00,0.00,0,0,0,"","",0,""});
-						}
 					}  while (rSet.next()) ;
 					paketm3();		
 					kod_ADI(model.getValueAt(ilks,2).toString(),model.getValueAt(table.getSelectedRow(), 0).toString());
@@ -2169,16 +2123,13 @@ public class KERESTE_CIKIS extends JInternalFrame {
 		try {
 			ResultSet rs = null;
 			rs = ker_Access.ker_kod_degisken_oku("DEPO", "DPID_Y", "DEPO_DEGISKEN");
-			if (!rs.isBeforeFirst() ) {  
+			if (!rs.isBeforeFirst() )
 				listdepo.add("");
-			}
 			else
 			{
 				listdepo.add("");
 				while (rs.next())
-				{
 					listdepo.add(rs.getString("DEPO"));
-				}
 			}
 		}
 		catch (Exception ex)
@@ -2250,17 +2201,14 @@ public class KERESTE_CIKIS extends JInternalFrame {
 		try {
 			ResultSet rs = null;
 			rs = ker_Access.ker_barkod_kod_oku(field);
-			if (!rs.isBeforeFirst() ) {  
+			if (!rs.isBeforeFirst() )
 				listPaket.add("");
-			}
 			else
 			{
 				listPaket.clear();
 				listPaket.add("");
 				while (rs.next())
-				{
 					listPaket.add(rs.getString("Paket_No").toString() + "-" + rs.getString("Konsimento").toString());
-				}
 			}
 		}
 		catch (Exception ex)
@@ -2276,15 +2224,10 @@ public class KERESTE_CIKIS extends JInternalFrame {
 	public static void excell_aktar()
 	{
 		DefaultTableModel mdl = (DefaultTableModel) table.getModel();
-
 		if (mdl.getRowCount() == 0 )
-		{
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING,  "Aktarilacak Bilgi Yok....." );
-		}
 		else
-		{
 			write() ;	
-		}
 	}
 	public static void write()
 	{
@@ -2311,9 +2254,7 @@ public class KERESTE_CIKIS extends JInternalFrame {
 			fileChooser.setSelectedFile(outputfile);
 			int returnVal = fileChooser.showSaveDialog(null);
 			if ( returnVal != JFileChooser.APPROVE_OPTION )
-			{
 				return;
-			}
 			GuiUtil.setWaitCursor(splitPane,true);
 			String uzanti ="";
 			File excelFile =  FILE_UZANTI. getSelectedFileWithExtension(fileChooser);
@@ -2528,15 +2469,12 @@ public class KERESTE_CIKIS extends JInternalFrame {
 									cell.setCellValue(Double.parseDouble( mdl.getValueAt(i,s).toString()));
 								}
 							}
-
 						}
 						satir += 1 ;
 					}
 				}
-
 				Row toplam1  = sheet.createRow(satir + 7);
 				cell = toplam1.createCell(3);
-				//cell.setCellValue(Double.parseDouble( label_8_1.getText()));
 				cell.setCellValue(label_8_1.getText());
 				cell.setCellStyle(satirStylemik_ARA); 
 
@@ -2662,11 +2600,8 @@ public class KERESTE_CIKIS extends JInternalFrame {
 					cell.setCellStyle(solaStyle);
 					ssatir +=1 ;
 				}
-				//**********
 				for (int i=0; i<= mdl.getColumnCount()-1; i++)
-				{
 					sheet.autoSizeColumn(i);
-				}
 				//////////////////////TOPLU ****************************************************************
 				bosRow = tOPLU.createRow(1);
 				satir1 = tOPLU.createRow(2);
@@ -2699,11 +2634,7 @@ public class KERESTE_CIKIS extends JInternalFrame {
 				cell.setCellStyle(solaStyle);
 				cell.setCellValue(lblNewLabel_3.getText());
 
-
 				bosRow5 = tOPLU.createRow(5);
-
-				
-				///////////////////////////////////////////////////////////////////////////////////////////
 				FileOutputStream out = new FileOutputStream(new File(fileChooser.getSelectedFile() + "_" + zaman + uzanti));
 				workbook.write(out);
 				out.close();
@@ -2917,12 +2848,10 @@ public class KERESTE_CIKIS extends JInternalFrame {
 									cell.setCellValue(Double.parseDouble( mdl.getValueAt(i,s).toString()));
 								}
 							}
-
 						}
 						satir += 1 ;
 					}
 				}
-
 				Row toplam1  = sheet.createRow(satir + 7);
 				cell = toplam1.createCell(3);
 				cell.setCellValue(label_8_1.getText());
@@ -3050,11 +2979,8 @@ public class KERESTE_CIKIS extends JInternalFrame {
 					cell.setCellStyle(solaStyle);
 					ssatir +=1 ;
 				}
-				//**********
 				for (int i=0; i<= mdl.getColumnCount()-1; i++)
-				{
 					sheet.autoSizeColumn(i);
-				}
 				FileOutputStream out = new FileOutputStream(new File(fileChooser.getSelectedFile() + "_" + zaman + uzanti));
 				workbook.write(out);
 				out.close();
@@ -3280,12 +3206,10 @@ public class KERESTE_CIKIS extends JInternalFrame {
 								cell.setCellValue(Double.parseDouble( mdl.getValueAt(i,s).toString()));
 							}
 						}
-
 					}
 					satir += 1 ;
 				}
 			}
-
 			Row toplam1  = sheet.createRow(satir + 7);
 			cell = toplam1.createCell(3);
 			cell.setCellValue(label_8_1.getText());
@@ -3413,9 +3337,7 @@ public class KERESTE_CIKIS extends JInternalFrame {
 				ssatir +=1 ;
 			}
 			for (int i=0; i<= mdl.getColumnCount()-1; i++)
-			{
 				sheet.autoSizeColumn(i);
-			}
 			ByteArrayOutputStream bos = new ByteArrayOutputStream();
 			workbook.write(bos);
 			byte[] byteArray= bos.toByteArray();
@@ -3434,10 +3356,8 @@ public class KERESTE_CIKIS extends JInternalFrame {
 		List<String> list = new ArrayList<String>();  
 		for (int i =0;i< mdl.getRowCount() ;i++)
 		{
-			if (! mdl.getValueAt(i, 2).equals("") )
-			{
+			if (! mdl.getValueAt(i, 2).equals(""))
 				list.add( mdl.getValueAt(i,2).toString().substring(0, 2));	//;
-			}
 		}
 		List<String> uniqueDataList = list.stream().distinct().collect(Collectors.toList());
 		return uniqueDataList ;

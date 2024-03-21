@@ -90,11 +90,8 @@ public class KOD_ACIKLAMA extends JInternalFrame {
 		table = new JTable(){
 			public boolean isCellEditable(int row, int column) {     return false;          }
 		};
-		if(! oac.gridcolor.toString().equals("java.awt.Color[r=255,g=255,b=255]")) 
-		{
+		if(! oac.gridcolor.toString().equals("java.awt.Color[r=255,g=255,b=255]"))
 			table.setGridColor(oac.gridcolor);
-		}
-
 		table.setFont(new Font("Calibri", Font.PLAIN, 14));
 		table.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
 		    public void valueChanged(ListSelectionEvent lse) {
@@ -111,16 +108,14 @@ public class KOD_ACIKLAMA extends JInternalFrame {
 		table.setShowVerticalLines(true);
 		scrollPane.setViewportView(table);
 		hisset();
-
 	}
 	public static void hisset() 
 	{
 		try {
 		ResultSet	rs = null;
 		rs = ker_Access.kod_pln();
-		if (!rs.isBeforeFirst() ) {  
-		    return;
-		}
+		if (!rs.isBeforeFirst() )
+			return;
 		table.setModel(DbUtils.resultSetToTableModel(rs));
 		JTableHeader th = table.getTableHeader();
 		TableColumnModel tcm = th.getColumnModel();
@@ -183,10 +178,8 @@ public class KOD_ACIKLAMA extends JInternalFrame {
 	}
 	public static void sil() 
 	{
-		if (table.getRowCount() == 0 || txtKod.getText().toString().equals("") ) {  
+		if (table.getRowCount() == 0 || txtKod.getText().toString().equals("") )
 			return;
-		}
-		
 		int g =  JOptionPane.showOptionDialog( null,  txtAciklama.getText() + "     Kod Dosyadan Silinecek ..?", "Kereste Dosyasindan d Silme",   JOptionPane.YES_NO_OPTION,
 				JOptionPane.QUESTION_MESSAGE,	   			 	null,   	oac.options,   	oac.options[1]); 
 		if(g != 0 ) { return;	}

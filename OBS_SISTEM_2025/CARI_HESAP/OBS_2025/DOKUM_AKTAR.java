@@ -51,6 +51,8 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 import java.awt.event.ActionEvent;
+import javax.swing.JComboBox;
+import javax.swing.DefaultComboBoxModel;
 
 @SuppressWarnings({"unchecked","rawtypes"})
 public class DOKUM_AKTAR extends JInternalFrame {
@@ -70,6 +72,7 @@ public class DOKUM_AKTAR extends JInternalFrame {
 	
 	private JDateChooser dateBitis;
 	private JDateChooser dateBaslama;
+	private JComboBox comboCins;
 	
 	private JLabel lblIsim ;
 	
@@ -175,6 +178,11 @@ public class DOKUM_AKTAR extends JInternalFrame {
 		});
 		btnNewButton.setBounds(100, 175, 159, 23);
 		panel_3.add(btnNewButton);
+		
+		comboCins = new JComboBox();
+		comboCins.setModel(new DefaultComboBoxModel(new String[] {"MS SQL", "MY SQL"}));
+		comboCins.setBounds(169, 21, 90, 22);
+		panel_3.add(comboCins);
 		
 		JLabel lblNewLabel = new JLabel("Hesap");
 		lblNewLabel.setBounds(10, 198, 55, 14);
@@ -364,7 +372,7 @@ public class DOKUM_AKTAR extends JInternalFrame {
 		try 
 		{
 			getContentPane().setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-			if( BAGLAN.cariDizin.hAN_SQL.equals("MS SQL"))
+			if(comboCins.getSelectedIndex() == 0)// MS SQL
 			{
 				String cumle = "";
 				String serverString = "" ;
@@ -381,7 +389,7 @@ public class DOKUM_AKTAR extends JInternalFrame {
 				Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 				MS_conn = DriverManager.getConnection(cumle,textUser.getText(),textPassword.getText()); 
 			}
-			else 
+			else //MY SQL
 			{
 				Class.forName("com.mysql.cj.jdbc.Driver");
 				String serverString = "" ;
@@ -407,7 +415,7 @@ public class DOKUM_AKTAR extends JInternalFrame {
 			getContentPane().setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 			GRID_TEMIZLE.grid_temizle(DISTAN_AKTAR.tblexcell);
 			DefaultTableModel defaultModel = (DefaultTableModel) DISTAN_AKTAR.tblexcell.getModel();
-			if( BAGLAN.cariDizin.hAN_SQL.equals("MY SQL"))
+			if(comboCins.getSelectedIndex() == 1)// My SQL
 			{
 				Class.forName("com.mysql.cj.jdbc.Driver");
 				ResultSet	rss = null;
@@ -442,7 +450,7 @@ public class DOKUM_AKTAR extends JInternalFrame {
 				String t2 = TARIH_CEVIR.tarih_geri(dateBitis);
 				if(! t1.equals("1900.01.01") || ! t2.equals("2100.12.31"))
 					tARIH = "  AND TARIH BETWEEN  '" + t1 + "' AND '" + t2 + " 23:59:59.998'" ;
-				String sql = " SELECT TARIH,SATIRLAR.EVRAK ,IZAHAT,KOD,KUR,BORC,ALACAK, "  + 
+				String sql = " SELECT TARIH,SATIRLAR.EVRAK ,ISNULL(IZAHAT,'') as IZAHAT,KOD,KUR,BORC,ALACAK, "  + 
 						"  CAST(SUM(ALACAK-BORC) OVER(ORDER BY TARIH  ROWS BETWEEN UNBOUNDED PRECEDING And CURRENT ROW)  AS DECIMAL(30,2))  AS BAKIYE ,[USER] "  + 
 						"  FROM SATIRLAR  LEFT JOIN IZAHAT   " + 
 						"  ON SATIRLAR.EVRAK = IZAHAT.EVRAK WHERE  HESAP =N'" + textCKodu.getText() + "'" + 

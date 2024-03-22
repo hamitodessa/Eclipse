@@ -232,7 +232,7 @@ public class CAL_DIZIN extends JDialog {
 						return;
 					if (cmbhangisql.getItemAt(cmbhangisql.getSelectedIndex()).toString().equals("MS SQL"))
 					{
-						if (comboBox.getSelectedItem().toString() == null)
+						if (comboBox.getSelectedItem() == null)
 							return;
 					}
 					try {

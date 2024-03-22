@@ -113,12 +113,12 @@ public class SMS_MYSQL implements ISMS{
 	public void create_table() throws SQLException {
 		String sql = null;
 		sql = "CREATE TABLE `SMS_HESAP`( "
-				+ " `TEL_NO`  nvarchar (15) NOT NULL  PRIMARY KEY ,"
-				+ "`UNVAN`  varchar (50) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL,"
-				+ "`GRUP`  varchar (15) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL,"
-				+ "`KODU`  varchar (12) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL,"
-				+ "`DURUM`  TINYINT NULL,"
-				+ "`USER_NAME`  varchar (15) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL,"
+				+ " `TEL_NO` nvarchar (15) NOT NULL  PRIMARY KEY ,"
+				+ " `UNVAN`  varchar (50) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL,"
+				+ " `GRUP`  varchar (15) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL,"
+				+ " `KODU`  varchar (12) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL,"
+				+ " `DURUM`  TINYINT NULL,"
+				+ " `USER_NAME`  varchar (15) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL,"
 				+ "  INDEX `IDX_SMS_HESAP` (`TEL_NO` ASC, `UNVAN` ASC,  `GRUP` ASC) VISIBLE)";
 		stmt = con.createStatement();  
 		stmt.executeUpdate(sql);
@@ -129,13 +129,13 @@ public class SMS_MYSQL implements ISMS{
 				+ " `MOBILE`  varchar (12) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL,"
 				+ " `MESAJ`  varchar (140) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL,"
 				+ " `HESAP`  varchar (12) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL,"
-				+ "  `UNVAN`  varchar (50) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL,"
-				+ "  INDEX `IDX_SMS_BILGILERI` (`TARIH` ASC,   `MOBILE` ASC,  `HESAP` ASC,  `UNVAN` ASC) VISIBLE)";
+				+ " `UNVAN`  varchar (50) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL,"
+				+ " INDEX `IDX_SMS_BILGILERI` (`TARIH` ASC,   `MOBILE` ASC,  `HESAP` ASC,  `UNVAN` ASC) VISIBLE)";
 		stmt = con.createStatement();  
 		stmt.executeUpdate(sql);
 		sql = "CREATE TABLE `MAIL_HESAP`( "
-				+ "  `MAIL`  varchar (50) PRIMARY KEY  CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NOT NULL ,"
-				+ "  `UNVAN`  varchar (50) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL,"
+				+ "  `MAIL`  varchar (50) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  PRIMARY KEY  NOT NULL ,"
+				+ "  `UNVAN` varchar (50) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL,"
 				+ "  `GRUP`  varchar (15) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL,"
 				+ "  `KODU`  varchar (12) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL,"
 				+ "  `DURUM` TINYINT NULL,"
@@ -149,7 +149,7 @@ public class SMS_MYSQL implements ISMS{
 				+ "  `MAIL`  varchar (50) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL,"
 				+ "  `KONU`  varchar (50) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL,"
 				+ "  `MESAJ`  varchar (300) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL,"
-				+ "   `HESAP`  varchar (12) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL,"
+				+ "  `HESAP`  varchar (12) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL,"
 				+ "  `UNVAN`  varchar (50) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL,"
 				+ "  `GONDEREN`  varchar (50) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL,"
 				+ "  `USER_NAME`  varchar (15) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL,"

@@ -128,7 +128,7 @@ public class KERESTE_MYSQL implements IKERESTE {
 		String sql = null;
 		sql = "CREATE TABLE `PAKET_NO`( "
 				+ "  `Pak_No` int NOT NULL,"
-				+ "  `Konsimento` varchar(15) PRIMARY KEY  CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NOT NULL,"
+				+ "  `Konsimento` varchar(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  PRIMARY KEY  NOT NULL,"
 				+ "  INDEX `IX_PKN` (  `Konsimento` ASC) VISIBLE)";		
 		stmt = con.createStatement();  
 		stmt.executeUpdate(sql);

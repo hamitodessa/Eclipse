@@ -203,7 +203,7 @@ public class STOK_MYSQL implements ISTOK {
 		stmt = con.createStatement();  
 		stmt.executeUpdate(sql);
 		sql = "CREATE TABLE `MAL`( "
-				+ " `Kodu`  varchar (12) PRIMARY KEY  CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci NOT NULL,"
+				+ " `Kodu`  varchar (12) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  PRIMARY KEY  NOT NULL,"
 				+ " `Adi`  varchar (40) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL,"
 				+ " `Birim`  nvarchar (5) NULL,"
 				+ " `Kusurat`  int  NULL,"

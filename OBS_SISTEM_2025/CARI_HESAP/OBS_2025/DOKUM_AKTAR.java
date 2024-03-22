@@ -8,6 +8,8 @@ import javax.swing.JInternalFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
+import javax.swing.event.AncestorEvent;
+import javax.swing.event.AncestorListener;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.table.DefaultTableModel;
@@ -22,6 +24,7 @@ import raven.toast.Notifications;
 
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
 import javax.swing.JCheckBox;
 import java.awt.Cursor;
 
@@ -85,6 +88,21 @@ public class DOKUM_AKTAR extends JInternalFrame {
 		textDosya = new Obs_TextFIeld();
 		textDosya.setColumns(10);
 		textDosya.setBounds(107, 22, 75, 20);
+		textDosya.addAncestorListener(new AncestorListener() {
+			public void ancestorAdded(AncestorEvent event) {
+				SwingUtilities.invokeLater(new Runnable() {
+					@Override
+					public void run() {
+						textDosya.requestFocusInWindow();
+					}
+				});
+			}
+			public void ancestorMoved(AncestorEvent event) {
+			}
+			public void ancestorRemoved(AncestorEvent event) {
+			}
+		});
+
 		panel.add(textDosya);
 		
 		JPanel panel_3 = new JPanel();

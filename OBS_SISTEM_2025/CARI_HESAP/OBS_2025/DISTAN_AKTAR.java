@@ -113,10 +113,10 @@ public class DISTAN_AKTAR extends JInternalFrame {
 	private static CARI_ACCESS  c_Access = new CARI_ACCESS(OBS_SIS_2025_ANA_CLASS._ICar , OBS_SIS_2025_ANA_CLASS._ICari_Loger);
 	private MaterialTabbed tabbedPane ;
 
-	private static JTable tblexcell;
+	public static JTable tblexcell;
 	private static JLabel lblborc ;
 	private static JLabel lblalacak ;
-	private static JLabel lblsatir ;
+	static JLabel lblsatir ;
 	private static JLabel lblNewLabel  ;
 	private static JComboBox<String> comboBox  ;
 	private JFileChooser chooser;

@@ -166,7 +166,7 @@ public class COKLU_IMALAT extends JInternalFrame {
 			public void keyReleased(KeyEvent e) {
 			}
 		});
-		dtc.setBounds(201, 11, 153, 20);
+		dtc.setBounds(201, 11, 153, 24);
 		dtc.setDateFormatString("dd.MM.yyyy");
 		dtc.setFont(new Font("Tahoma", Font.BOLD, 12));
 		dtc.setDate(new Date());

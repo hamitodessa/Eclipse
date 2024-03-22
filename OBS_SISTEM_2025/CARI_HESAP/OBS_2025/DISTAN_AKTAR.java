@@ -170,7 +170,7 @@ public class DISTAN_AKTAR extends JInternalFrame {
 
 		JToolBar toolBar_1 = new JToolBar();
 		toolBar_1.setFloatable(false);
-		toolBar_1.setBounds(10, 11, 91, 30);
+		toolBar_1.setBounds(10, 11, 111, 30);
 		panel.add(toolBar_1);
 
 		JButton btnNewButton = new JButton("");
@@ -367,7 +367,7 @@ public class DISTAN_AKTAR extends JInternalFrame {
 		txtARAMA.setColumns(10);
 
 		JLabel lblNewLabel_4 = new JLabel("Arama");
-		lblNewLabel_4.setBounds(107, 22, 46, 14);
+		lblNewLabel_4.setBounds(120, 22, 47, 14);
 		panel.add(lblNewLabel_4);
 
 		txtALACAK = new Obs_TextFIeld(12,"");
@@ -1454,49 +1454,76 @@ public class DISTAN_AKTAR extends JInternalFrame {
 	}
 	public static void kaydet_carii()
 	{
-		try
-		{
-			DefaultTableModel model = (DefaultTableModel) tblexcell.getModel();
-			if (model.getRowCount() == 0) return ;
-			int  kon = 0 ;
-			for(int  i = 0 ;i <= model.getRowCount() - 1; i ++)
+		//
+		Runnable runner = new Runnable()
+		{ public void run() {
+			//
+			try
 			{
-				if( model.getValueAt(i, 2).toString().equals("") || model.getValueAt(i, 5).toString().equals("") )
-					kon += 1 ;
-			}
-			if ( kon > 0 )
-			{
-				OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,"Bos Hesap Kodlari mevcut .... Satir Sayisi: " + kon );
-				return;
-			}
-			///HESAP KODLARI KONTROL
-			List<String> uniqueDataList = kod_sirala(2) ;
-			for (int iterator = 0;iterator <= uniqueDataList.size()-1;iterator ++) {
-				if(CARI_ISIM_OKU.isim(uniqueDataList.get(iterator))[2].toString().equals("F") )
+				DefaultTableModel model = (DefaultTableModel) tblexcell.getModel();
+				if (model.getRowCount() == 0) return ;
+				int  kon = 0 ;
+				Progres_Bar_Temizle();
+				OBS_MAIN.progressBar.setMaximum(model.getRowCount() - 1);
+				OBS_MAIN.progressBar.setStringPainted(true);
+				for(int  i = 0 ;i <= model.getRowCount() - 1; i ++)
 				{
-					OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR, uniqueDataList.get(iterator) + " --Borclu_Hesap Kodu Dosyada Bulunamadi....." );
+					Progres_Bar(model.getRowCount() - 1, i);
+					if( model.getValueAt(i, 2).toString().equals("") || model.getValueAt(i, 5).toString().equals("") )
+						kon += 1 ;
+				}
+				if ( kon > 0 )
+				{
+					OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,"Bos Hesap Kodlari mevcut .... Satir Sayisi: " + kon );
+					Progres_Bar_Temizle();
 					return;
 				}
-			}
-			uniqueDataList.clear();
-			uniqueDataList = kod_sirala(5) ;
-			for (int iterator = 0;iterator <= uniqueDataList.size()-1;iterator ++) {
-				if(CARI_ISIM_OKU.isim(uniqueDataList.get(iterator))[2].toString().equals("F") )
+				///HESAP KODLARI KONTROL
+				List<String> uniqueDataList = kod_sirala(2) ;
+				Progres_Bar_Temizle();
+				OBS_MAIN.progressBar.setMaximum(uniqueDataList.size()-1);
+				OBS_MAIN.progressBar.setStringPainted(true);
+				for (int iterator = 0;iterator <= uniqueDataList.size()-1;iterator ++) 
 				{
-					OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR, uniqueDataList.get(iterator) + " --Alacakli_Hesap Kodu Dosyada Bulunamadi....." );
-					return;
+					Progres_Bar(uniqueDataList.size()-1, iterator);
+					if(CARI_ISIM_OKU.isim(uniqueDataList.get(iterator))[2].toString().equals("F") )
+					{
+						OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR, uniqueDataList.get(iterator) + " --Borclu_Hesap Kodu Dosyada Bulunamadi....." );
+						Progres_Bar_Temizle();
+						return;
+					}
 				}
+				uniqueDataList.clear();
+				uniqueDataList = kod_sirala(5) ;
+				Progres_Bar_Temizle();
+				OBS_MAIN.progressBar.setMaximum(uniqueDataList.size()-1);
+				OBS_MAIN.progressBar.setStringPainted(true);
+				for (int iterator = 0;iterator <= uniqueDataList.size()-1;iterator ++) 
+				{
+					Progres_Bar(uniqueDataList.size()-1, iterator);
+					if(CARI_ISIM_OKU.isim(uniqueDataList.get(iterator))[2].toString().equals("F") )
+					{
+						OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR, uniqueDataList.get(iterator) + " --Alacakli_Hesap Kodu Dosyada Bulunamadi....." );
+						Progres_Bar_Temizle();
+						return;
+					}
+				}
+				Progres_Bar_Temizle();
+				///
+				int g = JOptionPane.showOptionDialog( null,  "Kayit Baslamasi...Kayit Sayisi: " + model.getRowCount(), "Cari Coklu Kayit",   JOptionPane.YES_NO_OPTION,
+						JOptionPane.QUESTION_MESSAGE,null, oac.options, oac.options[1]); 
+				if(g != 0 ) { return;	}	
+				cari_kaydet();
 			}
-			///
-			int g = JOptionPane.showOptionDialog( null,  "Kayit Baslamasi...Kayit Sayisi: " + model.getRowCount(), "Cari Coklu Kayit",   JOptionPane.YES_NO_OPTION,
-					JOptionPane.QUESTION_MESSAGE,null, oac.options, oac.options[1]); 
-			if(g != 0 ) { return;	}	
-			cari_kaydet();
+			catch (Exception ex)
+			{
+				OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage() );
+			}
+			//
 		}
-		catch (Exception ex)
-		{
-			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage() );
-		}
+		};
+		Thread t = new Thread(runner, "Hesap Kontrol");
+		t.start();
 	}
 	private void borcluUYGULA()
 	{
@@ -1550,6 +1577,7 @@ public class DISTAN_AKTAR extends JInternalFrame {
 				double dsa = 0.00 ;
 				double dds = 0.00 ;
 				OBS_MAIN.progressBar.setMaximum(tblexcell.getRowCount() - 1);
+				OBS_MAIN.progressBar.setStringPainted(true);
 				for(int  i = 0 ;i <= tblexcell.getRowCount() - 1; i ++)
 				{
 					Progres_Bar(tblexcell.getRowCount() - 1, i);
@@ -1613,7 +1641,7 @@ public class DISTAN_AKTAR extends JInternalFrame {
 			//// Progress Bar
 		}
 		};
-		Thread t = new Thread(runner, "Code Executer");
+		Thread t = new Thread(runner, "Distan Aktar");
 		t.start();
 		//
 	}

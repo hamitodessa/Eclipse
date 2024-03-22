@@ -128,150 +128,150 @@ public class KERESTE_MYSQL implements IKERESTE {
 		String sql = null;
 		sql = "CREATE TABLE `PAKET_NO`( "
 				+ "  `Pak_No` int NOT NULL,"
-				+ "  `Konsimento` nvarchar(15) PRIMARY KEY NOT NULL,"
+				+ "  `Konsimento` varchar(15) PRIMARY KEY  CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NOT NULL,"
 				+ "  INDEX `IX_PKN` (  `Konsimento` ASC) VISIBLE)";		
 		stmt = con.createStatement();  
 		stmt.executeUpdate(sql);
 		sql = "CREATE TABLE `DPN`( "
 				+ " `DID`   INTEGER AUTO_INCREMENT PRIMARY KEY  NOT NULL,"
-				+ "  `Evrak_No`  nvarchar (10) NOT NULL,"
+				+ "  `Evrak_No` varchar (10) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NOT NULL,"
 				+ "  `Tip`  nvarchar (1) NULL,"
-				+ "  `Bir`  nvarchar (40) NULL,"
-				+ "  `Iki`  nvarchar (40) NULL,"
-				+ "  `Uc`  nvarchar (40) NULL,"
-				+ " `Gir_Cik`  nvarchar (1) NULL,"
-				+ " `USER`  nvarchar (15) NOT NULL,"
+				+ "  `Bir`  varchar (40) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL,"
+				+ "  `Iki`  varchar (40) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL,"
+				+ "  `Uc`  varchar (40) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL,"
+				+ " `Gir_Cik`  varchar (1) NULL,"
+				+ " `USER`  varchar (15) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NOT NULL,"
 				+ "  INDEX `IX_DPN` (  `Evrak_No` ASC,  `Gir_Cik` ASC ) VISIBLE)";
 		stmt = con.createStatement();  
 		stmt.executeUpdate(sql);
 		sql = "CREATE TABLE `NAKLIYECI`("
 				+ " `NAKID`  INTEGER AUTO_INCREMENT PRIMARY KEY  NOT NULL,"
 				+ " `NAKID_Y` int  NOT NULL,"  
-				+ " `UNVAN` nvarchar(50) NOT NULL,"
-				+ " `USER` nvarchar(15) NOT NULL,"
+				+ " `UNVAN` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NOT NULL,"
+				+ " `USER` varchar(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NOT NULL,"
 				+ " INDEX `IX_NAKL` (  `NAKID_Y` ASC ) VISIBLE)";
 		stmt = con.createStatement();  
 		stmt.executeUpdate(sql);
 		sql= "CREATE TABLE `KERESTE`( "
-				+ "`Evrak_No` nvarchar(10) NOT NULL,"
+				+ "`Evrak_No` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NOT NULL,"
 				+ " `Barkod` nvarchar(20) NULL,"
-				+ " `Kodu` nvarchar(16) NOT NULL,"
-				+ " `Paket_No` nvarchar (10) NULL,"
-				+ " `Konsimento` nvarchar(15) NULL,"
+				+ " `Kodu` varchar(16) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NOT NULL,"
+				+ " `Paket_No` varchar (10) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL,"
+				+ " `Konsimento` varchar(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL,"
 				+ " `Miktar` DOUBLE NULL,"
 				+ " `Tarih` datetime NULL,"
 				+ " `Kdv` DOUBLE NULL,"
-				+ " `Doviz` nvarchar(3) NULL,"
+				+ " `Doviz` varchar(3) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL,"
 				+ " `Fiat` DOUBLE NULL,"
 				+ " `Tutar` DOUBLE NULL,"
 				+ " `Kur` DOUBLE NULL,"
-				+ " `Cari_Firma` nvarchar(12) NULL,"
-				+ " `Adres_Firma` nvarchar(12) NULL,"
+				+ " `Cari_Firma` varchar(12) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL,"
+				+ " `Adres_Firma` varchar(12) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL,"
 				+ " `Iskonto` DOUBLE NULL,"
 				+ " `Tevkifat` DOUBLE NULL,"
 				+ " `Ana_Grup` int NULL,"
 				+ " `Alt_Grup` int NULL,"
 				+ " `Mensei` int NULL,"
 				+ " `Depo` int NULL,"
-				+ " `Ozel_Kod` nvarchar(10) NULL,"
-				+ " `Izahat` nvarchar(40) NULL,"
+				+ " `Ozel_Kod` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL,"
+				+ " `Izahat` varchar(40) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL,"
 				+ " `Nakliyeci` int NULL,"
-				+ " `USER` nvarchar(15) NOT NULL,"
-				+ " `Cikis_Evrak` nvarchar(10) NULL,"
+				+ " `USER` varchar(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NOT NULL,"
+				+ " `Cikis_Evrak` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL,"
 				+ " `CTarih` datetime NULL,"
 				+ " `CKdv` DOUBLE NULL,"
-				+ " `CDoviz` nvarchar(3) NULL,"
+				+ " `CDoviz` varchar(3) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL,"
 				+ " `CFiat` DOUBLE NULL,"
 				+ " `CTutar` DOUBLE NULL,"
 				+ " `CKur` DOUBLE NULL,"
-				+ " `CCari_Firma` nvarchar(12) NULL,"
-				+ " `CAdres_Firma` nvarchar(12) NULL,"
+				+ " `CCari_Firma` varchar(12) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL,"
+				+ " `CAdres_Firma` varchar(12) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL,"
 				+ " `CIskonto` DOUBLE NULL,"
 				+ " `CTevkifat` DOUBLE NULL,"
 				+ " `CAna_Grup` int NULL,"
 				+ " `CAlt_Grup` int NULL,"
 				+ " `CDepo` int NULL,"
-				+ " `COzel_Kod` nvarchar(10) NULL,"
-				+ " `CIzahat` nvarchar(40) NULL,"
+				+ " `COzel_Kod` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL,"
+				+ " `CIzahat` varchar(40) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL,"
 				+ " `CNakliyeci` int NULL,"
-				+ " `CUSER` nvarchar(15)  NULL,"
+				+ " `CUSER` varchar(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci   NULL,"
 				+ " `Satir` int NOT NULL,"
 				+ " `CSatir` int NOT NULL,"
 				+ " INDEX `IX_KERESTE` (  `Evrak_No`,`Kodu`,`Tarih`,`Paket_No`,`Konsimento`,`Cari_Firma`,`Cikis_Evrak` ) VISIBLE)";
 		stmt = con.createStatement();  
 		stmt.executeUpdate(sql);
 		sql = "CREATE TABLE `OZEL` ("
-				+ "  `YONETICI` VARCHAR(25) NULL,"
-				+ "  `YON_SIFRE` VARCHAR(15) NULL,"
-				+ "  `FIRMA_ADI` VARCHAR(50) NULL,"
+				+ "  `YONETICI` VARCHAR(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL,"
+				+ "  `YON_SIFRE` VARCHAR(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL,"
+				+ "  `FIRMA_ADI` VARCHAR(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL,"
 				+ " `USER`  nvarchar (15) NOT NULL)" ;
 		stmt = con.createStatement();  
 		stmt.executeUpdate(sql);
 		sql = "CREATE TABLE `MENSEI_DEGISKEN`("
 				+ " `MEID` INTEGER AUTO_INCREMENT PRIMARY KEY  NOT NULL,"
 				+ " `MEID_Y`  int   NOT NULL,"   
-				+ " `MENSEI`  nvarchar (25) NOT NULL,"
-				+ " `USER`  nvarchar (15) NOT NULL)";
+				+ " `MENSEI`  varchar (25) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NOT NULL,"
+				+ " `USER`  varchar (15) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NOT NULL)";
 		stmt = con.createStatement();  
 		stmt.executeUpdate(sql);
 		sql = "CREATE TABLE  `ANA_GRUP_DEGISKEN`("
 				+ " `AGID`  INTEGER AUTO_INCREMENT PRIMARY KEY  NOT NULL,"
 				+ " `AGID_Y`  int  NOT NULL,"  
-				+ " `ANA_GRUP`  nvarchar (25) NOT NULL,"
-				+ " `USER`  nvarchar (15) NOT NULL)";
+				+ " `ANA_GRUP`  varchar (25) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NOT NULL,"
+				+ " `USER`  varchar (15) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NOT NULL)";
 		stmt = con.createStatement();  
 		stmt.executeUpdate(sql);
 		sql = "CREATE TABLE  `ALT_GRUP_DEGISKEN`("
 				+ " `ALID` INTEGER AUTO_INCREMENT PRIMARY KEY  NOT NULL,"
 				+ " `ALID_Y`  int  NOT NULL,"  
 				+ " `ANA_GRUP`  int  NOT NULL,"
-				+ " `ALT_GRUP`  nvarchar (25) NOT NULL,"
-				+ " `USER`  nvarchar (15) NOT NULL)";
+				+ " `ALT_GRUP`  varchar (25) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NOT NULL,"
+				+ " `USER`  varchar (15) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NOT NULL)";
 		stmt = con.createStatement();  
 		stmt.executeUpdate(sql);
 		sql = "CREATE TABLE  `ACIKLAMA`("
 				+ " `ACID`  INTEGER AUTO_INCREMENT PRIMARY KEY  NOT NULL,"
 				+ " `EVRAK_CINS`  nvarchar (3) NULL,"
 				+ " `SATIR`  int  NULL,"
-				+ " `EVRAK_NO`  nvarchar (10) NULL,"
-				+ " `ACIKLAMA`  nvarchar (50) NULL,"
-				+ " `Gir_Cik`  nvarchar (1) NULL,"
+				+ " `EVRAK_NO`  varchar (10) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL,"
+				+ " `ACIKLAMA`  varchar (50) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL,"
+				+ " `Gir_Cik`  varchar (1) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL,"
 				+ " INDEX IX_ACIKLAMA  (`EVRAK_CINS` ASC, `EVRAK_NO` ASC, `Gir_Cik` ASC)  VISIBLE )";
 		stmt = con.createStatement();  
 		stmt.executeUpdate(sql);
 		sql = "CREATE TABLE `KOD_ACIKLAMA`("
-				+ " `KOD` nvarchar(2) NOT NULL,"
-				+ " `ACIKLAMA` nvarchar(50) NULL,"
+				+ " `KOD` varchar(2) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NOT NULL,"
+				+ " `ACIKLAMA` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL,"
 				+ " INDEX IX_KOD_ACIKLAMA  (`KOD` ASC)  VISIBLE )";
 		stmt = con.createStatement(); 
 		stmt.executeUpdate(sql);
 		sql = "CREATE TABLE `KONS_ACIKLAMA`("
-				+ " `KONS` nvarchar(10) NOT NULL,"
-				+ " `ACIKLAMA` nvarchar(50) NULL,"
+				+ " `KONS` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NOT NULL,"
+				+ " `ACIKLAMA` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL,"
 				+ " INDEX IX_KONS_ACIKLAMA  (`KONS` ASC)  VISIBLE )";
 		stmt = con.createStatement();  
 		stmt.executeUpdate(sql);
 		sql = "CREATE TABLE  `DEPO_DEGISKEN`("
 				+ " `DPID` INTEGER AUTO_INCREMENT PRIMARY KEY  NOT NULL,"
 				+ " `DPID_Y`  int   NOT NULL,"   
-				+ " `DEPO`  nvarchar (25) NOT NULL,"
-				+ " `USER`  nvarchar (15) NOT NULL)";
+				+ " `DEPO`  varchar (25) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NOT NULL,"
+				+ " `USER`  varchar (15) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NOT NULL)";
 		stmt = con.createStatement();  
 		stmt.executeUpdate(sql);
 		sql = "CREATE TABLE  `OZ_KOD_1_DEGISKEN`("
 				+ " `OZ1ID`  INTEGER AUTO_INCREMENT PRIMARY KEY  NOT NULL,"
 				+ " `OZ1ID_Y`  int   NOT NULL,"  
-				+ " `OZEL_KOD_1`  nvarchar (25) NOT NULL,"
-				+ " `USER`  nvarchar (15) NOT NULL)";
+				+ " `OZEL_KOD_1`  varchar (25) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NOT NULL,"
+				+ " `USER`  varchar (15) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NOT NULL)";
 		stmt = con.createStatement();  
 		stmt.executeUpdate(sql);
 		sql = "CREATE TABLE `YETKILER`("
-				+ " `KULLANICI`  nvarchar (25) NULL,"
-				+ " `HESAP`  nvarchar (12) NULL,"
+				+ " `KULLANICI`  varchar (25) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL,"
+				+ " `HESAP`  varchar (12) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL,"
 				+ " `TAM_YETKI` TINYINT NULL,"
 				+ " `GORUNTU` TINYINT NULL,"
 				+ " `LEVEL`  int  NOT NULL,"
-				+ " `USER`  nvarchar (15) NOT NULL)";
+				+ " `USER`  varchar (15) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NOT NULL)";
 		stmt = con.createStatement();  
 		stmt.executeUpdate(sql);
 		sql = "CREATE TABLE `IRS_EVRAK_FORMAT`("
@@ -388,9 +388,9 @@ public class KERESTE_MYSQL implements IKERESTE {
 		String sql = "" ;
 		sql = "CREATE TABLE  `loglama` ("
 				+ "  `TARIH` DATETIME NOT NULL,"
-				+ "  `MESAJ` VARCHAR(100) NULL,"
-				+ "  `EVRAK` VARCHAR(15) NULL,"
-				+ "  `USER_NAME` VARCHAR(15) NULL,"
+				+ "  `MESAJ` VARCHAR(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL,"
+				+ "  `EVRAK` VARCHAR(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL,"
+				+ "  `USER_NAME` VARCHAR(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL,"
 				+ "  INDEX `IX_LOGLAMA` (`TARIH` ASC, `USER_NAME` ASC) VISIBLE);";
 		stmt = con.createStatement();  
 		stmt.executeUpdate(sql);		

@@ -695,7 +695,7 @@ public class CEK_GIRIS extends JInternalFrame {
 			if( comboBox.getSelectedItem() != null )
 				cMB = comboBox.getSelectedItem().toString();
 			lOG_BILGI lBILGI = new lOG_BILGI();
-			lBILGI.setmESAJ(textField.getText() + " Nolu Giris Bordro  " + mdll.getValueAt(i,0).toString() + "Nolu Cek " + " Tutar:" + (double) mdll.getValueAt(i,8));
+			lBILGI.setmESAJ(textField.getText() + " Nolu Giris Bordro  " + mdll.getValueAt(i,0).toString() + " Nolu Cek " + " Tutar:" + (double) mdll.getValueAt(i,8));
 			lBILGI.seteVRAK(textField.getText());
 			ka_Access.cek_kayit(mdll.getValueAt(i,0).toString(), vade,
 					textField.getText(), textField_1.getText(),

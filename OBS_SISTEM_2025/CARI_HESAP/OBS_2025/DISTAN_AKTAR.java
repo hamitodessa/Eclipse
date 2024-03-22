@@ -33,7 +33,6 @@ import java.awt.Component;
 import java.awt.Cursor;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -199,7 +198,6 @@ public class DISTAN_AKTAR extends JInternalFrame {
 		JButton btnNewButton_10 = new JButton("");
 		btnNewButton_10.setToolTipText("Baska Dosyadan Aktarma");
 		btnNewButton_10.setIcon(new ImageIcon(DISTAN_AKTAR.class.getResource("/ICONLAR/transfer-16.png")));
-
 		btnNewButton_10.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				boolean varmi = OBS_MAIN.pencere_bak("DOKUM AKTAR");
@@ -337,7 +335,7 @@ public class DISTAN_AKTAR extends JInternalFrame {
 				getContentPane().setCursor(OBS_SIS_2025_ANA_CLASS.WAIT_CURSOR);
 				try {
 					arama(cmbArama.getSelectedIndex()  ,txtARAMA.getText(),cmbSecenek.getSelectedItem().toString());
-				} catch (ParseException e1) {
+				} catch (Exception e1) {
 					e1.printStackTrace();
 				}
 				getContentPane().setCursor(OBS_SIS_2025_ANA_CLASS.DEFAULT_CURSOR);
@@ -346,7 +344,7 @@ public class DISTAN_AKTAR extends JInternalFrame {
 				getContentPane().setCursor(OBS_SIS_2025_ANA_CLASS.WAIT_CURSOR);
 				try {
 					arama(cmbArama.getSelectedIndex()  ,txtARAMA.getText(),cmbSecenek.getSelectedItem().toString());
-				} catch (ParseException e1) {
+				} catch (Exception e1) {
 					e1.printStackTrace();
 				}
 				getContentPane().setCursor(OBS_SIS_2025_ANA_CLASS.DEFAULT_CURSOR);
@@ -355,7 +353,7 @@ public class DISTAN_AKTAR extends JInternalFrame {
 				getContentPane().setCursor(OBS_SIS_2025_ANA_CLASS.WAIT_CURSOR);
 				try {
 					arama(cmbArama.getSelectedIndex()  ,txtARAMA.getText(),cmbSecenek.getSelectedItem().toString());
-				} catch (ParseException e1) {
+				} catch (Exception e1) {
 					e1.printStackTrace();
 				}
 				getContentPane().setCursor(OBS_SIS_2025_ANA_CLASS.DEFAULT_CURSOR);
@@ -490,7 +488,7 @@ public class DISTAN_AKTAR extends JInternalFrame {
 					{
 						try {
 							arama(cmbArama.getSelectedIndex()  ,txtARAMA.getText(),cmbSecenek.getSelectedItem().toString());
-						} catch (ParseException e1) {
+						} catch (Exception e1) {
 							e1.printStackTrace();
 						}
 					}
@@ -514,29 +512,22 @@ public class DISTAN_AKTAR extends JInternalFrame {
 		cmbSecenek = new JComboBox<String>();
 		cmbSecenek.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(cmbArama.getSelectedIndex() ==2 || cmbArama.getSelectedIndex() ==5)
+				try 
 				{
-					if(cmbSecenek.getSelectedIndex()==0 || cmbSecenek.getSelectedIndex()==1)
+					if(cmbArama.getSelectedIndex() ==2 || cmbArama.getSelectedIndex() ==5)
 					{
-						try 
-						{
+						if(cmbSecenek.getSelectedIndex()==0 || cmbSecenek.getSelectedIndex()==1)
 							arama(cmbArama.getSelectedIndex()  ,txtARAMA.getText(),cmbSecenek.getSelectedItem().toString());
-						} catch (ParseException e1) {
-							e1.printStackTrace();
-						}
-					}
-					else if(cmbSecenek.getSelectedIndex()==2)
-					{
-						try 
+						else if(cmbSecenek.getSelectedIndex()==2)
 						{
 							if(txtARAMA.getText().equals(""))
 								tblexcell.setRowSorter(null);
 							else
 								arama(cmbArama.getSelectedIndex()  ,"",cmbSecenek.getSelectedItem().toString());
-						} catch (ParseException e1) {
-							e1.printStackTrace();
 						}
 					}
+				} catch (Exception e1) {
+					e1.printStackTrace();
 				}
 			}
 		});
@@ -563,16 +554,13 @@ public class DISTAN_AKTAR extends JInternalFrame {
 				}
 			}
 		});
-		//tabbedPane.setForeground(new Color(0, 0, 128));
 		tabbedPane.setFont(new Font("Tahoma", Font.BOLD, 14));
 		splitPane_1.setLeftComponent(tabbedPane);
 
 		ScrollPaneWin11 scrollPane = new ScrollPaneWin11();
 		scrollPane.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
-
 		
 		tabbedPane.addTab("Excell", null, scrollPane, null);
-
 
 		DefaultTableModel model = new DefaultTableModel() ;
 		tblexcell = new JTable(model)  {
@@ -842,7 +830,6 @@ public class DISTAN_AKTAR extends JInternalFrame {
 					tema_doldur();
 					hesap_doldur();
 					temadoldur();
-
 					GuiUtil.setWaitCursor(splitPane,false);
 				}
 				catch (Exception ex)
@@ -942,7 +929,6 @@ public class DISTAN_AKTAR extends JInternalFrame {
 		ScrollPaneWin11 scrollPane_2 = new ScrollPaneWin11();
 		scrollPane_2.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
 
-		//scrollPane_2.setViewportBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Karsi Hesap Kodlari", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 		splitPane_5.setRightComponent(scrollPane_2);
 
 		DefaultTableModel mdl = new DefaultTableModel() ;
@@ -1019,7 +1005,6 @@ public class DISTAN_AKTAR extends JInternalFrame {
 		ScrollPaneWin11 scrollPane_1 = new ScrollPaneWin11();
 		scrollPane_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
 
-		//scrollPane_1.setViewportBorder(new TitledBorder(null, "Izahat Kismi Degisim Parametreleri", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		splitPane_4.setRightComponent(scrollPane_1);
 
 		DefaultTableModel mdlt = new DefaultTableModel() ;
@@ -1091,13 +1076,11 @@ public class DISTAN_AKTAR extends JInternalFrame {
 		panel_3.setLayout(null);
 
 		lblborc = new JLabel("...");
-		//lblborc.setForeground(new Color(178, 34, 34));
 		lblborc.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblborc.setBounds(586, 5, 284, 14);
 		panel_3.add(lblborc);
 
 		lblalacak = new JLabel("...");
-		//lblalacak.setForeground(new Color(0, 128, 128));
 		lblalacak.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblalacak.setBounds(935, 5, 262, 14);
 		panel_3.add(lblalacak);
@@ -1108,7 +1091,6 @@ public class DISTAN_AKTAR extends JInternalFrame {
 		panel_3.add(lblNewLabel_3);
 
 		lblsatir = new JLabel("0");
-		//lblsatir.setForeground(new Color(0, 0, 128));
 		lblsatir.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblsatir.setBounds(100, 5, 56, 14);
 		panel_3.add(lblsatir);
@@ -1166,7 +1148,6 @@ public class DISTAN_AKTAR extends JInternalFrame {
 				{
 					fis = new FileInputStream(excelFile); 
 					workbook = new HSSFWorkbook(fis );
-
 					HSSFFont wbFont ;
 					wbFont=  (HSSFFont) workbook.createFont();
 					wbFont.setCharSet(HSSFFont.ANSI_CHARSET); //Your Character encoding goes in the parameter
@@ -1294,9 +1275,8 @@ public class DISTAN_AKTAR extends JInternalFrame {
 			ResultSet rs = null ;
 			GRID_TEMIZLE.grid_temizle(table_1);
 			rs =  oac.tCR.ttema_oku(comboBox.getSelectedItem().toString());
-			if (!rs.isBeforeFirst() ) {  
+			if (!rs.isBeforeFirst() )
 				return;
-			} 
 			DefaultTableModel mdl = (DefaultTableModel) table_1.getModel();
 			while(rs.next())
 				mdl.addRow(new Object[]{rs.getString("ARANACAK"),rs.getString("HESAP_KODU")}); 
@@ -1316,9 +1296,8 @@ public class DISTAN_AKTAR extends JInternalFrame {
 			ResultSet rs = null ;
 			GRID_TEMIZLE.grid_temizle(table);
 			rs =  oac.tCR.temalar_oku(comboBox.getSelectedItem().toString());
-			if (!rs.isBeforeFirst() ) {  
+			if (!rs.isBeforeFirst())
 				return;
-			} 
 			DefaultTableModel mdl = (DefaultTableModel) table.getModel();
 			while(rs.next())
 				mdl.addRow(new Object[]{rs.getString("ARANACAK"),rs.getString("YAZILACAK")}); 
@@ -1604,7 +1583,6 @@ public class DISTAN_AKTAR extends JInternalFrame {
 						mesaj = mesaj + " Msj:" + strg ;
 					else
 						mesaj = mesaj + " Msj:" + strg.substring(0, 95  -(mesaj.length())) ;
-
 					dEKONT_BILGI dBilgi = new dEKONT_BILGI();
 					dBilgi.setbHES(model.getValueAt(i, 2).toString());
 					dBilgi.settAR(strDate);
@@ -1667,93 +1645,99 @@ public class DISTAN_AKTAR extends JInternalFrame {
 		OBS_MAIN.progressBar.setValue(0);
 		OBS_MAIN.progressBar.setStringPainted(false);
 	}
-	public void arama(int column,String arama,String secenek) throws ParseException  
+	public void arama(int column,String arama,String secenek) 
 	{
-		TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(((DefaultTableModel) tblexcell.getModel())); 
-		sorter.setStringConverter(new TableStringConverter() {
-			@Override
-			public String toString(TableModel model, int row, int column) {
-				return model.getValueAt(row, column).toString().toLowerCase();
-			}
-		});
-		if(column == 0 )
-		{
-			if(arama.length() <10) return;
-			if(secenek.equals("Esit"))
+		try {
+			TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(((DefaultTableModel) tblexcell.getModel())); 
+			sorter.setStringConverter(new TableStringConverter() 
 			{
-				SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.yyyy", Locale.ENGLISH);
-				Date date = formatter.parse(arama);
-				Date sonDate= formatter.parse(arama);
-				Calendar c = Calendar.getInstance(); 
-				c.setTime(date); 
-				c.add(Calendar.DATE, -1);
-				date = c.getTime();
-				date.setHours(23);
-				date.setMinutes(59);
-				date.setSeconds(59);
+				@Override
+				public String toString(TableModel model, int row, int column) 
+				{
+					return model.getValueAt(row, column).toString().toLowerCase();
+				}
+			});
+			if(column == 0 )
+			{
+				if(arama.length() <10) return;
+				if(secenek.equals("Esit"))
+				{
+					SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.yyyy", Locale.ENGLISH);
+					Date date = formatter.parse(arama);
+					Date sonDate= formatter.parse(arama);
+					Calendar c = Calendar.getInstance(); 
+					c.setTime(date); 
+					c.add(Calendar.DATE, -1);
+					date = c.getTime();
+					date.setHours(23);
+					date.setMinutes(59);
+					date.setSeconds(59);
 
-				c = Calendar.getInstance(); 
-				c.setTime(sonDate); 
-				c.add(Calendar.DATE, +1);
-				sonDate = c.getTime();
-				sonDate.setHours(00);
-				sonDate.setMinutes(00);
-				sonDate.setSeconds(0);
-				// sorter.setRowFilter(RowFilter.dateFilter(ComparisonType.NOT_EQUAL ,date,column));
-				//sorter.setRowFilter(RowFilter.dateFilter(ComparisonType.AFTER ,date,column));
-				// sorter.setRowFilter(RowFilter.dateFilter(ComparisonType.BEFORE ,sonDate,column));
-				///
-				List<RowFilter<Object,Object>> filters = new ArrayList<RowFilter<Object,Object>>(2);
-				filters.add(RowFilter.dateFilter(ComparisonType.AFTER ,date,column));
-				filters.add(RowFilter.dateFilter(ComparisonType.BEFORE ,sonDate,column));
-				sorter.setRowFilter(RowFilter.andFilter(filters));
+					c = Calendar.getInstance(); 
+					c.setTime(sonDate); 
+					c.add(Calendar.DATE, +1);
+					sonDate = c.getTime();
+					sonDate.setHours(00);
+					sonDate.setMinutes(00);
+					sonDate.setSeconds(0);
+					// sorter.setRowFilter(RowFilter.dateFilter(ComparisonType.NOT_EQUAL ,date,column));
+					//sorter.setRowFilter(RowFilter.dateFilter(ComparisonType.AFTER ,date,column));
+					// sorter.setRowFilter(RowFilter.dateFilter(ComparisonType.BEFORE ,sonDate,column));
+					///
+					List<RowFilter<Object,Object>> filters = new ArrayList<RowFilter<Object,Object>>(2);
+					filters.add(RowFilter.dateFilter(ComparisonType.AFTER ,date,column));
+					filters.add(RowFilter.dateFilter(ComparisonType.BEFORE ,sonDate,column));
+					sorter.setRowFilter(RowFilter.andFilter(filters));
+				}
+				else if(secenek.equals("Kucuk"))
+				{
+					SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.yyyy", Locale.ENGLISH);
+					Date date = formatter.parse(arama);
+					sorter.setRowFilter(RowFilter.dateFilter(ComparisonType.BEFORE ,date,column));
+				}
+				else if(secenek.equals("Buyuk"))
+				{
+					SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.yyyy", Locale.ENGLISH);
+					Date date = formatter.parse(arama);
+					sorter.setRowFilter(RowFilter.dateFilter(ComparisonType.AFTER ,date,column));
+				}
 			}
-			else if(secenek.equals("Kucuk"))
+			else if  (column == 1)
 			{
-				SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.yyyy", Locale.ENGLISH);
-				Date date = formatter.parse(arama);
-				sorter.setRowFilter(RowFilter.dateFilter(ComparisonType.BEFORE ,date,column));
+				if(secenek.equals("Bos Olanlar"))
+					sorter.setRowFilter(RowFilter.regexFilter("^$",column));
+				else if(secenek.equals("Icinde"))
+					sorter.setRowFilter(RowFilter.regexFilter("(?iu)" + arama.toLowerCase(),column));
 			}
-			else if(secenek.equals("Buyuk"))
+			else if  (column == 2 || column ==5)
 			{
-				SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.yyyy", Locale.ENGLISH);
-				Date date = formatter.parse(arama);
-				sorter.setRowFilter(RowFilter.dateFilter(ComparisonType.AFTER ,date,column));
+				if(secenek.equals("Bos Olanlar"))
+					sorter.setRowFilter(RowFilter.regexFilter("^$",column));
+				else if(secenek.equals("Esit"))
+					sorter.setRowFilter(RowFilter.regexFilter("(?iu)" + arama.toLowerCase(),column));
+				else if(secenek.equals("Bos Olmayanlar"))
+					sorter.setRowFilter(RowFilter.regexFilter(".*\\S.*",column));
 			}
-		}
-		else if  (column == 1)
-		{
-			if(secenek.equals("Bos Olanlar"))
-				sorter.setRowFilter(RowFilter.regexFilter("^$",column));
-			else if(secenek.equals("Icinde"))
-				sorter.setRowFilter(RowFilter.regexFilter("(?iu)" + arama.toLowerCase(),column));
-		}
-		else if  (column == 2 || column ==5)
-		{
-			if(secenek.equals("Bos Olanlar"))
-				sorter.setRowFilter(RowFilter.regexFilter("^$",column));
-			else if(secenek.equals("Esit"))
-				sorter.setRowFilter(RowFilter.regexFilter("(?iu)" + arama.toLowerCase(),column));
-			else if(secenek.equals("Bos Olmayanlar"))
-				sorter.setRowFilter(RowFilter.regexFilter(".*\\S.*",column));
-		}
-		else if(column == 3 || column == 4)
-		{
-			if(arama.equals(""))
+			else if(column == 3 || column == 4)
 			{
-				tblexcell.setRowSorter(null);
-				return;
+				if(arama.equals(""))
+				{
+					tblexcell.setRowSorter(null);
+					return;
+				}
+				if(secenek.equals("Esit"))
+					sorter.setRowFilter(RowFilter.numberFilter(ComparisonType.EQUAL ,Double.valueOf(arama),column));
+				else if(secenek.equals("Buyuk"))
+					sorter.setRowFilter(RowFilter.numberFilter(ComparisonType.AFTER ,Double.valueOf(arama),column));
+				else if(secenek.equals("Kucuk"))
+					sorter.setRowFilter(RowFilter.numberFilter(ComparisonType.BEFORE ,Double.valueOf(arama),column));
 			}
-			if(secenek.equals("Esit"))
-				sorter.setRowFilter(RowFilter.numberFilter(ComparisonType.EQUAL ,Double.valueOf(arama),column));
-			else if(secenek.equals("Buyuk"))
-				sorter.setRowFilter(RowFilter.numberFilter(ComparisonType.AFTER ,Double.valueOf(arama),column));
-			else if(secenek.equals("Kucuk"))
-				sorter.setRowFilter(RowFilter.numberFilter(ComparisonType.BEFORE ,Double.valueOf(arama),column));
+			tblexcell.setRowSorter(sorter);
+			tblexcell.revalidate();
+			tblexcell.repaint();
+		} catch (Exception e) {
+
 		}
-		tblexcell.setRowSorter(sorter);
-		tblexcell.revalidate();
-		tblexcell.repaint();
 	}
 	public class TableHeaderMouseListener extends MouseAdapter {
 		private JTable table;

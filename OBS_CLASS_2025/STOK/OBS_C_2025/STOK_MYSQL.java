@@ -143,17 +143,17 @@ public class STOK_MYSQL implements ISTOK {
 		stmt.executeUpdate(sql);
 		sql = "CREATE TABLE `GDY`( "
 				+ "  `GID`   INTEGER AUTO_INCREMENT PRIMARY KEY  NOT NULL,"
-				+ "  `Isim`  nvarchar (50) NULL, "
-				+ "  `Adres`  nvarchar (50) NULL, "
-				+ "  `Semt`  nvarchar (50) NULL, "
-				+ "  `Sehir`  nvarchar (50) NULL, "
-				+ "  `USER`  nvarchar (15) NOT NULL, "
+				+ "  `Isim`  varchar (50) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL, "
+				+ "  `Adres`  varchar (50) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL, "
+				+ "  `Semt`  varchar (50) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL, "
+				+ "  `Sehir` varchar (50) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL, "
+				+ "  `USER`  varchar (15) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NOT NULL, "
 				+ "  INDEX `IX_GDY` (  `Isim` ASC,  `USER` ASC ) VISIBLE)";
 		stmt = con.createStatement();  
 		stmt.executeUpdate(sql);
 		sql= "CREATE TABLE `FATURA`( "
 				+ "`Fatura_No`  nvarchar (10) NOT NULL,"
-				+ " `Kodu`  nvarchar (12) NULL,"
+				+ " `Kodu`  varchar (12) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL,"
 				+ " `Tarih` datetime NULL,"
 				+ " `Kdv`  DOUBLE  NULL,"
 				+ " `Doviz`  nvarchar (3) NULL,"
@@ -161,24 +161,24 @@ public class STOK_MYSQL implements ISTOK {
 				+ " `Fiat`  DOUBLE  NULL,"
 				+ " `Tutar`  DOUBLE  NULL,"
 				+ " `Kur`  DOUBLE  NULL,"
-				+ " `Cari_Firma`  nvarchar (12) NULL,"
+				+ " `Cari_Firma`  varchar (12) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL,"
 				+ " `Iskonto`  DOUBLE  NULL,"
 				+ " `Tevkifat`  DOUBLE  NULL,"
 				+ " `Ana_Grup`  int  NULL,"
 				+ " `Alt_Grup`  int  NULL,"
 				+ " `Depo`  int  NULL,"
-				+ " `Adres_Firma`  nvarchar (12) NULL,"
-				+ " `Ozel_Kod`  nvarchar (10) NULL,"
+				+ " `Adres_Firma`  varchar (12) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL,"
+				+ " `Ozel_Kod`  varchar (10) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL,"
 				+ " `Gir_Cik`  nvarchar (1) NULL,"
-				+ " `Izahat`  nvarchar (40) NULL,"
+				+ " `Izahat`  varchar (40) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL,"
 				+ " `Cins`  nvarchar (1) NULL,"
-				+ " `USER`  nvarchar (15) NOT NULL,"
+				+ " `USER`  varchar (15) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NOT NULL,"
 				+ " INDEX `IX_FATURA`   (`Fatura_No`,`Kodu`,`Tarih`,`Cari_Firma`,`Gir_Cik`) VISIBLE)";
 		stmt = con.createStatement();  
 		stmt.executeUpdate(sql);
 		sql = "CREATE TABLE `IRSALIYE`( "
 				+ " `Irsaliye_No`  nvarchar (10) NOT NULL,"
-				+ " `Kodu`  nvarchar (12) NULL,"
+				+ " `Kodu`  varchar (12) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL,"
 				+ " `Tarih` datetime NULL,"
 				+ " `Kdv`  DOUBLE  NULL,"
 				+ " `Doviz`  nvarchar (3) NULL,"
@@ -186,86 +186,86 @@ public class STOK_MYSQL implements ISTOK {
 				+ " `Miktar`  DOUBLE  NULL,"
 				+ " `Fiat`  DOUBLE  NULL,"
 				+ " `Tutar`  DOUBLE  NULL,"
-				+ " `Firma`  nvarchar (12) NULL,"
+				+ " `Firma`  varchar (12) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL,"
 				+ " `Iskonto`  DOUBLE  NULL,"
-				+ " `Fatura_No`  nvarchar (10) NULL,"
+				+ " `Fatura_No`  varchar (10) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL,"
 				+ " `Sevk_Tarihi` date NULL,"
 				+ " `Ana_Grup`  int  NULL,"
 				+ " `Alt_Grup`  int  NULL,"
 				+ " `Depo`  int  NULL,"
-				+ " `Cari_Hesap_Kodu`  nvarchar (12) NULL,"
-				+ " `Ozel_Kod`  nvarchar (10) NULL,"
+				+ " `Cari_Hesap_Kodu` varchar (12) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL,"
+				+ " `Ozel_Kod`  varchar (10) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL,"
 				+ " `Hareket`  nvarchar (1) NULL,"
-				+ " `Izahat`  nvarchar (40) NULL,"
+				+ " `Izahat`  varchar (40) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL,"
 				+ " `Cins`  nvarchar (1) NULL,"
-				+ " `USER`  nvarchar (15) NOT NULL,"
+				+ " `USER`  varchar (15) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NOT NULL,"
 				+ " INDEX `IX_IRSALIYE`  (`Irsaliye_No`,`Kodu`,`Tarih`,`Firma`,`Hareket`) VISIBLE)";
 		stmt = con.createStatement();  
 		stmt.executeUpdate(sql);
 		sql = "CREATE TABLE `MAL`( "
-				+ " `Kodu`  nvarchar (12) PRIMARY KEY NOT NULL,"
-				+ " `Adi`  nvarchar (40) NULL,"
+				+ " `Kodu`  varchar (12) PRIMARY KEY  CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci NOT NULL,"
+				+ " `Adi`  varchar (40) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL,"
 				+ " `Birim`  nvarchar (5) NULL,"
 				+ " `Kusurat`  int  NULL,"
 				+ " `Resim` MEDIUMBLOB  NULL,"
-				+ " `Sinif`  nvarchar (5) NULL,"
+				+ " `Sinif`  varchar (5) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL,"
 				+ " `Ana_Grup`  int  NULL,"
 				+ " `Alt_Grup`  int  NULL,"
-				+ " `Aciklama_1`  nvarchar (25) NULL,"
-				+ " `Aciklama_2`  nvarchar (25) NULL,"
+				+ " `Aciklama_1`  varchar (25) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL,"
+				+ " `Aciklama_2`  varchar (25) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL,"
 				+ " `Ozel_Kod_1`  int  NULL,"
 				+ " `Ozel_Kod_2`  int  NULL,"
 				+ " `Ozel_Kod_3`  int  NULL,"
 				+ " `KDV`  DOUBLE  NULL,"
-				+ " `Barkod`  nvarchar (20) NULL,"
+				+ " `Barkod`  varchar (20) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL,"
 				+ " `Mensei`  int  NULL,"
 				+ " `Agirlik`  DOUBLE  NULL,"
 				+ " `Depo`  int  NULL,"
 				+ " `Fiat`  DOUBLE  NULL,"
 				+ " `Fiat_2`  DOUBLE  NULL,"
 				+ " `Fiat_3`  DOUBLE  NULL,"
-				+ " `Recete`  nvarchar (10) NULL,"
-				+ " `USER`  nvarchar (15) NOT NULL,"
+				+ " `Recete`  varchar (10) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL,"
+				+ " `USER`  varchar (15) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NOT NULL,"
 				+ " INDEX `IX_MAL`  ( `Adi` ASC, `Ana_Grup` ASC,`Alt_Grup` ASC)  VISIBLE)";
 		stmt = con.createStatement();  
 		stmt.executeUpdate(sql);
 		sql = "CREATE TABLE `RECETE`( "
-				+ " `Recete_No`  nvarchar (10) NOT NULL,"
+				+ " `Recete_No`  varchar (10) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NOT NULL,"
 				+ " `Ana_Grup`  int  NULL,"
 				+ " `Alt_Grup`  int  NULL,"
 				+ " `Durum` TINYINT NULL,"
-				+ " `Tur`  nvarchar (7) NULL,"
-				+ " `Kodu`  nvarchar (10) NULL,"
+				+ " `Tur`  varchar (7) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL,"
+				+ " `Kodu`  varchar (10) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL,"
 				+ " `Miktar`  DOUBLE  NULL,"
-				+ " `USER`  nvarchar (15) NOT NULL) ";
+				+ " `USER`  varchar (15) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NOT NULL) ";
 		stmt = con.createStatement();  
 		stmt.executeUpdate(sql);
 		sql = "CREATE TABLE `OZEL` ("
-				+ "  `YONETICI` VARCHAR(25) NULL,"
-				+ "  `YON_SIFRE` VARCHAR(15) NULL,"
-				+ "  `FIRMA_ADI` VARCHAR(50) NULL,"
-				+ " `USER`  nvarchar (15) NOT NULL)" ;
+				+ "  `YONETICI` VARCHAR(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL,"
+				+ "  `YON_SIFRE` VARCHAR(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL,"
+				+ "  `FIRMA_ADI` VARCHAR(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL,"
+				+ " `USER`  varchar (15) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NOT NULL)" ;
 		stmt = con.createStatement();  
 		stmt.executeUpdate(sql);
 		sql = "CREATE TABLE `STOK`("
-				+ " `Evrak_No`  nvarchar (10) NOT NULL,"
+				+ " `Evrak_No`  varchar (10) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NOT NULL,"
 				+ " `Evrak_Cins`  nvarchar (3) NULL,"
 				+ " `Tarih` DATETIME NULL,"
 				+ " `Depo`  int  NULL,"
-				+ " `Urun_Kodu`  nvarchar (12) NULL,"
+				+ " `Urun_Kodu`  varchar (12) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL,"
 				+ " `Miktar`  DOUBLE  NULL,"
 				+ " `Fiat`  DOUBLE  NULL,"
 				+ " `Tutar`  DOUBLE  NULL,"
 				+ " `Ana_Grup`  int  NULL,"
 				+ " `Alt_Grup`  int  NULL,"
 				+ " `Hareket`  nvarchar (1) NULL,"
-				+ " `Izahat`  nvarchar (40) NULL,"
-				+ " `Hesap_Kodu`  nvarchar (12) NULL,"
+				+ " `Izahat`  varchar (40) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL,"
+				+ " `Hesap_Kodu`  varchar (12) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL,"
 				+ " `Kur` DOUBLE NULL,"
-				+ " `Doviz`  nvarchar (3) NULL,"
+				+ " `Doviz`  varchar (3) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL,"
 				+ " `Kdvli_Tutar`  DOUBLE  NULL,"
-				+ " `B1`  nvarchar (15) NULL,"
-				+ " `USER`  nvarchar (40) NOT NULL,"
+				+ " `B1`  varchar (15) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL,"
+				+ " `USER`  varchar (15) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NOT NULL,"
 				+ " INDEX IX_STOK  (`Urun_Kodu`,`Tarih`,`Hareket`) VISIBLE )";
 		//    		+ " INDEX IX_Cikan  ( `Urun_Kodu` ASC, `Tarih` ASC)  INCLUDE (	`Miktar`) WHERE (`Hareket`='C') VISIBLE,)"
 		//   		+ " INDEX IX_Giren  ( `Urun_Kodu` ASC, `Tarih` ASC)  INCLUDE ( 	`Fiat`) WHERE (`Hareket`='G') VISIBLE )";
@@ -275,70 +275,70 @@ public class STOK_MYSQL implements ISTOK {
 		sql = "CREATE TABLE `MENSEI_DEGISKEN`("
 				+ " `MEID` INTEGER AUTO_INCREMENT PRIMARY KEY  NOT NULL,"
 				+ " `MEID_Y`  int   NOT NULL,"   
-				+ " `MENSEI`  nvarchar (25) NOT NULL,"
-				+ " `USER`  nvarchar (15) NOT NULL)";
+				+ " `MENSEI`  varchar (25) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NOT NULL,"
+				+ " `USER`  varchar (15) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NOT NULL)";
 		stmt = con.createStatement();  
 		stmt.executeUpdate(sql);
 		sql = "CREATE TABLE  `ANA_GRUP_DEGISKEN`("
 				+ " `AGID`  INTEGER AUTO_INCREMENT PRIMARY KEY  NOT NULL,"
 				+ " `AGID_Y`  int  NOT NULL,"  
-				+ " `ANA_GRUP`  nvarchar (25) NOT NULL,"
-				+ " `USER`  nvarchar (15) NOT NULL)";
+				+ " `ANA_GRUP`  varchar (25) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NOT NULL,"
+				+ " `USER`  varchar (15) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NOT NULL)";
 		stmt = con.createStatement();  
 		stmt.executeUpdate(sql);
 		sql = "CREATE TABLE  `ALT_GRUP_DEGISKEN`("
 				+ " `ALID` INTEGER AUTO_INCREMENT PRIMARY KEY  NOT NULL,"
 				+ " `ALID_Y`  int  NOT NULL,"  
 				+ " `ANA_GRUP`  int  NOT NULL,"
-				+ " `ALT_GRUP`  nvarchar (25) NOT NULL,"
-				+ " `USER`  nvarchar (15) NOT NULL)";
+				+ " `ALT_GRUP`  varchar (25) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NOT NULL,"
+				+ " `USER`  varchar (15) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NOT NULL)";
 		stmt = con.createStatement();  
 		stmt.executeUpdate(sql);
 		sql = "CREATE TABLE  `ACIKLAMA`("
 				+ " `ACID`  INTEGER AUTO_INCREMENT PRIMARY KEY  NOT NULL,"
 				+ " `EVRAK_CINS`  nvarchar (3) NULL,"
 				+ " `SATIR`  int  NULL,"
-				+ " `EVRAK_NO`  nvarchar (10) NULL,"
-				+ " `ACIKLAMA`  nvarchar (50) NULL,"
-				+ " `Gir_Cik`  nvarchar (1) NULL,"
+				+ " `EVRAK_NO`  varchar (10) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL,"
+				+ " `ACIKLAMA`  varchar (50) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL,"
+				+ " `Gir_Cik`  varchar (1) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL,"
 				+ " INDEX IX_ACIKLAMA  (`EVRAK_CINS` ASC, `EVRAK_NO` ASC, `Gir_Cik` ASC)  VISIBLE )";
 		stmt = con.createStatement();  
 		stmt.executeUpdate(sql);
 		sql = "CREATE TABLE `BOZUK_MAL`( "
-				+ " `Evrak_No`  nvarchar (10) NOT NULL,"
-				+ " `Kodu`  nvarchar (12) NULL,"
+				+ " `Evrak_No`  varchar (10) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NOT NULL,"
+				+ " `Kodu`  varchar (12) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL,"
 				+ " `Tarih` datetime NULL,"
 				+ " `Miktar`  DOUBLE  NULL,"
 				+ " `Fiat`  DOUBLE  NULL,"
 				+ " `Ana_Grup`  int  NULL,"
 				+ " `Alt_Grup`  int  NULL,"
 				+ " `Depo`  int  NULL,"
-				+ " `Ozel_Kod`  nvarchar (10) NULL,"
-				+ " `Izahat`  nvarchar (40) NULL,"
+				+ " `Ozel_Kod`  varchar (10) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL,"
+				+ " `Izahat`  varchar (40) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL,"
 				+ " `Cins`  nvarchar (1) NULL,"
-				+ " `USER`  nvarchar (15) NOT NULL)";
+				+ " `USER`  varchar (15) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NOT NULL)";
 
 		stmt = con.createStatement();  
 		stmt.executeUpdate(sql);
 		sql = "CREATE TABLE  `DEPO_DEGISKEN`("
 				+ " `DPID` INTEGER AUTO_INCREMENT PRIMARY KEY  NOT NULL,"
 				+ " `DPID_Y`  int   NOT NULL,"   
-				+ " `DEPO`  nvarchar (25) NOT NULL,"
-				+ " `USER`  nvarchar (15) NOT NULL)";
+				+ " `DEPO`  varchar (25) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NOT NULL,"
+				+ " `USER`  varchar (15) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NOT NULL)";
 		stmt = con.createStatement();  
 		stmt.executeUpdate(sql);
 		sql = "CREATE TABLE  `OZ_KOD_1_DEGISKEN`("
 				+ " `OZ1ID`  INTEGER AUTO_INCREMENT PRIMARY KEY  NOT NULL,"
 				+ " `OZ1ID_Y`  int   NOT NULL,"  
-				+ " `OZEL_KOD_1`  nvarchar (25) NOT NULL,"
-				+ " `USER`  nvarchar (15) NOT NULL)";
+				+ " `OZEL_KOD_1`  varchar (25) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NOT NULL,"
+				+ " `USER`  varchar (15) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NOT NULL)";
 		stmt = con.createStatement();  
 		stmt.executeUpdate(sql);
 		sql = "CREATE TABLE `OZ_KOD_2_DEGISKEN`("
 				+ " `OZ2ID`   INTEGER AUTO_INCREMENT PRIMARY KEY  NOT NULL,"
 				+ " `OZ2ID_Y`  int  NOT NULL,"   
-				+ " `OZEL_KOD_2`  nvarchar (25) NOT NULL,"
-				+ " `USER`  nvarchar (15) NOT NULL)";
+				+ " `OZEL_KOD_2`  varchar (25) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NOT NULL,"
+				+ " `USER`  varchar (15) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NOT NULL)";
 		stmt = con.createStatement();  
 		stmt.executeUpdate(sql);
 		sql = "CREATE TABLE `DEPOEVRAK`("
@@ -354,12 +354,12 @@ public class STOK_MYSQL implements ISTOK {
 		stmt = con.createStatement();  
 		stmt.executeUpdate(sql);
 		sql = "CREATE TABLE `YETKILER`("
-				+ " `KULLANICI`  nvarchar (25) NULL,"
-				+ " `HESAP`  nvarchar (12) NULL,"
+				+ " `KULLANICI`  varchar (25) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL,"
+				+ " `HESAP`  varchar (12) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL,"
 				+ " `TAM_YETKI` TINYINT NULL,"
 				+ " `GORUNTU` TINYINT NULL,"
 				+ " `LEVEL`  int  NOT NULL,"
-				+ " `USER`  nvarchar (15) NOT NULL)";
+				+ " `USER`  varchar (15) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NOT NULL)";
 		stmt = con.createStatement();  
 		stmt.executeUpdate(sql);
 		sql = "CREATE TABLE `IRS_EVRAK_FORMAT`("
@@ -3700,9 +3700,9 @@ public class STOK_MYSQL implements ISTOK {
 		String sql = "" ;
 		sql = "CREATE TABLE  `loglama` ("
 				+ "  `TARIH` DATETIME NOT NULL,"
-				+ "  `MESAJ` VARCHAR(100) NULL,"
-				+ "  `EVRAK` VARCHAR(15) NULL,"
-				+ "  `USER_NAME` VARCHAR(15) NULL,"
+				+ "  `MESAJ` VARCHAR(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL,"
+				+ "  `EVRAK` VARCHAR(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL,"
+				+ "  `USER_NAME` VARCHAR(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL,"
 				+ "  INDEX `IX_LOGLAMA` (`TARIH` ASC, `USER_NAME` ASC) VISIBLE);";
 		stmt = con.createStatement();  
 		stmt.executeUpdate(sql);		

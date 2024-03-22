@@ -59,15 +59,15 @@ public class FIHRIST_MYSQL implements I_Fihrist{
 		String sql = null;
 		sql = "CREATE TABLE `FIHRIST`("
 				+ " ID int AUTO_INCREMENT PRIMARY KEY,"
-				+ " `Adi` nvarchar(50) NOT NULL, "
-				+ " `Tel_1` nvarchar(25) NULL,"
-				+ " `Tel_2` nvarchar(25) NULL,"
-				+ " `Tel_3` nvarchar(25) NULL,"
-				+ " `Tel_4` nvarchar(25) NULL,"
-				+ " `Fax` nvarchar(25) NULL,"
-				+ " `Note` nvarchar(50) NULL,"
-				+ " `Note2` nvarchar(50) NULL,"
-				+ " `Mail` nvarchar(50) NULL ,"
+				+ " `Adi` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NOT NULL, "
+				+ " `Tel_1` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL,"
+				+ " `Tel_2` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL,"
+				+ " `Tel_3` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL,"
+				+ " `Tel_4` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL,"
+				+ " `Fax` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL,"
+				+ " `Note` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL,"
+				+ " `Note2` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL,"
+				+ " `Mail` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL ,"
 				+ "  INDEX `IX_FIHRIST` (`Adi` ASC) VISIBLE);";
 		stmt = con.createStatement();  
 		stmt.executeUpdate(sql);

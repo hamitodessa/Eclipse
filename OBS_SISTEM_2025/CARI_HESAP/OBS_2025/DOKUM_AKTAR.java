@@ -1,5 +1,6 @@
 package OBS_2025;
 
+import java.awt.AWTKeyStroke;
 import java.awt.BorderLayout;
 import java.awt.Font;
 
@@ -23,9 +24,12 @@ import OBS_C_2025.TARIH_CEVIR;
 import raven.toast.Notifications;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 import javax.swing.JCheckBox;
+import javax.swing.JDialog;
+
 import java.awt.Cursor;
 
 import javax.swing.JButton;
@@ -41,12 +45,14 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 import java.awt.event.ActionEvent;
 
+@SuppressWarnings({"unchecked","rawtypes"})
 public class DOKUM_AKTAR extends JInternalFrame {
 
 	private static final long serialVersionUID = 1L;
@@ -228,7 +234,7 @@ public class DOKUM_AKTAR extends JInternalFrame {
 						cal.setTime(date);
 						cal.add(Calendar.DAY_OF_MONTH, -1); 
 						dateBaslama.setDate(new Date(cal.getTimeInMillis()));
-					} catch (ParseException e1) {
+					} catch (Exception e1) {
 						e1.printStackTrace();
 					}
 				}
@@ -241,7 +247,7 @@ public class DOKUM_AKTAR extends JInternalFrame {
 						cal.setTime(date);
 						cal.add(Calendar.DAY_OF_MONTH, 1); // Add 30 days
 						dateBaslama.setDate(new Date(cal.getTimeInMillis()));
-					} catch (ParseException e1) {
+					} catch (Exception e1) {
 						e1.printStackTrace();
 					}
 				}
@@ -287,7 +293,7 @@ public class DOKUM_AKTAR extends JInternalFrame {
 						cal.setTime(date);
 						cal.add(Calendar.DAY_OF_MONTH, -1); 
 						dateBitis.setDate(new Date(cal.getTimeInMillis()));
-					} catch (ParseException e1) {
+					} catch (Exception e1) {
 						e1.printStackTrace();
 					}
 				}
@@ -300,7 +306,7 @@ public class DOKUM_AKTAR extends JInternalFrame {
 						cal.setTime(date);
 						cal.add(Calendar.DAY_OF_MONTH, 1); // Add 30 days
 						dateBitis.setDate(new Date(cal.getTimeInMillis()));
-					} catch (ParseException e1) {
+					} catch (Exception e1) {
 						e1.printStackTrace();
 					}
 				}
@@ -315,9 +321,28 @@ public class DOKUM_AKTAR extends JInternalFrame {
 		btnAktar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
+					if(textCKodu.getText().equals(""))
+					{
+						textCKodu.requestFocus();
+						return;
+					}
+					JOptionPane optionPane = new JOptionPane("Aktarma Islemi Baslayacak ?", JOptionPane.QUESTION_MESSAGE,
+							JOptionPane.YES_NO_OPTION, null,oac.options,  oac.options[1]);
+					optionPane.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+					JDialog	dialog = optionPane.createDialog("Dokum Aktarma");
+					Set focusTraversalKeys = new HashSet(dialog.getFocusTraversalKeys(0));
+					focusTraversalKeys.add(AWTKeyStroke.getAWTKeyStroke(KeyEvent.VK_RIGHT, KeyEvent.VK_UNDEFINED));
+					focusTraversalKeys.add(AWTKeyStroke.getAWTKeyStroke(KeyEvent.VK_LEFT, KeyEvent.VK_UNDEFINED));
+					dialog.setFocusTraversalKeys(0, focusTraversalKeys);
+					dialog.setVisible(true);
+					dialog.dispose();
+					if(optionPane.getValue() == null)
+						return;
+					else
+						if(oac.mesajDeger(optionPane.getValue().toString()) ==0)
+							return;
 					akTAR();
 				} catch (Exception e1) {
-					
 					e1.printStackTrace();
 				}
 			}
@@ -336,10 +361,8 @@ public class DOKUM_AKTAR extends JInternalFrame {
 		if (textDosya.getText().equals("")) return;
 		if (textUser.getText().equals("")) return;
 		if (textPassword.getText().equals("")) return;
-		//if (textIp.getText().equals("")) return;
-		//if (textInstance.getText().equals("")) return;
-		//if (textPort.getText().equals("")) return;
-		try {
+		try 
+		{
 			getContentPane().setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 			if( BAGLAN.cariDizin.hAN_SQL.equals("MS SQL"))
 			{
@@ -382,6 +405,8 @@ public class DOKUM_AKTAR extends JInternalFrame {
 		try 
 		{
 			getContentPane().setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+			GRID_TEMIZLE.grid_temizle(DISTAN_AKTAR.tblexcell);
+			DefaultTableModel defaultModel = (DefaultTableModel) DISTAN_AKTAR.tblexcell.getModel();
 			if( BAGLAN.cariDizin.hAN_SQL.equals("MY SQL"))
 			{
 				Class.forName("com.mysql.cj.jdbc.Driver");
@@ -400,9 +425,7 @@ public class DOKUM_AKTAR extends JInternalFrame {
 						" ORDER BY TARIH   ";
 				PreparedStatement stmt = MS_conn.prepareStatement(sql);
 				rss = stmt.executeQuery();
-
-				GRID_TEMIZLE.grid_temizle(DISTAN_AKTAR.tblexcell);
-				DefaultTableModel defaultModel = (DefaultTableModel) DISTAN_AKTAR.tblexcell.getModel();
+				
 				Date  tar  ;
 				while (rss.next())
 				{
@@ -427,9 +450,6 @@ public class DOKUM_AKTAR extends JInternalFrame {
 						"  ORDER BY TARIH   ";
 				PreparedStatement stmt = MS_conn.prepareStatement(sql);
 				rss = stmt.executeQuery();
-
-				GRID_TEMIZLE.grid_temizle(DISTAN_AKTAR.tblexcell);
-				DefaultTableModel defaultModel = (DefaultTableModel) DISTAN_AKTAR.tblexcell.getModel();
 				Date  tar  ;
 				while (rss.next())
 				{

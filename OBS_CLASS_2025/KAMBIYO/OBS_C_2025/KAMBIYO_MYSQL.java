@@ -124,10 +124,21 @@ public class KAMBIYO_MYSQL implements IKAMBIYO {
 	@Override
 	public void create_table(String fir_adi) throws SQLException {
 		String sql =null;
-		sql = "CREATE TABLE `CEK`(`Cek_No`  nvarchar(10)  PRIMARY KEY  ,`Vade` DATE ,`Giris_Bordro`  nvarchar(10),`Cikis_Bordro`  nvarchar(10) ," 
-				+	" `Giris_Tarihi` DATE , `Cikis_Tarihi` DATE , `Giris_Musteri` nvarchar(12),`Cikis_Musteri` nvarchar(12),`Banka` nvarchar(25),`Sube` nvarchar(25), " 
-				+ " `Tutar` DOUBLE ,`Cins` nvarchar(3), `Durum` nvarchar(1),`T_Tarih` DATE , `Seri_No` nvarchar(15),`Ilk_Borclu` nvarchar(30),`Cek_Hesap_No` nvarchar(15), "
-				+ " `Giris_Ozel_Kod` nvarchar(15) ,`Cikis_Ozel_Kod` nvarchar(15),`USER` nvarchar(15))";
+		sql = "CREATE TABLE `CEK`(`Cek_No`  nvarchar(10)  PRIMARY KEY  ,`Vade` DATE , " + 
+				" `Giris_Bordro`  varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci , " + 
+				" `Cikis_Bordro`  varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  ," +
+				" `Giris_Tarihi` DATE , `Cikis_Tarihi` DATE , " + 
+				" `Giris_Musteri` varchar(12) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  , " + 
+				" `Cikis_Musteri` varchar(12) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci , " +
+				" `Banka` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci , " + 
+				" `Sube` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci , " +
+				" `Tutar` DOUBLE ,`Cins` varchar(3) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci ," + 
+				" `Durum` nvarchar(1),`T_Tarih` DATE , `Seri_No` nvarchar(15), " + 
+				" `Ilk_Borclu` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci , " + 
+				" `Cek_Hesap_No` varchar(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci , " +
+				" `Giris_Ozel_Kod` varchar(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  , " + 
+				" `Cikis_Ozel_Kod` varchar(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci , " + 
+				" `USER` nvarchar(15))";
 		stmt = con.createStatement();  
 		stmt.executeUpdate(sql);
 		sql = "CREATE TABLE `SENET`(`Senet_No`  nvarchar(10)  PRIMARY KEY,`Vade` DATE,`Giris_Bordro`  nvarchar(10),`Cikis_Bordro`  nvarchar(10) ," 
@@ -135,23 +146,23 @@ public class KAMBIYO_MYSQL implements IKAMBIYO {
 				+ " `T_Tarih` DATE , `Ilk_Borclu` nvarchar(30),`Sehir` nvarchar(15),`Giris_Ozel_Kod` nvarchar(15) ,`Cikis_Ozel_Kod` nvarchar(15),`USER` nvarchar(15))";
 		stmt = con.createStatement();  
 		stmt.executeUpdate(sql);
-		sql = "CREATE TABLE `EVRAK`(`EVRAK` nvarchar(5),`NO` integer )";
+		sql = "CREATE TABLE `EVRAK`(`EVRAK` varchar(5) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci ,`NO` integer )";
 		stmt = con.createStatement();  
 		stmt.executeUpdate(sql);
-		sql = "CREATE TABLE `ACIKLAMA`(`ACID`  INTEGER AUTO_INCREMENT PRIMARY KEY,`EVRAK_CINS` nvarchar(3) ,`SATIR` int ,`EVRAK_NO` nvarchar(10) ,`ACIKLAMA` nvarchar(50) ,`Gir_Cik` nvarchar(1))";
+		sql = "CREATE TABLE `ACIKLAMA`(`ACID`  INTEGER AUTO_INCREMENT PRIMARY KEY,`EVRAK_CINS` nvarchar(3) ,`SATIR` int ,`EVRAK_NO` nvarchar(10) ,`ACIKLAMA` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  ,`Gir_Cik` nvarchar(1))";
 		stmt = con.createStatement();  
 		stmt.executeUpdate(sql);
 		sql = "CREATE TABLE `OZEL` ("
 				+ "  `OZID` INTEGER AUTO_INCREMENT PRIMARY KEY,"
-				+ "  `YONETICI` VARCHAR(25) NULL,"
-				+ "  `YON_SIFRE` VARCHAR(15) NULL,"
-				+ "  `FIRMA_ADI` VARCHAR(50) NULL)";  
+				+ "  `YONETICI` VARCHAR(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL,"
+				+ "  `YON_SIFRE` VARCHAR(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL,"
+				+ "  `FIRMA_ADI` VARCHAR(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL)";  
 		stmt = con.createStatement();  
 		stmt.executeUpdate(sql);
 		sql = "CREATE TABLE `YETKILER`( "
 				+ " `YETID` INTEGER AUTO_INCREMENT PRIMARY KEY,"
-				+ "`KULLANICI` nvarchar(25) NULL,"
-				+ "`KARTON` nvarchar(5) NULL,"
+				+ "`KULLANICI` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL,"
+				+ "`KARTON` varchar(5) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL,"
 				+ "`TAM_YETKI` TINYINT NULL,"
 				+ "`GORUNTU` TINYINT NULL);";      
 		stmt = con.createStatement();  
@@ -422,9 +433,9 @@ public class KAMBIYO_MYSQL implements IKAMBIYO {
 		String sql = "" ;
 		sql = "CREATE TABLE  `loglama` ("
 				+ "  `TARIH` DATETIME NOT NULL,"
-				+ "  `MESAJ` VARCHAR(100) NULL,"
-				+ "  `EVRAK` VARCHAR(15) NULL,"
-				+ "  `USER_NAME` VARCHAR(15) NULL,"
+				+ "  `MESAJ` VARCHAR(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL,"
+				+ "  `EVRAK` VARCHAR(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL,"
+				+ "  `USER_NAME` VARCHAR(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL,"
 				+ "  INDEX `IX_LOGLAMA` (`TARIH` ASC, `USER_NAME` ASC) VISIBLE);";
 		stmt = con.createStatement();  
 		stmt.executeUpdate(sql);

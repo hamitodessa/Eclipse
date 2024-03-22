@@ -114,56 +114,56 @@ public class SMS_MYSQL implements ISMS{
 		String sql = null;
 		sql = "CREATE TABLE `SMS_HESAP`( "
 				+ " `TEL_NO`  nvarchar (15) NOT NULL  PRIMARY KEY ,"
-				+ "`UNVAN`  nvarchar (50) NULL,"
-				+ "`GRUP`  nvarchar (15) NULL,"
-				+ "`KODU`  nvarchar (12) NULL,"
+				+ "`UNVAN`  varchar (50) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL,"
+				+ "`GRUP`  varchar (15) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL,"
+				+ "`KODU`  varchar (12) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL,"
 				+ "`DURUM`  TINYINT NULL,"
-				+ "`USER_NAME`  nvarchar (20) NULL,"
+				+ "`USER_NAME`  varchar (15) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL,"
 				+ "  INDEX `IDX_SMS_HESAP` (`TEL_NO` ASC, `UNVAN` ASC,  `GRUP` ASC) VISIBLE)";
 		stmt = con.createStatement();  
 		stmt.executeUpdate(sql);
 		sql = "CREATE TABLE `SMS_BILGILERI`( "
 				+ "`SID` INTEGER AUTO_INCREMENT PRIMARY KEY  NOT NULL,"
-				+ " `USER_NAME`  nvarchar (20) NULL,"
+				+ " `USER_NAME`  varchar (15) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL,"
 				+ " `TARIH` datetime NULL,"
-				+ " `MOBILE`  nvarchar (12) NULL,"
-				+ " `MESAJ`  nvarchar (140) NULL,"
-				+ " `HESAP`  nvarchar (12) NULL,"
-				+ "  `UNVAN`  nvarchar (50) NULL,"
+				+ " `MOBILE`  varchar (12) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL,"
+				+ " `MESAJ`  varchar (140) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL,"
+				+ " `HESAP`  varchar (12) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL,"
+				+ "  `UNVAN`  varchar (50) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL,"
 				+ "  INDEX `IDX_SMS_BILGILERI` (`TARIH` ASC,   `MOBILE` ASC,  `HESAP` ASC,  `UNVAN` ASC) VISIBLE)";
 		stmt = con.createStatement();  
 		stmt.executeUpdate(sql);
 		sql = "CREATE TABLE `MAIL_HESAP`( "
-				+ "  `MAIL`  nvarchar (50) PRIMARY KEY  NOT NULL ,"
-				+ "  `UNVAN`  nvarchar (50) NULL,"
-				+ "  `GRUP`  nvarchar (15) NULL,"
-				+ "  `KODU`  nvarchar (12) NULL,"
+				+ "  `MAIL`  varchar (50) PRIMARY KEY  CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NOT NULL ,"
+				+ "  `UNVAN`  varchar (50) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL,"
+				+ "  `GRUP`  varchar (15) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL,"
+				+ "  `KODU`  varchar (12) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL,"
 				+ "  `DURUM` TINYINT NULL,"
-				+ "  `USER_NAME`  nvarchar (20) NULL,"
+				+ "  `USER_NAME` varchar (15) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL,"
 				+ "  INDEX `IDX_MAIL_HESAP` ( `MAIL` ASC,  `UNVAN` ASC, `GRUP` ASC, `KODU` ASC) VISIBLE)";
 		stmt = con.createStatement();  
 		stmt.executeUpdate(sql);
 		sql = "CREATE TABLE `MAIL_BILGILERI`( "
 				+ "  `MID` INTEGER AUTO_INCREMENT PRIMARY KEY,"
 				+ "  `TARIH` datetime NULL,"
-				+ "  `MAIL`  nvarchar (50) NULL,"
-				+ "  `KONU`  nvarchar (50) NULL,"
-				+ "  `MESAJ`  nvarchar (300) NULL,"
-				+ "   `HESAP`  nvarchar (12) NULL,"
-				+ "  `UNVAN`  nvarchar (50) NULL,"
-				+ "  `GONDEREN`  nvarchar (50) NULL,"
-				+ "  `USER_NAME`  nvarchar (20) NULL,"
+				+ "  `MAIL`  varchar (50) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL,"
+				+ "  `KONU`  varchar (50) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL,"
+				+ "  `MESAJ`  varchar (300) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL,"
+				+ "   `HESAP`  varchar (12) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL,"
+				+ "  `UNVAN`  varchar (50) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL,"
+				+ "  `GONDEREN`  varchar (50) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL,"
+				+ "  `USER_NAME`  varchar (15) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL,"
 				+ "  INDEX `IDX_MAIL_HESAP` ( `TARIH` ASC ,`MAIL` ASC, `HESAP` ASC, `UNVAN` ASC, `GONDEREN` ASC, `KONU` ASC) VISIBLE)";
 		stmt = con.createStatement();  
 		stmt.executeUpdate(sql);
 		sql = "CREATE TABLE `GIDEN_RAPOR` ( EID INTEGER AUTO_INCREMENT PRIMARY KEY , "
 				+ " `TARIH` DATETIME ,"
-				+ " `KONU` nvarchar(50),"
-				+ " `RAPOR` nvarchar(50),"
-				+ " `ALICI` nvarchar(50),"
-				+ " `GONDEREN` nvarchar(50),"
-				+ " `ACIKLAMA` nvarchar(300),"
-				+ "  `USER_NAME` nvarchar(20)) ";
+				+ " `KONU` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci ,"
+				+ " `RAPOR` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci ,"
+				+ " `ALICI` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci ,"
+				+ " `GONDEREN` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci ,"
+				+ " `ACIKLAMA` varchar(300) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci ,"
+				+ "  `USER_NAME` varchar(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci ) ";
 		stmt = con.createStatement();  
 		stmt.executeUpdate(sql);
 	}
@@ -348,9 +348,9 @@ public class SMS_MYSQL implements ISMS{
 		String sql = "" ;
 		sql = "CREATE TABLE  `loglama` ("
 				+ "  `TARIH` DATETIME NOT NULL,"
-				+ "  `MESAJ` VARCHAR(100) NULL,"
-				+ "  `EVRAK` VARCHAR(15) NULL,"
-				+ "  `USER_NAME` VARCHAR(15) NULL,"
+				+ "  `MESAJ` VARCHAR(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL,"
+				+ "  `EVRAK` VARCHAR(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL,"
+				+ "  `USER_NAME` VARCHAR(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL,"
 				+ "  INDEX `IX_LOGLAMA` (`TARIH` ASC, `USER_NAME` ASC) VISIBLE);";
 		stmt = con.createStatement();  
 		stmt.executeUpdate(sql);

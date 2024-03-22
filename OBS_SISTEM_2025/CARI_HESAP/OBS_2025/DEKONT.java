@@ -1574,9 +1574,23 @@ public class DEKONT extends JInternalFrame {
 		if (txtevrak.getText().equals("")  ) return ;
 		try 
 		{
-			int g =  JOptionPane.showOptionDialog( null,  "Islem Dosyadan Silinecek ..?", "Cari Dosyasindan Evrak Silme",   JOptionPane.YES_NO_OPTION,
-					JOptionPane.QUESTION_MESSAGE,	   			 	null,   	oac.options,   	oac.options[1]); 
-			if(g != 0 ) { return;	}
+			JOptionPane optionPane = new JOptionPane("Islem Dosyadan Silinecek ..?", JOptionPane.QUESTION_MESSAGE,
+					JOptionPane.YES_NO_OPTION, null,oac.options,  oac.options[1]);
+			optionPane.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+
+			JDialog	dialog = optionPane.createDialog("Cari Dosyasindan Evrak Silme");
+			Set focusTraversalKeys = new HashSet(dialog.getFocusTraversalKeys(0));
+			focusTraversalKeys.add(AWTKeyStroke.getAWTKeyStroke(KeyEvent.VK_RIGHT, KeyEvent.VK_UNDEFINED));
+			focusTraversalKeys.add(AWTKeyStroke.getAWTKeyStroke(KeyEvent.VK_LEFT, KeyEvent.VK_UNDEFINED));
+			dialog.setFocusTraversalKeys(0, focusTraversalKeys);
+			dialog.setVisible(true);
+			dialog.dispose();
+			if(optionPane.getValue() == null)
+				return;
+			else
+				if(oac.mesajDeger(optionPane.getValue().toString()) ==0)
+					return;
+			
 			lOG_BILGI lBILGI = new lOG_BILGI();
 			lBILGI.setmESAJ(txtevrak.getText() + " Dekont Silme");
 			lBILGI.seteVRAK(txtevrak.getText());
@@ -1630,6 +1644,7 @@ public class DEKONT extends JInternalFrame {
 			{
 				JOptionPane optionPane = new JOptionPane("Islem Dosyada mevcut Fis eskisi ile degisecek ..", JOptionPane.QUESTION_MESSAGE,
 						JOptionPane.YES_NO_OPTION, null,oac.options,  oac.options[1]);
+				optionPane.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 				JDialog	dialog = optionPane.createDialog("Dekont Kaydet");
 				Set focusTraversalKeys = new HashSet(dialog.getFocusTraversalKeys(0));
 				focusTraversalKeys.add(AWTKeyStroke.getAWTKeyStroke(KeyEvent.VK_RIGHT, KeyEvent.VK_UNDEFINED));

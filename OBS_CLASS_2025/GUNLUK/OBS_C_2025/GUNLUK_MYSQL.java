@@ -126,25 +126,35 @@ public class GUNLUK_MYSQL implements IGUNLUK{
 	@Override
 	public void create_table(String fir_adi) throws SQLException { //`ACID`  INTEGER AUTO_INCREMENT PRIMARY KEY
 		String sql = null;
-		sql = "CREATE TABLE `GOREV` (`GID` INTEGER AUTO_INCREMENT NOT NULL PRIMARY KEY , `BASL_TARIH` DATE , `BASL_SAAT` nvarchar(5), `BIT_TARIH` DATE , `BIT_SAAT` nvarchar(5),`TEKRARLA` bit,`ISIM` nvarchar(30),`GOREV` nvarchar(30),`YER` nvarchar(30),`MESAJ` nvarchar(100) ,`SECENEK` nvarchar(10),`DEGER` INTEGER ,`USER` nvarchar(15) NULL)" ;  
+		sql = "CREATE TABLE `GOREV` (`GID` INTEGER AUTO_INCREMENT NOT NULL PRIMARY KEY , `BASL_TARIH` DATE , `BASL_SAAT` nvarchar(5), `BIT_TARIH` DATE , `BIT_SAAT` nvarchar(5),`TEKRARLA` bit, " + 
+				" `ISIM` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci , " + 
+				" `GOREV` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci , " + 
+				" `YER` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci , " + 
+				" `MESAJ` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  , " + 
+				" `SECENEK` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci ,`DEGER` INTEGER , " + 
+				" `USER` varchar(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL)" ;  
 		stmt = con.createStatement();  
 		stmt.executeUpdate(sql);
-		sql = "CREATE TABLE GUNLUK ( `GRVID` INTEGER AUTO_INCREMENT NOT NULL PRIMARY KEY ,  `GID` INTEGER  , `TARIH` DATE ,`SAAT` nvarchar(5),`ISIM` nvarchar(30),"
-				+ " `GOREV` nvarchar(30),`YER` nvarchar(30),`MESAJ` nvarchar(100) ,`USER` nvarchar(15) NULL,"
+		sql = "CREATE TABLE GUNLUK ( `GRVID` INTEGER AUTO_INCREMENT NOT NULL PRIMARY KEY ,  `GID` INTEGER  , `TARIH` DATE ,`SAAT` nvarchar(5), " + 
+				" `ISIM` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci ," +
+				" `GOREV` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci , " + 
+				" `YER` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci , " + 
+				" `MESAJ` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  ," + 
+				" `USER` varchar(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL,"
 				+ " INDEX `IDX_GUNLUK` (`TARIH` ASC) VISIBLE);";
 		stmt = con.createStatement();  
 		stmt.executeUpdate(sql);
 		sql = "CREATE TABLE `OZEL` ("
 				+ "  `OZID` INTEGER AUTO_INCREMENT PRIMARY KEY,"
-				+ "  `YONETICI` VARCHAR(25) NULL,"
-				+ "  `YON_SIFRE` VARCHAR(15) NULL,"
-				+ "  `FIRMA_ADI` VARCHAR(50) NULL)";  
+				+ "  `YONETICI` VARCHAR(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL,"
+				+ "  `YON_SIFRE` VARCHAR(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL,"
+				+ "  `FIRMA_ADI` VARCHAR(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL)";  
 		stmt = con.createStatement();  
 		stmt.executeUpdate(sql);
 		sql = "CREATE TABLE `YETKILER`( "
 				+ " `YETID` INTEGER AUTO_INCREMENT PRIMARY KEY,"
-				+ "`KULLANICI` nvarchar(25) NULL,"
-				+ "`KARTON` nvarchar(5) NULL,"
+				+ "`KULLANICI` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL,"
+				+ "`KARTON` varchar(5) CHARACTER SET utf8mb4 COLLATE utf8mb4_turkish_ci  NULL,"
 				+ "`TAM_YETKI` TINYINT NULL,"
 				+ "`GORUNTU` TINYINT NULL);";     
 		stmt = con.createStatement();  

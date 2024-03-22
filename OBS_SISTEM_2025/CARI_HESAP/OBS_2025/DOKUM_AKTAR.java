@@ -83,7 +83,6 @@ public class DOKUM_AKTAR extends JInternalFrame {
 		panel.add(lblAlinacakDosya);
 		
 		textDosya = new Obs_TextFIeld();
-		textDosya.setText("019");
 		textDosya.setColumns(10);
 		textDosya.setBounds(107, 22, 75, 20);
 		panel.add(textDosya);
@@ -125,25 +124,21 @@ public class DOKUM_AKTAR extends JInternalFrame {
 		panel_3.add(textPort);
 		
 		textInstance = new Obs_TextFIeld();
-		textInstance.setText("SQLEXPRESS");
 		textInstance.setColumns(10);
 		textInstance.setBounds(100, 125, 159, 20);
 		panel_3.add(textInstance);
 		
 		textIp = new Obs_TextFIeld();
-		textIp.setText("78.189.76.247:1433");
 		textIp.setColumns(10);
 		textIp.setBounds(100, 100, 159, 20);
 		panel_3.add(textIp);
 		
 		textPassword = new Obs_TextFIeld();
-		textPassword.setText("197227oOk");
 		textPassword.setColumns(10);
 		textPassword.setBounds(100, 75, 159, 20);
 		panel_3.add(textPassword);
 		
 		textUser = new Obs_TextFIeld();
-		textUser.setText("sa");
 		textUser.setColumns(10);
 		textUser.setBounds(100, 50, 159, 20);
 		panel_3.add(textUser);
@@ -344,7 +339,6 @@ public class DOKUM_AKTAR extends JInternalFrame {
 				cumle = "jdbc:sqlserver://" + serverString + ";instanceName=" + textInstance.getText() + ";database=OK_Car" + textDosya.getText() ;
 				Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 				MS_conn = DriverManager.getConnection(cumle,textUser.getText(),textPassword.getText()); 
-				btnAktar.setEnabled(true);
 			}
 			else 
 			{
@@ -356,8 +350,8 @@ public class DOKUM_AKTAR extends JInternalFrame {
 					serverString = textIp.getText() +":" + textPort.getText() ;	
 				String url = "jdbc:mysql://"+ serverString +"/ok_car" +  textDosya.getText()  ; 
 				MS_conn = DriverManager.getConnection(url, textUser.getText(),textPassword.getText());
-				btnAktar.setEnabled(true);
 			}
+			btnAktar.setEnabled(true);
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.INFO,"Baglanti Saglandi" );
 			getContentPane().setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 		} catch (Exception e) {

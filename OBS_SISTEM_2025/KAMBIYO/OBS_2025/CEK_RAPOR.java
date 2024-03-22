@@ -177,6 +177,7 @@ public class CEK_RAPOR extends JInternalFrame {
 	{
 		try {
 			ResultSet rs = null ;
+			GRID_TEMIZLE.grid_temizle(table);
 			long startTime = System.currentTimeMillis(); 
 			rs = ka_Access.cek_rapor(FILTRE.txtcn1.getText(), FILTRE.txtcn2.getText(),
 					TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_6), TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_6_1),
@@ -195,7 +196,7 @@ public class CEK_RAPOR extends JInternalFrame {
 				lbladet.setText(FORMATLAMA.doub_0(0));
 				return;
 			} 
-			GRID_TEMIZLE.grid_temizle(table);
+			
 			table.setModel(DbUtils.resultSetToTableModel(rs));
 
 			JTableHeader th = table.getTableHeader();

@@ -30,6 +30,7 @@ import javax.swing.JFileChooser;
 
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Cursor;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.ParseException;
@@ -194,6 +195,33 @@ public class DISTAN_AKTAR extends JInternalFrame {
 				aciklama_duzelt();
 			}
 		});
+		
+		JButton btnNewButton_10 = new JButton("");
+		btnNewButton_10.setToolTipText("Baska Dosyadan Aktarma");
+		btnNewButton_10.setIcon(new ImageIcon(DISTAN_AKTAR.class.getResource("/ICONLAR/transfer-16.png")));
+
+		btnNewButton_10.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				boolean varmi = OBS_MAIN.pencere_bak("DOKUM AKTAR");
+				if (varmi) 
+				{
+					 try {
+						OBS_MAIN.pencere_aktiv_yap("DOKUM AKTAR");
+					} catch (Exception e1) {
+						e1.printStackTrace();
+					}
+					return;
+				}
+				setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));	
+				JInternalFrame internalFrame;
+				internalFrame  = new  DOKUM_AKTAR();
+				OBS_MAIN.desktopPane.add(internalFrame);
+				internalFrame.setVisible(true);
+				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	
+				
+			}
+		});
+		toolBar_1.add(btnNewButton_10);
 		btnNewButton_1.setIcon(new ImageIcon(DISTAN_AKTAR.class.getResource("/ICONLAR/description-16.png")));
 		toolBar_1.add(btnNewButton_1);
 

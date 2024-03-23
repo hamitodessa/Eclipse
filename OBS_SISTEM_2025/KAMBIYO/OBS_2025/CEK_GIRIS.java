@@ -250,7 +250,6 @@ public class CEK_GIRIS extends JInternalFrame {
 		table.setRowHeight(21);
 		table.getModel().addTableModelListener(new TableModelListener() {
 			public void tableChanged(TableModelEvent e) {
-				// System.out.println("Column: " + e.getColumn() + " Row: " + e.getFirstRow());
 				topla();
 			}
 		});
@@ -281,19 +280,16 @@ public class CEK_GIRIS extends JInternalFrame {
 		panel.add(lblNewLabel_6);
 
 		lblNewLabel_12 = new JLabel("0");
-		//lblNewLabel_12.setForeground(new Color(0, 0, 139));
 		lblNewLabel_12.setBounds(103, 5, 58, 14);
 		panel.add(lblNewLabel_12);
 
 		label = new JLabel("0.00");
-		//label.setForeground(new Color(139, 0, 0));
 		label.setFont(new Font("Tahoma", Font.BOLD, 12));
 		label.setHorizontalAlignment(SwingConstants.RIGHT);
 		label.setBounds(1073, 5, 136, 14);
 		panel.add(label);
 
 		MaterialTabbed tabbedPane = new MaterialTabbed();
-		//tabbedPane.setForeground(new Color(0, 0, 128));
 		tabbedPane.setFont(new Font("Tahoma", Font.BOLD, 14));
 		tabbedPane.setMinimumSize(new Dimension(0, 135));
 		tabbedPane.setMaximumSize(new Dimension(0, 135));

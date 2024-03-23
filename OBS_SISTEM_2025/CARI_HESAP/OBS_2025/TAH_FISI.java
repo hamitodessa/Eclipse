@@ -18,6 +18,7 @@ import OBS_C_2025.dEKONT_BILGI;
 import OBS_C_2025.lOG_BILGI;
 import raven.toast.Notifications;
 
+import java.awt.AWTKeyStroke;
 import java.awt.BorderLayout;
 import javax.swing.JPanel;
 
@@ -90,7 +91,11 @@ import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.swing.JComboBox;
+import javax.swing.JDialog;
 
 import com.toedter.calendar.JCalendar;
 import com.toedter.calendar.JDateChooser;
@@ -108,7 +113,7 @@ import javax.swing.KeyStroke;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 
-@SuppressWarnings({ "static-access"})
+@SuppressWarnings({ "static-access","unchecked","rawtypes"})
 public class TAH_FISI extends JInternalFrame {
 
 	private static final long serialVersionUID = 1L;
@@ -163,11 +168,7 @@ public class TAH_FISI extends JInternalFrame {
 		tabbedPane = new MaterialTabbed();
 		tabbedPane.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent e) {
-				if(tabbedPane.getSelectedIndex()==0)
-				{
-					
-				}
-				else if(tabbedPane.getSelectedIndex() == 1)
+				if(tabbedPane.getSelectedIndex() == 1)
 					ayar_doldur();
 			}
 		});
@@ -420,6 +421,8 @@ public class TAH_FISI extends JInternalFrame {
 					int evr =  c_Access.cari_tahsonfisno(cmbCins.getSelectedIndex());
 					if ( evr == 0 ) { 
 						getContentPane().setCursor(oac.DEFAULT_CURSOR);
+						fis_temizle();
+						textEvrakNo.setText("0");
 						OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING, "Dosyada Hic Kayit Yok" );	
 						return; 
 					} 
@@ -1110,6 +1113,7 @@ public class TAH_FISI extends JInternalFrame {
 				}
 			}
 			fis_temizle();
+			textEvrakNo.setText("0");
 		} catch (Exception ex) {
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage() );
 		}
@@ -1248,11 +1252,24 @@ public class TAH_FISI extends JInternalFrame {
 		if (textEvrakNo.getText().equals("")  ) return ;
 		try 
 		{
-			int g =  JOptionPane.showOptionDialog( null,  "Islem Dosyadan Silinecek ..?", "Cari Dosyasindan Evrak Silme",   JOptionPane.YES_NO_OPTION,
-					JOptionPane.QUESTION_MESSAGE,	   			 	null,   	oac.options,   	oac.options[1]); 
-			if(g != 0 ) { return;	}
+			JOptionPane optionPane = new JOptionPane("Islem Dosyadan Silinecek ..?", JOptionPane.QUESTION_MESSAGE,
+					JOptionPane.YES_NO_OPTION, null,oac.options,  oac.options[1]);
+			optionPane.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+			JDialog	dialog = optionPane.createDialog( "Cari Dosyasindan Evrak Silme");
+			Set focusTraversalKeys = new HashSet(dialog.getFocusTraversalKeys(0));
+			focusTraversalKeys.add(AWTKeyStroke.getAWTKeyStroke(KeyEvent.VK_RIGHT, KeyEvent.VK_UNDEFINED));
+			focusTraversalKeys.add(AWTKeyStroke.getAWTKeyStroke(KeyEvent.VK_LEFT, KeyEvent.VK_UNDEFINED));
+			dialog.setFocusTraversalKeys(0, focusTraversalKeys);
+			dialog.setVisible(true);
+			dialog.dispose();
+			if(optionPane.getValue() == null)
+				return;
+			else
+				if(oac.mesajDeger(optionPane.getValue().toString()) ==0)
+					return;
 			c_Access.tah_sil(textEvrakNo.getText(),cmbCins.getSelectedIndex());
 			fis_temizle();
+			textEvrakNo.setText("0");
 			textEvrakNo.requestFocus();
 		}
 		catch (Exception ex)

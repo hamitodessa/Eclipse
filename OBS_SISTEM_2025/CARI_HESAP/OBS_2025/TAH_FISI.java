@@ -34,6 +34,7 @@ import OBS_C_2025.GRID_TEMIZLE;
 import OBS_C_2025.ImagePanel;
 import OBS_C_2025.JDateChooserEditor;
 import OBS_C_2025.JTextFieldRegularPopupMenu;
+import OBS_C_2025.KambiyoCombo;
 
 import javax.swing.border.EtchedBorder;
 import javax.swing.event.AncestorEvent;
@@ -89,6 +90,7 @@ import java.io.InputStream;
 import java.sql.ResultSet;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashSet;
@@ -154,6 +156,8 @@ public class TAH_FISI extends JInternalFrame {
 	private ScrollPaneWin11 scrollPane;
 	private static JTable tableCek;
 	public static JCheckBox chckbxFisno ;
+	private static ArrayList<String> listBanka = new ArrayList<String>();
+	private static ArrayList<String> listSube =  new ArrayList<String>();
 
 	
 	public TAH_FISI() {
@@ -960,14 +964,22 @@ public class TAH_FISI extends JInternalFrame {
 		TableColumn col ;
 		col = tableCek.getColumnModel().getColumn(0);
 		col.setMinWidth(250);
-		Obs_TextFIeld bnk = new Obs_TextFIeld(40);
-		col.setCellEditor(new DefaultCellEditor(bnk));
+		//Obs_TextFIeld bnk = new Obs_TextFIeld(40);
+		//col.setCellEditor(new DefaultCellEditor(bnk));
+		listBanka = new ArrayList<String> () ;
+		banka_sube_doldur("BANKA") ;
+		KambiyoCombo editorBanka = new KambiyoCombo(listBanka ,tableCek,"banka",40);
+		col.setCellEditor(editorBanka);
 		col.setHeaderRenderer(new SOLA());
 
 		col = tableCek.getColumnModel().getColumn(1);
 		col.setMinWidth(150);
-		Obs_TextFIeld sb = new Obs_TextFIeld(40);
-		col.setCellEditor(new DefaultCellEditor(sb));
+		//Obs_TextFIeld sb = new Obs_TextFIeld(40);
+		//col.setCellEditor(new DefaultCellEditor(sb));
+		listSube = new ArrayList<String> () ;
+		banka_sube_doldur("Sube") ;
+		KambiyoCombo editorSube = new KambiyoCombo(listSube ,tableCek,"sube",40);
+		col.setCellEditor(editorSube);
 		col.setHeaderRenderer(new SOLA());
 		
 		
@@ -1114,6 +1126,8 @@ public class TAH_FISI extends JInternalFrame {
 			}
 			fis_temizle();
 			textEvrakNo.setText("0");
+			banka_sube_doldur("BANKA") ;
+			banka_sube_doldur("SUBE") ;
 		} catch (Exception ex) {
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage() );
 		}
@@ -1270,6 +1284,8 @@ public class TAH_FISI extends JInternalFrame {
 			c_Access.tah_sil(textEvrakNo.getText(),cmbCins.getSelectedIndex());
 			fis_temizle();
 			textEvrakNo.setText("0");
+			banka_sube_doldur("BANKA") ;
+			banka_sube_doldur("SUBE") ;
 			textEvrakNo.requestFocus();
 		}
 		catch (Exception ex)
@@ -1533,5 +1549,40 @@ public class TAH_FISI extends JInternalFrame {
 		} catch (Exception ex) {
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
 		}
+	}
+		private static void banka_sube_doldur(String field) 
+	{
+		try {
+			ResultSet rs = null;
+			rs = c_Access.banka_sube(field);
+			if (!rs.isBeforeFirst() ) {  
+				if (field.equals("BANKA"))
+					listBanka.add("");
+				else
+					listSube.add("");
+			}
+			else
+			{
+				if (field.equals("SUBE"))
+				{
+					listSube.clear();
+					listSube.add("");
+					while (rs.next())
+						listSube.add(rs.getString(field).toString());
+				}
+				else
+				{
+					listBanka.clear();
+					listBanka.add("");
+					while (rs.next())
+						listBanka.add(rs.getString(field).toString());
+				}
+			}
+		}
+		catch (Exception ex)
+		{
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
+		}
+
 	}
 }

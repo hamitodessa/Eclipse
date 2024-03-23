@@ -1480,4 +1480,16 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 		rss.next();
 		return rss.getInt("MAX_NO");
 	}
+	@Override
+	public ResultSet banka_sube(String nerden) throws ClassNotFoundException, SQLException {
+		Class.forName("com.mysql.cj.jdbc.Driver");
+		ResultSet	rss = null;
+		String sql = " SELECT  DISTINCT " + nerden +
+				" FROM TAH_CEK " +
+				" ORDER BY " + nerden;
+		kONTROL();
+		PreparedStatement stmt = con.prepareStatement(sql);
+		rss = stmt.executeQuery();
+		return rss;
+	}
 }

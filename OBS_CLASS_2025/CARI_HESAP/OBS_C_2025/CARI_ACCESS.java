@@ -338,4 +338,8 @@ public class CARI_ACCESS {
 	{
 		return _ICari.cari_tahsonfisno(cins);
 	}
+	public ResultSet banka_sube(String nerden) throws ClassNotFoundException, SQLException
+	{
+		return _ICari.banka_sube(nerden);
+	}
 }

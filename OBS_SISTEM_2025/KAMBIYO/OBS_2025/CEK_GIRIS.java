@@ -204,7 +204,7 @@ public class CEK_GIRIS extends JInternalFrame {
 		
 		listBanka = new ArrayList<String> () ;
 		banka_sube_doldur("Banka") ;
-		KambiyoCombo editorBanka = new KambiyoCombo(listBanka ,table,"banka");
+		KambiyoCombo editorBanka = new KambiyoCombo(listBanka ,table,"banka",25);
 		col.setCellEditor(editorBanka);
 		col.setHeaderRenderer(new SOLA());
 
@@ -212,7 +212,7 @@ public class CEK_GIRIS extends JInternalFrame {
 		col.setMinWidth(150);
 		listSube = new ArrayList<String> () ;
 		banka_sube_doldur("Sube") ;
-		KambiyoCombo editorSube = new KambiyoCombo(listSube ,table,"sube");
+		KambiyoCombo editorSube = new KambiyoCombo(listSube ,table,"sube",25);
 		col.setCellEditor(editorSube);
 		col.setHeaderRenderer(new SOLA());
 

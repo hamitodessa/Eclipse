@@ -460,8 +460,15 @@ public class KAMBIYO_MYSQL implements IKAMBIYO {
 		return rss;
 	}
 	@Override
-	public ResultSet banka_sube(String nerden) {
-		// TODO Auto-generated method stub
-		return null;
+	public ResultSet banka_sube(String nerden) throws ClassNotFoundException, SQLException {
+		Class.forName("com.mysql.cj.jdbc.Driver");
+		ResultSet	rss = null;
+		String sql = " SELECT  DISTINCT " + nerden +
+				" FROM CEK " +
+				" ORDER BY " + nerden;
+		kONTROL();
+		PreparedStatement stmt = con.prepareStatement(sql);
+		rss = stmt.executeQuery();
+		return rss;
 	}
 }

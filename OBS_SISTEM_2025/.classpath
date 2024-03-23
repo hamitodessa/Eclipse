@@ -27,7 +27,6 @@
 	<classpathentry kind="lib" path="C:/ELIF/2025/rs2xml.jar"/>
 	<classpathentry kind="lib" path="C:/ELIF/2025/JSplitButton_1.2.jar"/>
 	<classpathentry kind="lib" path="C:/ELIF/2025/jcalendar-1.4.jar"/>
-	<classpathentry kind="lib" path="C:/ELIF/2025/swingx-core-1.6.2-AutoCompletition.jar"/>
 	<classpathentry kind="lib" path="C:/ELIF/2025/commons-collections-3.1.jar"/>
 	<classpathentry kind="lib" path="C:/ELIF/2025/commons-configuration-1.2.jar"/>
 	<classpathentry kind="lib" path="C:/ELIF/2025/commons-lang-2.1.jar"/>
@@ -93,5 +92,6 @@
 	<classpathentry kind="lib" path="C:/ELIF/2025/jasperreports-fonts-6.20.5.jar"/>
 	<classpathentry kind="lib" path="C:/ELIF/2025/RXTXcomm.jar"/>
 	<classpathentry kind="lib" path="C:/ELIF/2025/gradient-icon-font.jar"/>
+	<classpathentry kind="lib" path="C:/ELIF/2025/swingx-core-1.6.2-AutoCompletition.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

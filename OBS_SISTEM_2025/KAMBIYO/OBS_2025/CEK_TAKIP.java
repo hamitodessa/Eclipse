@@ -132,8 +132,6 @@ public class CEK_TAKIP extends JInternalFrame {
 				});
 			}
 		});
-
-
 		panel_1.add(textField);
 		textField.setColumns(10);
 
@@ -306,7 +304,6 @@ public class CEK_TAKIP extends JInternalFrame {
 		panel.add(lblNewLabel_21);
 
 		lblNewLabel_22 = new JLabel("0.00");
-		//lblNewLabel_22.setForeground(Color.BLUE);
 		lblNewLabel_22.setFont(new Font("Tahoma", Font.BOLD, 12));
 		lblNewLabel_22.setHorizontalAlignment(SwingConstants.LEFT);
 		lblNewLabel_22.setBounds(371, 257, 130, 14);
@@ -424,7 +421,6 @@ public class CEK_TAKIP extends JInternalFrame {
 		lblNewLabel_25.setText("" );
 		comboBox.setSelectedItem("");
 	}
-	
 	public static void cari_kaydet()
 	{
 		if(lblNewLabel_10.getText().equals("")) return;
@@ -455,7 +451,6 @@ public class CEK_TAKIP extends JInternalFrame {
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING, "Hesap No bos !!!!");
 			return ;
 		}
-		//********************************************************************************
 		if( bh.equals(alh))
 		{
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING, "Borclu ve Alacakli Hesap Ayni...");

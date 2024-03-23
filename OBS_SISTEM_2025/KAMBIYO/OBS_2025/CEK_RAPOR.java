@@ -72,7 +72,6 @@ public class CEK_RAPOR extends JInternalFrame {
 		splitPane.setOrientation(JSplitPane.VERTICAL_SPLIT);
 		getContentPane().add(splitPane, BorderLayout.CENTER);
 		
-		
 		scrollPane = new ScrollPaneWin11();
 		scrollPane.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
 
@@ -161,7 +160,6 @@ public class CEK_RAPOR extends JInternalFrame {
 		
 		lbladet = new JLabel("0");
 		lbladet.setHorizontalAlignment(SwingConstants.LEFT);
-		//lbladet.setForeground(new Color(0, 0, 128));
 		lbladet.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lbladet.setBounds(100, 5, 47, 14);
 		panel.add(lbladet);
@@ -171,7 +169,6 @@ public class CEK_RAPOR extends JInternalFrame {
 		lblToplam.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblToplam.setBounds(687, 5, 150, 14);
 		panel.add(lblToplam);
-
 	}
 	public static void hisset()
 	{
@@ -199,7 +196,6 @@ public class CEK_RAPOR extends JInternalFrame {
 			} 
 			
 			table.setModel(DbUtils.resultSetToTableModel(rs));
-
 			JTableHeader th = table.getTableHeader();
 			TableColumnModel tcm = th.getColumnModel();
 			TableColumn tc;
@@ -249,7 +245,6 @@ public class CEK_RAPOR extends JInternalFrame {
 
 			tc = tcm.getColumn(10);
 			tc.setHeaderRenderer(new SOLA());
-			//tc.setCellRenderer(new TARIH());
 			tc.setMinWidth(80);
 
 			tc = tcm.getColumn(11);
@@ -262,7 +257,6 @@ public class CEK_RAPOR extends JInternalFrame {
 
 			tc = tcm.getColumn(13);
 			tc.setHeaderRenderer(new SOLA());
-			//tc.setCellRenderer(new TARIH());
 			tc.setMinWidth(80);
 
 			tc = tcm.getColumn(14);

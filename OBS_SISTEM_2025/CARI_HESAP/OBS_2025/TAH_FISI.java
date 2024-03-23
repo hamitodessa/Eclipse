@@ -261,7 +261,6 @@ public class TAH_FISI extends JInternalFrame {
 				if(e.getKeyCode()==KeyEvent.VK_DOWN) {
 					if (TARIH_CEVIR.tarih_dt_ddMMyyyy(dtc) == null)
 						return;
-
 					final JTextComponent textComponent=((JTextComponent)e.getSource());
 					int currentCaretPosition = textComponent.getCaretPosition();
 					SimpleDateFormat datefmt = new SimpleDateFormat("dd.MM.yyyy"); // Or format you're using
@@ -317,6 +316,24 @@ public class TAH_FISI extends JInternalFrame {
 			@Override
 			public void keyPressed(KeyEvent e) {
 				try {
+					if (KeyEvent.getKeyText(e.getKeyCode()) == "Page Up" )
+					{	
+						getContentPane().setCursor(oac.WAIT_CURSOR);
+						int evr = Integer.parseInt(textEvrakNo.getText());
+						evr +=1 ;
+						textEvrakNo.setText(Integer.toString(evr));
+						fiskont();
+						getContentPane().setCursor(oac.DEFAULT_CURSOR);
+					}
+					else if (KeyEvent.getKeyText(e.getKeyCode()) == "Page Down" )
+					{	
+						getContentPane().setCursor(oac.WAIT_CURSOR);
+						int evr = Integer.parseInt(textEvrakNo.getText());
+						evr -=1 ;
+						textEvrakNo.setText(Integer.toString(evr));
+						fiskont();
+						getContentPane().setCursor(oac.DEFAULT_CURSOR);
+					}
 					getContentPane().setCursor(oac.WAIT_CURSOR);
 					GuiUtil.setWaitCursor(textEvrakNo,true);
 					String[] parts;
@@ -1361,7 +1378,7 @@ public class TAH_FISI extends JInternalFrame {
 	}
 	private static void fis_temizle()
 	{
-		textEvrakNo.setText("0");
+		//textEvrakNo.setText("0");
 		cmbCins.setSelectedIndex(0);
 		cmbTur.setSelectedIndex(0);
 		textCKodu.setText("");

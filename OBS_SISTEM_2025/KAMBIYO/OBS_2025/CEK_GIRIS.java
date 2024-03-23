@@ -400,7 +400,6 @@ public class CEK_GIRIS extends JInternalFrame {
 
 		lblNewLabel_2 = new JLabel(".....");
 		lblNewLabel_2.setFont(new Font("Tahoma", Font.BOLD, 11));
-		//lblNewLabel_2.setForeground(new Color(139, 0, 0));
 		lblNewLabel_2.setBounds(87, 60, 273, 14);
 		panel_2.add(lblNewLabel_2);
 
@@ -536,7 +535,6 @@ public class CEK_GIRIS extends JInternalFrame {
 		panel_3.add(lblNewLabel_5);
 
 		lblNewLabel_7 = new JLabel("0.00");
-		//lblNewLabel_7.setForeground(Color.RED);
 		lblNewLabel_7.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblNewLabel_7.setFont(new Font("Tahoma", Font.BOLD, 12));
 		lblNewLabel_7.setBounds(228, 26, 101, 14);
@@ -544,7 +542,6 @@ public class CEK_GIRIS extends JInternalFrame {
 		
 		lblOrtgun = new JLabel("0");
 		lblOrtgun.setHorizontalAlignment(SwingConstants.RIGHT);
-		//lblOrtgun.setForeground(new Color(0, 0, 205));
 		lblOrtgun.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblOrtgun.setBounds(152, 27, 44, 14);
 		panel_3.add(lblOrtgun);

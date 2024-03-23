@@ -177,6 +177,7 @@ public class CEK_RAPOR extends JInternalFrame {
 	{
 		try {
 			ResultSet rs = null ;
+			table.setRowSorter(null);
 			GRID_TEMIZLE.grid_temizle(table);
 			long startTime = System.currentTimeMillis(); 
 			rs = ka_Access.cek_rapor(FILTRE.txtcn1.getText(), FILTRE.txtcn2.getText(),
@@ -280,7 +281,6 @@ public class CEK_RAPOR extends JInternalFrame {
 			dd.height = 30;
 			th.setPreferredSize(dd); 
 			th.repaint();
-			//table.setRowSelectionInterval(0, 0);
 			table.setRowHeight(21);
 			int toplam=0;
 			for (int i = 0 ; i <= table.getRowCount() -1 ; i ++)

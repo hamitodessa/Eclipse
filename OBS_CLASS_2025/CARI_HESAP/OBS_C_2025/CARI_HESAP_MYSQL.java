@@ -1433,7 +1433,7 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 				" TARIH >= '" + ilktarih + "' AND TARIH < '" + sontarih + "' " + 
 				" AND EVRAK >= '" + ilkevr + "' AND EVRAK < '" + sonevr + "' " + 
 				" AND C_HES >= '" + ilkck + "' AND C_HES < '" + sonck + "' " + 
-				" ORDER BY TARIH " ;
+				" ORDER BY TARIH , EVRAK " ;
 		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();

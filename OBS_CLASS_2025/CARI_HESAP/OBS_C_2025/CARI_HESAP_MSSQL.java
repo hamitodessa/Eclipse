@@ -1496,7 +1496,7 @@ public class CARI_HESAP_MSSQL implements ICARI_HESAP {
 			turString = " TUR = '" + (tur-1) + "' AND";
 		if(! pos.equals("Hepsi"))
 			posString = " POS_BANKA = '" + pos + "' AND";
-		String sql = " SELECT [EVRAK],[TARIH] ,[C_HES] ,[A_HES] ,CASE CINS  WHEN '0' THEN 'Tahsilat'  WHEN '1' THEN 'Tediye' END as CINS ," +
+		String sql = " SELECT EVRAK,TARIH ,C_HES ,A_HES ,CASE CINS  WHEN '0' THEN 'Tahsilat'  WHEN '1' THEN 'Tediye' END as CINS ," +
 				 " CASE TUR  WHEN '0' THEN 'Nakit'  WHEN '1' THEN 'Cek' WHEN '2' THEN 'Kredi Kartı' END as TUR,POS_BANKA, " +
 				 " [DVZ_CINS], [TUTAR]  " +
 				" FROM TAH_DETAY " +
@@ -1504,7 +1504,7 @@ public class CARI_HESAP_MSSQL implements ICARI_HESAP {
 				" TARIH >= '" + ilktarih + "' AND TARIH < '" + sontarih + "' " + 
 				" AND EVRAK >= '" + ilkevr + "' AND EVRAK < '" + sonevr + "' " + 
 				" AND C_HES >= '" + ilkck + "' AND C_HES < '" + sonck + "' " + 
-				" ORDER BY TARIH " ;
+				" ORDER BY TARIH ,EVRAK" ;
 		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();

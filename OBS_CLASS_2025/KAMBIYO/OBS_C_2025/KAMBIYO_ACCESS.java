@@ -118,4 +118,8 @@ public class KAMBIYO_ACCESS {
 	{
 		return _IKambiyo.kalan_cek_liste();
 	}
+	public ResultSet banka_sube(String nerden) throws ClassNotFoundException, SQLException
+	{
+		return _IKambiyo.banka_sube(nerden);
+	}
 }

@@ -48,5 +48,6 @@
 	<classpathentry kind="lib" path="C:/ELIF/2025/gradient-icon-font.jar"/>
 	<classpathentry kind="lib" path="C:/ELIF/2025/zip4j-2.11.5.jar"/>
 	<classpathentry kind="lib" path="C:/ELIF/2025/jna-5.14.0.jar"/>
+	<classpathentry kind="lib" path="C:/ELIF/2025/swingx-core-1.6.2-AutoCompletition.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

@@ -34,29 +34,6 @@ public class ComboBoxTableCellEditor extends AbstractCellEditor implements Table
 		editor.setFont(new Font("Tahoma", Font.BOLD, 12));
 		//editor.setForeground(new Color(0, 0, 128));
 		
-
-		/*
-		 * editor.addActionListener(new ActionListener() { public void
-		 * actionPerformed(ActionEvent e) {
-		 * System.out.println(editor.getItemAt(editor.getSelectedIndex())); } });
-		 * 
-		 * editor.setRenderer(new ListCellRenderer<String>() {
-		 * 
-		 * @Override public Component getListCellRendererComponent(JList<? extends
-		 * String> list, String value, int index, boolean isSelected, boolean
-		 * cellHasFocus) { JLabel result = new JLabel(value); result.setOpaque(true);
-		 * result.setForeground(new Color(0, 0, 128));
-		 * result.setBackground(editor.getBackground()); result.setFont(new
-		 * Font("Tahoma", Font.BOLD, 12)); if (isSelected) {
-		 * //list.setSelectedIndex(index); editor.setSelectedIndex(index);
-		 * //list.scrollRectToVisible(list.getCellBounds(index, index+3));
-		 * result.setBackground(new Color(0, 0, 128));
-		 * result.setForeground(Color.WHITE);
-		 * 
-		 * } else {
-		 * 
-		 * } return result; } });
-		 */		/////////////////
 		JTextField editorComponent = (JTextField)  editor.getEditor().getEditorComponent();
 		editorComponent.addKeyListener(new KeyAdapter() {
 			@Override

@@ -459,4 +459,9 @@ public class KAMBIYO_MYSQL implements IKAMBIYO {
 		rss = stmt.executeQuery();
 		return rss;
 	}
+	@Override
+	public ResultSet banka_sube(String nerden) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

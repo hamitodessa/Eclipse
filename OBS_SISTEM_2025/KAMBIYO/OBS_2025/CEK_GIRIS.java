@@ -30,6 +30,7 @@ import OBS_C_2025.GRID_TEMIZLE;
 import OBS_C_2025.JDateChooserEditor;
 
 import OBS_C_2025.KAMBIYO_ACCESS;
+import OBS_C_2025.KambiyoCombo;
 import OBS_C_2025.MaterialTabbed;
 import OBS_C_2025.Next_Cell_Kereste;
 import OBS_C_2025.Obs_TextFIeld;
@@ -53,7 +54,6 @@ import javax.swing.table.JTableHeader;
 import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumn;
 import org.apache.commons.lang.StringUtils;
-
 import javax.swing.JComboBox;
 import java.awt.Font;
 import java.awt.event.KeyEvent;
@@ -64,6 +64,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import javax.swing.SwingConstants;
@@ -93,11 +94,13 @@ public class CEK_GIRIS extends JInternalFrame {
 	public static JLabel lblNewLabel_12;
 	private JLabel lblNewLabel_7;
 	private JLabel lblOrtgun ;
+	
+	private static ArrayList<String> listBanka = new ArrayList<String>();
+	private static ArrayList<String> listSube =  new ArrayList<String>();
 
 	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
 	static KAMBIYO_ACCESS ka_Access = new KAMBIYO_ACCESS(OBS_SIS_2025_ANA_CLASS._IKambiyo , OBS_SIS_2025_ANA_CLASS._IKambiyo_Loger);
 	static CARI_ACCESS c_Access = new CARI_ACCESS(OBS_SIS_2025_ANA_CLASS._ICar , OBS_SIS_2025_ANA_CLASS._ICari_Loger);
-
 
 	public CEK_GIRIS() {
 
@@ -158,11 +161,11 @@ public class CEK_GIRIS extends JInternalFrame {
 	         @Override
 	         public void focusLost(FocusEvent e)
 	         {
-	        	 if(table.getSelectedColumn() == - 1)
-	        	 {
-	        	 if (table.isEditing())
-				     table.getCellEditor().stopCellEditing();
-	        	 }
+//	        	 if(table.getSelectedColumn() == - 1)
+//	        	 {
+//	        	 if (table.isEditing())
+//				     table.getCellEditor().stopCellEditing();
+//	        	 }
 	         }
 	      });
 		model.addColumn("Cek No", new String []{"0"});
@@ -198,15 +201,19 @@ public class CEK_GIRIS extends JInternalFrame {
 
 		col = table.getColumnModel().getColumn(2);
 		col.setMinWidth(250);
-		Obs_TextFIeld bnk = new Obs_TextFIeld(25);
-		col.setCellEditor(new DefaultCellEditor(bnk));
-		//col.setCellEditor(new TABLO_TEXTBOX(new JTextField() ,25,new Font("Tahoma", Font.PLAIN, 12),JTextField.LEFT));
+		
+		listBanka = new ArrayList<String> () ;
+		banka_sube_doldur("Banka") ;
+		KambiyoCombo editorBanka = new KambiyoCombo(listBanka ,table,"banka");
+		col.setCellEditor(editorBanka);
 		col.setHeaderRenderer(new SOLA());
 
 		col = table.getColumnModel().getColumn(3);
 		col.setMinWidth(150);
-		Obs_TextFIeld sube = new Obs_TextFIeld(25);
-		col.setCellEditor(new DefaultCellEditor(sube));
+		listSube = new ArrayList<String> () ;
+		banka_sube_doldur("Sube") ;
+		KambiyoCombo editorSube = new KambiyoCombo(listSube ,table,"sube");
+		col.setCellEditor(editorSube);
 		col.setHeaderRenderer(new SOLA());
 
 		col = table.getColumnModel().getColumn(4);
@@ -636,6 +643,8 @@ public class CEK_GIRIS extends JInternalFrame {
 			satir_yaz_1() ;
 			acik_yaz() ;
 			textField.setText("");
+			banka_sube_doldur("Banka") ;
+			banka_sube_doldur("Sube") ;
 		}
 		catch (Exception ex)
 		{
@@ -727,6 +736,8 @@ public class CEK_GIRIS extends JInternalFrame {
 			ka_Access.bordro_sil("CEK",textField.getText(),"Giris_Bordro");
 			ka_Access.kam_aciklama_sil("CEK", textField.getText(), "G");
 			textField.setText("");
+			banka_sube_doldur("Banka") ;
+			banka_sube_doldur("Sube") ;
 		}
 		catch (Exception ex)
 		{
@@ -1028,5 +1039,40 @@ public class CEK_GIRIS extends JInternalFrame {
 			e.printStackTrace();
 		}
 		return convertedDate;
+	}
+	private static void banka_sube_doldur(String field) 
+	{
+		try {
+			ResultSet rs = null;
+			rs = ka_Access.banka_sube(field);
+			if (!rs.isBeforeFirst() ) {  
+				if (field.equals("Banka"))
+					listBanka.add("");
+				else
+					listSube.add("");
+			}
+			else
+			{
+				if (field.equals("Sube"))
+				{
+					listSube.clear();
+					listSube.add("");
+					while (rs.next())
+						listSube.add(rs.getString(field).toString());
+				}
+				else
+				{
+					listBanka.clear();
+					listBanka.add("");
+					while (rs.next())
+						listBanka.add(rs.getString(field).toString());
+				}
+			}
+		}
+		catch (Exception ex)
+		{
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
+		}
+
 	}
 }

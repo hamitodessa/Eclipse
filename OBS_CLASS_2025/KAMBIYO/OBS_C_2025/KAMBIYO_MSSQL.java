@@ -455,4 +455,16 @@ public class KAMBIYO_MSSQL implements IKAMBIYO{
 		rss = stmt.executeQuery();
 		return rss;
 	}
+	@Override
+	public ResultSet banka_sube(String nerden) throws ClassNotFoundException, SQLException {
+		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+		ResultSet	rss = null;
+		String sql = " SELECT  DISTINCT " + nerden +
+				" FROM CEK " +
+				" ORDER BY " + nerden;
+		kONTROL();
+		PreparedStatement stmt = con.prepareStatement(sql);
+		rss = stmt.executeQuery();
+		return rss;
+	}
 }

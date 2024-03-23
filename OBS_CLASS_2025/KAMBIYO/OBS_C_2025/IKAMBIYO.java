@@ -33,4 +33,5 @@ public interface IKAMBIYO {
             ,  String dur1 ,  String dur2 ,  String ttar1 ,  String ttar2 , String gozel , String cozel ) throws ClassNotFoundException, SQLException;
 	public void create_table_log() throws SQLException;
 	public ResultSet kalan_cek_liste() throws ClassNotFoundException, SQLException;
+	public ResultSet banka_sube(String nerden) throws ClassNotFoundException, SQLException;
 }

@@ -182,7 +182,6 @@ public class CEK_GIRIS extends JInternalFrame {
 
 		col = table.getColumnModel().getColumn(2);
 		col.setMinWidth(250);
-		
 		listBanka = new ArrayList<String> () ;
 		banka_sube_doldur("Banka") ;
 		KambiyoCombo editorBanka = new KambiyoCombo(listBanka ,table,"banka",25);

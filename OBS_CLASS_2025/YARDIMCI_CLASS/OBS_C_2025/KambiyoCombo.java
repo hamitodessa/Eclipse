@@ -33,6 +33,7 @@ public class KambiyoCombo extends AbstractCellEditor implements TableCellEditor 
 		masterValues = new ArrayList<String> () ;
 		masterValues = masterValues1;
 		editor.setEditable(true);
+	
 
 		JTextField editorComponent = (JTextField)  editor.getEditor().getEditorComponent();
 		editorComponent.setDocument (new JTextFieldLimit(limit));

@@ -950,7 +950,7 @@ public class TAH_FISI extends JInternalFrame {
 		lblTableTutar = new JLabel("0.00");
 		lblTableTutar.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblTableTutar.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblTableTutar.setBounds(620, 5, 150, 14);
+		lblTableTutar.setBounds(925, 5, 150, 14);
 		pnlalt.add(lblTableTutar);
 		DefaultTableModel model = new DefaultTableModel() ; 
 		

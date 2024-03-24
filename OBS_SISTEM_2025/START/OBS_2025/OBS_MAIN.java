@@ -291,7 +291,8 @@ public class OBS_MAIN extends JFrame  {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		setBounds(0, 0, 1200, 800);
-		setTitle("OBS SISTEM");
+		//setTitle("OBS SISTEM");
+		setTitle("<html><strong>OBS SISTEM</strong></html>");
 
 		JMenuBar menuBar = new JMenuBar();
 		menuBar.setFont(new Font("Segoe UI", Font.PLAIN, 12));

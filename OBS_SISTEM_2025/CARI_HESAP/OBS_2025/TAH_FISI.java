@@ -969,8 +969,6 @@ public class TAH_FISI extends JInternalFrame {
 		TableColumn col ;
 		col = tableCek.getColumnModel().getColumn(0);
 		col.setMinWidth(250);
-		//Obs_TextFIeld bnk = new Obs_TextFIeld(40);
-		//col.setCellEditor(new DefaultCellEditor(bnk));
 		listBanka = new ArrayList<String> () ;
 		banka_sube_doldur("BANKA") ;
 		KambiyoCombo editorBanka = new KambiyoCombo(listBanka ,tableCek,"banka",40);
@@ -979,10 +977,8 @@ public class TAH_FISI extends JInternalFrame {
 
 		col = tableCek.getColumnModel().getColumn(1);
 		col.setMinWidth(150);
-		//Obs_TextFIeld sb = new Obs_TextFIeld(40);
-		//col.setCellEditor(new DefaultCellEditor(sb));
 		listSube = new ArrayList<String> () ;
-		banka_sube_doldur("Sube") ;
+		banka_sube_doldur("SUBE") ;
 		KambiyoCombo editorSube = new KambiyoCombo(listSube ,tableCek,"sube",40);
 		col.setCellEditor(editorSube);
 		col.setHeaderRenderer(new SOLA());

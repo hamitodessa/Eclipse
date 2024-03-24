@@ -172,8 +172,15 @@ public class TAH_FISI extends JInternalFrame {
 		tabbedPane = new MaterialTabbed();
 		tabbedPane.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent e) {
-				if(tabbedPane.getSelectedIndex() == 1)
+				if(tabbedPane.getSelectedIndex() == 0)
+					setSize(new Dimension(800,485));
+				else if(tabbedPane.getSelectedIndex() == 1)
+				{
+					setSize(new Dimension(800,485));
 					ayar_doldur();
+				}
+				else if(tabbedPane.getSelectedIndex() == 2)
+					setSize(new Dimension(1100,485));
 			}
 		});
 		tabbedPane.setFont(new Font("Tahoma", Font.BOLD, 14));
@@ -314,8 +321,6 @@ public class TAH_FISI extends JInternalFrame {
 			public void keyReleased(KeyEvent e) {
 			}
 		});
-
-
 		textEvrakNo = new Obs_TextFIeld();
 		textEvrakNo.addKeyListener(new KeyAdapter() {
 			@Override
@@ -1011,7 +1016,7 @@ public class TAH_FISI extends JInternalFrame {
 		col.setHeaderRenderer(new SAGA());
 		col.setCellEditor( new DoubleEditor(2) );
 		col.setCellRenderer(new TABLO_RENDERER(2,true));
-		col.setMinWidth(115);
+		col.setMinWidth(125);
 		
 		JTableHeader th = tableCek.getTableHeader();
 		Dimension dd = tableCek.getPreferredSize();

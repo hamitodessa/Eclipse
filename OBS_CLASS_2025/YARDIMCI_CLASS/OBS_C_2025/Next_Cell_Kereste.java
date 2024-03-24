@@ -67,7 +67,7 @@ public class Next_Cell_Kereste extends AbstractAction {
 				row = 0;
 			table.getSelectionModel().setSelectionInterval(row, row);
 			table.getColumnModel().getSelectionModel().setSelectionInterval(col, col);
-			if (col == 0 )
+			if (col == 0 || col ==2 || col ==3)
 			{
 				table.editCellAt(row == -1 ? 0:row, col);
 				table.transferFocus();
@@ -84,7 +84,7 @@ public class Next_Cell_Kereste extends AbstractAction {
 				row = 0;
 			table.getSelectionModel().setSelectionInterval(row, row);
 			table.getColumnModel().getSelectionModel().setSelectionInterval(col, col);
-			if (col == 0 )
+			if (col == 0 || col==1 )
 			{
 				table.editCellAt(row == -1 ? 0:row, col);
 				table.transferFocus();

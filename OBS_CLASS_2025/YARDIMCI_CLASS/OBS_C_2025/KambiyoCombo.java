@@ -50,7 +50,7 @@ public class KambiyoCombo extends AbstractCellEditor implements TableCellEditor 
 					if(editor.getEditor().getItem() != null)
 					{
 						String value =  list.getModel().getElementAt(i).toString();
-						if (value.toString().startsWith(editor.getEditor().getItem().toString()))
+						if (value.toString().toLowerCase().startsWith(editor.getEditor().getItem().toString().toLowerCase()))
 						{
 							list.setSelectedIndex(i);
 							list.scrollRectToVisible(list.getCellBounds(i, i+3));

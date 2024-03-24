@@ -47,7 +47,7 @@ public class ComboBoxTableCellEditor extends AbstractCellEditor implements Table
 				for (int i = 0; i < list.getModel().getSize(); i++)
 				{
 					String value =  list.getModel().getElementAt(i).toString();
-					if ( value.toString().startsWith(editor.getEditor().getItem().toString()))
+					if ( value.toString().toLowerCase().startsWith(editor.getEditor().getItem().toString().toLowerCase()))
 						result = true;
 				}
 				if (result == false)
@@ -58,7 +58,7 @@ public class ComboBoxTableCellEditor extends AbstractCellEditor implements Table
 					if(editor.getEditor().getItem() != null)
 					{
 					String value =  list.getModel().getElementAt(i).toString();
-					if (value.toString().startsWith(editor.getEditor().getItem().toString()))
+					if (value.toString().toLowerCase().startsWith(editor.getEditor().getItem().toString().toLowerCase()))
 					{
 						list.setSelectedIndex(i);
 						list.scrollRectToVisible(list.getCellBounds(i, i+3));

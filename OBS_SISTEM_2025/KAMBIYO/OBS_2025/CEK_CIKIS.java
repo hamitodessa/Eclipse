@@ -165,22 +165,16 @@ public class CEK_CIKIS extends JInternalFrame {
 		TableColumn col ;
 
 		col = table.getColumnModel().getColumn(0);
-		//col.setCellEditor(new KAM_CEKNO(new Obs_TextFIeld(),"CC"));
-		//col.setCellRenderer(new KAM_CEKNO_REN());
 		col.setMinWidth(100);
 		col.setHeaderRenderer(new SOLA());
-		/////
 		listCek = new ArrayList<String> () ;
 		cek_auto();
 		ComboBoxTableCellEditor editor = new ComboBoxTableCellEditor( listCek ,table,"kam_cikis");
 		col = table.getColumnModel().getColumn(0);
 		col.setCellEditor(editor);
 		col.setCellRenderer(new KAM_CEKNO_REN());
-		
-		/////
 
 		col = table.getColumnModel().getColumn(1);
-
 		col.setHeaderRenderer(new SOLA());
 		col.setCellRenderer(new COKLU_GIRIS_TARIH());
 		col.setMinWidth(100);
@@ -364,7 +358,6 @@ public class CEK_CIKIS extends JInternalFrame {
 
 		lblNewLabel_2 = new JLabel(".....");
 		lblNewLabel_2.setFont(new Font("Tahoma", Font.BOLD, 11));
-		//lblNewLabel_2.setForeground(new Color(139, 0, 0));
 		lblNewLabel_2.setBounds(87, 60, 273, 14);
 		panel_2.add(lblNewLabel_2);
 
@@ -399,7 +392,6 @@ public class CEK_CIKIS extends JInternalFrame {
 					OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,  ex.getMessage());
 				}
 			}
-
 		});
 		btnNewButton.setIcon(new ImageIcon(CEK_GIRIS.class.getResource("/ICONLAR/icons8-view-16.png")));
 		btnNewButton.setBounds(215, 7, 25, 22);
@@ -505,7 +497,6 @@ public class CEK_CIKIS extends JInternalFrame {
 
 
 		lblNewLabel_7 = new JLabel("0.00");
-		//lblNewLabel_7.setForeground(Color.RED);
 		lblNewLabel_7.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblNewLabel_7.setFont(new Font("Tahoma", Font.BOLD, 12));
 		lblNewLabel_7.setBounds(228, 26, 101, 14);

@@ -74,8 +74,6 @@ import javax.swing.ImageIcon;
 import javax.swing.InputMap;
 
 import java.awt.event.ActionListener;
-import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
 import java.awt.event.ActionEvent;
 
 @SuppressWarnings({"serial","static-access","removal"})
@@ -151,23 +149,6 @@ public class CEK_GIRIS extends JInternalFrame {
 		};
 		if(! oac.gridcolor.toString().equals("java.awt.Color[r=255,g=255,b=255]"))
 			table.setGridColor(oac.gridcolor);
-		table.addFocusListener(new FocusListener()
-	      {
-	         @Override
-	         public void focusGained(FocusEvent e)
-	         {
-	           
-	         }
-	         @Override
-	         public void focusLost(FocusEvent e)
-	         {
-//	        	 if(table.getSelectedColumn() == - 1)
-//	        	 {
-//	        	 if (table.isEditing())
-//				     table.getCellEditor().stopCellEditing();
-//	        	 }
-	         }
-	      });
 		model.addColumn("Cek No", new String []{"0"});
 		model.addColumn("Vade", new Date []{ new Date() });
 		model.addColumn("Banka", new String []{""});
@@ -1073,6 +1054,5 @@ public class CEK_GIRIS extends JInternalFrame {
 		{
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
 		}
-
 	}
 }

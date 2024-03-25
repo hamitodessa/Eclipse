@@ -1492,4 +1492,12 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 		rss = stmt.executeQuery();
 		return rss;
 	}
+	@Override
+	public void cari_kod_degis_tahsilat(String t1, String t2) throws ClassNotFoundException, SQLException {
+		Class.forName("com.mysql.cj.jdbc.Driver");
+		String sql = "UPDATE TAH_DETAY  SET C_HES = N'" + t2 + "'  WHERE C_HES = N'" + t1 + "'";
+		kONTROL();
+		PreparedStatement stmt = con.prepareStatement(sql);
+		stmt.executeUpdate();
+	}
 }

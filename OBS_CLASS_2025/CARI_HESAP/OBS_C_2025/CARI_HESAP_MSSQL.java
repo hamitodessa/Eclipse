@@ -892,10 +892,6 @@ public class CARI_HESAP_MSSQL implements ICARI_HESAP {
 		sql = "UPDATE HESAP_DETAY  SET D_HESAP = N'" + t2 + "'  WHERE D_HESAP = N'" + t1 + "'";
 		stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();
-		stmt.clearParameters();
-		sql = "UPDATE TAH_DETAY  SET C_HES = N'" + t2 + "'  WHERE C_HES = N'" + t1 + "'";
-		stmt = con.prepareStatement(sql);
-		stmt.executeUpdate();
 	}
 	public void cari_kod_degis_satirlar(String t1,String t2) throws ClassNotFoundException, SQLException
 	{
@@ -1562,6 +1558,14 @@ public class CARI_HESAP_MSSQL implements ICARI_HESAP {
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;
+	}
+	@Override
+	public void cari_kod_degis_tahsilat(String t1, String t2) throws ClassNotFoundException, SQLException {
+		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+		String sql = "UPDATE TAH_DETAY SET C_HES = N'" + t2 + "'  WHERE C_HES = N'" + t1 + "'";
+		kONTROL();
+		PreparedStatement stmt = con.prepareStatement(sql);
+		stmt.executeUpdate();
 	}
 }
 

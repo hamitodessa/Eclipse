@@ -86,5 +86,6 @@ public interface ICARI_HESAP {
 	public ResultSet pos_banka_oku () throws ClassNotFoundException, SQLException;
 	public int cari_tahsonfisno(int cins) throws ClassNotFoundException, SQLException;
 	public ResultSet banka_sube(String nerden) throws ClassNotFoundException, SQLException;
+	public void cari_kod_degis_tahsilat(String t1,String t2) throws ClassNotFoundException, SQLException;
 }
 

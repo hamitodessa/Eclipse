@@ -342,4 +342,9 @@ public class CARI_ACCESS {
 	{
 		return _ICari.banka_sube(nerden);
 	}
+	public void cari_kod_degis_tahsilat(String t1,String t2) throws ClassNotFoundException, SQLException
+	{
+		_ICari.cari_kod_degis_tahsilat(t1, t2);
+	}
+
 }

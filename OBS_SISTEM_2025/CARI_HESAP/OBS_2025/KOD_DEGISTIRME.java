@@ -188,6 +188,7 @@ public class KOD_DEGISTIRME extends JInternalFrame {
 			c_Access.cari_kod_degis_hesap(textField_2.getText(), textField_1.getText()
 					,lBILGI,BAGLAN_LOG.cariLogDizin);
 			c_Access.cari_kod_degis_satirlar(textField_2.getText(), textField_1.getText());
+			c_Access.cari_kod_degis_tahsilat(textField_2.getText(), textField_1.getText());
 			getContentPane().setCursor(oac.DEFAULT_CURSOR);
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.INFO,"Islem Basari ile tamamlandi...."  );
 		}

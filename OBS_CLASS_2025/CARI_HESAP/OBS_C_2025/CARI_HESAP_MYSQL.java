@@ -1422,7 +1422,7 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 		if(cins !=0)
 			cinString = " CINS = '" + (cins - 1) + "' AND";
 		if(tur != 0)
-			turString = " TUR = '" + (tur -1) + "' AND";
+			turString = " TUR = '" + (tur - 1) + "' AND";
 		if(! pos.equals("Hepsi"))
 			posString = " POS_BANKA = '" + pos + "' AND";
 		String sql = " SELECT EVRAK,TARIH ,C_HES as CARI_HESAP,A_HES as ADRES_HESAP ,CASE CINS  WHEN '0' THEN 'Tahsilat'  WHEN '1' THEN 'Tediye' END as CINS ," +

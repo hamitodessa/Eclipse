@@ -1060,17 +1060,14 @@ public class TAH_FISI extends JInternalFrame {
 		} catch (Exception e1) {
 			e1.printStackTrace();
 		}
-		//****************************
 		fis_temizle();
 	}
 	public static void kaydet()
 	{
 		if(tabbedPane.getSelectedIndex() == 1) // ayarlar
 			ayar_kayit();
-		else 
-		{
+		else
 			fis_kayit();
-		}
 		tabbedPane.setSelectedIndex(0);
 	}
 	private static void fis_kayit()
@@ -1255,7 +1252,6 @@ public class TAH_FISI extends JInternalFrame {
 		comboBanka.setSelectedItem(rs.getString("POS_BANKA"));
 		if(cmbTur.getSelectedIndex() == 1 )
 			cek_doldur();
-		
 		} catch (Exception ex) {
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR, ex.getMessage() );
 		}
@@ -1584,6 +1580,5 @@ public class TAH_FISI extends JInternalFrame {
 		{
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
 		}
-
 	}
 }

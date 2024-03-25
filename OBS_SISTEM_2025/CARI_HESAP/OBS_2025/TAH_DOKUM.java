@@ -241,7 +241,6 @@ public class TAH_DOKUM extends JInternalFrame {
 			if (!rs.isBeforeFirst() ) {  
 				lblToplam.setText("0.00");
 				lblKayit.setText("0");
-				
 				return;
 			} 
 			table.setModel(DbUtils.resultSetToTableModel(rs));

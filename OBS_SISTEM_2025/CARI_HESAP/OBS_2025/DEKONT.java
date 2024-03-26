@@ -145,6 +145,7 @@ public class DEKONT extends JInternalFrame {
 	private static JLabel lblaba ;
 	private JPanel pnlb ;
 	private JPanel pnla;
+	private JButton btnNewButton_2;
 
 	public DEKONT() {
 		FlatLaf.registerCustomDefaultsSource("OBS_2025");
@@ -478,10 +479,9 @@ public class DEKONT extends JInternalFrame {
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblNewLabel_1.setBounds(76, 33, 55, 14);
 		panel.add(lblNewLabel_1);
-
+		
 		JPanel panel_1 = new JPanel();
 		panelANA.add(panel_1);
-		//panel_1.setBorder(new TitledBorder(null,"Borclu Hesap", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panel_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "Borclu Hesap", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
 		panel_1.setBounds(10, 99, 710, 87);
 		panel_1.setLayout(null);
@@ -802,6 +802,7 @@ public class DEKONT extends JInternalFrame {
 		cmbbhes.addItemListener(new ItemListener() 
 		{
 			public void itemStateChanged(ItemEvent e) {
+				if( e.getStateChange()==2) return;
 				if(cmbbhes.getSelectedItem() == null || cmbbhes.getSelectedItem().toString().equals("")) return;
 				getContentPane().setCursor(oac.WAIT_CURSOR);
 				hpl = new String[3];
@@ -1304,6 +1305,7 @@ public class DEKONT extends JInternalFrame {
 		cmbahes.addItemListener(new ItemListener() 
 		{
 			public void itemStateChanged(ItemEvent e) {
+				if( e.getStateChange()==2) return;
 				if(cmbahes.getSelectedItem() == null || cmbahes.getSelectedItem().toString().equals("")) return;
 				getContentPane().setCursor(oac.WAIT_CURSOR);
 				hpl = new String[3];
@@ -1546,15 +1548,15 @@ public class DEKONT extends JInternalFrame {
 			dtc.setDate(rs.getDate("TARIH"));
 			txtaciklama.setText(rs.getString("IZAHAT"));
 			txtkod.setText(rs.getString("KOD"));
-			cmbbhes.setSelectedItem(rs.getString("HESAP"));
 			cmbb.setSelectedItem(rs.getString("CINS"));
 			txtbkur.setText(FORMATLAMA.doub_4(rs.getDouble("KUR")));
 			txtbtutar.setText(FORMATLAMA.doub_2(rs.getDouble("BORC")));
+			cmbbhes.setSelectedItem(rs.getString("HESAP"));
 			rs.next();
-			cmbahes.setSelectedItem(rs.getString("HESAP"));
 			cmba.setSelectedItem(rs.getString("CINS"));
 			txtakur.setText(FORMATLAMA.doub_4(rs.getDouble("KUR")));
 			txtatutar.setText(FORMATLAMA.doub_2(rs.getDouble("ALACAK")));
+			cmbahes.setSelectedItem(rs.getString("HESAP"));
 			lblNewLabel.setText(rs.getString("USER"));
 			long endTime = System.currentTimeMillis();
 			long estimatedTime = endTime - startTime;

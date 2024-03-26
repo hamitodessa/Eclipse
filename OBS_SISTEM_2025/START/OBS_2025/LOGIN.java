@@ -349,7 +349,6 @@ public class LOGIN extends JDialog {
 		panel.add(txtUser);
 
 		JSeparator separator = new JSeparator();
-		//separator.setForeground(Color.WHITE);
 		separator.setBounds(309, 31, 150, 7);
 		panel.add(separator);
 		
@@ -1383,8 +1382,8 @@ public class LOGIN extends JDialog {
 //			BufferedReader in = new BufferedReader(new InputStreamReader(whatismyip.openStream()));
 //			String ip = in.readLine(); //you get the IP as a String
 //			if(ip.equals("78.189.76.247")) return;
-//			if (oac.glb.internet_kontrol() == false)
-//				return ;
+			if (oac.glb.internet_kontrol() == false)
+				return ;
 			String eskitar = "" ;
 			String eskiver = "";
 			String yeniver = "";

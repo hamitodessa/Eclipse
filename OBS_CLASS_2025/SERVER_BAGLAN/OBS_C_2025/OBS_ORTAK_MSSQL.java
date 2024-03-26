@@ -20,7 +20,7 @@ public class OBS_ORTAK_MSSQL implements IConnection {
 		try
 		{
 			String cumle = "";
-			cumle = "jdbc:sqlserver://localhost" + sbilgi.getPort()  +";instanceName=" + sbilgi.getIns() + ";";
+			cumle = "jdbc:sqlserver://localhost" + sbilgi.getPort()  + ";instanceName=" + sbilgi.getIns() + ";";
 			conn = DriverManager.getConnection(cumle,sbilgi.getKull(),sbilgi.getSifre());
 			conn.close();
 			result = true;

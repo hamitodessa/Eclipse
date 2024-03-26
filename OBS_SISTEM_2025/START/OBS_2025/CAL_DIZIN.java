@@ -123,7 +123,7 @@ public class CAL_DIZIN extends JDialog {
 	private static Obs_TextFIeld txtdiz;
 	private static JLabel lblysif;
 	private static Obs_TextFIeld txtyenisif;
-	private static JComboBox<String> comboBox;
+	private static Obs_TextFIeld textInstance;
 	private static JComboBox<String> cmbip;
 	private static JComboBox<String> cmbhangisql;
 	private static JButton btndizsec;
@@ -232,7 +232,7 @@ public class CAL_DIZIN extends JDialog {
 						return;
 					if (cmbhangisql.getItemAt(cmbhangisql.getSelectedIndex()).toString().equals("MS SQL"))
 					{
-						if (comboBox.getSelectedItem() == null)
+						if (textInstance.getText() == null)
 							return;
 					}
 					try {
@@ -347,12 +347,14 @@ public class CAL_DIZIN extends JDialog {
 					chckbxS.setSelected(false);
 					chckbxD.setEnabled(true);
 					chckbxO.setEnabled(true);
+					textInstance.setEnabled(true);
 				}
 				else
 				{
 					chckbxS.setSelected(true);
 					chckbxD.setEnabled(false);
 					chckbxO.setEnabled(false);
+					textInstance.setEnabled(false);
 				}
 				String hangi = cmbhangisql.getItemAt(cmbhangisql.getSelectedIndex())  ;
 				if (hangi == "MS SQL")
@@ -379,9 +381,11 @@ public class CAL_DIZIN extends JDialog {
 					chckbxL.setSelected(false);
 					chckbxD.setEnabled(false);
 					chckbxO.setEnabled(false);
+					textInstance.setEnabled(false);
 				}
 				else
 				{
+					textInstance.setEnabled(true);
 					chckbxL.setSelected(true);
 					chckbxD.setEnabled(true);
 					chckbxO.setEnabled(true);
@@ -1255,10 +1259,11 @@ public class CAL_DIZIN extends JDialog {
 		this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
 		//**************
 		lblUser.setText(GLOBAL.KULL_ADI);
-		comboBox = new JComboBox<String>();
-		comboBox.setEditable(true);
-		comboBox.setBounds(102, 155, 157, 22);
-		panel.add(comboBox);
+		
+		textInstance = new Obs_TextFIeld();
+		textInstance.setEnabled(false);
+		textInstance.setBounds(102, 155, 157, 22);
+		panel.add(textInstance);
 
 		txtcdid = new Obs_TextFIeld();
 		txtcdid.setBounds(34, 99, 38, 20);
@@ -1275,17 +1280,16 @@ public class CAL_DIZIN extends JDialog {
 				String hangi = cmbhangisql.getItemAt(cmbhangisql.getSelectedIndex())  ;
 				if (hangi == "MS SQL")
 				{
-					comboBox.removeAllItems();
-					comboBox.addItem("");
-					comboBox.setEnabled(true);
+					
+					textInstance.setText("");
+					textInstance.setEnabled(true);
 					chckbxD.setEnabled(true);
 					chckbxO.setEnabled(true);
 				}
 				else
 				{
-					comboBox.removeAllItems();
-					comboBox.addItem("");
-					comboBox.setEnabled(false);
+					textInstance.setText("");
+					textInstance.setEnabled(false);
 					chckbxD.setEnabled(false);
 					chckbxO.setEnabled(false);
 				}
@@ -1557,17 +1561,19 @@ public class CAL_DIZIN extends JDialog {
 		}
 		txtcdid.setText(grd.getModel().getValueAt(satir, 0).toString());
 		cmbhangisql.setSelectedItem(grd.getModel().getValueAt(satir, 13).toString());
-		comboBox.removeAllItems();
-		comboBox.addItem(grd.getModel().getValueAt(satir, 5).toString());
+		
+		textInstance.setText(grd.getModel().getValueAt(satir, 5).toString());
 		if (grd.getModel().getValueAt(satir, 9).equals("L"))
 		{
 			chckbxL.setSelected(true);
 			chckbxS.setSelected(false);
+			textInstance.setEnabled(true);
 		}
 		else
 		{
 			chckbxS.setSelected(true);
 			chckbxL.setSelected(false);
+			textInstance.setEnabled(false);
 		}
 		int say = Integer.parseInt( grd.getModel().getValueAt(satir,14).toString());
 		if (say == 1)
@@ -1610,7 +1616,7 @@ public class CAL_DIZIN extends JDialog {
 		txtkul.setText("");
 		txtsifr.setText("");
 		txtcdid.setText("");
-		comboBox.removeAllItems();
+		textInstance.setText("");
 		chckbxL.setSelected(true);
 		chckbxS.setSelected(false);
 		chckbxD.setSelected(true);
@@ -1668,7 +1674,7 @@ public class CAL_DIZIN extends JDialog {
 		if (chckbxL.isSelected() )
 		{
 			Server_Bilgi sBilgi = new Server_Bilgi() ;
-			sBilgi.setIns(comboBox.getSelectedItem().toString()); 
+			sBilgi.setIns(textInstance.getText()); 
 			sBilgi.setKull(txtkul.getText()); 
 			sBilgi.setSifre( oac.sDONDUR.sDONDUR(txtsifr)); 
 			sBilgi.setPort(txtIp.getText());
@@ -1689,10 +1695,10 @@ public class CAL_DIZIN extends JDialog {
 		{
 			contentPane.setCursor(WAIT_CURSOR);
 			Server_Bilgi sBilgi = new Server_Bilgi() ;
-			sBilgi.setServer(txtIp.getText());;
-			sBilgi.setIns(comboBox.getSelectedItem().toString() );;
-			sBilgi.setKull(txtkul.getText()); ;
-			sBilgi.setSifre( oac.sDONDUR.sDONDUR(txtsifr));;
+			sBilgi.setServer(txtIp.getText());
+			sBilgi.setIns(textInstance.getText());
+			sBilgi.setKull(txtkul.getText()); 
+			sBilgi.setSifre( oac.sDONDUR.sDONDUR(txtsifr));
 			if (s_CONN.Server_kontrol_S(sBilgi ) == true)
 			{
 				contentPane.setCursor(DEFAULT_CURSOR);
@@ -1756,11 +1762,11 @@ public class CAL_DIZIN extends JDialog {
 	private void lokal_dosya(CONNECT s_CONN,String program,String modul) throws HeadlessException, ClassNotFoundException, SQLException, IOException
 	{
 		Server_Bilgi sBilgi = new Server_Bilgi() ;
-		sBilgi.setDb(program); ;
-		sBilgi.setKull(txtkul.getText()); ;
-		sBilgi.setSifre(oac.sDONDUR.sDONDUR(txtsifr));;
-		sBilgi.setIns(comboBox.getSelectedItem().toString()); ;
-		sBilgi.setPort(txtIp.getText());;
+		sBilgi.setDb(program); 
+		sBilgi.setKull(txtkul.getText());
+		sBilgi.setSifre(oac.sDONDUR.sDONDUR(txtsifr));
+		sBilgi.setIns(textInstance.getText());
+		sBilgi.setPort(txtIp.getText());
 		if ( s_CONN.Dosya_kontrol_L(sBilgi) == true)
 		{
 			boolean izinli = true;
@@ -1825,13 +1831,13 @@ public class CAL_DIZIN extends JDialog {
 	private void server_dosya(CONNECT s_CONN,String program,String modul) throws HeadlessException, ClassNotFoundException, SQLException, IOException
 	{
 		Server_Bilgi sBilgi = new Server_Bilgi() ;
-		sBilgi.setServer(txtIp.getText());;
-		sBilgi.setIns(comboBox.getSelectedItem().toString()); ;
+		sBilgi.setServer(txtIp.getText());
+		sBilgi.setIns(textInstance.getText());
 		sBilgi.setKull(txtkul.getText()); ;
 		sBilgi.setSifre( oac.sDONDUR.sDONDUR(txtsifr));;
 		sBilgi.setDb( program); ;
 		sBilgi.setPort(txtIp.getText());;
-		if ( s_CONN.Dosya_kontrol_S(sBilgi) ==true)
+		if ( s_CONN.Dosya_kontrol_S(sBilgi) == true)
 		{
 			boolean izinli = true;
 			if ( !GLOBAL.KULL_ADI.equals("Admin") )
@@ -1848,6 +1854,7 @@ public class CAL_DIZIN extends JDialog {
 				txtKodu.requestFocus();
 				return;
 			}
+		
 			mdb_yaz();
 			grid_doldur();
 			switch(activ_sayfa) 
@@ -1913,7 +1920,7 @@ public class CAL_DIZIN extends JDialog {
 	{
 		String loglama = (vt == true ? "true," : "false,") + (ds == true ? "true," : "false,") + (tx ==true ? "true," : "false,") + (em == true ? "true":"false");
 		oac.uSER_ISL.calisanmi_degis(GLOBAL.KULL_ADI, modul,chckbxL.isSelected() ? "L" : "S"); // CaLISANMI DOSYA KONTROLU
-		oac.uSER_ISL.details_yaz(txtKodu.getText(),GLOBAL.KULL_ADI, txtkul.getText(), oac.sDONDUR.sDONDUR(txtsifr), comboBox.getSelectedItem().toString() , txtIp.getText(), modul,txtdiz.getText(), chckbxL.isSelected() ? "L" : "S", chckbxD.isSelected() ? "D" : "O", "E", "E",cmbhangisql.getItemAt(cmbhangisql.getSelectedIndex()),  txtcdid.getText(),chckbxL_1.isSelected() ? 1 : 0, loglama);
+		oac.uSER_ISL.details_yaz(txtKodu.getText(),GLOBAL.KULL_ADI, txtkul.getText(), oac.sDONDUR.sDONDUR(txtsifr), textInstance.getText() , txtIp.getText(), modul,txtdiz.getText(), chckbxL.isSelected() ? "L" : "S", chckbxD.isSelected() ? "D" : "O", "E", "E",cmbhangisql.getItemAt(cmbhangisql.getSelectedIndex()),  txtcdid.getText(),chckbxL_1.isSelected() ? 1 : 0, loglama);
 	}
 	private  void dosya_olustur_L() throws IOException, ClassNotFoundException, SQLException
 	{
@@ -1943,7 +1950,7 @@ public class CAL_DIZIN extends JDialog {
 		BAGLAN.cariDizin.sERVER = txtIp.getText();
 		BAGLAN.cariDizin.kOD = txtKodu.getText();
 		BAGLAN.cariDizin.yER = "L";
-		BAGLAN.cariDizin.iNSTANCE =comboBox.getSelectedItem().toString();
+		BAGLAN.cariDizin.iNSTANCE = textInstance.getText();
 		BAGLAN_LOG bLog = new BAGLAN_LOG();
 		bLog.cONNECT();
 		lOG_BILGI lBILGI = new lOG_BILGI();
@@ -1953,7 +1960,7 @@ public class CAL_DIZIN extends JDialog {
 		Server_Bilgi sbilgi = new Server_Bilgi();
 		sbilgi.setKod(txtKodu.getText());
 		sbilgi.setFir_adi(strAdmin);
-		sbilgi.setIns(comboBox.getSelectedItem().toString());
+		sbilgi.setIns(textInstance.getText());
 		sbilgi.setKull(txtkul.getText());
 		sbilgi.setSifre(oac.sDONDUR.sDONDUR(txtsifr));
 		sbilgi.setPort(txtIp.getText()); 
@@ -1983,7 +1990,7 @@ public class CAL_DIZIN extends JDialog {
 		BAGLAN.fatDizin.sIFRESI = oac.sDONDUR.sDONDUR(txtsifr) ;
 		BAGLAN.fatDizin.hAN_SQL = cmbhangisql.getItemAt(cmbhangisql.getSelectedIndex()) ;
 		BAGLAN.fatDizin.sERVER = txtIp.getText();
-		BAGLAN.fatDizin.iNSTANCE =comboBox.getSelectedItem().toString();
+		BAGLAN.fatDizin.iNSTANCE = textInstance.getText();
 		BAGLAN.fatDizin.kOD = txtKodu.getText();
 		BAGLAN.fatDizin.yER = "L";
 		BAGLAN_LOG bLog = new BAGLAN_LOG();
@@ -1995,7 +2002,7 @@ public class CAL_DIZIN extends JDialog {
 		Server_Bilgi sbilgi = new Server_Bilgi();
 		sbilgi.setKod(txtKodu.getText());
 		sbilgi.setFir_adi(strAdmin);
-		sbilgi.setIns(comboBox.getSelectedItem().toString());
+		sbilgi.setIns( textInstance.getText());
 		sbilgi.setKull(txtkul.getText());
 		sbilgi.setSifre(oac.sDONDUR.sDONDUR(txtsifr));
 		sbilgi.setPort(txtIp.getText()); 
@@ -2025,7 +2032,7 @@ public class CAL_DIZIN extends JDialog {
 		BAGLAN.adrDizin.sIFRESI = oac.sDONDUR.sDONDUR(txtsifr) ;
 		BAGLAN.adrDizin.hAN_SQL = cmbhangisql.getItemAt(cmbhangisql.getSelectedIndex()) ;
 		BAGLAN.adrDizin.sERVER = txtIp.getText();
-		BAGLAN.adrDizin.iNSTANCE =comboBox.getSelectedItem().toString();
+		BAGLAN.adrDizin.iNSTANCE = textInstance.getText();
 		BAGLAN.adrDizin.kOD = txtKodu.getText();
 		BAGLAN.adrDizin.yER = "L";
 		BAGLAN_LOG bLog = new BAGLAN_LOG();
@@ -2035,12 +2042,12 @@ public class CAL_DIZIN extends JDialog {
 		lBILGI.seteVRAK("");
 		
 		Server_Bilgi sbilgi = new Server_Bilgi();
-		sbilgi.setKod(txtKodu.getText());;
-		sbilgi.setFir_adi(strAdmin);;
-		sbilgi.setIns(comboBox.getSelectedItem().toString());;
-		sbilgi.setKull(txtkul.getText()); ;
-		sbilgi.setSifre(oac.sDONDUR.sDONDUR(txtsifr)); ;
-		sbilgi.setPort(txtIp.getText()); ;
+		sbilgi.setKod(txtKodu.getText());
+		sbilgi.setFir_adi(strAdmin);
+		sbilgi.setIns( textInstance.getText());
+		sbilgi.setKull(txtkul.getText());
+		sbilgi.setSifre(oac.sDONDUR.sDONDUR(txtsifr));
+		sbilgi.setPort(txtIp.getText());
 		if (chckbxD.isSelected())
 		{
 			sbilgi.setDizin_yeri("default");
@@ -2065,7 +2072,7 @@ public class CAL_DIZIN extends JDialog {
 		BAGLAN.kurDizin.sIFRESI = oac.sDONDUR.sDONDUR(txtsifr) ;
 		BAGLAN.kurDizin.hAN_SQL = cmbhangisql.getItemAt(cmbhangisql.getSelectedIndex()) ;
 		BAGLAN.kurDizin.sERVER = txtIp.getText();
-		BAGLAN.kurDizin.iNSTANCE =comboBox.getSelectedItem().toString();
+		BAGLAN.kurDizin.iNSTANCE = textInstance.getText();
 		BAGLAN.kurDizin.kOD = txtKodu.getText();
 		BAGLAN.kurDizin.yER = "L";
 		BAGLAN_LOG bLog = new BAGLAN_LOG();
@@ -2075,11 +2082,11 @@ public class CAL_DIZIN extends JDialog {
 		lBILGI.seteVRAK("");
 		
 		Server_Bilgi sbilgi = new Server_Bilgi();
-		sbilgi.setKod(txtKodu.getText());;
-		sbilgi.setIns(comboBox.getSelectedItem().toString());;
-		sbilgi.setKull(txtkul.getText()); ;
-		sbilgi.setSifre(oac.sDONDUR.sDONDUR(txtsifr)); ;
-		sbilgi.setPort(txtIp.getText()); ;
+		sbilgi.setKod(txtKodu.getText());
+		sbilgi.setIns( textInstance.getText());
+		sbilgi.setKull(txtkul.getText());
+		sbilgi.setSifre(oac.sDONDUR.sDONDUR(txtsifr));
+		sbilgi.setPort(txtIp.getText()); 
 		if (chckbxD.isSelected())
 		{
 			sbilgi.setDizin_yeri("default");
@@ -2106,7 +2113,7 @@ public class CAL_DIZIN extends JDialog {
 		BAGLAN.kamDizin.sIFRESI = oac.sDONDUR.sDONDUR(txtsifr) ;
 		BAGLAN.kamDizin.hAN_SQL = cmbhangisql.getItemAt(cmbhangisql.getSelectedIndex()) ;
 		BAGLAN.kamDizin.sERVER = txtIp.getText();
-		BAGLAN.kamDizin.iNSTANCE =comboBox.getSelectedItem().toString();
+		BAGLAN.kamDizin.iNSTANCE = textInstance.getText();
 		BAGLAN.kamDizin.kOD = txtKodu.getText();
 		BAGLAN.kamDizin.yER = "L";
 		BAGLAN_LOG bLog = new BAGLAN_LOG();
@@ -2116,12 +2123,12 @@ public class CAL_DIZIN extends JDialog {
 		lBILGI.seteVRAK("");
 		
 		Server_Bilgi sbilgi = new Server_Bilgi();
-		sbilgi.setKod(txtKodu.getText());;
-		sbilgi.setFir_adi(strAdmin);;
-		sbilgi.setIns(comboBox.getSelectedItem().toString());;
-		sbilgi.setKull(txtkul.getText()); ;
+		sbilgi.setKod(txtKodu.getText());
+		sbilgi.setFir_adi(strAdmin);
+		sbilgi.setIns( textInstance.getText());
+		sbilgi.setKull(txtkul.getText());
 		sbilgi.setSifre(oac.sDONDUR.sDONDUR(txtsifr)); ;
-		sbilgi.setPort(txtIp.getText()); ;
+		sbilgi.setPort(txtIp.getText());
 		if (chckbxD.isSelected())
 		{
 			sbilgi.setDizin_yeri("default");
@@ -2146,7 +2153,7 @@ public class CAL_DIZIN extends JDialog {
 		BAGLAN.smsDizin.sIFRESI = oac.sDONDUR.sDONDUR(txtsifr) ;
 		BAGLAN.smsDizin.hAN_SQL = cmbhangisql.getItemAt(cmbhangisql.getSelectedIndex()) ;
 		BAGLAN.smsDizin.sERVER = txtIp.getText();
-		BAGLAN.smsDizin.iNSTANCE =comboBox.getSelectedItem().toString();
+		BAGLAN.smsDizin.iNSTANCE = textInstance.getText();
 		BAGLAN.smsDizin.kOD = txtKodu.getText();
 		BAGLAN.smsDizin.yER = "L";
 		BAGLAN_LOG bLog = new BAGLAN_LOG();
@@ -2157,7 +2164,7 @@ public class CAL_DIZIN extends JDialog {
 		
 		Server_Bilgi sbilgi = new Server_Bilgi();
 		sbilgi.setKod(txtKodu.getText());
-		sbilgi.setIns(comboBox.getSelectedItem().toString());
+		sbilgi.setIns( textInstance.getText());
 		sbilgi.setKull(txtkul.getText()); 
 		sbilgi.setSifre(oac.sDONDUR.sDONDUR(txtsifr)); 
 		sbilgi.setPort(txtIp.getText()); 
@@ -2188,7 +2195,7 @@ public class CAL_DIZIN extends JDialog {
 		BAGLAN.gunDizin.sIFRESI = oac.sDONDUR.sDONDUR(txtsifr) ;
 		BAGLAN.gunDizin.hAN_SQL = cmbhangisql.getItemAt(cmbhangisql.getSelectedIndex()) ;
 		BAGLAN.gunDizin.sERVER = txtIp.getText();
-		BAGLAN.gunDizin.iNSTANCE =comboBox.getSelectedItem().toString();
+		BAGLAN.gunDizin.iNSTANCE = textInstance.getText();
 		BAGLAN.gunDizin.kOD = txtKodu.getText();
 		BAGLAN.gunDizin.yER = "L";
 		BAGLAN_LOG bLog = new BAGLAN_LOG();
@@ -2197,12 +2204,12 @@ public class CAL_DIZIN extends JDialog {
 		lBILGI.setmESAJ("Dosya Olusturuldu");
 		lBILGI.seteVRAK("");
 		Server_Bilgi sbilgi = new Server_Bilgi();
-		sbilgi.setKod(txtKodu.getText());;
-		sbilgi.setFir_adi(strAdmin);;
-		sbilgi.setIns(comboBox.getSelectedItem().toString());;
-		sbilgi.setKull(txtkul.getText()); ;
-		sbilgi.setSifre(oac.sDONDUR.sDONDUR(txtsifr)); ;
-		sbilgi.setPort(txtIp.getText()); ;
+		sbilgi.setKod(txtKodu.getText());
+		sbilgi.setFir_adi(strAdmin);
+		sbilgi.setIns( textInstance.getText());
+		sbilgi.setKull(txtkul.getText());
+		sbilgi.setSifre(oac.sDONDUR.sDONDUR(txtsifr));
+		sbilgi.setPort(txtIp.getText());
 		if (chckbxD.isSelected())
 		{
 			sbilgi.setDizin_yeri("default");
@@ -2229,7 +2236,7 @@ public class CAL_DIZIN extends JDialog {
 		BAGLAN.kerDizin.sIFRESI = oac.sDONDUR.sDONDUR(txtsifr) ;
 		BAGLAN.kerDizin.hAN_SQL = cmbhangisql.getItemAt(cmbhangisql.getSelectedIndex()) ;
 		BAGLAN.kerDizin.sERVER = txtIp.getText();
-		BAGLAN.kerDizin.iNSTANCE =comboBox.getSelectedItem().toString();
+		BAGLAN.kerDizin.iNSTANCE = textInstance.getText();
 		BAGLAN.kerDizin.kOD = txtKodu.getText();
 		BAGLAN.kerDizin.yER = "L";
 		BAGLAN_LOG bLog = new BAGLAN_LOG();
@@ -2238,12 +2245,12 @@ public class CAL_DIZIN extends JDialog {
 		lBILGI.setmESAJ("Dosya Olusturuldu");
 		lBILGI.seteVRAK("");
 		Server_Bilgi sbilgi = new Server_Bilgi();
-		sbilgi.setKod(txtKodu.getText());;
-		sbilgi.setFir_adi(strAdmin);;
-		sbilgi.setIns(comboBox.getSelectedItem().toString());;
-		sbilgi.setKull(txtkul.getText()); ;
-		sbilgi.setSifre(oac.sDONDUR.sDONDUR(txtsifr)); ;
-		sbilgi.setPort(txtIp.getText()); ;
+		sbilgi.setKod(txtKodu.getText());
+		sbilgi.setFir_adi(strAdmin);
+		sbilgi.setIns( textInstance.getText());
+		sbilgi.setKull(txtkul.getText());
+		sbilgi.setSifre(oac.sDONDUR.sDONDUR(txtsifr));
+		sbilgi.setPort(txtIp.getText());
 		if (chckbxD.isSelected())
 		{
 			sbilgi.setDizin_yeri("default");
@@ -2270,7 +2277,7 @@ public class CAL_DIZIN extends JDialog {
 		BAGLAN.cariDizin.sIFRESI = oac.sDONDUR.sDONDUR(txtsifr) ;
 		BAGLAN.cariDizin.hAN_SQL = cmbhangisql.getItemAt(cmbhangisql.getSelectedIndex()) ;
 		BAGLAN.cariDizin.sERVER = txtIp.getText();
-		BAGLAN.cariDizin.iNSTANCE =comboBox.getSelectedItem().toString();
+		BAGLAN.cariDizin.iNSTANCE = textInstance.getText();
 		BAGLAN.cariDizin.kOD = txtKodu.getText();
 		BAGLAN.cariDizin.yER = "S";
 		BAGLAN_LOG bLog = new BAGLAN_LOG();
@@ -2279,14 +2286,14 @@ public class CAL_DIZIN extends JDialog {
 		lBILGI.setmESAJ("Dosya Olusturuldu");
 		lBILGI.seteVRAK("");
 		Server_Bilgi sbilgi = new Server_Bilgi();
-		sbilgi.setKod(txtKodu.getText());;
-		sbilgi.setFir_adi(strAdmin);;
-		sbilgi.setIns(comboBox.getSelectedItem().toString());;
-		sbilgi.setKull(txtkul.getText()); ;
-		sbilgi.setSifre(oac.sDONDUR.sDONDUR(txtsifr)); ;
-		sbilgi.setServer(txtIp.getText()); ;
-		sbilgi.setDizin_yeri("default");;
-		sbilgi.setDizin("");;
+		sbilgi.setKod(txtKodu.getText());
+		sbilgi.setFir_adi(strAdmin);
+		sbilgi.setIns( textInstance.getText());
+		sbilgi.setKull(txtkul.getText());
+		sbilgi.setSifre(oac.sDONDUR.sDONDUR(txtsifr));
+		sbilgi.setServer(txtIp.getText());
+		sbilgi.setDizin_yeri("default");
+		sbilgi.setDizin("");
 		if (chckbxD.isSelected())
 			c_Access.cARI_SIFIR_S(sbilgi,lBILGI,BAGLAN_LOG.cariLogDizin);
 	}
@@ -2302,7 +2309,7 @@ public class CAL_DIZIN extends JDialog {
 		BAGLAN.fatDizin.sIFRESI = oac.sDONDUR.sDONDUR(txtsifr) ;
 		BAGLAN.fatDizin.hAN_SQL = cmbhangisql.getItemAt(cmbhangisql.getSelectedIndex()) ;
 		BAGLAN.fatDizin.sERVER = txtIp.getText();
-		BAGLAN.fatDizin.iNSTANCE =comboBox.getSelectedItem().toString();
+		BAGLAN.fatDizin.iNSTANCE = textInstance.getText();
 		BAGLAN.fatDizin.kOD = txtKodu.getText();
 		BAGLAN.fatDizin.yER = "S";
 		BAGLAN_LOG bLog = new BAGLAN_LOG();
@@ -2312,14 +2319,14 @@ public class CAL_DIZIN extends JDialog {
 		lBILGI.seteVRAK("");
 		
 		Server_Bilgi sbilgi = new Server_Bilgi();
-		sbilgi.setKod(txtKodu.getText());;
-		sbilgi.setFir_adi(strAdmin);;
-		sbilgi.setIns(comboBox.getSelectedItem().toString());;
-		sbilgi.setKull(txtkul.getText()); ;
+		sbilgi.setKod(txtKodu.getText());
+		sbilgi.setFir_adi(strAdmin);
+		sbilgi.setIns( textInstance.getText());
+		sbilgi.setKull(txtkul.getText());
 		sbilgi.setSifre(oac.sDONDUR.sDONDUR(txtsifr)); ;
-		sbilgi.setServer(txtIp.getText()); ;
-		sbilgi.setDizin_yeri("default");;
-		sbilgi.setDizin("");;
+		sbilgi.setServer(txtIp.getText());
+		sbilgi.setDizin_yeri("default");
+		sbilgi.setDizin("");
 		if (chckbxD.isSelected())
 			s_Access.fAT_SIFIR_S(sbilgi,lBILGI,BAGLAN_LOG.fatLogDizin);
 	}
@@ -2335,7 +2342,7 @@ public class CAL_DIZIN extends JDialog {
 		BAGLAN.adrDizin.sIFRESI = oac.sDONDUR.sDONDUR(txtsifr) ;
 		BAGLAN.adrDizin.hAN_SQL = cmbhangisql.getItemAt(cmbhangisql.getSelectedIndex()) ;
 		BAGLAN.adrDizin.sERVER = txtIp.getText();
-		BAGLAN.adrDizin.iNSTANCE =comboBox.getSelectedItem().toString();
+		BAGLAN.adrDizin.iNSTANCE = textInstance.getText();
 		BAGLAN.adrDizin.kOD = txtKodu.getText();
 		BAGLAN.adrDizin.yER = "S";
 		BAGLAN_LOG bLog = new BAGLAN_LOG();
@@ -2344,14 +2351,14 @@ public class CAL_DIZIN extends JDialog {
 		lBILGI.setmESAJ("Dosya Olusturuldu");
 		lBILGI.seteVRAK("");
 		Server_Bilgi sbilgi = new Server_Bilgi();
-		sbilgi.setKod(txtKodu.getText());;
-		sbilgi.setFir_adi(strAdmin);;
-		sbilgi.setIns(comboBox.getSelectedItem().toString());;
-		sbilgi.setKull(txtkul.getText()); ;
+		sbilgi.setKod(txtKodu.getText());
+		sbilgi.setFir_adi(strAdmin);
+		sbilgi.setIns( textInstance.getText());
+		sbilgi.setKull(txtkul.getText());
 		sbilgi.setSifre(oac.sDONDUR.sDONDUR(txtsifr)); ;
-		sbilgi.setServer(txtIp.getText()); ;
-		sbilgi.setDizin_yeri("default");;
-		sbilgi.setDizin("");;
+		sbilgi.setServer(txtIp.getText());
+		sbilgi.setDizin_yeri("default");
+		sbilgi.setDizin("");
 		if (chckbxD.isSelected())
 			a_Access.aDR_SIFIR_S(sbilgi,lBILGI,BAGLAN_LOG.adrLogDizin);
 	}
@@ -2365,7 +2372,7 @@ public class CAL_DIZIN extends JDialog {
 		BAGLAN.kurDizin.sIFRESI = oac.sDONDUR.sDONDUR(txtsifr) ;
 		BAGLAN.kurDizin.hAN_SQL = cmbhangisql.getItemAt(cmbhangisql.getSelectedIndex()) ;
 		BAGLAN.kurDizin.sERVER = txtIp.getText();
-		BAGLAN.kurDizin.iNSTANCE =comboBox.getSelectedItem().toString();
+		BAGLAN.kurDizin.iNSTANCE = textInstance.getText();
 		BAGLAN.kurDizin.kOD = txtKodu.getText();
 		BAGLAN.kurDizin.yER = "S";
 		BAGLAN_LOG bLog = new BAGLAN_LOG();
@@ -2375,13 +2382,13 @@ public class CAL_DIZIN extends JDialog {
 		lBILGI.seteVRAK("");
 		
 		Server_Bilgi sbilgi = new Server_Bilgi();
-		sbilgi.setKod(txtKodu.getText());;
-		sbilgi.setIns(comboBox.getSelectedItem().toString());;
-		sbilgi.setKull(txtkul.getText()); ;
-		sbilgi.setSifre(oac.sDONDUR.sDONDUR(txtsifr)); ;
-		sbilgi.setServer(txtIp.getText()); ;
-		sbilgi.setDizin_yeri("default");;
-		sbilgi.setDizin("");;
+		sbilgi.setKod(txtKodu.getText());
+		sbilgi.setIns( textInstance.getText());
+		sbilgi.setKull(txtkul.getText());
+		sbilgi.setSifre(oac.sDONDUR.sDONDUR(txtsifr));
+		sbilgi.setServer(txtIp.getText());
+		sbilgi.setDizin_yeri("default");
+		sbilgi.setDizin("");
 		if (chckbxD.isSelected())
 			k_Access.kUR_SIFIR_S(sbilgi,lBILGI,BAGLAN_LOG.kurLogDizin);
 	}
@@ -2397,7 +2404,7 @@ public class CAL_DIZIN extends JDialog {
 		BAGLAN.kamDizin.sIFRESI = oac.sDONDUR.sDONDUR(txtsifr) ;
 		BAGLAN.kamDizin.hAN_SQL = cmbhangisql.getItemAt(cmbhangisql.getSelectedIndex()) ;
 		BAGLAN.kamDizin.sERVER = txtIp.getText();
-		BAGLAN.kamDizin.iNSTANCE =comboBox.getSelectedItem().toString();
+		BAGLAN.kamDizin.iNSTANCE = textInstance.getText();
 		BAGLAN.kamDizin.kOD = txtKodu.getText();
 		BAGLAN.kamDizin.yER = "S";
 		BAGLAN_LOG bLog = new BAGLAN_LOG();
@@ -2406,14 +2413,14 @@ public class CAL_DIZIN extends JDialog {
 		lBILGI.setmESAJ("Dosya Olusturuldu");
 		lBILGI.seteVRAK("");
 		Server_Bilgi sbilgi = new Server_Bilgi();
-		sbilgi.setKod(txtKodu.getText());;
-		sbilgi.setFir_adi(strAdmin);;
-		sbilgi.setIns(comboBox.getSelectedItem().toString());;
-		sbilgi.setKull(txtkul.getText()); ;
-		sbilgi.setSifre(oac.sDONDUR.sDONDUR(txtsifr)); ;
-		sbilgi.setServer(txtIp.getText()); ;
-		sbilgi.setDizin_yeri("default");;
-		sbilgi.setDizin("");;
+		sbilgi.setKod(txtKodu.getText());
+		sbilgi.setFir_adi(strAdmin);
+		sbilgi.setIns( textInstance.getText());
+		sbilgi.setKull(txtkul.getText());
+		sbilgi.setSifre(oac.sDONDUR.sDONDUR(txtsifr));
+		sbilgi.setServer(txtIp.getText());
+		sbilgi.setDizin_yeri("default");
+		sbilgi.setDizin("");
 		if (chckbxD.isSelected())
 			ka_Access.kAM_SIFIR_S(sbilgi,lBILGI,BAGLAN_LOG.kamLogDizin);
 	}
@@ -2427,7 +2434,7 @@ public class CAL_DIZIN extends JDialog {
 		BAGLAN.smsDizin.sIFRESI = oac.sDONDUR.sDONDUR(txtsifr) ;
 		BAGLAN.smsDizin.hAN_SQL = cmbhangisql.getItemAt(cmbhangisql.getSelectedIndex()) ;
 		BAGLAN.smsDizin.sERVER = txtIp.getText();
-		BAGLAN.smsDizin.iNSTANCE =comboBox.getSelectedItem().toString();
+		BAGLAN.smsDizin.iNSTANCE = textInstance.getText();
 		BAGLAN.smsDizin.kOD = txtKodu.getText();
 		BAGLAN.smsDizin.yER = "S";
 		BAGLAN_LOG bLog = new BAGLAN_LOG();
@@ -2437,7 +2444,7 @@ public class CAL_DIZIN extends JDialog {
 		lBILGI.seteVRAK("");
 		Server_Bilgi sbilgi = new Server_Bilgi();
 		sbilgi.setKod(txtKodu.getText());
-		sbilgi.setIns(comboBox.getSelectedItem().toString());
+		sbilgi.setIns( textInstance.getText());
 		sbilgi.setKull(txtkul.getText()); 
 		sbilgi.setSifre(oac.sDONDUR.sDONDUR(txtsifr)); 
 		sbilgi.setServer(txtIp.getText()); 
@@ -2458,7 +2465,7 @@ public class CAL_DIZIN extends JDialog {
 		BAGLAN.gunDizin.sIFRESI = oac.sDONDUR.sDONDUR(txtsifr) ;
 		BAGLAN.gunDizin.hAN_SQL = cmbhangisql.getItemAt(cmbhangisql.getSelectedIndex()) ;
 		BAGLAN.gunDizin.sERVER = txtIp.getText();
-		BAGLAN.gunDizin.iNSTANCE =comboBox.getSelectedItem().toString();
+		BAGLAN.gunDizin.iNSTANCE = textInstance.getText();
 		BAGLAN.gunDizin.kOD = txtKodu.getText();
 		BAGLAN.gunDizin.yER = "S";
 		BAGLAN_LOG bLog = new BAGLAN_LOG();
@@ -2467,14 +2474,14 @@ public class CAL_DIZIN extends JDialog {
 		lBILGI.setmESAJ("Dosya Olusturuldu");
 		lBILGI.seteVRAK("");
 		Server_Bilgi sbilgi = new Server_Bilgi();
-		sbilgi.setKod(txtKodu.getText());;
-		sbilgi.setFir_adi(strAdmin);;
-		sbilgi.setIns(comboBox.getSelectedItem().toString());;
-		sbilgi.setKull(txtkul.getText()); ;
-		sbilgi.setSifre(oac.sDONDUR.sDONDUR(txtsifr)); ;
-		sbilgi.setServer(txtIp.getText()); ;
-		sbilgi.setDizin_yeri("default");;
-		sbilgi.setDizin("");;
+		sbilgi.setKod(txtKodu.getText());
+		sbilgi.setFir_adi(strAdmin);
+		sbilgi.setIns( textInstance.getText());
+		sbilgi.setKull(txtkul.getText()); 
+		sbilgi.setSifre(oac.sDONDUR.sDONDUR(txtsifr));
+		sbilgi.setServer(txtIp.getText());
+		sbilgi.setDizin_yeri("default");
+		sbilgi.setDizin("");
 		if (chckbxD.isSelected())
 			g_Access.gUN_SIFIR_S(sbilgi, lBILGI,BAGLAN_LOG.gunLogDizin);
 	}
@@ -2490,7 +2497,7 @@ public class CAL_DIZIN extends JDialog {
 		BAGLAN.kerDizin.sIFRESI = oac.sDONDUR.sDONDUR(txtsifr) ;
 		BAGLAN.kerDizin.hAN_SQL = cmbhangisql.getItemAt(cmbhangisql.getSelectedIndex()) ;
 		BAGLAN.kerDizin.sERVER = txtIp.getText();
-		BAGLAN.kerDizin.iNSTANCE =comboBox.getSelectedItem().toString();
+		BAGLAN.kerDizin.iNSTANCE = textInstance.getText();
 		BAGLAN.kerDizin.kOD = txtKodu.getText();
 		BAGLAN.kerDizin.yER = "S";
 		BAGLAN_LOG bLog = new BAGLAN_LOG();
@@ -2499,13 +2506,13 @@ public class CAL_DIZIN extends JDialog {
 		lBILGI.setmESAJ("Dosya Olusturuldu");
 		lBILGI.seteVRAK("");
 		Server_Bilgi sbilgi = new Server_Bilgi();
-		sbilgi.setKod(txtKodu.getText());;
-		sbilgi.setFir_adi(strAdmin);;
-		sbilgi.setIns(comboBox.getSelectedItem().toString());;
-		sbilgi.setKull(txtkul.getText()); ;
-		sbilgi.setSifre(oac.sDONDUR.sDONDUR(txtsifr)); ;
-		sbilgi.setServer(txtIp.getText()); ;
-		sbilgi.setDizin_yeri("default");;
+		sbilgi.setKod(txtKodu.getText());
+		sbilgi.setFir_adi(strAdmin);
+		sbilgi.setIns( textInstance.getText());
+		sbilgi.setKull(txtkul.getText());
+		sbilgi.setSifre(oac.sDONDUR.sDONDUR(txtsifr));
+		sbilgi.setServer(txtIp.getText());
+		sbilgi.setDizin_yeri("default");
 		sbilgi.setDizin("");;
 		if (chckbxD.isSelected())
 			ker_Access.kER_SIFIR_S(sbilgi, lBILGI,BAGLAN_LOG.kerLogDizin);
@@ -2792,17 +2799,17 @@ public class CAL_DIZIN extends JDialog {
 			Server_Bilgi sBilgi = new Server_Bilgi() ;
 			if (chckbxL.isSelected())
 			{
-				sBilgi.setIns(comboBox.getSelectedItem().toString()); 
+				sBilgi.setIns( textInstance.getText());
 				sBilgi.setKull(txtkul.getText());  
 				sBilgi.setSifre( oac.sDONDUR.sDONDUR(txtsifr)); 
 				sBilgi.setPort(txtIp.getText());
 			}
 			else  // Server
 			{
-				sBilgi.setServer(txtIp.getText());;
-				sBilgi.setIns(comboBox.getSelectedItem().toString() );;
-				sBilgi.setKull(txtkul.getText()); ;
-				sBilgi.setSifre( oac.sDONDUR.sDONDUR(txtsifr));;
+				sBilgi.setServer(txtIp.getText());
+				sBilgi.setIns(textInstance.getText());
+				sBilgi.setKull(txtkul.getText());
+				sBilgi.setSifre( oac.sDONDUR.sDONDUR(txtsifr));
 			}
 			StringBuilder stb = new StringBuilder();
 			switch(activ_sayfa) {

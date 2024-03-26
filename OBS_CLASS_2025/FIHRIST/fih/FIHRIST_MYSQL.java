@@ -17,7 +17,7 @@ public class FIHRIST_MYSQL implements I_Fihrist{
 	public void baglan() throws SQLException, ClassNotFoundException {
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		String cumle = "jdbc:mysql://" + BAGLAN.fihDizin.cONN_STR ;
-		//DriverManager.setLoginTimeout(0);
+		DriverManager.setLoginTimeout(0);
 		con = DriverManager.getConnection(cumle,BAGLAN.fihDizin.kULLANICI,BAGLAN.fihDizin.sIFRESI);
 	}
 	@Override

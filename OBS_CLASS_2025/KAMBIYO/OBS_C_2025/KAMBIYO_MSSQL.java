@@ -20,6 +20,7 @@ public class KAMBIYO_MSSQL implements IKAMBIYO{
 	public void baglan() throws SQLException
 	{
 		String cumle = "jdbc:sqlserver://" + BAGLAN.kamDizin.cONN_STR + ";";
+		DriverManager.setLoginTimeout(0);
 		con = DriverManager.getConnection(cumle,BAGLAN.kamDizin.kULLANICI,BAGLAN.kamDizin.sIFRESI);
 	}
 	@Override

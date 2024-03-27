@@ -29,6 +29,7 @@ import com.businessobjects.visualization.dataexchange.consumer.DataHandler;
 import com.crystaldecisions.reports.queryengine.EnumValueToNameMaps;
 import com.formdev.flatlaf.FlatClientProperties;
 import com.formdev.flatlaf.FlatLaf;
+import com.lowagie.text.pdf.AcroFields.Item;
 import com.toedter.calendar.JCalendar;
 import com.toedter.calendar.JDateChooser;
 
@@ -802,7 +803,7 @@ public class DEKONT extends JInternalFrame {
 		cmbbhes.addItemListener(new ItemListener() 
 		{
 			public void itemStateChanged(ItemEvent e) {
-				if( e.getStateChange()==2) return;
+				if( e.getStateChange() == 2) return;
 				if(cmbbhes.getSelectedItem() == null || cmbbhes.getSelectedItem().toString().equals("")) return;
 				getContentPane().setCursor(oac.WAIT_CURSOR);
 				hpl = new String[3];

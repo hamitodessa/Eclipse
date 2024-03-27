@@ -76,7 +76,7 @@ public class HESAP_BAK extends JInternalFrame {
 		getContentPane().add(splitPane, BorderLayout.CENTER);
 
 		JSplitPane splitPane_1 = new JSplitPane();
-		splitPane_1.setDividerSize(5);
+		splitPane_1.setDividerSize(10);
 		splitPane_1.setResizeWeight(1.0);
 		splitPane.setLeftComponent(splitPane_1);
 		splitPane_1.setMinimumSize(new Dimension(0, 200));
@@ -135,12 +135,8 @@ public class HESAP_BAK extends JInternalFrame {
 				return c;
 			}
 		};
-		if(! oac.gridcolor.toString().equals("java.awt.Color[r=255,g=255,b=255]")) 
-		{
+		if(! oac.gridcolor.toString().equals("java.awt.Color[r=255,g=255,b=255]"))
 			tblhesap.setGridColor(oac.gridcolor);
-		}
-
-		//tblhesap.setAutoResizeMode( JTable.AUTO_RESIZE_OFF );
 		tblhesap.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
 			public void valueChanged(ListSelectionEvent lse) {
 				if (!lse.getValueIsAdjusting()) 
@@ -195,7 +191,6 @@ public class HESAP_BAK extends JInternalFrame {
 		tblkarton.setShowHorizontalLines(true);
 		tblkarton.setShowVerticalLines(true);
 		tblkarton.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		//tblkarton.setAutoResizeMode( JTable.AUTO_RESIZE_OFF );
 		scrollPane_1.setViewportView(tblkarton);
 
 		JSplitPane splitPane_2 = new JSplitPane();
@@ -266,7 +261,6 @@ public class HESAP_BAK extends JInternalFrame {
 				}
 			}
 		});
-		//tbldetay.setAutoResizeMode( JTable.AUTO_RESIZE_OFF );
 		tbldetay.setShowHorizontalLines(true);
 		tbldetay.setShowVerticalLines(true);
 		tbldetay.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -281,7 +275,6 @@ public class HESAP_BAK extends JInternalFrame {
 		JPanel panel = new JPanel();
 		jScrollPane1alt.setViewportView(panel);
 
-		//panel.setMinimumSize(new Dimension(0,35));
 		panel.setPreferredSize(new Dimension(1060,35));
 		panel.setLayout(null);
 
@@ -308,7 +301,6 @@ public class HESAP_BAK extends JInternalFrame {
 		textField.setColumns(10);
 
 		lblNewLabel_1 = new JLabel("0.00");
-		//lblNewLabel_1.setForeground(new Color(0, 0, 128));
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 12));
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblNewLabel_1.setBounds(914, 7, 134, 14);
@@ -325,12 +317,10 @@ public class HESAP_BAK extends JInternalFrame {
 		panel.add(lblNewLabel_2_1);
 
 		lblNewLabel_2_2 = new JLabel("0");
-		//lblNewLabel_2_2.setForeground(new Color(0, 0, 128));
 		lblNewLabel_2_2.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblNewLabel_2_2.setHorizontalAlignment(SwingConstants.LEFT);
 		lblNewLabel_2_2.setBounds(570, 7, 50, 14);
 		panel.add(lblNewLabel_2_2);
-
 
 		hesap_doldur();
 		if (tblhesap.getRowCount() > 0)

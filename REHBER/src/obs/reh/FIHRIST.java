@@ -77,6 +77,7 @@ import com.formdev.flatlaf.extras.FlatAnimatedLafChange;
 import com.formdev.flatlaf.intellijthemes.FlatArcOrangeIJTheme;
 import com.formdev.flatlaf.intellijthemes.FlatCarbonIJTheme;
 import com.formdev.flatlaf.intellijthemes.FlatLightFlatIJTheme;
+import com.formdev.flatlaf.intellijthemes.FlatMonocaiIJTheme;
 import com.formdev.flatlaf.themes.FlatMacDarkLaf;
 
 
@@ -119,7 +120,10 @@ import javax.swing.event.AncestorEvent;
 import javax.swing.event.AncestorListener;
 import javax.swing.event.ChangeEvent;
 import javax.swing.JScrollPane;
+import javax.swing.border.EtchedBorder;
 import javax.swing.border.LineBorder;
+import javax.swing.border.TitledBorder;
+
 import java.awt.event.MouseWheelListener;
 import java.awt.event.MouseWheelEvent;
 
@@ -185,7 +189,8 @@ public class FIHRIST extends JFrame {
 		//FlatMacDarkLaf.setup();
 		//FlatLightFlatIJTheme.setup();
 		//FlatLightLaf.setup();
-		FlatCarbonIJTheme.setup();
+		//FlatCarbonIJTheme.setup();
+		FlatMonocaiIJTheme.setup();
 		//FlatDarculaLaf.setup();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1000, 700);
@@ -210,6 +215,8 @@ public class FIHRIST extends JFrame {
 		panel.add(splitPane, BorderLayout.CENTER);
 
 		ScrollPaneWin11 scrollPane_1 = new ScrollPaneWin11();
+		scrollPane_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
+
 		scrollPane_1.setMinimumSize(new Dimension(0, 170));
 		scrollPane_1.setMaximumSize(new Dimension(0, 170));
 		splitPane.setLeftComponent(scrollPane_1);
@@ -220,6 +227,8 @@ public class FIHRIST extends JFrame {
 
 		JSeparator separator = new JSeparator();
 		separator.setBounds(10, 33, 855, 5);
+		separator.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
+
 		panel_2.add(separator);
 
 		JLabel lblNewLabel = new JLabel("Adi");
@@ -583,6 +592,7 @@ public class FIHRIST extends JFrame {
 		splitPane.setRightComponent(splitPanealt);
 		////
 		ScrollPaneWin11 scrollPane_2 = new ScrollPaneWin11();
+		scrollPane_2.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
 
 		scrollPane_2.setBorder(BorderFactory.createEmptyBorder(5, 7, 5, 7));
 		splitPanealt.setLeftComponent(scrollPane_2);
@@ -624,6 +634,8 @@ public class FIHRIST extends JFrame {
 		scrollPane_2.setViewportView(table);
 
 		JPanel panel_4 = new JPanel();
+		panel_4.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
+
 		panel_4.setMinimumSize(new Dimension(0, 30));
 		panel_4.setMaximumSize(new Dimension(0, 30));
 
@@ -655,6 +667,8 @@ public class FIHRIST extends JFrame {
 		panel_1.add(splitPane_1, BorderLayout.CENTER);
 
 		ScrollPaneWin11 scrollPane_3 = new ScrollPaneWin11();
+		scrollPane_3.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
+
 		scrollPane_3.setMinimumSize(new Dimension(300, 0));
 		scrollPane_3.setMaximumSize(new Dimension(300, 0));
 
@@ -1041,7 +1055,9 @@ public class FIHRIST extends JFrame {
 		txtcdid.setVisible(false);
 
 		ScrollPaneWin11 scrollPane_4 = new ScrollPaneWin11();
-		scrollPane_4.setBorder(BorderFactory.createEmptyBorder(5, 7, 5, 7));
+		scrollPane_4.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
+
+		//scrollPane_4.setBorder(BorderFactory.createEmptyBorder(5, 7, 5, 7));
 		splitPane_1.setRightComponent(scrollPane_4);
 
 		table_1 = new JTable(){

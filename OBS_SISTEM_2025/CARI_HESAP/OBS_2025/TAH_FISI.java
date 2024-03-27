@@ -1552,7 +1552,8 @@ public class TAH_FISI extends JInternalFrame {
 		try {
 			ResultSet rs = null;
 			rs = c_Access.banka_sube(field);
-			if (!rs.isBeforeFirst() ) {  
+			if (!rs.isBeforeFirst() ) 
+			{  
 				if (field.equals("BANKA"))
 					listBanka.add("");
 				else

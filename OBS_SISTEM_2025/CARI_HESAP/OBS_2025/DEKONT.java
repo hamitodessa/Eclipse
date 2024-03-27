@@ -807,7 +807,7 @@ public class DEKONT extends JInternalFrame {
 				if(cmbbhes.getSelectedItem() == null || cmbbhes.getSelectedItem().toString().equals("")) return;
 				getContentPane().setCursor(oac.WAIT_CURSOR);
 				hpl = new String[3];
-				hpl = isim(cmbbhes.getSelectedItem().toString());
+				hpl = CARI_ISIM_OKU.isim(cmbbhes.getSelectedItem().toString());
 				lblNewLabel_2.setText(hpl[0]);
 				lblb.setText(hpl[1]);
 				if (hpl[2].toString().equals("F"))
@@ -830,7 +830,7 @@ public class DEKONT extends JInternalFrame {
 						hsp = new HESAP_PLN();
 						hsp.setVisible(true);
 						if (! oac.hsp_hsp_kodu.equals(""))
-							cmbbhes.setSelectedItem( oac.hsp_hsp_kodu);
+							cmbbhes.setSelectedItem(oac.hsp_hsp_kodu);
 					} catch (Exception e1) {
 						e1.printStackTrace();
 					}
@@ -1310,7 +1310,7 @@ public class DEKONT extends JInternalFrame {
 				if(cmbahes.getSelectedItem() == null || cmbahes.getSelectedItem().toString().equals("")) return;
 				getContentPane().setCursor(oac.WAIT_CURSOR);
 				hpl = new String[3];
-				hpl = isim(cmbahes.getSelectedItem().toString());
+				hpl = CARI_ISIM_OKU.isim(cmbahes.getSelectedItem().toString());
 				lblNewLabel_2_1.setText(hpl[0]);
 				lbla.setText(hpl[1]);
 				if (hpl[2].toString().equals("F"))
@@ -1864,32 +1864,12 @@ public class DEKONT extends JInternalFrame {
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR, ex.getMessage() );
 		}
 	}
-	private static String[] isim(String kod)  {
-		String [] sonuc = {"","",""}  ;
-		if (kod.equals("")) return sonuc;
-		try
-		{
-			ResultSet	rs = null;
-			rs = c_Access.hesap_adi_oku(kod);
-			if (!rs.isBeforeFirst() ) {  
-				sonuc [0] = "" ;
-				sonuc [1] = "" ;
-				sonuc [2] = "F" ;
-			} 
-			else
-			{
-				rs.next();
-				sonuc [0] = rs.getString("UNVAN");
-				sonuc [1] = rs.getString("HESAP_CINSI");
-				sonuc [2] = "T" ;
-			}
-		}
-		catch (Exception ex)
-		{
-			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR, ex.getMessage() );
-		}
-		return sonuc;
-	}
+//	private static String[] isim(String kod)  {
+//		String [] sonuc = {"","",""}  ;
+//		if (kod.equals("")) return sonuc;
+//			sonuc = CARI_ISIM_OKU.isim(kod);
+//		return sonuc;
+//	}
 }
 
 

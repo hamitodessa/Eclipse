@@ -501,7 +501,6 @@ public class DOKUM_AKTAR extends JInternalFrame {
 				getContentPane().setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 				OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage() );
 			}
-			//
 		}
 		};
 		Thread t = new Thread(runner, "Code Executer");
@@ -550,6 +549,5 @@ public class DOKUM_AKTAR extends JInternalFrame {
 		OBS_MAIN.progressBar.setValue(0);
 		OBS_MAIN.progressBar.setStringPainted(false);
 	}
-
 }
 

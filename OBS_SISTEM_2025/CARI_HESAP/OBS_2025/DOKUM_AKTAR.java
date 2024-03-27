@@ -45,6 +45,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -73,13 +74,12 @@ public class DOKUM_AKTAR extends JInternalFrame {
 	private JDateChooser dateBitis;
 	private JDateChooser dateBaslama;
 	private JComboBox comboCins;
-	
 	private JLabel lblIsim ;
 	
 	Connection MS_conn = null;  
 	
 	public DOKUM_AKTAR() {
-		setBounds(100, 100, 510, 313);
+		setBounds(100, 100, 510, 323);
 		setTitle("DOKUM AKTAR");
 		setClosable(true);
 		setFrameIcon(FIT_IMAGE.formIcon(new ImageIcon(MSSQL_TO_MYSQL.class.getResource("/ICONLAR/transfer-16.png")), 16, 16));//
@@ -96,7 +96,7 @@ public class DOKUM_AKTAR extends JInternalFrame {
 		
 		textDosya = new Obs_TextFIeld();
 		textDosya.setColumns(10);
-		textDosya.setBounds(107, 22, 75, 20);
+		textDosya.setBounds(116, 22, 77, 20);
 		textDosya.addAncestorListener(new AncestorListener() {
 			public void ancestorAdded(AncestorEvent event) {
 				SwingUtilities.invokeLater(new Runnable() {
@@ -121,6 +121,14 @@ public class DOKUM_AKTAR extends JInternalFrame {
 		panel.add(panel_3);
 		
 		msLokal = new JCheckBox("Lokal");
+		msLokal.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (msLokal.isSelected())
+					textInstance.setEnabled(true);
+				else
+					textInstance.setEnabled(false);
+			}
+		});
 		msLokal.setSelected(true);
 		msLokal.setBounds(100, 21, 97, 23);
 		panel_3.add(msLokal);
@@ -410,69 +418,94 @@ public class DOKUM_AKTAR extends JInternalFrame {
 		}
 	}
 	private void akTAR() {
-		try 
-		{
-			getContentPane().setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-			GRID_TEMIZLE.grid_temizle(DISTAN_AKTAR.tblexcell);
-			DefaultTableModel defaultModel = (DefaultTableModel) DISTAN_AKTAR.tblexcell.getModel();
-			if(comboCins.getSelectedIndex() == 1)// My SQL
+		Runnable runner = new Runnable()
+		{ public void run() {
+			//
+			try 
 			{
-				Class.forName("com.mysql.cj.jdbc.Driver");
-				ResultSet	rss = null;
-				String tARIH = "" ;
-				String t1 = TARIH_CEVIR.tarih_geri(dateBaslama);
-				String t2 = TARIH_CEVIR.tarih_geri(dateBitis);
-				if(! t1.equals("1900.01.01") || ! t2.equals("2100.12.31"))
-					tARIH = "  AND TARIH BETWEEN  '" + t1 + "' AND '" + t2 + " 23:59:59.998'" ;
-				String sql = " SELECT TARIH ,SATIRLAR.EVRAK ," +  
-						" IFNULL( IZAHAT.IZAHAT,'') AS IZAHAT,KOD,KUR, BORC , ALACAK , "  + 
-						" SUM(ALACAK-BORC) OVER(ORDER BY TARIH  ROWS BETWEEN UNBOUNDED PRECEDING And CURRENT ROW)  AS BAKIYE ,USER "  + 
-						" FROM SATIRLAR  USE INDEX (IX_SATIRLAR)  LEFT JOIN IZAHAT  USE INDEX (IX_IZAHAT)  " + 
-						" ON SATIRLAR.EVRAK = IZAHAT.EVRAK WHERE  HESAP =N'" + textCKodu.getText() + "'" + 
-						tARIH + 
-						" ORDER BY TARIH   ";
-				PreparedStatement stmt = MS_conn.prepareStatement(sql);
-				rss = stmt.executeQuery();
-				
-				Date  tar  ;
-				while (rss.next())
+				getContentPane().setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+				GRID_TEMIZLE.grid_temizle(DISTAN_AKTAR.tblexcell);
+				DefaultTableModel defaultModel = (DefaultTableModel) DISTAN_AKTAR.tblexcell.getModel();
+				if(comboCins.getSelectedIndex() == 1)// My SQL
 				{
-					tar = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(rss.getString("TARIH"));
-					defaultModel.addRow(new Object[]{tar, rss.getString("IZAHAT")  ,"", rss.getDouble("BORC") ,rss.getDouble("ALACAK"),"",""});
+					Class.forName("com.mysql.cj.jdbc.Driver");
+					ResultSet	rss = null;
+					String tARIH = "" ;
+					String t1 = TARIH_CEVIR.tarih_geri(dateBaslama);
+					String t2 = TARIH_CEVIR.tarih_geri(dateBitis);
+					if(! t1.equals("1900.01.01") || ! t2.equals("2100.12.31"))
+						tARIH = "  AND TARIH BETWEEN  '" + t1 + "' AND '" + t2 + " 23:59:59.998'" ;
+					String sql = " SELECT TARIH ,IFNULL( IZAHAT.IZAHAT,'') AS IZAHAT, BORC , ALACAK "  + 
+							" FROM SATIRLAR  USE INDEX (IX_SATIRLAR) LEFT JOIN IZAHAT USE INDEX (IX_IZAHAT)" + 
+							" ON SATIRLAR.EVRAK = IZAHAT.EVRAK " + 
+							" WHERE  HESAP = N'" + textCKodu.getText() + "'" + 
+							tARIH + 
+							" ORDER BY TARIH   ";
+					Statement stmt = MS_conn.createStatement( ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+					rss = stmt.executeQuery(sql);
+					Date  tar  ;
+					rss.last();
+					int count = rss.getRow();
+					rss.beforeFirst();
+					Progres_Bar_Temizle();  
+					OBS_MAIN.progressBar.setStringPainted(true);
+					OBS_MAIN.progressBar.setMaximum(count); 
+					int satir = 1;
+					while (rss.next())
+					{
+						Progres_Bar(count, satir);
+						tar = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(rss.getString("TARIH"));
+						defaultModel.addRow(new Object[]{tar, rss.getString("IZAHAT")  ,"", rss.getDouble("BORC") ,rss.getDouble("ALACAK"),"",""});
+						satir +=1;
+					}
 				}
-			}
-			else 
-			{
-				Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-				ResultSet	rss = null;
-				String tARIH = "" ;
-				String t1 = TARIH_CEVIR.tarih_geri(dateBaslama);
-				String t2 = TARIH_CEVIR.tarih_geri(dateBitis);
-				if(! t1.equals("1900.01.01") || ! t2.equals("2100.12.31"))
-					tARIH = "  AND TARIH BETWEEN  '" + t1 + "' AND '" + t2 + " 23:59:59.998'" ;
-				String sql = " SELECT TARIH,SATIRLAR.EVRAK ,ISNULL(IZAHAT,'') as IZAHAT,KOD,KUR,BORC,ALACAK, "  + 
-						"  CAST(SUM(ALACAK-BORC) OVER(ORDER BY TARIH  ROWS BETWEEN UNBOUNDED PRECEDING And CURRENT ROW)  AS DECIMAL(30,2))  AS BAKIYE ,[USER] "  + 
-						"  FROM SATIRLAR  LEFT JOIN IZAHAT   " + 
-						"  ON SATIRLAR.EVRAK = IZAHAT.EVRAK WHERE  HESAP =N'" + textCKodu.getText() + "'" + 
-						tARIH + 
-						"  ORDER BY TARIH   ";
-				PreparedStatement stmt = MS_conn.prepareStatement(sql);
-				rss = stmt.executeQuery();
-				Date  tar  ;
-				while (rss.next())
+				else 
 				{
-					tar = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(rss.getString("TARIH"));
-					defaultModel.addRow(new Object[]{tar, rss.getString("IZAHAT")  ,"", rss.getDouble("BORC") ,rss.getDouble("ALACAK"),"",""});
+					Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+					ResultSet	rss = null;
+					String tARIH = "" ;
+					String t1 = TARIH_CEVIR.tarih_geri(dateBaslama);
+					String t2 = TARIH_CEVIR.tarih_geri(dateBitis);
+					if(! t1.equals("1900.01.01") || ! t2.equals("2100.12.31"))
+						tARIH = "  AND TARIH BETWEEN  '" + t1 + "' AND '" + t2 + " 23:59:59.998'" ;
+					String sql = "SELECT TARIH,ISNULL(IZAHAT,'') as IZAHAT,BORC,ALACAK "  + 
+							" FROM SATIRLAR  LEFT JOIN IZAHAT   " + 
+							" ON SATIRLAR.EVRAK = IZAHAT.EVRAK " + 
+							" WHERE  HESAP =N'" + textCKodu.getText() + "'" + 
+							tARIH + 
+							"  ORDER BY TARIH   ";
+					Statement stmt = MS_conn.createStatement( ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+					rss = stmt.executeQuery(sql);
+					Date  tar  ;
+					rss.last();
+					int count = rss.getRow();
+					rss.beforeFirst();
+					Progres_Bar_Temizle();  
+					OBS_MAIN.progressBar.setStringPainted(true);
+					OBS_MAIN.progressBar.setMaximum(count); 
+					int satir = 1;
+					while (rss.next())
+					{
+						Progres_Bar(count, satir);
+						tar = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(rss.getString("TARIH"));
+						defaultModel.addRow(new Object[]{tar, rss.getString("IZAHAT")  ,"", rss.getDouble("BORC") ,rss.getDouble("ALACAK"),"",""});
+						satir +=1;
+					}
 				}
+				Progres_Bar_Temizle();
+				DISTAN_AKTAR.lblsatir.setText(FORMATLAMA.doub_0(DISTAN_AKTAR.tblexcell.getRowCount()));
+				getContentPane().setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+				OBS_MAIN.mesaj_goster(7000,Notifications.Type.INFO,Integer.toString(DISTAN_AKTAR.tblexcell.getRowCount()) + " Satir Aktarildi" );
+				dispose();
+			} catch (Exception ex) {
+				getContentPane().setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+				OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage() );
 			}
-			DISTAN_AKTAR.lblsatir.setText(FORMATLAMA.doub_0(DISTAN_AKTAR.tblexcell.getRowCount()));
-			getContentPane().setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-			OBS_MAIN.mesaj_goster(7000,Notifications.Type.INFO,Integer.toString(DISTAN_AKTAR.tblexcell.getRowCount()) + " Satir Aktarildi" );
-			dispose();
-		} catch (Exception ex) {
-			getContentPane().setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage() );
+			//
 		}
+		};
+		Thread t = new Thread(runner, "Code Executer");
+		t.start();
 	}
 	private void isimoku_ekstre()
 	{
@@ -494,9 +527,8 @@ public class DOKUM_AKTAR extends JInternalFrame {
 				PreparedStatement stmt = MS_conn.prepareStatement(sql);
 				rss = stmt.executeQuery();
 			}
-			if (!rss.isBeforeFirst() ) {  
+			if (!rss.isBeforeFirst() )
 				lblIsim.setText("");
-			} 
 			else
 			{
 				rss.next();
@@ -508,5 +540,16 @@ public class DOKUM_AKTAR extends JInternalFrame {
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage() );
 		}
 	}
+	static void Progres_Bar(int max, int deger) throws InterruptedException
+	{
+		OBS_MAIN.progressBar.setValue(deger);
+	}
+	static void Progres_Bar_Temizle()
+	{
+		OBS_MAIN.progressBar.setMaximum(0);
+		OBS_MAIN.progressBar.setValue(0);
+		OBS_MAIN.progressBar.setStringPainted(false);
+	}
+
 }
 

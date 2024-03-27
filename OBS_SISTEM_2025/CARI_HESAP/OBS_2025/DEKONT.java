@@ -69,6 +69,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.Locale;
 import java.util.Set;
 
 import javax.swing.ImageIcon;
@@ -283,6 +284,7 @@ public class DEKONT extends JInternalFrame {
 			public void keyReleased(KeyEvent e) {
 			}
 		});
+ 		
 		panel.add(dtc);
 
 		btnNewButton = new JButton("");

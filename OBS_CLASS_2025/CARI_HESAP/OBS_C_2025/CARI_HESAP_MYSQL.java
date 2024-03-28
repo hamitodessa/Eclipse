@@ -76,9 +76,9 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 			GLOBAL.create_table_log(dsy,sbilgi.getFir_adi(),BAGLAN_LOG.cariLogDizin);
 		}
 		//ACCDB LOG DOSYASI OLUSTUR*********************************************************
-		if (GLOBAL.dos_kontrol(GLOBAL.LOG_SURUCU + VERITABANI + "_mYSQL"+  ".ACCDB") == false)
+		if (GLOBAL.dos_kontrol(GLOBAL.LOG_SURUCU + VERITABANI + "_mYSQL"+  ".accdb") == false)
 		{
-			String dsy = GLOBAL.LOG_SURUCU + VERITABANI + "_mYSQL"+ ".ACCDB" ;
+			String dsy = GLOBAL.LOG_SURUCU + VERITABANI + "_mYSQL"+ ".accdb" ;
 			GLOBAL.create_table_log_accdb(dsy,sbilgi.getFir_adi(),BAGLAN_LOG.cariLogDizin);
 		}
 		//  TEXT DOSYASI ILK ACILIS

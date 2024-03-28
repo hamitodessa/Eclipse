@@ -15,7 +15,7 @@ public class BILGI_OKU_LOG {
 					port =  ":" + oDIZIN.sERVER ;
 				dIZIN.cONN_STR =  "localhost" + port + ";instanceName=" + oDIZIN.iNSTANCE + " ; database=" + dOSYA_BASLANGIC  + oDIZIN.kOD + "_LOG"; //VERITABANI
 				dIZIN.mODUL =    dOSYA_BASLANGIC  + oDIZIN.kOD + "_mSSQL" + ".DB" ;   //SQLITE
-				dIZIN.mODULADI_ACCDB =    dOSYA_BASLANGIC  + oDIZIN.kOD + "_mSSQL" + ".ACCDB" ;   //ACCESS
+				dIZIN.mODULADI_ACCDB =    dOSYA_BASLANGIC  + oDIZIN.kOD + "_mSSQL" + ".accdb" ;   //ACCESS
 				dIZIN.mODULADI =    dOSYA_BASLANGIC  + oDIZIN.kOD  + "_mSSQL" ;//TEXT DOSYA
 			}
 			else  if (oDIZIN.hAN_SQL.toString().equals("MY SQL") == true)
@@ -24,7 +24,7 @@ public class BILGI_OKU_LOG {
 				dIZIN.sIFRESI = oDIZIN.sIFRESI;
 				dIZIN.cONN_STR =  "localhost/" + dOSYA_BASLANGIC  + oDIZIN.kOD + "_log";//VERITABANI
 				dIZIN.mODUL =     (dOSYA_BASLANGIC  + oDIZIN.kOD).toLowerCase() + "_mYSQL" + ".DB" ;//SQLITE
-				dIZIN.mODULADI_ACCDB =    dOSYA_BASLANGIC  + oDIZIN.kOD + "_mYSQL" + ".ACCDB" ;   //ACCESS
+				dIZIN.mODULADI_ACCDB =    dOSYA_BASLANGIC  + oDIZIN.kOD + "_mYSQL" + ".accdb" ;   //ACCESS
 				dIZIN.mODULADI =  (dOSYA_BASLANGIC  + oDIZIN.kOD).toLowerCase() + "_mYSQL"  ;//TEXT DOSYA
 			}
 		}
@@ -36,7 +36,7 @@ public class BILGI_OKU_LOG {
 				dIZIN.sIFRESI = oDIZIN.sIFRESI;
 				dIZIN.cONN_STR = oDIZIN.sERVER + ";instanceName=" + oDIZIN.iNSTANCE + " ; database=" +  dOSYA_BASLANGIC + oDIZIN.kOD + "_LOG";//VERITABANI
 				dIZIN.mODUL =   GLOBAL.char_degis( oDIZIN.sERVER) +  dOSYA_BASLANGIC  + oDIZIN.kOD + "_mSSQL" + ".DB" ;//SQLITE
-				dIZIN.mODULADI_ACCDB =   GLOBAL.char_degis( oDIZIN.sERVER) +  dOSYA_BASLANGIC  + oDIZIN.kOD + "_mSSQL" + ".ACCDB" ;//ACCDB
+				dIZIN.mODULADI_ACCDB =   GLOBAL.char_degis( oDIZIN.sERVER) +  dOSYA_BASLANGIC  + oDIZIN.kOD + "_mSSQL" + ".accdb" ;//ACCDB
 				dIZIN.mODULADI =  GLOBAL.char_degis( oDIZIN.sERVER) +  dOSYA_BASLANGIC  + oDIZIN.kOD  + "_mSSQL" ;//TEXT DOSYA
 			}
 			else  if (oDIZIN.hAN_SQL.toString().equals("MY SQL") == true)
@@ -45,7 +45,7 @@ public class BILGI_OKU_LOG {
 				dIZIN.sIFRESI = oDIZIN.sIFRESI;
 				dIZIN.cONN_STR =  oDIZIN.sERVER + "/" +  dOSYA_BASLANGIC + oDIZIN.kOD + "_log";//VERITABANI
 				dIZIN.mODUL =      GLOBAL.char_degis( oDIZIN.sERVER) + (dOSYA_BASLANGIC  + oDIZIN.kOD).toLowerCase() + "_mYSQL" + ".DB" ;//SQLITE
-				dIZIN.mODULADI_ACCDB =      GLOBAL.char_degis( oDIZIN.sERVER) + (dOSYA_BASLANGIC  + oDIZIN.kOD).toLowerCase() + "_mYSQL" + ".ACCDB" ;//ACCDB
+				dIZIN.mODULADI_ACCDB =      GLOBAL.char_degis( oDIZIN.sERVER) + (dOSYA_BASLANGIC  + oDIZIN.kOD).toLowerCase() + "_mYSQL" + ".accdb" ;//ACCDB
 				dIZIN.mODULADI =   GLOBAL.char_degis( oDIZIN.sERVER) + (dOSYA_BASLANGIC  + oDIZIN.kOD).toLowerCase() + "_mYSQL"  ;//TEXT DOSYA
 			}
 		}

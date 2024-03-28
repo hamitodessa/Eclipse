@@ -72,9 +72,9 @@ public class KAMBIYO_MSSQL implements IKAMBIYO{
 			GLOBAL.create_table_log(dsy ,sbilgi.getFir_adi(),BAGLAN_LOG.kamLogDizin);
 		}
 		//ACCESS LOG DOSYASI OLUSTUR
-		if (GLOBAL.dos_kontrol(GLOBAL.LOG_SURUCU+ VERITABANI + "_mSSQL" + ".ACCDB") == false)
+		if (GLOBAL.dos_kontrol(GLOBAL.LOG_SURUCU+ VERITABANI + "_mSSQL" + ".accdb") == false)
 		{
-			String dsy = GLOBAL.LOG_SURUCU + VERITABANI + "_mSSQL"+ ".ACCDB" ;
+			String dsy = GLOBAL.LOG_SURUCU + VERITABANI + "_mSSQL"+ ".accdb" ;
 			GLOBAL.create_table_log(dsy ,sbilgi.getFir_adi(),BAGLAN_LOG.kamLogDizin);
 		}
 		//  TEXT DOSYASI ILK ACILIS

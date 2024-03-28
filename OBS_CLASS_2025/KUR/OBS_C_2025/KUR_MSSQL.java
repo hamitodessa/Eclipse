@@ -68,9 +68,9 @@ public class KUR_MSSQL implements IKUR{
 			GLOBAL.create_table_log(dsy,"",BAGLAN_LOG.kurLogDizin);
 		}
 		//ACCDB LOG DOSYASI OLUSTUR
-		if (GLOBAL.dos_kontrol(GLOBAL.LOG_SURUCU + VERITABANI + "_mSSQL" + ".ACCDB") == false)
+		if (GLOBAL.dos_kontrol(GLOBAL.LOG_SURUCU + VERITABANI + "_mSSQL" + ".accdb") == false)
 		{
-			String dsy = GLOBAL.LOG_SURUCU + VERITABANI + "_mSSQL"+ ".ACCDB" ;
+			String dsy = GLOBAL.LOG_SURUCU + VERITABANI + "_mSSQL"+ ".accdb" ;
 			GLOBAL.create_table_log(dsy,"",BAGLAN_LOG.kurLogDizin);
 		}
 		//  TEXT DOSYASI ILK ACILIS

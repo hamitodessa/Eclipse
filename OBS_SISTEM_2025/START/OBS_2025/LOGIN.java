@@ -569,30 +569,51 @@ public class LOGIN extends JDialog {
 						dsy =  GLOBAL.LOG_SURUCU + GLOBAL.char_degis(BAGLAN_LOG.kurLogDizin.mODUL) ;
 						if (! glb.dos_kontrol(dsy))
 							GLOBAL.create_table_log(dsy,"",BAGLAN_LOG.kurLogDizin);
+						dsy =  GLOBAL.LOG_SURUCU + GLOBAL.char_degis(BAGLAN_LOG.kurLogDizin.mODULADI_ACCDB) ;
+						if (! glb.dos_kontrol(dsy))
+							GLOBAL.create_table_log_accdb(dsy,"",BAGLAN_LOG.kurLogDizin);
 						//SMS LOG KONTROL
 						dsy =  GLOBAL.LOG_SURUCU + GLOBAL.char_degis(BAGLAN_LOG.smsLogDizin.mODUL) ;
 						if (! glb.dos_kontrol(dsy))
 							GLOBAL.create_table_log(dsy,"",BAGLAN_LOG.smsLogDizin);
+						dsy =  GLOBAL.LOG_SURUCU + GLOBAL.char_degis(BAGLAN_LOG.smsLogDizin.mODULADI_ACCDB) ;
+						if (! glb.dos_kontrol(dsy))
+							GLOBAL.create_table_log_accdb(dsy,"",BAGLAN_LOG.smsLogDizin);
 						//ADRES LOG KONTROL
 						dsy =  GLOBAL.LOG_SURUCU + GLOBAL.char_degis(BAGLAN_LOG.adrLogDizin.mODUL) ;
 						if (! glb.dos_kontrol(dsy))
 							GLOBAL.create_table_log(dsy,oac._IAdres.adr_firma_adi(),BAGLAN_LOG.adrLogDizin);
+						dsy =  GLOBAL.LOG_SURUCU + GLOBAL.char_degis(BAGLAN_LOG.adrLogDizin.mODULADI_ACCDB) ;
+						if (! glb.dos_kontrol(dsy))
+							GLOBAL.create_table_log_accdb(dsy,oac._IAdres.adr_firma_adi(),BAGLAN_LOG.adrLogDizin);
 						//STOK LOG KONTROL
 						dsy =  GLOBAL.LOG_SURUCU + GLOBAL.char_degis(BAGLAN_LOG.fatLogDizin.mODUL) ;
 						if (! glb.dos_kontrol(dsy))
 							GLOBAL.create_table_log(dsy,oac._IStok.fat_firma_adi(),BAGLAN_LOG.fatLogDizin);
+						dsy =  GLOBAL.LOG_SURUCU + GLOBAL.char_degis(BAGLAN_LOG.fatLogDizin.mODULADI_ACCDB) ;
+						if (! glb.dos_kontrol(dsy))
+							GLOBAL.create_table_log_accdb(dsy,oac._IStok.fat_firma_adi(),BAGLAN_LOG.fatLogDizin);
 						//KAMBIYO LOG KONTROL
 						dsy =  GLOBAL.LOG_SURUCU + GLOBAL.char_degis(BAGLAN_LOG.kamLogDizin.mODUL) ;
 						if (! glb.dos_kontrol(dsy))
 							GLOBAL.create_table_log(dsy,oac._IKambiyo.kam_firma_adi(),BAGLAN_LOG.kamLogDizin);
+						dsy =  GLOBAL.LOG_SURUCU + GLOBAL.char_degis(BAGLAN_LOG.kamLogDizin.mODULADI_ACCDB) ;
+						if (! glb.dos_kontrol(dsy))
+							GLOBAL.create_table_log_accdb(dsy,oac._IKambiyo.kam_firma_adi(),BAGLAN_LOG.kamLogDizin);
 						//GUNLUK LOG KONTROL
 						dsy =  GLOBAL.LOG_SURUCU + GLOBAL.char_degis(BAGLAN_LOG.gunLogDizin.mODUL) ;
 						if (! glb.dos_kontrol(dsy))
 							GLOBAL.create_table_log(dsy,oac._IGunluk.gun_firma_adi(),BAGLAN_LOG.gunLogDizin);
+						dsy =  GLOBAL.LOG_SURUCU + GLOBAL.char_degis(BAGLAN_LOG.gunLogDizin.mODULADI_ACCDB) ;
+						if (! glb.dos_kontrol(dsy))
+							GLOBAL.create_table_log_accdb(dsy,oac._IGunluk.gun_firma_adi(),BAGLAN_LOG.gunLogDizin);
 						//KERESTE LOG KONTROL
 						dsy =  GLOBAL.LOG_SURUCU + GLOBAL.char_degis(BAGLAN_LOG.kerLogDizin.mODUL) ;
 						if (! glb.dos_kontrol(dsy))
 							GLOBAL.create_table_log(dsy,oac._IKereste.ker_firma_adi(),BAGLAN_LOG.kerLogDizin);
+						dsy =  GLOBAL.LOG_SURUCU + GLOBAL.char_degis(BAGLAN_LOG.kerLogDizin.mODULADI_ACCDB) ;
+						if (! glb.dos_kontrol(dsy))
+							GLOBAL.create_table_log_accdb(dsy,oac._IKereste.ker_firma_adi(),BAGLAN_LOG.kerLogDizin);
 						//CARI EKSTRE SQL
 						dsy =  GLOBAL.SURUCU +  GLOBAL.EKSTRE_DOSYA ;
 						if (! glb.dos_kontrol(dsy))

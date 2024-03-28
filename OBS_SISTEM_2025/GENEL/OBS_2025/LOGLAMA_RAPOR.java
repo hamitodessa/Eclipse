@@ -66,6 +66,7 @@ import javax.swing.ImageIcon;
 import com.toedter.calendar.JCalendar;
 import com.toedter.calendar.JDateChooser;
 
+import LOGER_KAYIT.DOSYA_ACCESS_ACCDB;
 import LOGER_KAYIT.DOSYA_MSSQL;
 import LOGER_KAYIT.DOSYA_MYSQL;
 import LOGER_KAYIT.SQLITE_LOG;
@@ -88,7 +89,8 @@ public class LOGLAMA_RAPOR extends JInternalFrame {
 	private static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
 	static DOSYA_MYSQL mYSQL = new DOSYA_MYSQL ();
 	static DOSYA_MSSQL mSSQL = new DOSYA_MSSQL ();
-	static  SQLITE_LOG sQLITE = new SQLITE_LOG();
+	static SQLITE_LOG sQLITE = new SQLITE_LOG();
+	static DOSYA_ACCESS_ACCDB aCCDB = new DOSYA_ACCESS_ACCDB(); 
 	static TXT_LOG tEXT = new TXT_LOG();
 	private static Obs_TextFIeld textField;
 	private static Obs_TextFIeld textField_1;
@@ -215,7 +217,7 @@ public class LOGLAMA_RAPOR extends JInternalFrame {
 		leftPanel.add(lblKullanici);
 
 		cmbLog = new JComboBox<String>();
-		cmbLog.setModel(new DefaultComboBoxModel<String>(new String[] {"Veritabani", "Dosya", "Text Dosya"}));
+		cmbLog.setModel(new DefaultComboBoxModel<String>(new String[] {"Veritabani", "SQ Lite","AccessDB", "Text Dosya"}));
 		cmbLog.setFont(new Font("Tahoma", Font.BOLD, 14));
 		cmbLog.setBounds(140, 11, 120, 27);
 		leftPanel.add(cmbLog);
@@ -255,11 +257,17 @@ public class LOGLAMA_RAPOR extends JInternalFrame {
 									"%" + textField.getText()   + "%",   "%" + textField_1.getText()  + "%" ,"%" + textField_2.getText()  + "%", 
 									BAGLAN_LOG.cariLogDizin);
 						}
-				}
-				else if(cmbLog.getSelectedItem().toString().equals("Dosya")) //SQLITE Dosyasi
+				}//
+				else if(cmbLog.getSelectedItem().toString().equals("SQ Lite")) //SQLITE Dosyasi
 				{
 					rs  = 	sQLITE.log_rapor( TARIH_CEVIR.tarih_geri(dateChooser), TARIH_CEVIR.tarih_geri(dateChooser_1),
 							"%" + textField.getText()   + "%",   "%" + textField_1.getText()  + "%" ,"%" + textField_2.getText()  + "%", 
+							BAGLAN_LOG.cariLogDizin);
+				}
+				else if(cmbLog.getSelectedItem().toString().equals("AccessDB")) //ACCESS Dosyasi
+				{
+					rs  = 	aCCDB.log_rapor( TARIH_CEVIR.tarih_geri_kasa(dateChooser), TARIH_CEVIR.tarih_geri_kasa(dateChooser_1),
+							 textField.getText()   + "*",    textField_1.getText()  + "*" , textField_2.getText()  + "*", 
 							BAGLAN_LOG.cariLogDizin);
 				}
 				else if(cmbLog.getSelectedItem().toString().equals("Text Dosya")) //Text  Dosyasi
@@ -289,10 +297,16 @@ public class LOGLAMA_RAPOR extends JInternalFrame {
 								BAGLAN_LOG.fatLogDizin);
 					}
 				}
-				else if(cmbLog.getSelectedItem().toString().equals("Dosya"))//sQLITE Dosyasi
+				else if(cmbLog.getSelectedItem().toString().equals("SQ Lite"))//sQLITE Dosyasi
 				{
 					rs  = sQLITE.log_rapor( TARIH_CEVIR.tarih_geri(dateChooser), TARIH_CEVIR.tarih_geri(dateChooser_1),
 							"%" + textField.getText()   + "%",   "%" + textField_1.getText()  + "%" ,"%" + textField_2.getText()  + "%", 
+							BAGLAN_LOG.fatLogDizin);
+				}
+				else if(cmbLog.getSelectedItem().toString().equals("AccessDB"))//ACCESS Dosyasi
+				{
+					rs  = aCCDB.log_rapor( TARIH_CEVIR.tarih_geri_SQL(dateChooser), TARIH_CEVIR.tarih_geri_SQL(dateChooser_1),
+							"" + textField.getText()   + "*",   "" + textField_1.getText()  + "*" ,"" + textField_2.getText()  + "*", 
 							BAGLAN_LOG.fatLogDizin);
 				}
 				else if(cmbLog.getSelectedItem().toString().equals("Text Dosya")) //Text  Dosyasi
@@ -322,10 +336,16 @@ public class LOGLAMA_RAPOR extends JInternalFrame {
 								BAGLAN_LOG.kamLogDizin);
 					}
 				}
-				else if(cmbLog.getSelectedItem().toString().equals("Dosya"))// sQLITE Dosyasi
+				else if(cmbLog.getSelectedItem().toString().equals("SQ Lite"))// sQLITE Dosyasi
 				{
 					rs  = sQLITE.log_rapor( TARIH_CEVIR.tarih_geri(dateChooser), TARIH_CEVIR.tarih_geri(dateChooser_1),
 							"%" + textField.getText()   + "%",   "%" + textField_1.getText()  + "%" ,"%" + textField_2.getText()  + "%", 
+							BAGLAN_LOG.kamLogDizin);
+				}
+				else if(cmbLog.getSelectedItem().toString().equals("AccessDB"))// ACCESS Dosyasi
+				{
+					rs  = aCCDB.log_rapor( TARIH_CEVIR.tarih_geri_SQL(dateChooser), TARIH_CEVIR.tarih_geri_SQL(dateChooser_1),
+							"" + textField.getText()   + "*",   "" + textField_1.getText()  + "*" ,"" + textField_2.getText()  + "*", 
 							BAGLAN_LOG.kamLogDizin);
 				}
 				else if(cmbLog.getSelectedItem().toString().equals("Text Dosya")) //Text  Dosyasi
@@ -355,10 +375,16 @@ public class LOGLAMA_RAPOR extends JInternalFrame {
 								BAGLAN_LOG.adrLogDizin);
 					}
 				}
-				else if(cmbLog.getSelectedItem().toString().equals("Dosya"))// sQLITE Dosyas
+				else if(cmbLog.getSelectedItem().toString().equals("SQ Lite"))// sQLITE Dosyas
 				{
 					rs  = 	sQLITE.log_rapor( TARIH_CEVIR.tarih_geri(dateChooser), TARIH_CEVIR.tarih_geri(dateChooser_1),
 							"%" + textField.getText()   + "%",   "%" + textField_1.getText()  + "%" ,"%" + textField_2.getText()  + "%", 
+							BAGLAN_LOG.adrLogDizin);
+				}
+				else if(cmbLog.getSelectedItem().toString().equals("AccessDB"))// ACCDB Dosyas
+				{
+					rs  = 	aCCDB.log_rapor( TARIH_CEVIR.tarih_geri_SQL(dateChooser), TARIH_CEVIR.tarih_geri_SQL(dateChooser_1),
+							"" + textField.getText()   + "*",   "" + textField_1.getText()  + "*" ,"" + textField_2.getText()  + "*", 
 							BAGLAN_LOG.adrLogDizin);
 				}
 				else if(cmbLog.getSelectedItem().toString().equals("Text Dosya")) //Text  Dosyasi
@@ -388,10 +414,16 @@ public class LOGLAMA_RAPOR extends JInternalFrame {
 								BAGLAN_LOG.kurLogDizin);
 					}
 				}
-				else if(cmbLog.getSelectedItem().toString().equals("Dosya"))// sQLITE Dosyas
+				else if(cmbLog.getSelectedItem().toString().equals("SQ Lite"))// sQLITE Dosyas
 				{
 					rs  = 	sQLITE.log_rapor( TARIH_CEVIR.tarih_geri(dateChooser), TARIH_CEVIR.tarih_geri(dateChooser_1),
 							"%" + textField.getText()   + "%",   "%" + textField_1.getText()  + "%" ,"%" + textField_2.getText()  + "%", 
+							BAGLAN_LOG.kurLogDizin);
+				}
+				else if(cmbLog.getSelectedItem().toString().equals("AccessDB"))// accdb Dosyas
+				{
+					rs  = 	aCCDB.log_rapor( TARIH_CEVIR.tarih_geri_SQL(dateChooser), TARIH_CEVIR.tarih_geri_SQL(dateChooser_1),
+							"" + textField.getText()   + "*",   "" + textField_1.getText()  + "*" ,"" + textField_2.getText()  + "*", 
 							BAGLAN_LOG.kurLogDizin);
 				}
 				else if(cmbLog.getSelectedItem().toString().equals("Text Dosya")) //Text  Dosyasi
@@ -421,10 +453,16 @@ public class LOGLAMA_RAPOR extends JInternalFrame {
 								BAGLAN_LOG.smsLogDizin);
 					}
 				}
-				else if(cmbLog.getSelectedItem().toString().equals("Dosya"))// sQLITE Dosyas
+				else if(cmbLog.getSelectedItem().toString().equals("SQ Lite"))// sQLITE Dosyas
 				{
 					rs  = 	sQLITE.log_rapor( TARIH_CEVIR.tarih_geri(dateChooser), TARIH_CEVIR.tarih_geri(dateChooser_1),
 							"%" + textField.getText()   + "%",   "%" + textField_1.getText()  + "%" ,"%" + textField_2.getText()  + "%", 
+							BAGLAN_LOG.smsLogDizin);
+				}
+				else if(cmbLog.getSelectedItem().toString().equals("AccessDB"))// accdb Dosyas
+				{
+					rs  = 	aCCDB.log_rapor( TARIH_CEVIR.tarih_geri_SQL(dateChooser), TARIH_CEVIR.tarih_geri_SQL(dateChooser_1),
+							"" + textField.getText()   + "*",   "" + textField_1.getText()  + "*" ,"" + textField_2.getText()  + "*", 
 							BAGLAN_LOG.smsLogDizin);
 				}
 				else if(cmbLog.getSelectedItem().toString().equals("Text Dosya")) //Text  Dosyasi
@@ -454,10 +492,16 @@ public class LOGLAMA_RAPOR extends JInternalFrame {
 								BAGLAN_LOG.gunLogDizin);
 					}
 				}
-				else if(cmbLog.getSelectedItem().toString().equals("Dosya"))// sQLITE Dosyas
+				else if(cmbLog.getSelectedItem().toString().equals("SQ Lite"))// sQLITE Dosyas
 				{
 					rs  = 	sQLITE.log_rapor( TARIH_CEVIR.tarih_geri(dateChooser), TARIH_CEVIR.tarih_geri(dateChooser_1),
 							"%" + textField.getText()   + "%",   "%" + textField_1.getText()  + "%" ,"%" + textField_2.getText()  + "%", 
+							BAGLAN_LOG.gunLogDizin);
+				}
+				else if(cmbLog.getSelectedItem().toString().equals("AccessDB"))// sQLITE Dosyas
+				{
+					rs  = 	aCCDB.log_rapor( TARIH_CEVIR.tarih_geri_SQL(dateChooser), TARIH_CEVIR.tarih_geri_SQL(dateChooser_1),
+							"" + textField.getText()   + "*",   "" + textField_1.getText()  + "*" ,"" + textField_2.getText()  + "*", 
 							BAGLAN_LOG.gunLogDizin);
 				}
 				else if(cmbLog.getSelectedItem().toString().equals("Text Dosya")) //Text  Dosyasi
@@ -487,10 +531,16 @@ public class LOGLAMA_RAPOR extends JInternalFrame {
 								BAGLAN_LOG.kerLogDizin);
 					}
 				}
-				else if(cmbLog.getSelectedItem().toString().equals("Dosya"))// sQLITE Dosyas
+				else if(cmbLog.getSelectedItem().toString().equals("SQ Lite"))// sQLITE Dosyas
 				{
 					rs  = 	sQLITE.log_rapor( TARIH_CEVIR.tarih_geri(dateChooser), TARIH_CEVIR.tarih_geri(dateChooser_1),
 							"%" + textField.getText()   + "%",   "%" + textField_1.getText()  + "%" ,"%" + textField_2.getText()  + "%", 
+							BAGLAN_LOG.kerLogDizin);
+				}
+				else if(cmbLog.getSelectedItem().toString().equals("AccessDB"))// sQLITE Dosyas
+				{
+					rs  = 	aCCDB.log_rapor( TARIH_CEVIR.tarih_geri_SQL(dateChooser), TARIH_CEVIR.tarih_geri_SQL(dateChooser_1),
+							"" + textField.getText()   + "*",   "" + textField_1.getText()  + "*" ,"" + textField_2.getText()  + "*", 
 							BAGLAN_LOG.kerLogDizin);
 				}
 				else if(cmbLog.getSelectedItem().toString().equals("Text Dosya")) //Text  Dosyasi

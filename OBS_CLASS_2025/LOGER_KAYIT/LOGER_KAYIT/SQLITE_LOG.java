@@ -45,7 +45,7 @@ public class SQLITE_LOG implements ILOGER_KAYIT{
 		ResultSet	rss = null;
 		try
 		{
-			Connection sQLITEconn = DriverManager.getConnection("jdbc:sqlite:" +GLOBAL.LOG_SURUCU +  dBILGI.mODUL   ) ;
+			Connection sQLITEconn = DriverManager.getConnection("jdbc:sqlite:" + GLOBAL.LOG_SURUCU +  dBILGI.mODUL   ) ;
 			SimpleDateFormat f = new SimpleDateFormat ("yyyy.MM.dd");
 			Date d = f.parse(t1);
 			long  tt1 = d.getTime();

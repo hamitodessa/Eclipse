@@ -73,6 +73,12 @@ public class GUNLUK_MSSQL implements IGUNLUK {
 			String dsy = GLOBAL.LOG_SURUCU + VERITABANI + "_mSSQL"+ ".DB" ;
 			GLOBAL.create_table_log(dsy,sbilgi.getFir_adi(),BAGLAN_LOG.gunLogDizin);
 		}
+		//SQLITE LOG DOSYASI OLUSTUR
+		if (GLOBAL.dos_kontrol(GLOBAL.LOG_SURUCU + VERITABANI + "_mSSQL"+  ".ACCDB") == false)
+		{
+			String dsy = GLOBAL.LOG_SURUCU + VERITABANI + "_mSSQL"+ ".ACCDB" ;
+			GLOBAL.create_table_log(dsy,sbilgi.getFir_adi(),BAGLAN_LOG.gunLogDizin);
+		}
 		//  TEXT DOSYASI ILK ACILIS
 		ILOGER_KAYIT  tEXLOG = new TXT_LOG();
 		lBILGI.setmESAJ("Dosya Olusturuldu");
@@ -120,6 +126,12 @@ public class GUNLUK_MSSQL implements IGUNLUK {
 		if (GLOBAL.dos_kontrol(  GLOBAL.LOG_SURUCU + GLOBAL.char_degis( BAGLAN_LOG.gunLogDizin.mODUL)) == false)
 		{
 			String dsy =  GLOBAL.LOG_SURUCU + GLOBAL.char_degis(BAGLAN_LOG.gunLogDizin.mODUL) ;
+			GLOBAL.create_table_log(dsy,sbilgi.getFir_adi(),BAGLAN_LOG.gunLogDizin);
+		}
+		//ACCESS LOG DOSYASI OLUSTUR
+		if (GLOBAL.dos_kontrol(  GLOBAL.LOG_SURUCU + GLOBAL.char_degis( BAGLAN_LOG.gunLogDizin.mODULADI_ACCDB)) == false)
+		{
+			String dsy =  GLOBAL.LOG_SURUCU + GLOBAL.char_degis(BAGLAN_LOG.gunLogDizin.mODULADI_ACCDB) ;
 			GLOBAL.create_table_log(dsy,sbilgi.getFir_adi(),BAGLAN_LOG.gunLogDizin);
 		}
 		//  TEXT DOSYASI ILK ACILIS
@@ -506,7 +518,7 @@ public class GUNLUK_MSSQL implements IGUNLUK {
 	}
 	private void kONTROL() throws SQLException, ClassNotFoundException
 	{
-		if(con.isClosed())    
+		if(! con.isValid(0))
 			baglan();
 	}
 }

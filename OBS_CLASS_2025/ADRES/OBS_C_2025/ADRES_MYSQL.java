@@ -62,6 +62,12 @@ public class ADRES_MYSQL implements IADRES {
 			String dsy =GLOBAL.LOG_SURUCU + VERITABANI + "_mYSQL"+ ".DB" ;
 			GLOBAL.create_table_log(dsy ,sbilgi.getFir_adi(),BAGLAN_LOG.adrLogDizin);
 		}
+		//ACCESS LOG DOSYASI OLUSTUR
+		if (GLOBAL.dos_kontrol(GLOBAL.LOG_SURUCU + VERITABANI + "_mYSQL" + ".ACCDB") == false)
+		{
+			String dsy =GLOBAL.LOG_SURUCU + VERITABANI + "_mYSQL"+ ".ACCDB" ;
+			GLOBAL.create_table_log(dsy ,sbilgi.getFir_adi(),BAGLAN_LOG.adrLogDizin);
+		}
 		//  TEXT DOSYASI ILK ACILIS
 		ILOGER_KAYIT  tEXLOG = new TXT_LOG();
 		lBILGI.setmESAJ("Dosya Olusturuldu");
@@ -110,8 +116,12 @@ public class ADRES_MYSQL implements IADRES {
 		if (GLOBAL.dos_kontrol( GLOBAL.LOG_SURUCU + GLOBAL.char_degis(  BAGLAN_LOG.adrLogDizin.mODUL) ) == false)
 		{
 			String dsy =  GLOBAL.LOG_SURUCU +GLOBAL.char_degis( BAGLAN_LOG.adrLogDizin.mODUL) ;
-			@SuppressWarnings("unused")
-			Connection sQLITEconn = DriverManager.getConnection("jdbc:sqlite:" + dsy  ) ;
+			GLOBAL.create_table_log(dsy ,sbilgi.getFir_adi(),BAGLAN_LOG.adrLogDizin);
+		}
+		//ACCESS LOG DOSYASI OLUSTUR
+		if (GLOBAL.dos_kontrol( GLOBAL.LOG_SURUCU + GLOBAL.char_degis(  BAGLAN_LOG.adrLogDizin.mODULADI_ACCDB) ) == false)
+		{
+			String dsy =  GLOBAL.LOG_SURUCU +GLOBAL.char_degis( BAGLAN_LOG.adrLogDizin.mODULADI_ACCDB) ;
 			GLOBAL.create_table_log(dsy ,sbilgi.getFir_adi(),BAGLAN_LOG.adrLogDizin);
 		}
 		//  TEXT DOSYASI ILK ACILIS
@@ -392,7 +402,7 @@ public class ADRES_MYSQL implements IADRES {
 	}
 	private void kONTROL() throws SQLException, ClassNotFoundException
 	{
-		if(con.isClosed())    
+		if(! con.isValid(0))
 			baglan();
 	}
 	@Override

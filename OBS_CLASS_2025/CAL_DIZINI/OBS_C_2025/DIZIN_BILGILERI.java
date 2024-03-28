@@ -17,5 +17,6 @@ public class DIZIN_BILGILERI
 	public String lOGLAMA_YERI = "";
 	public String mODUL = "";
 	public String mODULADI = "" ;
+	public String mODULADI_ACCDB = "" ;
 	public  int cDID =0;
 }

@@ -59,6 +59,12 @@ public class KUR_MYSQL implements IKUR {
 			String dsy =GLOBAL.LOG_SURUCU + VERITABANI + "_mYSQL"+ ".DB" ;
 			GLOBAL.create_table_log(dsy,"",BAGLAN_LOG.kurLogDizin);
 		}
+		//SQLITE LOG DOSYASI OLUSTUR
+		if (GLOBAL.dos_kontrol(GLOBAL.LOG_SURUCU + VERITABANI + "_mYSQL" + ".ACCDB") == false)
+		{
+			String dsy =GLOBAL.LOG_SURUCU + VERITABANI + "_mYSQL"+ ".ACCDB" ;
+			GLOBAL.create_table_log(dsy,"",BAGLAN_LOG.kurLogDizin);
+		}
 		//  TEXT DOSYASI ILK ACILIS
 		ILOGER_KAYIT  tEXLOG = new TXT_LOG();
 		tEXLOG.Logla(lBILGI, BAGLAN_LOG.kurLogDizin);
@@ -100,7 +106,14 @@ public class KUR_MYSQL implements IKUR {
 		if (GLOBAL.dos_kontrol(  GLOBAL.LOG_SURUCU + GLOBAL.char_degis( BAGLAN_LOG.kurLogDizin.mODUL)) == false)
 		{
 			String dsy =  GLOBAL.LOG_SURUCU +GLOBAL.char_degis(  BAGLAN_LOG.kurLogDizin.mODUL)  ;
-			GLOBAL.create_table_log(dsy,"",BAGLAN_LOG.kurLogDizin);		}
+			GLOBAL.create_table_log(dsy,"",BAGLAN_LOG.kurLogDizin);		
+		}
+		//ACCESS LOG DOSYASI OLUSTUR
+		if (GLOBAL.dos_kontrol(  GLOBAL.LOG_SURUCU + GLOBAL.char_degis( BAGLAN_LOG.kurLogDizin.mODULADI_ACCDB)) == false)
+		{
+			String dsy =  GLOBAL.LOG_SURUCU +GLOBAL.char_degis(  BAGLAN_LOG.kurLogDizin.mODULADI_ACCDB)  ;
+			GLOBAL.create_table_log(dsy,"",BAGLAN_LOG.kurLogDizin);		
+		}
 		//  TEXT DOSYASI ILK ACILIS
 		ILOGER_KAYIT  tEXLOG = new TXT_LOG();
 		tEXLOG.Logla(lBILGI, BAGLAN_LOG.kurLogDizin);
@@ -244,7 +257,7 @@ public class KUR_MYSQL implements IKUR {
 	}
 	private void kONTROL() throws SQLException, ClassNotFoundException
 	{
-		if(con.isClosed())    
+		if(! con.isValid(0))
 			baglan();
 	}
 }

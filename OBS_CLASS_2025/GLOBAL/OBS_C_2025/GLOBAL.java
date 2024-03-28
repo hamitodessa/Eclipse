@@ -50,6 +50,7 @@ import org.jfree.data.category.DefaultCategoryDataset;
 import com.healthmarketscience.jackcess.Database;
 import com.healthmarketscience.jackcess.DatabaseBuilder;
 
+import LOGER_KAYIT.DOSYA_ACCESS_ACCDB;
 import LOGER_KAYIT.ILOGER_KAYIT;
 import LOGER_KAYIT.SQLITE_LOG;
 
@@ -549,7 +550,7 @@ public class GLOBAL {
 				+ "	USER_NAME CHAR(15) NULL"
 				+ ") ";
 		Connection sQLITEconn = DriverManager.getConnection("jdbc:sqlite:" + dosya  ) ;
-		Statement stmt =sQLITEconn.createStatement();  
+		Statement stmt = sQLITEconn.createStatement();  
 		
 		stmt.execute(sql);
 		stmt.close();
@@ -566,6 +567,47 @@ public class GLOBAL {
 		lbilgi.setmESAJ("Firma Adi:" + fadi);
 		lbilgi.seteVRAK("");
 		sQLOG.Logla(lbilgi, dBILGI);
+	}
+	public static void create_table_log_accdb(String dosya,String fadi,DIZIN_BILGILERI dBILGI) throws SQLException, ClassNotFoundException 
+	{
+		Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
+		CekPrintcon = myCekPrintConnection();
+		File file = new File(dosya );
+		try {
+			Database db;
+			db = new DatabaseBuilder(file).setFileFormat(Database.FileFormat.V2019)	
+					//.setCodecProvider(new CryptCodecProvider("oOk271972"))
+					.create();
+			db.close();
+		} catch (Exception e) {
+		}
+		String sql= null;
+		sql = "CREATE TABLE LOGLAMA("
+				+ "	TARIH DATETIME NOT NULL,"
+				+ "	MESAJ CHAR(100) NOT NULL,"
+				+ "	EVRAK CHAR(15) NOT NULL,"
+				+ "	USER_NAME CHAR(15) NULL"
+				+ ") ";
+		
+		Connection aCCDBconn = DriverManager.getConnection("jdbc:ucanaccess://" + dosya  ) ;
+		Statement stmt = aCCDBconn.createStatement();  
+		stmt.execute(sql);  
+		stmt.close();
+		
+
+		sql = "CREATE INDEX IX_LOGLAMA  ON LOGLAMA  (TARIH,EVRAK) ; " ;
+		stmt = aCCDBconn.createStatement();  
+		stmt.execute(sql);
+		aCCDBconn.close();
+		ILOGER_KAYIT  sQLOG = new DOSYA_ACCESS_ACCDB();
+		lOG_BILGI lbilgi = new lOG_BILGI();
+		lbilgi.setmESAJ("Dosya Olusturuldu");
+		lbilgi.seteVRAK("");
+		sQLOG.Logla(lbilgi, dBILGI);
+		lbilgi.setmESAJ("Firma Adi:" + fadi);
+		lbilgi.seteVRAK("");
+		sQLOG.Logla(lbilgi, dBILGI);
+	
 	}
 	private static void  set_ilk() 
 	{

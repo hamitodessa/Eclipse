@@ -294,12 +294,14 @@ public class YIL_SONU extends JInternalFrame {
 			if (!rs.isBeforeFirst() ) {  
 				JTableHeader th = table.getTableHeader();
 				TableColumnModel tcm = th.getColumnModel();
-				TableColumn tc = tcm.getColumn(0);
-				tc.setHeaderRenderer(new CheckBoxHeader(new MyItemListener()));
+				if(table.getRowCount()>0)
+				{
+					TableColumn tc = tcm.getColumn(0);
+					tc.setHeaderRenderer(new CheckBoxHeader(new MyItemListener()));
+				}
 				th.repaint();
 				table.repaint();
 				getContentPane().setCursor(oac.DEFAULT_CURSOR);
-				
 				return;
 			}
 			table.setModel(DbUtils.resultSetToTableModel(rs));

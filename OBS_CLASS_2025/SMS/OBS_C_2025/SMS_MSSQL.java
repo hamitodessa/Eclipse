@@ -67,6 +67,12 @@ public class SMS_MSSQL implements ISMS{
 			String dsy = GLOBAL.LOG_SURUCU + VERITABANI + "_mSSQL"+ ".DB" ;
 			GLOBAL.create_table_log(dsy ,"",BAGLAN_LOG.smsLogDizin);
 		}
+		//ACCESS LOG DOSYASI OLUSTUR
+		if (GLOBAL.dos_kontrol(GLOBAL.LOG_SURUCU + VERITABANI + "_mSSQL" + ".ACCDB") == false)
+		{
+			String dsy = GLOBAL.LOG_SURUCU + VERITABANI + "_mSSQL"+ ".ACCDB" ;
+			GLOBAL.create_table_log(dsy ,"",BAGLAN_LOG.smsLogDizin);
+		}
 		//  TEXT DOSYASI ILK ACILIS
 		ILOGER_KAYIT  tEXLOG = new TXT_LOG();
 		tEXLOG.Logla(lBILGI, BAGLAN_LOG.smsLogDizin);
@@ -110,6 +116,12 @@ public class SMS_MSSQL implements ISMS{
 		if (GLOBAL.dos_kontrol(  GLOBAL.LOG_SURUCU +GLOBAL.char_degis( BAGLAN_LOG.smsLogDizin.mODUL) ) == false)
 		{
 			String dsy =  GLOBAL.LOG_SURUCU + GLOBAL.char_degis( BAGLAN_LOG.smsLogDizin.mODUL) ;
+			GLOBAL.create_table_log(dsy ,"",BAGLAN_LOG.smsLogDizin);
+		}
+		//ACCESSLOG DOSYASI OLUSTUR
+		if (GLOBAL.dos_kontrol(  GLOBAL.LOG_SURUCU +GLOBAL.char_degis( BAGLAN_LOG.smsLogDizin.mODULADI_ACCDB) ) == false)
+		{
+			String dsy =  GLOBAL.LOG_SURUCU + GLOBAL.char_degis( BAGLAN_LOG.smsLogDizin.mODULADI_ACCDB) ;
 			GLOBAL.create_table_log(dsy ,"",BAGLAN_LOG.smsLogDizin);
 		}
 		//  TEXT DOSYASI ILK ACILIS
@@ -408,7 +420,7 @@ public class SMS_MSSQL implements ISMS{
 	}
 	private void kONTROL() throws SQLException, ClassNotFoundException
 	{
-		if(con.isClosed())    
+		if(! con.isValid(0))
 			baglan();
 	}
 }

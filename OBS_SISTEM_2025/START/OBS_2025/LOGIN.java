@@ -110,6 +110,7 @@ import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatMonokaiProIJTh
 import com.formdev.flatlaf.themes.FlatMacDarkLaf;
 import com.formdev.flatlaf.themes.FlatMacLightLaf;
 
+import LOGER_KAYIT.DOSYA_ACCESS_ACCDB;
 import LOGER_KAYIT.DOSYA_MSSQL;
 import LOGER_KAYIT.DOSYA_MYSQL;
 import LOGER_KAYIT.SQLITE_LOG;
@@ -192,6 +193,7 @@ public class LOGIN extends JDialog {
 	boolean ds = false;
 	boolean tx = false;
 	boolean em = false;
+	boolean accdb = false;
 	public static Thread t = null ;
 	private JLabel lblNewLabel_1;
 	/**
@@ -560,6 +562,9 @@ public class LOGIN extends JDialog {
 						String dsy =  GLOBAL.LOG_SURUCU + GLOBAL.char_degis(BAGLAN_LOG.cariLogDizin.mODUL) ;
 						if (! glb.dos_kontrol(dsy))
 							GLOBAL.create_table_log(dsy,oac._ICar.cari_firma_adi(),BAGLAN_LOG.cariLogDizin);
+						dsy =  GLOBAL.LOG_SURUCU + GLOBAL.char_degis(BAGLAN_LOG.cariLogDizin.mODULADI_ACCDB) ;
+						if (! glb.dos_kontrol(dsy))
+							GLOBAL.create_table_log_accdb(dsy,oac._ICar.cari_firma_adi(),BAGLAN_LOG.cariLogDizin);
 						//KUR LOG KONTROL
 						dsy =  GLOBAL.LOG_SURUCU + GLOBAL.char_degis(BAGLAN_LOG.kurLogDizin.mODUL) ;
 						if (! glb.dos_kontrol(dsy))
@@ -1509,19 +1514,49 @@ public class LOGIN extends JDialog {
 		ds = (token[1].equals("true") ? true:false);
 		tx = (token[2].equals("true") ? true:false);
 		em = (token[3].equals("true") ? true:false);
+		accdb = (token[4].equals("true") ? true:false);
 		if (log == false)
 		{
 			ILOGGER[] ilogg = {};
 			lAktar(mODUL , ilogg);
+			return;
 		}
-		else
+		if (vt ) // VERITABANI KONTROL
 		{
-			if (vt ) // VERITABANI KONTROL
+			if (hangiSQL.equals("MS SQL"))
 			{
-				if (hangiSQL.equals("MS SQL"))
+				if (ds) // SQLITE DOSYA KONTROL
 				{
-					if (ds) // SQLITE DOSYA KONTROL
+					if(accdb)// ACESS DOSYA KONTROL 
 					{
+						if(tx) // TEXT DOSYA KONTROL
+						{
+							if(em) // EMAIL KONTROL
+							{
+								ILOGGER[] ilogg = {new DOSYA_YAZ(new DOSYA_MSSQL()),new DOSYA_YAZ(new SQLITE_LOG()),new DOSYA_YAZ(new DOSYA_ACCESS_ACCDB()),new DOSYA_YAZ(new TXT_LOG()),new MAIL_AT()};
+								lAktar(mODUL , ilogg);
+							}
+							else
+							{
+								ILOGGER[] ilogg = {new DOSYA_YAZ(new DOSYA_MSSQL()),new DOSYA_YAZ(new SQLITE_LOG()),new DOSYA_YAZ(new DOSYA_ACCESS_ACCDB()),new DOSYA_YAZ(new TXT_LOG())};
+								lAktar(mODUL , ilogg);
+							}
+						}
+						else
+						{
+							if(em)
+							{
+								ILOGGER[] ilogg = {new DOSYA_YAZ(new DOSYA_MSSQL()),new DOSYA_YAZ(new SQLITE_LOG()),new DOSYA_YAZ(new DOSYA_ACCESS_ACCDB()),new MAIL_AT()};
+								lAktar(mODUL , ilogg);
+							}
+							else
+							{
+								ILOGGER[] ilogg = {new DOSYA_YAZ(new DOSYA_MSSQL()),new DOSYA_YAZ(new SQLITE_LOG()),new DOSYA_YAZ(new DOSYA_ACCESS_ACCDB())};
+								lAktar(mODUL , ilogg);
+							}
+						}
+					}
+					else {
 						if(tx) // TEXT DOSYA KONTROL
 						{
 							if(em) // EMAIL KONTROL
@@ -1549,8 +1584,39 @@ public class LOGIN extends JDialog {
 							}
 						}
 					}
-					else // DOSYA YOK 
+				}
+				else // DOSYA YOK 
+				{
+					if(accdb)
 					{
+						if(tx)
+						{
+							if(em)
+							{
+								ILOGGER[] ilogg = {new DOSYA_YAZ(new DOSYA_MSSQL()), new DOSYA_YAZ(new DOSYA_ACCESS_ACCDB()),new DOSYA_YAZ(new TXT_LOG()),new MAIL_AT()};
+								lAktar(mODUL , ilogg);
+							}
+							else
+							{
+								ILOGGER[] ilogg = {new DOSYA_YAZ(new DOSYA_MSSQL()), new DOSYA_YAZ(new DOSYA_ACCESS_ACCDB()),new DOSYA_YAZ(new TXT_LOG())};
+								lAktar(mODUL , ilogg);
+							}
+						}
+						else
+						{
+							if(em)
+							{
+								ILOGGER[] ilogg = {new DOSYA_YAZ(new DOSYA_MSSQL()), new DOSYA_YAZ(new DOSYA_ACCESS_ACCDB()),new MAIL_AT()};
+								lAktar(mODUL , ilogg);
+							}
+							else
+							{
+								ILOGGER[] ilogg = {new DOSYA_YAZ(new DOSYA_MSSQL()), new DOSYA_YAZ(new DOSYA_ACCESS_ACCDB())};
+								lAktar(mODUL , ilogg);
+							}
+						}
+					}
+					else {
 						if(tx)
 						{
 							if(em)
@@ -1579,10 +1645,41 @@ public class LOGIN extends JDialog {
 						}
 					}
 				}
-				else  // MYSQL
+			}
+			else  // MYSQL
+			{
+				if (ds)
 				{
-					if (ds)
+					if (accdb)
 					{
+						if(tx)
+						{
+							if(em)
+							{
+								ILOGGER[] ilogg = {new DOSYA_YAZ(new DOSYA_MYSQL()),new DOSYA_YAZ(new SQLITE_LOG()),new DOSYA_YAZ(new DOSYA_ACCESS_ACCDB()),new DOSYA_YAZ(new TXT_LOG()),new MAIL_AT()};
+								lAktar(mODUL , ilogg);
+							}
+							else
+							{
+								ILOGGER[] ilogg = {new DOSYA_YAZ(new DOSYA_MYSQL()),new DOSYA_YAZ(new SQLITE_LOG()),new DOSYA_YAZ(new DOSYA_ACCESS_ACCDB()),new DOSYA_YAZ(new TXT_LOG())};
+								lAktar(mODUL , ilogg);
+							}
+						}
+						else
+						{
+							if(em)
+							{
+								ILOGGER[] ilogg = {new DOSYA_YAZ(new DOSYA_MYSQL()),new DOSYA_YAZ(new SQLITE_LOG()),new DOSYA_YAZ(new DOSYA_ACCESS_ACCDB()),new MAIL_AT()};
+								lAktar(mODUL , ilogg);
+							}
+							else
+							{
+								ILOGGER[] ilogg = {new DOSYA_YAZ(new DOSYA_MYSQL()),new DOSYA_YAZ(new SQLITE_LOG()),new DOSYA_YAZ(new DOSYA_ACCESS_ACCDB())};
+								lAktar(mODUL , ilogg);
+							}
+						}
+					}
+					else {
 						if(tx)
 						{
 							if(em)
@@ -1610,8 +1707,39 @@ public class LOGIN extends JDialog {
 							}
 						}
 					}
-					else // DOSYA YOK 
+				}
+				else // DOSYA YOK 
+				{
+					if(accdb)
 					{
+						if(tx)
+						{
+							if(em)
+							{
+								ILOGGER[] ilogg = {new DOSYA_YAZ(new DOSYA_MYSQL()),new DOSYA_YAZ(new DOSYA_ACCESS_ACCDB()),new DOSYA_YAZ(new TXT_LOG()),new MAIL_AT()};
+								lAktar(mODUL , ilogg);
+							}
+							else
+							{
+								ILOGGER[] ilogg = {new DOSYA_YAZ(new DOSYA_MYSQL()),new DOSYA_YAZ(new DOSYA_ACCESS_ACCDB()),new DOSYA_YAZ(new TXT_LOG())};
+								lAktar(mODUL , ilogg);
+							}
+						}
+						else
+						{
+							if(em)
+							{
+								ILOGGER[] ilogg = {new DOSYA_YAZ(new DOSYA_MYSQL()),new DOSYA_YAZ(new DOSYA_ACCESS_ACCDB()),new MAIL_AT()};
+								lAktar(mODUL , ilogg);
+							}
+							else
+							{
+								ILOGGER[] ilogg = {new DOSYA_YAZ(new DOSYA_MYSQL()),new DOSYA_YAZ(new DOSYA_ACCESS_ACCDB())};
+								lAktar(mODUL , ilogg);
+							}
+						}
+					}
+					else {
 						if(tx)
 						{
 							if(em)
@@ -1641,10 +1769,41 @@ public class LOGIN extends JDialog {
 					}
 				}
 			}
-			else // VT YOK
+		}
+		else // VT YOK
+		{
+			if (ds)
 			{
-				if (ds)
+				if(accdb)
 				{
+					if(tx)
+					{
+						if(em)
+						{
+							ILOGGER[] ilogg = {new DOSYA_YAZ(new SQLITE_LOG()),new DOSYA_YAZ(new DOSYA_ACCESS_ACCDB()),new DOSYA_YAZ(new TXT_LOG()),new MAIL_AT()};
+							lAktar(mODUL , ilogg);
+						}
+						else
+						{
+							ILOGGER[] ilogg = {new DOSYA_YAZ(new SQLITE_LOG()),new DOSYA_YAZ(new DOSYA_ACCESS_ACCDB()),new DOSYA_YAZ(new TXT_LOG())};
+							lAktar(mODUL , ilogg);
+						}
+					}
+					else
+					{
+						if(em)
+						{
+							ILOGGER[] ilogg = {new DOSYA_YAZ(new SQLITE_LOG()),new DOSYA_YAZ(new DOSYA_ACCESS_ACCDB()),new MAIL_AT()};
+							lAktar(mODUL , ilogg);
+						}
+						else
+						{
+							ILOGGER[] ilogg = {new DOSYA_YAZ(new SQLITE_LOG()),new DOSYA_YAZ(new DOSYA_ACCESS_ACCDB())};
+							lAktar(mODUL , ilogg);
+						}
+					}
+				}
+				else {
 					if(tx)
 					{
 						if(em)
@@ -1672,8 +1831,39 @@ public class LOGIN extends JDialog {
 						}
 					}
 				}
-				else // DOSYA YOK 
+			}
+			else // DOSYA YOK 
+			{
+				if(accdb)
 				{
+					if(tx)
+					{
+						if(em)
+						{
+							ILOGGER[] ilogg = {new DOSYA_YAZ(new DOSYA_ACCESS_ACCDB()), new DOSYA_YAZ(new TXT_LOG()),new MAIL_AT()};
+							lAktar(mODUL , ilogg);
+						}
+						else
+						{
+							ILOGGER[] ilogg = {new DOSYA_YAZ(new DOSYA_ACCESS_ACCDB()),new DOSYA_YAZ(new TXT_LOG())};
+							lAktar(mODUL , ilogg);
+						}
+					}
+					else
+					{
+						if(em)
+						{
+							ILOGGER[] ilogg = {new DOSYA_YAZ(new DOSYA_ACCESS_ACCDB()),new MAIL_AT()};
+							lAktar(mODUL , ilogg);
+						}
+						else
+						{
+							ILOGGER[] ilogg = {new DOSYA_YAZ(new DOSYA_ACCESS_ACCDB())};
+							lAktar(mODUL , ilogg);
+						}
+					}
+				}
+				else {
 					if(tx)
 					{
 						if(em)
@@ -1701,8 +1891,8 @@ public class LOGIN extends JDialog {
 						}
 					}
 				}
-			}		
-		}
+			}
+		}		
 	}
 	private void lAktar(String mODUL , ILOGGER[] ilogg)
 	{
@@ -1716,6 +1906,10 @@ public class LOGIN extends JDialog {
 		case "Kambiyo" -> oac._IKambiyo_Loger = ilogg;
 		case "Kereste" -> oac._IKereste_Loger = ilogg;
 		}
+//		System.out.println(ilogg.length);
+//		for (ILOGGER ilogger : ilogg) {
+//			System.out.println(ilogger.toString());
+//		}
 	}
 }
 // String username = System.getProperty("user.name");

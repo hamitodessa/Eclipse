@@ -75,6 +75,12 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 			String dsy = GLOBAL.LOG_SURUCU + VERITABANI + "_mYSQL"+ ".DB" ;
 			GLOBAL.create_table_log(dsy,sbilgi.getFir_adi(),BAGLAN_LOG.cariLogDizin);
 		}
+		//ACCDB LOG DOSYASI OLUSTUR*********************************************************
+		if (GLOBAL.dos_kontrol(GLOBAL.LOG_SURUCU + VERITABANI + "_mYSQL"+  ".ACCDB") == false)
+		{
+			String dsy = GLOBAL.LOG_SURUCU + VERITABANI + "_mYSQL"+ ".ACCDB" ;
+			GLOBAL.create_table_log_accdb(dsy,sbilgi.getFir_adi(),BAGLAN_LOG.cariLogDizin);
+		}
 		//  TEXT DOSYASI ILK ACILIS
 		ILOGER_KAYIT  tEXLOG = new TXT_LOG();
 		lBILGI.setmESAJ("Dosya Olusturuldu");
@@ -119,6 +125,12 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 		if (GLOBAL.dos_kontrol(  GLOBAL.LOG_SURUCU + GLOBAL.char_degis( BAGLAN_LOG.cariLogDizin.mODUL)) == false)
 		{
 			String dsy =  GLOBAL.LOG_SURUCU + GLOBAL.char_degis(BAGLAN_LOG.cariLogDizin.mODUL) ;
+			GLOBAL.create_table_log(dsy,sbilgi.getFir_adi(),BAGLAN_LOG.cariLogDizin);
+		}
+		//ACCDB LOG DOSYASI OLUSTUR
+		if (GLOBAL.dos_kontrol(  GLOBAL.LOG_SURUCU + GLOBAL.char_degis( BAGLAN_LOG.cariLogDizin.mODULADI_ACCDB)) == false)
+		{
+			String dsy =  GLOBAL.LOG_SURUCU + GLOBAL.char_degis(BAGLAN_LOG.cariLogDizin.mODULADI_ACCDB) ;
 			GLOBAL.create_table_log(dsy,sbilgi.getFir_adi(),BAGLAN_LOG.cariLogDizin);
 		}
 		//  TEXT DOSYASI ILK ACILIS
@@ -1194,7 +1206,7 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 	}
 	private void kONTROL() throws SQLException, ClassNotFoundException
 	{
-		if(con.isClosed())    
+		if(! con.isValid(0))
 			baglan();
 	}
 	@Override

@@ -71,6 +71,12 @@ public class ADRES_MSSQL implements IADRES {
 			String dsy =GLOBAL.LOG_SURUCU + VERITABANI + "_mSSQL"+ ".DB" ;
 			GLOBAL.create_table_log(dsy,sbilgi.getFir_adi(),BAGLAN_LOG.adrLogDizin);
 		}
+		//SQLITE LOG DOSYASI OLUSTUR
+		if (GLOBAL.dos_kontrol(GLOBAL.LOG_SURUCU + VERITABANI + "_mSSQL" + ".ACCDB") == false)
+		{
+			String dsy =GLOBAL.LOG_SURUCU + VERITABANI + "_mSSQL"+ ".ACCDB" ;
+			GLOBAL.create_table_log(dsy,sbilgi.getFir_adi(),BAGLAN_LOG.adrLogDizin);
+		}
 		//  TEXT DOSYASI ILK ACILIS
 		ILOGER_KAYIT  tEXLOG = new TXT_LOG();
 		lBILGI.setmESAJ("Dosya Olusturuldu");
@@ -119,6 +125,12 @@ public class ADRES_MSSQL implements IADRES {
 		if (GLOBAL.dos_kontrol( GLOBAL.LOG_SURUCU + GLOBAL.char_degis( BAGLAN_LOG.adrLogDizin.mODUL)) == false)
 		{
 			String dsy =   GLOBAL.LOG_SURUCU +GLOBAL.char_degis( BAGLAN_LOG.adrLogDizin.mODUL) ;
+			GLOBAL.create_table_log(dsy,sbilgi.getFir_adi(),BAGLAN_LOG.adrLogDizin);
+		}
+		//SQLITE LOG DOSYASI OLUSTUR
+		if (GLOBAL.dos_kontrol( GLOBAL.LOG_SURUCU + GLOBAL.char_degis( BAGLAN_LOG.adrLogDizin.mODULADI_ACCDB)) == false)
+		{
+			String dsy =   GLOBAL.LOG_SURUCU +GLOBAL.char_degis( BAGLAN_LOG.adrLogDizin.mODULADI_ACCDB) ;
 			GLOBAL.create_table_log(dsy,sbilgi.getFir_adi(),BAGLAN_LOG.adrLogDizin);
 		}
 		//  TEXT DOSYASI ILK ACILIS
@@ -393,7 +405,7 @@ public class ADRES_MSSQL implements IADRES {
 	}
 	private void kONTROL() throws SQLException, ClassNotFoundException
 	{
-		if(con.isClosed())    
+		if(! con.isValid(0))
 			baglan();
 	}
 	@Override

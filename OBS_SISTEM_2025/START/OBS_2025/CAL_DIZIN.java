@@ -46,6 +46,7 @@ import javax.swing.table.TableColumnModel;
 
 import com.formdev.flatlaf.FlatClientProperties;
 
+import LOGER_KAYIT.DOSYA_ACCESS_ACCDB;
 import LOGER_KAYIT.DOSYA_MSSQL;
 import LOGER_KAYIT.DOSYA_MYSQL;
 import LOGER_KAYIT.SQLITE_LOG;
@@ -152,10 +153,12 @@ public class CAL_DIZIN extends JDialog {
 	private JLabel lblNewLabel_2;
 	boolean vt = false;
 	boolean ds = false;
+	boolean accdb = false;
 	boolean tx = false;
 	boolean em = false;
 	static JCheckBoxMenuItem cbVeritabani ;
 	static JCheckBoxMenuItem cbDosya;
+	static JCheckBoxMenuItem cbAccdb;
 	static JCheckBoxMenuItem cbText;
 	static JCheckBoxMenuItem cbMail;
 	private JSeparator separator;
@@ -1331,7 +1334,7 @@ public class CAL_DIZIN extends JDialog {
 		cbVeritabani.setSelected(true);
 		menu.add(cbVeritabani);
 
-		cbDosya = new JCheckBoxMenuItem("Dosya");
+		cbDosya = new JCheckBoxMenuItem("SQ Lite");
 		cbDosya.setForeground(new Color(0, 128, 128));
 		cbDosya.setUI(new StayOpenCheckBoxMenuItemUI());
 		cbDosya.addItemListener(new ItemListener() {
@@ -1340,6 +1343,18 @@ public class CAL_DIZIN extends JDialog {
 			}
 		});
 		menu.add(cbDosya);
+		
+		cbAccdb = new JCheckBoxMenuItem("Access ACCDB");
+		cbAccdb.setForeground(new Color(0, 128, 128));
+		cbAccdb.setUI(new StayOpenCheckBoxMenuItemUI());
+		cbAccdb.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent e) {
+				accdb = (e.getStateChange() == 1 ? true:false);    	
+			}
+		});
+		menu.add(cbAccdb);
+		
+		
 		cbText = new JCheckBoxMenuItem("Text Dosya");
 		cbText.setForeground(new Color(0, 128, 128));
 		cbText.setUI(new StayOpenCheckBoxMenuItemUI());
@@ -1360,8 +1375,6 @@ public class CAL_DIZIN extends JDialog {
 		});
 		menu.add(cbMail);
 		JButton btnNewButton_6 = new JButton();
-		//btnNewButton_6.setForeground(new Color(0, 0, 128));
-
 		btnNewButton_6.setText("Loglama Secimi");
 		btnNewButton_6.setBounds(130, 125, 129, 23);
 		btnNewButton_6.setAction(new AbstractAction("Loglama Secimi") {
@@ -1401,7 +1414,7 @@ public class CAL_DIZIN extends JDialog {
 					if(txtKodu.getText().equals("")) return ;
 					if(txtkul.getText().equals("")) return ;
 					if(txtcdid.getText().equals("")) return ;
-					String loglama = (vt == true ? "true," : "false,") + (ds == true ? "true," : "false,") + (tx ==true ? "true," : "false,") + (em == true ? "true":"false");
+					String loglama = (vt == true ? "true," : "false,") + (ds == true ? "true," : "false,") + (tx ==true ? "true," : "false,") + (em == true ? "true,":"false,") + (accdb == true ? "true":"false");
 					oac.uSER_ISL.loglama_kayit(txtcdid.getText(),chckbxL_1.isSelected() ? 1 : 0, loglama);
 				} catch (Exception e1) {
 					e1.printStackTrace();
@@ -1585,6 +1598,7 @@ public class CAL_DIZIN extends JDialog {
 		cbDosya.setSelected( (token[1].equals("true") ? true:false));
 		cbText.setSelected( (token[2].equals("true") ? true:false));
 		cbMail.setSelected( (token[3].equals("true") ? true:false));
+		cbAccdb.setSelected((token[4].equals("true") ? true:false));
 		if (grd.getModel().getValueAt(satir, 10).equals("D"))
 		{
 			chckbxD.setSelected(true);
@@ -1918,7 +1932,7 @@ public class CAL_DIZIN extends JDialog {
 	}
 	private void mdb_yaz_2(String modul) throws ClassNotFoundException, SQLException
 	{
-		String loglama = (vt == true ? "true," : "false,") + (ds == true ? "true," : "false,") + (tx ==true ? "true," : "false,") + (em == true ? "true":"false");
+		String loglama = (vt == true ? "true," : "false,") + (ds == true ? "true," : "false,") + (tx ==true ? "true," : "false,") + (em == true ? "true,":"false,")+ (accdb == true ? "true":"false");
 		oac.uSER_ISL.calisanmi_degis(GLOBAL.KULL_ADI, modul,chckbxL.isSelected() ? "L" : "S"); // CaLISANMI DOSYA KONTROLU
 		oac.uSER_ISL.details_yaz(txtKodu.getText(),GLOBAL.KULL_ADI, txtkul.getText(), oac.sDONDUR.sDONDUR(txtsifr), textInstance.getText() , txtIp.getText(), modul,txtdiz.getText(), chckbxL.isSelected() ? "L" : "S", chckbxD.isSelected() ? "D" : "O", "E", "E",cmbhangisql.getItemAt(cmbhangisql.getSelectedIndex()),  txtcdid.getText(),chckbxL_1.isSelected() ? 1 : 0, loglama);
 	}
@@ -2574,59 +2588,123 @@ public class CAL_DIZIN extends JDialog {
 			{
 				if (ds)
 				{
-					if(tx)
+					if(accdb)
 					{
-						if(em)
+						if(tx)
 						{
-							ILOGGER[] ilogg = {new DOSYA_YAZ(new DOSYA_MSSQL()),new DOSYA_YAZ(new SQLITE_LOG()),new DOSYA_YAZ(new TXT_LOG()),new MAIL_AT()};
-							lAktar(mODUL , ilogg);
+							if(em)
+							{
+								ILOGGER[] ilogg = {new DOSYA_YAZ(new DOSYA_MSSQL()),new DOSYA_YAZ(new SQLITE_LOG()), new DOSYA_YAZ(new DOSYA_ACCESS_ACCDB()) ,new DOSYA_YAZ(new TXT_LOG()),new MAIL_AT()};
+								lAktar(mODUL , ilogg);
+							}
+							else
+							{
+								ILOGGER[] ilogg = {new DOSYA_YAZ(new DOSYA_MSSQL()),new DOSYA_YAZ(new SQLITE_LOG()),new DOSYA_YAZ(new DOSYA_ACCESS_ACCDB()),new DOSYA_YAZ(new TXT_LOG())};
+								lAktar(mODUL , ilogg);
+							}
 						}
 						else
 						{
-							ILOGGER[] ilogg = {new DOSYA_YAZ(new DOSYA_MSSQL()),new DOSYA_YAZ(new SQLITE_LOG()),new DOSYA_YAZ(new TXT_LOG())};
-							lAktar(mODUL , ilogg);
+							if(em)
+							{
+								ILOGGER[] ilogg = {new DOSYA_YAZ(new DOSYA_MSSQL()),new DOSYA_YAZ(new SQLITE_LOG()),new DOSYA_YAZ(new DOSYA_ACCESS_ACCDB()),new MAIL_AT()};
+								lAktar(mODUL , ilogg);
+							}
+							else
+							{
+								ILOGGER[] ilogg = {new DOSYA_YAZ(new DOSYA_MSSQL()),new DOSYA_YAZ(new SQLITE_LOG()),new DOSYA_YAZ(new DOSYA_ACCESS_ACCDB())};
+								lAktar(mODUL , ilogg);
+							}
 						}
 					}
-					else
+					else // accdb yok
 					{
-						if(em)
+						if(tx)
 						{
-							ILOGGER[] ilogg = {new DOSYA_YAZ(new DOSYA_MSSQL()),new DOSYA_YAZ(new SQLITE_LOG()),new MAIL_AT()};
-							lAktar(mODUL , ilogg);
+							if(em)
+							{
+								ILOGGER[] ilogg = {new DOSYA_YAZ(new DOSYA_MSSQL()),new DOSYA_YAZ(new SQLITE_LOG()) ,new DOSYA_YAZ(new TXT_LOG()),new MAIL_AT()};
+								lAktar(mODUL , ilogg);
+							}
+							else
+							{
+								ILOGGER[] ilogg = {new DOSYA_YAZ(new DOSYA_MSSQL()),new DOSYA_YAZ(new SQLITE_LOG()),new DOSYA_YAZ(new TXT_LOG())};
+								lAktar(mODUL , ilogg);
+							}
 						}
 						else
 						{
-							ILOGGER[] ilogg = {new DOSYA_YAZ(new DOSYA_MSSQL()),new DOSYA_YAZ(new SQLITE_LOG())};
-							lAktar(mODUL , ilogg);
+							if(em)
+							{
+								ILOGGER[] ilogg = {new DOSYA_YAZ(new DOSYA_MSSQL()),new DOSYA_YAZ(new SQLITE_LOG()),new MAIL_AT()};
+								lAktar(mODUL , ilogg);
+							}
+							else
+							{
+								ILOGGER[] ilogg = {new DOSYA_YAZ(new DOSYA_MSSQL()),new DOSYA_YAZ(new SQLITE_LOG())};
+								lAktar(mODUL , ilogg);
+							}
 						}
 					}
 				}
 				else // DOSYA YOK 
 				{
-					if(tx)
+					if(accdb)
 					{
-						if(em)
+						if(tx)
 						{
-							ILOGGER[] ilogg = {new DOSYA_YAZ(new DOSYA_MSSQL()),new DOSYA_YAZ(new TXT_LOG()),new MAIL_AT()};
-							lAktar(mODUL , ilogg);
+							if(em)
+							{
+								ILOGGER[] ilogg = {new DOSYA_YAZ(new DOSYA_MSSQL()),new DOSYA_YAZ(new DOSYA_ACCESS_ACCDB()),new DOSYA_YAZ(new TXT_LOG()),new MAIL_AT()};
+								lAktar(mODUL , ilogg);
+							}
+							else
+							{
+								ILOGGER[] ilogg = {new DOSYA_YAZ(new DOSYA_MSSQL()),new DOSYA_YAZ(new DOSYA_ACCESS_ACCDB()),new DOSYA_YAZ(new TXT_LOG())};
+								lAktar(mODUL , ilogg);
+							}
 						}
 						else
 						{
-							ILOGGER[] ilogg = {new DOSYA_YAZ(new DOSYA_MSSQL()),new DOSYA_YAZ(new TXT_LOG())};
-							lAktar(mODUL , ilogg);
+							if(em)
+							{
+								ILOGGER[] ilogg = {new DOSYA_YAZ(new DOSYA_MSSQL()),new DOSYA_YAZ(new DOSYA_ACCESS_ACCDB()),new MAIL_AT()};
+								lAktar(mODUL , ilogg);
+							}
+							else
+							{
+								ILOGGER[] ilogg = {new DOSYA_YAZ(new DOSYA_MSSQL()),new DOSYA_YAZ(new DOSYA_ACCESS_ACCDB())};
+								lAktar(mODUL , ilogg);
+							}
 						}
 					}
-					else
+					else // accdb yok
 					{
-						if(em)
+						if(tx)
 						{
-							ILOGGER[] ilogg = {new DOSYA_YAZ(new DOSYA_MSSQL()),new MAIL_AT()};
-							lAktar(mODUL , ilogg);
+							if(em)
+							{
+								ILOGGER[] ilogg = {new DOSYA_YAZ(new DOSYA_MSSQL()),new DOSYA_YAZ(new TXT_LOG()),new MAIL_AT()};
+								lAktar(mODUL , ilogg);
+							}
+							else
+							{
+								ILOGGER[] ilogg = {new DOSYA_YAZ(new DOSYA_MSSQL()),new DOSYA_YAZ(new TXT_LOG())};
+								lAktar(mODUL , ilogg);
+							}
 						}
 						else
 						{
-							ILOGGER[] ilogg = {new DOSYA_YAZ(new DOSYA_MSSQL())};
-							lAktar(mODUL , ilogg);
+							if(em)
+							{
+								ILOGGER[] ilogg = {new DOSYA_YAZ(new DOSYA_MSSQL()),new MAIL_AT()};
+								lAktar(mODUL , ilogg);
+							}
+							else
+							{
+								ILOGGER[] ilogg = {new DOSYA_YAZ(new DOSYA_MSSQL())};
+								lAktar(mODUL , ilogg);
+							}
 						}
 					}
 				}
@@ -2636,61 +2714,101 @@ public class CAL_DIZIN extends JDialog {
 			{
 				if (ds)
 				{
-					if(tx)
+					if(accdb)
 					{
-						if(em)
+
+
+						if(tx)
 						{
-							ILOGGER[] ilogg = {new DOSYA_YAZ(new DOSYA_MYSQL()),new DOSYA_YAZ(new SQLITE_LOG()),new DOSYA_YAZ(new TXT_LOG()),new MAIL_AT()};
-							lAktar(mODUL , ilogg);
+							if(em)
+							{
+								ILOGGER[] ilogg = {new DOSYA_YAZ(new DOSYA_MYSQL()),new DOSYA_YAZ(new SQLITE_LOG()),new DOSYA_YAZ(new DOSYA_ACCESS_ACCDB()),new DOSYA_YAZ(new TXT_LOG()),new MAIL_AT()};
+								lAktar(mODUL , ilogg);
+							}
+							else
+							{
+								ILOGGER[] ilogg = {new DOSYA_YAZ(new DOSYA_MYSQL()),new DOSYA_YAZ(new SQLITE_LOG()),new DOSYA_YAZ(new DOSYA_ACCESS_ACCDB()),new DOSYA_YAZ(new TXT_LOG())};
+								lAktar(mODUL , ilogg);
+							}
 						}
 						else
 						{
-							ILOGGER[] ilogg = {new DOSYA_YAZ(new DOSYA_MYSQL()),new DOSYA_YAZ(new SQLITE_LOG()),new DOSYA_YAZ(new TXT_LOG())};
-							lAktar(mODUL , ilogg);
+							if(em)
+							{
+								ILOGGER[] ilogg = {new DOSYA_YAZ(new DOSYA_MYSQL()),new DOSYA_YAZ(new SQLITE_LOG()),new DOSYA_YAZ(new DOSYA_ACCESS_ACCDB()),new MAIL_AT()};
+								lAktar(mODUL , ilogg);
+							}
+							else
+							{
+								ILOGGER[] ilogg = {new DOSYA_YAZ(new DOSYA_MYSQL()),new DOSYA_YAZ(new SQLITE_LOG()),new DOSYA_YAZ(new DOSYA_ACCESS_ACCDB())};
+								lAktar(mODUL , ilogg);
+							}
 						}
 					}
-					else
+					else // accdb yok
 					{
-						if(em)
+						if(tx)
 						{
-							ILOGGER[] ilogg = {new DOSYA_YAZ(new DOSYA_MYSQL()),new DOSYA_YAZ(new SQLITE_LOG()),new MAIL_AT()};
-							lAktar(mODUL , ilogg);
+							if(em)
+							{
+								ILOGGER[] ilogg = {new DOSYA_YAZ(new DOSYA_MYSQL()),new DOSYA_YAZ(new SQLITE_LOG()),new DOSYA_YAZ(new TXT_LOG()),new MAIL_AT()};
+								lAktar(mODUL , ilogg);
+							}
+							else
+							{
+								ILOGGER[] ilogg = {new DOSYA_YAZ(new DOSYA_MYSQL()),new DOSYA_YAZ(new SQLITE_LOG()),new DOSYA_YAZ(new TXT_LOG())};
+								lAktar(mODUL , ilogg);
+							}
 						}
 						else
 						{
-							ILOGGER[] ilogg = {new DOSYA_YAZ(new DOSYA_MYSQL()),new DOSYA_YAZ(new SQLITE_LOG())};
-							lAktar(mODUL , ilogg);
+							if(em)
+							{
+								ILOGGER[] ilogg = {new DOSYA_YAZ(new DOSYA_MYSQL()),new DOSYA_YAZ(new SQLITE_LOG()),new MAIL_AT()};
+								lAktar(mODUL , ilogg);
+							}
+							else
+							{
+								ILOGGER[] ilogg = {new DOSYA_YAZ(new DOSYA_MYSQL()),new DOSYA_YAZ(new SQLITE_LOG())};
+								lAktar(mODUL , ilogg);
+							}
 						}
 					}
 				}
 				else // DOSYA YOK 
 				{
-					if(tx)
+					if(accdb)
 					{
-						if(em)
+
+
+						if(tx)
 						{
-							ILOGGER[] ilogg = {new DOSYA_YAZ(new DOSYA_MYSQL()),new DOSYA_YAZ(new TXT_LOG()),new MAIL_AT()};
-							lAktar(mODUL , ilogg);
+							if(em)
+							{
+								ILOGGER[] ilogg = {new DOSYA_YAZ(new DOSYA_MYSQL()),new DOSYA_YAZ(new DOSYA_ACCESS_ACCDB()) ,new DOSYA_YAZ(new TXT_LOG()),new MAIL_AT()};
+								lAktar(mODUL , ilogg);
+							}
+							else
+							{
+								ILOGGER[] ilogg = {new DOSYA_YAZ(new DOSYA_MYSQL()),new DOSYA_YAZ(new DOSYA_ACCESS_ACCDB()),new DOSYA_YAZ(new TXT_LOG())};
+								lAktar(mODUL , ilogg);
+							}
 						}
 						else
 						{
-							ILOGGER[] ilogg = {new DOSYA_YAZ(new DOSYA_MYSQL()),new DOSYA_YAZ(new TXT_LOG())};
-							lAktar(mODUL , ilogg);
+							if(em)
+							{
+								ILOGGER[] ilogg = {new DOSYA_YAZ(new DOSYA_MYSQL()),new DOSYA_YAZ(new DOSYA_ACCESS_ACCDB()),new MAIL_AT()};
+								lAktar(mODUL , ilogg);
+							}
+							else
+							{
+								ILOGGER[] ilogg = {new DOSYA_YAZ(new DOSYA_MYSQL()),new DOSYA_YAZ(new DOSYA_ACCESS_ACCDB())};
+								lAktar(mODUL , ilogg);
+							}
 						}
 					}
-					else
-					{
-						if(em)
-						{
-							ILOGGER[] ilogg = {new DOSYA_YAZ(new DOSYA_MYSQL()),new MAIL_AT()};
-							lAktar(mODUL , ilogg);
-						}
-						else
-						{
-							ILOGGER[] ilogg = {new DOSYA_YAZ(new DOSYA_MYSQL())};
-							lAktar(mODUL , ilogg);
-						}
-					}
+
 				}
 			}
 		}
@@ -2699,59 +2817,121 @@ public class CAL_DIZIN extends JDialog {
 		{
 			if (ds)
 			{
-				if(tx)
+				if(accdb)
 				{
-					if(em)
+					if(tx)
 					{
-						ILOGGER[] ilogg = {new DOSYA_YAZ(new SQLITE_LOG()),new DOSYA_YAZ(new TXT_LOG()),new MAIL_AT()};
-						lAktar(mODUL , ilogg);
+						if(em)
+						{
+							ILOGGER[] ilogg = {new DOSYA_YAZ(new SQLITE_LOG()),new DOSYA_YAZ(new DOSYA_ACCESS_ACCDB()),new DOSYA_YAZ(new TXT_LOG()),new MAIL_AT()};
+							lAktar(mODUL , ilogg);
+						}
+						else
+						{
+							ILOGGER[] ilogg = {new DOSYA_YAZ(new SQLITE_LOG()),new DOSYA_YAZ(new DOSYA_ACCESS_ACCDB()),new DOSYA_YAZ(new TXT_LOG())};
+							lAktar(mODUL , ilogg);
+						}
 					}
 					else
 					{
-						ILOGGER[] ilogg = {new DOSYA_YAZ(new SQLITE_LOG()),new DOSYA_YAZ(new TXT_LOG())};
-						lAktar(mODUL , ilogg);
+						if(em)
+						{
+							ILOGGER[] ilogg = {new DOSYA_YAZ(new SQLITE_LOG()),new DOSYA_YAZ(new DOSYA_ACCESS_ACCDB()),new MAIL_AT()};
+							lAktar(mODUL , ilogg);
+						}
+						else
+						{
+							ILOGGER[] ilogg = {new DOSYA_YAZ(new SQLITE_LOG()),new DOSYA_YAZ(new DOSYA_ACCESS_ACCDB())};
+							lAktar(mODUL , ilogg);
+						}
 					}
 				}
-				else
-				{
-					if(em)
+				else {
+					if(tx)
 					{
-						ILOGGER[] ilogg = {new DOSYA_YAZ(new SQLITE_LOG()),new MAIL_AT()};
-						lAktar(mODUL , ilogg);
+						if(em)
+						{
+							ILOGGER[] ilogg = {new DOSYA_YAZ(new SQLITE_LOG()),new DOSYA_YAZ(new TXT_LOG()),new MAIL_AT()};
+							lAktar(mODUL , ilogg);
+						}
+						else
+						{
+							ILOGGER[] ilogg = {new DOSYA_YAZ(new SQLITE_LOG()),new DOSYA_YAZ(new TXT_LOG())};
+							lAktar(mODUL , ilogg);
+						}
 					}
 					else
 					{
-						ILOGGER[] ilogg = {new DOSYA_YAZ(new SQLITE_LOG())};
-						lAktar(mODUL , ilogg);
+						if(em)
+						{
+							ILOGGER[] ilogg = {new DOSYA_YAZ(new SQLITE_LOG()),new MAIL_AT()};
+							lAktar(mODUL , ilogg);
+						}
+						else
+						{
+							ILOGGER[] ilogg = {new DOSYA_YAZ(new SQLITE_LOG())};
+							lAktar(mODUL , ilogg);
+						}
 					}
 				}
 			}
 			else // DOSYA YOK 
 			{
-				if(tx)
+				if(accdb)
 				{
-					if(em)
+					if(tx)
 					{
-						ILOGGER[] ilogg = {new DOSYA_YAZ(new TXT_LOG()),new MAIL_AT()};
-						lAktar(mODUL , ilogg);
+						if(em)
+						{
+							ILOGGER[] ilogg = {new DOSYA_YAZ(new DOSYA_ACCESS_ACCDB()),new DOSYA_YAZ(new TXT_LOG()),new MAIL_AT()};
+							lAktar(mODUL , ilogg);
+						}
+						else
+						{
+							ILOGGER[] ilogg = {new DOSYA_YAZ(new DOSYA_ACCESS_ACCDB()),new DOSYA_YAZ(new TXT_LOG())};
+							lAktar(mODUL , ilogg);
+						}
 					}
 					else
 					{
-						ILOGGER[] ilogg = {new DOSYA_YAZ(new TXT_LOG())};
-						lAktar(mODUL , ilogg);
+						if(em)
+						{
+							ILOGGER[] ilogg = {new DOSYA_YAZ(new DOSYA_ACCESS_ACCDB()),new MAIL_AT()};
+							lAktar(mODUL , ilogg);
+						}
+						else
+						{
+							ILOGGER[] ilogg = {new DOSYA_YAZ(new DOSYA_ACCESS_ACCDB())};
+							lAktar(mODUL , ilogg);
+						}
 					}
 				}
-				else
-				{
-					if(em)
+				else {
+					if(tx)
 					{
-						ILOGGER[] ilogg = {new MAIL_AT()};
-						lAktar(mODUL , ilogg);
+						if(em)
+						{
+							ILOGGER[] ilogg = {new DOSYA_YAZ(new TXT_LOG()),new MAIL_AT()};
+							lAktar(mODUL , ilogg);
+						}
+						else
+						{
+							ILOGGER[] ilogg = {new DOSYA_YAZ(new TXT_LOG())};
+							lAktar(mODUL , ilogg);
+						}
 					}
 					else
 					{
-						ILOGGER[] ilogg = {};
-						lAktar(mODUL , ilogg);
+						if(em)
+						{
+							ILOGGER[] ilogg = {new MAIL_AT()};
+							lAktar(mODUL , ilogg);
+						}
+						else
+						{
+							ILOGGER[] ilogg = {};
+							lAktar(mODUL , ilogg);
+						}
 					}
 				}
 			}

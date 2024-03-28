@@ -61,6 +61,12 @@ public class KAMBIYO_MYSQL implements IKAMBIYO {
 			String dsy =GLOBAL.LOG_SURUCU + VERITABANI + "_mYSQL"+ ".DB" ;
 			GLOBAL.create_table_log(dsy ,sbilgi.getFir_adi(),BAGLAN_LOG.kamLogDizin);
 		}
+		//ACCESS LOG DOSYASI OLUSTUR
+		if (GLOBAL.dos_kontrol(GLOBAL.LOG_SURUCU + VERITABANI + "_mYSQL" + ".ACCDB") == false)
+		{
+			String dsy =GLOBAL.LOG_SURUCU + VERITABANI + "_mYSQL"+ ".ACCDB" ;
+			GLOBAL.create_table_log(dsy ,sbilgi.getFir_adi(),BAGLAN_LOG.kamLogDizin);
+		}
 		//  TEXT DOSYASI ILK ACILIS
 		ILOGER_KAYIT  tEXLOG = new TXT_LOG();
 		lBILGI.setmESAJ("Dosya Olusturuldu");
@@ -108,6 +114,12 @@ public class KAMBIYO_MYSQL implements IKAMBIYO {
 		if (GLOBAL.dos_kontrol( GLOBAL.LOG_SURUCU + GLOBAL.char_degis( BAGLAN_LOG.kamLogDizin.mODUL) ) == false)
 		{
 			String dsy =  GLOBAL.LOG_SURUCU + GLOBAL.char_degis(BAGLAN_LOG.kamLogDizin.mODUL) ;
+			GLOBAL.create_table_log(dsy ,sbilgi.getFir_adi(),BAGLAN_LOG.kamLogDizin);
+		}
+		//SQLITE LOG DOSYASI OLUSTUR
+		if (GLOBAL.dos_kontrol( GLOBAL.LOG_SURUCU + GLOBAL.char_degis( BAGLAN_LOG.kamLogDizin.mODULADI_ACCDB) ) == false)
+		{
+			String dsy =  GLOBAL.LOG_SURUCU + GLOBAL.char_degis(BAGLAN_LOG.kamLogDizin.mODULADI_ACCDB) ;
 			GLOBAL.create_table_log(dsy ,sbilgi.getFir_adi(),BAGLAN_LOG.kamLogDizin);
 		}
 		//  TEXT DOSYASI ILK ACILIS
@@ -442,7 +454,7 @@ public class KAMBIYO_MYSQL implements IKAMBIYO {
 	}
 	private void kONTROL() throws SQLException, ClassNotFoundException
 	{
-		if(con.isClosed())    
+		if(! con.isValid(0))
 			baglan();
 	}
 	@Override

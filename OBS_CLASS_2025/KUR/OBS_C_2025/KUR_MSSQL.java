@@ -67,6 +67,12 @@ public class KUR_MSSQL implements IKUR{
 			String dsy = GLOBAL.LOG_SURUCU + VERITABANI + "_mSSQL"+ ".DB" ;
 			GLOBAL.create_table_log(dsy,"",BAGLAN_LOG.kurLogDizin);
 		}
+		//ACCDB LOG DOSYASI OLUSTUR
+		if (GLOBAL.dos_kontrol(GLOBAL.LOG_SURUCU + VERITABANI + "_mSSQL" + ".ACCDB") == false)
+		{
+			String dsy = GLOBAL.LOG_SURUCU + VERITABANI + "_mSSQL"+ ".ACCDB" ;
+			GLOBAL.create_table_log(dsy,"",BAGLAN_LOG.kurLogDizin);
+		}
 		//  TEXT DOSYASI ILK ACILIS
 		ILOGER_KAYIT  tEXLOG = new TXT_LOG();
     	tEXLOG.Logla(lBILGI, BAGLAN_LOG.kurLogDizin);
@@ -109,6 +115,12 @@ public class KUR_MSSQL implements IKUR{
 		if (GLOBAL.dos_kontrol(  GLOBAL.LOG_SURUCU +GLOBAL.char_degis(  BAGLAN_LOG.kurLogDizin.mODUL) ) == false)
 		{
 			String dsy =  GLOBAL.LOG_SURUCU + GLOBAL.char_degis( BAGLAN_LOG.kurLogDizin.mODUL)  ;
+			GLOBAL.create_table_log(dsy,"",BAGLAN_LOG.kurLogDizin);
+		}
+		//ACCDB LOG DOSYASI OLUSTUR
+		if (GLOBAL.dos_kontrol(  GLOBAL.LOG_SURUCU +GLOBAL.char_degis(  BAGLAN_LOG.kurLogDizin.mODULADI_ACCDB) ) == false)
+		{
+			String dsy =  GLOBAL.LOG_SURUCU + GLOBAL.char_degis( BAGLAN_LOG.kurLogDizin.mODULADI_ACCDB)  ;
 			GLOBAL.create_table_log(dsy,"",BAGLAN_LOG.kurLogDizin);
 		}
 		//  TEXT DOSYASI ILK ACILIS
@@ -257,7 +269,7 @@ public class KUR_MSSQL implements IKUR{
 	}
 	private void kONTROL() throws SQLException, ClassNotFoundException
 	{
-		if(con.isClosed())    
+		if(! con.isValid(0))
 			baglan();
 	}
 }
